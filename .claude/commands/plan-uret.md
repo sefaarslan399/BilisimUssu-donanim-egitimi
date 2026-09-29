@@ -17,6 +17,6 @@ Hedef: $ARGUMENTS
    - Format U'da her adım için GÖSTER (önce 3D prova, sonra gerçek parça), SOR, ✔ KONTROL ve ⚠ SIK HATA kutularını doldur.
    - Güvenlik kutusu JSON `guvenlik` alanından gelir.
 4. Toplam süre 35 dk olmalı. Ortaokulda yaş bandı uyarlaması ve Derinleş kullanımı notlarını ekle.
-5. İçeriği `kaynak/<KOD>/H<NN>/plan.json` dosyasına yaz (örnek: `kaynak/DON-201/H01/plan.json`), sonra `python3 scripts/plan_derle.py <KOD> <HAFTA>` çalıştır: `ogretmen-plani/<KOD>/<KOD>-H<NN>.html` (A4 yazdırma CSS'i) ve WeasyPrint ile PDF üretilir. Genel bilgiler ve kazanımlar müfredattan, Bilgi Testi dersin `lesson.js` dosyasından okunur. PDF'in ilk iki sayfasını görüntüye çevirip referans PDF ile görsel olarak karşılaştır.
+5. İçeriği `kaynak/<KOD>/H<NN>/plan.json` dosyasına yaz (örnek: `kaynak/DON-201/H01/plan.json`), sonra `python3 scripts/plan_derle.py <KOD> <HAFTA>` çalıştır: `ogretmen-plani/<KOD>/<KOD>-H<NN>.html` (A4 yazdırma CSS'i) ve WeasyPrint ile PDF üretilir. Genel bilgiler ve kazanımlar müfredattan, Bilgi Testi dersin `lesson.js` dosyasından okunur. Format `plan.json → format` alanından seçilir: K örneği `kaynak/DON-201/H01/plan.json`, U örneği `kaynak/DON-201/H10/plan.json`. PDF'in ilk iki sayfasını görüntüye çevirip referans PDF ile görsel olarak karşılaştır.
 6. `python3 scripts/validate.py --plan-karsilastir <plan.html> <ders.html>` çalıştır; birebir ortak ifade kalmayana kadar düzelt.
 7. `DURUM.md` Plan sütununu güncelle, commit at.

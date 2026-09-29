@@ -1,0 +1,145 @@
+{
+  "format": "U",
+  "altbaslik": "Okul atölyesindeki eski bilgisayarı güvenle açıp içini tanıyorsun; RAM'i çıkarıp doğru yönde geri takıyorsun.",
+  "rozetler": ["Ortaokul 5–8", "Süre: 1 ders (35 dk)", "Grup: 3–4 kişi", "Eski masaüstü bilgisayar", "Zorluk: Orta"],
+  "senaryo": {
+    "baslik": "ATÖLYE GÜNÜ",
+    "metin": "Okulun teknik servis ekibi, yenilenecek eski bilgisayarları kontrol etmek için yardım istiyor. Her grup bir bilgisayarı güvenle açacak, içindeki parçaları etiketleyecek ve belleğin (RAM) doğru takılı olduğunu kendi elleriyle doğrulayacak.",
+    "gorev": "Bilgisayarı güvenle aç, parçaları etiketle, RAM'i çıkarıp doğru yönde geri tak ve üç fotoğrafla belgele."
+  },
+  "ogrenci_ne_yapiyor": "Her adımı önce etkileşimli dersteki 3D provada izliyor, sonra grubuyla gerçek bilgisayarda aynı adımı yapıyor: fişi çekip antistatik bilekliği takıyor, arka vidaları söküp yan kapağı çıkarıyor, iç parçaları bulup kâğıt etiketle işaretliyor, RAM'i mandallarını açarak çıkarıyor ve çentiği yuvadaki çıkıntıya hizalayarak geri takıyor; kapağı kapatıp süreci üç fotoğrafla belgeliyor.",
+  "kunye": {
+    "grup": "3–4 kişilik gruplar; roller: uygulayan, kontrolcü, belgeleyen",
+    "donanim": "Grup başına eski masaüstü bilgisayar · tornavida · antistatik bileklik",
+    "on_kosul": "H04 Güvenli Çalışma, H05 Anakart, H07 RAM",
+    "degerlendirme": "Süreç gözlemi + ürün rubriği + 4 soruluk bilgi testi (güvenlik sırası, RAM'i tanıma, mandal, çentik)"
+  },
+  "kavramlar": [
+    { "baslik": "Yan kapak ve vidalar", "metin": "Ofis tipi kasalarda önden bakınca sol yan kapak, anakartın parçalı yüzünü açar. Kapak arkadan iki vidayla tutulur; vidalar sökülünce kapak önce arkaya kaydırılır, sonra dışa çekilir." },
+    { "baslik": "Statik elektrik", "metin": "Vücutta biriken statik yük hissedilmeden çiplere zarar verebilir. Antistatik bileklik, kişiyi kasanın boyasız metaliyle aynı elektrik düzeyine getirir. Kasa açılmadan önce fiş prizden çekilir." },
+    { "baslik": "RAM (DIMM) ve altın temaslar", "metin": "Masaüstünde uzun DIMM modülleri kullanılır. Alt kenardaki altın temaslar yuvadaki metal uçlara değer. Modül kısa kenarlarından tutulur; temaslara ve çiplere parmakla dokunulmaz." },
+    { "baslik": "Çentik ve çıkıntı", "metin": "DDR4 modülün alt kenarındaki çentik merkezden kaymıştır. Yuvanın içindeki çıkıntıyla aynı tarafa gelince modül girer; ters tutulursa girmez. Çentik farkı yüzünden DDR3 ya da DDR5 modüller DDR4 yuvasına girmez." },
+    { "baslik": "Mandallar ve klik", "metin": "Yuvanın uçlarındaki mandallar modülü yerinde tutar. Modül iki ucundan eşit bastırılınca tam oturur, mandallar kendiliğinden kapanır ve klik sesi duyulur. Bazı anakartlarda yalnız bir uçta mandal vardır." },
+    { "baslik": "Yuva sırası", "metin": "İki modül varsa anakart kılavuzundaki önerilen yuvalar kullanılır (dört yuvalı kartlarda çoğunlukla 2. ve 4. yuva). Bu derste modül çıkarıldığı yuvaya geri takılır; yuva numarası kartın üstünde yazar." }
+  ],
+  "nasil": {
+    "baslik": "RAM → yuva → sistem görür",
+    "kartlar": [
+      { "ust": "PARÇA", "baslik": "RAM modülü", "metin": "Çentik, yuvadaki çıkıntıya hizalanır." },
+      { "ust": "BAĞLANTI", "baslik": "Yuva ve mandallar", "metin": "Temaslar yuvadaki uçlara tam değer; mandallar klik diye kapanır." },
+      { "ust": "SONUÇ", "baslik": "Sistem görür", "metin": "Açılışta bilgisayar belleği tanır; toplam bellek sistem bilgisinde görünür." }
+    ],
+    "metin": "Modül yuvaya tam oturduğunda altın temasların her biri yuvadaki kendi ucuna değer ve anakart üzerinden işlemciye bağlanır. Bilgisayar açılırken yaptığı kısa kontrolde (POST) belleği tanır. Modül eğik ya da yarım oturmuşsa açılışta uyarı sesi duyulabilir ya da ekrana görüntü gelmeyebilir; bu yüzden her iki mandalın kapandığı gözle kontrol edilir. İlk açılış H11'de yapılır."
+  },
+  "kontrol_listesi": [
+    "Her grup masasında: eski masaüstü bilgisayar, tornavida, antistatik bileklik, parça kutusu, kâğıt etiket ve kalem.",
+    "Bilgisayarların fişleri ders başlamadan prizden çekilmiş ve kablolar masada toplanmış olsun.",
+    "Her bilgisayarın kapağını önceden bir kez açıp kapatın; çok sıkı vidaları gevşetin.",
+    "Her kasada en az bir RAM modülü takılı olsun; yuva numarasını not edin.",
+    "Etkileşimli dersi akıllı tahtada açın; 3D sahnelerin açıldığını kontrol edin (açılmazsa yerine çizim görünür).",
+    "Belgeleme için okulun tabletini ya da kendi kameranızı hazırlayın; öğrenci telefonu kullanılmaz.",
+    "Gerçek fotoğraflar derse eklenmemişse, her adımda gerçek parçayı kendi masanızda gösterin."
+  ],
+  "malzemeler": [
+    ["Eski masaüstü bilgisayar", "1", "RAM'i takılı; fişi çekili"],
+    ["Yıldız tornavida", "1", "Kelebek vidalar elle açılıyorsa gerekmez"],
+    ["Antistatik bileklik", "1 kişi başı", "Klips kasanın boyasız metaline"],
+    ["Parça kutusu", "1", "Vidalar ve küçük parçalar için"],
+    ["Kâğıt etiket ve kalem", "1 takım", "Parçaların yanına yapıştırılır"],
+    ["Okul tableti / kamera", "Sınıf başı 1", "Belgeleme; öğretmen çeker"]
+  ],
+  "akis": [
+    { "asama": "Giriş ve güvenlik", "bas": 0, "son": 5, "ogretmen": "Atölye gününü anlat; “RAM'i ters tutsak ne olur?” diye tahmin aldır. Rolleri dağıt, güvenlik kontrol listesini sesli okut.", "ogrenci": "Tahmin eder, rolleri alır, fişi çeker, bilekliği takar.", "kontrol": "Tüm fişler masada mı; bileklik klipsi metalde mi?", "slayt": "1–5" },
+    { "asama": "Kapağı aç", "bas": 5, "son": 10, "ogretmen": "3D provayı oynat; vidaların kutuya gittiğini göster. Gruplara aynı adımı yaptır.", "ogrenci": "Vidaları söker, kutuya koyar, kapağı kaydırıp çıkarır.", "kontrol": "Vidalar kutuda, kapak düz yatıyor mu?", "slayt": "6" },
+    { "asama": "Parçaları etiketle", "bas": 10, "son": 16, "ogretmen": "Provadaki etiketleme sırasını izlet; her grupta bir parçayı birlikte bul.", "ogrenci": "Parçaları bulur, adını söyler, etiketi yanına yapıştırır.", "kontrol": "En az 5 parça doğru etiketli mi?", "slayt": "7" },
+    { "asama": "RAM sök–tak", "bas": 16, "son": 26, "ogretmen": "Çıkarma ve takma provalarını ayrı ayrı oynat; ters takma denemesinde durup sor. Grupları tek tek dolaş.", "ogrenci": "Mandalları açar, RAM'i çıkarır; çentiği hizalayıp geri takar.", "kontrol": "İki mandal kapalı, RAM eğik değil mi?", "slayt": "8–9" },
+    { "asama": "Belgele ve kapat", "bas": 26, "son": 30, "ogretmen": "Her grubun üç fotoğrafını çek; kapak ve vidaları kutudan taktır.", "ogrenci": "Fotoğraf listesini işaretler, kapağı kapatır, masayı toplar.", "kontrol": "Üç fotoğraf çekildi, vida kalmadı mı?", "slayt": "10" },
+    { "asama": "Pekiştir ve test", "bas": 30, "son": 35, "ogretmen": "E-TAK etkinliğini bir gönüllüye tahtada yaptır; özetten sonra bilgi testini çözdür.", "ogrenci": "RAM'i sanal olarak takar, testi çözer.", "kontrol": "Ters takmanın neden olmadığını açıklayabiliyor mu?", "slayt": "11–15" }
+  ],
+  "adimlar": [
+    { "baslik": "Güvenlik kontrolü", "goster": "Kendi masanızda fişi çekip kabloyu masaya koyun; bilekliği takıp klipsi kasanın boyasız metaline bağlayın. Slayttaki kontrol listesini tahtada işaretleyin.", "sor": "“Fiş takılıyken kapak açılsa ne olabilir?” (elektrik çarpması ve parça hasarı riski)", "kontrol": "Her grupta fiş masada, bileklik bağlı, kutu hazır.", "sik_hata": "Klips boyalı yüzeye takılmış → bağlantı olmaz; boyasız metal bir kenara taşıt." },
+    { "baslik": "Yan kapağı aç", "goster": "Önce 3D provayı oynatın: vidalar döner, kutuya gider; kapak arkaya kayar ve çıkar. Sonra gerçek kasada iki vidayı gösterin.", "sor": "“Kapak neden önce arkaya kaydırılıyor?” (kasadaki tırnaklardan kurtulması için)", "kontrol": "İki vida kutuda, kapak masada düz yatıyor.", "sik_hata": "Kapak dışa zorlanıyor → tırnaklar eğilir; önce arkaya kaydırt." },
+    { "baslik": "Parçaları bul ve etiketle", "goster": "Provada etiketlerin sırayla belirmesini izletin; gerçek kasada işlemci soğutucusunu ve RAM'i parmağınızla işaret edin (dokunmadan).", "sor": "“Ekran kartı ile RAM'i nasıl ayırt ederiz?” (boyut, yuva yönü, fanlar)", "kontrol": "En az 5 parça doğru adla etiketli; etiketler kartların üstünde değil yanında.", "sik_hata": "Güç kaynağının içini açmaya çalışma → kesinlikle yasak; örtünün ya da kutunun dışından etiketlet." },
+    { "baslik": "RAM'i çıkar", "goster": "Provada mandalların dışa açıldığını ve modülün hafifçe yükseldiğini gösterin. Gerçek yuvada iki başparmakla mandalları birlikte açın.", "sor": "“Mandallar açılmadan RAM'i çekersek ne olur?” (yuva ve temaslar zarar görür)", "kontrol": "Modül kısa kenarlarından tutuldu; temaslara dokunulmadı; kutunun kapağına yatırıldı.", "sik_hata": "Tek mandal açık kalmış → modül eğilir; iki mandalı da açtır, düz yukarı çektir." },
+    { "baslik": "RAM'i tak", "goster": "Provada ters modülün girmediğini, çevrilince çentiğin çıkıntıya oturduğunu gösterin; sonra gerçek modülde çentik ile çıkıntıyı yan yana tutun.", "sor": "“Çentik neden tam ortada değil?” (modül yalnız bir yönde girsin diye)", "kontrol": "İki mandal kendiliğinden kapandı; modül iki ucundan aynı yükseklikte.", "sik_hata": "Tek uçtan bastırılıyor → modül eğik oturur; iki ucundan eşit bastırt, klik sesini bekletin." },
+    { "baslik": "Fotoğrafla belgele", "goster": "Tahtada üç kareyi sayın: etiketlerle dolu iç görünüm, yerine oturmuş modül ile kapanmış mandallar, kapağı geri gelmiş kasa. Fotoğrafları siz çekin.", "sor": "“Fotoğraftan RAM'in doğru takıldığını nasıl anlarız?” (mandallar kapalı, modül düz)", "kontrol": "Üç fotoğraf çekildi; kapak takıldı, kutuda vida kalmadı.", "sik_hata": "Kapak kapatılırken kablo sıkışıyor → kabloları içeri itip kapağı yeniden kaydırt." }
+  ],
+  "yapim_tablosu": [
+    ["Yan kapak", "Kasa arkası · 2 vida", "Kapak arkaya kayar, sonra dışa çıkar", "Vidalar parça kutusuna"],
+    ["Antistatik bileklik", "Kasanın boyasız metali", "Klips metale temas eder", "Bileklik tene değmeli"],
+    ["RAM modülü", "RAM yuvası (ör. DIMM_A2)", "Çentik ↔ yuvadaki çıkıntı aynı tarafta", "Kısa kenarlardan tutulur"],
+    ["Mandallar", "Yuvanın iki ucu", "RAM oturunca kendiliğinden kapanır, klik", "Bazı kartlarda tek mandal"],
+    ["Kâğıt etiket", "Parçanın yanı", "Yazı okunur, kartın üstüne yapışmaz", "Ders sonunda toplanır"]
+  ],
+  "fotolar": [
+    ["DON-201-H10-1-guvenlik.jpg", "1. Fiş çekili, bileklik bağlı"],
+    ["DON-201-H10-2-yan-kapak.jpg", "2. Vidalar sökülmüş, kapak kaydırılıyor"],
+    ["DON-201-H10-3-parcalar.jpg", "3. Parçalar etiketli"],
+    ["DON-201-H10-4-ram-cikar.jpg", "4. Mandallar dışa açık"],
+    ["DON-201-H10-5-ram-tak.jpg", "5. Çentik hizalı, mandallar kapalı"],
+    ["DON-201-H10-6-belgele.jpg", "6. Belgelenmiş ve kapatılmış kasa"]
+  ],
+  "sokratik": [
+    "Fişi çektik; bilgisayar kapalıyken bile neden bileklik takıyoruz?",
+    "Vidaları neden masaya değil de kutuya koyuyoruz?",
+    "Bir parçayı adından önce görevinden tanıyabilir misin? Örnek ver.",
+    "RAM'i çıkarırken neden mandalları aynı anda açıyoruz?",
+    "Çentik ortada olsaydı ne gibi bir sorun çıkardı?",
+    "Belgelerken çektiğimiz fotoğraf, bir teknisyene neyi kanıtlar?"
+  ],
+  "sik_hatalar": [
+    ["Kapak kaymıyor", "Vida tam sökülmemiş ya da kapak dışa çekiliyor", "Vidaları kontrol ettir; kapağı önce arkaya kaydırt."],
+    ["RAM çıkmıyor", "Mandallardan biri kapalı kalmış", "İki mandalı birlikte dışa açtır; modülü sallatmadan düz çektir."],
+    ["RAM girmiyor", "Modül ters tutulmuş ya da mandallar kapalı", "Çentiği çıkıntıyla yan yana tut, mandalları aç; zorlatma."],
+    ["RAM eğik oturdu, bir mandal açık", "Tek uçtan bastırılmış", "Modülü çıkartıp iki ucundan eşit bastırt; klik sesini bekletin."],
+    ["Temaslara parmakla dokunuluyor", "Tutma yeri bilinmiyor", "Kısa kenarlardan tutmayı kendi elinizle gösterin."],
+    ["Bir kablo yerinden çıktı", "İç kablolara dokunulmuş", "Kabloyu siz takın; “kablolara dokunulmaz” kuralını tekrarlatın."],
+    ["Vida kayboldu", "Parça kutusu kullanılmamış", "Masayı ve kasayı birlikte arayın; kutu kuralını tahtaya yazın."]
+  ],
+  "ogrenci_sorun_giderme": [
+    ["Kapak çıkmıyor", "Önce arkaya kaydır, sonra dışa çek."],
+    ["RAM yuvaya girmiyor", "RAM'i çevir; çentik çıkıntıyla aynı tarafta olsun."],
+    ["Mandal kapanmadı", "İki ucundan eşit bastır, klik sesini bekle."],
+    ["Etiket nereye?", "Parçanın yanına yapıştır, kartın üstüne değil."]
+  ],
+  "farklilastirma": {
+    "hizli": "İkinci RAM modülünü de çıkarıp takma, etiketten kapasiteyi okuyup toplam belleği hesaplama (Derinleş), anakart üzerindeki yuva adlarını (DIMM_A1, A2…) bulma.",
+    "zorlanan": "Önce E-TAK etkinliğini akıllı tahtada yaptırın; gerçek modülde çentik ile çıkıntıyı birlikte gösterip her adımı sizin gözetiminizde, tek tek yaptırın.",
+    "grup": "3–4 kişilik gruplar: uygulayan (parçalara yalnız o dokunur), kontrolcü (adımı sesli okur ve kontrol eder), belgeleyen (not tutar, çekilecek kareleri söyler). Uygulayan her adımda değişir; herkes en az bir kez RAM'i takar."
+  },
+  "gozlem": [
+    "Kasayı açmadan önce fişi çekiyor ve bilekliği doğru bağlıyor.",
+    "Vidaları ve kapağı düzenli biçimde kenara alıyor.",
+    "İç parçaları adlarıyla doğru gösteriyor ve etiketliyor.",
+    "RAM'i mandalları açarak, kısa kenarlarından tutarak çıkarıyor.",
+    "Çentiği hizalayıp iki ucundan eşit bastırarak takıyor; rolüne uyuyor."
+  ],
+  "rubrik": [
+    ["Güvenlik", "Fişi çekmeden başlıyor", "Hatırlatmayla güvenlik adımlarını yapıyor", "Güvenlik adımlarını kendiliğinden, sırayla yapıyor"],
+    ["Kapak açma", "Kapağı zorluyor", "Yardımla açıyor", "Vidaları kutuya koyup kapağı kaydırarak açıyor"],
+    ["Parça tanıma", "2'den az parça", "3–4 parça doğru", "5 ve üzeri parça doğru, görevini söylüyor"],
+    ["RAM sök–tak", "Yardımla bile takamıyor", "Yardımla takıyor ya da eğik oturuyor", "Çentiği hizalayıp bağımsız, düz takıyor"],
+    ["Belgeleme ve grup", "Fotoğraf eksik, rol yok", "Fotoğraflar tam, roller karışık", "Üç fotoğraf tam, roller paylaşılmış"]
+  ],
+  "kapanis": "Toparlama: 2–3 gruba üç fotoğraflarını gösterterek RAM'i nasıl taktıklarını 30 saniyede anlattırın (“Çentik nerede, mandallar ne yaptı?”). Isınmadaki tahminleri hatırlatıp ters modülün neden girmediğini birlikte söyleyin. Ödev: evde ya da okulda bir bilgisayarın ayarlarında toplam bellek (RAM) miktarını bulup not etmek; bilgisayar yoksa bir ürün tanıtım kartından okumak. Köprü: H11'de diski söküp takacak, bilgisayarı toplayıp ilk kez açacaksınız.",
+  "guvenlik_ek": [
+    "Güç kaynağının içi asla açılmaz; üstündeki uyarı etiketine dokunulmaz.",
+    "Kasanın iç kenarları keskin olabilir; eller yavaş hareket eder, parçaya yalnız uygulayan dokunur.",
+    "İç kablolar çekilmez; yerinden çıkan kabloyu öğretmen takar.",
+    "Masada yiyecek ve içecek bulunmaz; çıkarılan RAM kutunun kapağı ya da antistatik poşet üzerine yatırılır."
+  ],
+  "bitirme": {
+    "baslik": "Çalışan sistem ve belgeleme",
+    "urun": "Kapağı kapalı, vidaları tam, RAM'i doğru yuvada ve iki mandalı kapalı bilgisayar + üç fotoğraflı belge (etiketli açık kasa, takılı RAM, kapalı kasa).",
+    "sunum": [
+      "Her grup üç fotoğrafını tahtada gösterir; belgeleyen, adımları sırayla anlatır.",
+      "Kontrolcü, rubrikteki “RAM sök–tak” satırını grubuyla birlikte kendisi puanlar.",
+      "Bilgisayarların gerçekten çalıştığı H11'deki ilk açılışta birlikte test edilir."
+    ]
+  },
+  "kaynaklar": [
+    "Kullanılan bilgisayarın anakart kılavuzu — bellek (DIMM) takma bölümü",
+    "Okulun bilişim teknolojileri atölyesi güvenlik yönergesi",
+    "JEDEC — DDR4 bellek modülü standartları (jedec.org)"
+  ]
+}

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Öğretmen planı derleyici (Format K) → HTML + PDF.
+"""Öğretmen planı derleyici (Format K ve Format U) → HTML + PDF.
 
 Kullanım:
   python3 scripts/plan_derle.py DON-201 1
@@ -10,7 +10,9 @@ Kaynaklar (tek doğruluk kaynağı korunur):
   kaynak/<KOD>/H<NN>/plan.json    öğretmen konuşmaları, işleniş notları, ödev, notlar
 
 Çıktı: ogretmen-plani/<KOD>/<KOD>-H<NN>.html ve .pdf (WeasyPrint, A4)
-Biçim: referans/ogretmen-plani/FORMAT-K_elektronik-203-h04.pdf taklit edilir.
+Biçim: plan.json "format" alanına göre
+  K → referans/ogretmen-plani/FORMAT-K_elektronik-203-h04.pdf
+  U → referans/ogretmen-plani/FORMAT-U_PRJ-208-B4.pdf (ortaokul) taklit edilir.
 Not: f-string kullanılmaz (üretim standardı).
 """
 import html
@@ -120,6 +122,8 @@ def plan_html(kod, hafta):
     unite = [u for u in ders["uniteler"] if hafta in u["haftalar"]][0]
     plan = json.loads(oku(os.path.join(klasor, "plan.json")))
     les = lesson_oku(klasor)
+    if plan.get("format", "K") == "U":
+        return plan_u_html(kod, hafta, ders, h, unite, plan, les, muf)
     quiz = les["LESSON"]["quiz"][:4]
     if len(h["adimlar"]) != len(plan["gelisme"]):
         raise SystemExit("HATA: plan.json gelisme satırı sayısı JSON adımlarıyla eşleşmiyor")
@@ -201,6 +205,281 @@ def plan_html(kod, hafta):
     if toplam != muf["ders_suresi_dk"]:
         raise SystemExit("HATA: süre toplamı " + str(toplam) + " dk; " + str(muf["ders_suresi_dk"]) + " dk olmalı")
     s.append('<div class="imza"><div><b>Ders Öğretmeni</b>Ad Soyad / İmza</div><div><b>Uygundur</b>Okul Müdürü</div></div>\n')
+    s.append("</body>\n</html>\n")
+    return "".join(s)
+
+
+# ════════════════════ Format U (uygulama) ════════════════════
+CSS_U = """
+@page{size:A4;margin:15mm 15mm 16mm 15mm;
+  @bottom-left{content:'Bilişim Üssü · Öğretmen Uygulama Planı';font-family:'DejaVu Sans',sans-serif;font-size:7pt;color:#94a3b8}
+  @bottom-right{content:counter(page) ' / ' counter(pages);font-family:'DejaVu Sans',sans-serif;font-size:7pt;color:#94a3b8}}
+*{box-sizing:border-box}
+html{font-family:'DejaVu Sans',Verdana,sans-serif;font-size:8.6pt;color:#0f172a;line-height:1.5}
+body{margin:0;max-width:180mm}
+@media screen{body{margin:24px auto;padding:0 12px;background:#f8fafc}}
+.ust-rozet{display:inline-block;border:1.5px solid #e2e8f0;border-radius:12pt;padding:2pt 9pt;font-size:7pt;font-weight:700;letter-spacing:.6pt}
+h1{font-size:18pt;margin:6pt 0 3pt;color:#0f172a;line-height:1.2}
+.alt-baslik{font-size:9.6pt;color:#334155;margin:0 0 7pt}
+.rozetler{display:flex;flex-wrap:wrap;gap:5pt;padding-bottom:9pt;border-bottom:2.5pt solid #0ea5e9;margin-bottom:10pt}
+.rozetler span{border:1px solid #e2e8f0;border-radius:10pt;padding:2pt 8pt;font-size:7.4pt;font-weight:700;background:#fff}
+.rozetler span:first-child{color:#0369a1;border-color:#bae6fd}
+.kart{background:#fff;border:1px solid #e2e8f0;border-radius:9pt;padding:11pt 13pt;margin:0 0 10pt}
+.kart h2{display:flex;align-items:center;gap:8pt;font-size:12.5pt;color:#1e1b4b;margin:0 0 8pt;break-after:avoid}
+.ikon{width:20pt;height:20pt;border-radius:5pt;background:linear-gradient(135deg,#0ea5e9,#0369a1);display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+.ikon svg{width:12pt;height:12pt}
+h3{font-size:9.6pt;color:#1e1b4b;margin:9pt 0 5pt;break-after:avoid}
+p{margin:3pt 0 6pt}
+.senaryo{background:linear-gradient(135deg,#f5f3ff,#eff6ff);border-left:3pt solid #7c3aed;border-radius:6pt;padding:8pt 11pt;margin-bottom:8pt}
+.senaryo .etiket{font-size:7pt;font-weight:700;letter-spacing:1pt;color:#1e1b4b}
+.senaryo p{margin:4pt 0}
+table{width:100%;border-collapse:collapse;margin:2pt 0 6pt}
+th{background:#eef2ff;color:#1e1b4b;font-weight:700;text-align:left;font-size:7.8pt}
+td,th{padding:4pt 6pt;border-bottom:1px solid #e2e8f0;vertical-align:top}
+tr{break-inside:avoid}
+.kunye td:first-child{width:118pt;font-weight:700;color:#334155}
+.kunye ul{margin:0;padding-left:11pt}
+.kavramlar{display:grid;grid-template-columns:1fr 1fr;gap:7pt}
+.kavram{background:#f8fafc;border:1px solid #e2e8f0;border-radius:7pt;padding:7pt 9pt;break-inside:avoid}
+.kavram b{display:block;color:#0369a1;font-size:8.8pt;margin-bottom:2pt}
+.akis3{display:flex;align-items:stretch;gap:5pt;margin:6pt 0;padding:10pt;border-radius:8pt;background:linear-gradient(135deg,#eef2ff,#e0f2fe);break-inside:avoid}
+.akis3-baslik{display:block;text-align:center;margin:0 auto 6pt;background:#1e1b4b;color:#fff;border-radius:9pt;padding:2pt 10pt;font-weight:700;font-size:8pt;width:max-content}
+.akis3-kart{flex:1;background:#fff;border-radius:7pt;overflow:hidden;text-align:center;box-shadow:0 1pt 3pt rgba(15,23,42,.12)}
+.akis3-ust{color:#fff;font-weight:700;font-size:7.4pt;letter-spacing:.8pt;padding:4pt}
+.akis3-kart:nth-child(1) .akis3-ust{background:#10b981}.akis3-kart:nth-child(3) .akis3-ust{background:#6366f1}.akis3-kart:nth-child(5) .akis3-ust{background:#f59e0b}
+.akis3-kart b{display:block;font-size:9pt;margin:5pt 5pt 2pt}
+.akis3-kart span{display:block;font-size:7.6pt;color:#334155;padding:0 6pt 6pt}
+.akis3-ok{align-self:center;color:#64748b;font-weight:700}
+.kutu-liste{list-style:none;padding:0;margin:0}
+.kutu-liste li{display:flex;gap:7pt;margin:0 0 5pt;break-inside:avoid}
+.kutu-liste li::before{content:'';flex-shrink:0;width:9pt;height:9pt;border:1.3pt solid #0f172a;border-radius:2.5pt;margin-top:1.5pt}
+.zaman{margin:4pt 0 10pt}
+.zaman-bar{display:flex;height:16pt;border-radius:4pt;overflow:hidden;gap:1.5pt}
+.zaman-bar div{display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:7pt;white-space:nowrap}
+.zaman-etiket{display:flex;gap:1.5pt;font-size:6.6pt;color:#334155;margin-top:2pt}
+.zaman-etiket div{text-align:center;overflow:hidden}
+.zaman-etiket b{display:block;font-size:6.8pt;color:#1e1b4b}
+.zaman-olcek{display:flex;justify-content:space-between;font-size:6.4pt;color:#94a3b8;margin-top:3pt;border-top:1px solid #e2e8f0;padding-top:1pt}
+.akis td:first-child{width:70pt;font-weight:700;color:#1e1b4b}
+.akis td:first-child span{display:block;font-weight:400;color:#64748b}
+.akis td:last-child{width:34pt;text-align:center}
+.slaytlar{display:flex;flex-wrap:wrap;gap:4pt}
+.slaytlar span{border:1px solid #e2e8f0;border-radius:9pt;padding:1.5pt 7pt;font-size:7.2pt;background:#f8fafc}
+.slaytlar b{color:#0369a1;margin-right:2pt}
+.adim{border:1px solid #dbeafe;border-radius:8pt;overflow:hidden;margin:0 0 7pt;break-inside:avoid}
+.adim-bas{display:flex;align-items:center;gap:7pt;background:#e0f2fe;padding:5pt 9pt;font-weight:700;color:#1e1b4b}
+.adim-bas span{width:15pt;height:15pt;border-radius:4pt;background:#0ea5e9;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:7.6pt}
+.adim table{margin:0}
+.adim td{border-bottom:1px solid #f1f5f9}
+.adim td:first-child{width:74pt;padding-right:0}
+.et{display:inline-block;width:66pt;text-align:center;border-radius:5pt;padding:2pt 0;font-size:6.8pt;font-weight:700;letter-spacing:.5pt}
+.et-goster{background:#dbeafe;color:#1d4ed8}.et-sor{background:#ede9fe;color:#7c3aed}.et-kontrol{background:#d1fae5;color:#059669}.et-hata{background:#fef9c3;color:#92400e}
+.fotolar{display:grid;grid-template-columns:repeat(3,1fr);gap:6pt;margin-top:4pt}
+.foto{break-inside:avoid}
+.foto img{width:100%;height:72pt;object-fit:cover;border-radius:6pt;display:block}
+.foto-yer{height:72pt;border:1.2pt dashed #94a3b8;border-radius:6pt;background:#f8fafc;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#64748b;font-size:6.6pt;padding:4pt;overflow:hidden}
+.foto-yer svg{width:14pt;height:14pt;color:#94a3b8}
+.foto-yer b{font-size:7pt;color:#475569}.foto-yer span{display:none}.foto-yer code{font-size:6pt}
+.foto figcaption{font-size:7.2pt;font-weight:700;color:#1e1b4b;margin-top:2pt}
+ul.madde{margin:2pt 0;padding-left:12pt}ul.madde li{margin:2pt 0}
+.fark{display:grid;grid-template-columns:78pt 1fr;gap:3pt 8pt}
+.fark b{color:#0369a1}
+.rubrik td:first-child{font-weight:700;width:78pt}
+.rubrik th{text-align:center}.rubrik th:first-child{text-align:left}
+.cevap td:nth-child(3){font-weight:700;color:#0369a1;width:104pt}
+.guvenlik-madde{background:#fee2e2;border-left:3pt solid #dc2626;border-radius:5pt;padding:6pt 9pt;margin:0 0 5pt;break-inside:avoid}
+.bitirme{background:linear-gradient(135deg,#fef3c7,#fff7ed);border-radius:7pt;padding:8pt 11pt;border-left:3pt solid #f59e0b;margin-bottom:6pt}
+.bitirme .etiket{font-size:7pt;font-weight:700;letter-spacing:1pt;color:#92400e}
+.imza-alt{margin-top:8pt;font-size:7.4pt;color:#64748b;text-align:center}
+"""
+
+IKON = {
+    'yildiz': '<polygon points="12 2 15 9 22 9 16.5 13.5 18.5 21 12 16.8 5.5 21 7.5 13.5 2 9 9 9"/>',
+    'kutu': '<path d="M21 16V8l-9-5-9 5v8l9 5 9-5z"/><path d="M3.3 7 12 12l8.7-5M12 22V12"/>',
+    'ampul': '<path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/>',
+    'onay': '<circle cx="12" cy="12" r="10"/><polyline points="8 12 11 15 16 9"/>',
+    'saat': '<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>',
+    'goz': '<path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/>',
+    'liste': '<line x1="9" y1="6" x2="20" y2="6"/><line x1="9" y1="12" x2="20" y2="12"/><line x1="9" y1="18" x2="20" y2="18"/><circle cx="4.5" cy="6" r="1"/><circle cx="4.5" cy="12" r="1"/><circle cx="4.5" cy="18" r="1"/>',
+    'soru': '<circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12" y2="17"/>',
+    'uyari': '<path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12" y2="17"/>',
+    'katman': '<polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>',
+    'grafik': '<line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>',
+    'ok': '<line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>',
+    'kalkan': '<path d="M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5z"/>',
+    'kupa': '<path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/>',
+    'kitap': '<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V2H6.5A2.5 2.5 0 0 0 4 4.5v15z"/>'
+}
+ZAMAN_RENK = ['#6366f1', '#0ea5e9', '#10b981', '#f59e0b', '#ec4899', '#8b5cf6', '#14b8a6']
+
+
+def kart_ac(baslik, ikon):
+    return ('<section class="kart"><h2><span class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" '
+            'stroke-linecap="round" stroke-linejoin="round">' + IKON[ikon] + '</svg></span>' + e(baslik) + '</h2>\n')
+
+
+def plan_u_html(kod, hafta, ders, h, unite, plan, les, muf):
+    from derle import fotolar, FOTO_SIMGE
+    hh = "H" + str(hafta).zfill(2)
+    quiz = les["LESSON"]["quiz"][:4]
+    etiketler = les["SLIDE_LABELS"]
+    kademe = "Ortaokul · " + ders["sinif"] if ders["kademe"] == "ortaokul" else "Lise · " + ders["sinif"]
+    s = []
+    s.append('<!DOCTYPE html>\n<html lang="tr">\n<head>\n<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width, initial-scale=1.0">\n')
+    s.append("<title>" + e(kod + " " + hh + " Öğretmen Uygulama Planı — " + h["baslik"]) + "</title>\n<style>" + CSS_U + "</style>\n</head>\n<body>\n")
+    s.append('<span class="ust-rozet">ÖĞRETMEN UYGULAMA PLANI · ' + e(kod) + " · " + hh + "</span>\n")
+    s.append("<h1>" + e(h["baslik"]) + "</h1>\n<p class=\"alt-baslik\">" + e(plan["altbaslik"]) + "</p>\n")
+    s.append('<div class="rozetler">' + "".join("<span>" + e(r) + "</span>" for r in plan["rozetler"]) + "</div>\n")
+
+    # Hikâye / Senaryo
+    sen = plan["senaryo"]
+    s.append(kart_ac("Hikâye / Senaryo", "yildiz"))
+    s.append('<div class="senaryo"><div class="etiket">' + e(sen["baslik"]) + "</div><p>" + e(sen["metin"]) + "</p><p><b>Görev:</b> " + e(sen["gorev"]) + "</p></div>\n")
+    s.append("<p><b>Öğrenci bu derste ne yapıyor?</b> " + e(plan["ogrenci_ne_yapiyor"]) + "</p></section>\n")
+
+    # 1. Ders Künyesi
+    k = plan["kunye"]
+    s.append(kart_ac("1. Ders Künyesi", "kutu"))
+    s.append('<table class="kunye">\n')
+    satirlar = [
+        ("Ders kodu / hafta", kod + " · " + ders["lms_adi"] + " · " + hh + " · " + unite["ad"]),
+        ("Seviye / sınıf", kademe),
+        ("Süre / grup", "1 ders (" + str(muf["ders_suresi_dk"]) + " dk) · " + k["grup"]),
+        ("Donanım / platform", k["donanim"]),
+    ]
+    for a, b in satirlar:
+        s.append("<tr><td>" + e(a) + "</td><td>" + e(b) + "</td></tr>\n")
+    s.append("<tr><td>Kazanımlar</td><td><ul>" + "".join("<li>K" + str(i + 1) + ". " + e(x) + "</li>" for i, x in enumerate(h["kazanimlar"])) + "</ul></td></tr>\n")
+    s.append("<tr><td>Ön koşul</td><td>" + e(k["on_kosul"]) + "</td></tr>\n")
+    s.append("<tr><td>Değerlendirme</td><td>" + e(k["degerlendirme"]) + "</td></tr>\n")
+    s.append("<tr><td>Öğrenci dersi</td><td>" + str(len(etiketler)) + " slayt (LMS v9.3) · " + str(len(quiz)) + " soruluk bilgi testi + 1 Derinleş bonus sorusu</td></tr>\n</table></section>\n")
+
+    # 2. Kavramsal arka plan
+    s.append(kart_ac("2. Öğretmen İçin Kavramsal Arka Plan", "ampul"))
+    s.append("<p>Öğrencilerin sorularını yanıtlayabilmen için bu ders şu kavramlara dayanır:</p>\n<div class=\"kavramlar\">")
+    for kv in plan["kavramlar"]:
+        s.append('<div class="kavram"><b>' + e(kv["baslik"]) + "</b>" + e(kv["metin"]) + "</div>")
+    s.append("</div>\n<h3>Nasıl çalışır?</h3>\n")
+    n = plan["nasil"]
+    s.append('<div class="akis3-baslik">' + e(n["baslik"]) + '</div><div class="akis3">')
+    for i, kr in enumerate(n["kartlar"]):
+        if i:
+            s.append('<div class="akis3-ok">→</div>')
+        s.append('<div class="akis3-kart"><div class="akis3-ust">' + e(kr["ust"]) + "</div><b>" + e(kr["baslik"]) + "</b><span>" + e(kr["metin"]) + "</span></div>")
+    s.append("</div>\n<p>" + e(n["metin"]) + "</p></section>\n")
+
+    # 3. Ön hazırlık
+    s.append(kart_ac("3. Ön Hazırlık (Ders Öncesi)", "onay"))
+    s.append("<h3>Kontrol listesi</h3>\n<ul class=\"kutu-liste\">" + "".join("<li>" + e(x) + "</li>" for x in plan["kontrol_listesi"]) + "</ul>\n")
+    s.append("<h3>Malzemeler (grup başına)</h3>\n<table><thead><tr><th>Malzeme</th><th>Adet</th><th>Not</th></tr></thead>\n")
+    for m in plan["malzemeler"]:
+        s.append("<tr><td>" + e(m[0]) + "</td><td>" + e(m[1]) + "</td><td>" + e(m[2]) + "</td></tr>\n")
+    s.append("</table></section>\n")
+
+    # 4. Dakika dakika
+    akis = plan["akis"]
+    toplam = akis[-1]["son"]
+    if toplam != muf["ders_suresi_dk"] or akis[0]["bas"] != 0:
+        raise SystemExit("HATA: ders akışı 0–" + str(muf["ders_suresi_dk"]) + " dk olmalı")
+    for a, b in zip(akis, akis[1:]):
+        if a["son"] != b["bas"]:
+            raise SystemExit("HATA: ders akışında boşluk/çakışma: " + a["asama"])
+    s.append(kart_ac("4. Dakika Dakika Ders Akışı", "saat"))
+    s.append('<div class="zaman"><div class="zaman-bar">')
+    for i, a in enumerate(akis):
+        s.append('<div style="flex:' + str(a["son"] - a["bas"]) + ";background:" + ZAMAN_RENK[i % len(ZAMAN_RENK)] + '">' + str(a["son"] - a["bas"]) + " dk</div>")
+    s.append('</div><div class="zaman-etiket">')
+    for a in akis:
+        s.append('<div style="flex:' + str(a["son"] - a["bas"]) + '"><b>' + e(a["asama"]) + "</b>slayt " + e(a["slayt"]) + "</div>")
+    s.append('</div><div class="zaman-olcek">' + "".join("<span>" + str(d) + "′</span>" for d in range(0, toplam + 1, 5)) + "</div></div>\n")
+    s.append('<table class="akis"><thead><tr><th>Aşama / süre</th><th>Öğretmen ne yapar/söyler</th><th>Öğrenci ne yapar</th><th>✔ Kontrol noktası</th><th>Slayt</th></tr></thead>\n')
+    for a in akis:
+        s.append("<tr><td>" + e(a["asama"]) + "<span>" + str(a["bas"]) + "–" + str(a["son"]) + " dk</span></td><td>" + e(a["ogretmen"]) + "</td><td>" +
+                 e(a["ogrenci"]) + "</td><td>" + e(a["kontrol"]) + "</td><td>" + e(a["slayt"]) + "</td></tr>\n")
+    s.append("</table>\n<h3>Öğrenci dersindeki slaytlar</h3>\n<div class=\"slaytlar\">")
+    for et in etiketler:
+        m = re.match(r"(\d+)\.\s*(.*)", et)
+        s.append("<span><b>" + m.group(1) + "</b>" + e(m.group(2)) + "</span>")
+    s.append("</div></section>\n")
+
+    # 5. Adım adım
+    if len(plan["adimlar"]) != len(h["adimlar"]):
+        raise SystemExit("HATA: plan.json adimlar sayısı JSON adımlarıyla eşleşmiyor")
+    s.append(kart_ac("5. Adım Adım Yönlendirme (Öğretmen Scripti)", "goz"))
+    s.append("<p>Her yapım adımında: önce 3D provayı oynat, sonra gerçek parçada göster; hangi soruyu soracağın, neyi kontrol edeceğin ve sık hatada nasıl müdahale edeceğin.</p>\n")
+    for i, a in enumerate(plan["adimlar"]):
+        s.append('<div class="adim"><div class="adim-bas"><span>' + str(i + 1) + "</span>" + e(h["adimlar"][i]) + "</div><table>")
+        for et, cls, alan in [("GÖSTER", "goster", "goster"), ("SOR", "sor", "sor"), ("✔ KONTROL", "kontrol", "kontrol"), ("⚠ SIK HATA", "hata", "sik_hata")]:
+            s.append('<tr><td><span class="et et-' + cls + '">' + et + "</span></td><td>" + konusma(a[alan]) + "</td></tr>")
+        s.append("</table></div>\n")
+    s.append("</section>\n")
+
+    # 6. Yapım sırası ve kontrol tablosu
+    s.append(kart_ac("6. Yapım Sırası ve Kontrol Tablosu", "liste"))
+    s.append("<table><thead><tr><th>Parça</th><th>Yuva / Bağlantı</th><th>Doğru yön işareti</th><th>Not</th></tr></thead>\n")
+    for r in plan["yapim_tablosu"]:
+        s.append("<tr>" + "".join("<td>" + e(x) + "</td>" for x in r) + "</tr>\n")
+    s.append("</table>\n<h3>Fotoğraflı sıra</h3>\n<div class=\"fotolar\">")
+    for ad, alt in plan["fotolar"]:
+        gomulu = fotolar("<!--@foto:" + ad + "|" + alt + "-->")
+        if "data-foto-gerekli" in gomulu:   # plan: yalnız simge + kısa not (dosya yolu metinde görünmez)
+            gomulu = '<div class="foto-yer" data-foto-gerekli="' + ad + '">' + FOTO_SIMGE + "<b>Fotoğraf eklenecek</b></div>"
+        s.append('<figure class="foto" style="margin:0">' + gomulu + "<figcaption>" + e(alt) + "</figcaption></figure>")
+    s.append("</div></section>\n")
+
+    # 7. Sokratik
+    s.append(kart_ac("7. Yönlendirici (Sokratik) Sorular", "soru"))
+    s.append('<ul class="madde">' + "".join("<li>" + e(x) + "</li>" for x in plan["sokratik"]) + "</ul></section>\n")
+
+    # 8. Sık hatalar
+    s.append(kart_ac("8. Sık Hatalar ve Anında Müdahale", "uyari"))
+    s.append("<table><thead><tr><th>Belirti</th><th>Olası neden</th><th>Öğretmen müdahalesi</th></tr></thead>\n")
+    for r in plan["sik_hatalar"]:
+        s.append("<tr>" + "".join("<td>" + e(x) + "</td>" for x in r) + "</tr>\n")
+    s.append("</table>\n<h3>Öğrencinin derste gördüğü sorun giderme</h3>\n<table><thead><tr><th>Belirti</th><th>Çözüm</th></tr></thead>\n")
+    for r in plan["ogrenci_sorun_giderme"]:
+        s.append("<tr><td>" + e(r[0]) + "</td><td>" + e(r[1]) + "</td></tr>\n")
+    s.append("</table></section>\n")
+
+    # 9. Farklılaştırma
+    f = plan["farklilastirma"]
+    s.append(kart_ac("9. Farklılaştırma", "katman"))
+    s.append('<div class="fark"><b>Hızlı bitiren için</b><span>' + e(f["hizli"]) + "</span><b>Zorlanan için</b><span>" + e(f["zorlanan"]) +
+             "</span><b>Grup yönetimi</b><span>" + e(f["grup"]) + "</span></div></section>\n")
+
+    # 10. Değerlendirme
+    s.append(kart_ac("10. Değerlendirme", "grafik"))
+    s.append("<h3>Gözlem kontrol listesi (süreç)</h3>\n<ul class=\"kutu-liste\">" + "".join("<li>" + e(x) + "</li>" for x in plan["gozlem"]) + "</ul>\n")
+    s.append('<h3>Ürün değerlendirme rubriği</h3>\n<table class="rubrik"><thead><tr><th>Ölçüt</th><th>Başlangıç (1)</th><th>Gelişiyor (2)</th><th>Yeterli (3)</th></tr></thead>\n')
+    for r in plan["rubrik"]:
+        s.append("<tr>" + "".join("<td>" + e(x) + "</td>" for x in r) + "</tr>\n")
+    s.append('</table>\n<h3>Bilgi testi cevap anahtarı</h3>\n<table class="cevap"><thead><tr><th>#</th><th>Soru</th><th>Doğru cevap</th><th>Açıklama</th></tr></thead>\n')
+    for i, q in enumerate(quiz):
+        metin, _ = soru_parcala(q["q"])
+        s.append("<tr><td>" + str(i + 1) + "</td><td>" + e(metin) + "</td><td>" + LETTERS[q["correct"]] + ") " + e(q["opts"][q["correct"]]) + "</td><td>" + e(q["fb"]) + "</td></tr>\n")
+    s.append("</table>\n<p><b>Cevap anahtarı:</b> " + " ".join(str(i + 1) + "-" + LETTERS[q["correct"]] for i, q in enumerate(quiz)) + ". Derinleş bonus sorusu puanı düşürmez.</p></section>\n")
+
+    # 11. Kapanış
+    s.append(kart_ac("11. Kapanış ve Genişletme", "ok"))
+    s.append("<p>" + konusma(plan["kapanis"]) + "</p></section>\n")
+
+    # Güvenlik
+    s.append(kart_ac("Güvenlik", "kalkan"))
+    guv = [x.strip() + ("" if x.strip().endswith(".") else ".") for x in re.split(r"(?<=\.)\s+", h.get("guvenlik", "")) if x.strip()]
+    for g in guv + plan["guvenlik_ek"]:
+        s.append('<div class="guvenlik-madde">' + e(g) + "</div>\n")
+    s.append("</section>\n")
+
+    # Bitirme
+    b = plan["bitirme"]
+    s.append(kart_ac("Bitirme: " + b["baslik"], "kupa"))
+    s.append('<div class="bitirme"><div class="etiket">ÜRÜN</div><p>' + e(b["urun"]) + "</p></div>\n<h3>Böyle sun</h3>\n<ul class=\"madde\">" +
+             "".join("<li>" + e(x) + "</li>" for x in b["sunum"]) + "</ul></section>\n")
+
+    # Kaynaklar
+    s.append(kart_ac("Referans Kaynaklar", "kitap"))
+    s.append('<ul class="madde">' + "".join("<li>" + e(x) + "</li>" for x in plan["kaynaklar"]) + "</ul>")
+    s.append('<p class="imza-alt">Bilişim Üssü · Öğretmen Uygulama Planı · ' + e(kod + " " + hh + " · " + h["baslik"]) + "</p></section>\n")
     s.append("</body>\n</html>\n")
     return "".join(s)
 

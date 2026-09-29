@@ -24,7 +24,7 @@ Durum: `—` başlanmadı · `K` kalibrasyon (onay bekliyor) · `✓` tamam · `
 | H07 | RAM | K | — | — | |
 | H08 | Depolama Birimleri | K | — | — | |
 | H09 | Güç Kaynağı, Ekran Kartı ve Soğutma | K | — | — | |
-| H10 | Atölye 1: Kasayı Açma ve RAM Sök–Tak | U | K | — | Format U kalibrasyonu. 15 slayt, 883 KB. FOTO-GEREKLİ: DON-201-H10-1-guvenlik.jpg, -2-yan-kapak.jpg, -3-parcalar.jpg, -4-ram-cikar.jpg, -5-ram-tak.jpg, -6-belgele.jpg (assets/foto/). DOĞRULA: DDR4 çentiğinin milimetrik konumu modelde yaklaşık (derste ölçü verilmedi). |
+| H10 | Atölye 1: Kasayı Açma ve RAM Sök–Tak | U | K | K | Format U kalibrasyonu. 15 slayt, 883 KB. FOTO-GEREKLİ: DON-201-H10-1-guvenlik.jpg, -2-yan-kapak.jpg, -3-parcalar.jpg, -4-ram-cikar.jpg, -5-ram-tak.jpg, -6-belgele.jpg (assets/foto/). DOĞRULA: DDR4 çentiğinin milimetrik konumu modelde yaklaşık (derste ölçü verilmedi). |
 | H11 | Atölye 2: Disk Sök–Tak, Toplama ve İlk Açılış | U | — | — | |
 | H12 | Taşınabilir Cihazlar, Piller ve E-Atık | K | — | — | |
 | H13 | Basit Sorun Giderme ve Bakım | K+U | — | — | |

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DON-201 H10 Öğretmen Uygulama Planı — Atölye 1: Kasayı Açma ve RAM Sök–Tak</title>
+<style>
+@page{size:A4;margin:15mm 15mm 16mm 15mm;
+  @bottom-left{content:'Bilişim Üssü · Öğretmen Uygulama Planı';font-family:'DejaVu Sans',sans-serif;font-size:7pt;color:#94a3b8}
+  @bottom-right{content:counter(page) ' / ' counter(pages);font-family:'DejaVu Sans',sans-serif;font-size:7pt;color:#94a3b8}}
+*{box-sizing:border-box}
+html{font-family:'DejaVu Sans',Verdana,sans-serif;font-size:8.6pt;color:#0f172a;line-height:1.5}
+body{margin:0;max-width:180mm}
+@media screen{body{margin:24px auto;padding:0 12px;background:#f8fafc}}
+.ust-rozet{display:inline-block;border:1.5px solid #e2e8f0;border-radius:12pt;padding:2pt 9pt;font-size:7pt;font-weight:700;letter-spacing:.6pt}
+h1{font-size:18pt;margin:6pt 0 3pt;color:#0f172a;line-height:1.2}
+.alt-baslik{font-size:9.6pt;color:#334155;margin:0 0 7pt}
+.rozetler{display:flex;flex-wrap:wrap;gap:5pt;padding-bottom:9pt;border-bottom:2.5pt solid #0ea5e9;margin-bottom:10pt}
+.rozetler span{border:1px solid #e2e8f0;border-radius:10pt;padding:2pt 8pt;font-size:7.4pt;font-weight:700;background:#fff}
+.rozetler span:first-child{color:#0369a1;border-color:#bae6fd}
+.kart{background:#fff;border:1px solid #e2e8f0;border-radius:9pt;padding:11pt 13pt;margin:0 0 10pt}
+.kart h2{display:flex;align-items:center;gap:8pt;font-size:12.5pt;color:#1e1b4b;margin:0 0 8pt;break-after:avoid}
+.ikon{width:20pt;height:20pt;border-radius:5pt;background:linear-gradient(135deg,#0ea5e9,#0369a1);display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+.ikon svg{width:12pt;height:12pt}
+h3{font-size:9.6pt;color:#1e1b4b;margin:9pt 0 5pt;break-after:avoid}
+p{margin:3pt 0 6pt}
+.senaryo{background:linear-gradient(135deg,#f5f3ff,#eff6ff);border-left:3pt solid #7c3aed;border-radius:6pt;padding:8pt 11pt;margin-bottom:8pt}
+.senaryo .etiket{font-size:7pt;font-weight:700;letter-spacing:1pt;color:#1e1b4b}
+.senaryo p{margin:4pt 0}
+table{width:100%;border-collapse:collapse;margin:2pt 0 6pt}
+th{background:#eef2ff;color:#1e1b4b;font-weight:700;text-align:left;font-size:7.8pt}
+td,th{padding:4pt 6pt;border-bottom:1px solid #e2e8f0;vertical-align:top}
+tr{break-inside:avoid}
+.kunye td:first-child{width:118pt;font-weight:700;color:#334155}
+.kunye ul{margin:0;padding-left:11pt}
+.kavramlar{display:grid;grid-template-columns:1fr 1fr;gap:7pt}
+.kavram{background:#f8fafc;border:1px solid #e2e8f0;border-radius:7pt;padding:7pt 9pt;break-inside:avoid}
+.kavram b{display:block;color:#0369a1;font-size:8.8pt;margin-bottom:2pt}
+.akis3{display:flex;align-items:stretch;gap:5pt;margin:6pt 0;padding:10pt;border-radius:8pt;background:linear-gradient(135deg,#eef2ff,#e0f2fe);break-inside:avoid}
+.akis3-baslik{display:block;text-align:center;margin:0 auto 6pt;background:#1e1b4b;color:#fff;border-radius:9pt;padding:2pt 10pt;font-weight:700;font-size:8pt;width:max-content}
+.akis3-kart{flex:1;background:#fff;border-radius:7pt;overflow:hidden;text-align:center;box-shadow:0 1pt 3pt rgba(15,23,42,.12)}
+.akis3-ust{color:#fff;font-weight:700;font-size:7.4pt;letter-spacing:.8pt;padding:4pt}
+.akis3-kart:nth-child(1) .akis3-ust{background:#10b981}.akis3-kart:nth-child(3) .akis3-ust{background:#6366f1}.akis3-kart:nth-child(5) .akis3-ust{background:#f59e0b}
+.akis3-kart b{display:block;font-size:9pt;margin:5pt 5pt 2pt}
+.akis3-kart span{display:block;font-size:7.6pt;color:#334155;padding:0 6pt 6pt}
+.akis3-ok{align-self:center;color:#64748b;font-weight:700}
+.kutu-liste{list-style:none;padding:0;margin:0}
+.kutu-liste li{display:flex;gap:7pt;margin:0 0 5pt;break-inside:avoid}
+.kutu-liste li::before{content:'';flex-shrink:0;width:9pt;height:9pt;border:1.3pt solid #0f172a;border-radius:2.5pt;margin-top:1.5pt}
+.zaman{margin:4pt 0 10pt}
+.zaman-bar{display:flex;height:16pt;border-radius:4pt;overflow:hidden;gap:1.5pt}
+.zaman-bar div{display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:7pt;white-space:nowrap}
+.zaman-etiket{display:flex;gap:1.5pt;font-size:6.6pt;color:#334155;margin-top:2pt}
+.zaman-etiket div{text-align:center;overflow:hidden}
+.zaman-etiket b{display:block;font-size:6.8pt;color:#1e1b4b}
+.zaman-olcek{display:flex;justify-content:space-between;font-size:6.4pt;color:#94a3b8;margin-top:3pt;border-top:1px solid #e2e8f0;padding-top:1pt}
+.akis td:first-child{width:70pt;font-weight:700;color:#1e1b4b}
+.akis td:first-child span{display:block;font-weight:400;color:#64748b}
+.akis td:last-child{width:34pt;text-align:center}
+.slaytlar{display:flex;flex-wrap:wrap;gap:4pt}
+.slaytlar span{border:1px solid #e2e8f0;border-radius:9pt;padding:1.5pt 7pt;font-size:7.2pt;background:#f8fafc}
+.slaytlar b{color:#0369a1;margin-right:2pt}
+.adim{border:1px solid #dbeafe;border-radius:8pt;overflow:hidden;margin:0 0 7pt;break-inside:avoid}
+.adim-bas{display:flex;align-items:center;gap:7pt;background:#e0f2fe;padding:5pt 9pt;font-weight:700;color:#1e1b4b}
+.adim-bas span{width:15pt;height:15pt;border-radius:4pt;background:#0ea5e9;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:7.6pt}
+.adim table{margin:0}
+.adim td{border-bottom:1px solid #f1f5f9}
+.adim td:first-child{width:74pt;padding-right:0}
+.et{display:inline-block;width:66pt;text-align:center;border-radius:5pt;padding:2pt 0;font-size:6.8pt;font-weight:700;letter-spacing:.5pt}
+.et-goster{background:#dbeafe;color:#1d4ed8}.et-sor{background:#ede9fe;color:#7c3aed}.et-kontrol{background:#d1fae5;color:#059669}.et-hata{background:#fef9c3;color:#92400e}
+.fotolar{display:grid;grid-template-columns:repeat(3,1fr);gap:6pt;margin-top:4pt}
+.foto{break-inside:avoid}
+.foto img{width:100%;height:72pt;object-fit:cover;border-radius:6pt;display:block}
+.foto-yer{height:72pt;border:1.2pt dashed #94a3b8;border-radius:6pt;background:#f8fafc;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#64748b;font-size:6.6pt;padding:4pt;overflow:hidden}
+.foto-yer svg{width:14pt;height:14pt;color:#94a3b8}
+.foto-yer b{font-size:7pt;color:#475569}.foto-yer span{display:none}.foto-yer code{font-size:6pt}
+.foto figcaption{font-size:7.2pt;font-weight:700;color:#1e1b4b;margin-top:2pt}
+ul.madde{margin:2pt 0;padding-left:12pt}ul.madde li{margin:2pt 0}
+.fark{display:grid;grid-template-columns:78pt 1fr;gap:3pt 8pt}
+.fark b{color:#0369a1}
+.rubrik td:first-child{font-weight:700;width:78pt}
+.rubrik th{text-align:center}.rubrik th:first-child{text-align:left}
+.cevap td:nth-child(3){font-weight:700;color:#0369a1;width:104pt}
+.guvenlik-madde{background:#fee2e2;border-left:3pt solid #dc2626;border-radius:5pt;padding:6pt 9pt;margin:0 0 5pt;break-inside:avoid}
+.bitirme{background:linear-gradient(135deg,#fef3c7,#fff7ed);border-radius:7pt;padding:8pt 11pt;border-left:3pt solid #f59e0b;margin-bottom:6pt}
+.bitirme .etiket{font-size:7pt;font-weight:700;letter-spacing:1pt;color:#92400e}
+.imza-alt{margin-top:8pt;font-size:7.4pt;color:#64748b;text-align:center}
+</style>
+</head>
+<body>
+<span class="ust-rozet">ÖĞRETMEN UYGULAMA PLANI · DON-201 · H10</span>
+<h1>Atölye 1: Kasayı Açma ve RAM Sök–Tak</h1>
+<p class="alt-baslik">Okul atölyesindeki eski bilgisayarı güvenle açıp içini tanıyorsun; RAM'i çıkarıp doğru yönde geri takıyorsun.</p>
+<div class="rozetler"><span>Ortaokul 5–8</span><span>Süre: 1 ders (35 dk)</span><span>Grup: 3–4 kişi</span><span>Eski masaüstü bilgisayar</span><span>Zorluk: Orta</span></div>
+<section class="kart"><h2><span class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15 9 22 9 16.5 13.5 18.5 21 12 16.8 5.5 21 7.5 13.5 2 9 9 9"/></svg></span>Hikâye / Senaryo</h2>
+<div class="senaryo"><div class="etiket">ATÖLYE GÜNÜ</div><p>Okulun teknik servis ekibi, yenilenecek eski bilgisayarları kontrol etmek için yardım istiyor. Her grup bir bilgisayarı güvenle açacak, içindeki parçaları etiketleyecek ve belleğin (RAM) doğru takılı olduğunu kendi elleriyle doğrulayacak.</p><p><b>Görev:</b> Bilgisayarı güvenle aç, parçaları etiketle, RAM'i çıkarıp doğru yönde geri tak ve üç fotoğrafla belgele.</p></div>
+<p><b>Öğrenci bu derste ne yapıyor?</b> Her adımı önce etkileşimli dersteki 3D provada izliyor, sonra grubuyla gerçek bilgisayarda aynı adımı yapıyor: fişi çekip antistatik bilekliği takıyor, arka vidaları söküp yan kapağı çıkarıyor, iç parçaları bulup kâğıt etiketle işaretliyor, RAM'i mandallarını açarak çıkarıyor ve çentiği yuvadaki çıkıntıya hizalayarak geri takıyor; kapağı kapatıp süreci üç fotoğrafla belgeliyor.</p></section>
+<section class="kart"><h2><span class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8l-9-5-9 5v8l9 5 9-5z"/><path d="M3.3 7 12 12l8.7-5M12 22V12"/></svg></span>1. Ders Künyesi</h2>
+<table class="kunye">
+<tr><td>Ders kodu / hafta</td><td>DON-201 · Donanım 201 · H10 · Sök–Tak Atölyesi</td></tr>
+<tr><td>Seviye / sınıf</td><td>Ortaokul · 5–8</td></tr>
+<tr><td>Süre / grup</td><td>1 ders (35 dk) · 3–4 kişilik gruplar; roller: uygulayan, kontrolcü, belgeleyen</td></tr>
+<tr><td>Donanım / platform</td><td>Grup başına eski masaüstü bilgisayar · tornavida · antistatik bileklik</td></tr>
+<tr><td>Kazanımlar</td><td><ul><li>K1. Güvenlik kontrolünü yapıp kasayı açar.</li><li>K2. Parçaları kasa içinde bulup etiketler.</li><li>K3. RAM'i mandallarını açarak çıkarır.</li><li>K4. RAM'i çentiği doğru yönde tutarak takar.</li></ul></td></tr>
+<tr><td>Ön koşul</td><td>H04 Güvenli Çalışma, H05 Anakart, H07 RAM</td></tr>
+<tr><td>Değerlendirme</td><td>Süreç gözlemi + ürün rubriği + 4 soruluk bilgi testi (güvenlik sırası, RAM'i tanıma, mandal, çentik)</td></tr>
+<tr><td>Öğrenci dersi</td><td>15 slayt (LMS v9.3) · 4 soruluk bilgi testi + 1 Derinleş bonus sorusu</td></tr>
+</table></section>
+<section class="kart"><h2><span class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg></span>2. Öğretmen İçin Kavramsal Arka Plan</h2>
+<p>Öğrencilerin sorularını yanıtlayabilmen için bu ders şu kavramlara dayanır:</p>
+<div class="kavramlar"><div class="kavram"><b>Yan kapak ve vidalar</b>Ofis tipi kasalarda önden bakınca sol yan kapak, anakartın parçalı yüzünü açar. Kapak arkadan iki vidayla tutulur; vidalar sökülünce kapak önce arkaya kaydırılır, sonra dışa çekilir.</div><div class="kavram"><b>Statik elektrik</b>Vücutta biriken statik yük hissedilmeden çiplere zarar verebilir. Antistatik bileklik, kişiyi kasanın boyasız metaliyle aynı elektrik düzeyine getirir. Kasa açılmadan önce fiş prizden çekilir.</div><div class="kavram"><b>RAM (DIMM) ve altın temaslar</b>Masaüstünde uzun DIMM modülleri kullanılır. Alt kenardaki altın temaslar yuvadaki metal uçlara değer. Modül kısa kenarlarından tutulur; temaslara ve çiplere parmakla dokunulmaz.</div><div class="kavram"><b>Çentik ve çıkıntı</b>DDR4 modülün alt kenarındaki çentik merkezden kaymıştır. Yuvanın içindeki çıkıntıyla aynı tarafa gelince modül girer; ters tutulursa girmez. Çentik farkı yüzünden DDR3 ya da DDR5 modüller DDR4 yuvasına girmez.</div><div class="kavram"><b>Mandallar ve klik</b>Yuvanın uçlarındaki mandallar modülü yerinde tutar. Modül iki ucundan eşit bastırılınca tam oturur, mandallar kendiliğinden kapanır ve klik sesi duyulur. Bazı anakartlarda yalnız bir uçta mandal vardır.</div><div class="kavram"><b>Yuva sırası</b>İki modül varsa anakart kılavuzundaki önerilen yuvalar kullanılır (dört yuvalı kartlarda çoğunlukla 2. ve 4. yuva). Bu derste modül çıkarıldığı yuvaya geri takılır; yuva numarası kartın üstünde yazar.</div></div>
+<h3>Nasıl çalışır?</h3>
+<div class="akis3-baslik">RAM → yuva → sistem görür</div><div class="akis3"><div class="akis3-kart"><div class="akis3-ust">PARÇA</div><b>RAM modülü</b><span>Çentik, yuvadaki çıkıntıya hizalanır.</span></div><div class="akis3-ok">→</div><div class="akis3-kart"><div class="akis3-ust">BAĞLANTI</div><b>Yuva ve mandallar</b><span>Temaslar yuvadaki uçlara tam değer; mandallar klik diye kapanır.</span></div><div class="akis3-ok">→</div><div class="akis3-kart"><div class="akis3-ust">SONUÇ</div><b>Sistem görür</b><span>Açılışta bilgisayar belleği tanır; toplam bellek sistem bilgisinde görünür.</span></div></div>
+<p>Modül yuvaya tam oturduğunda altın temasların her biri yuvadaki kendi ucuna değer ve anakart üzerinden işlemciye bağlanır. Bilgisayar açılırken yaptığı kısa kontrolde (POST) belleği tanır. Modül eğik ya da yarım oturmuşsa açılışta uyarı sesi duyulabilir ya da ekrana görüntü gelmeyebilir; bu yüzden her iki mandalın kapandığı gözle kontrol edilir. İlk açılış H11'de yapılır.</p></section>
+<section class="kart"><h2><span class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="8 12 11 15 16 9"/></svg></span>3. Ön Hazırlık (Ders Öncesi)</h2>
+<h3>Kontrol listesi</h3>
+<ul class="kutu-liste"><li>Her grup masasında: eski masaüstü bilgisayar, tornavida, antistatik bileklik, parça kutusu, kâğıt etiket ve kalem.</li><li>Bilgisayarların fişleri ders başlamadan prizden çekilmiş ve kablolar masada toplanmış olsun.</li><li>Her bilgisayarın kapağını önceden bir kez açıp kapatın; çok sıkı vidaları gevşetin.</li><li>Her kasada en az bir RAM modülü takılı olsun; yuva numarasını not edin.</li><li>Etkileşimli dersi akıllı tahtada açın; 3D sahnelerin açıldığını kontrol edin (açılmazsa yerine çizim görünür).</li><li>Belgeleme için okulun tabletini ya da kendi kameranızı hazırlayın; öğrenci telefonu kullanılmaz.</li><li>Gerçek fotoğraflar derse eklenmemişse, her adımda gerçek parçayı kendi masanızda gösterin.</li></ul>
+<h3>Malzemeler (grup başına)</h3>
+<table><thead><tr><th>Malzeme</th><th>Adet</th><th>Not</th></tr></thead>
+<tr><td>Eski masaüstü bilgisayar</td><td>1</td><td>RAM'i takılı; fişi çekili</td></tr>
+<tr><td>Yıldız tornavida</td><td>1</td><td>Kelebek vidalar elle açılıyorsa gerekmez</td></tr>
+<tr><td>Antistatik bileklik</td><td>1 kişi başı</td><td>Klips kasanın boyasız metaline</td></tr>
+<tr><td>Parça kutusu</td><td>1</td><td>Vidalar ve küçük parçalar için</td></tr>
+<tr><td>Kâğıt etiket ve kalem</td><td>1 takım</td><td>Parçaların yanına yapıştırılır</td></tr>
+<tr><td>Okul tableti / kamera</td><td>Sınıf başı 1</td><td>Belgeleme; öğretmen çeker</td></tr>
+</table></section>
+<section class="kart"><h2><span class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>4. Dakika Dakika Ders Akışı</h2>
+<div class="zaman"><div class="zaman-bar"><div style="flex:5;background:#6366f1">5 dk</div><div style="flex:5;background:#0ea5e9">5 dk</div><div style="flex:6;background:#10b981">6 dk</div><div style="flex:10;background:#f59e0b">10 dk</div><div style="flex:4;background:#ec4899">4 dk</div><div style="flex:5;background:#8b5cf6">5 dk</div></div><div class="zaman-etiket"><div style="flex:5"><b>Giriş ve güvenlik</b>slayt 1–5</div><div style="flex:5"><b>Kapağı aç</b>slayt 6</div><div style="flex:6"><b>Parçaları etiketle</b>slayt 7</div><div style="flex:10"><b>RAM sök–tak</b>slayt 8–9</div><div style="flex:4"><b>Belgele ve kapat</b>slayt 10</div><div style="flex:5"><b>Pekiştir ve test</b>slayt 11–15</div></div><div class="zaman-olcek"><span>0′</span><span>5′</span><span>10′</span><span>15′</span><span>20′</span><span>25′</span><span>30′</span><span>35′</span></div></div>
+<table class="akis"><thead><tr><th>Aşama / süre</th><th>Öğretmen ne yapar/söyler</th><th>Öğrenci ne yapar</th><th>✔ Kontrol noktası</th><th>Slayt</th></tr></thead>
+<tr><td>Giriş ve güvenlik<span>0–5 dk</span></td><td>Atölye gününü anlat; “RAM'i ters tutsak ne olur?” diye tahmin aldır. Rolleri dağıt, güvenlik kontrol listesini sesli okut.</td><td>Tahmin eder, rolleri alır, fişi çeker, bilekliği takar.</td><td>Tüm fişler masada mı; bileklik klipsi metalde mi?</td><td>1–5</td></tr>
+<tr><td>Kapağı aç<span>5–10 dk</span></td><td>3D provayı oynat; vidaların kutuya gittiğini göster. Gruplara aynı adımı yaptır.</td><td>Vidaları söker, kutuya koyar, kapağı kaydırıp çıkarır.</td><td>Vidalar kutuda, kapak düz yatıyor mu?</td><td>6</td></tr>
+<tr><td>Parçaları etiketle<span>10–16 dk</span></td><td>Provadaki etiketleme sırasını izlet; her grupta bir parçayı birlikte bul.</td><td>Parçaları bulur, adını söyler, etiketi yanına yapıştırır.</td><td>En az 5 parça doğru etiketli mi?</td><td>7</td></tr>
+<tr><td>RAM sök–tak<span>16–26 dk</span></td><td>Çıkarma ve takma provalarını ayrı ayrı oynat; ters takma denemesinde durup sor. Grupları tek tek dolaş.</td><td>Mandalları açar, RAM'i çıkarır; çentiği hizalayıp geri takar.</td><td>İki mandal kapalı, RAM eğik değil mi?</td><td>8–9</td></tr>
+<tr><td>Belgele ve kapat<span>26–30 dk</span></td><td>Her grubun üç fotoğrafını çek; kapak ve vidaları kutudan taktır.</td><td>Fotoğraf listesini işaretler, kapağı kapatır, masayı toplar.</td><td>Üç fotoğraf çekildi, vida kalmadı mı?</td><td>10</td></tr>
+<tr><td>Pekiştir ve test<span>30–35 dk</span></td><td>E-TAK etkinliğini bir gönüllüye tahtada yaptır; özetten sonra bilgi testini çözdür.</td><td>RAM'i sanal olarak takar, testi çözer.</td><td>Ters takmanın neden olmadığını açıklayabiliyor mu?</td><td>11–15</td></tr>
+</table>
+<h3>Öğrenci dersindeki slaytlar</h3>
+<div class="slaytlar"><span><b>1</b>Kapak</span><span><b>2</b>Hedefler</span><span><b>3</b>Isınma: Tahmin Et</span><span><b>4</b>Malzemeler ve Roller</span><span><b>5</b>Adım 1: Güvenlik Kontrolü</span><span><b>6</b>Adım 2: Yan Kapağı Aç</span><span><b>7</b>Adım 3: Parçaları Bul ve Etiketle</span><span><b>8</b>Adım 4: RAM'i Çıkar</span><span><b>9</b>Adım 5: RAM'i Tak</span><span><b>10</b>Adım 6: Fotoğrafla Belgele</span><span><b>11</b>Etkinlik: RAM'i Doğru Tak</span><span><b>12</b>Derinleş</span><span><b>13</b>Özet</span><span><b>14</b>Bilgi Testi</span><span><b>15</b>Tebrikler!</span></div></section>
+<section class="kart"><h2><span class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></span>5. Adım Adım Yönlendirme (Öğretmen Scripti)</h2>
+<p>Her yapım adımında: önce 3D provayı oynat, sonra gerçek parçada göster; hangi soruyu soracağın, neyi kontrol edeceğin ve sık hatada nasıl müdahale edeceğin.</p>
+<div class="adim"><div class="adim-bas"><span>1</span>Güvenlik Kontrolü</div><table><tr><td><span class="et et-goster">GÖSTER</span></td><td>Kendi masanızda fişi çekip kabloyu masaya koyun; bilekliği takıp klipsi kasanın boyasız metaline bağlayın. Slayttaki kontrol listesini tahtada işaretleyin.</td></tr><tr><td><span class="et et-sor">SOR</span></td><td>“Fiş takılıyken kapak açılsa ne olabilir?” (elektrik çarpması ve parça hasarı riski)</td></tr><tr><td><span class="et et-kontrol">✔ KONTROL</span></td><td>Her grupta fiş masada, bileklik bağlı, kutu hazır.</td></tr><tr><td><span class="et et-hata">⚠ SIK HATA</span></td><td>Klips boyalı yüzeye takılmış → bağlantı olmaz; boyasız metal bir kenara taşıt.</td></tr></table></div>
+<div class="adim"><div class="adim-bas"><span>2</span>Yan Kapağı Aç</div><table><tr><td><span class="et et-goster">GÖSTER</span></td><td>Önce 3D provayı oynatın: vidalar döner, kutuya gider; kapak arkaya kayar ve çıkar. Sonra gerçek kasada iki vidayı gösterin.</td></tr><tr><td><span class="et et-sor">SOR</span></td><td>“Kapak neden önce arkaya kaydırılıyor?” (kasadaki tırnaklardan kurtulması için)</td></tr><tr><td><span class="et et-kontrol">✔ KONTROL</span></td><td>İki vida kutuda, kapak masada düz yatıyor.</td></tr><tr><td><span class="et et-hata">⚠ SIK HATA</span></td><td>Kapak dışa zorlanıyor → tırnaklar eğilir; önce arkaya kaydırt.</td></tr></table></div>
+<div class="adim"><div class="adim-bas"><span>3</span>Parçaları Bul ve Etiketle</div><table><tr><td><span class="et et-goster">GÖSTER</span></td><td>Provada etiketlerin sırayla belirmesini izletin; gerçek kasada işlemci soğutucusunu ve RAM'i parmağınızla işaret edin (dokunmadan).</td></tr><tr><td><span class="et et-sor">SOR</span></td><td>“Ekran kartı ile RAM'i nasıl ayırt ederiz?” (boyut, yuva yönü, fanlar)</td></tr><tr><td><span class="et et-kontrol">✔ KONTROL</span></td><td>En az 5 parça doğru adla etiketli; etiketler kartların üstünde değil yanında.</td></tr><tr><td><span class="et et-hata">⚠ SIK HATA</span></td><td>Güç kaynağının içini açmaya çalışma → kesinlikle yasak; örtünün ya da kutunun dışından etiketlet.</td></tr></table></div>
+<div class="adim"><div class="adim-bas"><span>4</span>RAM'i Çıkar</div><table><tr><td><span class="et et-goster">GÖSTER</span></td><td>Provada mandalların dışa açıldığını ve modülün hafifçe yükseldiğini gösterin. Gerçek yuvada iki başparmakla mandalları birlikte açın.</td></tr><tr><td><span class="et et-sor">SOR</span></td><td>“Mandallar açılmadan RAM'i çekersek ne olur?” (yuva ve temaslar zarar görür)</td></tr><tr><td><span class="et et-kontrol">✔ KONTROL</span></td><td>Modül kısa kenarlarından tutuldu; temaslara dokunulmadı; kutunun kapağına yatırıldı.</td></tr><tr><td><span class="et et-hata">⚠ SIK HATA</span></td><td>Tek mandal açık kalmış → modül eğilir; iki mandalı da açtır, düz yukarı çektir.</td></tr></table></div>
+<div class="adim"><div class="adim-bas"><span>5</span>RAM'i Tak</div><table><tr><td><span class="et et-goster">GÖSTER</span></td><td>Provada ters modülün girmediğini, çevrilince çentiğin çıkıntıya oturduğunu gösterin; sonra gerçek modülde çentik ile çıkıntıyı yan yana tutun.</td></tr><tr><td><span class="et et-sor">SOR</span></td><td>“Çentik neden tam ortada değil?” (modül yalnız bir yönde girsin diye)</td></tr><tr><td><span class="et et-kontrol">✔ KONTROL</span></td><td>İki mandal kendiliğinden kapandı; modül iki ucundan aynı yükseklikte.</td></tr><tr><td><span class="et et-hata">⚠ SIK HATA</span></td><td>Tek uçtan bastırılıyor → modül eğik oturur; iki ucundan eşit bastırt, klik sesini bekletin.</td></tr></table></div>
+<div class="adim"><div class="adim-bas"><span>6</span>Fotoğrafla Belgele</div><table><tr><td><span class="et et-goster">GÖSTER</span></td><td>Tahtada üç kareyi sayın: etiketlerle dolu iç görünüm, yerine oturmuş modül ile kapanmış mandallar, kapağı geri gelmiş kasa. Fotoğrafları siz çekin.</td></tr><tr><td><span class="et et-sor">SOR</span></td><td>“Fotoğraftan RAM'in doğru takıldığını nasıl anlarız?” (mandallar kapalı, modül düz)</td></tr><tr><td><span class="et et-kontrol">✔ KONTROL</span></td><td>Üç fotoğraf çekildi; kapak takıldı, kutuda vida kalmadı.</td></tr><tr><td><span class="et et-hata">⚠ SIK HATA</span></td><td>Kapak kapatılırken kablo sıkışıyor → kabloları içeri itip kapağı yeniden kaydırt.</td></tr></table></div>
+</section>
+<section class="kart"><h2><span class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="9" y1="6" x2="20" y2="6"/><line x1="9" y1="12" x2="20" y2="12"/><line x1="9" y1="18" x2="20" y2="18"/><circle cx="4.5" cy="6" r="1"/><circle cx="4.5" cy="12" r="1"/><circle cx="4.5" cy="18" r="1"/></svg></span>6. Yapım Sırası ve Kontrol Tablosu</h2>
+<table><thead><tr><th>Parça</th><th>Yuva / Bağlantı</th><th>Doğru yön işareti</th><th>Not</th></tr></thead>
+<tr><td>Yan kapak</td><td>Kasa arkası · 2 vida</td><td>Kapak arkaya kayar, sonra dışa çıkar</td><td>Vidalar parça kutusuna</td></tr>
+<tr><td>Antistatik bileklik</td><td>Kasanın boyasız metali</td><td>Klips metale temas eder</td><td>Bileklik tene değmeli</td></tr>
+<tr><td>RAM modülü</td><td>RAM yuvası (ör. DIMM_A2)</td><td>Çentik ↔ yuvadaki çıkıntı aynı tarafta</td><td>Kısa kenarlardan tutulur</td></tr>
+<tr><td>Mandallar</td><td>Yuvanın iki ucu</td><td>RAM oturunca kendiliğinden kapanır, klik</td><td>Bazı kartlarda tek mandal</td></tr>
+<tr><td>Kâğıt etiket</td><td>Parçanın yanı</td><td>Yazı okunur, kartın üstüne yapışmaz</td><td>Ders sonunda toplanır</td></tr>
+</table>
+<h3>Fotoğraflı sıra</h3>
+<div class="fotolar"><figure class="foto" style="margin:0"><div class="foto-yer" data-foto-gerekli="DON-201-H10-1-guvenlik.jpg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg><b>Fotoğraf eklenecek</b></div><figcaption>1. Fiş çekili, bileklik bağlı</figcaption></figure><figure class="foto" style="margin:0"><div class="foto-yer" data-foto-gerekli="DON-201-H10-2-yan-kapak.jpg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg><b>Fotoğraf eklenecek</b></div><figcaption>2. Vidalar sökülmüş, kapak kaydırılıyor</figcaption></figure><figure class="foto" style="margin:0"><div class="foto-yer" data-foto-gerekli="DON-201-H10-3-parcalar.jpg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg><b>Fotoğraf eklenecek</b></div><figcaption>3. Parçalar etiketli</figcaption></figure><figure class="foto" style="margin:0"><div class="foto-yer" data-foto-gerekli="DON-201-H10-4-ram-cikar.jpg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg><b>Fotoğraf eklenecek</b></div><figcaption>4. Mandallar dışa açık</figcaption></figure><figure class="foto" style="margin:0"><div class="foto-yer" data-foto-gerekli="DON-201-H10-5-ram-tak.jpg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg><b>Fotoğraf eklenecek</b></div><figcaption>5. Çentik hizalı, mandallar kapalı</figcaption></figure><figure class="foto" style="margin:0"><div class="foto-yer" data-foto-gerekli="DON-201-H10-6-belgele.jpg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg><b>Fotoğraf eklenecek</b></div><figcaption>6. Belgelenmiş ve kapatılmış kasa</figcaption></figure></div></section>
+<section class="kart"><h2><span class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12" y2="17"/></svg></span>7. Yönlendirici (Sokratik) Sorular</h2>
+<ul class="madde"><li>Fişi çektik; bilgisayar kapalıyken bile neden bileklik takıyoruz?</li><li>Vidaları neden masaya değil de kutuya koyuyoruz?</li><li>Bir parçayı adından önce görevinden tanıyabilir misin? Örnek ver.</li><li>RAM'i çıkarırken neden mandalları aynı anda açıyoruz?</li><li>Çentik ortada olsaydı ne gibi bir sorun çıkardı?</li><li>Belgelerken çektiğimiz fotoğraf, bir teknisyene neyi kanıtlar?</li></ul></section>
+<section class="kart"><h2><span class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12" y2="17"/></svg></span>8. Sık Hatalar ve Anında Müdahale</h2>
+<table><thead><tr><th>Belirti</th><th>Olası neden</th><th>Öğretmen müdahalesi</th></tr></thead>
+<tr><td>Kapak kaymıyor</td><td>Vida tam sökülmemiş ya da kapak dışa çekiliyor</td><td>Vidaları kontrol ettir; kapağı önce arkaya kaydırt.</td></tr>
+<tr><td>RAM çıkmıyor</td><td>Mandallardan biri kapalı kalmış</td><td>İki mandalı birlikte dışa açtır; modülü sallatmadan düz çektir.</td></tr>
+<tr><td>RAM girmiyor</td><td>Modül ters tutulmuş ya da mandallar kapalı</td><td>Çentiği çıkıntıyla yan yana tut, mandalları aç; zorlatma.</td></tr>
+<tr><td>RAM eğik oturdu, bir mandal açık</td><td>Tek uçtan bastırılmış</td><td>Modülü çıkartıp iki ucundan eşit bastırt; klik sesini bekletin.</td></tr>
+<tr><td>Temaslara parmakla dokunuluyor</td><td>Tutma yeri bilinmiyor</td><td>Kısa kenarlardan tutmayı kendi elinizle gösterin.</td></tr>
+<tr><td>Bir kablo yerinden çıktı</td><td>İç kablolara dokunulmuş</td><td>Kabloyu siz takın; “kablolara dokunulmaz” kuralını tekrarlatın.</td></tr>
+<tr><td>Vida kayboldu</td><td>Parça kutusu kullanılmamış</td><td>Masayı ve kasayı birlikte arayın; kutu kuralını tahtaya yazın.</td></tr>
+</table>
+<h3>Öğrencinin derste gördüğü sorun giderme</h3>
+<table><thead><tr><th>Belirti</th><th>Çözüm</th></tr></thead>
+<tr><td>Kapak çıkmıyor</td><td>Önce arkaya kaydır, sonra dışa çek.</td></tr>
+<tr><td>RAM yuvaya girmiyor</td><td>RAM'i çevir; çentik çıkıntıyla aynı tarafta olsun.</td></tr>
+<tr><td>Mandal kapanmadı</td><td>İki ucundan eşit bastır, klik sesini bekle.</td></tr>
+<tr><td>Etiket nereye?</td><td>Parçanın yanına yapıştır, kartın üstüne değil.</td></tr>
+</table></section>
+<section class="kart"><h2><span class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></span>9. Farklılaştırma</h2>
+<div class="fark"><b>Hızlı bitiren için</b><span>İkinci RAM modülünü de çıkarıp takma, etiketten kapasiteyi okuyup toplam belleği hesaplama (Derinleş), anakart üzerindeki yuva adlarını (DIMM_A1, A2…) bulma.</span><b>Zorlanan için</b><span>Önce E-TAK etkinliğini akıllı tahtada yaptırın; gerçek modülde çentik ile çıkıntıyı birlikte gösterip her adımı sizin gözetiminizde, tek tek yaptırın.</span><b>Grup yönetimi</b><span>3–4 kişilik gruplar: uygulayan (parçalara yalnız o dokunur), kontrolcü (adımı sesli okur ve kontrol eder), belgeleyen (not tutar, çekilecek kareleri söyler). Uygulayan her adımda değişir; herkes en az bir kez RAM'i takar.</span></div></section>
+<section class="kart"><h2><span class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>10. Değerlendirme</h2>
+<h3>Gözlem kontrol listesi (süreç)</h3>
+<ul class="kutu-liste"><li>Kasayı açmadan önce fişi çekiyor ve bilekliği doğru bağlıyor.</li><li>Vidaları ve kapağı düzenli biçimde kenara alıyor.</li><li>İç parçaları adlarıyla doğru gösteriyor ve etiketliyor.</li><li>RAM'i mandalları açarak, kısa kenarlarından tutarak çıkarıyor.</li><li>Çentiği hizalayıp iki ucundan eşit bastırarak takıyor; rolüne uyuyor.</li></ul>
+<h3>Ürün değerlendirme rubriği</h3>
+<table class="rubrik"><thead><tr><th>Ölçüt</th><th>Başlangıç (1)</th><th>Gelişiyor (2)</th><th>Yeterli (3)</th></tr></thead>
+<tr><td>Güvenlik</td><td>Fişi çekmeden başlıyor</td><td>Hatırlatmayla güvenlik adımlarını yapıyor</td><td>Güvenlik adımlarını kendiliğinden, sırayla yapıyor</td></tr>
+<tr><td>Kapak açma</td><td>Kapağı zorluyor</td><td>Yardımla açıyor</td><td>Vidaları kutuya koyup kapağı kaydırarak açıyor</td></tr>
+<tr><td>Parça tanıma</td><td>2'den az parça</td><td>3–4 parça doğru</td><td>5 ve üzeri parça doğru, görevini söylüyor</td></tr>
+<tr><td>RAM sök–tak</td><td>Yardımla bile takamıyor</td><td>Yardımla takıyor ya da eğik oturuyor</td><td>Çentiği hizalayıp bağımsız, düz takıyor</td></tr>
+<tr><td>Belgeleme ve grup</td><td>Fotoğraf eksik, rol yok</td><td>Fotoğraflar tam, roller karışık</td><td>Üç fotoğraf tam, roller paylaşılmış</td></tr>
+</table>
+<h3>Bilgi testi cevap anahtarı</h3>
+<table class="cevap"><thead><tr><th>#</th><th>Soru</th><th>Doğru cevap</th><th>Açıklama</th></tr></thead>
+<tr><td>1</td><td>Ayşe’nin grubu kasayı açmaya hazırlanıyor. İlk olarak ne yapmalılar?</td><td>A) Fişi prizden çekmeliler</td><td>Kasa açılmadan önce fiş her zaman prizden çekilir. Sonra antistatik bileklik takılır.</td></tr>
+<tr><td>2</td><td>Görselde turuncu çerçeveyle gösterilen parça hangisidir?</td><td>C) RAM</td><td>Anakarttaki uzun, ince yuvaya dik takılan, üzerinde çipler olan kart RAM'dir.</td></tr>
+<tr><td>3</td><td>RAM'i yuvasından çıkarmak için önce ne yapılır?</td><td>B) İki uçtaki mandal dışa doğru açılır</td><td>Mandallar açılınca RAM biraz yükselir. Sonra iki kenarından tutulup düz yukarı çekilir.</td></tr>
+<tr><td>4</td><td>Emre RAM'i yuvaya bastırıyor ama RAM girmiyor. En olası neden hangisidir?</td><td>D) RAM ters tutuldu; çentik çıkıntıya denk gelmiyor</td><td>Çentik merkezde değildir; RAM yalnız bir yönde girer. RAM çevrilip çentik çıkıntıya hizalanmalıdır.</td></tr>
+</table>
+<p><b>Cevap anahtarı:</b> 1-A 2-C 3-B 4-D. Derinleş bonus sorusu puanı düşürmez.</p></section>
+<section class="kart"><h2><span class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>11. Kapanış ve Genişletme</h2>
+<p>Toparlama: 2–3 gruba üç fotoğraflarını gösterterek RAM'i nasıl taktıklarını 30 saniyede anlattırın (“Çentik nerede, mandallar ne yaptı?”). Isınmadaki tahminleri hatırlatıp ters modülün neden girmediğini birlikte söyleyin. Ödev: evde ya da okulda bir bilgisayarın ayarlarında toplam bellek (RAM) miktarını bulup not etmek; bilgisayar yoksa bir ürün tanıtım kartından okumak. Köprü: H11'de diski söküp takacak, bilgisayarı toplayıp ilk kez açacaksınız.</p></section>
+<section class="kart"><h2><span class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5z"/></svg></span>Güvenlik</h2>
+<div class="guvenlik-madde">Fiş çekilmeden kapak açılmaz.</div>
+<div class="guvenlik-madde">Antistatik bileklik takılı çalışılır.</div>
+<div class="guvenlik-madde">Kapak ve vidalar kutuya konur.</div>
+<div class="guvenlik-madde">Güç kaynağının içi asla açılmaz; üstündeki uyarı etiketine dokunulmaz.</div>
+<div class="guvenlik-madde">Kasanın iç kenarları keskin olabilir; eller yavaş hareket eder, parçaya yalnız uygulayan dokunur.</div>
+<div class="guvenlik-madde">İç kablolar çekilmez; yerinden çıkan kabloyu öğretmen takar.</div>
+<div class="guvenlik-madde">Masada yiyecek ve içecek bulunmaz; çıkarılan RAM kutunun kapağı ya da antistatik poşet üzerine yatırılır.</div>
+</section>
+<section class="kart"><h2><span class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg></span>Bitirme: Çalışan sistem ve belgeleme</h2>
+<div class="bitirme"><div class="etiket">ÜRÜN</div><p>Kapağı kapalı, vidaları tam, RAM'i doğru yuvada ve iki mandalı kapalı bilgisayar + üç fotoğraflı belge (etiketli açık kasa, takılı RAM, kapalı kasa).</p></div>
+<h3>Böyle sun</h3>
+<ul class="madde"><li>Her grup üç fotoğrafını tahtada gösterir; belgeleyen, adımları sırayla anlatır.</li><li>Kontrolcü, rubrikteki “RAM sök–tak” satırını grubuyla birlikte kendisi puanlar.</li><li>Bilgisayarların gerçekten çalıştığı H11'deki ilk açılışta birlikte test edilir.</li></ul></section>
+<section class="kart"><h2><span class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V2H6.5A2.5 2.5 0 0 0 4 4.5v15z"/></svg></span>Referans Kaynaklar</h2>
+<ul class="madde"><li>Kullanılan bilgisayarın anakart kılavuzu — bellek (DIMM) takma bölümü</li><li>Okulun bilişim teknolojileri atölyesi güvenlik yönergesi</li><li>JEDEC — DDR4 bellek modülü standartları (jedec.org)</li></ul><p class="imza-alt">Bilişim Üssü · Öğretmen Uygulama Planı · DON-201 H10 · Atölye 1: Kasayı Açma ve RAM Sök–Tak</p></section>
+</body>
+</html>

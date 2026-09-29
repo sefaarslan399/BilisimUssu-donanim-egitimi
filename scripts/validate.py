@@ -226,11 +226,15 @@ def gorunur_metin(yol):
 def plan_karsilastir(plan, ders, n=8):
     a = gorunur_metin(plan)
     b = gorunur_metin(ders)
+    # Dersin adı (başlık) iki belgede de bulunmak zorundadır; ortak ifade sayılmaz.
+    with open(ders, encoding="utf-8") as f:
+        m = re.search(r"<title>([^<]*)</title>", f.read())
+    baslik = " ".join(re.findall(r"\w+", m.group(1).lower())) if m else ""
     bset = set(tuple(b[i:i + n]) for i in range(len(b) - n + 1))
     ortak = set()
     for i in range(len(a) - n + 1):
         g = tuple(a[i:i + n])
-        if g in bset:
+        if g in bset and not (baslik and " ".join(g) in baslik):
             ortak.add(" ".join(g))
     return sorted(ortak)
 
