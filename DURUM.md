@@ -15,7 +15,7 @@ Durum: `—` başlanmadı · `K` kalibrasyon (onay bekliyor) · `✓` tamam · `
 
 | Hafta | Başlık | Tür | HTML | Plan | Not |
 |---|---|---|---|---|---|
-| H01 | Donanım, Yazılım ve Bilgisayarın Dört İşi | K | K | — | Format K kalibrasyonu. 15 slayt, 853 KB. Etkinlikler iki sütunlu görsel panele alındı. Öğretmen planı ders onayından sonra. |
+| H01 | Donanım, Yazılım ve Bilgisayarın Dört İşi | K | ✓ | K | Ders onaylandı. Plan Format K, 3 sayfa (HTML + PDF), onay bekliyor. |
 | H02 | Bit ve Byte | K | — | — | |
 | H03 | Bağlantı Noktaları ve Çevre Birimleri | K | — | — | |
 | H04 | Güvenli Çalışma | K+U | — | — | |

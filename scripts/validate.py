@@ -167,7 +167,8 @@ def dosya_kontrol(yol):
     for m in re.finditer(r"(?:src|href)=\"(?!data:|#|javascript:)([^\"]+\.(?:png|jpe?g|gif|webp|svg|css|js))\"", metin):
         hatalar.append("Satır " + str(satir_no(metin, m.start())) + ": harici dosya referansı (tek dosya kuralı): " + m.group(1))
     ad = os.path.basename(yol)
-    if ad.startswith("DON-"):
+    plan_mi = "/ogretmen-plani/" in "/" + yol.replace("\\", "/")
+    if ad.startswith("DON-") and not plan_mi:
         kullanici_js = metin
         n_renderer = len(re.findall(r"new\s+THREE\.WebGLRenderer", kullanici_js))
         if n_renderer > 1:
@@ -187,7 +188,7 @@ def dosya_kontrol(yol):
         boyut = os.path.getsize(yol)
         if boyut > 1600000:
             uyarilar.append("Dosya boyutu " + str(boyut // 1024) + " KB (hedef ≤ 1,5 MB)")
-    if ad.startswith("DON-2"):
+    if ad.startswith("DON-2") and not plan_mi:
         for m in re.finditer(r"\b(çocuklar|minik\w*|minicik\w*|küçük dost\w*|yavrum\w*)\b", metin, re.IGNORECASE):
             uyarilar.append("Satır " + str(satir_no(metin, m.start())) + ": 10–15 yaşa uygun olmayan hitap '" + m.group(0) + "'")
         if "Derinleş" not in metin:

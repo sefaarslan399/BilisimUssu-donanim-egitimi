@@ -1,1 +1,2 @@
 weasyprint>=62
+pymupdf>=1.24   # plan PDF'ini görüntüye çevirip referansla karşılaştırmak için

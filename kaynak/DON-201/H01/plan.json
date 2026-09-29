@@ -1,0 +1,55 @@
+{
+  "format": "K",
+  "yontem": "Anlatım, gösteri, soru-cevap, 3D model inceleme, animasyonla modelleme, tahmin et–izle, sınıflandırma etkinliği",
+  "arac": "Etkileşimli ders (LMS), projeksiyon veya akıllı tahta",
+  "giris": "Kapak slaytında dönen kasayı gösterip \"Bu kutunun içinde neler var? Bu kutu tek başına bir iş yapabilir mi?\" diye sorun, iki üç cevabı dinleyin. Hedefler slaytında kazanımları paylaşın. Isınma slaytında (Slayt 3) üç seçeneği okutun, el kaldırarak sınıfın tahminini sayın ve tahtaya yazın: \"Tahminlerimizi harfin yolculuğunu izlerken kontrol edeceğiz.\"",
+  "gelisme": [
+    {
+      "konu": "Dokunabildiğin Parçalar",
+      "slayt": 4,
+      "not": "Parçalar sırayla parlarken her birinde durup \"Buna elimizle dokunabilir miyiz?\" diye sorun. \"Bilgisayarın elle tutulan, takılıp sökülebilen her parçası donanımdır; kasa, monitör, klavye ve fare bu masanın donanımlarıdır\" deyin. Bir öğrenciye modeli parmağıyla çevirtip kasaya dokundurarak bilgi kartını açtırın. Öğrencilere sınıfta gördükleri üç donanımı söyletin."
+    },
+    {
+      "konu": "Donanıma Yol Gösteren Programlar",
+      "slayt": 5,
+      "not": "Katman monitörün önünde belirirken bekleyin, sonra bir öğrenciye Oyun, Harita, Resim ve Yazı düğmelerine sırayla bastırın ve sorun: \"Monitör değişti mi? Peki ne değişti?\" \"Yazılım, donanıma görev veren talimatlar bütünüdür; ona dokunamayız ama ekranda çalışırken görürüz\" deyin. Öğrencilere bildikleri iki yazılımın adını söyletin."
+    },
+    {
+      "konu": "Bilgi İçeri Girer",
+      "slayt": 6,
+      "not": "Animasyon slayt açılınca kendiliğinden başlar; ışık klavyeden çıkarken sorun: \"Harf şimdi nereye gidiyor?\" \"Girdi, bilgisayara dışarıdan bilgi vermektir; tuşa basmak, fareyle tıklamak, mikrofona konuşmak birer girdidir\" deyin. Gerekirse Oynat düğmesiyle yolculuğu yeniden izletin. Öğrencilere klavye dışında iki girdi birimi söyletin."
+    },
+    {
+      "konu": "Kasada Karar Verilir",
+      "slayt": 7,
+      "not": "Kamera kasaya yaklaşırken \"Harf kasada kimin elinde?\" diye sorun. Işık işlemciye ulaşıp etiket göründüğünde \"İşlemci gelen bilgiye bakar ve ne yapılacağına karar verir; hesaplamak, karşılaştırmak ve karar vermek işlemdir\" deyin, aşçı benzetmesiyle bağlayın. Öğrencilere işlemcinin kasada nerede olduğunu gösterttirin."
+    },
+    {
+      "konu": "Sonuç Dışarı Çıkar",
+      "slayt": 8,
+      "not": "Oynatmadan önce tahtadaki ısınma tahminlerini hatırlatın. Işık monitöre varıp ekranda A belirince durun ve tahminleri karşılaştırın. \"Çıktı, işlenen bilginin sonucunun bize sunulmasıdır; görüntü, ses ve kâğıda basılan belge birer çıktıdır\" deyin. Öğrencilere sınıftaki bir çıktı birimini gösterttirin."
+    },
+    {
+      "konu": "Bilgi Saklanır",
+      "slayt": 9,
+      "not": "Disk ışığı yanıp sönerken sorun: \"Bilgisayarı şimdi kapatsak bu harf kaybolur mu?\" \"Depolama, bilgiyi daha sonra kullanmak üzere saklamaktır; SSD ve USB bellek elektrik kesilse de bilgiyi korur\" deyin. Tahtaya dört kutu çizip bir öğrenciye harfin yolunu oklarla bağlatın. Öğrencilere dört işi sırasıyla söyletin."
+    }
+  ],
+  "etkinlik": "Etkinlik 1'i (Slayt 10) akıllı tahtada gönüllü öğrencilerle yapın; her kart yerleşmeden önce sınıfa \"Elimizle dokunabilir miyiz?\" sorusunu sordurun. Yanlış yerleştirmede çıkan ipucunu yüksek sesle okutun. Etkinlik 2'de (Slayt 11) telefon ve çamaşır makinesi kartlarında durup \"Bu cihazda da dört iş var mı?\" diye sorun; bu etkinlik K3 ve K4'ü birlikte yoklar (yaklaşık 7 dk).",
+  "kapanis": "Özet slaytındaki altı kartı sırayla birer öğrenciye kendi cümleleriyle anlattırın. Bilgi Testi'ni (Slayt 14) sınıfça çözün; yanlış çıkan soruda ilgili adım slaytına dönüp animasyonu yeniden izletin. Son soru Derinleş bonusudur, puanı düşürmez. \"Dört iş\" kavramını bir öğrenciye evdeki bir cihaz üzerinden anlattırarak dersi kapatın.",
+  "acik_uclu": ["Donanım ve Yazılım", "Girdi–İşlem–Çıktı", "Depolama"],
+  "oz_degerlendirme": "Bu derste en çok hangi adım ilgini çekti, nerede zorlandın? Nedenini açıkla.",
+  "odev": "Evde kullandığın bir cihazı seç (ör. mikrodalga fırın, kumanda, çamaşır makinesi). Girdi, işlem, çıktı ve depolamanın bu cihazda nerede olduğunu dört satırlık bir tabloyla yaz ve bir sonraki derse getir.",
+  "notlar": [
+    "Derinleş (Slayt 12) isteğe bağlıdır: süre kalırsa ya da hızlı bitiren öğrenciler için kullanın. Atlasanız da akış bozulmaz; Bilgi Testi'ndeki bonus soru puanı düşürmez.",
+    "Yaş bandı uyarlaması: 10–12 yaş grubunda sınıftaki gerçek bilgisayarı göstererek somut örnekle ilerleyin. 13–15 yaş grubunda dokunmatik ekranın neden hem girdi hem çıktı olduğunu ve gömülü sistemleri tartışmaya açın.",
+    "Sık görülen kavram yanılgıları: \"Monitör bilgisayarın kendisidir\", \"Kasa işlemcidir\", \"İnternet bir donanımdır\". Bu cümleleri doğru/yanlış sorusu olarak sorup düzeltin.",
+    "3D sahneler yavaş bilgisayarda kaliteyi kendiliğinden düşürür; WebGL açılmazsa yerine çizim görünür. Hareket azaltma ayarı açık cihazlarda animasyonlar \"Adım adım\" düğmesiyle ilerler.",
+    "Her adımın sonunda 1-2 öğrenciye \"Bu adımda harfe ne oldu?\" diye sorup anlattırarak anlaşıldığını kontrol edin (biçimlendirici değerlendirme)."
+  ],
+  "sureler": [
+    ["Giriş — Dikkat Çekme ve Güdüleme", 5],
+    ["Gelişme — Kavramların İşlenişi ve Etkinlikler", 25],
+    ["Değerlendirme ve Kapanış", 5]
+  ]
+}

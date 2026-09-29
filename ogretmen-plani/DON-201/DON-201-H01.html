@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DON-201 H01 Öğretmen Planı — Donanım, Yazılım ve Bilgisayarın Dört İşi</title>
+<style>
+@font-face{font-family:'Carlito';src:local('Carlito'),url('../../assets/font/Carlito-Regular.ttf');font-weight:400;font-style:normal}
+@font-face{font-family:'Carlito';src:local('Carlito Bold'),url('../../assets/font/Carlito-Bold.ttf');font-weight:700;font-style:normal}
+@font-face{font-family:'Carlito';src:local('Carlito Italic'),url('../../assets/font/Carlito-Italic.ttf');font-weight:400;font-style:italic}
+@page{size:A4;margin:14mm 14mm 16mm 16.5mm;
+  @bottom-center{content:'Bilişim Üssü · Etkileşimli Ders Planı · ' counter(page) ' / ' counter(pages);font-family:Carlito,Calibri,sans-serif;font-size:7.5pt;color:#6b7a82}}
+*{box-sizing:border-box}
+html{font-family:Carlito,Calibri,'Segoe UI',Arial,sans-serif;font-size:9.9pt;color:#1a1a1a;line-height:1.38}
+body{margin:0;max-width:180mm}
+@media screen{body{margin:24px auto;padding:0 12px}}
+.bant{display:flex;gap:7pt;margin-bottom:9pt}
+.bant-sol{flex:1;background:linear-gradient(135deg,#075985,#0a6aa3);color:#fff;border-radius:4pt;padding:9pt 14pt 10pt}
+.bant-ust{font-size:7.6pt;font-weight:700;letter-spacing:2.2pt;opacity:.92}
+.bant-baslik{font-size:23pt;font-weight:700;line-height:1.12;margin-top:3pt}
+.bant-baslik.uzun{font-size:18pt}
+.bant-sag{width:128pt;background:#0369a1;color:#fff;border-radius:4pt;display:flex;align-items:center;justify-content:center;font-size:14pt;font-weight:700}
+h2{background:#0369a1;color:#fff;font-size:11pt;font-weight:700;margin:12pt 0 6pt;padding:5pt 10pt;border-radius:4pt;letter-spacing:.2pt;break-after:avoid}
+h3{display:flex;justify-content:space-between;align-items:center;color:#0369a1;font-size:10.6pt;margin:9pt 0 4pt;break-after:avoid}
+h3 .sure{background:#0369a1;color:#fff;font-size:8.6pt;border-radius:9pt;padding:1.5pt 8pt}
+table{width:100%;border-collapse:collapse;margin:0 0 4pt}
+td,th{border:1px solid #b9def1;padding:4pt 7pt;vertical-align:top;text-align:left}
+th{background:#e0f2fe;color:#075985;font-size:9.2pt;font-weight:700}
+tr{break-inside:avoid}
+.genel td:first-child{width:134pt;background:#e0f2fe;color:#075985;font-weight:700}
+.kazanim{width:100%;border-collapse:collapse}
+.kazanim td{border:0;border-bottom:1px solid #eaf6fc;padding:3.5pt 4pt}
+.kazanim td:first-child{width:32pt;color:#0369a1;font-weight:700}
+.isleyis td:first-child{width:35pt;text-align:center;color:#6b7a82;font-weight:700}
+.isleyis td:nth-child(2){width:122pt}
+.adim-ad{font-weight:700}
+.adim-konu{color:#475569}
+.slayt{display:inline-block;margin-top:2pt;font-size:8pt;font-weight:700;color:#0369a1;background:#e0f2fe;border-radius:6pt;padding:0 5pt}
+q{quotes:'“' '”'}
+q::before{content:open-quote}q::after{content:close-quote}
+p{margin:3pt 0 5pt;text-align:justify}
+.kutu{border:1px solid #b9def1;border-left:3pt solid #0369a1;border-radius:3pt;padding:5pt 8pt;margin:5pt 0;background:#f5fbff;break-inside:avoid}
+.kutu b{color:#075985}
+.olcme td:first-child{width:22pt;text-align:center;font-weight:700}
+.olcme td:last-child{width:40pt;text-align:center;color:#0369a1;font-weight:700}
+.soru{font-weight:700}
+.secenek{margin-top:1pt}
+.aciklama{font-style:italic;color:#0369a1;font-size:9.5pt;margin-top:2pt}
+.soru-gorsel{float:right;margin:0 0 2pt 8pt}
+.soru-gorsel svg{height:38pt;width:auto}
+.anahtar{font-weight:700;color:#075985;margin:3pt 0 0}
+.anahtar span{font-weight:400;color:#1a1a1a}
+ol.acik{margin:2pt 0;padding-left:0;list-style:none;counter-reset:a}
+ol.acik li{counter-increment:a;display:flex;gap:10pt;padding:3pt 0}
+ol.acik li::before{content:counter(a) '.';color:#0369a1;font-weight:700;min-width:16pt}
+.etiket{color:#0369a1;font-weight:700;margin:7pt 0 2pt}
+ul.not{margin:2pt 0;padding-left:12pt}
+ul.not li{margin:2pt 0}
+.sure-tablo td:last-child,.sure-tablo th:last-child{width:62pt}
+.imza{display:flex;justify-content:space-around;margin-top:14pt;text-align:center;color:#6b7a82;break-inside:avoid}
+.imza b{display:block;color:#475569;margin-bottom:10pt}
+</style>
+</head>
+<body>
+<div class="bant"><div class="bant-sol"><div class="bant-ust">ÖĞRETMEN DERS PLANI · DON-201</div><div class="bant-baslik uzun">Donanım, Yazılım ve Bilgisayarın Dört İşi</div></div><div class="bant-sag">1. Hafta</div></div>
+<h2>1. GENEL BİLGİLER</h2>
+<table class="genel">
+<tr><td>Dersin Adı</td><td>Bilişim Teknolojileri ve Yazılım</td></tr>
+<tr><td>Sınıf / Seviye</td><td>Ortaokul (5–8. sınıf)</td></tr>
+<tr><td>Ünite / Konu</td><td>Donanım 201 - Bilgisayarı Tanıyalım — Donanım, Yazılım ve Bilgisayarın Dört İşi</td></tr>
+<tr><td>Öğrenme Alanı</td><td>Bilgisayar Donanımı</td></tr>
+<tr><td>Süre</td><td>1 ders saati (35 dk)</td></tr>
+<tr><td>Yöntem ve Teknikler</td><td>Anlatım, gösteri, soru-cevap, 3D model inceleme, animasyonla modelleme, tahmin et–izle, sınıflandırma etkinliği</td></tr>
+<tr><td>Araç-Gereç ve Kaynaklar</td><td>Etkileşimli ders (LMS), projeksiyon veya akıllı tahta</td></tr>
+<tr><td>Kavramlar / Terimler</td><td>Donanım, Yazılım, Girdi, İşlem, Çıktı, Depolama</td></tr>
+</table>
+<h2>2. KAZANIMLAR</h2>
+<table class="kazanim">
+<tr><td>K1.</td><td>Donanımı yazılımdan ayırt eder.</td></tr>
+<tr><td>K2.</td><td>Girdi–işlem–çıktı–depolama döngüsünü örnekle açıklar.</td></tr>
+<tr><td>K3.</td><td>Çevre birimlerini görevine göre sınıflandırır.</td></tr>
+<tr><td>K4.</td><td>Günlük cihazlarda (telefon, çamaşır makinesi) dört işi bulur.</td></tr>
+</table>
+<h2>3. DERS İŞLENİŞİ</h2>
+<h3><span>Giriş — Dikkat Çekme ve Güdüleme</span><span class="sure">5 dk</span></h3>
+<p>Kapak slaytında dönen kasayı gösterip <q>Bu kutunun içinde neler var? Bu kutu tek başına bir iş yapabilir mi?</q> diye sorun, iki üç cevabı dinleyin. Hedefler slaytında kazanımları paylaşın. Isınma slaytında (Slayt 3) üç seçeneği okutun, el kaldırarak sınıfın tahminini sayın ve tahtaya yazın: <q>Tahminlerimizi harfin yolculuğunu izlerken kontrol edeceğiz.</q></p>
+<h3><span>Gelişme — Kavramların İşlenişi</span><span class="sure">25 dk</span></h3>
+<table class="isleyis"><thead><tr><th>Adım</th><th>Konu</th><th>Öğretmen Notu</th></tr></thead>
+<tr><td>1</td><td><div class="adim-ad">Donanım</div><div class="adim-konu">Dokunabildiğin Parçalar</div><span class="slayt">Slayt 4</span></td><td>Parçalar sırayla parlarken her birinde durup <q>Buna elimizle dokunabilir miyiz?</q> diye sorun. <q>Bilgisayarın elle tutulan, takılıp sökülebilen her parçası donanımdır; kasa, monitör, klavye ve fare bu masanın donanımlarıdır</q> deyin. Bir öğrenciye modeli parmağıyla çevirtip kasaya dokundurarak bilgi kartını açtırın. Öğrencilere sınıfta gördükleri üç donanımı söyletin.</td></tr>
+<tr><td>2</td><td><div class="adim-ad">Yazılım</div><div class="adim-konu">Donanıma Yol Gösteren Programlar</div><span class="slayt">Slayt 5</span></td><td>Katman monitörün önünde belirirken bekleyin, sonra bir öğrenciye Oyun, Harita, Resim ve Yazı düğmelerine sırayla bastırın ve sorun: <q>Monitör değişti mi? Peki ne değişti?</q> <q>Yazılım, donanıma görev veren talimatlar bütünüdür; ona dokunamayız ama ekranda çalışırken görürüz</q> deyin. Öğrencilere bildikleri iki yazılımın adını söyletin.</td></tr>
+<tr><td>3</td><td><div class="adim-ad">Girdi</div><div class="adim-konu">Bilgi İçeri Girer</div><span class="slayt">Slayt 6</span></td><td>Animasyon slayt açılınca kendiliğinden başlar; ışık klavyeden çıkarken sorun: <q>Harf şimdi nereye gidiyor?</q> <q>Girdi, bilgisayara dışarıdan bilgi vermektir; tuşa basmak, fareyle tıklamak, mikrofona konuşmak birer girdidir</q> deyin. Gerekirse Oynat düğmesiyle yolculuğu yeniden izletin. Öğrencilere klavye dışında iki girdi birimi söyletin.</td></tr>
+<tr><td>4</td><td><div class="adim-ad">İşlem</div><div class="adim-konu">Kasada Karar Verilir</div><span class="slayt">Slayt 7</span></td><td>Kamera kasaya yaklaşırken <q>Harf kasada kimin elinde?</q> diye sorun. Işık işlemciye ulaşıp etiket göründüğünde <q>İşlemci gelen bilgiye bakar ve ne yapılacağına karar verir; hesaplamak, karşılaştırmak ve karar vermek işlemdir</q> deyin, aşçı benzetmesiyle bağlayın. Öğrencilere işlemcinin kasada nerede olduğunu gösterttirin.</td></tr>
+<tr><td>5</td><td><div class="adim-ad">Çıktı</div><div class="adim-konu">Sonuç Dışarı Çıkar</div><span class="slayt">Slayt 8</span></td><td>Oynatmadan önce tahtadaki ısınma tahminlerini hatırlatın. Işık monitöre varıp ekranda A belirince durun ve tahminleri karşılaştırın. <q>Çıktı, işlenen bilginin sonucunun bize sunulmasıdır; görüntü, ses ve kâğıda basılan belge birer çıktıdır</q> deyin. Öğrencilere sınıftaki bir çıktı birimini gösterttirin.</td></tr>
+<tr><td>6</td><td><div class="adim-ad">Depolama</div><div class="adim-konu">Bilgi Saklanır</div><span class="slayt">Slayt 9</span></td><td>Disk ışığı yanıp sönerken sorun: <q>Bilgisayarı şimdi kapatsak bu harf kaybolur mu?</q> <q>Depolama, bilgiyi daha sonra kullanmak üzere saklamaktır; SSD ve USB bellek elektrik kesilse de bilgiyi korur</q> deyin. Tahtaya dört kutu çizip bir öğrenciye harfin yolunu oklarla bağlatın. Öğrencilere dört işi sırasıyla söyletin.</td></tr>
+</table>
+<div class="kutu"><b>Etkinlikler (Slayt 10–11):</b> Etkinlik 1'i (Slayt 10) akıllı tahtada gönüllü öğrencilerle yapın; her kart yerleşmeden önce sınıfa <q>Elimizle dokunabilir miyiz?</q> sorusunu sordurun. Yanlış yerleştirmede çıkan ipucunu yüksek sesle okutun. Etkinlik 2'de (Slayt 11) telefon ve çamaşır makinesi kartlarında durup <q>Bu cihazda da dört iş var mı?</q> diye sorun; bu etkinlik K3 ve K4'ü birlikte yoklar (yaklaşık 7 dk).</div>
+<h3><span>Değerlendirme ve Kapanış</span><span class="sure">5 dk</span></h3>
+<p>Özet slaytındaki altı kartı sırayla birer öğrenciye kendi cümleleriyle anlattırın. Bilgi Testi'ni (Slayt 14) sınıfça çözün; yanlış çıkan soruda ilgili adım slaytına dönüp animasyonu yeniden izletin. Son soru Derinleş bonusudur, puanı düşürmez. <q>Dört iş</q> kavramını bir öğrenciye evdeki bir cihaz üzerinden anlattırarak dersi kapatın.</p>
+<h2>4. ÖLÇME VE DEĞERLENDİRME</h2>
+<table class="olcme"><thead><tr><th>#</th><th>Soru ve Seçenekler</th><th>Cevap</th></tr></thead>
+<tr><td>1</td><td><div class="soru">Elif telefonuna yeni bir oyun indirdi. Telefonuna ne eklenmiş oldu?</div><div class="secenek">A) Yazılım B) Donanım C) Yeni bir ekran D) Daha büyük bir pil</div><div class="aciklama">İndirilen oyun bir programdır, yani yazılımdır. Telefonun parçaları değişmedi.</div></td><td>A</td></tr>
+<tr><td>2</td><td><div class="soru">Hesap makinesi uygulamasında 7 + 5 yazıp “=” tuşuna bastın. Toplama hangi işte yapılır?</div><div class="secenek">A) Girdi B) Çıktı C) İşlem D) Depolama</div><div class="aciklama">Sayıları toplamak işlemdir. Bu işi işlemci yapar; sonuç sonra ekranda görünür.</div></td><td>C</td></tr>
+<tr><td>3</td><td><div class="soru-gorsel"><svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Yazıcı: kâğıda belge basıyor"><rect x="36" y="4" width="48" height="18" fill="#fff" stroke="#94a3b8" stroke-width="1.5"/><rect x="12" y="20" width="96" height="34" rx="6" fill="#64748b"/><rect x="18" y="26" width="30" height="5" rx="2" fill="#475569"/><circle cx="96" cy="30" r="3" fill="#10b981"/><rect x="28" y="48" width="64" height="30" fill="#fff" stroke="#94a3b8" stroke-width="1.5"/><g stroke="#cbd5e1" stroke-width="2"><line x1="36" y1="58" x2="84" y2="58"/><line x1="36" y1="65" x2="76" y2="65"/><line x1="36" y1="72" x2="66" y2="72"/></g></svg></div><div class="soru">Görseldeki cihaz bilgisayarın hangi işini yapar?</div><div class="secenek">A) Girdi B) Çıktı C) İşlem D) Depolama</div><div class="aciklama">Yazıcı, bilgisayardaki belgeyi kâğıda basar. Sonucu dışarı verdiği için çıktı birimidir.</div></td><td>B</td></tr>
+<tr><td>4</td><td><div class="soru">Çamaşır makinesinin program düğmesini “Hızlı yıkama”ya çevirdin. Bu hangi iştir?</div><div class="secenek">A) Çıktı B) Depolama C) İşlem D) Girdi</div><div class="aciklama">Düğmeyle makineye bilgi veriyorsun. Makineye bilgi vermek girdidir.</div></td><td>D</td></tr>
+</table>
+<p class="anahtar">Cevap Anahtarı: <span>1-A 2-C 3-B 4-D</span></p>
+<h2>5. AÇIK UÇLU / BİÇİMLENDİRİCİ DEĞERLENDİRME</h2>
+<ol class="acik">
+<li><span>«Donanım ve Yazılım» kavramını kendi cümlelerinle açıkla ve günlük hayattan bir örnek ver.</span></li>
+<li><span>«Girdi–İşlem–Çıktı» kavramını kendi cümlelerinle açıkla ve günlük hayattan bir örnek ver.</span></li>
+<li><span>«Depolama» kavramını kendi cümlelerinle açıkla ve günlük hayattan bir örnek ver.</span></li>
+<li><span>Bu derste en çok hangi adım ilgini çekti, nerede zorlandın? Nedenini açıkla.</span></li>
+</ol>
+<h2>6. ÖĞRETMEN NOTLARI VE ÖDEV</h2>
+<div class="etiket">Ödev / Sınıf Dışı Etkinlik:</div><p>Evde kullandığın bir cihazı seç (ör. mikrodalga fırın, kumanda, çamaşır makinesi). Girdi, işlem, çıktı ve depolamanın bu cihazda nerede olduğunu dört satırlık bir tabloyla yaz ve bir sonraki derse getir.</p>
+<div class="etiket">Öğretmen İçin Notlar:</div><ul class="not">
+<li>Derinleş (Slayt 12) isteğe bağlıdır: süre kalırsa ya da hızlı bitiren öğrenciler için kullanın. Atlasanız da akış bozulmaz; Bilgi Testi'ndeki bonus soru puanı düşürmez.</li>
+<li>Yaş bandı uyarlaması: 10–12 yaş grubunda sınıftaki gerçek bilgisayarı göstererek somut örnekle ilerleyin. 13–15 yaş grubunda dokunmatik ekranın neden hem girdi hem çıktı olduğunu ve gömülü sistemleri tartışmaya açın.</li>
+<li>Sık görülen kavram yanılgıları: <q>Monitör bilgisayarın kendisidir</q>, <q>Kasa işlemcidir</q>, <q>İnternet bir donanımdır</q>. Bu cümleleri doğru/yanlış sorusu olarak sorup düzeltin.</li>
+<li>3D sahneler yavaş bilgisayarda kaliteyi kendiliğinden düşürür; WebGL açılmazsa yerine çizim görünür. Hareket azaltma ayarı açık cihazlarda animasyonlar <q>Adım adım</q> düğmesiyle ilerler.</li>
+<li>Her adımın sonunda 1-2 öğrenciye <q>Bu adımda harfe ne oldu?</q> diye sorup anlattırarak anlaşıldığını kontrol edin (biçimlendirici değerlendirme).</li>
+</ul>
+<table class="sure-tablo"><thead><tr><th>Aşama</th><th>Süre</th></tr></thead>
+<tr><td>Giriş — Dikkat Çekme ve Güdüleme</td><td>5 dk</td></tr>
+<tr><td>Gelişme — Kavramların İşlenişi ve Etkinlikler</td><td>25 dk</td></tr>
+<tr><td>Değerlendirme ve Kapanış</td><td>5 dk</td></tr>
+<tr><th>Toplam</th><th>35 dk</th></tr>
+</table>
+<div class="imza"><div><b>Ders Öğretmeni</b>Ad Soyad / İmza</div><div><b>Uygundur</b>Okul Müdürü</div></div>
+</body>
+</html>
