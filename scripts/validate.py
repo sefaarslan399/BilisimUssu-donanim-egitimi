@@ -180,7 +180,7 @@ def dosya_kontrol(yol):
                 hatalar.append("prefers-reduced-motion desteği yok")
             if "data-yedek" not in metin:
                 hatalar.append("WebGL yedek görseli (data-yedek) yok")
-            if "visibilitychange" not in metin:
+            if "visibilitychange" not in metin and not any("visibilitychange" in k for k in kutuphaneler):
                 uyarilar.append("visibilitychange ile render duraklatma bulunamadı")
         elif ad.startswith("DON-201"):
             hatalar.append("DON-201 dersinde 3D sahne yok (her derste en az 1 zorunlu)")

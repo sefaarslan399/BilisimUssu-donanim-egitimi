@@ -71,7 +71,8 @@ async function olc(page) {
 }
 
 async function slaytaGit(page, i, fn) {
-  if (fn) await page.evaluate(([f, n]) => window[f](n), [fn, i]);
+  // MASTER v9.3: goTo(n) 1 tabanlıdır (1 = kapak). Diğer adlar 0 tabanlı kabul edilir.
+  if (fn) await page.evaluate(([f, n]) => window[f](f === 'goTo' ? n + 1 : n), [fn, i]);
   else await page.keyboard.press('ArrowRight');
   await page.waitForTimeout(AYAR.bekleMs);
 }

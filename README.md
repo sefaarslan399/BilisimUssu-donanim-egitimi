@@ -15,7 +15,8 @@ docs/ogretmen-plani-formatlari.md  Format K (kavram) ve Format U (uygulama)
 docs/uretim-standartlari.md     v9.3 + pedagojik + 10–15 yaş kuralları
 referans/ogretmen-plani/        Gönderdiğin 3 plan PDF'i (format referansı)
 bilesenler/DON3D/               3D motor (ilk iş olarak üretilecek)
-scripts/                        validate.py, scroll_test.js, ekran_goruntusu.js, render_mufredat.py, kurulum.sh
+kaynak/<KOD>/H<NN>/             Ders kaynakları (slaytlar, ders betiği, stil, SVG) → scripts/derle.py ile icerik/ altına derlenir
+scripts/                        derle.py, validate.py, scroll_test.js, ekran_goruntusu.js, model_onizle.js, render_mufredat.py, kurulum.sh
 .claude/commands/               /3d-motor-uret /ders-uret /plan-uret /seri-uret /kontrol /model-uret
 ```
 

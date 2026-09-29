@@ -19,7 +19,8 @@ const { chromium } = require('playwright');
   const fn = await p.evaluate(() => ['goToSlide', 'goTo', 'showSlide', 'go'].find((a) => typeof window[a] === 'function') || null);
   const ad = path.basename(dosya, '.html');
   for (let i = 0; i < sayi; i++) {
-    if (i > 0) { if (fn) await p.evaluate(([f, n]) => window[f](n), [fn, i]); else await p.keyboard.press('ArrowRight'); }
+    // MASTER v9.3: goTo(n) 1 tabanlıdır (1 = kapak).
+    if (i > 0) { if (fn) await p.evaluate(([f, n]) => window[f](f === 'goTo' ? n + 1 : n), [fn, i]); else await p.keyboard.press('ArrowRight'); }
     await p.waitForTimeout(900); // animasyonun ortasını yakala
     await p.screenshot({ path: path.join(klasor, ad + '-s' + String(i + 1).padStart(2, '0') + '.png') });
   }

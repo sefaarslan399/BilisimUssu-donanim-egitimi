@@ -6,16 +6,16 @@ Durum: `—` başlanmadı · `K` kalibrasyon (onay bekliyor) · `✓` tamam · `
 
 | Bileşen | Durum | Not |
 |---|---|---|
-| Motor çekirdeği (renderer, sahne yaşam döngüsü, yedek görsel) | — | |
-| Etkileşimler (E-DONDUR, E-BILGI, E-TAK) | — | |
-| Animasyon kalıpları | — | |
-| Model kütüphanesi | — | |
+| Motor çekirdeği (renderer, sahne yaşam döngüsü, yedek görsel) | K | Tek renderer, slayt yaşam döngüsü, otomatik kalite, `data-yedek`, hareket azaltma, HTML etiket, klavye. H01 ile birlikte onay bekliyor. |
+| Etkileşimler (E-DONDUR, E-BILGI, E-TAK) | K | Yazıldı: E-DONDUR, E-BILGI, E-SINIFLA. Kalan E-* kodları ilgili haftalarda eklenecek. |
+| Animasyon kalıpları | K | Yazıldı: A-VURGU, A-KATMAN, A-AKIS, A-DONUS. |
+| Model kütüphanesi | K | Yazıldı: M-MASAUSTU, M-MONITOR, M-KLAVYE, M-FARE. |
 
 ## DON-201 – Bilgisayar Donanımı
 
 | Hafta | Başlık | Tür | HTML | Plan | Not |
 |---|---|---|---|---|---|
-| H01 | Donanım, Yazılım ve Bilgisayarın Dört İşi | K | — | — | |
+| H01 | Donanım, Yazılım ve Bilgisayarın Dört İşi | K | K | — | Format K kalibrasyonu. 15 slayt, 842 KB. Öğretmen planı ders onayından sonra. |
 | H02 | Bit ve Byte | K | — | — | |
 | H03 | Bağlantı Noktaları ve Çevre Birimleri | K | — | — | |
 | H04 | Güvenli Çalışma | K+U | — | — | |
