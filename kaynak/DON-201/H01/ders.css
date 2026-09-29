@@ -66,11 +66,23 @@ body.grade-ortaokul{
   display:flex;align-items:center;gap:6px;
 }
 
-/* Etkinlik */
-.etkinlik{gap:clamp(6px, 0.4vw + 4px, 14px)}
-.etk-bas{display:flex;align-items:center;gap:clamp(8px, 0.5vw + 5px, 16px);flex-wrap:wrap;flex-shrink:0}
-.etk-yonerge{font-size:var(--f-base);color:var(--ink2);font-weight:600;line-height:1.4;flex:1;min-width:200px}
-.etk-alan{flex:1;min-height:0}
+/* Etkinlik: iki sütun (yönerge + görsel panel) */
+.step-visual.etk-panel{
+  align-items:stretch;justify-content:stretch;padding:clamp(8px, 0.6vw + 4px, 18px);
+  background:linear-gradient(135deg, var(--brand-lt) 0%, #fff 55%, var(--stage-bg) 100%);
+  border:1.5px solid color-mix(in srgb, var(--brand) 14%, transparent);
+}
+.etk-alan{flex:1;min-width:0;min-height:0;height:100%}
+.etk-ilerleme{
+  background:#fff;border:1.5px solid var(--border);border-radius:var(--radius);
+  padding:clamp(8px, 0.4vw + 6px, 14px) clamp(10px, 0.5vw + 8px, 18px);
+}
+.etk-ilerleme-ust{display:flex;justify-content:space-between;align-items:baseline;font-size:clamp(12px, 0.3vw + 10px, 16px);font-weight:700;color:var(--ink2)}
+.etk-ilerleme-sayi b{font-size:1.4em;font-weight:900;color:var(--brand-dk)}
+.etk-ilerleme-bar{height:clamp(8px, 0.3vw + 6px, 14px);background:var(--border);border-radius:999px;overflow:hidden;margin-top:6px}
+.etk-ilerleme-bar span{display:block;height:100%;width:0;border-radius:999px;background:linear-gradient(90deg, var(--brand), var(--ok));transition:width .45s cubic-bezier(.2,.8,.2,1)}
+.etk-ilerleme--bitti{border-color:var(--ok);background:var(--ok-bg)}
+.etk-ilerleme--bitti .etk-ilerleme-sayi b{color:#065f46}
 
 /* Derinleş: isteğe bağlı olduğu görünür */
 .slide.derinles .slide-hdr::before{background:repeating-linear-gradient(90deg, #8b5cf6 0 14px, transparent 14px 22px)}
@@ -103,7 +115,7 @@ body.grade-ortaokul{
 @media (prefers-reduced-motion: reduce){
   .slide.active{animation:none}
   .cover-svg svg{animation:none !important}
-  .tahmin-sec{transition:none}
+  .tahmin-sec,.etk-ilerleme-bar span{transition:none}
 }
 @media (max-width:768px){
   .layout-step.genis-gorsel{grid-template-columns:1fr}

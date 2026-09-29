@@ -12,6 +12,8 @@ Donanım dersleri, özellikle **DON-201 (ortaokul)**, görsel olarak zengin olma
 | Gerçek fotoğraf | JSON `foto` listesindekiler; U haftalarında her yapım adımı | Aynı |
 | Ton | Canlı, yaş-nötr, "oyuncak gibi" değil "gerçek ama anlaşılır" | Teknik, temiz, etiketli |
 
+**Kullanıcı kararı (H01 kalibrasyonu):** Her şeyin 3D olması gerekmez. 3D, parçanın biçimini, içini, yerini ya da takılışını göstermenin gerçekten işe yaradığı sahnelerde kullanılır (kapak, parça tanıtımı, akış, sök–tak). Diğer adımlarda 2D SVG/CSS animasyon ya da canlı sahne illüstrasyonu yeterlidir. "Yalnız metin içeren içerik slaytı yasak" kuralı değişmez.
+
 3D, gerçek fotoğrafın **yerine geçmez**. Parçayı tanıtmak için gerçek fotoğraf, nasıl çalıştığını ve nasıl takıldığını göstermek için 3D ve animasyon kullanılır. Fotoğraf yoksa `data-foto-gerekli="açıklama"` yer tutucusu konur ve `DURUM.md` Not sütununa `FOTO-GEREKLİ:` yazılır.
 
 ## 2. Teknoloji
@@ -100,7 +102,7 @@ DON3D.hava(sahne, { giris, cikis, yogunluk })     // A-HAVA
 | Kapak | O haftanın ana 3D modeli yavaşça döner |
 | Hedefler | Kazanım başına küçük ikon (programatik) |
 | Adım 1–6 | Her adımda JSON'daki animasyon/sahne; adım metni ≤ 3 kısa cümle |
-| Etkinlik | JSON `etkilesim` (3D ya da 2D) |
+| Etkinlik | JSON `etkilesim` (3D ya da 2D). **Tam sayfa değil:** `layout-step` iki sütun: solda yönerge, ipucu ve ilerleme çubuğu, sağda görsel etkinlik paneli (resimli kartlar, renk + simge + adla ayrılan kutular, yerleşme animasyonu, kutu sayaçları, bitişte kutlama). |
 | Derinleş | Aynı sahnenin "ileri" görünümü (ör. RAM etiketi okuma yakınlaştırması) |
 | Quiz | En az 1 soru görselli (ör. "Bu parça hangisi?" 3D küçük sahne ya da fotoğraf) |
 | Özet | 6 adımın küçük resimli tekrarı |

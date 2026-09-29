@@ -312,13 +312,20 @@
   });
 
   /* ─────────── Etkinlik 1: Donanım mı, yazılım mı? — E-SINIFLA ─────────── */
-  var S_EL = '<svg viewBox="0 0 24 24" fill="none" stroke="#0369a1" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 11V6a2 2 0 0 0-4 0v5M14 10V4a2 2 0 0 0-4 0v6M10 10.5V6a2 2 0 0 0-4 0v8a8 8 0 0 0 16 0v-2a2 2 0 0 0-4 0"/></svg>';
-  var S_KOD = '<svg viewBox="0 0 24 24" fill="none" stroke="#0369a1" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 8 4 12 8 16"/><polyline points="16 8 20 12 16 16"/><line x1="14" y1="5" x2="10" y2="19"/></svg>';
+  function ilerlemeBagla(id) {
+    var el = document.getElementById(id);
+    return function (dogru, toplam) {
+      el.querySelector('.etk-ilerleme-sayi b').textContent = dogru;
+      el.querySelector('.etk-ilerleme-bar span').style.width = Math.round(dogru / toplam * 100) + '%';
+      el.classList.toggle('etk-ilerleme--bitti', dogru === toplam);
+    };
+  }
   D.tembel('#sinifla-1', function (kap) {
     D.sinifla(kap, {
+      onIlerleme: ilerlemeBagla('ilerleme-1'),
       kutular: [
-        { id: 'd', ad: 'Donanım', aciklama: 'Elimle dokunabilirim.', simge: S_EL },
-        { id: 'y', ad: 'Yazılım', aciklama: 'Dokunamam; ekranda çalışır.', simge: S_KOD }
+        { id: 'd', ad: 'Donanım', aciklama: 'Elimle dokunabilirim.', renk: '#f59e0b', resim: '<!--@dahil:oz-donanim.svg-->' },
+        { id: 'y', ad: 'Yazılım', aciklama: 'Dokunamam; ekranda çalışır.', renk: '#8b5cf6', resim: '<!--@dahil:oz-yazilim.svg-->' }
       ],
       ogeler: [
         { id: 'klavye', ad: 'Klavye', model: 'M-KLAVYE', kutu: 'd', ipucu: 'Klavyeye elinle dokunabilirsin.' },
@@ -335,14 +342,14 @@
   });
 
   /* ─────────── Etkinlik 2: Dört iş kutusu — E-SINIFLA ─────────── */
-  function simge(yol) { return '<svg viewBox="0 0 24 24" fill="none" stroke="#0369a1" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">' + yol + '</svg>'; }
   D.tembel('#sinifla-2', function (kap) {
     D.sinifla(kap, {
+      onIlerleme: ilerlemeBagla('ilerleme-2'),
       kutular: [
-        { id: 'g', ad: 'Girdi', aciklama: 'Bilgi verir.', simge: simge('<path d="M12 3v11M8 10l4 4 4-4"/><path d="M4 17v3h16v-3"/>') },
-        { id: 'i', ad: 'İşlem', aciklama: 'Karar verir.', simge: simge('<rect x="6" y="6" width="12" height="12" rx="1.5"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/>') },
-        { id: 'c', ad: 'Çıktı', aciklama: 'Sonucu gösterir.', simge: simge('<path d="M12 14V3M8 7l4-4 4 4"/><path d="M4 17v3h16v-3"/>') },
-        { id: 'd', ad: 'Depolama', aciklama: 'Saklar.', simge: simge('<ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/>') }
+        { id: 'g', ad: 'Girdi', aciklama: 'Bilgi verir.', renk: '#0ea5e9', resim: '<!--@dahil:oz-girdi.svg-->' },
+        { id: 'i', ad: 'İşlem', aciklama: 'Karar verir.', renk: '#f59e0b', resim: '<!--@dahil:oz-islem.svg-->' },
+        { id: 'c', ad: 'Çıktı', aciklama: 'Gösterir.', renk: '#10b981', resim: '<!--@dahil:oz-cikti.svg-->' },
+        { id: 'd', ad: 'Depolama', aciklama: 'Saklar.', renk: '#8b5cf6', resim: '<!--@dahil:oz-depolama.svg-->' }
       ],
       ogeler: [
         { id: 'mikrofon', ad: 'Mikrofon', svg: '<!--@dahil:is-mikrofon.svg-->', kutu: 'g', ipucu: 'Mikrofon sesini bilgisayara verir.' },

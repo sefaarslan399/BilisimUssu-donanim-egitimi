@@ -70,24 +70,29 @@
   /* ─── E-SINIFLA: öğeleri doğru kutulara sürükle; anında geri bildirim ─── */
   /**
    * DON3D.sinifla(kapsayici, {
-   *   ogeler:  [{ id, ad, kutu, model?: 'M-KLAVYE', svg?: '<svg…>', ipucu?: 'yanlışta gösterilecek açıklama' }],
-   *   kutular: [{ id, ad, aciklama?, simge?: '<svg…>' }],
-   *   onDogru, onYanlis, onBitti({ dogru, yanlis })
+   *   ogeler:  [{ id, ad, kutu, model?: 'M-KLAVYE', svg?: '<svg…>', ipucu?: 'yanlışta açıklama', dogruMetin? }],
+   *   kutular: [{ id, ad, aciklama?, renk?: '#f59e0b', resim?: '<svg…>' | model?: 'M-…', simge?: '<svg…>' }],
+   *   onDogru, onYanlis, onIlerleme(dogru, toplam), onBitti({ dogru, yanlis })
    * })
-   * Sürükle-bırak, dokun-seç-dokun-bırak ve klavye (Enter/Boşluk) ile çalışır.
+   * Kartlar sürüklenerek, dokun-seç-dokun-bırak ile ya da klavyeyle (Enter/Boşluk) yerleştirilir.
+   * Doğru kart kutuya uçarak küçülür (✓), yanlışta kart sallanır ve ipucu çıkar (✗ + metin).
    */
   D.sinifla = function (kap, ops) {
     if (typeof kap === 'string') kap = document.querySelector(kap);
+    var AZ = D.azHareket();
     var kok2 = D.div('don3d-sinifla', null);
     kap.appendChild(kok2);
     var tepsi = D.div('dsn-tepsi', kok2);
     tepsi.setAttribute('role', 'list');
+    var bos = D.div('dsn-bos', kok2);
+    bos.innerHTML = D.simge('dogru') + '<span>Hepsi yerleşti!</span>';
     var kutularEl = D.div('dsn-kutular', kok2);
     kutularEl.style.setProperty('--dsn-sutun', ops.kutular.length);
     var alt = D.div('dsn-alt', kok2);
     var geri = D.div('dsn-geri', alt);
     geri.setAttribute('aria-live', 'polite');
-    geri.textContent = ops.baslangicMetni || 'Bir öğeyi sürükle ya da önce öğeye, sonra kutuya dokun.';
+    var BASLANGIC = ops.baslangicMetni || 'Bir kartı sürükle ya da önce karta, sonra kutuya dokun.';
+    geri.textContent = BASLANGIC;
     var sifirBtn = document.createElement('button');
     sifirBtn.type = 'button'; sifirBtn.className = 'dsn-sifirla';
     sifirBtn.innerHTML = D.simge('tekrar') + '<span>Yeniden</span>';
@@ -97,17 +102,27 @@
     var secili = null;
     var kutuHaritasi = {};
 
+    function resimHtml(o, w, h) {
+      var url = o.model ? D.kucukResim(o.model, { w: w, h: h, yon: o.yon }) : null;
+      if (url) return '<img src="' + url + '" alt="">';
+      return o.resim || o.svg || '';
+    }
+
     ops.kutular.forEach(function (k) {
       var el = D.div('dsn-kutu', kutularEl);
       el.dataset.kutu = k.id;
+      if (k.renk) el.style.setProperty('--kutu-renk', k.renk);
       el.setAttribute('role', 'button');
       el.setAttribute('tabindex', '0');
       el.setAttribute('aria-label', k.ad + ' kutusu');
       var bas = D.div('dsn-kutu-bas', el);
-      bas.innerHTML = (k.simge ? '<span class="dsn-kutu-simge">' + k.simge + '</span>' : '') +
-        '<span class="dsn-kutu-ad"></span>';
-      bas.querySelector('.dsn-kutu-ad').textContent = k.ad;
-      if (k.aciklama) { var a = D.div('dsn-kutu-aciklama', bas); a.textContent = k.aciklama; }
+      var r = D.div('dsn-kutu-resim', bas);
+      r.innerHTML = resimHtml(k, 120, 90) || k.simge || '';
+      var yazi = D.div('dsn-kutu-yazi', bas);
+      var ad = document.createElement('span'); ad.className = 'dsn-kutu-ad'; ad.textContent = k.ad; yazi.appendChild(ad);
+      if (k.aciklama) { var a = document.createElement('span'); a.className = 'dsn-kutu-aciklama'; a.textContent = k.aciklama; yazi.appendChild(a); }
+      var sy = D.div('dsn-kutu-sayac', el);
+      sy.textContent = '0';
       D.div('dsn-kutu-ic', el);
       el.addEventListener('click', function () { if (secili) birak(secili, k.id); });
       el.addEventListener('keydown', function (e) {
@@ -123,9 +138,7 @@
       b.dataset.oge = o.id;
       b.setAttribute('role', 'listitem');
       var res = D.div('dsn-resim', b);
-      var url = o.model ? D.kucukResim(o.model, { w: 120, h: 90, yon: o.yon }) : null;
-      if (url) { var img = document.createElement('img'); img.src = url; img.alt = ''; res.appendChild(img); }
-      else if (o.svg) res.innerHTML = o.svg;
+      res.innerHTML = resimHtml(o, 160, 120);
       var ad = document.createElement('span'); ad.className = 'dsn-ad'; ad.textContent = o.ad;
       b.appendChild(ad);
       b._oge = o;
@@ -137,63 +150,81 @@
       return b;
     });
 
+    function geriYaz(tur, metin) {
+      geri.className = 'dsn-geri' + (tur ? ' dsn-geri--' + tur : '');
+      geri.innerHTML = (tur === 'dogru' ? D.simge('dogru') : tur === 'yanlis' ? D.simge('yanlis') : '') + '<span></span>';
+      geri.lastChild.textContent = metin;
+    }
+    function ilerleme() { if (ops.onIlerleme) ops.onIlerleme(sayac.dogru, ops.ogeler.length); }
+
     function sec(b) {
       if (b.classList.contains('dsn-oge--yerlesti')) return;
       if (secili) secili.classList.remove('dsn-oge--secili');
       secili = secili === b ? null : b;
-      if (secili) {
-        secili.classList.add('dsn-oge--secili');
-        geri.className = 'dsn-geri';
-        geri.textContent = '“' + b._oge.ad + '” seçildi. Şimdi doğru kutuya dokun.';
-      }
+      kok2.classList.toggle('don3d-sinifla--secim', !!secili);
+      if (secili) { secili.classList.add('dsn-oge--secili'); geriYaz('', '“' + b._oge.ad + '” seçildi. Şimdi doğru kutuya dokun.'); }
+    }
+
+    function oynat(el, kareler, sure) {
+      if (AZ || !el.animate) return;
+      try { el.animate(kareler, { duration: sure, easing: 'cubic-bezier(.2,.8,.2,1)' }); } catch (e) {}
     }
 
     function birak(b, kutuId) {
       var o = b._oge;
       b.classList.remove('dsn-oge--secili');
+      kok2.classList.remove('don3d-sinifla--secim');
       secili = null;
+      var kutu = kutuHaritasi[kutuId];
       if (o.kutu === kutuId) {
         sayac.dogru++;
+        var r0 = b.getBoundingClientRect();
         b.classList.add('dsn-oge--yerlesti');
         b.setAttribute('aria-disabled', 'true');
         b.tabIndex = -1;
         var isaret = D.div('dsn-isaret', b); isaret.innerHTML = D.simge('dogru');
-        kutuHaritasi[kutuId].querySelector('.dsn-kutu-ic').appendChild(b);
-        geri.className = 'dsn-geri dsn-geri--dogru';
-        geri.innerHTML = D.simge('dogru') + '<span></span>';
-        geri.lastChild.textContent = 'Doğru! ' + (o.dogruMetin || '');
+        kutu.querySelector('.dsn-kutu-ic').appendChild(b);
+        var r1 = b.getBoundingClientRect();
+        // Kart eski yerinden kutuya uçar (FLIP)
+        oynat(b, [
+          { transform: 'translate(' + (r0.left - r1.left) + 'px,' + (r0.top - r1.top) + 'px) scale(' + (r0.width / Math.max(r1.width, 1)).toFixed(3) + ')', transformOrigin: 'top left' },
+          { transform: 'none', transformOrigin: 'top left' }
+        ], 480);
+        oynat(kutu, [{ transform: 'scale(1)' }, { transform: 'scale(1.035)' }, { transform: 'scale(1)' }], 420);
+        var sy = kutu.querySelector('.dsn-kutu-sayac');
+        sy.textContent = kutu.querySelectorAll('.dsn-oge').length;
+        geriYaz('dogru', 'Doğru! ' + (o.dogruMetin || ''));
         if (ops.onDogru) ops.onDogru(o);
+        ilerleme();
         if (sayac.dogru === ops.ogeler.length) bitti();
       } else {
         sayac.yanlis++;
         b.classList.remove('dsn-oge--salla'); void b.offsetWidth; b.classList.add('dsn-oge--salla');
-        geri.className = 'dsn-geri dsn-geri--yanlis';
-        geri.innerHTML = D.simge('yanlis') + '<span></span>';
-        geri.lastChild.textContent = 'Tekrar düşün. ' + (o.ipucu || '');
+        kutu.classList.remove('dsn-kutu--hata'); void kutu.offsetWidth; kutu.classList.add('dsn-kutu--hata');
+        geriYaz('yanlis', 'Tekrar düşün. ' + (o.ipucu || ''));
         if (ops.onYanlis) ops.onYanlis(o, kutuId);
       }
     }
 
     function bitti() {
-      geri.className = 'dsn-geri dsn-geri--dogru';
-      geri.innerHTML = D.simge('dogru') + '<span></span>';
-      geri.lastChild.textContent = (ops.bitisMetni || 'Tamamladın!') +
-        (sayac.yanlis ? ' (' + sayac.yanlis + ' deneme hatası)' : ' Hiç hata yapmadın.');
+      geriYaz('dogru', (ops.bitisMetni || 'Tamamladın!') + (sayac.yanlis ? ' (' + sayac.yanlis + ' hatalı deneme)' : ' Hiç hata yapmadın.'));
       kok2.classList.add('don3d-sinifla--bitti');
+      if (!AZ && typeof window.confetti === 'function') { try { window.confetti(); } catch (e) {} }
       if (ops.onBitti) ops.onBitti({ dogru: sayac.dogru, yanlis: sayac.yanlis });
     }
 
     function sifirla() {
       sayac.dogru = 0; sayac.yanlis = 0; secili = null;
-      kok2.classList.remove('don3d-sinifla--bitti');
+      kok2.classList.remove('don3d-sinifla--bitti', 'don3d-sinifla--secim');
       ogeElleri.forEach(function (b) {
         b.classList.remove('dsn-oge--yerlesti', 'dsn-oge--secili', 'dsn-oge--salla');
         b.removeAttribute('aria-disabled'); b.tabIndex = 0;
         var i = b.querySelector('.dsn-isaret'); if (i) i.remove();
         tepsi.appendChild(b);
       });
-      geri.className = 'dsn-geri';
-      geri.textContent = ops.baslangicMetni || 'Bir öğeyi sürükle ya da önce öğeye, sonra kutuya dokun.';
+      Object.keys(kutuHaritasi).forEach(function (k) { kutuHaritasi[k].querySelector('.dsn-kutu-sayac').textContent = '0'; });
+      geriYaz('', BASLANGIC);
+      ilerleme();
     }
     sifirBtn.addEventListener('click', sifirla);
 
@@ -211,11 +242,13 @@
           hayalet.classList.add('dsn-hayalet');
           var r = b.getBoundingClientRect();
           hayalet.style.width = r.width + 'px';
+          hayalet._dx = e.clientX - r.left; hayalet._dy = e.clientY - r.top;
           document.body.appendChild(hayalet);
           b.classList.add('dsn-oge--tasiniyor');
+          kok2.classList.add('don3d-sinifla--secim');
         }
         if (hayalet) {
-          hayalet.style.transform = 'translate(' + (e.clientX - 30) + 'px,' + (e.clientY - 30) + 'px)';
+          hayalet.style.transform = 'translate(' + (e.clientX - hayalet._dx) + 'px,' + (e.clientY - hayalet._dy) + 'px) rotate(-3deg)';
           ustunde(e.clientX, e.clientY);
         }
       });
@@ -224,6 +257,7 @@
         var surukledi = !!hayalet;
         if (hayalet) { hayalet.remove(); hayalet = null; }
         b.classList.remove('dsn-oge--tasiniyor');
+        kok2.classList.remove('don3d-sinifla--secim');
         ustunde(-1, -1);
         bas = null;
         if (surukledi && e.type === 'pointerup') {
@@ -236,6 +270,7 @@
       b.addEventListener('pointercancel', bitir);
       b.addEventListener('click', function (e) {
         if (b._surukledi) { b._surukledi = false; return; }
+        if (b.classList.contains('dsn-oge--yerlesti')) return; // kutudaki karta dokunmak kutuya dokunmak sayılır
         e.stopPropagation();
         sec(b);
       });
@@ -256,6 +291,7 @@
       var id = kutuAltinda(x, y);
       Object.keys(kutuHaritasi).forEach(function (k) { kutuHaritasi[k].classList.toggle('dsn-kutu--ustunde', k === id); });
     }
+    ilerleme();
     return { sifirla: sifirla, sayac: sayac };
   };
 })(typeof window !== 'undefined' ? window : this);

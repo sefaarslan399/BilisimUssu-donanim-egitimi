@@ -31,9 +31,9 @@ Durumlar `DURUM.md`'de tutulur: `K` kalibrasyon, `✓` tamam, `R` revizyon.
 - **Hedefler:** K1–K4 öğrenci diliyle.
 - **Isınma:** Bir tahmin sorusu ya da önceki haftaya köprü.
 - **Adım 1–6:** JSON `adimlar` sırasıyla, her adım bir slayt (yoğunsa ikiye bölünür).
-  - Her adım slaytında JSON'daki ilgili animasyon ya da 3D sahne bulunur.
+  - Her adım slaytında JSON'daki ilgili animasyon ya da 3D sahne bulunur. Her adımın 3D olması gerekmez; 3D işe yaradığı yerde kullanılır, diğerleri 2D animasyon/illüstrasyon olabilir.
   - Tür U ise her slayt iki panellidir: 3D prova + gerçek fotoğraf ve talimat.
-- **Etkinlik:** JSON `etkilesim`.
+- **Etkinlik:** JSON `etkilesim`. Tam sayfa değil: solda yönerge + ipucu + ilerleme, sağda görsel etkinlik paneli (`docs/gorsel-3d-standartlari.md` §5).
 - **Derinleş:** Yalnızca DON-201, JSON `derinles`.
 - **Quiz:** 4 soru (DON-201'de + 1 Derinleş bonus). En az 1 görselli soru. Doğru cevap dağılımı A/C/B/D.
 - **Özet:** Küçük resimli 6 adım.
