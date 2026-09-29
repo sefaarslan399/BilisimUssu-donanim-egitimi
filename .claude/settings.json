@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3:*)", "Bash(python:*)", "Bash(node:*)", "Bash(npm:*)", "Bash(npx:*)", "Bash(pip:*)",
+      "Bash(git add:*)", "Bash(git commit:*)", "Bash(git status:*)", "Bash(git diff:*)",
+      "Bash(git checkout:*)", "Bash(git switch:*)", "Bash(bash scripts/kurulum.sh)"
+    ],
+    "deny": [
+      "Edit(templates/MASTER-v9_3.html)", "Write(templates/MASTER-v9_3.html)",
+      "Edit(referans/**)", "Write(referans/**)"
+    ]
+  }
+}

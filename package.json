@@ -1,0 +1,17 @@
+{
+  "name": "bilisim-ussu-donanim-egitimi",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Bilişim Üssü DON-201 / DON-301 donanım dersleri içerik üretim reposu",
+  "scripts": {
+    "dogrula": "python3 scripts/validate.py icerik",
+    "tasma": "node scripts/scroll_test.js icerik",
+    "mufredat": "python3 scripts/render_mufredat.py"
+  },
+  "dependencies": {
+    "three": "0.158.0"
+  },
+  "devDependencies": {
+    "playwright": "^1.56.0"
+  }
+}

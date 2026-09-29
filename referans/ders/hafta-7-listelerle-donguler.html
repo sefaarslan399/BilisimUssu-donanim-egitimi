@@ -1,0 +1,3712 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Listelerle Döngüler (Lists 3) — 7. Hafta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Nunito:wght@600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ════════════════════════════════════════════════════════════════════
+   MASTER v9.3 — iframe-only slayt motoru
+   - Topbar/sidebar/nav YOK (wrapper sağlıyor)
+   - Wrapper postMessage protokolü ile entegre
+   - Sadece slayt içeriği
+   ════════════════════════════════════════════════════════════════════ */
+
+:root {
+  --bu-indigo:    #4F46E5;
+  --bu-indigo-dk: #1E1B4B;
+  --bu-indigo-lt: #EEF2FF;
+
+  --brand:    #0ea5e9;
+  --brand-dk: #0369a1;
+  --brand-lt: #e0f2fe;
+  --brand-mid:#38bdf8;
+
+  --stage-bg:   #F0F9FF;
+  --stage-bg-2: #E0F2FE;
+
+  --accent:   #f59e0b;
+  --acc-dk:   #d97706;
+  --acc-lt:   #fef3c7;
+  --ok:       #10b981; --ok-bg:  #d1fae5;
+  --err:      #ef4444; --err-bg: #fee2e2;
+  --ink:      #0F172A;
+  --ink2:     #475569;
+  --muted:    #94A3B8;
+  --border:   #E2E8F0;
+  --surface:  #F8FAFC;
+
+  --font: 'Inter', system-ui, -apple-system, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --slide-r:  clamp(10px, 0.4vw + 6px, 22px);
+  --radius:   clamp(8px, 0.25vw + 5px, 16px);
+  --gap:      clamp(8px, 0.5vw + 5px, 24px);
+  --pad:      clamp(10px, 0.8vw + 7px, 28px) clamp(14px, 1.2vw + 9px, 44px);
+
+  --f-base:   clamp(13px, 0.5vw + 11px, 24px);
+  --f-title:  clamp(18px, 0.9vw + 14px, 36px);
+  --f-cover:  clamp(24px, 1.5vw + 18px, 52px);
+  --f-sh:     clamp(15px, 0.7vw + 12px, 30px);
+  --f-sub:    clamp(12px, 0.5vw + 10px, 22px);
+  --f-goal:   clamp(13px, 0.55vw + 11px, 26px);
+
+  --sh-icon-sz:  clamp(32px, 0.7vw + 26px, 56px);
+  --sh-icon-r:   clamp(8px, 0.25vw + 6px, 16px);
+  --sh-svg-sz:   clamp(18px, 0.45vw + 14px, 32px);
+  --badge-f:     clamp(10px, 0.25vw + 9px, 18px);
+  --badge-p:     clamp(4px, 0.15vw + 3px, 10px) clamp(10px, 0.3vw + 8px, 20px);
+  --sh-h:        clamp(48px, 1.2vw + 32px, 84px);
+  --sh-pad:      clamp(14px, 0.7vw + 10px, 40px);
+  --sh-stripe:   clamp(2px, 0.07vw + 2px, 5px);
+
+  --step-bf:        clamp(10px, 0.25vw + 9px, 16px);
+  --goal-check-sz:  clamp(22px, 0.5vw + 18px, 40px);
+  --goal-check-f:   clamp(11px, 0.3vw + 9px, 22px);
+
+  --quiz-q-f:        clamp(12px, 0.4vw + 11px, 22px);
+  --quiz-opt-f:      clamp(12px, 0.35vw + 11px, 20px);
+  --quiz-opt-p:      clamp(6px, 0.2vw + 5px, 12px) clamp(10px, 0.3vw + 8px, 20px);
+  --quiz-letter-sz:  clamp(18px, 0.4vw + 14px, 30px);
+  --quiz-letter-f:   clamp(10px, 0.2vw + 8px, 16px);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden}
+body{
+  font-family:var(--font);
+  background:linear-gradient(135deg, var(--stage-bg) 0%, var(--stage-bg-2) 100%);
+  color:var(--ink);
+  font-size:var(--f-base);
+}
+
+/* GRADE TEMASI */
+body.grade-anaokulu{
+  --brand:#f472b6;--brand-dk:#be185d;--brand-lt:#fce7f3;--brand-mid:#f9a8d4;
+  --stage-bg:#FDF2F8; --stage-bg-2:#FCE7F3;
+  --font:'Nunito',system-ui,sans-serif;
+  --slide-r:clamp(14px, 0.5vw + 10px, 26px);
+  --radius:clamp(12px, 0.4vw + 9px, 22px);
+}
+body.grade-anaokulu .sh-title,
+body.grade-anaokulu .step-title,
+body.grade-anaokulu .cover-title,
+body.grade-anaokulu .step-num-badge,
+body.grade-anaokulu .cover-start,
+body.grade-anaokulu .quiz-q,
+body.grade-anaokulu .done-title{font-weight:900}
+body.grade-anaokulu .step-desc,
+body.grade-anaokulu .cover-desc,
+body.grade-anaokulu .goal-text,
+body.grade-anaokulu .step-tip,
+body.grade-anaokulu .done-msg{font-weight:700}
+body.grade-anaokulu .sh-badge{color:#fff;background:var(--brand);font-weight:900}
+body.grade-anaokulu .quiz-opt{font-weight:800;border-width:2px}
+body.grade-anaokulu .quiz-wrap{border-width:2px}
+
+body.grade-ilkokul{
+  --brand:#6366f1;--brand-dk:#4338ca;--brand-lt:#e0e7ff;--brand-mid:#818cf8;
+  --stage-bg:#F5F3FF; --stage-bg-2:#EDE9FE;
+  --font:'Nunito',system-ui,sans-serif;
+}
+body.grade-ilkokul .sh-title,
+body.grade-ilkokul .step-title,
+body.grade-ilkokul .cover-title,
+body.grade-ilkokul .step-num-badge,
+body.grade-ilkokul .cover-start,
+body.grade-ilkokul .quiz-q,
+body.grade-ilkokul .done-title,
+body.grade-ilkokul .sh-badge{font-weight:900}
+body.grade-ilkokul .step-desc,
+body.grade-ilkokul .cover-desc,
+body.grade-ilkokul .goal-text,
+body.grade-ilkokul .step-tip{font-weight:700}
+body.grade-ilkokul .quiz-opt{font-weight:800;border-width:2px}
+body.grade-ilkokul .quiz-wrap{border-width:2px}
+
+body.grade-ortaokul{
+  --brand:#0ea5e9;--brand-dk:#0369a1;--brand-lt:#e0f2fe;--brand-mid:#38bdf8;
+  --stage-bg:#F0F9FF; --stage-bg-2:#E0F2FE;
+  --font:'Inter',system-ui,-apple-system,sans-serif;
+}
+
+body.grade-lise{
+  --brand:#6d28d9;--brand-dk:#4c1d95;--brand-lt:#ede9fe;--brand-mid:#8b5cf6;
+  --stage-bg:#F5F3FF; --stage-bg-2:#EDE9FE;
+  --font:'Inter',system-ui,-apple-system,sans-serif;
+  --slide-r:clamp(6px, 0.25vw + 4px, 14px);
+  --radius:clamp(5px, 0.18vw + 4px, 12px);
+}
+body.grade-lise .sh-title{font-weight:700}
+body.grade-lise .sh-badge{font-weight:700;letter-spacing:.8px}
+body.grade-lise .step-title{font-weight:700}
+body.grade-lise .step-desc{font-weight:400;line-height:1.7}
+body.grade-lise .step-num-badge{font-weight:700}
+body.grade-lise .step-tip{font-weight:500;line-height:1.6}
+body.grade-lise .cover-title{font-weight:800}
+body.grade-lise .cover-desc{font-weight:400;line-height:1.65}
+body.grade-lise .cover-start{font-weight:700}
+body.grade-lise .goal-text{font-weight:500}
+body.grade-lise .quiz-q{font-weight:600}
+body.grade-lise .quiz-opt{font-weight:500}
+
+/* STAGE — slayt kartı için container */
+#stage{
+  width:100%;height:100%;
+  padding:clamp(10px, 0.7vw + 7px, 28px);
+  display:flex;
+}
+
+.slide{
+  flex:1;display:none;flex-direction:column;
+  background:#fff;
+  border-radius:var(--slide-r);
+  overflow:hidden;
+  box-shadow:0 4px 16px rgba(15,23,42,0.06), 0 1px 3px rgba(15,23,42,0.04);
+  min-height:0;
+  width:100%;
+}
+.slide.active{display:flex;animation:sIn .3s cubic-bezier(.4,0,.2,1)}
+
+@keyframes sIn{
+  from{opacity:0;transform:translateY(8px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* SLAYT HEADER */
+.slide-hdr{
+  display:flex;align-items:center;
+  gap:clamp(10px, 0.4vw + 8px, 22px);
+  padding:0 var(--sh-pad);
+  height:var(--sh-h);
+  border-bottom:1px solid var(--border);
+  position:relative;flex-shrink:0;
+}
+.slide-hdr::before{
+  content:'';position:absolute;top:0;left:0;right:0;
+  height:var(--sh-stripe);
+  background:linear-gradient(90deg, var(--brand) 0%, var(--brand-mid) 100%);
+  border-radius:var(--slide-r) var(--slide-r) 0 0;
+}
+.sh-icon{
+  width:var(--sh-icon-sz);height:var(--sh-icon-sz);
+  border-radius:var(--sh-icon-r);
+  background:linear-gradient(135deg, var(--brand), var(--brand-dk));
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;color:#fff;
+  box-shadow:0 2px 8px color-mix(in srgb, var(--brand) 25%, transparent);
+}
+.sh-icon svg{width:var(--sh-svg-sz);height:var(--sh-svg-sz)}
+.sh-title{
+  flex:1;min-width:0;
+  font-weight:800;font-size:var(--f-sh);
+  color:var(--ink);letter-spacing:-.01em;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+.sh-badge{
+  flex-shrink:0;
+  font-size:var(--badge-f);font-weight:800;letter-spacing:.6px;text-transform:uppercase;
+  color:var(--brand-dk);background:var(--brand-lt);
+  padding:var(--badge-p);
+  border-radius:clamp(10px, 0.3vw + 8px, 24px);
+}
+
+.slide-body{
+  flex:1;min-height:0;
+  display:flex;overflow:hidden;
+}
+
+/* LAYOUTS */
+.layout-cover{display:flex;width:100%;min-height:0;overflow:hidden}
+.cover-visual{
+  flex:0 0 42%;
+  background:linear-gradient(135deg, var(--brand-dk), var(--brand), var(--brand-mid));
+  display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+  padding:clamp(20px, 1.2vw + 14px, 56px);
+}
+.cover-svg{
+  position:relative;z-index:1;
+  width:100%;
+  max-width:clamp(160px, 8vw + 120px, 380px);
+  display:flex;align-items:center;justify-content:center;
+}
+.cover-info{
+  flex:1;min-width:0;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:clamp(20px, 1.5vw + 14px, 64px) clamp(24px, 2vw + 16px, 80px);
+  gap:clamp(10px, 0.6vw + 7px, 26px);
+}
+.cover-title{font-size:var(--f-cover);font-weight:900;color:var(--ink);line-height:1.15;letter-spacing:-.02em}
+.cover-title span{color:var(--brand)}
+.cover-desc{font-size:var(--f-sub);color:var(--ink2);line-height:1.6;font-weight:500}
+.cover-steps{display:flex;flex-direction:column;gap:clamp(6px, 0.2vw + 5px, 14px);margin-top:clamp(4px, 0.15vw + 3px, 10px)}
+.cover-step{
+  display:flex;align-items:center;gap:clamp(9px, 0.35vw + 7px, 20px);
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:clamp(7px, 0.3vw + 6px, 16px) clamp(10px, 0.4vw + 8px, 22px);
+}
+.cs-n{
+  width:clamp(24px, 0.55vw + 20px, 44px);
+  height:clamp(24px, 0.55vw + 20px, 44px);
+  border-radius:clamp(5px, 0.2vw + 4px, 11px);
+  background:var(--brand);color:#fff;
+  font-size:clamp(12px, 0.35vw + 11px, 22px);font-weight:800;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.cs-t{font-size:clamp(12px, 0.4vw + 10px, 22px);font-weight:800;color:var(--ink)}
+.cs-s{font-size:clamp(10px, 0.3vw + 9px, 18px);color:var(--muted);margin-top:1px}
+.cover-start{
+  background:var(--brand);color:#fff;border:none;
+  border-radius:var(--radius);
+  padding:clamp(10px, 0.4vw + 8px, 22px) clamp(20px, 1vw + 16px, 48px);
+  font-size:clamp(12px, 0.4vw + 11px, 22px);font-weight:800;
+  cursor:pointer;font-family:var(--font);
+  display:inline-flex;align-items:center;gap:8px;
+  box-shadow:0 4px 12px color-mix(in srgb, var(--brand) 30%, transparent);
+  transition:transform .15s,box-shadow .15s,background .15s;
+  margin-top:clamp(4px, 0.2vw + 3px, 12px);
+  width:fit-content;
+}
+.cover-start:hover{
+  background:var(--brand-dk);transform:translateY(-2px);
+  box-shadow:0 6px 16px color-mix(in srgb, var(--brand) 40%, transparent);
+}
+
+.layout-full{
+  width:100%;min-width:0;min-height:0;
+  padding:var(--pad);
+  display:flex;flex-direction:column;gap:var(--gap);
+  overflow:hidden;
+}
+
+.layout-step{
+  width:100%;min-width:0;min-height:0;
+  padding:var(--pad);
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:clamp(16px, 1.2vw + 10px, 50px);align-items:center;
+  overflow:hidden;
+}
+.layout-step.single{grid-template-columns:1fr;justify-items:center;text-align:center}
+.layout-step > *{min-width:0;min-height:0}
+.step-text{display:flex;flex-direction:column;gap:clamp(8px, 0.5vw + 5px, 22px);min-width:0}
+.step-num-badge{
+  font-size:var(--step-bf);font-weight:800;letter-spacing:1.2px;text-transform:uppercase;
+  color:#fff;background:var(--brand);
+  padding:var(--badge-p);
+  border-radius:clamp(10px, 0.3vw + 8px, 24px);
+  width:fit-content;
+}
+.step-title{font-size:clamp(20px, 1.2vw + 14px, 44px);font-weight:900;color:var(--ink);line-height:1.2;letter-spacing:-.02em}
+.step-desc{font-size:clamp(14px, 0.6vw + 11px, 26px);color:var(--ink2);line-height:1.6;font-weight:500}
+.step-desc code{
+  font-family:var(--mono);font-size:0.88em;
+  background:#F1F5F9;color:var(--ink);
+  padding:2px 7px;border-radius:5px;font-weight:600;
+}
+.step-tip{
+  background:#FEF3C7;
+  border-radius:var(--radius);
+  padding:clamp(8px, 0.35vw + 6px, 18px) clamp(11px, 0.4vw + 9px, 22px);
+  font-size:clamp(12px, 0.5vw + 10px, 22px);
+  font-weight:600;color:#92400E;line-height:1.55;
+  display:flex;align-items:flex-start;gap:clamp(7px, 0.25vw + 6px, 14px);
+  border-left:clamp(2px, 0.07vw + 2px, 5px) solid #F59E0B;
+}
+.step-visual{
+  display:flex;align-items:center;justify-content:center;
+  width:100%;height:100%;
+  background:linear-gradient(135deg, var(--brand-lt) 0%, var(--stage-bg) 100%);
+  border-radius:var(--radius);
+  padding:clamp(16px, 0.8vw + 12px, 36px);
+  overflow:hidden;
+}
+.step-visual svg{max-width:100%;max-height:100%;height:auto;width:auto}
+
+.layout-quiz{
+  width:100%;min-width:0;min-height:0;
+  padding:var(--pad);
+  display:flex;flex-direction:column;
+  gap:clamp(10px, 0.5vw + 7px, 22px);
+  overflow:hidden;
+}
+/* Quiz header: ilerleme bar + soru sayacı + skor */
+.quiz-hdr{
+  display:flex;align-items:center;
+  gap:clamp(10px, 0.5vw + 7px, 22px);
+  flex-shrink:0;
+}
+.quiz-counter{
+  font-size:clamp(11px, 0.4vw + 9px, 18px);
+  font-weight:800;color:var(--brand-dk);
+  background:var(--brand-lt);
+  padding:clamp(5px, 0.2vw + 4px, 11px) clamp(10px, 0.4vw + 8px, 20px);
+  border-radius:clamp(8px, 0.25vw + 6px, 16px);
+  letter-spacing:.4px;flex-shrink:0;
+}
+.quiz-counter b{font-weight:900;color:var(--brand)}
+.quiz-bar{
+  flex:1;
+  height:clamp(6px, 0.2vw + 5px, 12px);
+  background:var(--border);
+  border-radius:999px;overflow:hidden;
+  min-width:0;
+}
+.quiz-bar-fill{
+  height:100%;
+  background:linear-gradient(90deg, var(--brand) 0%, var(--brand-mid) 100%);
+  border-radius:999px;
+  transition:width .4s cubic-bezier(.4,0,.2,1);
+  width:0%;
+}
+.quiz-score{
+  font-size:clamp(11px, 0.4vw + 9px, 18px);
+  font-weight:800;color:var(--ok);
+  background:var(--ok-bg);
+  padding:clamp(5px, 0.2vw + 4px, 11px) clamp(10px, 0.4vw + 8px, 20px);
+  border-radius:clamp(8px, 0.25vw + 6px, 16px);
+  letter-spacing:.4px;flex-shrink:0;
+  display:flex;align-items:center;gap:6px;
+}
+.quiz-score svg{width:1em;height:1em}
+
+/* Quiz body: tek aktif soru gösterilir, diğerleri gizli */
+.quiz-body{
+  flex:1;min-height:0;
+  display:flex;flex-direction:column;
+  position:relative;overflow:hidden;
+}
+.quiz-wrap{
+  position:absolute;inset:0;
+  display:none;
+  flex-direction:column;
+  min-height:0;
+  background:transparent;border:none;padding:0;
+  animation:qIn .35s cubic-bezier(.4,0,.2,1);
+}
+.quiz-wrap.active{display:flex}
+@keyframes qIn{
+  from{opacity:0;transform:translateX(20px)}
+  to{opacity:1;transform:translateX(0)}
+}
+.quiz-wrap.q-leaving{
+  animation:qOut .25s cubic-bezier(.4,0,.2,1) forwards;
+}
+@keyframes qOut{
+  from{opacity:1;transform:translateX(0)}
+  to{opacity:0;transform:translateX(-20px)}
+}
+.quiz-q{
+  font-size:clamp(15px, 0.7vw + 12px, 32px);
+  font-weight:700;color:var(--brand-dk);
+  margin-bottom:clamp(10px, 0.5vw + 7px, 24px);
+  line-height:1.4;
+}
+.quiz-opts{
+  display:flex;flex-direction:column;
+  gap:clamp(7px, 0.3vw + 5px, 16px);
+  min-height:0;
+}
+.quiz-opt{
+  background:#fff;
+  border:1.5px solid color-mix(in srgb, var(--brand) 15%, transparent);
+  border-radius:clamp(8px, 0.3vw + 6px, 16px);
+  padding:clamp(10px, 0.45vw + 8px, 22px) clamp(14px, 0.55vw + 11px, 28px);
+  font-size:clamp(13px, 0.5vw + 11px, 24px);
+  font-weight:600;color:var(--ink2);
+  cursor:pointer;text-align:left;font-family:var(--font);
+  transition:all .15s cubic-bezier(.4,0,.2,1);
+  display:flex;align-items:center;
+  gap:clamp(10px, 0.4vw + 8px, 20px);
+  line-height:1.35;
+}
+.quiz-opt:hover:not(:disabled){
+  background:var(--brand-lt);
+  border-color:var(--brand);
+  transform:translateX(4px);
+}
+.quiz-opt:disabled{cursor:default}
+.quiz-opt.correct{background:var(--ok);color:#fff;border-color:var(--ok)}
+.quiz-opt.wrong{background:var(--err);color:#fff;border-color:var(--err)}
+.quiz-letter{
+  width:clamp(26px, 0.65vw + 22px, 44px);
+  height:clamp(26px, 0.65vw + 22px, 44px);
+  border-radius:clamp(6px, 0.2vw + 5px, 12px);
+  background:var(--brand-lt);color:var(--brand-dk);
+  font-size:clamp(12px, 0.3vw + 10px, 20px);
+  font-weight:800;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.quiz-opt.correct .quiz-letter,.quiz-opt.wrong .quiz-letter{
+  background:rgba(255,255,255,.25);color:#fff
+}
+.quiz-fb{
+  display:none;
+  margin-top:clamp(10px, 0.45vw + 8px, 20px);
+  padding:clamp(10px, 0.4vw + 8px, 20px) clamp(14px, 0.55vw + 11px, 26px);
+  border-radius:clamp(8px, 0.3vw + 6px, 14px);
+  font-size:clamp(12px, 0.45vw + 10px, 22px);
+  font-weight:600;line-height:1.55;
+  animation:qIn .3s ease;
+}
+.quiz-fb.show{display:block}
+.quiz-fb.ok{background:var(--ok-bg);color:#065f46;border-left:4px solid var(--ok)}
+.quiz-fb.err{background:var(--err-bg);color:#991b1b;border-left:4px solid var(--err)}
+
+/* Sonraki / Sonuç butonu */
+.quiz-next-wrap{
+  display:flex;justify-content:flex-end;
+  margin-top:clamp(10px, 0.45vw + 8px, 20px);
+  min-height:0;
+}
+.quiz-next{
+  display:none;
+  align-items:center;gap:clamp(7px, 0.3vw + 5px, 14px);
+  background:var(--brand);color:#fff;border:none;
+  padding:clamp(10px, 0.4vw + 8px, 20px) clamp(18px, 0.8vw + 14px, 38px);
+  font-size:clamp(13px, 0.5vw + 11px, 22px);
+  font-weight:800;font-family:var(--font);
+  border-radius:clamp(8px, 0.3vw + 6px, 14px);
+  cursor:pointer;
+  box-shadow:0 4px 12px color-mix(in srgb, var(--brand) 30%, transparent);
+  transition:transform .15s, box-shadow .15s, background .15s;
+}
+.quiz-next.show{display:inline-flex;animation:qIn .3s ease}
+.quiz-next:hover{
+  background:var(--brand-dk);transform:translateY(-2px);
+  box-shadow:0 6px 16px color-mix(in srgb, var(--brand) 40%, transparent);
+}
+.quiz-next svg{width:1.1em;height:1.1em}
+
+.layout-done{
+  flex:1;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg, var(--brand-dk), var(--brand));
+  position:relative;overflow:hidden;
+}
+.layout-done::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 50% 40%, rgba(255,255,255,.14), transparent 60%);
+}
+.done-inner{
+  text-align:center;display:flex;flex-direction:column;align-items:center;
+  gap:clamp(10px, 0.55vw + 8px, 26px);
+  position:relative;z-index:1;
+  padding:clamp(24px, 1.5vw + 18px, 80px);
+  color:#fff;
+}
+.done-trophy{font-size:clamp(56px, 2.8vw + 40px, 140px);line-height:1}
+.done-title{font-size:clamp(22px, 1.2vw + 16px, 52px);font-weight:900;letter-spacing:-.02em}
+.done-msg{font-size:clamp(14px, 0.6vw + 11px, 26px);font-weight:500;opacity:.95;max-width:600px}
+.done-stats{
+  display:flex;gap:clamp(10px, 0.4vw + 8px, 22px);
+  flex-wrap:wrap;justify-content:center;
+  margin-top:clamp(4px, 0.2vw + 3px, 14px);
+}
+.done-stat{
+  background:rgba(255,255,255,.14);
+  border:1px solid rgba(255,255,255,.22);
+  border-radius:clamp(8px, 0.3vw + 6px, 18px);
+  padding:clamp(10px, 0.4vw + 8px, 22px) clamp(16px, 0.7vw + 12px, 38px);
+  text-align:center;
+}
+.done-stat-val{font-size:clamp(18px, 0.8vw + 14px, 38px);font-weight:900;line-height:1}
+.done-stat-lbl{font-size:clamp(10px, 0.2vw + 9px, 16px);font-weight:700;letter-spacing:.8px;text-transform:uppercase;opacity:.85;margin-top:clamp(3px, 0.15vw + 2px, 8px)}
+
+.csub{font-size:var(--f-sub);color:var(--muted);font-weight:700;letter-spacing:.4px}
+.goal-list{display:flex;flex-direction:column;gap:clamp(6px, 0.25vw + 5px, 14px)}
+.goal-item{
+  display:flex;align-items:center;gap:clamp(10px, 0.4vw + 8px, 22px);
+  padding:clamp(9px, 0.35vw + 7px, 20px) clamp(12px, 0.5vw + 10px, 26px);
+  border:1.5px solid var(--border);
+  border-radius:var(--radius);
+  background:#fff;
+}
+.goal-check{
+  flex-shrink:0;
+  width:var(--goal-check-sz);height:var(--goal-check-sz);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg, var(--accent), var(--acc-dk));
+  color:#fff;font-weight:900;font-size:var(--goal-check-f);
+}
+.goal-text{font-size:var(--f-goal);color:var(--ink);font-weight:600;line-height:1.4}
+
+/* Kod editör (ortaokul + lise için) */
+.code-frame{
+  width:100%;height:100%;
+  display:flex;flex-direction:column;
+  background:#1E293B;
+  border-radius:var(--radius);overflow:hidden;
+}
+.code-bar{
+  height:34px;flex-shrink:0;
+  background:#0F172A;
+  display:flex;align-items:center;
+  padding:0 14px;gap:8px;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+}
+.code-dot{width:10px;height:10px;border-radius:50%}
+.cd1{background:#FF5F57} .cd2{background:#FEBC2E} .cd3{background:#28C840}
+.code-path{margin-left:14px;font-family:var(--mono);font-size:11px;color:#94A3B8;font-weight:500}
+.code-area{
+  flex:1;min-height:0;
+  padding:clamp(10px, 0.45vw + 8px, 20px) clamp(12px, 0.55vw + 9px, 24px);
+  font-family:var(--mono);font-size:clamp(11px, 0.32vw + 9.5px, 16px);
+  line-height:1.5;color:#E2E8F0;
+  overflow:hidden;
+}
+.code-line{display:flex;gap:16px;align-items:baseline}
+.code-num{color:#475569;font-size:11px;width:18px;text-align:right;user-select:none;flex-shrink:0}
+.code-text{flex:1;white-space:pre;min-width:0}
+.kw{color:#A78BFA;font-weight:600}
+.fn{color:#7DD3FC}
+.st{color:#FCD34D}
+.cm{color:#64748B;font-style:italic}
+.nm{color:#F472B6}
+.op{color:#94A3B8}
+.code-line.hl{background:rgba(139,92,246,0.10);border-left:2px solid var(--brand-mid);margin:0 -22px;padding-left:20px}
+
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes pop{0%{transform:scale(1)}50%{transform:scale(1.1)}100%{transform:scale(1)}}
+
+.confetti{position:fixed;width:8px;height:8px;pointer-events:none;z-index:9999}
+
+
+/* ════════════════════════════════════════════════════════════════════
+   KOPYALAMA ENGELİ — sıkı mod (apply_copy_protection.py)
+   ════════════════════════════════════════════════════════════════════ */
+html, body {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+}
+/* Etkileşimli form alanları yazılabilir kalmalı */
+input, textarea, [contenteditable="true"] {
+  -webkit-user-select: text !important;
+  -moz-user-select: text !important;
+  user-select: text !important;
+}
+
+@media(max-width:768px){
+  .layout-step{grid-template-columns:1fr;gap:14px}
+  .layout-cover{flex-direction:column}
+  .cover-visual{flex:0 0 200px}
+  .step-visual{max-height:40vh}
+  .layout-quiz.q2,.layout-quiz.q3,.layout-quiz.q4{
+    grid-template-columns:1fr;grid-template-rows:none;
+  }
+  .layout-quiz{overflow-y:auto}
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   DERS ÖZEL CSS — H6 Lists2 (append/insert/pop/remove/update)
+   ════════════════════════════════════════════════════════════════════ */
+
+/* İki sütun grid */
+.cols2 {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:clamp(10px, 0.55vw + 8px, 22px);
+  min-height:0;
+}
+.cols2 > * { min-width:0; }
+
+/* Kavram başlık / alt başlık */
+.ctitle {
+  font-size:clamp(15px, 0.65vw + 12px, 28px);
+  font-weight:800;
+  color:var(--ink);
+  letter-spacing:-.01em;
+  line-height:1.25;
+}
+.csub-info {
+  font-size:clamp(12px, 0.5vw + 10px, 22px);
+  color:var(--ink2);
+  line-height:1.55;
+  font-weight:500;
+}
+.csub-info strong { color:var(--brand-dk); font-weight:700; }
+.csub-info code, .ctitle code {
+  font-family:var(--mono);font-size:0.88em;
+  background:#F1F5F9;color:var(--ink);
+  padding:2px 7px;border-radius:5px;font-weight:600;
+}
+
+/* Liste kutusu — array görselleştirme */
+.lbox {
+  background:#fff;
+  border:1.5px solid var(--border);
+  border-radius:var(--radius);
+  padding:clamp(10px, 0.45vw + 8px, 22px);
+  display:flex;flex-direction:column;
+  gap:clamp(7px, 0.3vw + 6px, 16px);
+}
+.lbox-lbl {
+  font-size:clamp(10px, 0.3vw + 9px, 16px);
+  font-weight:800;color:var(--muted);letter-spacing:.6px;
+}
+.lbox-row {
+  display:flex;
+  gap:clamp(5px, 0.25vw + 4px, 12px);
+  flex-wrap:wrap;align-items:flex-start;
+}
+.lcell {
+  background:var(--surface);
+  border:1.5px solid var(--border);
+  border-radius:clamp(6px, 0.2vw + 5px, 12px);
+  padding:clamp(6px, 0.3vw + 5px, 14px) clamp(9px, 0.4vw + 7px, 18px);
+  font-family:var(--mono);
+  font-size:clamp(11px, 0.4vw + 10px, 20px);
+  font-weight:800;color:var(--ink);
+  text-align:center;
+  min-width:clamp(50px, 3vw + 38px, 86px);
+}
+.lcell-idx {
+  font-size:clamp(9px, 0.22vw + 8px, 14px);
+  color:var(--muted);font-weight:600;
+  margin-top:3px;
+}
+.lcell.new {
+  background:var(--acc-lt);
+  border:2px dashed var(--accent);
+  color:var(--acc-dk);
+}
+.lcell.new .lcell-idx { color:var(--acc-dk); font-weight:800; }
+.lcell.del {
+  background:rgba(239,68,68,0.18);
+  border:2px solid var(--err);
+  color:#991b1b;
+  text-decoration:line-through;
+}
+.lcell.del .lcell-idx { color:#991b1b; font-weight:700; }
+.lcell.upd {
+  background:rgba(16,185,129,0.18);
+  border:2px solid var(--ok);
+  color:#065f46;
+  font-weight:900;
+}
+.lcell.upd .lcell-idx { color:#065f46; font-weight:800; }
+.lcell.cur {
+  background:#fff;
+  border:1.5px solid var(--brand);
+  color:var(--ink);
+}
+
+/* Kod çağırma satırı (görsel içinde) */
+.lcode {
+  font-family:var(--mono);
+  font-size:clamp(11px, 0.4vw + 10px, 20px);
+  font-weight:900;
+  background:var(--brand-lt);color:var(--brand-dk);
+  padding:clamp(5px, 0.25vw + 4px, 12px) clamp(9px, 0.35vw + 7px, 18px);
+  border-radius:8px;width:fit-content;
+}
+.lcode.acc { background:var(--acc-lt); color:var(--acc-dk); }
+
+/* Kod editör (.code-frame zaten master'da var, sadece syntax stilleri eklenecek) */
+.code-text { font-family:var(--mono); }
+
+/* Boks — info / warn / ok */
+.kbox {
+  background:#fff;
+  border-radius:var(--radius);
+  padding:clamp(9px, 0.4vw + 7px, 20px) clamp(11px, 0.45vw + 9px, 22px);
+  border-left:clamp(3px, 0.1vw + 2px, 6px) solid var(--brand);
+  display:flex;flex-direction:column;
+  gap:clamp(4px, 0.15vw + 3px, 9px);
+}
+.kbox-lbl {
+  font-size:clamp(10px, 0.3vw + 9px, 16px);
+  font-weight:800;color:var(--brand-dk);
+  letter-spacing:.5px;text-transform:uppercase;
+}
+.kbox-body {
+  font-size:clamp(12px, 0.45vw + 10px, 22px);
+  color:var(--ink2);font-weight:500;line-height:1.55;
+}
+.kbox-body strong { color:var(--ink); font-weight:700; }
+.kbox-body code {
+  font-family:var(--mono);font-size:0.88em;
+  background:#F1F5F9;color:var(--ink);
+  padding:2px 7px;border-radius:5px;font-weight:600;
+}
+.kbox.info  { border-left-color:#3b82f6; background:#EFF6FF; }
+.kbox.info  .kbox-lbl { color:#1e40af; }
+.kbox.warn  { border-left-color:#f59e0b; background:#FEF3C7; }
+.kbox.warn  .kbox-lbl { color:#92400e; }
+.kbox.ok    { border-left-color:var(--ok); background:#ECFDF5; }
+.kbox.ok    .kbox-lbl { color:#065f46; }
+.kbox.err   { border-left-color:var(--err); background:#FEF2F2; }
+.kbox.err   .kbox-lbl { color:#991b1b; }
+
+/* Karşılaştırma tablosu */
+.cmp-tbl {
+  background:#fff;
+  border:1.5px solid var(--border);
+  border-radius:var(--radius);
+  overflow:hidden;
+  display:flex;flex-direction:column;
+}
+.cmp-row {
+  display:grid;
+  grid-template-columns:1fr 1.2fr 1.2fr;
+  border-bottom:1px solid var(--border);
+}
+.cmp-row:last-child { border-bottom:none; }
+.cmp-row.head { background:var(--surface); }
+.cmp-row.alt  { background:var(--surface); }
+.cmp-cell {
+  padding:clamp(7px, 0.3vw + 6px, 16px) clamp(8px, 0.35vw + 7px, 18px);
+  font-size:clamp(11px, 0.4vw + 10px, 20px);
+  color:var(--ink2);
+  border-right:1px solid var(--border);
+  display:flex;align-items:center;
+}
+.cmp-cell:last-child { border-right:none; }
+.cmp-row.head .cmp-cell {
+  font-size:clamp(11px, 0.4vw + 10px, 20px);
+  font-weight:900;color:var(--ink);
+  justify-content:center;
+}
+.cmp-row.head .cmp-cell.method-a {
+  color:var(--ok);font-family:var(--mono);
+}
+.cmp-row.head .cmp-cell.method-b {
+  color:var(--accent);font-family:var(--mono);
+}
+.cmp-cell.label {
+  font-weight:700;color:var(--ink2);
+}
+.cmp-cell.center { justify-content:center; text-align:center; }
+.cmp-cell strong { color:var(--ink); font-weight:700; }
+.cmp-row.head { border-bottom:1.5px solid var(--border); }
+
+/* Bilgi kartı (pop için) */
+.icard {
+  background:#fff;
+  border:1.5px solid var(--border);
+  border-radius:var(--radius);
+  padding:clamp(10px, 0.45vw + 8px, 22px);
+  display:flex;flex-direction:column;
+  gap:clamp(5px, 0.2vw + 4px, 12px);
+  text-align:center;
+}
+.icard-tag {
+  font-family:var(--mono);
+  font-size:clamp(13px, 0.55vw + 11px, 26px);
+  font-weight:900;
+}
+.icard-tag.brand { color:var(--brand-dk); }
+.icard-tag.ok    { color:var(--ok); }
+.icard-title {
+  font-size:clamp(12px, 0.45vw + 10px, 22px);
+  font-weight:800;color:var(--ink);
+}
+.icard-desc {
+  font-size:clamp(11px, 0.4vw + 9px, 19px);
+  color:var(--ink2);font-weight:500;line-height:1.5;
+}
+.icard-desc code, .icard-desc span.mono {
+  font-family:var(--mono);
+  background:var(--surface);
+  padding:1px 5px;border-radius:4px;
+}
+
+/* Numaralı liste (mini proje adımları) */
+.num-list {
+  display:flex;flex-direction:column;
+  gap:clamp(6px, 0.25vw + 5px, 13px);
+}
+.num-item {
+  display:flex;align-items:flex-start;
+  gap:clamp(8px, 0.35vw + 7px, 18px);
+  padding:clamp(7px, 0.3vw + 6px, 16px) clamp(10px, 0.4vw + 8px, 20px);
+  background:var(--surface);
+  border:1.5px solid var(--border);
+  border-radius:var(--radius);
+}
+.num-badge {
+  flex-shrink:0;
+  width:clamp(22px, 0.55vw + 18px, 38px);
+  height:clamp(22px, 0.55vw + 18px, 38px);
+  border-radius:50%;
+  background:var(--brand);color:#fff;
+  font-weight:900;
+  font-size:clamp(11px, 0.35vw + 10px, 18px);
+  display:flex;align-items:center;justify-content:center;
+}
+.num-text {
+  font-size:clamp(12px, 0.45vw + 10px, 22px);
+  color:var(--ink2);font-weight:500;
+  line-height:1.5;
+}
+.num-text code, .num-text strong {
+  font-family:var(--mono);font-size:0.92em;
+  background:#fff;color:var(--ink);
+  padding:1px 6px;border-radius:4px;font-weight:600;
+}
+.num-text strong { font-family:var(--font); }
+
+/* ÖNCE/SONRA görseli (güncelleme) */
+.beforeafter {
+  background:#fff;
+  border:1.5px solid var(--border);
+  border-radius:var(--radius);
+  overflow:hidden;
+  display:flex;flex-direction:column;
+}
+.ba-head {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  background:var(--surface);
+  border-bottom:1.5px solid var(--border);
+}
+.ba-head > div {
+  padding:clamp(7px, 0.3vw + 6px, 14px);
+  text-align:center;
+  font-size:clamp(11px, 0.35vw + 10px, 18px);
+  font-weight:900;letter-spacing:.5px;
+  border-right:1px solid var(--border);
+}
+.ba-head > div:last-child { border-right:none; }
+.ba-head .lbl-before { color:#991b1b; background:var(--err-bg); }
+.ba-head .lbl-after  { color:#065f46; background:var(--ok-bg); }
+.ba-body {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+}
+.ba-cell {
+  padding:clamp(10px, 0.45vw + 8px, 22px);
+  display:flex;gap:clamp(5px, 0.25vw + 4px, 12px);
+  justify-content:center;flex-wrap:wrap;
+  border-right:1px solid var(--border);
+}
+.ba-cell:last-child { border-right:none; }
+.ba-cell.before { background:var(--err-bg); }
+.ba-cell.after  { background:var(--ok-bg); }
+.ba-foot {
+  padding:clamp(7px, 0.3vw + 6px, 14px);
+  background:var(--brand-lt);
+  text-align:center;
+  font-family:var(--mono);
+  font-size:clamp(11px, 0.4vw + 10px, 20px);
+  font-weight:900;color:var(--brand-dk);
+  border-top:1px solid var(--border);
+}
+
+/* ═════ S-SIM: Canlı Liste Simülatörü ═════ */
+.sim-vis {
+  background:var(--surface);
+  border:1.5px solid var(--border);
+  border-radius:var(--radius);
+  padding:clamp(9px, 0.4vw + 7px, 18px);
+}
+.sim-vis-lbl {
+  font-size:clamp(10px, 0.3vw + 9px, 16px);
+  font-weight:900;color:var(--muted);
+  letter-spacing:.5px;
+  margin-bottom:clamp(6px, 0.25vw + 5px, 12px);
+}
+.sim-vis-row {
+  display:flex;gap:clamp(5px, 0.25vw + 4px, 11px);
+  flex-wrap:wrap;align-items:center;
+  min-height:clamp(44px, 1.5vw + 36px, 68px);
+}
+.sim-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:clamp(8px, 0.4vw + 6px, 16px);
+}
+.sim-panel {
+  border-radius:var(--radius);
+  padding:clamp(8px, 0.35vw + 7px, 16px);
+  display:flex;flex-direction:column;
+  gap:clamp(5px, 0.2vw + 4px, 10px);
+}
+.sim-panel.add { background:var(--ok-bg); border:1.5px solid var(--ok); }
+.sim-panel.del { background:var(--err-bg); border:1.5px solid var(--err); }
+.sim-panel-lbl {
+  font-size:clamp(10px, 0.3vw + 9px, 16px);
+  font-weight:900;letter-spacing:.5px;
+}
+.sim-panel.add .sim-panel-lbl { color:#065f46; }
+.sim-panel.del .sim-panel-lbl { color:#991b1b; }
+.sim-input {
+  background:#fff;
+  border-radius:6px;
+  padding:clamp(5px, 0.25vw + 4px, 11px) clamp(7px, 0.3vw + 6px, 14px);
+  font-family:var(--mono);
+  font-size:clamp(11px, 0.4vw + 10px, 19px);
+  font-weight:700;color:var(--ink);
+  outline:none;width:100%;
+}
+.sim-panel.add .sim-input { border:1.5px solid var(--ok); }
+.sim-panel.del .sim-input { border:1.5px solid var(--err); }
+.sim-row {
+  display:flex;gap:clamp(5px, 0.25vw + 4px, 11px);align-items:center;
+}
+.sim-idx {
+  width:clamp(46px, 1.2vw + 38px, 78px);
+  flex-shrink:0;
+}
+.sim-btn {
+  flex:1;
+  color:#fff;border:none;border-radius:6px;
+  padding:clamp(5px, 0.25vw + 4px, 11px) clamp(7px, 0.3vw + 6px, 14px);
+  font-size:clamp(11px, 0.35vw + 10px, 18px);
+  font-weight:800;cursor:pointer;
+  font-family:var(--mono);
+  transition:transform .12s, filter .12s;
+}
+.sim-btn:hover { transform:translateY(-1px); filter:brightness(1.05); }
+.sim-btn.green { background:var(--ok); }
+.sim-btn.acc   { background:var(--accent); }
+.sim-btn.red   { background:var(--err); }
+.sim-btn.dr    { background:#7f1d1d; }
+.sim-log {
+  background:#0f172a;
+  border-radius:var(--radius);
+  overflow:hidden;
+  display:flex;flex-direction:column;
+  max-height:clamp(96px, 4vw + 78px, 168px);
+}
+.sim-log-bar {
+  background:#1e293b;
+  padding:clamp(5px, 0.25vw + 4px, 11px) clamp(8px, 0.35vw + 7px, 16px);
+  display:flex;align-items:center;
+  gap:clamp(6px, 0.25vw + 5px, 12px);
+  border-bottom:1px solid #334155;
+}
+.sim-log-title {
+  font-size:clamp(10px, 0.3vw + 9px, 16px);
+  font-weight:800;color:#94a3b8;
+  font-family:var(--mono);flex:1;
+}
+.sim-log-reset {
+  background:#334155;color:#94a3b8;
+  border:none;border-radius:5px;
+  padding:clamp(3px, 0.15vw + 2px, 7px) clamp(7px, 0.3vw + 6px, 14px);
+  font-size:clamp(10px, 0.3vw + 9px, 16px);
+  font-weight:700;cursor:pointer;
+  font-family:var(--mono);
+}
+.sim-log-body {
+  padding:clamp(8px, 0.35vw + 7px, 16px) clamp(10px, 0.4vw + 8px, 20px);
+  font-family:var(--mono);
+  font-size:clamp(11px, 0.35vw + 10px, 18px);
+  line-height:1.6;color:#94a3b8;
+  overflow-y:auto;flex:1;min-height:0;
+}
+
+/* ═════ S-PY: Canlı Python Editörü ═════ */
+.py-wrap {
+  width:100%;height:100%;
+  display:grid;
+  grid-template-columns:1.05fr 1fr;
+  gap:clamp(8px, 0.4vw + 6px, 16px);
+  min-height:0;
+}
+.py-pane {
+  display:flex;flex-direction:column;
+  border-radius:var(--radius);
+  overflow:hidden;
+  background:#1E293B;
+  min-height:0;
+}
+.py-pane-bar {
+  background:#0F172A;
+  padding:clamp(5px, 0.25vw + 4px, 11px) clamp(9px, 0.4vw + 7px, 18px);
+  display:flex;align-items:center;
+  gap:clamp(5px, 0.25vw + 4px, 11px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  flex-shrink:0;
+}
+.py-dot {
+  width:clamp(8px, 0.2vw + 7px, 12px);
+  height:clamp(8px, 0.2vw + 7px, 12px);
+  border-radius:50%;
+}
+.py-dot.r { background:#FF5F57; }
+.py-dot.y { background:#FEBC2E; }
+.py-dot.g { background:#28C840; }
+.py-fname {
+  margin-left:clamp(5px, 0.2vw + 4px, 10px);
+  font-family:var(--mono);
+  font-size:clamp(10px, 0.3vw + 9px, 16px);
+  color:#94A3B8;font-weight:500;
+  flex:1;
+}
+.py-btn {
+  border:none;
+  border-radius:6px;
+  padding:clamp(4px, 0.2vw + 3px, 9px) clamp(8px, 0.35vw + 7px, 16px);
+  font-size:clamp(10px, 0.3vw + 9px, 16px);
+  font-weight:800;cursor:pointer;
+  font-family:var(--font);
+  transition:filter .12s, transform .12s;
+}
+.py-btn:hover { transform:translateY(-1px); filter:brightness(1.1); }
+.py-btn.run    { background:var(--ok); color:#fff; }
+.py-btn.reset  { background:#334155; color:#94A3B8; }
+.py-btn.clear  { background:#334155; color:#94A3B8; }
+.py-textarea {
+  flex:1;min-height:0;
+  background:#1E293B;
+  border:none;outline:none;
+  padding:clamp(10px, 0.45vw + 8px, 22px) clamp(12px, 0.5vw + 9px, 26px);
+  color:#E2E8F0;
+  font-family:var(--mono);
+  font-size:clamp(11px, 0.4vw + 10px, 18px);
+  line-height:1.7;
+  resize:none;
+  tab-size:4;
+}
+.py-output-pane {
+  background:#0F172A;
+}
+.py-out-title {
+  font-family:var(--mono);
+  font-size:clamp(10px, 0.3vw + 9px, 16px);
+  color:#94A3B8;font-weight:600;
+  flex:1;
+}
+.py-output {
+  flex:1;min-height:0;
+  padding:clamp(10px, 0.45vw + 8px, 22px) clamp(12px, 0.5vw + 9px, 26px);
+  font-family:var(--mono);
+  font-size:clamp(11px, 0.4vw + 10px, 18px);
+  line-height:1.65;
+  color:#CBD5E1;
+  overflow-y:auto;
+  white-space:pre-wrap;word-break:break-word;
+}
+.py-output .py-sys { color:#64748B; font-style:italic; }
+.py-output .py-err { color:#FCA5A5; }
+.py-output .py-loading { color:#FCD34D; font-style:italic; }
+.py-input-row {
+  display:flex;align-items:center;
+  gap:clamp(5px, 0.2vw + 4px, 10px);
+  padding:clamp(5px, 0.25vw + 4px, 11px) clamp(12px, 0.5vw + 9px, 26px);
+  background:#1E293B;
+  border-top:1px solid rgba(255,255,255,0.08);
+}
+.py-prompt {
+  color:#7DD3FC;
+  font-family:var(--mono);
+  font-size:clamp(11px, 0.4vw + 10px, 18px);
+  font-weight:700;
+}
+.py-input {
+  flex:1;
+  background:transparent;
+  border:none;outline:none;
+  color:#FCD34D;
+  font-family:var(--mono);
+  font-size:clamp(11px, 0.4vw + 10px, 18px);
+  font-weight:600;
+}
+
+/* ═════ Reveal Cards (Soru-Cevap) ═════ */
+.rcards {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:clamp(8px, 0.4vw + 6px, 16px);
+  min-height:0;
+}
+.rcard {
+  background:#fff;
+  border:1.5px solid var(--border);
+  border-radius:var(--radius);
+  overflow:hidden;
+  display:flex;flex-direction:column;
+}
+.rcard-q {
+  padding:clamp(8px, 0.35vw + 7px, 16px) clamp(11px, 0.45vw + 9px, 22px);
+  font-size:clamp(11px, 0.4vw + 10px, 18px);
+  font-weight:700;color:var(--ink);
+  cursor:pointer;
+  display:flex;align-items:flex-start;
+  justify-content:space-between;
+  gap:clamp(6px, 0.25vw + 5px, 12px);
+  background:var(--brand-lt);
+  border-bottom:1px solid var(--border);
+  transition:background .15s;
+  line-height:1.35;
+}
+.rcard-q:hover { background:color-mix(in srgb, var(--brand) 14%, white); }
+.rcard-arr {
+  flex-shrink:0;
+  font-size:clamp(13px, 0.4vw + 11px, 20px);
+  color:var(--brand);
+  transition:transform .25s;
+  font-weight:800;
+}
+.rcard-q.open .rcard-arr { transform:rotate(90deg); }
+.rcard-a {
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .35s ease, padding .25s ease;
+  padding:0 clamp(11px, 0.45vw + 9px, 22px);
+  font-size:clamp(11px, 0.35vw + 10px, 18px);
+  color:var(--ink2);line-height:1.55;
+  font-weight:500;
+}
+.rcard-a.show {
+  max-height:clamp(180px, 12vw + 120px, 320px);
+  padding:clamp(8px, 0.35vw + 7px, 16px) clamp(11px, 0.45vw + 9px, 22px);
+  overflow-y:auto;
+}
+.rcard-a code, .rcard-a strong {
+  font-family:var(--mono);font-size:0.92em;
+}
+.rcard-a code {
+  background:var(--surface);
+  padding:1px 5px;border-radius:4px;
+  color:var(--ink);font-weight:600;
+}
+.rcard-a strong {
+  font-family:var(--font);
+  color:var(--ink);font-weight:700;
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   H7 — Listeler 3 — Ek Özel CSS
+   ════════════════════════════════════════════════════════════════════ */
+
+/* 3-kolonlu grid */
+.cols3 {
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:clamp(8px, 0.4vw + 6px, 16px);
+  min-height:0;
+}
+.cols3 > * { min-width:0; }
+
+/* Döngü akış oku — s3 "Elma→Armut→..." */
+.flow-row {
+  display:flex;
+  gap:clamp(5px, 0.25vw + 4px, 12px);
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:center;
+}
+.flow-cell {
+  background:var(--brand-lt);
+  border:2px solid var(--brand);
+  border-radius:clamp(6px, 0.2vw + 5px, 12px);
+  padding:clamp(6px, 0.3vw + 5px, 13px) clamp(9px, 0.4vw + 7px, 17px);
+  font-family:var(--mono);
+  font-size:clamp(11px, 0.4vw + 10px, 19px);
+  font-weight:900;color:var(--brand-dk);
+}
+.flow-cell.end {
+  background:var(--ok-bg);
+  border-color:var(--ok);
+  color:#065f46;
+}
+.flow-arr {
+  color:var(--muted);
+  font-size:clamp(12px, 0.4vw + 11px, 20px);
+  font-weight:800;
+}
+
+/* İterasyon tablosu — s7 toplama, s11 while */
+.iter-tbl {
+  background:#fff;
+  border:1.5px solid var(--border);
+  border-radius:var(--radius);
+  overflow:hidden;
+}
+.iter-head {
+  background:var(--surface);
+  padding:clamp(6px, 0.3vw + 5px, 13px) clamp(9px, 0.4vw + 7px, 17px);
+  border-bottom:1.5px solid var(--border);
+  font-family:var(--mono);
+  font-size:clamp(11px, 0.4vw + 10px, 18px);
+  font-weight:800;color:var(--ink);
+}
+.iter-row {
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+}
+.iter-cell {
+  padding:clamp(7px, 0.3vw + 6px, 14px) clamp(6px, 0.3vw + 5px, 12px);
+  text-align:center;
+  border-right:1px solid var(--border);
+}
+.iter-cell:last-child { border-right:none; }
+.iter-cell.alt { background:var(--surface); }
+.iter-cell.final {
+  background:var(--ok-bg);
+}
+.iter-step-lbl {
+  font-family:var(--mono);
+  font-size:clamp(10px, 0.3vw + 9px, 15px);
+  font-weight:800;
+  color:var(--brand-dk);
+}
+.iter-cell.final .iter-step-lbl { color:#065f46; }
+.iter-step-val {
+  font-family:var(--mono);
+  font-size:clamp(13px, 0.45vw + 11px, 22px);
+  font-weight:900;
+  color:var(--ink);
+  margin:clamp(2px, 0.1vw + 2px, 5px) 0;
+}
+.iter-cell.final .iter-step-val { color:var(--ok); }
+.iter-step-sub {
+  font-size:clamp(9px, 0.3vw + 8px, 15px);
+  color:var(--ink2);
+  font-weight:700;
+}
+.iter-cell.final .iter-step-sub { color:#065f46; font-weight:800; }
+
+/* Filtreleme görsel hücreleri (ok/err) */
+.fcell {
+  border-radius:clamp(6px, 0.2vw + 5px, 12px);
+  padding:clamp(6px, 0.3vw + 5px, 13px) clamp(9px, 0.4vw + 7px, 17px);
+  font-family:var(--mono);
+  font-size:clamp(11px, 0.4vw + 10px, 19px);
+  font-weight:800;
+  text-align:center;
+  min-width:clamp(46px, 1.5vw + 38px, 76px);
+}
+.fcell.pass {
+  background:var(--ok-bg);
+  border:1.5px solid var(--ok);
+  color:#065f46;
+}
+.fcell.fail {
+  background:var(--err-bg);
+  border:1.5px solid var(--err);
+  color:#991b1b;
+}
+.fcell-tag {
+  font-size:clamp(8px, 0.22vw + 7px, 12px);
+  font-weight:700;
+  margin-top:2px;
+}
+
+/* ═════ S-DSIM: Canlı Döngü Simülatörü ═════ */
+.dsim-controls {
+  background:var(--surface);
+  border:1.5px solid var(--border);
+  border-radius:var(--radius);
+  padding:clamp(8px, 0.4vw + 6px, 16px);
+  display:flex;
+  gap:clamp(6px, 0.3vw + 5px, 12px);
+  align-items:center;
+  flex-wrap:wrap;
+}
+.dsim-input {
+  flex:1;
+  min-width:140px;
+  background:#fff;
+  border:1.5px solid var(--brand-lt);
+  border-radius:6px;
+  padding:clamp(5px, 0.25vw + 4px, 11px) clamp(8px, 0.35vw + 7px, 16px);
+  font-family:var(--mono);
+  font-size:clamp(11px, 0.4vw + 10px, 19px);
+  font-weight:700;
+  color:var(--ink);
+  outline:none;
+  box-sizing:border-box;
+}
+.dsim-select {
+  background:#fff;
+  border:1.5px solid var(--brand-lt);
+  border-radius:6px;
+  padding:clamp(5px, 0.25vw + 4px, 11px) clamp(8px, 0.35vw + 7px, 16px);
+  font-family:var(--font);
+  font-size:clamp(11px, 0.35vw + 10px, 17px);
+  font-weight:700;
+  color:var(--ink);
+  outline:none;
+}
+.dsim-btn {
+  border:none;
+  border-radius:6px;
+  padding:clamp(5px, 0.25vw + 4px, 11px) clamp(10px, 0.45vw + 8px, 20px);
+  font-size:clamp(11px, 0.35vw + 10px, 17px);
+  font-weight:900;
+  cursor:pointer;
+  font-family:var(--font);
+  color:#fff;
+  transition:filter .12s, transform .12s;
+}
+.dsim-btn:hover:not(:disabled) { transform:translateY(-1px); filter:brightness(1.05); }
+.dsim-btn:disabled { opacity:0.5; cursor:not-allowed; }
+.dsim-btn.start { background:var(--brand); }
+.dsim-btn.step  { background:var(--accent); }
+
+.dsim-listbox {
+  background:#fff;
+  border:1.5px solid var(--border);
+  border-radius:var(--radius);
+  padding:clamp(8px, 0.4vw + 6px, 16px);
+  min-height:clamp(50px, 1.8vw + 40px, 80px);
+}
+.dsim-listbox-lbl {
+  font-size:clamp(10px, 0.3vw + 9px, 16px);
+  font-weight:900;color:var(--muted);
+  letter-spacing:.5px;
+  margin-bottom:clamp(5px, 0.25vw + 4px, 10px);
+}
+.dsim-listbox-row {
+  display:flex;
+  gap:clamp(5px, 0.25vw + 4px, 10px);
+  flex-wrap:wrap;
+  align-items:center;
+}
+
+/* Status kartları (cur, acc, prog) */
+.dsim-stat {
+  border-radius:var(--radius);
+  padding:clamp(7px, 0.3vw + 6px, 14px);
+  text-align:center;
+  display:flex;flex-direction:column;
+  gap:clamp(3px, 0.15vw + 2px, 7px);
+  min-width:0;
+}
+.dsim-stat.brand { background:var(--brand-lt); border:1.5px solid var(--brand); }
+.dsim-stat.acc   { background:var(--acc-lt);   border:1.5px solid var(--accent); }
+.dsim-stat.ok    { background:var(--ok-bg);    border:1.5px solid var(--ok); }
+.dsim-stat-lbl {
+  font-size:clamp(9px, 0.3vw + 8px, 14px);
+  font-weight:900;letter-spacing:.5px;
+}
+.dsim-stat.brand .dsim-stat-lbl { color:var(--brand-dk); }
+.dsim-stat.acc   .dsim-stat-lbl { color:var(--acc-dk); }
+.dsim-stat.ok    .dsim-stat-lbl { color:#065f46; }
+.dsim-stat-val {
+  font-family:var(--mono);
+  font-size:clamp(15px, 0.6vw + 12px, 28px);
+  font-weight:900;
+  word-break:break-all;
+  overflow-wrap:break-word;
+}
+.dsim-stat.brand .dsim-stat-val { color:var(--brand); }
+.dsim-stat.acc   .dsim-stat-val { color:var(--acc-dk); }
+.dsim-stat.ok    .dsim-stat-val { color:var(--ok); }
+.dsim-stat-sub {
+  font-size:clamp(9px, 0.3vw + 8px, 13px);
+  color:var(--muted);
+}
+.dsim-progbar {
+  background:#fff;
+  height:clamp(5px, 0.2vw + 4px, 9px);
+  border-radius:99px;
+  overflow:hidden;
+}
+.dsim-progbar-fill {
+  height:100%;
+  background:var(--ok);
+  transition:width 0.3s;
+  width:0%;
+}
+
+/* Döngü hücreleri — şu an işleniyor / işlenmiş */
+.dcell {
+  border-radius:clamp(6px, 0.2vw + 5px, 12px);
+  padding:clamp(5px, 0.25vw + 4px, 11px) clamp(8px, 0.35vw + 7px, 15px);
+  font-family:var(--mono);
+  font-size:clamp(11px, 0.4vw + 10px, 19px);
+  font-weight:800;
+  text-align:center;
+  min-width:clamp(44px, 1.4vw + 36px, 70px);
+  transition:all 0.2s;
+}
+.dcell.idle {
+  background:#fff;
+  border:2px solid var(--border);
+  color:var(--ink);
+}
+.dcell.done {
+  background:var(--ok-bg);
+  border:2px solid var(--ok);
+  color:#065f46;
+}
+.dcell.cur {
+  background:var(--brand);
+  border:2px solid var(--brand-dk);
+  color:#fff;
+}
+.dcell-idx {
+  font-size:clamp(8px, 0.22vw + 7px, 12px);
+  font-weight:600;
+  margin-top:2px;
+  opacity:0.75;
+}
+
+
+/* ══════════════════════ v9.3 LAYOUT-STEP + CANVAS (Lists 3 migrasyon) ══════════════════════ */
+.step-visual{position:relative;overflow:hidden}
+.cv-illu{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  max-width:calc(100% - 10px);max-height:calc(100% - 10px);
+  width:auto;height:auto;display:block;
+}
+.step-visual .code-frame{
+  width:100%;height:100%;display:flex;flex-direction:column;
+  min-width:0;min-height:0;
+}
+.step-visual .code-area{
+  flex:1 1 auto;min-height:0;min-width:0;overflow:hidden;
+  padding:clamp(8px, 0.4vw + 6px, 16px) clamp(10px, 0.5vw + 8px, 20px);
+  font-size:clamp(10px, 0.32vw + 8px, 15px);line-height:1.6;
+}
+.step-visual .code-line{display:flex;gap:12px;align-items:baseline}
+.step-visual .code-text{white-space:pre;overflow-x:auto;min-width:0;flex:1}
+.step-visual .code-text::-webkit-scrollbar{height:4px}
+.step-visual .code-text::-webkit-scrollbar-thumb{background:#334155;border-radius:2px}
+
+/* Simülatör istatistik ızgarası (s17 — cols3 yerine) */
+.dsim-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:clamp(6px, 0.25vw + 5px, 12px);min-width:0}
+.dsim-stats > *{min-width:0;min-height:0}
+
+/* Lise font tavanları (master'a dokunmadan) */
+body.grade-lise{
+  --f-base:clamp(13px, 0.45vw + 10px, 18px);
+  --f-title:clamp(16px, 0.65vw + 12px, 23px);
+  --f-sh:clamp(14px, 0.55vw + 11px, 21px);
+  --f-sub:clamp(12px, 0.4vw + 10px, 17px);
+}
+body.grade-lise .step-title{font-size:clamp(17px, 0.7vw + 13px, 26px)}
+body.grade-lise .step-desc{font-size:clamp(13px, 0.45vw + 11px, 18px);line-height:1.65}
+body.grade-lise .step-tip{font-size:clamp(12px, 0.4vw + 10px, 17px)}
+body.grade-lise .step-num-badge{font-size:clamp(10px, 0.2vw + 9px, 14px)}
+body.grade-lise .layout-step{
+  gap:clamp(14px, 1vw + 9px, 40px);
+  padding:clamp(10px, 0.6vw + 7px, 24px) clamp(14px, 1vw + 9px, 36px);
+}
+
+/* Kapak + Done canvas */
+.cv-cover{width:100%;height:auto;display:block;max-width:clamp(180px, 9vw + 130px, 400px)}
+.cv-done{width:clamp(120px, 7vw + 90px, 200px);height:auto;display:block;margin:0 auto}
+/* ══════════════════════ /v9.3 ══════════════════════ */
+
+</style>
+</head>
+<body class="grade-lise">
+
+<div id="stage">
+
+  <!-- ══════════════════════ S1 — KAPAK ══════════════════════ -->
+  <div class="slide active" id="s1">
+    <div class="slide-hdr">
+      <div class="sh-icon" id="s1-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="17 1 21 5 17 9"/>
+          <path d="M3 11V9a4 4 0 0 1 4-4h14"/>
+          <polyline points="7 23 3 19 7 15"/>
+          <path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+        </svg>
+      </div>
+      <div class="sh-title" id="s1-title">Ders Başlığı</div>
+      <div class="sh-badge" id="s1-badge">X. Hafta</div>
+    </div>
+    <div class="slide-body">
+      <div class="layout-cover">
+        <div class="cover-visual">
+          <div class="cover-svg" id="s1-cover-svg">
+            <canvas class="cv-cover" id="cv-cover" width="1380" height="900" role="img" aria-label="for döngüsü listeyi gezer"></canvas>
+          </div>
+        </div>
+        <div class="cover-info">
+          <div class="cover-title" id="s1-cover-title">Ders <span>Başlığı</span></div>
+          <div class="cover-desc" id="s1-desc">Açıklama metni buraya gelir.</div>
+          <div class="cover-steps" id="s1-steps"></div>
+          <button class="cover-start" onclick="go(1)">
+            <span id="s1-start-lbl">Başlayalım</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ S2 — KAZANIMLAR ══════════════════════ -->
+  <div class="slide" id="s2">
+    <div class="slide-hdr">
+      <div class="sh-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+        </svg>
+      </div>
+      <div class="sh-title" id="s2-title">Kazanımlar</div>
+      <div class="sh-badge">Hedef</div>
+    </div>
+    <div class="slide-body">
+      <div class="layout-full">
+        <div class="csub" id="s2-sub">Bu etkinliğin sonunda:</div>
+        <div class="goal-list" id="s2-goals"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════════════
+       İÇERİK SLAYTLARI — s3 ... s(TOTAL-2)
+       v9.3 KURALLARI:
+       1. SCROLL YOK. Her slayt viewport'a sığmalı.
+       2. STEP-BY-STEP: her adım = ayrı slayt. 10-15 slayt normal.
+       3. Slayt başına max 1 kavram, 1 görsel, 4 madde, 30-40 kelime.
+       4. Layout'lar: layout-step / layout-full / layout-step.single / code-frame
+       5. Her slayta konuya özel sh-icon SVG.
+       6. Quiz doğru cevap dağılımı dengeli (örn: 0,2,3,1).
+  ══════════════════════════════════════════════════════════════════════ -->
+
+    <!-- ══════════════════════ S3 — for ile Yazdırma Tanım ══════════════════════ -->
+  <div class="slide" id="s3">
+    <div class="slide-hdr">
+      <div class="sh-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+        </svg>
+      </div>
+      <div class="sh-title">for ile Liste Yazdırma</div>
+      <div class="sh-badge">Kavram 1 / 7</div>
+    </div>
+    <div class="slide-body">
+      <div class="layout-step">
+      <div class="step-text">
+        <div class="step-num-badge">DÖNGÜ</div>
+        <div class="step-title">Listeyi gezmenin Pythonik yolu</div>
+        <div class="step-desc"><code>for eleman in liste:</code> her adımda listeden bir değeri <strong>eleman</strong> değişkenine atar. Liste bittiğinde döngü kendiliğinden durur — sayaç yönetmek gerekmez.</div>
+        <div class="step-tip">
+          <span>💡</span>
+          <span>Değişken adı serbesttir: listede meyveler varsa <code>for meyve in meyveler:</code> yaz; kod okunaklı olur.</span>
+        </div>
+      </div>
+      <div class="step-visual">
+        <canvas id="cv-forloop" class="cv-illu" width="1380" height="900" role="img" aria-label="for döngüsü liste elemanlarını tek tek gezer"></canvas>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" id="s4">
+    <div class="slide-hdr">
+      <div class="sh-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+        </svg>
+      </div>
+      <div class="sh-title">for ile Yazdırma — Kod Pratiği</div>
+      <div class="sh-badge">Kavram 1 / 7</div>
+    </div>
+    <div class="slide-body">
+      <div class="layout-step">
+      <div class="step-text">
+        <div class="step-num-badge">PRATİK</div>
+        <div class="step-title">Her elemanı tek tek yazdır</div>
+        <div class="step-desc">Döngü değişkenini doğrudan <code>print()</code> içinde kullanabilirsin; ayrıca her elemana bir işlem (örneğin karesini alma) uygulayabilirsin.</div>
+        <div class="step-tip">
+          <span>💡</span>
+          <span>Tek satırlık gövde için <code>for s in sayilar: print(s)</code> yazılabilir, ama okunaklılık için alt satır tercih edilir.</span>
+        </div>
+      </div>
+      <div class="step-visual">
+        <div class="code-frame">
+          <div class="code-bar">
+            <div class="code-dot cd1"></div><div class="code-dot cd2"></div><div class="code-dot cd3"></div>
+            <div class="code-path">for_yazdirma.py</div>
+          </div>
+          <div class="code-area">
+            <div class="code-line"><span class="code-num">1</span><span class="code-text">meyveler = [<span class="st">"Elma"</span>, <span class="st">"Armut"</span>, <span class="st">"Muz"</span>, <span class="st">"Kiraz"</span>]</span></div>
+            <div class="code-line"><span class="code-num">2</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="code-num">3</span><span class="code-text"><span class="kw">for</span> meyve <span class="kw">in</span> meyveler:</span></div>
+            <div class="code-line"><span class="code-num">4</span><span class="code-text">    <span class="fn">print</span>(<span class="st">"Meyve:"</span>, meyve)</span></div>
+            <div class="code-line"><span class="code-num">5</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="code-num">6</span><span class="code-text"><span class="cm"># Çıktı:</span></span></div>
+            <div class="code-line"><span class="code-num">7</span><span class="code-text"><span class="cm"># Meyve: Elma</span></span></div>
+            <div class="code-line"><span class="code-num">8</span><span class="code-text"><span class="cm"># Meyve: Armut</span></span></div>
+            <div class="code-line"><span class="code-num">9</span><span class="code-text"><span class="cm"># Meyve: Muz</span></span></div>
+            <div class="code-line"><span class="code-num">10</span><span class="code-text"><span class="cm"># Meyve: Kiraz</span></span></div>
+            <div class="code-line"><span class="code-num">11</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="code-num">12</span><span class="code-text"><span class="cm"># Pratik: her elemana fonksiyon uygula</span></span></div>
+            <div class="code-line"><span class="code-num">13</span><span class="code-text">sayilar = [<span class="nm">1</span>, <span class="nm">2</span>, <span class="nm">3</span>, <span class="nm">4</span>]</span></div>
+            <div class="code-line"><span class="code-num">14</span><span class="code-text"><span class="kw">for</span> s <span class="kw">in</span> sayilar:</span></div>
+            <div class="code-line"><span class="code-num">15</span><span class="code-text">    <span class="fn">print</span>(s, <span class="st">"karesi:"</span>, s * s)</span></div>
+            <div class="code-line"><span class="code-num">16</span><span class="code-text"><span class="cm"># 1 karesi: 1  →  4 karesi: 16</span></span></div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" id="s5">
+    <div class="slide-hdr">
+      <div class="sh-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/>
+        </svg>
+      </div>
+      <div class="sh-title">enumerate() ve range(len())</div>
+      <div class="sh-badge">Kavram 2 / 7</div>
+    </div>
+    <div class="slide-body">
+      <div class="layout-step">
+      <div class="step-text">
+        <div class="step-num-badge">İNDEKS</div>
+        <div class="step-title">Hem indeksi hem değeri al</div>
+        <div class="step-desc">Bazen elemanın <strong>kaçıncı sırada</strong> olduğunu da bilmek isteriz. <code>enumerate()</code> indeks ve değeri birlikte verir; <code>range(len())</code> ise indeks üzerinden erişir.</div>
+        <div class="step-tip">
+          <span>💡</span>
+          <span>Hem indeks hem değer lazımsa <code>enumerate()</code>; sadece indeks veya paralel liste gezişinde <code>range(len())</code>.</span>
+        </div>
+      </div>
+      <div class="step-visual">
+        <canvas id="cv-enumerate" class="cv-illu" width="1380" height="900" role="img" aria-label="enumerate ile indeks ve değer birlikte"></canvas>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" id="s6">
+    <div class="slide-hdr">
+      <div class="sh-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+        </svg>
+      </div>
+      <div class="sh-title">enumerate / range(len()) — Kod</div>
+      <div class="sh-badge">Kavram 2 / 7</div>
+    </div>
+    <div class="slide-body">
+      <div class="layout-step">
+      <div class="step-text">
+        <div class="step-num-badge">PRATİK</div>
+        <div class="step-title">İki yöntem, üç senaryo</div>
+        <div class="step-desc"><code>enumerate(liste)</code> (indeks, değer) çiftleri üretir; <code>range(len(liste))</code> indeksleri verir. <code>start=1</code> ile numaralandırmayı 1'den başlatabilirsin.</div>
+        <div class="step-tip">
+          <span>💡</span>
+          <span><code>enumerate(liste, start=1)</code> kullanıcıya gösterilen "1, 2, 3…" listeleri için idealdir.</span>
+        </div>
+      </div>
+      <div class="step-visual">
+        <div class="code-frame">
+          <div class="code-bar">
+            <div class="code-dot cd1"></div><div class="code-dot cd2"></div><div class="code-dot cd3"></div>
+            <div class="code-path">indeksli.py</div>
+          </div>
+          <div class="code-area">
+            <div class="code-line"><span class="code-num">1</span><span class="code-text">meyveler = [<span class="st">"Elma"</span>, <span class="st">"Armut"</span>, <span class="st">"Muz"</span>]</span></div>
+            <div class="code-line"><span class="code-num">2</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="code-num">3</span><span class="code-text"><span class="cm"># 1) enumerate() — Pythonik yol</span></span></div>
+            <div class="code-line"><span class="code-num">4</span><span class="code-text"><span class="kw">for</span> i, meyve <span class="kw">in</span> <span class="fn">enumerate</span>(meyveler):</span></div>
+            <div class="code-line"><span class="code-num">5</span><span class="code-text">    <span class="fn">print</span>(<span class="st">f"{i}. {meyve}"</span>)</span></div>
+            <div class="code-line"><span class="code-num">6</span><span class="code-text"><span class="cm"># 0. Elma  |  1. Armut  |  2. Muz</span></span></div>
+            <div class="code-line"><span class="code-num">7</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="code-num">8</span><span class="code-text"><span class="cm"># 2) range(len()) — klasik yol</span></span></div>
+            <div class="code-line"><span class="code-num">9</span><span class="code-text"><span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="fn">len</span>(meyveler)):</span></div>
+            <div class="code-line"><span class="code-num">10</span><span class="code-text">    <span class="fn">print</span>(i, meyveler[i])</span></div>
+            <div class="code-line"><span class="code-num">11</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="code-num">12</span><span class="code-text"><span class="cm"># 3) Başlangıç indeksi 1'den</span></span></div>
+            <div class="code-line"><span class="code-num">13</span><span class="code-text"><span class="kw">for</span> i, meyve <span class="kw">in</span> <span class="fn">enumerate</span>(meyveler, start=<span class="nm">1</span>):</span></div>
+            <div class="code-line"><span class="code-num">14</span><span class="code-text">    <span class="fn">print</span>(<span class="st">f"{i}. ürün: {meyve}"</span>)</span></div>
+            <div class="code-line"><span class="code-num">15</span><span class="code-text"><span class="cm"># 1. ürün: Elma  |  2. ürün: Armut  |  3. ürün: Muz</span></span></div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" id="s7">
+    <div class="slide-hdr">
+      <div class="sh-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+        </svg>
+      </div>
+      <div class="sh-title">Toplama ve Ortalama — Birikim Deseni</div>
+      <div class="sh-badge">Kavram 3 / 7</div>
+    </div>
+    <div class="slide-body">
+      <div class="layout-step">
+      <div class="step-text">
+        <div class="step-num-badge">BİRİKİM</div>
+        <div class="step-title">Birikim değişkeni — temellerden</div>
+        <div class="step-desc">Listenin tüm elemanlarını toplamak için <strong>birikim deseni</strong> kullanılır: döngüden önce <code>toplam = 0</code>, her adımda <code>toplam += s</code>. Ortalama: <code>toplam / len(liste)</code>.</div>
+        <div class="step-tip">
+          <span>💡</span>
+          <span>Birikim değişkenini döngünün <strong>dışında</strong> sıfırla; içeride sıfırlarsan her adımda sıfırlanır.</span>
+        </div>
+      </div>
+      <div class="step-visual">
+        <canvas id="cv-accumulate" class="cv-illu" width="1380" height="900" role="img" aria-label="Birikim deseni: toplam adım adım büyür"></canvas>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" id="s8">
+    <div class="slide-hdr">
+      <div class="sh-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+        </svg>
+      </div>
+      <div class="sh-title">Toplama / Ortalama — Kod</div>
+      <div class="sh-badge">Kavram 3 / 7</div>
+    </div>
+    <div class="slide-body">
+      <div class="layout-step">
+      <div class="step-text">
+        <div class="step-num-badge">PRATİK</div>
+        <div class="step-title">Manuel toplam, hazır sum(), koşullu ortalama</div>
+        <div class="step-desc">Birikim deseniyle elle toplayabilir ya da hazır <code>sum()</code> kullanabilirsin. <code>for + if</code> ile sadece koşula uyan elemanların ortalamasını alabilirsin.</div>
+        <div class="step-tip">
+          <span>💡</span>
+          <span><code>sum(liste) / len(liste)</code> ortalamanın en kısa yoludur; boş listede <code>len</code> sıfır olur, bölme hatası verir.</span>
+        </div>
+      </div>
+      <div class="step-visual">
+        <div class="code-frame">
+          <div class="code-bar">
+            <div class="code-dot cd1"></div><div class="code-dot cd2"></div><div class="code-dot cd3"></div>
+            <div class="code-path">toplama_ortalama.py</div>
+          </div>
+          <div class="code-area">
+            <div class="code-line"><span class="code-num">1</span><span class="code-text">notlar = [<span class="nm">85</span>, <span class="nm">70</span>, <span class="nm">92</span>, <span class="nm">60</span>, <span class="nm">88</span>]</span></div>
+            <div class="code-line"><span class="code-num">2</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="code-num">3</span><span class="code-text"><span class="cm"># Birikim deseni — toplam</span></span></div>
+            <div class="code-line"><span class="code-num">4</span><span class="code-text">toplam = <span class="nm">0</span></span></div>
+            <div class="code-line"><span class="code-num">5</span><span class="code-text"><span class="kw">for</span> n <span class="kw">in</span> notlar: toplam += n</span></div>
+            <div class="code-line"><span class="code-num">6</span><span class="code-text"><span class="fn">print</span>(<span class="st">"Toplam:"</span>, toplam)  <span class="cm"># 395</span></span></div>
+            <div class="code-line"><span class="code-num">7</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="code-num">8</span><span class="code-text"><span class="cm"># Ortalama</span></span></div>
+            <div class="code-line"><span class="code-num">9</span><span class="code-text">ortalama = toplam / <span class="fn">len</span>(notlar)</span></div>
+            <div class="code-line"><span class="code-num">10</span><span class="code-text"><span class="fn">print</span>(<span class="st">"Ortalama:"</span>, ortalama)  <span class="cm"># 79.0</span></span></div>
+            <div class="code-line"><span class="code-num">11</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="code-num">12</span><span class="code-text"><span class="cm"># Hazır fonksiyon — kısa yol</span></span></div>
+            <div class="code-line"><span class="code-num">13</span><span class="code-text"><span class="fn">print</span>(<span class="fn">sum</span>(notlar) / <span class="fn">len</span>(notlar))  <span class="cm"># 79.0</span></span></div>
+            <div class="code-line"><span class="code-num">14</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="code-num">15</span><span class="code-text"><span class="cm"># Pratik: yalnızca geçer notların ortalaması</span></span></div>
+            <div class="code-line"><span class="code-num">16</span><span class="code-text">gecerler = []</span></div>
+            <div class="code-line"><span class="code-num">17</span><span class="code-text"><span class="kw">for</span> n <span class="kw">in</span> notlar:</span></div>
+            <div class="code-line"><span class="code-num">18</span><span class="code-text">    <span class="kw">if</span> n &gt;= <span class="nm">70</span>: gecerler.<span class="fn">append</span>(n)</span></div>
+            <div class="code-line"><span class="code-num">19</span><span class="code-text"><span class="fn">print</span>(<span class="fn">sum</span>(gecerler) / <span class="fn">len</span>(gecerler))  <span class="cm"># 83.75</span></span></div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" id="s9">
+    <div class="slide-hdr">
+      <div class="sh-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="17 18 23 12 17 6"/><polyline points="7 6 1 12 7 18"/><line x1="11" y1="20" x2="13" y2="4"/>
+        </svg>
+      </div>
+      <div class="sh-title">En Büyük / En Küçük — Aday Seçme</div>
+      <div class="sh-badge">Kavram 4 / 7</div>
+    </div>
+    <div class="slide-body">
+      <div class="layout-step">
+      <div class="step-text">
+        <div class="step-num-badge">ADAY SEÇME</div>
+        <div class="step-title">İlk eleman aday, döngü onu yarıştırır</div>
+        <div class="step-desc">En büyüğü bulmak için <strong>aday seçme</strong> deseni: ilk elemanı aday yap (<code>en_buyuk = liste[0]</code>), sonra her elemanla karşılaştır; daha büyüğü bulunca adayı güncelle.</div>
+        <div class="step-tip">
+          <span>💡</span>
+          <span>Pratikte <code>max(liste)</code> / <code>min(liste)</code> kullan; karmaşık ölçütte ("en uzun kelime") aday seçme deseni gerekir.</span>
+        </div>
+      </div>
+      <div class="step-visual">
+        <canvas id="cv-maxmin" class="cv-illu" width="1380" height="900" role="img" aria-label="Aday seçme: en büyük eleman güncellenerek bulunur"></canvas>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" id="s10">
+    <div class="slide-hdr">
+      <div class="sh-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+        </svg>
+      </div>
+      <div class="sh-title">Max / Min — Kod Pratiği</div>
+      <div class="sh-badge">Kavram 4 / 7</div>
+    </div>
+    <div class="slide-body">
+      <div class="layout-step">
+      <div class="step-text">
+        <div class="step-num-badge">PRATİK</div>
+        <div class="step-title">Hazır fonksiyon ve manuel aday seçme</div>
+        <div class="step-desc">Sayılar için <code>max()</code> / <code>min()</code> hızlıdır. Aday seçme desenini elle yazarak nasıl çalıştığını görebilir, kendi ölçütünü uygulayabilirsin.</div>
+        <div class="step-tip">
+          <span>💡</span>
+          <span>En büyük elemanın <strong>indeksini</strong> de istiyorsan <code>liste.index(max(liste))</code> kullan.</span>
+        </div>
+      </div>
+      <div class="step-visual">
+        <div class="code-frame">
+          <div class="code-bar">
+            <div class="code-dot cd1"></div><div class="code-dot cd2"></div><div class="code-dot cd3"></div>
+            <div class="code-path">max_min.py</div>
+          </div>
+          <div class="code-area">
+            <div class="code-line"><span class="code-num">1</span><span class="code-text">sayilar = [<span class="nm">7</span>, <span class="nm">3</span>, <span class="nm">14</span>, <span class="nm">9</span>, <span class="nm">11</span>]</span></div>
+            <div class="code-line"><span class="code-num">2</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="code-num">3</span><span class="code-text"><span class="cm"># En büyüğü bulma — aday seçme deseni</span></span></div>
+            <div class="code-line"><span class="code-num">4</span><span class="code-text">en_buyuk = sayilar[<span class="nm">0</span>]</span></div>
+            <div class="code-line"><span class="code-num">5</span><span class="code-text"><span class="kw">for</span> s <span class="kw">in</span> sayilar:</span></div>
+            <div class="code-line"><span class="code-num">6</span><span class="code-text">    <span class="kw">if</span> s &gt; en_buyuk: en_buyuk = s</span></div>
+            <div class="code-line"><span class="code-num">7</span><span class="code-text"><span class="fn">print</span>(<span class="st">"En büyük:"</span>, en_buyuk)  <span class="cm"># 14</span></span></div>
+            <div class="code-line"><span class="code-num">8</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="code-num">9</span><span class="code-text"><span class="cm"># En küçük — aynı desen, sadece &lt; ile</span></span></div>
+            <div class="code-line"><span class="code-num">10</span><span class="code-text">en_kucuk = sayilar[<span class="nm">0</span>]</span></div>
+            <div class="code-line"><span class="code-num">11</span><span class="code-text"><span class="kw">for</span> s <span class="kw">in</span> sayilar:</span></div>
+            <div class="code-line"><span class="code-num">12</span><span class="code-text">    <span class="kw">if</span> s &lt; en_kucuk: en_kucuk = s</span></div>
+            <div class="code-line"><span class="code-num">13</span><span class="code-text"><span class="fn">print</span>(<span class="fn">max</span>(sayilar), <span class="fn">min</span>(sayilar))  <span class="cm"># 14  3</span></span></div>
+            <div class="code-line"><span class="code-num">14</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="code-num">15</span><span class="code-text"><span class="cm"># Pratik: en uzun kelime — karmaşık ölçüt</span></span></div>
+            <div class="code-line"><span class="code-num">16</span><span class="code-text">kelimeler = [<span class="st">"Python"</span>, <span class="st">"AI"</span>, <span class="st">"Programlama"</span>]</span></div>
+            <div class="code-line"><span class="code-num">17</span><span class="code-text">en_uzun = kelimeler[<span class="nm">0</span>]</span></div>
+            <div class="code-line"><span class="code-num">18</span><span class="code-text"><span class="kw">for</span> k <span class="kw">in</span> kelimeler:</span></div>
+            <div class="code-line"><span class="code-num">19</span><span class="code-text">    <span class="kw">if</span> <span class="fn">len</span>(k) &gt; <span class="fn">len</span>(en_uzun): en_uzun = k</span></div>
+            <div class="code-line"><span class="code-num">20</span><span class="code-text"><span class="fn">print</span>(en_uzun)  <span class="cm"># Programlama</span></span></div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" id="s11">
+    <div class="slide-hdr">
+      <div class="sh-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+        </svg>
+      </div>
+      <div class="sh-title">while ile Liste İşleme</div>
+      <div class="sh-badge">Kavram 5 / 7</div>
+    </div>
+    <div class="slide-body">
+      <div class="layout-step">
+      <div class="step-text">
+        <div class="step-num-badge">WHILE</div>
+        <div class="step-title">Sayacı sen yönet — ama dikkatli!</div>
+        <div class="step-desc"><code>while</code> döngüsünde bir <strong>i</strong> sayacı tanımlanır ve <code>i &lt; len(liste)</code> koşuluyla sınır belirlenir. Her adımda <code>i += 1</code> yazmak gerekir.</div>
+        <div class="step-tip">
+          <span>💡</span>
+          <span><code>i += 1</code> unutulursa i hep 0 kalır, koşul sonsuza dek doğru olur — bu yüzden listelerde <strong>for</strong> tercih edilir.</span>
+        </div>
+      </div>
+      <div class="step-visual">
+        <canvas id="cv-while" class="cv-illu" width="1380" height="900" role="img" aria-label="while sayacı: i koşulu ve i += 1"></canvas>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" id="s12">
+    <div class="slide-hdr">
+      <div class="sh-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+        </svg>
+      </div>
+      <div class="sh-title">while — Kod Pratiği</div>
+      <div class="sh-badge">Kavram 5 / 7</div>
+    </div>
+    <div class="slide-body">
+      <div class="layout-step">
+      <div class="step-text">
+        <div class="step-num-badge">PRATİK</div>
+        <div class="step-title">i sayacı ile listeyi dolaş</div>
+        <div class="step-desc"><code>i = 0</code> ile başla, <code>while i &lt; len(liste):</code> koşulu, gövdede <code>liste[i]</code> ile eriş ve mutlaka <code>i += 1</code> ile sayacı artır.</div>
+        <div class="step-tip">
+          <span>💡</span>
+          <span>Adım atlamak istersen <code>i += 2</code> yazabilirsin; for döngüsünde bunun karşılığı <code>range(0, n, 2)</code>'dir.</span>
+        </div>
+      </div>
+      <div class="step-visual">
+        <div class="code-frame">
+          <div class="code-bar">
+            <div class="code-dot cd1"></div><div class="code-dot cd2"></div><div class="code-dot cd3"></div>
+            <div class="code-path">while_liste.py</div>
+          </div>
+          <div class="code-area">
+            <div class="code-line"><span class="code-num">1</span><span class="code-text">sayilar = [<span class="nm">1</span>, <span class="nm">2</span>, <span class="nm">3</span>, <span class="nm">4</span>]</span></div>
+            <div class="code-line"><span class="code-num">2</span><span class="code-text">i = <span class="nm">0</span></span></div>
+            <div class="code-line"><span class="code-num">3</span><span class="code-text">toplam = <span class="nm">0</span></span></div>
+            <div class="code-line"><span class="code-num">4</span><span class="code-text"><span class="kw">while</span> i &lt; <span class="fn">len</span>(sayilar):</span></div>
+            <div class="code-line"><span class="code-num">5</span><span class="code-text">    toplam += sayilar[i]</span></div>
+            <div class="code-line"><span class="code-num">6</span><span class="code-text">    i += <span class="nm">1</span>  <span class="cm"># ← UNUTMA!</span></span></div>
+            <div class="code-line"><span class="code-num">7</span><span class="code-text"><span class="fn">print</span>(<span class="st">"Toplam:"</span>, toplam)  <span class="cm"># 10</span></span></div>
+            <div class="code-line"><span class="code-num">8</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="code-num">9</span><span class="code-text"><span class="cm"># Adım atlayarak gezme — while'ın gücü</span></span></div>
+            <div class="code-line"><span class="code-num">10</span><span class="code-text">i = <span class="nm">0</span></span></div>
+            <div class="code-line"><span class="code-num">11</span><span class="code-text"><span class="kw">while</span> i &lt; <span class="fn">len</span>(sayilar):</span></div>
+            <div class="code-line"><span class="code-num">12</span><span class="code-text">    <span class="fn">print</span>(sayilar[i])</span></div>
+            <div class="code-line"><span class="code-num">13</span><span class="code-text">    i += <span class="nm">2</span>  <span class="cm"># sadece çift indeksler</span></span></div>
+            <div class="code-line"><span class="code-num">14</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="code-num">15</span><span class="code-text"><span class="cm"># Koşulla erken çıkış — break</span></span></div>
+            <div class="code-line"><span class="code-num">16</span><span class="code-text">i = <span class="nm">0</span></span></div>
+            <div class="code-line"><span class="code-num">17</span><span class="code-text"><span class="kw">while</span> i &lt; <span class="fn">len</span>(sayilar):</span></div>
+            <div class="code-line"><span class="code-num">18</span><span class="code-text">    <span class="kw">if</span> sayilar[i] == <span class="nm">3</span>: <span class="kw">break</span></span></div>
+            <div class="code-line"><span class="code-num">19</span><span class="code-text">    i += <span class="nm">1</span></span></div>
+            <div class="code-line"><span class="code-num">20</span><span class="code-text"><span class="fn">print</span>(<span class="st">"3 bulundu, indeks:"</span>, i)  <span class="cm"># 2</span></span></div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" id="s13">
+    <div class="slide-hdr">
+      <div class="sh-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="6" width="7" height="12" rx="1"/><rect x="14" y="6" width="7" height="12" rx="1"/>
+        </svg>
+      </div>
+      <div class="sh-title">for vs while — Karşılaştırma</div>
+      <div class="sh-badge">Kavram 6 / 7</div>
+    </div>
+    <div class="slide-body">
+      <div class="layout-step">
+      <div class="step-text">
+        <div class="step-num-badge">SEÇİM</div>
+        <div class="step-title">Listeler için doğru aracı seçmek</div>
+        <div class="step-desc"><code>for</code> sayacı otomatik yönetir, sonsuz döngü riski yoktur; tüm listeyi gezmek için idealdir. <code>while</code> sayacı manuel ister, koşullu ve dinamik akışlar için uygundur.</div>
+        <div class="step-tip">
+          <span>💡</span>
+          <span>Listelerin %90'ında <code>for</code> kullanılır; <code>while</code> sonu önceden belli olmayan akışlar içindir.</span>
+        </div>
+      </div>
+      <div class="step-visual">
+        <canvas id="cv-forwhile" class="cv-illu" width="1380" height="900" role="img" aria-label="for ile while döngüsünün karşılaştırması"></canvas>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" id="s14">
+    <div class="slide-hdr">
+      <div class="sh-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+        </svg>
+      </div>
+      <div class="sh-title">Aynı İş — for vs while</div>
+      <div class="sh-badge">Kavram 6 / 7</div>
+    </div>
+    <div class="slide-body">
+      <div class="layout-step">
+      <div class="step-text">
+        <div class="step-num-badge">PRATİK</div>
+        <div class="step-title">Aynı toplamı iki döngüyle yaz</div>
+        <div class="step-desc">Aynı toplama işini hem <code>for</code> hem <code>while</code> ile yazıp karşılaştır. for daha kısa ve güvenli; while sayaç yönetimi gerektirir.</div>
+        <div class="step-tip">
+          <span>💡</span>
+          <span>İki kod da aynı sonucu verir; fark <strong>okunaklılık</strong> ve <strong>hata riski</strong>ndedir — for'da sonsuz döngü olmaz.</span>
+        </div>
+      </div>
+      <div class="step-visual">
+        <div class="code-frame">
+          <div class="code-bar">
+            <div class="code-dot cd1"></div><div class="code-dot cd2"></div><div class="code-dot cd3"></div>
+            <div class="code-path">karsilastirma.py</div>
+          </div>
+          <div class="code-area">
+            <div class="code-line"><span class="code-num">1</span><span class="code-text">sayilar = [<span class="nm">1</span>, <span class="nm">2</span>, <span class="nm">3</span>, <span class="nm">4</span>]</span></div>
+            <div class="code-line"><span class="code-num">2</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="code-num">3</span><span class="code-text"><span class="cm"># for ile — kısa, temiz, Pythonik</span></span></div>
+            <div class="code-line"><span class="code-num">4</span><span class="code-text"><span class="kw">for</span> s <span class="kw">in</span> sayilar:</span></div>
+            <div class="code-line"><span class="code-num">5</span><span class="code-text">    <span class="fn">print</span>(s)</span></div>
+            <div class="code-line"><span class="code-num">6</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="code-num">7</span><span class="code-text"><span class="cm"># while ile — aynı iş, daha uzun</span></span></div>
+            <div class="code-line"><span class="code-num">8</span><span class="code-text">i = <span class="nm">0</span></span></div>
+            <div class="code-line"><span class="code-num">9</span><span class="code-text"><span class="kw">while</span> i &lt; <span class="fn">len</span>(sayilar):</span></div>
+            <div class="code-line"><span class="code-num">10</span><span class="code-text">    <span class="fn">print</span>(sayilar[i])</span></div>
+            <div class="code-line"><span class="code-num">11</span><span class="code-text">    i += <span class="nm">1</span></span></div>
+            <div class="code-line"><span class="code-num">12</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="code-num">13</span><span class="code-text"><span class="cm"># Sonuç: ikisi de aynı çıktıyı verir</span></span></div>
+            <div class="code-line"><span class="code-num">14</span><span class="code-text"><span class="cm"># 1, 2, 3, 4</span></span></div>
+            <div class="code-line"><span class="code-num">15</span><span class="code-text"><span class="cm"># for: 2 satır  ·  while: 4 satır + sayaç hata riski</span></span></div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" id="s15">
+    <div class="slide-hdr">
+      <div class="sh-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>
+        </svg>
+      </div>
+      <div class="sh-title">Filtreleme — for + if Birlikte</div>
+      <div class="sh-badge">Kavram 7 / 7</div>
+    </div>
+    <div class="slide-body">
+      <div class="layout-step">
+      <div class="step-text">
+        <div class="step-num-badge">FİLTRE</div>
+        <div class="step-title">Koşula uyan elemanları seç</div>
+        <div class="step-desc">Bir listeden sadece koşulu sağlayanları almak için <strong>for + if</strong> kullanılır: boş liste oluştur, döngüde her elemanı kontrol et, geçenleri <code>append()</code> ile ekle.</div>
+        <div class="step-tip">
+          <span>💡</span>
+          <span>Filtreleme deseni 4 adım: <code>yeni = []</code> → <code>for x in liste:</code> → <code>if koşul:</code> → <code>yeni.append(x)</code>.</span>
+        </div>
+      </div>
+      <div class="step-visual">
+        <canvas id="cv-filter" class="cv-illu" width="1380" height="900" role="img" aria-label="for + if ile koşula uyan elemanları filtreleme"></canvas>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" id="s16">
+    <div class="slide-hdr">
+      <div class="sh-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+        </svg>
+      </div>
+      <div class="sh-title">Filtreleme — Kod Pratiği</div>
+      <div class="sh-badge">Kavram 7 / 7</div>
+    </div>
+    <div class="slide-body">
+      <div class="layout-step">
+      <div class="step-text">
+        <div class="step-num-badge">PRATİK</div>
+        <div class="step-title">Boş liste + for + if + append</div>
+        <div class="step-desc">Klasik filtreleme kalıbıyla büyükleri, çiftleri ya da geçer notları ayrı listelere ayırabilirsin. Her koşul ayrı bir filtre üretir.</div>
+        <div class="step-tip">
+          <span>💡</span>
+          <span>Tek satırlık karşılığı liste kavraması (list comprehension): <code>[x for x in liste if x &gt; 10]</code>.</span>
+        </div>
+      </div>
+      <div class="step-visual">
+        <div class="code-frame">
+          <div class="code-bar">
+            <div class="code-dot cd1"></div><div class="code-dot cd2"></div><div class="code-dot cd3"></div>
+            <div class="code-path">filtreleme.py</div>
+          </div>
+          <div class="code-area">
+            <div class="code-line"><span class="code-num">1</span><span class="code-text">sayilar = [<span class="nm">3</span>, <span class="nm">12</span>, <span class="nm">7</span>, <span class="nm">18</span>, <span class="nm">5</span>, <span class="nm">20</span>]</span></div>
+            <div class="code-line"><span class="code-num">2</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="code-num">3</span><span class="code-text"><span class="cm"># 1) Sayısal filtreleme — 10'dan büyükler</span></span></div>
+            <div class="code-line"><span class="code-num">4</span><span class="code-text">buyukler = []</span></div>
+            <div class="code-line"><span class="code-num">5</span><span class="code-text"><span class="kw">for</span> s <span class="kw">in</span> sayilar:</span></div>
+            <div class="code-line"><span class="code-num">6</span><span class="code-text">    <span class="kw">if</span> s &gt; <span class="nm">10</span>: buyukler.<span class="fn">append</span>(s)</span></div>
+            <div class="code-line"><span class="code-num">7</span><span class="code-text"><span class="fn">print</span>(buyukler)  <span class="cm"># [12, 18, 20]</span></span></div>
+            <div class="code-line"><span class="code-num">8</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="code-num">9</span><span class="code-text"><span class="cm"># 2) Çift sayılar — modüler aritmetik</span></span></div>
+            <div class="code-line"><span class="code-num">10</span><span class="code-text">ciftler = [s <span class="kw">for</span> s <span class="kw">in</span> sayilar <span class="kw">if</span> s % <span class="nm">2</span> == <span class="nm">0</span>]</span></div>
+            <div class="code-line"><span class="code-num">11</span><span class="code-text"><span class="fn">print</span>(ciftler)  <span class="cm"># [12, 18, 20]</span></span></div>
+            <div class="code-line"><span class="code-num">12</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="code-num">13</span><span class="code-text"><span class="cm"># 3) Metin filtreleme — uzun kelimeler</span></span></div>
+            <div class="code-line"><span class="code-num">14</span><span class="code-text">kelimeler = [<span class="st">"AI"</span>, <span class="st">"Python"</span>, <span class="st">"Go"</span>, <span class="st">"Java"</span>]</span></div>
+            <div class="code-line"><span class="code-num">15</span><span class="code-text">uzunlar = []</span></div>
+            <div class="code-line"><span class="code-num">16</span><span class="code-text"><span class="kw">for</span> k <span class="kw">in</span> kelimeler:</span></div>
+            <div class="code-line"><span class="code-num">17</span><span class="code-text">    <span class="kw">if</span> <span class="fn">len</span>(k) &gt;= <span class="nm">4</span>: uzunlar.<span class="fn">append</span>(k)</span></div>
+            <div class="code-line"><span class="code-num">18</span><span class="code-text"><span class="fn">print</span>(uzunlar)  <span class="cm"># ['Python', 'Java']</span></span></div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ S17 — Canlı Döngü Simülatörü ══════════════════════ -->
+  <div class="slide" id="s17">
+    <div class="slide-hdr">
+      <div class="sh-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="5 3 19 12 5 21 5 3"/>
+        </svg>
+      </div>
+      <div class="sh-title">Canlı Döngü Simülatörü — Adım Adım İzle</div>
+      <div class="sh-badge">Pratik 1 / 3</div>
+    </div>
+    <div class="slide-body">
+      <div class="layout-full">
+        <div class="ctitle">Bir listeyi seç, döngünün her adımını gör</div>
+        <div class="csub-info">Sayıları gir, mod seç (yazdır / topla / filtrele), <strong>Adım</strong> butonuna bas. Hangi elemanın işlendiğini, biriken değeri ve ilerleyişi anlık görebilirsin.</div>
+
+        <div class="dsim-controls">
+          <input id="dsim-input" type="text" value="5, 10, 15, 20" class="dsim-input">
+          <select id="dsim-mode" onchange="dsimReset()" class="dsim-select">
+            <option value="print">Yazdır</option>
+            <option value="sum">Topla</option>
+            <option value="filter">Filtrele (&gt;10)</option>
+          </select>
+          <button onclick="dsimStart()" class="dsim-btn start">▶ Başlat</button>
+          <button onclick="dsimStep()" id="dsim-step-btn" disabled class="dsim-btn step">→ Adım</button>
+        </div>
+
+        <div class="dsim-listbox">
+          <div class="dsim-listbox-lbl">LİSTE</div>
+          <div id="dsim-list-wrap" class="dsim-listbox-row"></div>
+        </div>
+
+        <div class="dsim-stats">
+          <div class="dsim-stat brand">
+            <div class="dsim-stat-lbl">DÖNGÜ DEĞİŞKENİ</div>
+            <div id="dsim-cur" class="dsim-stat-val">—</div>
+            <div class="dsim-stat-sub">şimdiki s değeri</div>
+          </div>
+          <div class="dsim-stat acc">
+            <div class="dsim-stat-lbl">BİRİKEN DEĞER</div>
+            <div id="dsim-acc" class="dsim-stat-val">0</div>
+            <div id="dsim-acc-label" class="dsim-stat-sub">çıktı / toplam</div>
+          </div>
+          <div class="dsim-stat ok">
+            <div class="dsim-stat-lbl">İLERLEME</div>
+            <div id="dsim-prog-text" class="dsim-stat-val">0 / 0</div>
+            <div class="dsim-progbar"><div id="dsim-prog" class="dsim-progbar-fill"></div></div>
+          </div>
+        </div>
+
+        <div class="sim-log">
+          <div class="sim-log-bar">
+            <div class="sim-log-title">▶ DÖNGÜ ADIM LOGLARI</div>
+            <button onclick="dsimReset()" class="sim-log-reset">Sıfırla</button>
+          </div>
+          <div id="dsim-log" class="sim-log-body">Başlat butonuna basarak döngüyü adım adım izle...</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ S18 — Canlı Python Editörü ══════════════════════ -->
+  <div class="slide" id="s18">
+    <div class="slide-hdr">
+      <div class="sh-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/><line x1="12" y1="4" x2="9" y2="20"/>
+        </svg>
+      </div>
+      <div class="sh-title">Canlı Python Editörü</div>
+      <div class="sh-badge">Pratik 2 / 3</div>
+    </div>
+    <div class="slide-body">
+      <div class="layout-full">
+        <div class="ctitle">Python kodunu tarayıcıda çalıştır — Skulpt ile</div>
+        <div class="py-wrap">
+          <div class="py-pane">
+            <div class="py-pane-bar">
+              <div class="py-dot r"></div><div class="py-dot y"></div><div class="py-dot g"></div>
+              <div class="py-fname">listeler_donguler.py</div>
+              <button class="py-btn reset" onclick="pyReset('py-ed-1','py-out-1',pyDef1)">Sıfırla</button>
+              <button class="py-btn run" onclick="pyRun('py-ed-1','py-out-1')">▶ Çalıştır</button>
+            </div>
+            <textarea class="py-textarea" id="py-ed-1" spellcheck="false"></textarea>
+          </div>
+          <div class="py-pane py-output-pane">
+            <div class="py-pane-bar">
+              <div class="py-out-title">▶ Çıktı</div>
+              <button class="py-btn clear" onclick="document.getElementById('py-out-1').innerHTML='&lt;span class=&quot;py-sys&quot;&gt;// Çıktı burada görünecek&lt;/span&gt;'">Temizle</button>
+            </div>
+            <div class="py-output" id="py-out-1"><span class="py-sys">// Kodu çalıştırmak için ▶ Çalıştır butonuna bas</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" id="s19">
+    <div class="slide-hdr">
+      <div class="sh-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 3v18h18"/><polyline points="7 14 11 10 14 13 21 6"/>
+        </svg>
+      </div>
+      <div class="sh-title">Mini Proje — Not Analizi Uygulaması</div>
+      <div class="sh-badge">Pratik 3 / 3</div>
+    </div>
+    <div class="slide-body">
+      <div class="layout-step">
+      <div class="step-text">
+        <div class="step-num-badge">PROJE</div>
+        <div class="step-title">Öğrendiklerini gerçek bir uygulamada birleştir</div>
+        <div class="step-desc">Kullanıcıdan notları al, ortalamayı hesapla, en yüksek/en düşük notu bul, geçenleri filtrele ve özet rapor sun. <code>append</code>, <code>for</code>, <code>if</code>, <code>sum</code>, <code>len</code>, <code>max</code>, <code>min</code> bir arada.</div>
+        <div class="step-tip">
+          <span>💡</span>
+          <span>Akış: <code>while</code> ile veri topla → <code>for</code> + birikimle ortalama → <code>for + if</code> ile geçen/kalan ayır → <code>max/min</code> ile rapor.</span>
+        </div>
+      </div>
+      <div class="step-visual">
+        <canvas id="cv-project" class="cv-illu" width="1380" height="900" role="img" aria-label="Not analizi: ortalama, en yüksek, en düşük, geçen sayısı"></canvas>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" id="s20">
+    <div class="slide-hdr">
+      <div class="sh-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+        </svg>
+      </div>
+      <div class="sh-title">Mini Proje — Tam Kod</div>
+      <div class="sh-badge">Pratik 3 / 3</div>
+    </div>
+    <div class="slide-body">
+      <div class="layout-step">
+      <div class="step-text">
+        <div class="step-num-badge">TAM KOD</div>
+        <div class="step-title">while + for + if + sum + max + min bir arada</div>
+        <div class="step-desc">Notları <code>while</code> ile topla ('q' ile çık), birikim deseniyle toplam/ortalama hesapla, <code>for + if</code> ile geçen ve kalanları ayır, <code>max()/min()</code> ile uçları bul.</div>
+        <div class="step-tip">
+          <span>💡</span>
+          <span><code>(gecenler if n &gt;= 50 else kalanlar).append(n)</code> tek satırda koşullu ekleme yapan zarif bir kalıptır.</span>
+        </div>
+      </div>
+      <div class="step-visual">
+        <div class="code-frame">
+          <div class="code-bar">
+            <div class="code-dot cd1"></div><div class="code-dot cd2"></div><div class="code-dot cd3"></div>
+            <div class="code-path">not_analizi.py</div>
+          </div>
+          <div class="code-area">
+            <div class="code-line"><span class="code-num">1</span><span class="code-text">notlar = []</span></div>
+            <div class="code-line"><span class="code-num">2</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="code-num">3</span><span class="code-text"><span class="cm"># 1) Notları topla</span></span></div>
+            <div class="code-line"><span class="code-num">4</span><span class="code-text"><span class="kw">while</span> <span class="kw">True</span>:</span></div>
+            <div class="code-line"><span class="code-num">5</span><span class="code-text">    veri = <span class="fn">input</span>(<span class="st">"Not ('q'=bitir): "</span>).<span class="fn">strip</span>()</span></div>
+            <div class="code-line"><span class="code-num">6</span><span class="code-text">    <span class="kw">if</span> veri.<span class="fn">lower</span>() == <span class="st">"q"</span>: <span class="kw">break</span></span></div>
+            <div class="code-line"><span class="code-num">7</span><span class="code-text">    <span class="kw">if</span> veri.<span class="fn">isdigit</span>(): notlar.<span class="fn">append</span>(<span class="fn">int</span>(veri))</span></div>
+            <div class="code-line"><span class="code-num">8</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="code-num">9</span><span class="code-text"><span class="cm"># 2) Toplam ve ortalama — birikim deseni</span></span></div>
+            <div class="code-line"><span class="code-num">10</span><span class="code-text">toplam = <span class="nm">0</span></span></div>
+            <div class="code-line"><span class="code-num">11</span><span class="code-text"><span class="kw">for</span> n <span class="kw">in</span> notlar: toplam += n</span></div>
+            <div class="code-line"><span class="code-num">12</span><span class="code-text">ortalama = toplam / <span class="fn">len</span>(notlar)</span></div>
+            <div class="code-line"><span class="code-num">13</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="code-num">14</span><span class="code-text"><span class="cm"># 3) Geçen / kalan — for + if</span></span></div>
+            <div class="code-line"><span class="code-num">15</span><span class="code-text">gecenler, kalanlar = [], []</span></div>
+            <div class="code-line"><span class="code-num">16</span><span class="code-text"><span class="kw">for</span> n <span class="kw">in</span> notlar:</span></div>
+            <div class="code-line"><span class="code-num">17</span><span class="code-text">    (gecenler <span class="kw">if</span> n &gt;= <span class="nm">50</span> <span class="kw">else</span> kalanlar).<span class="fn">append</span>(n)</span></div>
+            <div class="code-line"><span class="code-num">18</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="code-num">19</span><span class="code-text"><span class="fn">print</span>(<span class="st">f"Ort: {ortalama:.2f}  Max: {max(notlar)}  Min: {min(notlar)}"</span>)</span></div>
+            <div class="code-line"><span class="code-num">20</span><span class="code-text"><span class="fn">print</span>(<span class="st">f"Geçenler: {gecenler}"</span>)</span></div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ S-QUIZ ══════════════════════ -->
+  <div class="slide" id="s-quiz">
+    <div class="slide-hdr">
+      <div class="sh-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+          <line x1="12" y1="17" x2="12.01" y2="17"/>
+          <circle cx="12" cy="12" r="10"/>
+        </svg>
+      </div>
+      <div class="sh-title">Bilgi Testi</div>
+      <div class="sh-badge">Quiz</div>
+    </div>
+    <div class="slide-body">
+      <div class="layout-quiz" id="quiz-area"></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ S-DONE ══════════════════════ -->
+  <div class="slide" id="s-done">
+    <div class="slide-body" style="padding:0">
+      <div class="layout-done">
+        <div class="done-inner">
+          <div class="done-trophy" id="done-emoji">
+            <canvas class="cv-done" id="cv-done" width="600" height="390" role="img" aria-label="Ders tamamlandı"></canvas>
+          </div>
+          <div class="done-title" id="done-title">Tebrikler!</div>
+          <div class="done-msg" id="done-msg">Bu etkinliği başarıyla tamamladın!</div>
+          <div class="done-stats">
+            <div class="done-stat">
+              <div class="done-stat-val" id="done-slides">0</div>
+              <div class="done-stat-lbl">Slayt</div>
+            </div>
+            <div class="done-stat">
+              <div class="done-stat-val" id="done-score">0/0</div>
+              <div class="done-stat-lbl">Quiz</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+/* ════════════════════════════════════════════════════════════════════
+   LESSON
+   ════════════════════════════════════════════════════════════════════ */
+const LESSON = {
+  grade:    'lise',
+  week:     '7. Hafta',
+  title:    'Listelerle Döngüler (Lists 3)',
+  desc:     'for ve while döngüleriyle listeleri gezmeyi, toplam/ortalama hesaplamayı, koşula göre filtreleme yapmayı öğreneceksin. Listelerle gerçek veri analizi pratikleri bu derste.',
+  goals: [
+    'for döngüsü, enumerate() ve range(len()) ile listenin elemanlarına ve indekslerine erişebilirim.',
+    'Birikim değişkeniyle toplam, ortalama, en büyük ve en küçük gibi temel istatistikleri hesaplayabilirim.',
+    'for döngüsünün içine if koşulu yerleştirerek koşula uyan elemanları filtreleyebilir; for ile while arasında doğru seçimi yapabilirim.',
+  ],
+  sections: [
+    { icon:'🔁', label:'For Döngüsü',  sub:'Listeyi tek tek gezme' },
+    { icon:'📊', label:'Hesaplama',     sub:'Toplam, ortalama, max/min' },
+    { icon:'🔍', label:'Filtreleme',    sub:'for + if kombinasyonu' },
+    { icon:'⏳', label:'While Döngüsü', sub:'i sayacı ile dolaşma' },
+  ],
+  quiz: [
+    { q:'for meyve in meyveler: ifadesinde meyve değişkeni ne işe yarar?',
+      opts:['Listenin uzunluğunu tutar','Sadece ilk elemanı tutar','Her adımda listedeki sıradaki elemanı tutar','Listenin son elemanını tutar'],
+      correct:2,
+      fb:'for döngüsü her iterasyonda listeden bir sonraki elemanı alıp döngü değişkenine atar.' },
+    { q:'sayilar = [10, 20, 30] için toplam = 0; for s in sayilar: toplam += s sonucunda toplam kaçtır?',
+      opts:['60 — tüm elemanlar toplandı','30 — sadece son eleman','10 — sadece ilk eleman','0 — döngü çalışmadı'],
+      correct:0,
+      fb:'Birikim değişkeni desenine göre her iterasyonda eleman eklenir: 0 → 10 → 30 → 60.' },
+    { q:'enumerate() fonksiyonu döngüde ne sağlar?',
+      opts:['Listeyi tersine çevirir','Aynı anda hem indeksi hem değeri verir','Listeyi sıralar','Listeyi kopyalar'],
+      correct:1,
+      fb:'enumerate() bir liste için (indeks, değer) çiftleri üretir; manuel sayaç tutmaya gerek bırakmaz.' },
+    { q:'while i < len(liste): kullanırken döngünün içinde i += 1 yazmazsak ne olur?',
+      opts:['Döngü hiç çalışmaz','Sadece son eleman işlenir','Hata verir','Sonsuz döngü oluşur — i hep 0 kaldığı için koşul her zaman doğrudur'],
+      correct:3,
+      fb:'while döngüsünde sayacı artırmak programcının görevidir. Aksi halde koşul hiç değişmez ve sonsuz döngü oluşur.' },
+    { q:'Filtreleme için en doğru kalıp hangisidir?',
+      opts:['for x in l: if x > 10: yeni.append(x) — boş liste + for + if + append','l.filter(x > 10) — listenin built-in metodu','if l > 10: append — liste bütününe koşul','for x in l == 10: append — eşitlik döngü içinde'],
+      correct:0,
+      fb:'Klasik filtreleme: boş bir liste oluştur, for ile gez, if ile koşulu kontrol et, append ile ekle.' },
+  ],
+  doneMsg: 'Listelerle döngüleri öğrendin: for, while, enumerate, range(len()), filtreleme ve birikim deseni. Artık veri toplama, ortalama bulma, koşula göre eleme gibi gerçek uygulamalar yazabilirsin!',
+};
+
+const SLIDE_LABELS = [
+  '1. Kapak',
+  '2. Kazanımlar',
+  '3. for ile Yazdırma',
+  '4. for — Kod',
+  '5. enumerate / range(len())',
+  '6. İndeksli — Kod',
+  '7. Toplama / Ortalama',
+  '8. Toplama — Kod',
+  '9. Max / Min',
+  '10. Max / Min — Kod',
+  '11. while ile Liste',
+  '12. while — Kod',
+  '13. for vs while',
+  '14. for vs while — Kod',
+  '15. Filtreleme',
+  '16. Filtreleme — Kod',
+  '17. Canlı Döngü Simülatörü',
+  '18. Canlı Python Editörü',
+  '19. Mini Proje — Tanıtım',
+  '20. Mini Proje — Kod',
+  '21. Bilgi Testi',
+  '22. Tebrikler!',
+];
+
+const TOTAL = SLIDE_LABELS.length;
+let cur = 1;
+const visited = new Set([1]);
+let score = 0, quizTotal = 0;
+
+function applyGrade(g) { document.body.className = 'grade-' + g; }
+
+function fillLesson() {
+  document.title = LESSON.title;
+  applyGrade(LESSON.grade);
+  const isSmall = ['anaokulu','ilkokul'].includes(LESSON.grade);
+
+  document.getElementById('s1-badge').textContent = LESSON.week;
+  document.getElementById('s1-desc').textContent = LESSON.desc;
+  document.getElementById('s1-title').textContent = LESSON.title;
+  const words = LESSON.title.split(' ');
+  const last = words.pop();
+  document.getElementById('s1-cover-title').innerHTML =
+    words.join(' ') + (words.length ? ' ' : '') + '<span>' + last + '</span>';
+  if (isSmall) document.getElementById('s1-start-lbl').textContent = 'Hadi Başlayalım!';
+
+  const clrs = ['var(--brand)','var(--accent)','var(--ok)','#8b5cf6','#ec4899'];
+  const stepsEl = document.getElementById('s1-steps');
+  stepsEl.innerHTML = '';
+  LESSON.sections.forEach((s, i) => {
+    stepsEl.innerHTML +=
+      '<div class="cover-step"><div class="cs-n" style="background:' + clrs[i % clrs.length] + '">' +
+      s.icon + '</div><div><div class="cs-t">' + s.label + '</div><div class="cs-s">' + s.sub + '</div></div></div>';
+  });
+
+  document.getElementById('s2-title').textContent = isSmall ? 'Ne Öğreneceğiz?' : 'Kazanımlar';
+  document.getElementById('s2-sub').textContent = isSmall ? 'Bu derste:' : 'Bu etkinliğin sonunda:';
+  const goalsEl = document.getElementById('s2-goals');
+  goalsEl.innerHTML = '';
+  LESSON.goals.forEach(g => {
+    goalsEl.innerHTML += '<div class="goal-item"><div class="goal-check">✓</div><div class="goal-text">' + g + '</div></div>';
+  });
+
+  document.getElementById('done-title').textContent = isSmall
+    ? LESSON.title + ' öğrendin!'
+    : LESSON.title + ' tamamlandı!';
+  document.getElementById('done-msg').textContent = LESSON.doneMsg;
+  document.getElementById('done-slides').textContent = TOTAL;
+
+  buildQuiz();
+}
+
+const QB = {
+  anaokulu: { ok:'🌟 Harika! ', err:'😊 Olmadı! ' },
+  ilkokul:  { ok:'✅ Doğru! ', err:'❌ Yanlış. ' },
+  ortaokul: { ok:'✅ Doğru! ', err:'❌ Yanlış. ' },
+  lise:     { ok:'', err:'' },
+};
+
+/* Aktif soru indeksi (0-based) */
+let quizCur = 0;
+
+function buildQuiz() {
+  const area = document.getElementById('quiz-area');
+  area.innerHTML = '';
+  area.className = 'layout-quiz';
+  const qb = QB[LESSON.grade] || QB.ortaokul;
+  const ltrs = ['A','B','C','D'];
+  const n = LESSON.quiz.length;
+  quizTotal = n; score = 0; quizCur = 0;
+
+  // 1) HEADER: sayaç + ilerleme bar + skor
+  const hdr = document.createElement('div');
+  hdr.className = 'quiz-hdr';
+  hdr.innerHTML =
+    '<div class="quiz-counter">Soru <b id="qc-cur">1</b> / <span id="qc-tot">' + n + '</span></div>' +
+    '<div class="quiz-bar"><div class="quiz-bar-fill" id="qbar"></div></div>' +
+    '<div class="quiz-score">' +
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>' +
+      '<span id="qsc-val">0</span> / ' + n +
+    '</div>';
+  area.appendChild(hdr);
+
+  // 2) BODY: tüm sorular eklenir, sadece aktif olan görünür
+  const body = document.createElement('div');
+  body.className = 'quiz-body';
+  area.appendChild(body);
+
+  LESSON.quiz.forEach((q, qi) => {
+    const wrap = document.createElement('div');
+    wrap.className = 'quiz-wrap' + (qi === 0 ? ' active' : '');
+    wrap.dataset.qi = qi;
+    wrap.innerHTML = '<div class="quiz-q">' + (qi+1) + '. ' + q.q + '</div>';
+    const opts = document.createElement('div');
+    opts.className = 'quiz-opts';
+    q.opts.forEach((opt, oi) => {
+      const btn = document.createElement('button');
+      btn.className = 'quiz-opt';
+      btn.innerHTML = '<div class="quiz-letter">' + ltrs[oi] + '</div><span>' + opt + '</span>';
+      btn.onclick = () => quizAns(qi, oi, btn, q, qb);
+      opts.appendChild(btn);
+    });
+    wrap.appendChild(opts);
+
+    const fb = document.createElement('div');
+    fb.className = 'quiz-fb'; fb.id = 'qfb-' + qi;
+    wrap.appendChild(fb);
+
+    // Sonraki / Sonuç butonu — her sorunun altında, cevap verilince görünür
+    const nextWrap = document.createElement('div');
+    nextWrap.className = 'quiz-next-wrap';
+    const isLast = qi === n - 1;
+    const nextLbl = isLast ? 'Sonuca git' : 'Sonraki soru';
+    const nextBtn = document.createElement('button');
+    nextBtn.className = 'quiz-next';
+    nextBtn.id = 'qnext-' + qi;
+    nextBtn.innerHTML =
+      '<span>' + nextLbl + '</span>' +
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>';
+    nextBtn.onclick = () => quizGoNext(qi, isLast);
+    nextWrap.appendChild(nextBtn);
+    wrap.appendChild(nextWrap);
+
+    body.appendChild(wrap);
+  });
+
+  updateQuizBar();
+}
+
+function updateQuizBar() {
+  const total = LESSON.quiz.length;
+  // İlerleme: aktif soru kaçıncı (cevapladıktan sonra bar tam dolması için cur+1 mantığı)
+  const pct = Math.round(((quizCur) / total) * 100);
+  const bar = document.getElementById('qbar');
+  if (bar) bar.style.width = pct + '%';
+  const cur = document.getElementById('qc-cur');
+  if (cur) cur.textContent = Math.min(quizCur + 1, total);
+  const sc = document.getElementById('qsc-val');
+  if (sc) sc.textContent = score;
+}
+
+function quizAns(qi, oi, el, q, qb) {
+  // Bu sorunun butonlarını kilitle (tekrar tıklanmasın)
+  const parent = el.parentElement;
+  Array.from(parent.children).forEach(c => { c.disabled = true; });
+
+  const correct = oi === q.correct;
+  const fb = document.getElementById('qfb-' + qi);
+
+  if (correct) {
+    el.classList.add('correct');
+    score++;
+    fb.textContent = qb.ok + (q.fb || '');
+    fb.className = 'quiz-fb show ok';
+    playSound('correct');
+  } else {
+    el.classList.add('wrong');
+    fb.textContent = qb.err + (q.fb || '');
+    fb.className = 'quiz-fb show err';
+    const correctEl = parent.children[q.correct];
+    if (correctEl) correctEl.classList.add('correct');
+    playSound('wrong');
+  }
+
+  // Sonraki butonu göster
+  const nextBtn = document.getElementById('qnext-' + qi);
+  if (nextBtn) nextBtn.classList.add('show');
+
+  // Skor güncelle (done ekranı + üst sayaç)
+  document.getElementById('done-score').textContent = score + '/' + quizTotal;
+  const sc = document.getElementById('qsc-val');
+  if (sc) sc.textContent = score;
+
+  lmsUpdate();
+}
+
+function quizGoNext(qi, isLast) {
+  if (isLast) {
+    // Quiz bitti — Tebrikler slaytına geç
+    quizCur = LESSON.quiz.length;
+    updateQuizBar();
+    playSound('next');
+    goTo(TOTAL);
+    return;
+  }
+  // Bir sonraki soruya geç
+  const body = document.querySelector('.quiz-body');
+  if (!body) return;
+  const wraps = body.querySelectorAll('.quiz-wrap');
+  const cur = wraps[qi];
+  const next = wraps[qi + 1];
+  if (!next) return;
+
+  // Çıkış animasyonu, sonra giriş
+  cur.classList.add('q-leaving');
+  setTimeout(() => {
+    cur.classList.remove('active', 'q-leaving');
+    next.classList.add('active');
+    quizCur = qi + 1;
+    updateQuizBar();
+  }, 240);
+  playSound('next');
+}
+
+/* Ses efekti — Web Audio API */
+let soundEnabled = true;
+function playSound(type) {
+  if (!soundEnabled) return;
+  try {
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    if (!AudioCtx) return;
+    const ctx = new AudioCtx();
+    if (type === 'correct') {
+      // Yükselen iki nota: do-mi (pozitif)
+      [523.25, 659.25].forEach((freq, i) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0, ctx.currentTime + i * 0.1);
+        gain.gain.linearRampToValueAtTime(0.15, ctx.currentTime + i * 0.1 + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.1 + 0.2);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(ctx.currentTime + i * 0.1);
+        osc.stop(ctx.currentTime + i * 0.1 + 0.2);
+      });
+    } else if (type === 'wrong') {
+      // İnen iki nota: sol-mi (yumuşak yanlış)
+      [392, 329.63].forEach((freq, i) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0, ctx.currentTime + i * 0.12);
+        gain.gain.linearRampToValueAtTime(0.12, ctx.currentTime + i * 0.12 + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.12 + 0.25);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(ctx.currentTime + i * 0.12);
+        osc.stop(ctx.currentTime + i * 0.12 + 0.25);
+      });
+    } else if (type === 'next') {
+      // Slayt geçişi: kısa "tık" sesi
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.value = 800;
+      gain.gain.setValueAtTime(0.08, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.08);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(ctx.currentTime);
+      osc.stop(ctx.currentTime + 0.08);
+    }
+  } catch (e) {}
+}
+
+function go(d) { goTo(cur + d); }
+
+function goTo(n) {
+  if (n < 1 || n > TOTAL || n === cur) return;
+  const slides = document.querySelectorAll('.slide');
+  let curSlide = null, nextSlide = null;
+  slides.forEach((s, i) => {
+    if (i + 1 === cur) curSlide = s;
+    if (i + 1 === n) nextSlide = s;
+  });
+  if (!nextSlide) return;
+  if (curSlide) curSlide.classList.remove('active');
+  nextSlide.classList.add('active');
+  cur = n;
+  visited.add(n);
+  fitSlideContent(nextSlide);
+  if (cur === TOTAL) confetti();
+  lmsUpdate();
+}
+
+function fitSlideContent(slideEl) {
+  if (!slideEl) return;
+  const body = slideEl.querySelector('.slide-body');
+  if (!body) return;
+  const target = body.querySelector('.layout-full, .layout-step, .layout-quiz');
+  if (!target) return;
+  target.style.fontSize = '';
+  requestAnimationFrame(() => {
+    const max = body.clientHeight;
+    function realH() {
+      let h = target.scrollHeight;
+      target.querySelectorAll('.code-area').forEach(area => {
+        const inner = area.scrollHeight;
+        const outer = area.clientHeight;
+        if (inner > outer + 2) h += (inner - outer);
+      });
+      return h;
+    }
+    let h = realH();
+    if (h <= max + 4) return;
+    let scale = 1.0, tries = 0;
+    while (h > max + 4 && scale > 0.78 && tries < 12) {
+      scale -= 0.02;
+      target.style.fontSize = (scale * 100) + '%';
+      h = realH();
+      tries++;
+    }
+    if (h > max + 4) {
+      console.warn('[fit] Slayt', slideEl.id, 'içeriği taşıyor — çözüm: 2 slayta böl.');
+    }
+  });
+}
+
+function confetti() {
+  const colors = ['#0ea5e9','#f59e0b','#10b981','#ec4899','#8b5cf6','#f472b6'];
+  for (let i = 0; i < 60; i++) {
+    setTimeout(() => {
+      const c = document.createElement('div');
+      c.className = 'confetti';
+      c.style.left = Math.random() * 100 + '%';
+      c.style.top = '-10px';
+      c.style.background = colors[Math.floor(Math.random() * colors.length)];
+      c.style.transform = 'rotate(' + (Math.random() * 360) + 'deg)';
+      c.style.transition = 'top 2.5s ease-in, left 2.5s ease-in, opacity 2.5s';
+      document.body.appendChild(c);
+      requestAnimationFrame(() => {
+        c.style.top = '100vh';
+        c.style.left = (Math.random() * 100) + '%';
+        c.style.opacity = '0';
+      });
+      setTimeout(() => c.remove(), 2600);
+    }, i * 30);
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   WRAPPER ENTEGRASYONU — postMessage protokolü
+   
+   GİDEN (master → wrapper):
+   - { type: 'wrapper_ready' }                       → master hazır
+   - { type: 'lms_update', slide, total, progress,
+       completed, score, quizTotal }                 → ilerleme güncel
+   
+   GELEN (wrapper → master):
+   - { type: 'lms_init', school, category, unitName } → metadata (opsiyonel)
+   - { type: 'lms_cmd', cmd: 'goTo', slide: N }      → slayta git
+   - { type: 'lms_cmd', cmd: 'next' }                → ileri
+   - { type: 'lms_cmd', cmd: 'prev' }                → geri
+   - { type: 'lms_cmd', cmd: 'reset' }               → başa dön
+   ════════════════════════════════════════════════════════════════════ */
+
+function lmsUpdate() {
+  const progress = TOTAL > 1
+    ? Math.round((cur - 1) / (TOTAL - 1) * 100)
+    : 100;
+  const completed = cur === TOTAL;
+  console.log('[MASTER] lmsUpdate →', { slide: cur, total: TOTAL, progress, completed });
+  if (window.parent && window.parent !== window) {
+    try {
+      window.parent.postMessage({
+        type: 'lms_update',
+        slide: cur,
+        total: TOTAL,
+        progress: progress,
+        completed: completed,
+        score: score,
+        quizTotal: quizTotal,
+      }, '*');
+    } catch (e) {
+      console.error('[MASTER] postMessage error:', e);
+    }
+  } else {
+    console.warn('[MASTER] No parent window — standalone mode');
+  }
+}
+
+function lmsReady() {
+  console.log('[MASTER] lmsReady — sending wrapper_ready + lms_labels');
+  if (window.parent && window.parent !== window) {
+    try {
+      window.parent.postMessage({ type: 'wrapper_ready' }, '*');
+      // v9.3: slayt etiketleri + grade + lesson title (wrapper UI için)
+      window.parent.postMessage({
+        type: 'lms_labels',
+        labels: SLIDE_LABELS,
+        total: TOTAL,
+        grade: LESSON.grade,
+        title: LESSON.title,
+        week:  LESSON.week,
+      }, '*');
+      console.log('[MASTER] Sent labels:', SLIDE_LABELS, 'grade:', LESSON.grade);
+    } catch (e) {
+      console.error('[MASTER] lmsReady error:', e);
+    }
+  }
+}
+
+window.addEventListener('message', function(e) {
+  console.log('[MASTER] received message:', e.data);
+  if (!e.data || !e.data.type) return;
+  if (e.data.type === 'lms_init') return;
+  if (e.data.type === 'lms_setting') {
+    // Wrapper'dan ayar geldi (örn: ses açık/kapalı)
+    if (typeof e.data.sound === 'string') {
+      soundEnabled = (e.data.sound === 'on');
+      console.log('[MASTER] sound ->', soundEnabled);
+    }
+    return;
+  }
+  if (e.data.type === 'lms_cmd') {
+    const cmd = e.data.cmd;
+    if (cmd === 'goTo' && typeof e.data.slide === 'number') goTo(e.data.slide);
+    else if (cmd === 'next') go(1);
+    else if (cmd === 'prev') go(-1);
+    else if (cmd === 'reset') { buildQuiz(); goTo(1); }
+  }
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowRight' || e.key === 'PageDown') go(1);
+  else if (e.key === 'ArrowLeft' || e.key === 'PageUp') go(-1);
+  else if (e.key === 'Home') goTo(1);
+  else if (e.key === 'End') goTo(TOTAL);
+});
+
+/* ════════════════════════════════════════════════════════════════════
+   TOUCH / SWIPE DESTEĞİ — tablet/telefon için yan kaydırma ile slayt geçişi
+   ════════════════════════════════════════════════════════════════════ */
+let _touchStartX = 0, _touchStartY = 0, _touchEndX = 0, _touchEndY = 0;
+document.addEventListener('touchstart', (e) => {
+  if (e.target.closest('.quiz-opt, .cover-start, button, input, textarea, a')) return;
+  _touchStartX = e.changedTouches[0].screenX;
+  _touchStartY = e.changedTouches[0].screenY;
+}, { passive: true });
+document.addEventListener('touchend', (e) => {
+  if (e.target.closest('.quiz-opt, .cover-start, button, input, textarea, a')) return;
+  _touchEndX = e.changedTouches[0].screenX;
+  _touchEndY = e.changedTouches[0].screenY;
+  const dx = _touchEndX - _touchStartX;
+  const dy = _touchEndY - _touchStartY;
+  // Yatay swipe (50px+ ve dikey hareketten 2x fazla)
+  if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 2) {
+    if (dx < 0) go(1);   // sola swipe → ileri
+    else go(-1);          // sağa swipe → geri
+  }
+}, { passive: true });
+
+let _resizeT;
+window.addEventListener('resize', () => {
+  clearTimeout(_resizeT);
+  _resizeT = setTimeout(() => {
+    const active = document.querySelector('.slide.active');
+    if (active) fitSlideContent(active);
+  }, 180);
+});
+
+
+/* ════════════════════════════════════════════════════════════════════
+   DERS-ÖZEL JS — H7 Listelerle Döngüler
+   Canlı Döngü Simülatörü + Canlı Python Editörü (Skulpt)
+   ════════════════════════════════════════════════════════════════════ */
+
+/* ─── Canlı Döngü Simülatörü ─── */
+let _dsimList = [];
+let _dsimIdx  = 0;
+let _dsimAcc  = 0;
+let _dsimResult = [];
+let _dsimMode = 'print';
+let _dsimRunning = false;
+
+function _dsimRender() {
+  const wrap = document.getElementById('dsim-list-wrap');
+  if (!wrap) return;
+  if (_dsimList.length === 0) {
+    wrap.innerHTML = '<div style="font-family:var(--mono);font-size:clamp(11px, 0.4vw + 10px, 19px);color:var(--muted);font-style:italic">Henüz başlatılmadı...</div>';
+    return;
+  }
+  wrap.innerHTML = _dsimList.map((v, i) => {
+    let cls = 'dcell idle';
+    if (_dsimRunning) {
+      if (i < _dsimIdx)      cls = 'dcell done';
+      else if (i === _dsimIdx) cls = 'dcell cur';
+    }
+    return '<div class="' + cls + '">' + v + '<div class="dcell-idx">[' + i + ']</div></div>';
+  }).join('');
+}
+
+function _dsimUpdateStatus() {
+  const cur = document.getElementById('dsim-cur');
+  const acc = document.getElementById('dsim-acc');
+  const accLbl = document.getElementById('dsim-acc-label');
+  const prog = document.getElementById('dsim-prog');
+  const progText = document.getElementById('dsim-prog-text');
+
+  if (cur) {
+    if (_dsimIdx < _dsimList.length) cur.textContent = _dsimList[_dsimIdx];
+    else cur.textContent = _dsimRunning || _dsimList.length ? '✓' : '—';
+  }
+
+  if (_dsimMode === 'print') {
+    if (acc) acc.textContent = _dsimResult.length ? _dsimResult.join(', ') : '—';
+    if (accLbl) accLbl.textContent = 'yazdırılan';
+  } else if (_dsimMode === 'sum') {
+    if (acc) acc.textContent = _dsimAcc;
+    if (accLbl) accLbl.textContent = 'toplam';
+  } else if (_dsimMode === 'filter') {
+    if (acc) acc.textContent = '[' + _dsimResult.join(', ') + ']';
+    if (accLbl) accLbl.textContent = 'filtrelenenler (>10)';
+  }
+
+  const pct = _dsimList.length === 0 ? 0 : Math.round((_dsimIdx / _dsimList.length) * 100);
+  if (prog) prog.style.width = pct + '%';
+  if (progText) progText.textContent = _dsimIdx + ' / ' + _dsimList.length;
+}
+
+function dsimStart() {
+  const inp = document.getElementById('dsim-input');
+  const mode = document.getElementById('dsim-mode');
+  if (!inp || !mode) return;
+
+  const parts = inp.value.split(',').map(s => s.trim()).filter(Boolean);
+  _dsimList = parts.map(p => parseInt(p)).filter(n => !isNaN(n));
+
+  if (_dsimList.length === 0) {
+    const log = document.getElementById('dsim-log');
+    if (log) log.innerHTML = '<div style="color:#fca5a5">✗ Hata: Geçerli sayı bulunamadı.</div>';
+    return;
+  }
+
+  _dsimMode = mode.value;
+  _dsimIdx = 0;
+  _dsimAcc = 0;
+  _dsimResult = [];
+  _dsimRunning = true;
+
+  const stepBtn = document.getElementById('dsim-step-btn');
+  if (stepBtn) stepBtn.disabled = false;
+  const log = document.getElementById('dsim-log');
+  if (log) {
+    log.innerHTML =
+      '<div style="color:#86efac">▶ Döngü başlatıldı: liste = [' + _dsimList.join(', ') + ']</div>' +
+      '<div style="color:#94a3b8">  → Mod: ' + _dsimMode + '</div>' +
+      '<div style="color:#94a3b8">  → "Adım" butonuna basarak ilerle</div>';
+  }
+
+  _dsimRender();
+  _dsimUpdateStatus();
+}
+
+function dsimStep() {
+  if (!_dsimRunning) return;
+  const log = document.getElementById('dsim-log');
+
+  if (_dsimIdx >= _dsimList.length) {
+    _dsimRunning = false;
+    const stepBtn = document.getElementById('dsim-step-btn');
+    if (stepBtn) stepBtn.disabled = true;
+    if (log) {
+      log.innerHTML += '<div style="color:#86efac;font-weight:700;margin-top:6px">✓ Döngü bitti!</div>';
+      if (_dsimMode === 'sum') {
+        log.innerHTML += '<div style="color:#fbbf24">  Sonuç: toplam = ' + _dsimAcc + '</div>';
+      } else if (_dsimMode === 'filter') {
+        log.innerHTML += '<div style="color:#fbbf24">  Sonuç: filtreleme = [' + _dsimResult.join(', ') + ']</div>';
+      }
+      log.scrollTop = log.scrollHeight;
+    }
+    return;
+  }
+
+  const s = _dsimList[_dsimIdx];
+
+  if (_dsimMode === 'print') {
+    _dsimResult.push(s);
+    if (log) log.innerHTML += '<div style="color:#a5f3fc">  [' + _dsimIdx + '] s = ' + s + '  →  print(s)</div>';
+  } else if (_dsimMode === 'sum') {
+    _dsimAcc += s;
+    if (log) log.innerHTML += '<div style="color:#a5f3fc">  [' + _dsimIdx + '] s = ' + s + '  →  toplam += ' + s + '  →  toplam = ' + _dsimAcc + '</div>';
+  } else if (_dsimMode === 'filter') {
+    if (s > 10) {
+      _dsimResult.push(s);
+      if (log) log.innerHTML += '<div style="color:#86efac">  [' + _dsimIdx + '] s = ' + s + '  →  ' + s + ' > 10  ✓ eklendi</div>';
+    } else {
+      if (log) log.innerHTML += '<div style="color:#fca5a5">  [' + _dsimIdx + '] s = ' + s + '  →  ' + s + ' &gt; 10  ✗ atlandı</div>';
+    }
+  }
+
+  _dsimIdx++;
+  _dsimRender();
+  _dsimUpdateStatus();
+  if (log) log.scrollTop = log.scrollHeight;
+}
+
+function dsimReset() {
+  _dsimList = [];
+  _dsimIdx = 0;
+  _dsimAcc = 0;
+  _dsimResult = [];
+  _dsimRunning = false;
+  const btn = document.getElementById('dsim-step-btn');
+  if (btn) btn.disabled = true;
+  const log = document.getElementById('dsim-log');
+  if (log) log.innerHTML = 'Yeni mod seçildi. Başlat butonuna basarak yeniden başla.';
+  _dsimRender();
+  _dsimUpdateStatus();
+}
+
+/* ─── Skulpt loader + Python runner ─── */
+let _skulptLoaded = false;
+let _skulptLoading = false;
+const _skulptQueue = [];
+
+function _loadSkulpt(cb) {
+  if (_skulptLoaded) { cb(); return; }
+  _skulptQueue.push(cb);
+  if (_skulptLoading) return;
+  _skulptLoading = true;
+  const s1 = document.createElement('script');
+  s1.src = 'https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt.min.js';
+  s1.onload = () => {
+    const s2 = document.createElement('script');
+    s2.src = 'https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js';
+    s2.onload = () => {
+      _skulptLoaded = true;
+      _skulptQueue.forEach(fn => fn());
+      _skulptQueue.length = 0;
+    };
+    document.head.appendChild(s2);
+  };
+  document.head.appendChild(s1);
+}
+
+function pyRun(editorId, outputId) {
+  const outEl = document.getElementById(outputId);
+  if (!outEl) return;
+  outEl.innerHTML = '<span class="py-loading">⏳ Yükleniyor...</span>';
+  _loadSkulpt(() => {
+    const code = document.getElementById(editorId)?.value || '';
+    outEl.innerHTML = '';
+    function addOut(text, cls) {
+      const s = document.createElement('span');
+      if (cls) s.className = cls;
+      s.textContent = text;
+      outEl.appendChild(s);
+      outEl.scrollTop = outEl.scrollHeight;
+    }
+    Sk.configure({
+      output: txt => { addOut(txt); },
+      read: f => {
+        if (Sk.builtinFiles && Sk.builtinFiles.files[f]) return Sk.builtinFiles.files[f];
+        throw new Error('Dosya bulunamadı: ' + f);
+      },
+      inputfun: prompt => {
+        return new Promise(resolve => {
+          const row = document.createElement('div');
+          row.className = 'py-input-row';
+          row.innerHTML = '<span class="py-prompt">&gt;&gt;&gt; </span><input class="py-input" type="text" placeholder="' + (prompt || '') + '">';
+          outEl.parentElement.appendChild(row);
+          const inp = row.querySelector('input');
+          inp.focus();
+          inp.addEventListener('keydown', e => {
+            if (e.key === 'Enter') {
+              const val = inp.value;
+              row.remove();
+              addOut((prompt || '') + val + '\n');
+              resolve(val);
+            }
+          });
+        });
+      },
+      __future__: Sk.python3,
+    });
+    const sysSpan = document.createElement('span');
+    sysSpan.className = 'py-sys';
+    sysSpan.textContent = '▶ Program çalışıyor...\n';
+    outEl.appendChild(sysSpan);
+    Sk.misceval.asyncToPromise(() => Sk.importMainWithBody('<stdin>', false, code, true))
+      .then(() => {
+        const done = document.createElement('span');
+        done.className = 'py-sys';
+        done.textContent = '\n✓ Program tamamlandı.';
+        outEl.appendChild(done);
+      })
+      .catch(err => { addOut('\n' + err.toString(), 'py-err'); });
+  });
+}
+
+function pyReset(editorId, outputId, defaultCode) {
+  if (defaultCode !== undefined) document.getElementById(editorId).value = defaultCode;
+  document.getElementById(outputId).innerHTML = '<span class="py-sys">// Çıktı burada görünecek</span>';
+}
+
+/* ─── Canlı Python Editörü Varsayılan Kodu ─── */
+const pyDef1 = '# Listelerle Döngüler — for, while, filtreleme\n' +
+'notlar = [85, 70, 92, 60, 88]\n' +
+'\n' +
+'# 1) for ile yazdırma\n' +
+'print("Notlar:")\n' +
+'for n in notlar:\n' +
+'    print(" -", n)\n' +
+'\n' +
+'# 2) enumerate — indeks ile\n' +
+'print("\\nİndeksli:")\n' +
+'for i, n in enumerate(notlar):\n' +
+'    print("  [" + str(i) + "] = " + str(n))\n' +
+'\n' +
+'# 3) Toplama ve ortalama — birikim deseni\n' +
+'toplam = 0\n' +
+'for n in notlar:\n' +
+'    toplam += n\n' +
+'print("\\nToplam:", toplam)\n' +
+'print("Ortalama:", toplam / len(notlar))\n' +
+'\n' +
+'# 4) En büyük / en küçük\n' +
+'en_buyuk = notlar[0]\n' +
+'for n in notlar:\n' +
+'    if n > en_buyuk:\n' +
+'        en_buyuk = n\n' +
+'print("En büyük:", en_buyuk)\n' +
+'print("max():   ", max(notlar))\n' +
+'\n' +
+'# 5) Filtreleme — geçen notlar\n' +
+'gecenler = []\n' +
+'for n in notlar:\n' +
+'    if n >= 70:\n' +
+'        gecenler.append(n)\n' +
+'print("\\nGeçenler:", gecenler)\n' +
+'\n' +
+'# 6) while ile aynı işi yapma\n' +
+'i = 0\n' +
+'toplam_w = 0\n' +
+'while i < len(notlar):\n' +
+'    toplam_w += notlar[i]\n' +
+'    i += 1\n' +
+'print("While toplamı:", toplam_w)\n';
+
+
+
+/* ════════════════════════════════════════════════════════════════════
+   KOPYALAMA ENGELİ JS — sıkı mod (apply_copy_protection.py)
+   ════════════════════════════════════════════════════════════════════ */
+(function(){
+  // Sağ tık menüsü
+  document.addEventListener('contextmenu', function(e){ e.preventDefault(); return false; });
+  // Metin seçme başlangıcı
+  document.addEventListener('selectstart', function(e){
+    if(e.target.closest('input,textarea,[contenteditable]')) return;
+    e.preventDefault(); return false;
+  });
+  // Kopyala / Kes / Yapıştır / Sürükle
+  ['copy','cut','paste','dragstart'].forEach(function(ev){
+    document.addEventListener(ev, function(e){ e.preventDefault(); return false; });
+  });
+  // Klavye kombinasyonları
+  document.addEventListener('keydown', function(e){
+    var k = e.key ? e.key.toUpperCase() : '';
+    var c = e.ctrlKey || e.metaKey;
+    var s = e.shiftKey;
+    // F12
+    if(e.key === 'F12'){ e.preventDefault(); return false; }
+    // Ctrl+Shift+I/J/C (DevTools)
+    if(c && s && (k==='I'||k==='J'||k==='C')){ e.preventDefault(); return false; }
+    // Ctrl+U (kaynak görüntüle)
+    if(c && k==='U'){ e.preventDefault(); return false; }
+    // Ctrl+C/X/A/S/P
+    if(c && (k==='C'||k==='X'||k==='A'||k==='S'||k==='P')){
+      // input/textarea içinde bırak
+      if(e.target && e.target.closest('input,textarea,[contenteditable]')) return;
+      e.preventDefault(); return false;
+    }
+  });
+})();
+
+/* BOOT */
+fillLesson();
+fitSlideContent(document.getElementById('s1'));
+/* Ders-özel init: simülatör + Python editör */
+_dsimRender();
+_dsimUpdateStatus();
+const pyEd = document.getElementById('py-ed-1');
+if (pyEd) pyEd.value = pyDef1;
+lmsReady();
+lmsUpdate();
+</script>
+
+<script>
+/* ════════════════════════════════════════════════════════════════════
+   CANVAS ÇİZİM MODÜLÜ — Lists 3 (Listelerle Döngüler) — animasyonlu (KURAL 6)
+   Mantıksal alan: 460 × 300 ; backing = ×3 (retina)
+   ════════════════════════════════════════════════════════════════════ */
+(function () {
+  'use strict';
+
+  var LW = 460, LH = 300;
+  var MONO = '"JetBrains Mono", ui-monospace, monospace';
+  var SANS = 'Inter, system-ui, sans-serif';
+
+  var C = {
+    ink:'#0f172a', ink2:'#475569', muted:'#94a3b8', line:'#e2e8f0',
+    purple:'#6d28d9', purpleD:'#4c1d95', purpleL:'#ede9fe', purpleM:'#8b5cf6',
+    amber:'#f59e0b', amberD:'#b45309', amberL:'#fef3c7',
+    ok:'#10b981', okD:'#047857', okL:'#d1fae5',
+    err:'#ef4444', errD:'#b91c1c', errL:'#fee2e2',
+    panel:'#1e293b', panelD:'#0f172a', code:'#e2e8f0',
+    kw:'#c4b5fd', fn:'#7dd3fc', st:'#fcd34d', cm:'#64748b', nm:'#f9a8d4'
+  };
+
+  /* ---------- yardımcılar ---------- */
+  function rr(ctx,x,y,w,h,r){
+    if(r>Math.min(w,h)/2) r=Math.min(w,h)/2;
+    ctx.beginPath();
+    ctx.moveTo(x+r,y);
+    ctx.arcTo(x+w,y,x+w,y+h,r);
+    ctx.arcTo(x+w,y+h,x,y+h,r);
+    ctx.arcTo(x,y+h,x,y,r);
+    ctx.arcTo(x,y,x+w,y,r);
+    ctx.closePath();
+  }
+  function shadow(ctx,blur,oy,a){ ctx.shadowColor='rgba(15,23,42,'+(a||0.18)+')'; ctx.shadowBlur=blur; ctx.shadowOffsetY=oy; ctx.shadowOffsetX=0; }
+  function noShadow(ctx){ ctx.shadowColor='transparent'; ctx.shadowBlur=0; ctx.shadowOffsetY=0; }
+  function vgrad(ctx,x,y,h,a,b){ var g=ctx.createLinearGradient(x,y,x,y+h); g.addColorStop(0,a); g.addColorStop(1,b); return g; }
+  function txt(ctx,s,x,y,size,color,weight,font,align){
+    ctx.fillStyle=color; ctx.textAlign=align||'left'; ctx.textBaseline='middle';
+    ctx.font=(weight||'600')+' '+size+'px '+(font||SANS);
+    ctx.fillText(s,x,y);
+  }
+  function panel(ctx,x,y,w,h,r,fill,stroke,sw){
+    shadow(ctx,16,6,0.12); rr(ctx,x,y,w,h,r); ctx.fillStyle=fill; ctx.fill(); noShadow(ctx);
+    if(stroke){ ctx.lineWidth=sw||1.5; ctx.strokeStyle=stroke; rr(ctx,x,y,w,h,r); ctx.stroke(); }
+  }
+  function chip(ctx,x,y,w,h,bg,fg,label,size,dashed){
+    rr(ctx,x,y,w,h,h/2>10?10:h/2); ctx.fillStyle=bg; ctx.fill();
+    if(dashed){ ctx.setLineDash([4,3]); ctx.lineWidth=1.5; ctx.strokeStyle=fg; rr(ctx,x,y,w,h,h/2>10?10:h/2); ctx.stroke(); ctx.setLineDash([]); }
+    txt(ctx,label,x+w/2,y+h/2,size||13,fg,'800',MONO,'center');
+  }
+  function codeWin(ctx,x,y,w,h,title){
+    panel(ctx,x,y,w,h,9,C.panel,null,0);
+    rr(ctx,x,y,w,h,9); ctx.save(); ctx.clip();
+    ctx.fillStyle=C.panelD; ctx.fillRect(x,y,w,20);
+    var dots=['#ff5f57','#febc2e','#28c840'];
+    for(var i=0;i<3;i++){ ctx.beginPath(); ctx.arc(x+12+i*12,y+10,3.2,0,7); ctx.fillStyle=dots[i]; ctx.fill(); }
+    if(title) txt(ctx,title,x+52,y+10,9.5,'#94a3b8','600',MONO,'left');
+    ctx.restore();
+    return {x:x,y:y+20,w:w,h:h-20,cx:x+13,cy:y+20};
+  }
+  function arrow(ctx,x0,y0,x1,y1,color,wd){
+    ctx.strokeStyle=color; ctx.fillStyle=color; ctx.lineWidth=wd||2.4; ctx.lineCap='round';
+    ctx.beginPath(); ctx.moveTo(x0,y0); ctx.lineTo(x1,y1); ctx.stroke();
+    var a=Math.atan2(y1-y0,x1-x0), hl=7;
+    ctx.beginPath(); ctx.moveTo(x1,y1);
+    ctx.lineTo(x1-hl*Math.cos(a-0.4),y1-hl*Math.sin(a-0.4));
+    ctx.lineTo(x1-hl*Math.cos(a+0.4),y1-hl*Math.sin(a+0.4));
+    ctx.closePath(); ctx.fill();
+  }
+  function ease(t){ return t<0.5 ? 2*t*t : 1-Math.pow(-2*t+2,2)/2; }
+  function clamp01(t){ return t<0?0:(t>1?1:t); }
+
+  /* boolean rozet (True yeşil / False kırmızı) */
+  function boolBadge(ctx,cx,cy,val,scale){
+    scale=scale||1;
+    var w=78*scale, h=34*scale;
+    var bg = val ? C.okL : C.errL, fg = val ? C.okD : C.errD, br = val ? C.ok : C.err;
+    ctx.save(); ctx.translate(cx,cy);
+    shadow(ctx,12,5,0.16); rr(ctx,-w/2,-h/2,w,h,h/2); ctx.fillStyle=bg; ctx.fill(); noShadow(ctx);
+    ctx.lineWidth=2*scale; ctx.strokeStyle=br; rr(ctx,-w/2,-h/2,w,h,h/2); ctx.stroke();
+    txt(ctx,val?'True':'False',6*scale,0,15*scale,fg,'900',MONO,'left');
+    // ikon
+    var ix=-w/2+15*scale;
+    if(val){ ctx.strokeStyle=br; ctx.lineWidth=2.6*scale; ctx.lineCap='round'; ctx.beginPath(); ctx.moveTo(ix-5*scale,0); ctx.lineTo(ix-1*scale,4*scale); ctx.lineTo(ix+5*scale,-5*scale); ctx.stroke(); }
+    else { ctx.strokeStyle=br; ctx.lineWidth=2.6*scale; ctx.lineCap='round'; ctx.beginPath(); ctx.moveTo(ix-4*scale,-4*scale); ctx.lineTo(ix+4*scale,4*scale); ctx.moveTo(ix+4*scale,-4*scale); ctx.lineTo(ix-4*scale,4*scale); ctx.stroke(); }
+    ctx.restore();
+  }
+
+  /* string kutusu — tırnaklı, monospace */
+  function strBox(ctx,x,y,w,h,label,bg,border,fg){
+    shadow(ctx,10,4,0.14); rr(ctx,x,y,w,h,8); ctx.fillStyle=bg; ctx.fill(); noShadow(ctx);
+    ctx.lineWidth=2; ctx.strokeStyle=border; rr(ctx,x,y,w,h,8); ctx.stroke();
+    txt(ctx,label,x+w/2,y+h/2,15,fg,'800',MONO,'center');
+  }
+
+  /* ---- ortak: liste hücre satırı çizer, vurgulu index opsiyonel ---- */
+  function listRow(ctx,x,y,items,hi,cw,gap,small){
+    cw=cw||52; gap=gap||8;
+    for(var i=0;i<items.length;i++){
+      var cx=x+i*(cw+gap);
+      var on=(hi===i);
+      shadow(ctx,on?14:8,on?6:3,on?0.2:0.1); rr(ctx,cx,y,cw,40,8);
+      ctx.fillStyle=on?C.purpleL:'#fff'; ctx.fill(); noShadow(ctx);
+      ctx.lineWidth=on?2.4:1.5; ctx.strokeStyle=on?C.purple:C.line; rr(ctx,cx,y,cw,40,8); ctx.stroke();
+      txt(ctx,String(items[i]),cx+cw/2,y+20,small?13:15,on?C.purpleD:C.ink,'800',MONO,'center');
+      // index altyazı
+      txt(ctx,'['+i+']',cx+cw/2,y+50,10,C.muted,'700',MONO,'center');
+    }
+  }
+
+  /* ════════════════════ COVER (s1) — döngü animasyonu ════════════════════ */
+  function draw_cover(ctx,t){
+    var bob=Math.sin(t*Math.PI*2)*4;
+    ctx.save(); ctx.translate(0,bob);
+    txt(ctx,'for',54,60,30,'rgba(255,255,255,0.85)','900',MONO,'left');
+    // liste kutuları
+    var items=['10','20','30','40']; var cw=64,gap=12,x0=70,y=104;
+    var hi=Math.floor((t*4)%4);
+    for(var i=0;i<4;i++){
+      var cx=x0+i*(cw+gap), on=(i===hi);
+      rr(ctx,cx,y,cw,46,9); ctx.fillStyle=on?'rgba(255,255,255,0.32)':'rgba(255,255,255,0.16)'; ctx.fill();
+      ctx.lineWidth=on?2.4:1.4; ctx.strokeStyle=on?'#fff':'rgba(255,255,255,0.55)'; rr(ctx,cx,y,cw,46,9); ctx.stroke();
+      txt(ctx,items[i],cx+cw/2,y+23,17,'#fff',on?'900':'700',MONO,'center');
+    }
+    // döngü oku (kavisli, dönen)
+    var cx2=230, cy2=210, R=46;
+    ctx.lineWidth=3; ctx.strokeStyle='rgba(255,255,255,0.7)';
+    var a0=t*Math.PI*2, a1=a0+Math.PI*1.5;
+    ctx.beginPath(); ctx.arc(cx2,cy2,R,a0,a1); ctx.stroke();
+    var ex=cx2+Math.cos(a1)*R, ey=cy2+Math.sin(a1)*R;
+    var ta=a1+Math.PI/2;
+    ctx.fillStyle='rgba(255,255,255,0.85)';
+    ctx.beginPath();
+    ctx.moveTo(ex+Math.cos(ta)*8,ey+Math.sin(ta)*8);
+    ctx.lineTo(ex+Math.cos(ta-2.4)*9,ey+Math.sin(ta-2.4)*9);
+    ctx.lineTo(ex+Math.cos(ta+2.4)*9,ey+Math.sin(ta+2.4)*9);
+    ctx.closePath(); ctx.fill();
+    txt(ctx,'\u21BB',cx2,cy2,30,'rgba(255,255,255,0.9)','900',SANS,'center');
+    ctx.restore();
+  }
+
+  /* ════════════════════ s3 — for ile yazdırma ════════════════════ */
+  function draw_forloop(ctx,t){
+    ctx.fillStyle='#fff'; rr(ctx,0,0,LW,LH,0);
+    txt(ctx,'for meyve in meyveler:',230,28,14,C.purpleD,'800',MONO,'center');
+    var items=['"Elma"','"Armut"','"Muz"','"Kiraz"'];
+    var cw=92,gap=10,total=cw*4+gap*3,x0=(LW-total)/2,y=70;
+    var hi=Math.floor((t*4)%4);
+    for(var i=0;i<4;i++){
+      var cx=x0+i*(cw+gap), on=(i===hi);
+      shadow(ctx,on?14:7,on?6:3,on?0.2:0.1); rr(ctx,cx,y,cw,46,9);
+      ctx.fillStyle=on?C.purpleL:'#fff'; ctx.fill(); noShadow(ctx);
+      ctx.lineWidth=on?2.6:1.5; ctx.strokeStyle=on?C.purple:C.line; rr(ctx,cx,y,cw,46,9); ctx.stroke();
+      txt(ctx,items[i],cx+cw/2,y+23,14,on?C.purpleD:C.ink,'800',MONO,'center');
+    }
+    // döngü değişkeni pointer
+    var pcx=x0+hi*(cw+gap)+cw/2;
+    arrow(ctx,pcx,y+58,pcx,y+82,C.purple,2.4);
+    rr(ctx,pcx-58,y+86,116,30,8); ctx.fillStyle=C.purple; ctx.fill();
+    txt(ctx,'meyve = '+items[hi],pcx,y+101,12.5,'#fff','800',MONO,'center');
+    // çıktı satırı
+    arrow(ctx,pcx,y+118,pcx,y+140,C.muted,2);
+    var oy=y+146;
+    var ow=ctx.createLinearGradient(0,oy,0,oy+44); ow.addColorStop(0,C.panel); ow.addColorStop(1,C.panelD);
+    shadow(ctx,12,5,0.16); rr(ctx,70,oy,320,44,9); ctx.fillStyle=ow; ctx.fill(); noShadow(ctx);
+    txt(ctx,'Meyve: '+items[hi].replace(/"/g,''),230,oy+22,15,'#86efac','700',MONO,'center');
+    txt(ctx,'\u2192 liste bitince döngü durur',230,oy+62,11.5,C.ink2,'600',SANS,'center');
+  }
+
+  /* ════════════════════ s5 — enumerate / range(len) ════════════════════ */
+  function draw_enumerate(ctx,t){
+    ctx.fillStyle='#fff'; rr(ctx,0,0,LW,LH,0);
+    txt(ctx,'for i, x in enumerate(liste):',230,26,13.5,C.okD,'800',MONO,'center');
+    var items=['"Elma"','"Armut"','"Muz"'];
+    var y=66, cw=110, gap=14, total=cw*3+gap*2, x0=(LW-total)/2;
+    var hi=Math.floor((t*3)%3);
+    for(var i=0;i<3;i++){
+      var cx=x0+i*(cw+gap), on=(i===hi);
+      // index rozeti
+      shadow(ctx,on?12:6,on?5:2,on?0.18:0.09); rr(ctx,cx,y,cw,80,10);
+      ctx.fillStyle=on?C.okL:'#fff'; ctx.fill(); noShadow(ctx);
+      ctx.lineWidth=on?2.4:1.5; ctx.strokeStyle=on?C.ok:C.line; rr(ctx,cx,y,cw,80,10); ctx.stroke();
+      // i
+      ctx.beginPath(); ctx.arc(cx+cw/2,y+24,16,0,7); ctx.fillStyle=on?C.ok:C.muted; ctx.fill();
+      txt(ctx,'i='+i,cx+cw/2,y+24,13,'#fff','900',MONO,'center');
+      txt(ctx,items[i],cx+cw/2,y+58,14,on?C.okD:C.ink,'800',MONO,'center');
+    }
+    // çıktı
+    var hi2=hi;
+    var oy=174;
+    rr(ctx,90,oy,280,40,9); ctx.fillStyle=C.panel; ctx.fill();
+    txt(ctx,hi2+'. '+items[hi2].replace(/"/g,''),230,oy+20,15,'#7dd3fc','700',MONO,'center');
+    // alt not: iki yöntem
+    rr(ctx,40,232,180,40,8); ctx.fillStyle=C.okL; ctx.fill();
+    ctx.lineWidth=1.4; ctx.strokeStyle=C.ok; rr(ctx,40,232,180,40,8); ctx.stroke();
+    txt(ctx,'enumerate()',130,247,12.5,C.okD,'800',MONO,'center');
+    txt(ctx,'indeks + değer',130,263,10.5,C.ink2,'600',SANS,'center');
+    rr(ctx,240,232,180,40,8); ctx.fillStyle=C.amberL; ctx.fill();
+    ctx.lineWidth=1.4; ctx.strokeStyle=C.amber; rr(ctx,240,232,180,40,8); ctx.stroke();
+    txt(ctx,'range(len())',330,247,12.5,C.amberD,'800',MONO,'center');
+    txt(ctx,'sadece indeks',330,263,10.5,C.ink2,'600',SANS,'center');
+  }
+
+  /* ════════════════════ s7 — birikim deseni ════════════════════ */
+  function draw_accumulate(ctx,t){
+    ctx.fillStyle='#fff'; rr(ctx,0,0,LW,LH,0);
+    txt(ctx,'Birikim deseni — toplam += s',230,26,14,C.purpleD,'800',MONO,'center');
+    var vals=[10,20,30,40]; var sums=[10,30,60,100];
+    var step=Math.floor((t*4)%4);
+    // liste
+    var cw=64,gap=12,total=cw*4+gap*3,x0=(LW-total)/2,y=60;
+    for(var i=0;i<4;i++){
+      var cx=x0+i*(cw+gap), on=(i===step);
+      rr(ctx,cx,y,cw,42,8); ctx.fillStyle=on?C.purpleL:'#fff'; ctx.fill();
+      ctx.lineWidth=on?2.4:1.5; ctx.strokeStyle=on?C.purple:C.line; rr(ctx,cx,y,cw,42,8); ctx.stroke();
+      txt(ctx,String(vals[i]),cx+cw/2,y+21,15,on?C.purpleD:C.ink,'800',MONO,'center');
+      if(on){ arrow(ctx,cx+cw/2,y+46,230,150,C.purple,2); }
+    }
+    // toplam kutusu (akümülatör)
+    var bx=130,by=148,bw=200,bh=64;
+    shadow(ctx,18,8,0.16); rr(ctx,bx,by,bw,bh,12); 
+    var g=ctx.createLinearGradient(bx,by,bx,by+bh); g.addColorStop(0,C.purpleM); g.addColorStop(1,C.purple);
+    ctx.fillStyle=g; ctx.fill(); noShadow(ctx);
+    txt(ctx,'toplam',bx+bw/2,by+18,12,'rgba(255,255,255,0.85)','700',MONO,'center');
+    var pulse=1+Math.sin(t*Math.PI*2*4)*0.04;
+    ctx.save(); ctx.translate(bx+bw/2,by+42); ctx.scale(pulse,pulse);
+    txt(ctx,String(sums[step]),0,0,30,'#fff','900',MONO,'center'); ctx.restore();
+    // adım göstergesi
+    txt(ctx,'+ '+vals[step]+'  (Adım '+(step+1)+')',230,232,13,C.ink2,'700',MONO,'center');
+    if(step===3){ boolBadge(ctx,230,266,true,0.7); }
+    else { txt(ctx,'ortalama = toplam / len(liste)',230,266,12,C.muted,'600',SANS,'center'); }
+  }
+
+  /* ════════════════════ s9 — max/min aday seçme ════════════════════ */
+  function draw_maxmin(ctx,t){
+    ctx.fillStyle='#fff'; rr(ctx,0,0,LW,LH,0);
+    txt(ctx,'Aday seçme — en_buyuk',230,26,14,C.purpleD,'800',MONO,'center');
+    var vals=[42,17,88,63,29]; 
+    var step=Math.floor((t*5)%5);
+    // koşan en büyük
+    var best=vals[0], bestI=0;
+    for(var k=1;k<=step;k++){ if(vals[k]>best){ best=vals[k]; bestI=k; } }
+    var cw=66,gap=10,total=cw*5+gap*4,x0=(LW-total)/2,y=70,maxH=90;
+    var mx=Math.max.apply(null,vals);
+    for(var i=0;i<5;i++){
+      var cx=x0+i*(cw+gap);
+      var h=24+ (vals[i]/mx)*maxH;
+      var scanned=(i<=step);
+      var isBest=(i===bestI);
+      var col = isBest? C.ok : (scanned? C.purpleM : C.line);
+      shadow(ctx, isBest?14:6, isBest?6:2, isBest?0.2:0.08);
+      rr(ctx,cx,y+maxH+30-h,cw,h,7); 
+      ctx.fillStyle= isBest? C.okL : (scanned? C.purpleL : '#f1f5f9'); ctx.fill(); noShadow(ctx);
+      ctx.lineWidth= isBest?2.6: (i===step?2.2:1.4); ctx.strokeStyle= (i===step&&!isBest)? C.purple : col; rr(ctx,cx,y+maxH+30-h,cw,h,7); ctx.stroke();
+      txt(ctx,String(vals[i]),cx+cw/2,y+maxH+30-h+ (h>26?16:13),14, isBest?C.okD:(scanned?C.purpleD:C.muted),'800',MONO,'center');
+      if(isBest){ txt(ctx,'\u2605',cx+cw/2,y+maxH+44,13,C.ok,'900',SANS,'center'); }
+    }
+    // sonuç
+    rr(ctx,120,232,220,42,9); ctx.fillStyle=C.okL; ctx.fill();
+    ctx.lineWidth=1.6; ctx.strokeStyle=C.ok; rr(ctx,120,232,220,42,9); ctx.stroke();
+    txt(ctx,'en_buyuk = '+best,230,253,15,C.okD,'900',MONO,'center');
+  }
+
+  /* ════════════════════ s11 — while ile liste ════════════════════ */
+  function draw_while(ctx,t){
+    ctx.fillStyle='#fff'; rr(ctx,0,0,LW,LH,0);
+    txt(ctx,'while i < len(liste):',230,26,14,C.amberD,'800',MONO,'center');
+    var vals=[1,2,3,4]; var sums=[1,3,6,10];
+    var i=Math.floor((t*4)%4);
+    // sayaç i
+    var bx=40,by=58;
+    rr(ctx,bx,by,86,52,10); ctx.fillStyle=C.amberL; ctx.fill();
+    ctx.lineWidth=2; ctx.strokeStyle=C.amber; rr(ctx,bx,by,86,52,10); ctx.stroke();
+    txt(ctx,'i',bx+43,by+15,12,C.amberD,'700',MONO,'center');
+    txt(ctx,String(i),bx+43,by+36,22,C.amberD,'900',MONO,'center');
+    // liste
+    var cw=52,gap=10,x0=160,y=58;
+    for(var k=0;k<4;k++){
+      var cx=x0+k*(cw+gap), on=(k===i);
+      rr(ctx,cx,y,cw,52,8); ctx.fillStyle=on?C.purpleL:'#fff'; ctx.fill();
+      ctx.lineWidth=on?2.4:1.5; ctx.strokeStyle=on?C.purple:C.line; rr(ctx,cx,y,cw,52,8); ctx.stroke();
+      txt(ctx,String(vals[k]),cx+cw/2,y+22,15,on?C.purpleD:C.ink,'800',MONO,'center');
+      txt(ctx,'['+k+']',cx+cw/2,y+42,10,C.muted,'700',MONO,'center');
+    }
+    // koşul + i+=1
+    var cy=146;
+    rr(ctx,60,cy,160,38,9); ctx.fillStyle=C.okL; ctx.fill();
+    ctx.lineWidth=1.4; ctx.strokeStyle=C.ok; rr(ctx,60,cy,160,38,9); ctx.stroke();
+    txt(ctx,'i < 4  \u2192  True',140,cy+19,13,C.okD,'800',MONO,'center');
+    rr(ctx,240,cy,160,38,9); ctx.fillStyle=C.purpleL; ctx.fill();
+    ctx.lineWidth=1.4; ctx.strokeStyle=C.purple; rr(ctx,240,cy,160,38,9); ctx.stroke();
+    txt(ctx,'i += 1',320,cy+19,13,C.purpleD,'800',MONO,'center');
+    // toplam
+    rr(ctx,140,196,180,40,9); ctx.fillStyle=C.panel; ctx.fill();
+    txt(ctx,'toplam = '+sums[i],230,216,15,'#7dd3fc','800',MONO,'center');
+    // uyarı
+    rr(ctx,50,248,360,32,8); ctx.fillStyle=C.errL; ctx.fill();
+    ctx.lineWidth=1.4; ctx.strokeStyle=C.err; rr(ctx,50,248,360,32,8); ctx.stroke();
+    txt(ctx,'i += 1 unutulursa \u2192 sonsuz döngü!',230,264,12,C.errD,'700',SANS,'center');
+  }
+
+  /* ════════════════════ s13 — for vs while ════════════════════ */
+  function draw_forwhile(ctx,t){
+    ctx.fillStyle='#fff'; rr(ctx,0,0,LW,LH,0);
+    var cols=[
+      { name:'for',   col:C.ok,   colL:C.okL,   colD:C.okD,   rows:[['Sayaç','Otomatik',true],['Sonsuz risk','Yok',true],['Kullanım','Tüm listeyi gez',null]] },
+      { name:'while', col:C.amber,colL:C.amberL,colD:C.amberD, rows:[['Sayaç','Manuel i+=1',false],['Sonsuz risk','Var',false],['Kullanım','Koşullu akış',null]] }
+    ];
+    var cw=200, gap=20, x0=(LW-(cw*2+gap))/2, y0=24, h=250;
+    for(var c=0;c<2;c++){
+      var appear=clamp01((t*2 - c*0.4));
+      if(appear<=0) continue;
+      var cx=x0+c*(cw+gap);
+      ctx.save(); ctx.globalAlpha=appear;
+      shadow(ctx,16,7,0.13); rr(ctx,cx,y0,cw,h,14); ctx.fillStyle='#fff'; ctx.fill(); noShadow(ctx);
+      ctx.lineWidth=2; ctx.strokeStyle=cols[c].col; rr(ctx,cx,y0,cw,h,14); ctx.stroke();
+      // başlık
+      rr(ctx,cx,y0,cw,42,14); ctx.fillStyle=cols[c].colL; ctx.fill(); ctx.fillRect(cx,y0+28,cw,14);
+      txt(ctx,cols[c].name,cx+cw/2,y0+22,20,cols[c].colD,'900',MONO,'center');
+      // satırlar
+      var ry=y0+60;
+      for(var r=0;r<cols[c].rows.length;r++){
+        var row=cols[c].rows[r];
+        txt(ctx,row[0],cx+16,ry+12,11,C.muted,'700',SANS,'left');
+        var vcol = row[2]===true? C.okD : (row[2]===false? C.errD : C.ink);
+        txt(ctx,row[1],cx+16,ry+32,13,vcol,'800',SANS,'left');
+        if(row[2]!==null){
+          // ikon
+          var ix=cx+cw-26, iy=ry+22;
+          ctx.lineWidth=2.4; ctx.lineCap='round'; ctx.strokeStyle=vcol;
+          if(row[2]){ ctx.beginPath(); ctx.moveTo(ix-6,iy); ctx.lineTo(ix-2,iy+4); ctx.lineTo(ix+6,iy-5); ctx.stroke(); }
+          else { ctx.beginPath(); ctx.moveTo(ix-5,iy-5); ctx.lineTo(ix+5,iy+5); ctx.moveTo(ix+5,iy-5); ctx.lineTo(ix-5,iy+5); ctx.stroke(); }
+        }
+        if(r<cols[c].rows.length-1){ ctx.strokeStyle=C.line; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(cx+14,ry+50); ctx.lineTo(cx+cw-14,ry+50); ctx.stroke(); }
+        ry+=58;
+      }
+      ctx.restore();
+    }
+    txt(ctx,'%90 listelerde for tercih edilir',230,290,12,C.purpleD,'700',SANS,'center');
+  }
+
+  /* ════════════════════ s15 — filtreleme for+if ════════════════════ */
+  function draw_filter(ctx,t){
+    ctx.fillStyle='#fff'; rr(ctx,0,0,LW,LH,0);
+    txt(ctx,'for s in sayilar:  if s > 10:  buyukler.append(s)',230,24,12,C.purpleD,'800',MONO,'center');
+    var vals=[3,12,7,18,5,20]; var pass=[false,true,false,true,false,true];
+    var step=Math.floor((t*6)%6);
+    var cw=48,gap=9,total=cw*6+gap*5,x0=(LW-total)/2,y=52;
+    // kaynak liste
+    for(var i=0;i<6;i++){
+      var cx=x0+i*(cw+gap), on=(i===step), done=(i<step);
+      var col = on? C.purple : (done? (pass[i]?C.ok:C.muted) : C.line);
+      rr(ctx,cx,y,cw,42,8); ctx.fillStyle= on?C.purpleL : (done? (pass[i]?C.okL:'#f1f5f9') : '#fff'); ctx.fill();
+      ctx.lineWidth= on?2.4:1.5; ctx.strokeStyle=col; rr(ctx,cx,y,cw,42,8); ctx.stroke();
+      txt(ctx,String(vals[i]),cx+cw/2,y+22,15, on?C.purpleD:(done?(pass[i]?C.okD:C.muted):C.ink),'800',MONO,'center');
+    }
+    // if kapısı
+    var gy=120;
+    rr(ctx,150,gy,160,34,9); ctx.fillStyle=C.amberL; ctx.fill();
+    ctx.lineWidth=1.6; ctx.strokeStyle=C.amber; rr(ctx,150,gy,160,34,9); ctx.stroke();
+    txt(ctx,'if  s > 10 ?',230,gy+17,14,C.amberD,'800',MONO,'center');
+    // mevcut değerin kapıdan geçişi
+    var scx=x0+step*(cw+gap)+cw/2;
+    arrow(ctx,scx,y+44,230,gy-2,C.purple,2);
+    // pass/fail rozet
+    var rp=clamp01((t*6%1)*1.4);
+    boolBadge(ctx,230,gy+58,pass[step],0.62);
+    // çıktı listesi (biriken)
+    var out=[]; for(var k=0;k<=step;k++){ if(pass[k]) out.push(vals[k]); }
+    var oy=210;
+    txt(ctx,'buyukler =',120,oy+24,13,C.ink2,'700',MONO,'right');
+    var ox=140;
+    txt(ctx,'[',ox,oy+24,18,C.ink,'800',MONO,'left'); ox+=14;
+    for(var j=0;j<out.length;j++){
+      var ow=40;
+      rr(ctx,ox,oy+6,ow,36,8); ctx.fillStyle=C.okL; ctx.fill();
+      ctx.lineWidth=1.6; ctx.strokeStyle=C.ok; rr(ctx,ox,oy+6,ow,36,8); ctx.stroke();
+      txt(ctx,String(out[j]),ox+ow/2,oy+24,14,C.okD,'800',MONO,'center');
+      ox+=ow+8;
+    }
+    txt(ctx,']',ox,oy+24,18,C.ink,'800',MONO,'left');
+  }
+
+  /* ════════════════════ s19 — mini proje: not analizi ════════════════════ */
+  function draw_project(ctx,t){
+    ctx.fillStyle='#fff'; rr(ctx,0,0,LW,LH,0);
+    txt(ctx,'Not Analiz Raporu',230,26,15,C.purpleD,'900',SANS,'center');
+    // notlar şeridi
+    var notes=[85,70,45,92,60,38,88];
+    var cw=50,gap=6,total=cw*7+gap*6,x0=(LW-total)/2,y=46;
+    for(var i=0;i<7;i++){
+      var appear=clamp01((t*3 - i*0.12));
+      if(appear<=0) continue;
+      var cx=x0+i*(cw+gap); var pass=notes[i]>=50;
+      ctx.globalAlpha=appear;
+      rr(ctx,cx,y,cw,34,7); ctx.fillStyle=pass?C.okL:C.errL; ctx.fill();
+      ctx.lineWidth=1.4; ctx.strokeStyle=pass?C.ok:C.err; rr(ctx,cx,y,cw,34,7); ctx.stroke();
+      txt(ctx,String(notes[i]),cx+cw/2,y+18,13,pass?C.okD:C.errD,'800',MONO,'center');
+      ctx.globalAlpha=1;
+    }
+    // istatistik kartları
+    var stats=[
+      { lbl:'ORTALAMA', val:'68.29', col:C.purple, colL:C.purpleL, colD:C.purpleD },
+      { lbl:'EN YÜKSEK', val:'92', col:C.ok, colL:C.okL, colD:C.okD },
+      { lbl:'EN DÜŞÜK', val:'38', col:C.err, colL:C.errL, colD:C.errD },
+      { lbl:'GEÇEN', val:'5', col:C.amber, colL:C.amberL, colD:C.amberD }
+    ];
+    var bw=100, bg=12, sx0=(LW-(bw*2+bg))/2, sy0=104;
+    for(var s=0;s<4;s++){
+      var ap=clamp01((t*3 - 0.9 - s*0.2));
+      if(ap<=0) continue;
+      var bx=sx0+(s%2)*(bw+bg), by=sy0+Math.floor(s/2)*(bg+62);
+      ctx.save(); ctx.globalAlpha=ap; ctx.translate(bx+bw/2,by+30); ctx.scale(0.9+0.1*ease(ap),0.9+0.1*ease(ap)); ctx.translate(-(bx+bw/2),-(by+30));
+      shadow(ctx,12,5,0.13); rr(ctx,bx,by,bw,56,11); ctx.fillStyle=stats[s].colL; ctx.fill(); noShadow(ctx);
+      ctx.lineWidth=1.8; ctx.strokeStyle=stats[s].col; rr(ctx,bx,by,bw,56,11); ctx.stroke();
+      txt(ctx,stats[s].lbl,bx+bw/2,by+16,10,stats[s].colD,'800',SANS,'center');
+      txt(ctx,stats[s].val,bx+bw/2,by+38,20,stats[s].colD,'900',MONO,'center');
+      ctx.restore();
+    }
+    // geçenler özeti
+    var fp=clamp01((t*3-2.2));
+    if(fp>0){
+      ctx.globalAlpha=fp;
+      txt(ctx,'Geçenler: [85, 70, 92, 60, 88]',230,288,12.5,C.okD,'700',MONO,'center');
+      ctx.globalAlpha=1;
+    }
+  }
+
+  /* ════════════════════ DONE — döngü tamamlandı rozeti ════════════════════ */
+  function draw_done(ctx,t){
+    var cx=LW/2, cy=LH/2;
+    for(var i=0;i<12;i++){
+      var a=i/12*Math.PI*2 + t*Math.PI*2*0.3;
+      var rr2=78+Math.sin(t*Math.PI*2+i)*5;
+      var px=cx+Math.cos(a)*rr2, py=cy+Math.sin(a)*rr2;
+      ctx.beginPath(); ctx.arc(px,py,2.6,0,7); ctx.fillStyle='rgba(255,255,255,'+(0.3+0.3*Math.sin(t*Math.PI*2+i))+')'; ctx.fill();
+    }
+    var pulse=1+Math.sin(t*Math.PI*2)*0.03;
+    ctx.save(); ctx.translate(cx,cy); ctx.scale(pulse,pulse);
+    ctx.beginPath(); ctx.arc(0,0,58,0,7); ctx.fillStyle='rgba(255,255,255,0.16)'; ctx.fill();
+    ctx.lineWidth=2.5; ctx.strokeStyle='rgba(255,255,255,0.7)'; ctx.beginPath(); ctx.arc(0,0,58,0,7); ctx.stroke();
+    // dönen döngü oku
+    var a0=t*Math.PI*2, a1=a0+Math.PI*1.5;
+    ctx.lineWidth=4; ctx.strokeStyle='rgba(255,255,255,0.85)';
+    ctx.beginPath(); ctx.arc(0,0,30,a0,a1); ctx.stroke();
+    // for etiketi
+    txt(ctx,'for',0,2,20,'#fff','900',MONO,'center');
+    // check
+    ctx.beginPath(); ctx.arc(40,40,13,0,7); ctx.fillStyle='#fff'; ctx.fill();
+    ctx.strokeStyle=C.ok; ctx.lineWidth=2.8; ctx.lineCap='round';
+    ctx.beginPath(); ctx.moveTo(34,40); ctx.lineTo(38,44); ctx.lineTo(46,35); ctx.stroke();
+    ctx.restore();
+  }
+
+  /* ---------- kayıt: id -> {fn, loop, dur} ---------- */
+  var MAP = {
+    'cv-cover':      {fn:draw_cover,      loop:true,  dur:3600},
+    'cv-forloop':    {fn:draw_forloop,    loop:true,  dur:3600},
+    'cv-enumerate':  {fn:draw_enumerate,  loop:true,  dur:3000},
+    'cv-accumulate': {fn:draw_accumulate, loop:true,  dur:3200},
+    'cv-maxmin':     {fn:draw_maxmin,     loop:true,  dur:3500},
+    'cv-while':      {fn:draw_while,      loop:true,  dur:3200},
+    'cv-forwhile':   {fn:draw_forwhile,   loop:false, dur:2400},
+    'cv-filter':     {fn:draw_filter,     loop:true,  dur:4200},
+    'cv-project':    {fn:draw_project,    loop:false, dur:3200},
+    'cv-done':       {fn:draw_done,       loop:true,  dur:2800}
+  };
+
+  var state = {};
+
+  function paint(cv, fn, t){
+    var ctx=cv.getContext('2d');
+    ctx.setTransform(1,0,0,1,0,0);
+    ctx.clearRect(0,0,cv.width,cv.height);
+    ctx.scale(cv.width/LW, cv.height/LH);
+    ctx.lineJoin='round';
+    try{ fn(ctx,t); }catch(e){}
+  }
+  function isActive(cv){ var s=cv.closest('.slide'); return s && s.classList.contains('active'); }
+
+  function tick(now){
+    for(var id in MAP){
+      if(!MAP.hasOwnProperty(id)) continue;
+      var cv=document.getElementById(id); if(!cv) continue;
+      var cfg=MAP[id]; var st=state[id]||(state[id]={start:now,doneStatic:false});
+      if(isActive(cv)){
+        st.doneStatic=false;
+        if(!st.start) st.start=now;
+        var el=now-st.start;
+        var t = cfg.loop ? (el%cfg.dur)/cfg.dur : clamp01(el/cfg.dur);
+        paint(cv,cfg.fn,t);
+      } else {
+        st.start=0;
+        if(!st.doneStatic){ paint(cv,cfg.fn, cfg.loop?0:1); st.doneStatic=true; }
+      }
+    }
+    requestAnimationFrame(tick);
+  }
+
+  function boot(){ requestAnimationFrame(tick); }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot); else boot();
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ for(var k in state) state[k].doneStatic=false; }).catch(function(){});
+  window.addEventListener('load', function(){ for(var k in state) state[k].doneStatic=false; });
+})();
+
+</script>
+</body>
+</html>

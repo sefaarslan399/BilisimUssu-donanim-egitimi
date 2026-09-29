@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ders — MASTER v9.3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Nunito:wght@600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ════════════════════════════════════════════════════════════════════
+   MASTER v9.3 — iframe-only slayt motoru
+   - Topbar/sidebar/nav YOK (wrapper sağlıyor)
+   - Wrapper postMessage protokolü ile entegre
+   - Sadece slayt içeriği
+   ════════════════════════════════════════════════════════════════════ */
+
+:root {
+  --bu-indigo:    #4F46E5;
+  --bu-indigo-dk: #1E1B4B;
+  --bu-indigo-lt: #EEF2FF;
+
+  --brand:    #0ea5e9;
+  --brand-dk: #0369a1;
+  --brand-lt: #e0f2fe;
+  --brand-mid:#38bdf8;
+
+  --stage-bg:   #F0F9FF;
+  --stage-bg-2: #E0F2FE;
+
+  --accent:   #f59e0b;
+  --acc-dk:   #d97706;
+  --acc-lt:   #fef3c7;
+  --ok:       #10b981; --ok-bg:  #d1fae5;
+  --err:      #ef4444; --err-bg: #fee2e2;
+  --ink:      #0F172A;
+  --ink2:     #475569;
+  --muted:    #94A3B8;
+  --border:   #E2E8F0;
+  --surface:  #F8FAFC;
+
+  --font: 'Inter', system-ui, -apple-system, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --slide-r:  clamp(10px, 0.4vw + 6px, 22px);
+  --radius:   clamp(8px, 0.25vw + 5px, 16px);
+  --gap:      clamp(8px, 0.5vw + 5px, 24px);
+  --pad:      clamp(10px, 0.8vw + 7px, 28px) clamp(14px, 1.2vw + 9px, 44px);
+
+  --f-base:   clamp(13px, 0.5vw + 11px, 24px);
+  --f-title:  clamp(18px, 0.9vw + 14px, 36px);
+  --f-cover:  clamp(24px, 1.5vw + 18px, 52px);
+  --f-sh:     clamp(15px, 0.7vw + 12px, 30px);
+  --f-sub:    clamp(12px, 0.5vw + 10px, 22px);
+  --f-goal:   clamp(13px, 0.55vw + 11px, 26px);
+
+  --sh-icon-sz:  clamp(32px, 0.7vw + 26px, 56px);
+  --sh-icon-r:   clamp(8px, 0.25vw + 6px, 16px);
+  --sh-svg-sz:   clamp(18px, 0.45vw + 14px, 32px);
+  --badge-f:     clamp(10px, 0.25vw + 9px, 18px);
+  --badge-p:     clamp(4px, 0.15vw + 3px, 10px) clamp(10px, 0.3vw + 8px, 20px);
+  --sh-h:        clamp(48px, 1.2vw + 32px, 84px);
+  --sh-pad:      clamp(14px, 0.7vw + 10px, 40px);
+  --sh-stripe:   clamp(2px, 0.07vw + 2px, 5px);
+
+  --step-bf:        clamp(10px, 0.25vw + 9px, 16px);
+  --goal-check-sz:  clamp(22px, 0.5vw + 18px, 40px);
+  --goal-check-f:   clamp(11px, 0.3vw + 9px, 22px);
+
+  --quiz-q-f:        clamp(12px, 0.4vw + 11px, 22px);
+  --quiz-opt-f:      clamp(12px, 0.35vw + 11px, 20px);
+  --quiz-opt-p:      clamp(6px, 0.2vw + 5px, 12px) clamp(10px, 0.3vw + 8px, 20px);
+  --quiz-letter-sz:  clamp(18px, 0.4vw + 14px, 30px);
+  --quiz-letter-f:   clamp(10px, 0.2vw + 8px, 16px);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden}
+body{
+  font-family:var(--font);
+  background:linear-gradient(135deg, var(--stage-bg) 0%, var(--stage-bg-2) 100%);
+  color:var(--ink);
+  font-size:var(--f-base);
+}
+
+/* GRADE TEMASI */
+body.grade-anaokulu{
+  --brand:#f472b6;--brand-dk:#be185d;--brand-lt:#fce7f3;--brand-mid:#f9a8d4;
+  --stage-bg:#FDF2F8; --stage-bg-2:#FCE7F3;
+  --font:'Nunito',system-ui,sans-serif;
+  --slide-r:clamp(14px, 0.5vw + 10px, 26px);
+  --radius:clamp(12px, 0.4vw + 9px, 22px);
+}
+body.grade-anaokulu .sh-title,
+body.grade-anaokulu .step-title,
+body.grade-anaokulu .cover-title,
+body.grade-anaokulu .step-num-badge,
+body.grade-anaokulu .cover-start,
+body.grade-anaokulu .quiz-q,
+body.grade-anaokulu .done-title{font-weight:900}
+body.grade-anaokulu .step-desc,
+body.grade-anaokulu .cover-desc,
+body.grade-anaokulu .goal-text,
+body.grade-anaokulu .step-tip,
+body.grade-anaokulu .done-msg{font-weight:700}
+body.grade-anaokulu .sh-badge{color:#fff;background:var(--brand);font-weight:900}
+body.grade-anaokulu .quiz-opt{font-weight:800;border-width:2px}
+body.grade-anaokulu .quiz-wrap{border-width:2px}
+
+body.grade-ilkokul{
+  --brand:#6366f1;--brand-dk:#4338ca;--brand-lt:#e0e7ff;--brand-mid:#818cf8;
+  --stage-bg:#F5F3FF; --stage-bg-2:#EDE9FE;
+  --font:'Nunito',system-ui,sans-serif;
+}
+body.grade-ilkokul .sh-title,
+body.grade-ilkokul .step-title,
+body.grade-ilkokul .cover-title,
+body.grade-ilkokul .step-num-badge,
+body.grade-ilkokul .cover-start,
+body.grade-ilkokul .quiz-q,
+body.grade-ilkokul .done-title,
+body.grade-ilkokul .sh-badge{font-weight:900}
+body.grade-ilkokul .step-desc,
+body.grade-ilkokul .cover-desc,
+body.grade-ilkokul .goal-text,
+body.grade-ilkokul .step-tip{font-weight:700}
+body.grade-ilkokul .quiz-opt{font-weight:800;border-width:2px}
+body.grade-ilkokul .quiz-wrap{border-width:2px}
+
+body.grade-ortaokul{
+  --brand:#0ea5e9;--brand-dk:#0369a1;--brand-lt:#e0f2fe;--brand-mid:#38bdf8;
+  --stage-bg:#F0F9FF; --stage-bg-2:#E0F2FE;
+  --font:'Inter',system-ui,-apple-system,sans-serif;
+}
+
+body.grade-lise{
+  --brand:#6d28d9;--brand-dk:#4c1d95;--brand-lt:#ede9fe;--brand-mid:#8b5cf6;
+  --stage-bg:#F5F3FF; --stage-bg-2:#EDE9FE;
+  --font:'Inter',system-ui,-apple-system,sans-serif;
+  --slide-r:clamp(6px, 0.25vw + 4px, 14px);
+  --radius:clamp(5px, 0.18vw + 4px, 12px);
+}
+body.grade-lise .sh-title{font-weight:700}
+body.grade-lise .sh-badge{font-weight:700;letter-spacing:.8px}
+body.grade-lise .step-title{font-weight:700}
+body.grade-lise .step-desc{font-weight:400;line-height:1.7}
+body.grade-lise .step-num-badge{font-weight:700}
+body.grade-lise .step-tip{font-weight:500;line-height:1.6}
+body.grade-lise .cover-title{font-weight:800}
+body.grade-lise .cover-desc{font-weight:400;line-height:1.65}
+body.grade-lise .cover-start{font-weight:700}
+body.grade-lise .goal-text{font-weight:500}
+body.grade-lise .quiz-q{font-weight:600}
+body.grade-lise .quiz-opt{font-weight:500}
+
+/* STAGE — slayt kartı için container */
+#stage{
+  width:100%;height:100%;
+  padding:clamp(10px, 0.7vw + 7px, 28px);
+  display:flex;
+}
+
+.slide{
+  flex:1;display:none;flex-direction:column;
+  background:#fff;
+  border-radius:var(--slide-r);
+  overflow:hidden;
+  box-shadow:0 4px 16px rgba(15,23,42,0.06), 0 1px 3px rgba(15,23,42,0.04);
+  min-height:0;
+  width:100%;
+}
+.slide.active{display:flex;animation:sIn .3s cubic-bezier(.4,0,.2,1)}
+
+@keyframes sIn{
+  from{opacity:0;transform:translateY(8px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* SLAYT HEADER */
+.slide-hdr{
+  display:flex;align-items:center;
+  gap:clamp(10px, 0.4vw + 8px, 22px);
+  padding:0 var(--sh-pad);
+  height:var(--sh-h);
+  border-bottom:1px solid var(--border);
+  position:relative;flex-shrink:0;
+}
+.slide-hdr::before{
+  content:'';position:absolute;top:0;left:0;right:0;
+  height:var(--sh-stripe);
+  background:linear-gradient(90deg, var(--brand) 0%, var(--brand-mid) 100%);
+  border-radius:var(--slide-r) var(--slide-r) 0 0;
+}
+.sh-icon{
+  width:var(--sh-icon-sz);height:var(--sh-icon-sz);
+  border-radius:var(--sh-icon-r);
+  background:linear-gradient(135deg, var(--brand), var(--brand-dk));
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;color:#fff;
+  box-shadow:0 2px 8px color-mix(in srgb, var(--brand) 25%, transparent);
+}
+.sh-icon svg{width:var(--sh-svg-sz);height:var(--sh-svg-sz)}
+.sh-title{
+  flex:1;min-width:0;
+  font-weight:800;font-size:var(--f-sh);
+  color:var(--ink);letter-spacing:-.01em;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+.sh-badge{
+  flex-shrink:0;
+  font-size:var(--badge-f);font-weight:800;letter-spacing:.6px;text-transform:uppercase;
+  color:var(--brand-dk);background:var(--brand-lt);
+  padding:var(--badge-p);
+  border-radius:clamp(10px, 0.3vw + 8px, 24px);
+}
+
+.slide-body{
+  flex:1;min-height:0;
+  display:flex;overflow:hidden;
+}
+
+/* LAYOUTS */
+.layout-cover{display:flex;width:100%;min-height:0;overflow:hidden}
+.cover-visual{
+  flex:0 0 42%;
+  background:linear-gradient(135deg, var(--brand-dk), var(--brand), var(--brand-mid));
+  display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+  padding:clamp(20px, 1.2vw + 14px, 56px);
+}
+.cover-svg{
+  position:relative;z-index:1;
+  width:100%;
+  max-width:clamp(160px, 8vw + 120px, 380px);
+  display:flex;align-items:center;justify-content:center;
+}
+.cover-info{
+  flex:1;min-width:0;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:clamp(20px, 1.5vw + 14px, 64px) clamp(24px, 2vw + 16px, 80px);
+  gap:clamp(10px, 0.6vw + 7px, 26px);
+}
+.cover-title{font-size:var(--f-cover);font-weight:900;color:var(--ink);line-height:1.15;letter-spacing:-.02em}
+.cover-title span{color:var(--brand)}
+.cover-desc{font-size:var(--f-sub);color:var(--ink2);line-height:1.6;font-weight:500}
+.cover-steps{display:flex;flex-direction:column;gap:clamp(6px, 0.2vw + 5px, 14px);margin-top:clamp(4px, 0.15vw + 3px, 10px)}
+.cover-step{
+  display:flex;align-items:center;gap:clamp(9px, 0.35vw + 7px, 20px);
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:clamp(7px, 0.3vw + 6px, 16px) clamp(10px, 0.4vw + 8px, 22px);
+}
+.cs-n{
+  width:clamp(24px, 0.55vw + 20px, 44px);
+  height:clamp(24px, 0.55vw + 20px, 44px);
+  border-radius:clamp(5px, 0.2vw + 4px, 11px);
+  background:var(--brand);color:#fff;
+  font-size:clamp(12px, 0.35vw + 11px, 22px);font-weight:800;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.cs-t{font-size:clamp(12px, 0.4vw + 10px, 22px);font-weight:800;color:var(--ink)}
+.cs-s{font-size:clamp(10px, 0.3vw + 9px, 18px);color:var(--muted);margin-top:1px}
+.cover-start{
+  background:var(--brand);color:#fff;border:none;
+  border-radius:var(--radius);
+  padding:clamp(10px, 0.4vw + 8px, 22px) clamp(20px, 1vw + 16px, 48px);
+  font-size:clamp(12px, 0.4vw + 11px, 22px);font-weight:800;
+  cursor:pointer;font-family:var(--font);
+  display:inline-flex;align-items:center;gap:8px;
+  box-shadow:0 4px 12px color-mix(in srgb, var(--brand) 30%, transparent);
+  transition:transform .15s,box-shadow .15s,background .15s;
+  margin-top:clamp(4px, 0.2vw + 3px, 12px);
+  width:fit-content;
+}
+.cover-start:hover{
+  background:var(--brand-dk);transform:translateY(-2px);
+  box-shadow:0 6px 16px color-mix(in srgb, var(--brand) 40%, transparent);
+}
+
+.layout-full{
+  width:100%;min-width:0;min-height:0;
+  padding:var(--pad);
+  display:flex;flex-direction:column;gap:var(--gap);
+  overflow:hidden;
+}
+
+.layout-step{
+  width:100%;min-width:0;min-height:0;
+  padding:var(--pad);
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:clamp(16px, 1.2vw + 10px, 50px);align-items:center;
+  overflow:hidden;
+}
+.layout-step.single{grid-template-columns:1fr;justify-items:center;text-align:center}
+.layout-step > *{min-width:0;min-height:0}
+.step-text{display:flex;flex-direction:column;gap:clamp(8px, 0.5vw + 5px, 22px);min-width:0}
+.step-num-badge{
+  font-size:var(--step-bf);font-weight:800;letter-spacing:1.2px;text-transform:uppercase;
+  color:#fff;background:var(--brand);
+  padding:var(--badge-p);
+  border-radius:clamp(10px, 0.3vw + 8px, 24px);
+  width:fit-content;
+}
+.step-title{font-size:clamp(20px, 1.2vw + 14px, 44px);font-weight:900;color:var(--ink);line-height:1.2;letter-spacing:-.02em}
+.step-desc{font-size:clamp(14px, 0.6vw + 11px, 26px);color:var(--ink2);line-height:1.6;font-weight:500}
+.step-desc code{
+  font-family:var(--mono);font-size:0.88em;
+  background:#F1F5F9;color:var(--ink);
+  padding:2px 7px;border-radius:5px;font-weight:600;
+}
+.step-tip{
+  background:#FEF3C7;
+  border-radius:var(--radius);
+  padding:clamp(8px, 0.35vw + 6px, 18px) clamp(11px, 0.4vw + 9px, 22px);
+  font-size:clamp(12px, 0.5vw + 10px, 22px);
+  font-weight:600;color:#92400E;line-height:1.55;
+  display:flex;align-items:flex-start;gap:clamp(7px, 0.25vw + 6px, 14px);
+  border-left:clamp(2px, 0.07vw + 2px, 5px) solid #F59E0B;
+}
+.step-visual{
+  display:flex;align-items:center;justify-content:center;
+  width:100%;height:100%;
+  background:linear-gradient(135deg, var(--brand-lt) 0%, var(--stage-bg) 100%);
+  border-radius:var(--radius);
+  padding:clamp(16px, 0.8vw + 12px, 36px);
+  overflow:hidden;
+}
+.step-visual svg{max-width:100%;max-height:100%;height:auto;width:auto}
+
+.layout-quiz{
+  width:100%;min-width:0;min-height:0;
+  padding:var(--pad);
+  display:flex;flex-direction:column;
+  gap:clamp(10px, 0.5vw + 7px, 22px);
+  overflow:hidden;
+}
+/* Quiz header: ilerleme bar + soru sayacı + skor */
+.quiz-hdr{
+  display:flex;align-items:center;
+  gap:clamp(10px, 0.5vw + 7px, 22px);
+  flex-shrink:0;
+}
+.quiz-counter{
+  font-size:clamp(11px, 0.4vw + 9px, 18px);
+  font-weight:800;color:var(--brand-dk);
+  background:var(--brand-lt);
+  padding:clamp(5px, 0.2vw + 4px, 11px) clamp(10px, 0.4vw + 8px, 20px);
+  border-radius:clamp(8px, 0.25vw + 6px, 16px);
+  letter-spacing:.4px;flex-shrink:0;
+}
+.quiz-counter b{font-weight:900;color:var(--brand)}
+.quiz-bar{
+  flex:1;
+  height:clamp(6px, 0.2vw + 5px, 12px);
+  background:var(--border);
+  border-radius:999px;overflow:hidden;
+  min-width:0;
+}
+.quiz-bar-fill{
+  height:100%;
+  background:linear-gradient(90deg, var(--brand) 0%, var(--brand-mid) 100%);
+  border-radius:999px;
+  transition:width .4s cubic-bezier(.4,0,.2,1);
+  width:0%;
+}
+.quiz-score{
+  font-size:clamp(11px, 0.4vw + 9px, 18px);
+  font-weight:800;color:var(--ok);
+  background:var(--ok-bg);
+  padding:clamp(5px, 0.2vw + 4px, 11px) clamp(10px, 0.4vw + 8px, 20px);
+  border-radius:clamp(8px, 0.25vw + 6px, 16px);
+  letter-spacing:.4px;flex-shrink:0;
+  display:flex;align-items:center;gap:6px;
+}
+.quiz-score svg{width:1em;height:1em}
+
+/* Quiz body: tek aktif soru gösterilir, diğerleri gizli */
+.quiz-body{
+  flex:1;min-height:0;
+  display:flex;flex-direction:column;
+  position:relative;overflow:hidden;
+}
+.quiz-wrap{
+  position:absolute;inset:0;
+  display:none;
+  flex-direction:column;
+  min-height:0;
+  background:transparent;border:none;padding:0;
+  animation:qIn .35s cubic-bezier(.4,0,.2,1);
+}
+.quiz-wrap.active{display:flex}
+@keyframes qIn{
+  from{opacity:0;transform:translateX(20px)}
+  to{opacity:1;transform:translateX(0)}
+}
+.quiz-wrap.q-leaving{
+  animation:qOut .25s cubic-bezier(.4,0,.2,1) forwards;
+}
+@keyframes qOut{
+  from{opacity:1;transform:translateX(0)}
+  to{opacity:0;transform:translateX(-20px)}
+}
+.quiz-q{
+  font-size:clamp(15px, 0.7vw + 12px, 32px);
+  font-weight:700;color:var(--brand-dk);
+  margin-bottom:clamp(10px, 0.5vw + 7px, 24px);
+  line-height:1.4;
+}
+.quiz-opts{
+  display:flex;flex-direction:column;
+  gap:clamp(7px, 0.3vw + 5px, 16px);
+  min-height:0;
+}
+.quiz-opt{
+  background:#fff;
+  border:1.5px solid color-mix(in srgb, var(--brand) 15%, transparent);
+  border-radius:clamp(8px, 0.3vw + 6px, 16px);
+  padding:clamp(10px, 0.45vw + 8px, 22px) clamp(14px, 0.55vw + 11px, 28px);
+  font-size:clamp(13px, 0.5vw + 11px, 24px);
+  font-weight:600;color:var(--ink2);
+  cursor:pointer;text-align:left;font-family:var(--font);
+  transition:all .15s cubic-bezier(.4,0,.2,1);
+  display:flex;align-items:center;
+  gap:clamp(10px, 0.4vw + 8px, 20px);
+  line-height:1.35;
+}
+.quiz-opt:hover:not(:disabled){
+  background:var(--brand-lt);
+  border-color:var(--brand);
+  transform:translateX(4px);
+}
+.quiz-opt:disabled{cursor:default}
+.quiz-opt.correct{background:var(--ok);color:#fff;border-color:var(--ok)}
+.quiz-opt.wrong{background:var(--err);color:#fff;border-color:var(--err)}
+.quiz-letter{
+  width:clamp(26px, 0.65vw + 22px, 44px);
+  height:clamp(26px, 0.65vw + 22px, 44px);
+  border-radius:clamp(6px, 0.2vw + 5px, 12px);
+  background:var(--brand-lt);color:var(--brand-dk);
+  font-size:clamp(12px, 0.3vw + 10px, 20px);
+  font-weight:800;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.quiz-opt.correct .quiz-letter,.quiz-opt.wrong .quiz-letter{
+  background:rgba(255,255,255,.25);color:#fff
+}
+.quiz-fb{
+  display:none;
+  margin-top:clamp(10px, 0.45vw + 8px, 20px);
+  padding:clamp(10px, 0.4vw + 8px, 20px) clamp(14px, 0.55vw + 11px, 26px);
+  border-radius:clamp(8px, 0.3vw + 6px, 14px);
+  font-size:clamp(12px, 0.45vw + 10px, 22px);
+  font-weight:600;line-height:1.55;
+  animation:qIn .3s ease;
+}
+.quiz-fb.show{display:block}
+.quiz-fb.ok{background:var(--ok-bg);color:#065f46;border-left:4px solid var(--ok)}
+.quiz-fb.err{background:var(--err-bg);color:#991b1b;border-left:4px solid var(--err)}
+
+/* Sonraki / Sonuç butonu */
+.quiz-next-wrap{
+  display:flex;justify-content:flex-end;
+  margin-top:clamp(10px, 0.45vw + 8px, 20px);
+  min-height:0;
+}
+.quiz-next{
+  display:none;
+  align-items:center;gap:clamp(7px, 0.3vw + 5px, 14px);
+  background:var(--brand);color:#fff;border:none;
+  padding:clamp(10px, 0.4vw + 8px, 20px) clamp(18px, 0.8vw + 14px, 38px);
+  font-size:clamp(13px, 0.5vw + 11px, 22px);
+  font-weight:800;font-family:var(--font);
+  border-radius:clamp(8px, 0.3vw + 6px, 14px);
+  cursor:pointer;
+  box-shadow:0 4px 12px color-mix(in srgb, var(--brand) 30%, transparent);
+  transition:transform .15s, box-shadow .15s, background .15s;
+}
+.quiz-next.show{display:inline-flex;animation:qIn .3s ease}
+.quiz-next:hover{
+  background:var(--brand-dk);transform:translateY(-2px);
+  box-shadow:0 6px 16px color-mix(in srgb, var(--brand) 40%, transparent);
+}
+.quiz-next svg{width:1.1em;height:1.1em}
+
+.layout-done{
+  flex:1;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg, var(--brand-dk), var(--brand));
+  position:relative;overflow:hidden;
+}
+.layout-done::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 50% 40%, rgba(255,255,255,.14), transparent 60%);
+}
+.done-inner{
+  text-align:center;display:flex;flex-direction:column;align-items:center;
+  gap:clamp(10px, 0.55vw + 8px, 26px);
+  position:relative;z-index:1;
+  padding:clamp(24px, 1.5vw + 18px, 80px);
+  color:#fff;
+}
+.done-trophy{font-size:clamp(56px, 2.8vw + 40px, 140px);line-height:1}
+.done-title{font-size:clamp(22px, 1.2vw + 16px, 52px);font-weight:900;letter-spacing:-.02em}
+.done-msg{font-size:clamp(14px, 0.6vw + 11px, 26px);font-weight:500;opacity:.95;max-width:600px}
+.done-stats{
+  display:flex;gap:clamp(10px, 0.4vw + 8px, 22px);
+  flex-wrap:wrap;justify-content:center;
+  margin-top:clamp(4px, 0.2vw + 3px, 14px);
+}
+.done-stat{
+  background:rgba(255,255,255,.14);
+  border:1px solid rgba(255,255,255,.22);
+  border-radius:clamp(8px, 0.3vw + 6px, 18px);
+  padding:clamp(10px, 0.4vw + 8px, 22px) clamp(16px, 0.7vw + 12px, 38px);
+  text-align:center;
+}
+.done-stat-val{font-size:clamp(18px, 0.8vw + 14px, 38px);font-weight:900;line-height:1}
+.done-stat-lbl{font-size:clamp(10px, 0.2vw + 9px, 16px);font-weight:700;letter-spacing:.8px;text-transform:uppercase;opacity:.85;margin-top:clamp(3px, 0.15vw + 2px, 8px)}
+
+.csub{font-size:var(--f-sub);color:var(--muted);font-weight:700;letter-spacing:.4px}
+.goal-list{display:flex;flex-direction:column;gap:clamp(6px, 0.25vw + 5px, 14px)}
+.goal-item{
+  display:flex;align-items:center;gap:clamp(10px, 0.4vw + 8px, 22px);
+  padding:clamp(9px, 0.35vw + 7px, 20px) clamp(12px, 0.5vw + 10px, 26px);
+  border:1.5px solid var(--border);
+  border-radius:var(--radius);
+  background:#fff;
+}
+.goal-check{
+  flex-shrink:0;
+  width:var(--goal-check-sz);height:var(--goal-check-sz);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg, var(--accent), var(--acc-dk));
+  color:#fff;font-weight:900;font-size:var(--goal-check-f);
+}
+.goal-text{font-size:var(--f-goal);color:var(--ink);font-weight:600;line-height:1.4}
+
+/* Kod editör (ortaokul + lise için) */
+.code-frame{
+  width:100%;height:100%;
+  display:flex;flex-direction:column;
+  background:#1E293B;
+  border-radius:var(--radius);overflow:hidden;
+}
+.code-bar{
+  height:34px;flex-shrink:0;
+  background:#0F172A;
+  display:flex;align-items:center;
+  padding:0 14px;gap:8px;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+}
+.code-dot{width:10px;height:10px;border-radius:50%}
+.cd1{background:#FF5F57} .cd2{background:#FEBC2E} .cd3{background:#28C840}
+.code-path{margin-left:14px;font-family:var(--mono);font-size:11px;color:#94A3B8;font-weight:500}
+.code-area{
+  flex:1;min-height:0;
+  padding:18px 22px;
+  font-family:var(--mono);font-size:clamp(12px,1.05vw,16px);
+  line-height:1.85;color:#E2E8F0;
+  overflow:hidden;
+}
+.code-line{display:flex;gap:16px;align-items:baseline}
+.code-num{color:#475569;font-size:11px;width:18px;text-align:right;user-select:none;flex-shrink:0}
+.code-text{flex:1;white-space:pre;min-width:0}
+.kw{color:#A78BFA;font-weight:600}
+.fn{color:#7DD3FC}
+.st{color:#FCD34D}
+.cm{color:#64748B;font-style:italic}
+.nm{color:#F472B6}
+.op{color:#94A3B8}
+.code-line.hl{background:rgba(139,92,246,0.10);border-left:2px solid var(--brand-mid);margin:0 -22px;padding-left:20px}
+
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes pop{0%{transform:scale(1)}50%{transform:scale(1.1)}100%{transform:scale(1)}}
+
+.confetti{position:fixed;width:8px;height:8px;pointer-events:none;z-index:9999}
+
+@media(max-width:768px){
+  .layout-step{grid-template-columns:1fr;gap:14px}
+  .layout-cover{flex-direction:column}
+  .cover-visual{flex:0 0 200px}
+  .step-visual{max-height:40vh}
+  .layout-quiz.q2,.layout-quiz.q3,.layout-quiz.q4{
+    grid-template-columns:1fr;grid-template-rows:none;
+  }
+  .layout-quiz{overflow-y:auto}
+}
+</style>
+</head>
+<body class="grade-ortaokul">
+
+<div id="stage">
+
+  <!-- ══════════════════════ S1 — KAPAK ══════════════════════ -->
+  <div class="slide active" id="s1">
+    <div class="slide-hdr">
+      <div class="sh-icon" id="s1-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+        </svg>
+      </div>
+      <div class="sh-title" id="s1-title">Ders Başlığı</div>
+      <div class="sh-badge" id="s1-badge">X. Hafta</div>
+    </div>
+    <div class="slide-body">
+      <div class="layout-cover">
+        <div class="cover-visual">
+          <div class="cover-svg" id="s1-cover-svg">
+            <svg viewBox="0 0 160 180" fill="none" xmlns="http://www.w3.org/2000/svg" style="animation:float 3s ease-in-out infinite">
+              <rect x="20" y="20" width="120" height="140" rx="12" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.4)" stroke-width="2"/>
+              <rect x="34" y="36" width="92" height="8" rx="4" fill="rgba(255,255,255,0.7)"/>
+              <rect x="34" y="54" width="72" height="6" rx="3" fill="rgba(255,255,255,0.45)"/>
+              <rect x="34" y="68" width="80" height="6" rx="3" fill="rgba(255,255,255,0.45)"/>
+              <rect x="34" y="82" width="60" height="6" rx="3" fill="rgba(255,255,255,0.3)"/>
+              <line x1="20" y1="24" x2="20" y2="156" stroke="rgba(255,255,255,0.6)" stroke-width="4" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+        <div class="cover-info">
+          <div class="cover-title" id="s1-cover-title">Ders <span>Başlığı</span></div>
+          <div class="cover-desc" id="s1-desc">Açıklama metni buraya gelir.</div>
+          <div class="cover-steps" id="s1-steps"></div>
+          <button class="cover-start" onclick="go(1)">
+            <span id="s1-start-lbl">Başlayalım</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ S2 — KAZANIMLAR ══════════════════════ -->
+  <div class="slide" id="s2">
+    <div class="slide-hdr">
+      <div class="sh-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+        </svg>
+      </div>
+      <div class="sh-title" id="s2-title">Kazanımlar</div>
+      <div class="sh-badge">Hedef</div>
+    </div>
+    <div class="slide-body">
+      <div class="layout-full">
+        <div class="csub" id="s2-sub">Bu etkinliğin sonunda:</div>
+        <div class="goal-list" id="s2-goals"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════════════
+       İÇERİK SLAYTLARI — s3 ... s(TOTAL-2)
+       v9.3 KURALLARI:
+       1. SCROLL YOK. Her slayt viewport'a sığmalı.
+       2. STEP-BY-STEP: her adım = ayrı slayt. 10-15 slayt normal.
+       3. Slayt başına max 1 kavram, 1 görsel, 4 madde, 30-40 kelime.
+       4. Layout'lar: layout-step / layout-full / layout-step.single / code-frame
+       5. Her slayta konuya özel sh-icon SVG.
+       6. Quiz doğru cevap dağılımı dengeli (örn: 0,2,3,1).
+  ══════════════════════════════════════════════════════════════════════ -->
+
+  <!-- ══════════════════════ S-QUIZ ══════════════════════ -->
+  <div class="slide" id="s-quiz">
+    <div class="slide-hdr">
+      <div class="sh-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+          <line x1="12" y1="17" x2="12.01" y2="17"/>
+          <circle cx="12" cy="12" r="10"/>
+        </svg>
+      </div>
+      <div class="sh-title">Bilgi Testi</div>
+      <div class="sh-badge">Quiz</div>
+    </div>
+    <div class="slide-body">
+      <div class="layout-quiz" id="quiz-area"></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ S-DONE ══════════════════════ -->
+  <div class="slide" id="s-done">
+    <div class="slide-body" style="padding:0">
+      <div class="layout-done">
+        <div class="done-inner">
+          <div class="done-trophy" id="done-emoji">🏆</div>
+          <div class="done-title" id="done-title">Tebrikler!</div>
+          <div class="done-msg" id="done-msg">Bu etkinliği başarıyla tamamladın!</div>
+          <div class="done-stats">
+            <div class="done-stat">
+              <div class="done-stat-val" id="done-slides">0</div>
+              <div class="done-stat-lbl">Slayt</div>
+            </div>
+            <div class="done-stat">
+              <div class="done-stat-val" id="done-score">0/0</div>
+              <div class="done-stat-lbl">Quiz</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+/* ════════════════════════════════════════════════════════════════════
+   LESSON
+   ════════════════════════════════════════════════════════════════════ */
+const LESSON = {
+  grade:    'ortaokul',
+  week:     '1. Etkinlik',
+  title:    'Ders Başlığı',
+  desc:     'Açıklama metni.',
+  goals: ['Kazanım 1','Kazanım 2','Kazanım 3'],
+  sections: [
+    { icon:'1', label:'Bölüm 1', sub:'Açıklama' },
+    { icon:'2', label:'Bölüm 2', sub:'Açıklama' },
+    { icon:'3', label:'Bölüm 3', sub:'Açıklama' },
+  ],
+  quiz: [
+    { q:'Soru 1?', opts:['A','B','C','D'], correct:0, fb:'Açıklama.' },
+    { q:'Soru 2?', opts:['A','B','C','D'], correct:2, fb:'Açıklama.' },
+    { q:'Soru 3?', opts:['A','B','C','D'], correct:3, fb:'Açıklama.' },
+    { q:'Soru 4?', opts:['A','B','C','D'], correct:1, fb:'Açıklama.' },
+  ],
+  doneMsg: 'Bu etkinliği başarıyla tamamladın!',
+};
+
+const SLIDE_LABELS = [
+  '1. Kapak',
+  '2. Kazanımlar',
+  // İçerik slaytları
+  '3. Bilgi Testi',
+  '4. Tebrikler!',
+];
+
+const TOTAL = SLIDE_LABELS.length;
+let cur = 1;
+const visited = new Set([1]);
+let score = 0, quizTotal = 0;
+
+function applyGrade(g) { document.body.className = 'grade-' + g; }
+
+function fillLesson() {
+  document.title = LESSON.title;
+  applyGrade(LESSON.grade);
+  const isSmall = ['anaokulu','ilkokul'].includes(LESSON.grade);
+
+  document.getElementById('s1-badge').textContent = LESSON.week;
+  document.getElementById('s1-desc').textContent = LESSON.desc;
+  document.getElementById('s1-title').textContent = LESSON.title;
+  const words = LESSON.title.split(' ');
+  const last = words.pop();
+  document.getElementById('s1-cover-title').innerHTML =
+    words.join(' ') + (words.length ? ' ' : '') + '<span>' + last + '</span>';
+  if (isSmall) document.getElementById('s1-start-lbl').textContent = 'Hadi Başlayalım!';
+
+  const clrs = ['var(--brand)','var(--accent)','var(--ok)','#8b5cf6','#ec4899'];
+  const stepsEl = document.getElementById('s1-steps');
+  stepsEl.innerHTML = '';
+  LESSON.sections.forEach((s, i) => {
+    stepsEl.innerHTML +=
+      '<div class="cover-step"><div class="cs-n" style="background:' + clrs[i % clrs.length] + '">' +
+      s.icon + '</div><div><div class="cs-t">' + s.label + '</div><div class="cs-s">' + s.sub + '</div></div></div>';
+  });
+
+  document.getElementById('s2-title').textContent = isSmall ? 'Ne Öğreneceğiz?' : 'Kazanımlar';
+  document.getElementById('s2-sub').textContent = isSmall ? 'Bu derste:' : 'Bu etkinliğin sonunda:';
+  const goalsEl = document.getElementById('s2-goals');
+  goalsEl.innerHTML = '';
+  LESSON.goals.forEach(g => {
+    goalsEl.innerHTML += '<div class="goal-item"><div class="goal-check">✓</div><div class="goal-text">' + g + '</div></div>';
+  });
+
+  document.getElementById('done-title').textContent = isSmall
+    ? LESSON.title + ' öğrendin!'
+    : LESSON.title + ' tamamlandı!';
+  document.getElementById('done-msg').textContent = LESSON.doneMsg;
+  document.getElementById('done-slides').textContent = TOTAL;
+
+  buildQuiz();
+}
+
+const QB = {
+  anaokulu: { ok:'🌟 Harika! ', err:'😊 Olmadı! ' },
+  ilkokul:  { ok:'✅ Doğru! ', err:'❌ Yanlış. ' },
+  ortaokul: { ok:'✅ Doğru! ', err:'❌ Yanlış. ' },
+  lise:     { ok:'', err:'' },
+};
+
+/* Aktif soru indeksi (0-based) */
+let quizCur = 0;
+
+function buildQuiz() {
+  const area = document.getElementById('quiz-area');
+  area.innerHTML = '';
+  area.className = 'layout-quiz';
+  const qb = QB[LESSON.grade] || QB.ortaokul;
+  const ltrs = ['A','B','C','D'];
+  const n = LESSON.quiz.length;
+  quizTotal = n; score = 0; quizCur = 0;
+
+  // 1) HEADER: sayaç + ilerleme bar + skor
+  const hdr = document.createElement('div');
+  hdr.className = 'quiz-hdr';
+  hdr.innerHTML =
+    '<div class="quiz-counter">Soru <b id="qc-cur">1</b> / <span id="qc-tot">' + n + '</span></div>' +
+    '<div class="quiz-bar"><div class="quiz-bar-fill" id="qbar"></div></div>' +
+    '<div class="quiz-score">' +
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>' +
+      '<span id="qsc-val">0</span> / ' + n +
+    '</div>';
+  area.appendChild(hdr);
+
+  // 2) BODY: tüm sorular eklenir, sadece aktif olan görünür
+  const body = document.createElement('div');
+  body.className = 'quiz-body';
+  area.appendChild(body);
+
+  LESSON.quiz.forEach((q, qi) => {
+    const wrap = document.createElement('div');
+    wrap.className = 'quiz-wrap' + (qi === 0 ? ' active' : '');
+    wrap.dataset.qi = qi;
+    wrap.innerHTML = '<div class="quiz-q">' + (qi+1) + '. ' + q.q + '</div>';
+    const opts = document.createElement('div');
+    opts.className = 'quiz-opts';
+    q.opts.forEach((opt, oi) => {
+      const btn = document.createElement('button');
+      btn.className = 'quiz-opt';
+      btn.innerHTML = '<div class="quiz-letter">' + ltrs[oi] + '</div><span>' + opt + '</span>';
+      btn.onclick = () => quizAns(qi, oi, btn, q, qb);
+      opts.appendChild(btn);
+    });
+    wrap.appendChild(opts);
+
+    const fb = document.createElement('div');
+    fb.className = 'quiz-fb'; fb.id = 'qfb-' + qi;
+    wrap.appendChild(fb);
+
+    // Sonraki / Sonuç butonu — her sorunun altında, cevap verilince görünür
+    const nextWrap = document.createElement('div');
+    nextWrap.className = 'quiz-next-wrap';
+    const isLast = qi === n - 1;
+    const nextLbl = isLast ? 'Sonuca git' : 'Sonraki soru';
+    const nextBtn = document.createElement('button');
+    nextBtn.className = 'quiz-next';
+    nextBtn.id = 'qnext-' + qi;
+    nextBtn.innerHTML =
+      '<span>' + nextLbl + '</span>' +
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>';
+    nextBtn.onclick = () => quizGoNext(qi, isLast);
+    nextWrap.appendChild(nextBtn);
+    wrap.appendChild(nextWrap);
+
+    body.appendChild(wrap);
+  });
+
+  updateQuizBar();
+}
+
+function updateQuizBar() {
+  const total = LESSON.quiz.length;
+  // İlerleme: aktif soru kaçıncı (cevapladıktan sonra bar tam dolması için cur+1 mantığı)
+  const pct = Math.round(((quizCur) / total) * 100);
+  const bar = document.getElementById('qbar');
+  if (bar) bar.style.width = pct + '%';
+  const cur = document.getElementById('qc-cur');
+  if (cur) cur.textContent = Math.min(quizCur + 1, total);
+  const sc = document.getElementById('qsc-val');
+  if (sc) sc.textContent = score;
+}
+
+function quizAns(qi, oi, el, q, qb) {
+  // Bu sorunun butonlarını kilitle (tekrar tıklanmasın)
+  const parent = el.parentElement;
+  Array.from(parent.children).forEach(c => { c.disabled = true; });
+
+  const correct = oi === q.correct;
+  const fb = document.getElementById('qfb-' + qi);
+
+  if (correct) {
+    el.classList.add('correct');
+    score++;
+    fb.textContent = qb.ok + (q.fb || '');
+    fb.className = 'quiz-fb show ok';
+    playSound('correct');
+  } else {
+    el.classList.add('wrong');
+    fb.textContent = qb.err + (q.fb || '');
+    fb.className = 'quiz-fb show err';
+    const correctEl = parent.children[q.correct];
+    if (correctEl) correctEl.classList.add('correct');
+    playSound('wrong');
+  }
+
+  // Sonraki butonu göster
+  const nextBtn = document.getElementById('qnext-' + qi);
+  if (nextBtn) nextBtn.classList.add('show');
+
+  // Skor güncelle (done ekranı + üst sayaç)
+  document.getElementById('done-score').textContent = score + '/' + quizTotal;
+  const sc = document.getElementById('qsc-val');
+  if (sc) sc.textContent = score;
+
+  lmsUpdate();
+}
+
+function quizGoNext(qi, isLast) {
+  if (isLast) {
+    // Quiz bitti — Tebrikler slaytına geç
+    quizCur = LESSON.quiz.length;
+    updateQuizBar();
+    playSound('next');
+    goTo(TOTAL);
+    return;
+  }
+  // Bir sonraki soruya geç
+  const body = document.querySelector('.quiz-body');
+  if (!body) return;
+  const wraps = body.querySelectorAll('.quiz-wrap');
+  const cur = wraps[qi];
+  const next = wraps[qi + 1];
+  if (!next) return;
+
+  // Çıkış animasyonu, sonra giriş
+  cur.classList.add('q-leaving');
+  setTimeout(() => {
+    cur.classList.remove('active', 'q-leaving');
+    next.classList.add('active');
+    quizCur = qi + 1;
+    updateQuizBar();
+  }, 240);
+  playSound('next');
+}
+
+/* Ses efekti — Web Audio API */
+let soundEnabled = true;
+function playSound(type) {
+  if (!soundEnabled) return;
+  try {
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    if (!AudioCtx) return;
+    const ctx = new AudioCtx();
+    if (type === 'correct') {
+      // Yükselen iki nota: do-mi (pozitif)
+      [523.25, 659.25].forEach((freq, i) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0, ctx.currentTime + i * 0.1);
+        gain.gain.linearRampToValueAtTime(0.15, ctx.currentTime + i * 0.1 + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.1 + 0.2);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(ctx.currentTime + i * 0.1);
+        osc.stop(ctx.currentTime + i * 0.1 + 0.2);
+      });
+    } else if (type === 'wrong') {
+      // İnen iki nota: sol-mi (yumuşak yanlış)
+      [392, 329.63].forEach((freq, i) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0, ctx.currentTime + i * 0.12);
+        gain.gain.linearRampToValueAtTime(0.12, ctx.currentTime + i * 0.12 + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.12 + 0.25);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(ctx.currentTime + i * 0.12);
+        osc.stop(ctx.currentTime + i * 0.12 + 0.25);
+      });
+    } else if (type === 'next') {
+      // Slayt geçişi: kısa "tık" sesi
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.value = 800;
+      gain.gain.setValueAtTime(0.08, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.08);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(ctx.currentTime);
+      osc.stop(ctx.currentTime + 0.08);
+    }
+  } catch (e) {}
+}
+
+function go(d) { goTo(cur + d); }
+
+function goTo(n) {
+  if (n < 1 || n > TOTAL || n === cur) return;
+  const slides = document.querySelectorAll('.slide');
+  let curSlide = null, nextSlide = null;
+  slides.forEach((s, i) => {
+    if (i + 1 === cur) curSlide = s;
+    if (i + 1 === n) nextSlide = s;
+  });
+  if (!nextSlide) return;
+  if (curSlide) curSlide.classList.remove('active');
+  nextSlide.classList.add('active');
+  cur = n;
+  visited.add(n);
+  fitSlideContent(nextSlide);
+  if (cur === TOTAL) confetti();
+  lmsUpdate();
+}
+
+function fitSlideContent(slideEl) {
+  if (!slideEl) return;
+  const body = slideEl.querySelector('.slide-body');
+  if (!body) return;
+  const target = body.querySelector('.layout-full, .layout-step, .layout-quiz');
+  if (!target) return;
+  target.style.fontSize = '';
+  requestAnimationFrame(() => {
+    const max = body.clientHeight;
+    let h = target.scrollHeight;
+    if (h <= max + 4) return;
+    let scale = 1.0, tries = 0;
+    while (h > max + 4 && scale > 0.78 && tries < 12) {
+      scale -= 0.02;
+      target.style.fontSize = (scale * 100) + '%';
+      h = target.scrollHeight;
+      tries++;
+    }
+    if (h > max + 4) {
+      console.warn('[fit] Slayt', slideEl.id, 'içeriği taşıyor — çözüm: 2 slayta böl.');
+    }
+  });
+}
+
+function confetti() {
+  const colors = ['#0ea5e9','#f59e0b','#10b981','#ec4899','#8b5cf6','#f472b6'];
+  for (let i = 0; i < 60; i++) {
+    setTimeout(() => {
+      const c = document.createElement('div');
+      c.className = 'confetti';
+      c.style.left = Math.random() * 100 + '%';
+      c.style.top = '-10px';
+      c.style.background = colors[Math.floor(Math.random() * colors.length)];
+      c.style.transform = 'rotate(' + (Math.random() * 360) + 'deg)';
+      c.style.transition = 'top 2.5s ease-in, left 2.5s ease-in, opacity 2.5s';
+      document.body.appendChild(c);
+      requestAnimationFrame(() => {
+        c.style.top = '100vh';
+        c.style.left = (Math.random() * 100) + '%';
+        c.style.opacity = '0';
+      });
+      setTimeout(() => c.remove(), 2600);
+    }, i * 30);
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   WRAPPER ENTEGRASYONU — postMessage protokolü
+   
+   GİDEN (master → wrapper):
+   - { type: 'wrapper_ready' }                       → master hazır
+   - { type: 'lms_update', slide, total, progress,
+       completed, score, quizTotal }                 → ilerleme güncel
+   
+   GELEN (wrapper → master):
+   - { type: 'lms_init', school, category, unitName } → metadata (opsiyonel)
+   - { type: 'lms_cmd', cmd: 'goTo', slide: N }      → slayta git
+   - { type: 'lms_cmd', cmd: 'next' }                → ileri
+   - { type: 'lms_cmd', cmd: 'prev' }                → geri
+   - { type: 'lms_cmd', cmd: 'reset' }               → başa dön
+   ════════════════════════════════════════════════════════════════════ */
+
+function lmsUpdate() {
+  const progress = TOTAL > 1
+    ? Math.round((cur - 1) / (TOTAL - 1) * 100)
+    : 100;
+  const completed = cur === TOTAL;
+  console.log('[MASTER] lmsUpdate →', { slide: cur, total: TOTAL, progress, completed });
+  if (window.parent && window.parent !== window) {
+    try {
+      window.parent.postMessage({
+        type: 'lms_update',
+        slide: cur,
+        total: TOTAL,
+        progress: progress,
+        completed: completed,
+        score: score,
+        quizTotal: quizTotal,
+      }, '*');
+    } catch (e) {
+      console.error('[MASTER] postMessage error:', e);
+    }
+  } else {
+    console.warn('[MASTER] No parent window — standalone mode');
+  }
+}
+
+function lmsReady() {
+  console.log('[MASTER] lmsReady — sending wrapper_ready + lms_labels');
+  if (window.parent && window.parent !== window) {
+    try {
+      window.parent.postMessage({ type: 'wrapper_ready' }, '*');
+      // v9.3: slayt etiketleri + grade + lesson title (wrapper UI için)
+      window.parent.postMessage({
+        type: 'lms_labels',
+        labels: SLIDE_LABELS,
+        total: TOTAL,
+        grade: LESSON.grade,
+        title: LESSON.title,
+        week:  LESSON.week,
+      }, '*');
+      console.log('[MASTER] Sent labels:', SLIDE_LABELS, 'grade:', LESSON.grade);
+    } catch (e) {
+      console.error('[MASTER] lmsReady error:', e);
+    }
+  }
+}
+
+window.addEventListener('message', function(e) {
+  console.log('[MASTER] received message:', e.data);
+  if (!e.data || !e.data.type) return;
+  if (e.data.type === 'lms_init') return;
+  if (e.data.type === 'lms_setting') {
+    // Wrapper'dan ayar geldi (örn: ses açık/kapalı)
+    if (typeof e.data.sound === 'string') {
+      soundEnabled = (e.data.sound === 'on');
+      console.log('[MASTER] sound ->', soundEnabled);
+    }
+    return;
+  }
+  if (e.data.type === 'lms_cmd') {
+    const cmd = e.data.cmd;
+    if (cmd === 'goTo' && typeof e.data.slide === 'number') goTo(e.data.slide);
+    else if (cmd === 'next') go(1);
+    else if (cmd === 'prev') go(-1);
+    else if (cmd === 'reset') { buildQuiz(); goTo(1); }
+  }
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowRight' || e.key === 'PageDown') go(1);
+  else if (e.key === 'ArrowLeft' || e.key === 'PageUp') go(-1);
+  else if (e.key === 'Home') goTo(1);
+  else if (e.key === 'End') goTo(TOTAL);
+});
+
+/* ════════════════════════════════════════════════════════════════════
+   TOUCH / SWIPE DESTEĞİ — tablet/telefon için yan kaydırma ile slayt geçişi
+   ════════════════════════════════════════════════════════════════════ */
+let _touchStartX = 0, _touchStartY = 0, _touchEndX = 0, _touchEndY = 0;
+document.addEventListener('touchstart', (e) => {
+  if (e.target.closest('.quiz-opt, .cover-start, button, input, textarea, a')) return;
+  _touchStartX = e.changedTouches[0].screenX;
+  _touchStartY = e.changedTouches[0].screenY;
+}, { passive: true });
+document.addEventListener('touchend', (e) => {
+  if (e.target.closest('.quiz-opt, .cover-start, button, input, textarea, a')) return;
+  _touchEndX = e.changedTouches[0].screenX;
+  _touchEndY = e.changedTouches[0].screenY;
+  const dx = _touchEndX - _touchStartX;
+  const dy = _touchEndY - _touchStartY;
+  // Yatay swipe (50px+ ve dikey hareketten 2x fazla)
+  if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 2) {
+    if (dx < 0) go(1);   // sola swipe → ileri
+    else go(-1);          // sağa swipe → geri
+  }
+}, { passive: true });
+
+let _resizeT;
+window.addEventListener('resize', () => {
+  clearTimeout(_resizeT);
+  _resizeT = setTimeout(() => {
+    const active = document.querySelector('.slide.active');
+    if (active) fitSlideContent(active);
+  }, 180);
+});
+
+/* BOOT */
+fillLesson();
+fitSlideContent(document.getElementById('s1'));
+lmsReady();
+lmsUpdate();
+</script>
+</body>
+</html>

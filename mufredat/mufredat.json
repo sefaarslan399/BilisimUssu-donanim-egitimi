@@ -1,0 +1,1360 @@
+{
+  "program": "Bilişim Üssü Bilgisayar Donanımı Programı",
+  "surum": "1.0",
+  "ders_suresi_dk": 35,
+  "ders_turleri": {
+    "K": "Kavram dersi — öğretmen planı Format K (Elektronik 203 biçimi): 6 adım = 6 kavram, 5+25+5 dk.",
+    "U": "Uygulama dersi — öğretmen planı Format U (PRJ biçimi): 6 adım = 6 yapım adımı, GÖSTER/SOR/KONTROL/SIK HATA.",
+    "K+U": "Karma — Format K iskeleti; uygulama adımlarında Format U'nun GÖSTER/SOR/KONTROL/SIK HATA kutuları."
+  },
+  "dersler": [
+    {
+      "kod": "DON-201",
+      "ad": "Bilgisayar Donanımı",
+      "lms_adi": "Donanım 201",
+      "kademe": "ortaokul",
+      "sinif": "5–8",
+      "yas_araligi": "10–15",
+      "ders_adi_plan": "Bilişim Teknolojileri ve Yazılım",
+      "ogrenme_alani": "Bilgisayar Donanımı",
+      "amac": "Öğrenci bilgisayarın parçalarını tanır, her parçanın görevini açıklar, güvenli sök-tak yapar, basit sorunları giderir ve cihazlarını sorumlu kullanır.",
+      "gorsel_seviye": "YÜKSEK — her derste en az bir etkileşimli 3D sahne ve her adımda animasyon ya da sahne illüstrasyonu (docs/gorsel-3d-standartlari.md).",
+      "uniteler": [
+        {
+          "no": 1,
+          "ad": "Bilgisayarı Tanıyalım",
+          "haftalar": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "no": 2,
+          "ad": "Kasanın İçinde",
+          "haftalar": [
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "no": 3,
+          "ad": "Sök–Tak Atölyesi",
+          "haftalar": [
+            10,
+            11
+          ]
+        },
+        {
+          "no": 4,
+          "ad": "Bakım ve Sorumluluk",
+          "haftalar": [
+            12,
+            13,
+            14
+          ]
+        }
+      ],
+      "donanim": [
+        "Grup başına 1 eski masaüstü bilgisayar (U haftaları)",
+        "Tornavida seti",
+        "Antistatik bileklik",
+        "Parça kutusu ve etiket"
+      ],
+      "haftalar": [
+        {
+          "hafta": 1,
+          "baslik": "Donanım, Yazılım ve Bilgisayarın Dört İşi",
+          "tur": "K",
+          "kazanimlar": [
+            "Donanımı yazılımdan ayırt eder.",
+            "Girdi–işlem–çıktı–depolama döngüsünü örnekle açıklar.",
+            "Çevre birimlerini görevine göre sınıflandırır.",
+            "Günlük cihazlarda (telefon, çamaşır makinesi) dört işi bulur."
+          ],
+          "adimlar": [
+            "Donanım",
+            "Yazılım",
+            "Girdi",
+            "İşlem",
+            "Çıktı",
+            "Depolama"
+          ],
+          "etkinlik": "3D nesneleri donanım/yazılım kutularına ayırma; bir harfin klavyeden ekrana yolculuğunu izleme.",
+          "gorsel": {
+            "sahne3d": [
+              "M-MASAUSTU",
+              "M-KLAVYE",
+              "M-MONITOR",
+              "M-FARE"
+            ],
+            "animasyonlar": [
+              "Adım 1: masaüstü bilgisayar 3D sahnede yavaşça döner; parçalar sırayla parlar (A-VURGU).",
+              "Adım 2: ekranın önünde yazılım 'katman' olarak belirir; donanım aynı kalır, yazılım değişir (A-KATMAN).",
+              "Adım 3–6: klavyede basılan harf ışık parçacığı olarak kabloya, kasaya, ekrana ve diske gider; her durakta ilgili adım etiketi yanar (A-AKIS)."
+            ],
+            "etkilesim": [
+              "E-SINIFLA (3D nesneleri donanım/yazılım kutusuna sürükle)",
+              "E-DONDUR (masaüstü modeli)"
+            ],
+            "foto": []
+          },
+          "derinles": "Hem girdi hem çıktı olan birimler (dokunmatik ekran); gömülü sistemler (araba, çamaşır makinesi).",
+          "guvenlik": "",
+          "materyal": "",
+          "ogretmen_notu": ""
+        },
+        {
+          "hafta": 2,
+          "baslik": "Bit ve Byte",
+          "tur": "K",
+          "kazanimlar": [
+            "Bilgisayarın veriyi 1 ve 0 ile temsil ettiğini açıklar.",
+            "8 bitin 1 byte olduğunu gösterir.",
+            "KB, MB, GB ve TB birimlerini büyüklük sırasına koyar.",
+            "Bir belleğe kaç dosya sığacağını tahmin eder."
+          ],
+          "adimlar": [
+            "Açık–Kapalı: 1 ve 0",
+            "Bit",
+            "Byte",
+            "Harfler Sayıdır",
+            "KB–MB–GB–TB",
+            "Kaç Fotoğraf Sığar?"
+          ],
+          "etkinlik": "8 ampullük sırayla harf oluşturma; bellek doldurma tahmin oyunu.",
+          "gorsel": {
+            "sahne3d": [
+              "M-AMPUL-SIRASI"
+            ],
+            "animasyonlar": [
+              "Adım 1: 3D ampul tıklanınca yanar/söner, altında 1/0 belirir (A-SAYAC).",
+              "Adım 3–4: 8 ampul yan yana; yanan desen canlı olarak sayıya ve harfe dönüşür.",
+              "Adım 5: harf → sayfa → fotoğraf → film → kütüphane kutuları üst üste büyür; ölçek kamerası uzaklaşır (A-OLCEK).",
+              "Adım 6: tahmin girilir, sonra bellek çubuğu fotoğraflarla dolar (A-DOLUM)."
+            ],
+            "etkilesim": [
+              "E-SAYAC (ampullere tıkla)",
+              "E-TAHMIN (önce tahmin, sonra animasyon)"
+            ],
+            "foto": []
+          },
+          "derinles": "Bir byte'ın 0–255 arası sayı tutması; 1000 ile 1024 farkı.",
+          "guvenlik": "",
+          "materyal": "",
+          "ogretmen_notu": ""
+        },
+        {
+          "hafta": 3,
+          "baslik": "Bağlantı Noktaları ve Çevre Birimleri",
+          "tur": "K",
+          "kazanimlar": [
+            "Portun ne olduğunu açıklar.",
+            "USB, HDMI, ses ve ağ portlarını görünüşlerinden tanır.",
+            "Kablolu ve kablosuz bağlantıyı (Wi-Fi, Bluetooth) karşılaştırır.",
+            "Bir cihaz için doğru kablo ile doğru portu eşleştirir."
+          ],
+          "adimlar": [
+            "Port Nedir?",
+            "USB (Type-A, Type-C)",
+            "Görüntü: HDMI",
+            "Ses Giriş–Çıkışı",
+            "Ağ Portu ve Kablosuz",
+            "Doğru Kablo, Doğru Port"
+          ],
+          "etkinlik": "3D arka panelde kablo ucunu doğru porta sürükleme.",
+          "gorsel": {
+            "sahne3d": [
+              "M-ARKA-PANEL",
+              "M-KABLO-UCLARI",
+              "M-DIZUSTU"
+            ],
+            "animasyonlar": [
+              "Adım 2: USB-A ters tutulunca girmez, döner ve girer; USB-C iki yönde de girer (A-TAK).",
+              "Adım 3–5: kamera arka panelde port port gezinir, her portta etiket açılır (A-KAMERA-TUR).",
+              "Adım 5: kablosuz bağlantı dalga halkaları olarak cihazlar arasında yayılır (A-DALGA)."
+            ],
+            "etkilesim": [
+              "E-TAK (kablo ucunu porta sürükle; yanlış portta sığmama animasyonu)",
+              "E-DONDUR (arka panel)"
+            ],
+            "foto": [
+              "Gerçek arka panel portları (masaüstü)",
+              "Dizüstü yan portları"
+            ]
+          },
+          "derinles": "USB-C bağlantısının her zaman aynı hızda olmaması.",
+          "guvenlik": "",
+          "materyal": "",
+          "ogretmen_notu": "Ses portları renk + yazılı etiketle gösterilir (renk tek başına bilgi taşımaz)."
+        },
+        {
+          "hafta": 4,
+          "baslik": "Güvenli Çalışma",
+          "tur": "K+U",
+          "kazanimlar": [
+            "Atölye güvenlik kurallarını gerekçeleriyle sıralar.",
+            "Statik elektriğin parçaya nasıl zarar verdiğini açıklar.",
+            "Parçayı kenarından tutmayı ve antistatik bileklik kullanmayı uygular.",
+            "Hiçbir koşulda açılmayacak parçaları ayırt eder."
+          ],
+          "adimlar": [
+            "Neden Kural?",
+            "Fişi Çek, Elektriği Boşalt",
+            "Statik Elektrik",
+            "Antistatik Bileklik ve Tutma",
+            "Asla Açılmaz: Güç Kaynağı, Şişmiş Pil, Tüplü Monitör",
+            "Vida ve Parça Düzeni"
+          ],
+          "etkinlik": "Güvenlik sözleşmesi; animasyonlu doğru/yanlış sahneleri.",
+          "gorsel": {
+            "sahne3d": [
+              "M-ANTISTATIK-BILEKLIK",
+              "M-RAM",
+              "M-PSU"
+            ],
+            "animasyonlar": [
+              "Adım 2: fiş çekilir, güç düğmesine basılı tutulur, kasa içindeki ışıklar söner (A-BOSALT).",
+              "Adım 3: halıda yürüyen karakterin parmağından çipe küçük kıvılcım atlar; çipte hasar izi belirir (A-KIVILCIM, 2D/SVG).",
+              "Adım 4: RAM modülü kenarından tutulur (yeşil onay), altın temas yüzeyinden tutulur (kırmızı uyarı) (A-VURGU).",
+              "Adım 5: güç kaynağı, şişmiş pil ve tüplü monitör kilit simgesiyle kapanır; yaklaşınca uyarı titreşimi (A-UYARI)."
+            ],
+            "etkilesim": [
+              "E-DOGRU-YANLIS (animasyonlu mini sahneler)"
+            ],
+            "foto": [
+              "Antistatik bileklik takılmış el",
+              "Güç kaynağı uyarı etiketi"
+            ]
+          },
+          "derinles": "Statik elektrik neden hissedilmeden parçaya zarar verebilir?",
+          "guvenlik": "Güç kaynağı hiçbir koşulda açılmaz. Fişi çekilmemiş bilgisayara dokunulmaz. Şişmiş/hasarlı pile dokunulmaz. Tüplü (CRT) monitör kullanılmaz.",
+          "materyal": "",
+          "ogretmen_notu": ""
+        },
+        {
+          "hafta": 5,
+          "baslik": "Anakart",
+          "tur": "K",
+          "kazanimlar": [
+            "Anakartın parçaları birbirine bağladığını açıklar.",
+            "İşlemci soketi, RAM yuvaları ve genişleme yuvalarını anakart üzerinde bulur.",
+            "Arka panel portlarını tanır.",
+            "Kasa türlerini karşılaştırır."
+          ],
+          "adimlar": [
+            "Kasa Türleri",
+            "Anakart: Parçaların Yolları",
+            "İşlemci Soketi",
+            "RAM Yuvaları",
+            "Genişleme Yuvaları (PCIe, M.2)",
+            "Arka Panel"
+          ],
+          "etkinlik": "3D anakartta parça avı; gerçek anakart üzerinde aynı parçaları bulma.",
+          "gorsel": {
+            "sahne3d": [
+              "M-KASA-TURLERI",
+              "M-ANAKART"
+            ],
+            "animasyonlar": [
+              "Adım 1: masaüstü, dizüstü ve tümleşik bilgisayar yan yana döner (A-KARSILASTIR).",
+              "Adım 2: anakart yollarında ışık akar; parçalar arası bağlantı görünür (A-AKIS).",
+              "Adım 3–6: kamera soketten RAM yuvalarına, PCIe/M.2'ye ve arka panele durak durak gezinir (A-KAMERA-TUR)."
+            ],
+            "etkilesim": [
+              "E-DONDUR + E-BILGI (parçaya tıkla, bilgi kartı aç)",
+              "E-AV (sorulan parçayı 3D anakartta bul)"
+            ],
+            "foto": [
+              "Gerçek anakart üstten görünüm"
+            ]
+          },
+          "derinles": "Çipsetin görevi.",
+          "guvenlik": "",
+          "materyal": "",
+          "ogretmen_notu": ""
+        },
+        {
+          "hafta": 6,
+          "baslik": "İşlemci",
+          "tur": "K",
+          "kazanimlar": [
+            "İşlemcinin komutları sırayla işlediğini açıklar.",
+            "Çekirdek ve saat hızı (GHz) kavramlarını örnekle açıklar.",
+            "İşlemcinin neden ısındığını açıklar.",
+            "Soğutucu ve termal macunun görevini eşleştirir."
+          ],
+          "adimlar": [
+            "İşlemcinin Görevi",
+            "Komut Komut Çalışma",
+            "Çekirdek",
+            "Saat Hızı (GHz)",
+            "Isınma ve Soğutucu",
+            "Termal Macun"
+          ],
+          "etkinlik": "Tek ve dört çekirdek yarışı; soğutucuyu kaldır-tak ısı deneyi.",
+          "gorsel": {
+            "sahne3d": [
+              "M-CPU",
+              "M-SOGUTUCU",
+              "M-FAN"
+            ],
+            "animasyonlar": [
+              "Adım 2: komut kartları konveyör bandında işlemciye girer, sırayla işlenir (A-KUYRUK).",
+              "Adım 3: 1 çekirdek ile 4 çekirdek aynı iş yığınını işler; süre sayacı yarışır (A-YARIS).",
+              "Adım 4: saat hızı sürgüsü artınca konveyör hızlanır ve ısı yükselir.",
+              "Adım 5–6: soğutucu–macun–işlemci patlatma görünümü; soğutucu kaldırılınca işlemci maviden kırmızıya döner (A-PATLAT, A-ISI)."
+            ],
+            "etkilesim": [
+              "E-SURGU (saat hızı)",
+              "E-TAK-CIKAR (soğutucu)",
+              "E-DONDUR"
+            ],
+            "foto": [
+              "İşlemci üst ve alt yüz",
+              "Soğutucu ve fan"
+            ]
+          },
+          "derinles": "Telefon işlemcisi ile bilgisayar işlemcisinin farkı.",
+          "guvenlik": "",
+          "materyal": "",
+          "ogretmen_notu": ""
+        },
+        {
+          "hafta": 7,
+          "baslik": "RAM",
+          "tur": "K",
+          "kazanimlar": [
+            "RAM'in görevini 'çalışma masası' benzetmesiyle açıklar.",
+            "RAM'in geçici bellek olduğunu ve elektrik kesilince silindiğini açıklar.",
+            "RAM kapasitesinin performansa etkisini örnekler.",
+            "RAM modülünü çentiğinden tanır."
+          ],
+          "adimlar": [
+            "Bellek Nedir?",
+            "Çalışma Masası",
+            "Geçici Bellek: Kaydetmeyi Unutma",
+            "Kapasite (GB)",
+            "RAM Yetmezse",
+            "RAM Modülünü Tanı"
+          ],
+          "etkinlik": "Masa büyüklüğü deneyi; elektrik kesintisi animasyonu.",
+          "gorsel": {
+            "sahne3d": [
+              "M-RAM",
+              "M-MASA-DOLAP"
+            ],
+            "animasyonlar": [
+              "Adım 2: 3D çalışma masası ve dolap; açılan her uygulama dolaptan masaya dosya olarak gelir (A-MASA).",
+              "Adım 3: elektrik kesilir; masadaki kâğıtlar kaybolur, dolaptakiler kalır (A-GUC-KES).",
+              "Adım 5: masa küçükken dosyalar dolaba gidip gelir, bekleme çubuğu uzar (A-YAVASLA).",
+              "Adım 6: RAM modülü döner, çentik ve altın temaslar vurgulanır (A-VURGU)."
+            ],
+            "etkilesim": [
+              "E-SURGU (RAM kapasitesi: 4/8/16 GB)",
+              "E-DONDUR (RAM)"
+            ],
+            "foto": [
+              "RAM modülü (masaüstü)"
+            ]
+          },
+          "derinles": "Görev Yöneticisi'nde RAM kullanımını izleme.",
+          "guvenlik": "",
+          "materyal": "",
+          "ogretmen_notu": ""
+        },
+        {
+          "hafta": 8,
+          "baslik": "Depolama Birimleri",
+          "tur": "K",
+          "kazanimlar": [
+            "Kalıcı depolamayı RAM'den ayırt eder.",
+            "HDD ile SSD'yi yapı ve hız açısından karşılaştırır.",
+            "Taşınabilir depolama birimlerini tanır.",
+            "Yedeklemenin önemini açıklar."
+          ],
+          "adimlar": [
+            "Kalıcı Depolama",
+            "HDD",
+            "SSD",
+            "HDD mi SSD mi?",
+            "USB Bellek, Hafıza Kartı",
+            "Bulut ve Yedekleme"
+          ],
+          "etkinlik": "HDD–SSD yükleme yarışı; yedekleme senaryosu.",
+          "gorsel": {
+            "sahne3d": [
+              "M-HDD-ACIK",
+              "M-SSD",
+              "M-M2",
+              "M-USB-BELLEK"
+            ],
+            "animasyonlar": [
+              "Adım 2: şeffaf kapaklı HDD; plaka döner, okuma kafası ileri geri gider (A-DONUS).",
+              "Adım 3: SSD içinde hareketli parça yok; bellek çipleri sırayla yanar.",
+              "Adım 4: aynı oyun HDD ve SSD'den yüklenir; iki ilerleme çubuğu yarışır (A-YARIS).",
+              "Adım 6: dosya bulut simgesine kopyalanır; bilgisayar arızalanınca dosya buluttan geri gelir (A-AKIS)."
+            ],
+            "etkilesim": [
+              "E-DONDUR (HDD, SSD)",
+              "E-TAHMIN (hangisi önce yükler?)"
+            ],
+            "foto": [
+              "HDD iç görünüm",
+              "SATA SSD",
+              "M.2 SSD"
+            ]
+          },
+          "derinles": "Dosya Gezgini'nde disk doluluğunu okuma.",
+          "guvenlik": "",
+          "materyal": "",
+          "ogretmen_notu": ""
+        },
+        {
+          "hafta": 9,
+          "baslik": "Güç Kaynağı, Ekran Kartı ve Soğutma",
+          "tur": "K",
+          "kazanimlar": [
+            "Güç kaynağının görevini açıklar.",
+            "Güç kaynağının neden açılmaması gerektiğini gerekçelendirir.",
+            "Tümleşik ve harici ekran kartını karşılaştırır.",
+            "Parçaların birlikte çalışmasını sanal montajda gösterir."
+          ],
+          "adimlar": [
+            "Güç Kaynağı",
+            "Neden Açılmaz?",
+            "Ekran Kartı",
+            "Tümleşik ve Harici",
+            "Fanlar ve Hava Akışı",
+            "Hepsi Bir Arada (sanal montaj)"
+          ],
+          "etkinlik": "Sanal montaj: parçaları doğru yerine sürükleme.",
+          "gorsel": {
+            "sahne3d": [
+              "M-PSU",
+              "M-GPU",
+              "M-FAN",
+              "M-MASAUSTU-ACIK"
+            ],
+            "animasyonlar": [
+              "Adım 1: prizden gelen enerji güç kaynağından geçerek parçalara renkli çizgiler halinde dağılır (A-AKIS).",
+              "Adım 5: kasa içinde hava parçacıkları önden girer, arkadan çıkar (A-HAVA).",
+              "Adım 6: tüm bilgisayar patlatma görünümünde ayrışır, sonra parçalar yerine döner (A-PATLAT)."
+            ],
+            "etkilesim": [
+              "E-SANAL-MONTAJ (parçaları doğru yere sürükle)",
+              "E-DONDUR"
+            ],
+            "foto": [
+              "Güç kaynağı dış görünüm ve etiketi",
+              "Ekran kartı"
+            ]
+          },
+          "derinles": "Tasarım ve oyun bilgisayarlarında ekran kartının rolü.",
+          "guvenlik": "Güç kaynağının içi hiçbir görselde açık gösterilmez; yalnızca dış görünüm ve uyarı etiketi.",
+          "materyal": "",
+          "ogretmen_notu": ""
+        },
+        {
+          "hafta": 10,
+          "baslik": "Atölye 1: Kasayı Açma ve RAM Sök–Tak",
+          "tur": "U",
+          "kazanimlar": [
+            "Güvenlik kontrolünü yapıp kasayı açar.",
+            "Parçaları kasa içinde bulup etiketler.",
+            "RAM'i mandallarını açarak çıkarır.",
+            "RAM'i çentiği doğru yönde tutarak takar."
+          ],
+          "adimlar": [
+            "Güvenlik Kontrolü",
+            "Yan Kapağı Aç",
+            "Parçaları Bul ve Etiketle",
+            "RAM'i Çıkar",
+            "RAM'i Tak",
+            "Fotoğrafla Belgele"
+          ],
+          "etkinlik": "Grup atölyesi: önce 3D provası, sonra gerçek bilgisayarda aynı adım.",
+          "gorsel": {
+            "sahne3d": [
+              "M-MASAUSTU-ACIK",
+              "M-RAM",
+              "M-RAM-YUVASI"
+            ],
+            "animasyonlar": [
+              "Her yapım adımı: önce 3D prova (kısa animasyon), sonra gerçek fotoğraf.",
+              "Adım 2: yan kapak vidaları döner, kapak kayarak açılır (A-TAK ters).",
+              "Adım 4–5: mandallar açılır; RAM çentik hizasında iner, eşit bastırılır, mandallar 'klik' ile kapanır; ters tutulunca girmez (A-TAK)."
+            ],
+            "etkilesim": [
+              "E-TAK (3D'de RAM'i doğru yönde yuvaya yerleştir)"
+            ],
+            "foto": [
+              "Her yapım adımı için gerçek fotoğraf (6 adım)"
+            ]
+          },
+          "derinles": "RAM etiketinden kapasite okuma.",
+          "guvenlik": "Fiş çekilmeden kapak açılmaz. Antistatik bileklik takılı çalışılır. Kapak ve vidalar kutuya konur.",
+          "materyal": "Grup başına eski masaüstü bilgisayar, tornavida, antistatik bileklik, parça kutusu, etiket",
+          "ogretmen_notu": ""
+        },
+        {
+          "hafta": 11,
+          "baslik": "Atölye 2: Disk Sök–Tak, Toplama ve İlk Açılış",
+          "tur": "U",
+          "kazanimlar": [
+            "Diskin veri ve güç kablolarını tanır.",
+            "Diski söküp yeniden takar.",
+            "Kasayı kapatır ve öğretmen kontrolünden sonra açılış testini yapar.",
+            "Sistem bilgisinde RAM ve diskin göründüğünü doğrular."
+          ],
+          "adimlar": [
+            "Diski ve Kablolarını Bul",
+            "Diski Sök",
+            "Diski Tak",
+            "Kabloları Kontrol Et",
+            "Kapağı Kapat, Öğretmen Onayı",
+            "Açılış ve Doğrulama"
+          ],
+          "etkinlik": "Grup atölyesi: 3D prova + gerçek uygulama; açılış kontrol listesi.",
+          "gorsel": {
+            "sahne3d": [
+              "M-MASAUSTU-ACIK",
+              "M-HDD",
+              "M-SSD",
+              "M-KABLO-SATA"
+            ],
+            "animasyonlar": [
+              "Adım 1: SATA veri ve güç kabloları farklı renklerde parlar ve etiketlenir (A-VURGU).",
+              "Adım 3: disk kızağa kayar, kablolar L şeklindeki uçlarından doğru yönde takılır (A-TAK).",
+              "Adım 6: açılış dizisi — güç ışığı, fan dönüşü, logo, sistem bilgisi ekranı (A-BOOT)."
+            ],
+            "etkilesim": [
+              "E-TAK (kabloyu doğru yönde tak)"
+            ],
+            "foto": [
+              "Her yapım adımı için gerçek fotoğraf (6 adım)"
+            ]
+          },
+          "derinles": "BIOS ekranına girip donanım bilgisini okuma.",
+          "guvenlik": "Kablolar yalnızca fiş çekiliyken takılır. Açılışı yalnızca öğretmen kontrolünden sonra öğretmen izniyle yapılır.",
+          "materyal": "Grup başına eski masaüstü bilgisayar, tornavida, antistatik bileklik",
+          "ogretmen_notu": ""
+        },
+        {
+          "hafta": 12,
+          "baslik": "Taşınabilir Cihazlar, Piller ve E-Atık",
+          "tur": "K",
+          "kazanimlar": [
+            "Dizüstü, tablet ve telefondaki temel parçaları masaüstü parçalarıyla eşleştirir.",
+            "Pil güvenliği kurallarını sıralar.",
+            "E-atığın doğru yollarla atılmasının önemini açıklar.",
+            "Cihazı elden çıkarmadan önce veri silme gerekliliğini açıklar."
+          ],
+          "adimlar": [
+            "Dizüstünün İçi",
+            "Tek Çipte Birçok Parça",
+            "Lityum Pil",
+            "Pil Güvenliği",
+            "E-Atık ve Geri Dönüşüm",
+            "Elden Çıkarmadan Önce"
+          ],
+          "etkinlik": "Katmanlı telefon modelini inceleme; e-atık ayırma oyunu.",
+          "gorsel": {
+            "sahne3d": [
+              "M-DIZUSTU-PATLAT",
+              "M-TELEFON-KATMAN",
+              "M-PIL"
+            ],
+            "animasyonlar": [
+              "Adım 1: dizüstü alt kapağı kalkar, parçalar masaüstü karşılıklarıyla çizgiyle eşleşir (A-PATLAT).",
+              "Adım 2: telefon katmanlara ayrılır: ekran, pil, anakart, çip, kamera (A-PATLAT).",
+              "Adım 3: şarj/deşarjda iyon parçacıkları iki uç arasında gidip gelir (A-AKIS, 2D).",
+              "Adım 4: ısınan pil kırmızılaşır ve şişer; uyarı işareti belirir (A-UYARI)."
+            ],
+            "etkilesim": [
+              "E-DONDUR (telefon katmanları)",
+              "E-SINIFLA (e-atığı doğru kutuya ayır)"
+            ],
+            "foto": [
+              "Dizüstü iç görünüm"
+            ]
+          },
+          "derinles": "Pil sağlığı ve cihaz ömrünü uzatma.",
+          "guvenlik": "Telefon ve pil sökülmez; yalnızca görsel incelenir.",
+          "materyal": "",
+          "ogretmen_notu": ""
+        },
+        {
+          "hafta": 13,
+          "baslik": "Basit Sorun Giderme ve Bakım",
+          "tur": "K+U",
+          "kazanimlar": [
+            "Sorunları en basit kontrolden başlayarak giderir.",
+            "'Açılmıyor', 'görüntü yok' ve 'ses yok' durumlarında kontrol sırasını uygular.",
+            "Yavaşlama ile ısınmanın olası nedenlerini sıralar.",
+            "Düzenli bakım adımlarını uygular."
+          ],
+          "adimlar": [
+            "Önce Basit Olan",
+            "Açılmıyor",
+            "Görüntü Yok",
+            "Ses Yok, Fare Çalışmıyor",
+            "Yavaşlama ve Isınma",
+            "Toz Temizliği ve Bakım"
+          ],
+          "etkinlik": "Arıza teşhis oyunu; gerçek bilgisayarda toz temizliği gözlemi.",
+          "gorsel": {
+            "sahne3d": [
+              "M-MASAUSTU",
+              "M-MONITOR",
+              "M-FAN"
+            ],
+            "animasyonlar": [
+              "Adım 2–4: arıza senaryosu; öğrenci kablo, güç ışığı, monitör girişi gibi kontrol noktalarına tıklar, doğru noktada sistem canlanır (A-BOOT).",
+              "Adım 5–6: tozlu fan yavaşlar, sıcaklık göstergesi yükselir; temizlenince hız ve sıcaklık normale döner (A-TOZ)."
+            ],
+            "etkilesim": [
+              "E-TESHIS (kontrol noktalarına tıkla)"
+            ],
+            "foto": [
+              "Tozlu ve temiz fan karşılaştırması"
+            ]
+          },
+          "derinles": "Bip seslerinin anlamı.",
+          "guvenlik": "Toz temizliği fiş çekiliyken, basınçlı hava fan tutularak yapılır (fan serbest dönmez).",
+          "materyal": "",
+          "ogretmen_notu": ""
+        },
+        {
+          "hafta": 14,
+          "baslik": "Proje: Bilgisayar Kimlik Kartı",
+          "tur": "U",
+          "kazanimlar": [
+            "Sistem bilgisinden işlemci, RAM ve depolama değerlerini bulur.",
+            "Bilgisayarın portlarını sayıp listeler.",
+            "Bilgisayarın hangi işler için uygun olduğunu gerekçelendirir.",
+            "Kimlik kartını hazırlayıp sunar."
+          ],
+          "adimlar": [
+            "Sistem Bilgisini Bul",
+            "Tabloyu Doldur",
+            "Portları Say",
+            "Ne İçin Uygun?",
+            "Kimlik Kartını Hazırla",
+            "Sun"
+          ],
+          "etkinlik": "Kimlik kartı üretici: girilen değerlerle 3D mini model ve kart oluşur.",
+          "gorsel": {
+            "sahne3d": [
+              "M-MASAUSTU"
+            ],
+            "animasyonlar": [
+              "Adım 5: öğrencinin girdiği değerlerle 3D model etiketlenir ve kart yüzüne yerleşir (A-VURGU)."
+            ],
+            "etkilesim": [
+              "E-KIMLIK-KARTI (değer gir, kart oluşsun)"
+            ],
+            "foto": []
+          },
+          "derinles": "Yükseltme önerisi: hangi parça değişirse ne kazanılır?",
+          "guvenlik": "",
+          "materyal": "",
+          "ogretmen_notu": ""
+        }
+      ]
+    },
+    {
+      "kod": "DON-301",
+      "ad": "Bilgisayar Donanımı ve Sistem Kurulumu",
+      "lms_adi": "Donanım 301",
+      "kademe": "lise",
+      "sinif": "9",
+      "yas_araligi": "14–16",
+      "ders_adi_plan": "Bilgisayar Donanımı ve Sistem Kurulumu",
+      "ogrenme_alani": "Bilgisayar Donanımı",
+      "amac": "Öğrenci bilgisayar mimarisini açıklar, bileşenleri teknik değerlerine göre seçer, uyumlu bir sistem planlar, montaj yapar, UEFI ve işletim sistemini kurar, sorunları sistematik olarak giderir.",
+      "gorsel_seviye": "ORTA — teknik diyagram ve animasyonlar; montaj ve bileşen haftalarında 3D (docs/gorsel-3d-standartlari.md).",
+      "uniteler": [
+        {
+          "no": 1,
+          "ad": "Mimari",
+          "haftalar": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "no": 2,
+          "ad": "Bileşenler ve Uyumluluk",
+          "haftalar": [
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "no": 3,
+          "ad": "Montaj ve Kurulum",
+          "haftalar": [
+            9,
+            10,
+            11,
+            12
+          ]
+        },
+        {
+          "no": 4,
+          "ad": "Bakım ve Proje",
+          "haftalar": [
+            13,
+            14
+          ]
+        }
+      ],
+      "donanim": [
+        "Grup başına 1 montaj seti (eski parçalar olabilir)",
+        "Boş USB bellek (8 GB+)",
+        "ESD ekipmanı",
+        "Tornavida seti"
+      ],
+      "haftalar": [
+        {
+          "hafta": 1,
+          "baslik": "Bilgisayar Mimarisine Giriş",
+          "tur": "K",
+          "kazanimlar": [
+            "Von Neumann modelinin bileşenlerini açıklar.",
+            "Adres, veri ve kontrol yollarını ayırt eder.",
+            "Ondalık (1000) ve ikili (1024) önekler arasında dönüşüm yapar.",
+            "1 TB diskin neden yaklaşık 931 GB göründüğünü hesaplar."
+          ],
+          "adimlar": [
+            "Bilgisayar Sistemi",
+            "Von Neumann Modeli",
+            "Program ve Veri Aynı Bellekte",
+            "Veri Yolları",
+            "KB mı KiB mi?",
+            "Kayıp 69 GB Nerede?"
+          ],
+          "etkinlik": "Birim hesaplama görevleri.",
+          "gorsel": {
+            "sahne3d": [],
+            "animasyonlar": [
+              "Adım 2–4: Von Neumann şemasında adres, veri ve kontrol yollarında sinyaller farklı desenlerle akar (A-AKIS, 2D teknik).",
+              "Adım 6: 10^12 byte → 2^30'a bölünerek 931,3 GiB adım adım hesaplanır (A-HESAP)."
+            ],
+            "etkilesim": [
+              "E-HESAP (kapasite dönüştürücü)"
+            ],
+            "foto": []
+          },
+          "derinles": "",
+          "guvenlik": "",
+          "materyal": "",
+          "ogretmen_notu": ""
+        },
+        {
+          "hafta": 2,
+          "baslik": "İşlemci",
+          "tur": "K",
+          "kazanimlar": [
+            "ALU, kontrol birimi ve yazmaçların görevlerini açıklar.",
+            "Getir–çöz–yürüt döngüsünü sıralar.",
+            "Çekirdek, iş parçacığı ve önbelleğin performansa etkisini açıklar.",
+            "x86-64 ile ARM mimarilerini karşılaştırır."
+          ],
+          "adimlar": [
+            "ALU, Kontrol Birimi, Yazmaçlar",
+            "Getir–Çöz–Yürüt",
+            "Saat Hızı Tek Ölçüt Değil",
+            "Çekirdek ve İş Parçacığı",
+            "Önbellek (L1/L2/L3)",
+            "x86-64 ve ARM"
+          ],
+          "etkinlik": "Getir–çöz–yürüt simülatöründe adım adım program çalıştırma.",
+          "gorsel": {
+            "sahne3d": [
+              "M-CPU"
+            ],
+            "animasyonlar": [
+              "Adım 2: basit bir programın komutları bellekten getirilir, çözülür, ALU'da yürütülür; yazmaç değerleri canlı değişir (A-BORU).",
+              "Adım 5: önbellek isabeti ve ıskalaması; ıskalamada veri RAM'den yavaşça gelir (A-YARIS)."
+            ],
+            "etkilesim": [
+              "E-ADIM (döngüyü tek tek ilerlet)"
+            ],
+            "foto": []
+          },
+          "derinles": "",
+          "guvenlik": "",
+          "materyal": "",
+          "ogretmen_notu": ""
+        },
+        {
+          "hafta": 3,
+          "baslik": "Bellek Hiyerarşisi ve RAM",
+          "tur": "K",
+          "kazanimlar": [
+            "Bellek hiyerarşisini hız, kapasite ve maliyete göre sıralar.",
+            "DDR4 ile DDR5'in fiziksel olarak uyumsuz olduğunu açıklar.",
+            "Hız (MT/s) ve gecikme (CL) değerlerini yorumlar.",
+            "Çift kanal çalışmanın avantajını açıklar."
+          ],
+          "adimlar": [
+            "Bellek Hiyerarşisi",
+            "RAM Neden Uçucu?",
+            "DDR4 ve DDR5",
+            "MT/s ve CL",
+            "Tek ve Çift Kanal",
+            "DIMM ve SO-DIMM"
+          ],
+          "etkinlik": "Erişim süresi insan ölçeğine çevrilmiş hiyerarşi görevi.",
+          "gorsel": {
+            "sahne3d": [
+              "M-RAM",
+              "M-RAM-DDR5",
+              "M-SODIMM"
+            ],
+            "animasyonlar": [
+              "Adım 1: hiyerarşi piramidi; her katmanın erişim süresi 'saniye = nanosaniye' ölçeğinde gösterilir (A-OLCEK).",
+              "Adım 3: DDR4 ve DDR5 modülleri üst üste çakıştırılır; çentik konumu farkı vurgulanır (A-KARSILASTIR, 3D).",
+              "Adım 5: tek ve çift kanalda veri şeritleri akar (A-AKIS)."
+            ],
+            "etkilesim": [
+              "E-DONDUR (RAM modelleri)"
+            ],
+            "foto": [
+              "DDR4 ve DDR5 modülleri yan yana"
+            ]
+          },
+          "derinles": "",
+          "guvenlik": "",
+          "materyal": "",
+          "ogretmen_notu": ""
+        },
+        {
+          "hafta": 4,
+          "baslik": "Depolama",
+          "tur": "K",
+          "kazanimlar": [
+            "HDD ile SSD'nin çalışma ilkesini karşılaştırır.",
+            "SATA ile NVMe (PCIe) arayüzlerini ayırt eder.",
+            "M.2 yuvasında SATA ve NVMe uyumunu denetler.",
+            "TBW, SMART ve 3-2-1 yedekleme kuralını açıklar."
+          ],
+          "adimlar": [
+            "HDD: Plaka ve Kafa",
+            "SSD ve NAND Flash",
+            "SATA ve NVMe",
+            "2.5\", 3.5\", M.2",
+            "Sıralı ve Rastgele Okuma",
+            "Dayanıklılık ve Yedekleme"
+          ],
+          "etkinlik": "Disk hız testi sonuçlarını okuma ve yorumlama.",
+          "gorsel": {
+            "sahne3d": [
+              "M-HDD-ACIK",
+              "M-SSD",
+              "M-M2"
+            ],
+            "animasyonlar": [
+              "Adım 1: HDD plakası döner, kafa izler arasında atlar (A-DONUS).",
+              "Adım 4: M.2 anahtar çentikleri (M ve B+M) yakınlaştırılır (A-VURGU).",
+              "Adım 5: sıralı okumada kafa düz ilerler, rastgele okumada zıplar; SSD'de her iki durum hızlıdır (A-KARSILASTIR)."
+            ],
+            "etkilesim": [
+              "E-DONDUR (M.2 çentikleri)"
+            ],
+            "foto": [
+              "M.2 NVMe ve M.2 SATA yakın çekim"
+            ]
+          },
+          "derinles": "",
+          "guvenlik": "",
+          "materyal": "",
+          "ogretmen_notu": ""
+        },
+        {
+          "hafta": 5,
+          "baslik": "Anakart",
+          "tur": "K",
+          "kazanimlar": [
+            "Anakart form faktörlerini (ATX, mATX, Mini-ITX) ayırt eder.",
+            "Soket ile çipset ilişkisini açıklar.",
+            "PCIe ve M.2 yuvalarını kılavuzdan okur.",
+            "Güç ve ön panel konnektörlerini tanır."
+          ],
+          "adimlar": [
+            "Form Faktörleri",
+            "CPU Soketi",
+            "Çipset",
+            "PCIe ve M.2 Yuvaları",
+            "24-pin ATX ve 8-pin EPS",
+            "Arka Panel ve Ön Panel Başlıkları"
+          ],
+          "etkinlik": "Gerçek bir anakart kılavuzundan bilgi bulma.",
+          "gorsel": {
+            "sahne3d": [
+              "M-ANAKART",
+              "M-ANAKART-FORM"
+            ],
+            "animasyonlar": [
+              "Adım 1: ATX, mATX ve Mini-ITX üst üste boyut karşılaştırması (A-KARSILASTIR).",
+              "Adım 4–6: kamera yuvalar ve başlıklar arasında gezinir, etiketler açılır (A-KAMERA-TUR)."
+            ],
+            "etkilesim": [
+              "E-DONDUR + E-BILGI",
+              "E-AV (kılavuzdaki konnektörü 3D'de bul)"
+            ],
+            "foto": [
+              "Gerçek anakart ve kılavuz sayfası"
+            ]
+          },
+          "derinles": "",
+          "guvenlik": "",
+          "materyal": "",
+          "ogretmen_notu": ""
+        },
+        {
+          "hafta": 6,
+          "baslik": "Güç Kaynağı ve Soğutma",
+          "tur": "K",
+          "kazanimlar": [
+            "Güç kaynağının AC'yi DC gerilimlere dönüştürdüğünü açıklar.",
+            "Sistemin güç ihtiyacını pay bırakarak hesaplar.",
+            "80 PLUS sertifikalarını yorumlar.",
+            "Hava ve sıvı soğutmayı TDP üzerinden karşılaştırır."
+          ],
+          "adimlar": [
+            "AC'den DC'ye (12V/5V/3.3V)",
+            "Güç Hesabı",
+            "80 PLUS Verimlilik",
+            "Güç Kabloları",
+            "TDP ve Soğutucu Türleri",
+            "Kasa Hava Akışı"
+          ],
+          "etkinlik": "Güç hesaplayıcı görevi.",
+          "gorsel": {
+            "sahne3d": [
+              "M-PSU",
+              "M-KABLO-GUC",
+              "M-SOGUTUCU"
+            ],
+            "animasyonlar": [
+              "Adım 1: AC dalgası güç kaynağından geçip sabit DC çizgilere dönüşür (A-AKIS, 2D).",
+              "Adım 4: 24-pin, EPS ve PCIe konnektörleri 3D döner (A-VURGU).",
+              "Adım 6: kasa içinde hava parçacıkları; fan yönü değişince sıcaklık haritası değişir (A-HAVA)."
+            ],
+            "etkilesim": [
+              "E-HESAP (güç hesaplayıcı)",
+              "E-SURGU (fan yönü/hızı)"
+            ],
+            "foto": [
+              "Güç kaynağı etiketi",
+              "Güç konnektörleri"
+            ]
+          },
+          "derinles": "",
+          "guvenlik": "Güç kaynağı açılmaz; içi hiçbir görselde açık gösterilmez.",
+          "materyal": "",
+          "ogretmen_notu": ""
+        },
+        {
+          "hafta": 7,
+          "baslik": "Ekran Kartı ve Bağlantı Standartları",
+          "tur": "K",
+          "kazanimlar": [
+            "GPU'nun paralel işlem mantığını açıklar.",
+            "VRAM'in önemini açıklar.",
+            "HDMI ile DisplayPort'u karşılaştırır.",
+            "USB-C konnektörü ile USB hız standartlarını ayırt eder."
+          ],
+          "adimlar": [
+            "GPU ve Paralel İşlem",
+            "Tümleşik ve Harici",
+            "VRAM",
+            "HDMI ve DisplayPort",
+            "USB Standartları ve USB-C",
+            "Çözünürlük ve Yenileme Hızı"
+          ],
+          "etkinlik": "Bağlantı senaryolarında doğru kablo seçimi.",
+          "gorsel": {
+            "sahne3d": [
+              "M-GPU",
+              "M-KABLO-UCLARI"
+            ],
+            "animasyonlar": [
+              "Adım 1: CPU tek fırçayla, GPU yüzlerce fırçayla aynı resmi boyar (A-YARIS).",
+              "Adım 6: aynı hareket 60 Hz ve 144 Hz'de yan yana oynatılır (A-KARSILASTIR)."
+            ],
+            "etkilesim": [
+              "E-DONDUR (GPU)",
+              "E-SINIFLA (kablo–senaryo eşleştirme)"
+            ],
+            "foto": []
+          },
+          "derinles": "",
+          "guvenlik": "",
+          "materyal": "",
+          "ogretmen_notu": ""
+        },
+        {
+          "hafta": 8,
+          "baslik": "Uyumluluk ve Sistem Toplama",
+          "tur": "K+U",
+          "kazanimlar": [
+            "İhtiyaç profiline göre sistem önerir.",
+            "Soket, çipset ve RAM uyumunu denetler.",
+            "Kasa, soğutucu ve ekran kartı boyut uyumunu denetler.",
+            "Bütçe içinde darboğazsız bir parça listesi hazırlar."
+          ],
+          "adimlar": [
+            "İhtiyaç Profili",
+            "Soket–Çipset",
+            "RAM Nesli",
+            "Boyut Uyumu",
+            "Güç ve Konnektör Yeterliliği",
+            "Darboğaz ve Bütçe"
+          ],
+          "etkinlik": "Güncel fiyatlarla parça listesi hazırlama.",
+          "gorsel": {
+            "sahne3d": [],
+            "animasyonlar": [
+              "Adım 2–5: parça seçildikçe uyumluluk ışıkları yeşil/kırmızı yanar, gerekçe açıklaması çıkar (A-VURGU)."
+            ],
+            "etkilesim": [
+              "E-UYUMLULUK (parça seç, denetleyici gerekçesini göstersin)"
+            ],
+            "foto": []
+          },
+          "derinles": "",
+          "guvenlik": "",
+          "materyal": "",
+          "ogretmen_notu": "Fiyatlar derste güncel kaynaklardan alınır; derse sabit fiyat yazılmaz."
+        },
+        {
+          "hafta": 9,
+          "baslik": "Montaj 1: Tezgâhta",
+          "tur": "U",
+          "kazanimlar": [
+            "ESD önlemlerini alır.",
+            "İşlemciyi yön işaretine göre takar.",
+            "Termal macunu uygular ve soğutucuyu monte eder.",
+            "RAM ve M.2 SSD'yi kılavuza uygun yuvaya takar."
+          ],
+          "adimlar": [
+            "ESD ve Çalışma Alanı",
+            "İşlemciyi Tak",
+            "Macun ve Soğutucu",
+            "RAM (Çift Kanal Yuvaları)",
+            "M.2 SSD",
+            "Kontrol Listesi"
+          ],
+          "etkinlik": "3D montaj provası + gerçek tezgâh montajı.",
+          "gorsel": {
+            "sahne3d": [
+              "M-ANAKART",
+              "M-CPU",
+              "M-SOGUTUCU",
+              "M-RAM",
+              "M-M2"
+            ],
+            "animasyonlar": [
+              "Her yapım adımı: 3D prova animasyonu + gerçek fotoğraf.",
+              "Adım 2: işlemci üçgen işaretine hizalanır, kol kapanır (A-TAK).",
+              "Adım 4: çift kanal için kılavuzdaki yuvalar yanar (A-VURGU)."
+            ],
+            "etkilesim": [
+              "E-MONTAJ (3D montaj simülatörü: doğru sıra, hatalı adımda geri bildirim)"
+            ],
+            "foto": [
+              "Her yapım adımı için gerçek fotoğraf (6 adım)"
+            ]
+          },
+          "derinles": "",
+          "guvenlik": "İşlemci pinlerine/temaslarına dokunulmaz. Antistatik bileklik takılı çalışılır.",
+          "materyal": "Montaj seti, ESD ekipmanı, termal macun, tornavida",
+          "ogretmen_notu": ""
+        },
+        {
+          "hafta": 10,
+          "baslik": "Montaj 2: Kasada ve İlk POST",
+          "tur": "U",
+          "kazanimlar": [
+            "Anakartı mesafe vidalarıyla kasaya yerleştirir.",
+            "Güç ve ön panel kablolarını bağlar.",
+            "Kablo düzenini sağlar.",
+            "İlk POST'u alır."
+          ],
+          "adimlar": [
+            "Kasa ve I/O Plakası",
+            "Mesafe Vidaları ve Anakart",
+            "Güç Kaynağı ve 24/8-pin",
+            "Ön Panel Kabloları",
+            "Ekran Kartı ve Diskler",
+            "Kablo Düzeni ve İlk Açılış"
+          ],
+          "etkinlik": "3D montaj provası + gerçek kasa montajı.",
+          "gorsel": {
+            "sahne3d": [
+              "M-MASAUSTU-ACIK",
+              "M-ANAKART",
+              "M-PSU",
+              "M-GPU",
+              "M-KABLO-GUC"
+            ],
+            "animasyonlar": [
+              "Her yapım adımı: 3D prova animasyonu + gerçek fotoğraf.",
+              "Adım 4: ön panel başlık pinleri büyütülür; her kablo doğru pine uçarak yerleşir (A-TAK).",
+              "Adım 6: açılış dizisi ve POST ekranı (A-BOOT)."
+            ],
+            "etkilesim": [
+              "E-MONTAJ (kasa aşaması)",
+              "E-TAK (ön panel kabloları)"
+            ],
+            "foto": [
+              "Her yapım adımı için gerçek fotoğraf (6 adım)"
+            ]
+          },
+          "derinles": "",
+          "guvenlik": "Tüm kablolar fiş çekiliyken takılır. İlk açılış öğretmen kontrolünden sonra yapılır.",
+          "materyal": "Montaj seti, kasa, güç kaynağı, tornavida",
+          "ogretmen_notu": ""
+        },
+        {
+          "hafta": 11,
+          "baslik": "BIOS/UEFI ve Önyükleme",
+          "tur": "K+U",
+          "kazanimlar": [
+            "BIOS ile UEFI'yi karşılaştırır.",
+            "POST, bip kodları ve debug LED'lerini yorumlar.",
+            "Önyükleme sırasını ayarlar.",
+            "XMP/EXPO, Secure Boot ve TPM ayarlarını yapar."
+          ],
+          "adimlar": [
+            "Firmware: BIOS ve UEFI",
+            "POST ve Bip Kodları",
+            "UEFI'de Donanım Bilgisi",
+            "Önyükleme Sırası",
+            "XMP/EXPO",
+            "Secure Boot ve TPM"
+          ],
+          "etkinlik": "UEFI simülatöründe görevler; ardından gerçek sistemde.",
+          "gorsel": {
+            "sahne3d": [],
+            "animasyonlar": [
+              "Adım 2: POST sırasında debug LED'leri sırayla yanar, takıldığı yer parçayı gösterir (A-BOOT)."
+            ],
+            "etkilesim": [
+              "E-UEFI (marka-nötr UEFI simülatörü: sekmeler, görev listesi)"
+            ],
+            "foto": [
+              "Gerçek UEFI ekran görüntüleri"
+            ]
+          },
+          "derinles": "",
+          "guvenlik": "",
+          "materyal": "",
+          "ogretmen_notu": ""
+        },
+        {
+          "hafta": 12,
+          "baslik": "İşletim Sistemi Kurulumu",
+          "tur": "U",
+          "kazanimlar": [
+            "Önyüklenebilir USB bellek hazırlar.",
+            "GPT ile MBR arasından doğru olanı seçer.",
+            "İşletim sistemini kurar.",
+            "Eksik sürücüleri Aygıt Yöneticisi'nde bulup kurar."
+          ],
+          "adimlar": [
+            "Önyüklenebilir USB",
+            "GPT ve MBR",
+            "Bölümleme ve Biçimlendirme",
+            "Kurulum",
+            "Sürücüler ve Aygıt Yöneticisi",
+            "Güncellemeler ve İlk Ayarlar"
+          ],
+          "etkinlik": "Kurulum adımları simülatörü + gerçek kurulum.",
+          "gorsel": {
+            "sahne3d": [],
+            "animasyonlar": [
+              "Adım 2–3: disk çubuğu bölümlere ayrılır; GPT ve MBR sınırları karşılaştırılır (A-KARSILASTIR)."
+            ],
+            "etkilesim": [
+              "E-KURULUM (kurulum adımları simülatörü)"
+            ],
+            "foto": [
+              "Kurulum ekran görüntüleri"
+            ]
+          },
+          "derinles": "",
+          "guvenlik": "",
+          "materyal": "",
+          "ogretmen_notu": "Okul lisansı yoksa kurulum Ubuntu ile yapılır."
+        },
+        {
+          "hafta": 13,
+          "baslik": "Sorun Giderme, Bakım ve Veri Güvenliği",
+          "tur": "K+U",
+          "kazanimlar": [
+            "Sistematik sorun giderme adımlarını uygular.",
+            "Açılmama, görüntü olmaması ve aşırı ısınma durumlarını teşhis eder.",
+            "Önleyici bakım yapar.",
+            "Veriyi güvenli siler ve e-atık sürecini açıklar."
+          ],
+          "adimlar": [
+            "Sorun Giderme Yöntemi",
+            "Açılmıyor / Görüntü Yok",
+            "Isınma ve Yavaşlama",
+            "Önleyici Bakım",
+            "Güvenli Veri Silme",
+            "E-Atık"
+          ],
+          "etkinlik": "Arıza senaryoları; teşhis simülatörü.",
+          "gorsel": {
+            "sahne3d": [
+              "M-MASAUSTU-ACIK"
+            ],
+            "animasyonlar": [
+              "Adım 2–3: arıza senaryosunda öğrencinin seçtiği test sonucuna göre sistem durumu animasyonla değişir (A-BOOT)."
+            ],
+            "etkilesim": [
+              "E-TESHIS (ileri seviye: belirti → test → sonuç)"
+            ],
+            "foto": []
+          },
+          "derinles": "",
+          "guvenlik": "",
+          "materyal": "",
+          "ogretmen_notu": ""
+        },
+        {
+          "hafta": 14,
+          "baslik": "Proje: Sistem Önerisi ve Montaj Raporu",
+          "tur": "U",
+          "kazanimlar": [
+            "İki farklı ihtiyaç profili için sistem önerir.",
+            "Uyumluluk tablosunu hazırlar.",
+            "Montaj ve kurulum kanıtlarını belgeler.",
+            "Önerisini jüriye savunur."
+          ],
+          "adimlar": [
+            "İhtiyaç Analizi",
+            "Parça Listesi",
+            "Uyumluluk Tablosu",
+            "Montaj ve Kurulum Kanıtları",
+            "Rapor",
+            "Sunum"
+          ],
+          "etkinlik": "Proje dosyası + jüri sunumu.",
+          "gorsel": {
+            "sahne3d": [],
+            "animasyonlar": [],
+            "etkilesim": [
+              "E-UYUMLULUK (projede yeniden kullanılır)"
+            ],
+            "foto": []
+          },
+          "derinles": "",
+          "guvenlik": "",
+          "materyal": "",
+          "ogretmen_notu": ""
+        }
+      ]
+    }
+  ],
+  "gorsel_katalog": {
+    "modeller": {
+      "M-MASAUSTU": "Kapalı masaüstü kasa (yan kapak takılı), ön panel düğme ve ışıkları",
+      "M-MASAUSTU-ACIK": "Yan kapağı açılabilen kasa; içinde anakart, CPU+soğutucu, RAM, disk, PSU, GPU, fanlar — adlandırılmış alt parçalar",
+      "M-KASA-TURLERI": "Masaüstü, dizüstü, tümleşik (all-in-one) karşılaştırma seti",
+      "M-KLAVYE": "Klavye",
+      "M-FARE": "Fare",
+      "M-MONITOR": "Monitör (arka girişleri görünür)",
+      "M-AMPUL-SIRASI": "8 ampul/LED sırası, her biri tıklanabilir",
+      "M-ARKA-PANEL": "Masaüstü arka paneli: USB-A, USB-C, HDMI, DisplayPort, RJ45, 3.5 mm ses (renk + etiket)",
+      "M-KABLO-UCLARI": "USB-A, USB-C, HDMI, DisplayPort, RJ45, 3.5 mm kablo uçları",
+      "M-DIZUSTU": "Dizüstü (yan portlar görünür)",
+      "M-DIZUSTU-PATLAT": "Dizüstü patlatma görünümü (alt kapak, pil, anakart, SSD, RAM, fan)",
+      "M-TELEFON-KATMAN": "Telefon katmanları: ekran, çerçeve, pil, anakart+çip, kamera, arka kapak",
+      "M-PIL": "Lityum pil hücresi (normal ve şişmiş durumlar)",
+      "M-ANTISTATIK-BILEKLIK": "Antistatik bileklik ve krokodil klips",
+      "M-ANAKART": "ATX anakart: soket, RAM yuvaları, PCIe, M.2, çipset soğutucusu, 24-pin, EPS, SATA, ön panel başlıkları, arka I/O",
+      "M-ANAKART-FORM": "ATX / mATX / Mini-ITX ölçekli plakalar",
+      "M-CPU": "İşlemci (üst metal kapak, alt temas yüzeyi, köşe üçgen işareti)",
+      "M-SOGUTUCU": "Kule tipi hava soğutucu + termal macun katmanı",
+      "M-FAN": "Kasa fanı (dönebilir kanatlar)",
+      "M-RAM": "DDR4 DIMM modülü (çentik, altın temaslar, çipler, etiket)",
+      "M-RAM-DDR5": "DDR5 DIMM modülü (farklı çentik konumu)",
+      "M-SODIMM": "Dizüstü SO-DIMM modülü",
+      "M-RAM-YUVASI": "RAM yuvası + mandallar (açık/kapalı durum)",
+      "M-HDD": "3.5\" HDD kapalı",
+      "M-HDD-ACIK": "3.5\" HDD şeffaf kapaklı: plaka, mil, okuma-yazma kafası",
+      "M-SSD": "2.5\" SATA SSD",
+      "M-M2": "M.2 2280 SSD (M anahtar; B+M varyantı)",
+      "M-USB-BELLEK": "USB bellek",
+      "M-PSU": "ATX güç kaynağı dış görünüm (içi ASLA modellenmez), uyarı etiketi",
+      "M-GPU": "Harici ekran kartı (fanlar, PCIe tarağı, görüntü çıkışları)",
+      "M-KABLO-SATA": "SATA veri ve SATA güç kabloları (L uçlar)",
+      "M-KABLO-GUC": "24-pin ATX, 8-pin EPS, PCIe güç konnektörleri",
+      "M-MASA-DOLAP": "Çalışma masası + dolap + dosya kartları (RAM benzetmesi)"
+    },
+    "animasyonlar": {
+      "A-VURGU": "Parça parlar/dış hat çizilir + HTML etiket açılır",
+      "A-KATMAN": "Katmanlar belirir/kaybolur (yazılım katmanı)",
+      "A-AKIS": "Parçacıkların bir yol boyunca akışı (veri, enerji, hava, iyon)",
+      "A-SAYAC": "Anahtar/ampul durumuna bağlı canlı sayı–harf dönüşümü",
+      "A-OLCEK": "Ölçek karşılaştırması; kamera uzaklaşarak büyüklük farkını gösterir",
+      "A-DOLUM": "Kapasite çubuğunun öğelerle dolması",
+      "A-TAK": "Parçanın hizalanıp yuvaya oturması; yanlış yönde girmeme; klik geri bildirimi",
+      "A-KAMERA-TUR": "Kameranın durak durak gezinmesi (adım başına bir durak)",
+      "A-DALGA": "Kablosuz sinyal halkaları",
+      "A-BOSALT": "Güç kesilince ışıkların sönmesi",
+      "A-KIVILCIM": "Statik elektrik kıvılcımı (2D/SVG)",
+      "A-UYARI": "Tehlikeli nesnede kilit/uyarı ve titreşim",
+      "A-KARSILASTIR": "Yan yana veya üst üste karşılaştırma",
+      "A-KUYRUK": "Komut kartlarının konveyörde işlenmesi",
+      "A-YARIS": "İki seçeneğin süre sayaçlı yarışı",
+      "A-PATLAT": "Patlatma görünümü (parçalar ayrışır ve yerine döner)",
+      "A-ISI": "Sıcaklığa göre renk geçişi (mavi → kırmızı) + termometre değeri",
+      "A-MASA": "Masa–dolap arası dosya taşınması",
+      "A-GUC-KES": "Elektrik kesintisinde geçici verinin kaybolması",
+      "A-YAVASLA": "Kaynak yetersizliğinde bekleme çubuğunun uzaması",
+      "A-DONUS": "Dönen parça (HDD plakası, fan)",
+      "A-HAVA": "Kasa içi hava akışı parçacıkları",
+      "A-BOOT": "Açılış/POST dizisi",
+      "A-TOZ": "Toz birikimi → fan yavaşlar → ısı artar; temizlikle geri döner",
+      "A-BORU": "Getir–çöz–yürüt döngüsü, yazmaç değerleri",
+      "A-HESAP": "Adım adım hesaplama animasyonu"
+    },
+    "etkilesimler": {
+      "E-DONDUR": "Sürükleyerek döndür, tekerlek/iki parmakla yakınlaştır, klavye okları ile döndür; 'Sıfırla' düğmesi",
+      "E-BILGI": "Parçaya tıkla → bilgi kartı (ad, görev, gerçek fotoğraf küçük resmi)",
+      "E-SINIFLA": "Nesneleri doğru kutulara sürükle; anında geri bildirim",
+      "E-SAYAC": "Ampullere tıklayarak sayı/harf oluştur",
+      "E-TAHMIN": "Önce tahmin gir/seç, sonra animasyonu izle ve karşılaştır",
+      "E-TAK": "Parçayı yuvaya sürükle; doğru yönde oturur, yanlışta geri döner ve ipucu verir",
+      "E-DOGRU-YANLIS": "Animasyonlu mini sahneler için doğru/yanlış kararı",
+      "E-AV": "Sorulan parçayı 3D modelde bul ve tıkla",
+      "E-SURGU": "Parametre sürgüsü (saat hızı, RAM kapasitesi, fan hızı)",
+      "E-TAK-CIKAR": "Parçayı çıkar/geri tak ve sonucu gözle",
+      "E-SANAL-MONTAJ": "Parçaları kasa içinde doğru yerlerine sürükle",
+      "E-TESHIS": "Arıza senaryosunda kontrol noktalarına tıkla; sonuca göre sistem durumu değişir",
+      "E-KIMLIK-KARTI": "Değer girişiyle otomatik kart ve etiketli mini model",
+      "E-HESAP": "Hesaplayıcı (kapasite, güç)",
+      "E-ADIM": "Süreci tek tek ilerletme",
+      "E-UYUMLULUK": "Parça seçimine göre uyumluluk denetimi ve gerekçe",
+      "E-MONTAJ": "3D montaj simülatörü: doğru sıra, hatalı adımda açıklamalı geri bildirim",
+      "E-UEFI": "Marka-nötr UEFI arayüzü simülatörü",
+      "E-KURULUM": "İşletim sistemi kurulum adımları simülatörü"
+    }
+  }
+}
