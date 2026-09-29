@@ -1,0 +1,294 @@
+  <!-- ══════════════════════ S3 — ISINMA: TAHMIN ET ══════════════════════ -->
+  <div class="slide" id="s3">
+    <div class="slide-hdr">
+      <div class="sh-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg></div>
+      <div class="sh-title">Isınma: Tahmin Et</div>
+      <div class="sh-badge">Isınma</div>
+    </div>
+    <div class="slide-body">
+      <div class="layout-step">
+        <div class="step-text">
+          <div class="step-num-badge">ISINMA</div>
+          <div class="step-title">Ters Tutarsan Ne Olur?</div>
+          <div class="step-desc">RAM'i ters çevirip yuvaya bastırdığını düşün. Sence ne olur?</div>
+          <div class="tahmin" role="group" aria-label="Tahmin seçenekleri">
+            <button type="button" class="tahmin-sec" data-tahmin="0"><span class="tahmin-harf">A</span><span>Yine de girer ve çalışır.</span></button>
+            <button type="button" class="tahmin-sec" data-tahmin="1"><span class="tahmin-harf">B</span><span>Girmez, bir yere takılır.</span></button>
+            <button type="button" class="tahmin-sec" data-tahmin="2"><span class="tahmin-harf">C</span><span>Girer ama bilgisayar yavaşlar.</span></button>
+            <div class="tahmin-geri" id="tahmin-geri" aria-live="polite"></div>
+          </div>
+        </div>
+        <div class="step-visual">
+          <div class="illu"><!--@dahil:isinma.svg--></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ S4 — MALZEMELER VE ROLLER ══════════════════════ -->
+  <div class="slide" id="s4">
+    <div class="slide-hdr">
+      <div class="sh-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg></div>
+      <div class="sh-title">Malzemeler ve Roller</div>
+      <div class="sh-badge">Hazırlık</div>
+    </div>
+    <div class="slide-body">
+      <div class="layout-full malzeme-duzen">
+        <div class="csub">Her grup masasında bunlar olsun:</div>
+        <div class="malzeme-izgara">
+          <div class="malzeme-kart"><div class="malzeme-resim"><!--@dahil:m-bilgisayar.svg--></div><div class="malzeme-ad">Eski masaüstü bilgisayar</div><div class="malzeme-not">Grup başına 1</div></div>
+          <div class="malzeme-kart"><div class="malzeme-resim"><!--@dahil:m-tornavida.svg--></div><div class="malzeme-ad">Yıldız tornavida</div><div class="malzeme-not">Vidalar sıkıysa</div></div>
+          <div class="malzeme-kart"><div class="malzeme-resim"><!--@dahil:m-bileklik.svg--></div><div class="malzeme-ad">Antistatik bileklik</div><div class="malzeme-not">Kasanın metaline bağlı</div></div>
+          <div class="malzeme-kart"><div class="malzeme-resim"><!--@dahil:m-kutu.svg--></div><div class="malzeme-ad">Parça kutusu</div><div class="malzeme-not">Kapak ve vidalar için</div></div>
+          <div class="malzeme-kart"><div class="malzeme-resim"><!--@dahil:m-etiket.svg--></div><div class="malzeme-ad">Etiket ve kalem</div><div class="malzeme-not">Parçaları işaretlemek için</div></div>
+        </div>
+        <div class="roller">
+          <div class="rol"><span class="rol-simge">🛠️</span><div><b>Uygulayan</b><span>Parçaya dokunan tek kişi.</span></div></div>
+          <div class="rol"><span class="rol-simge">✅</span><div><b>Kontrolcü</b><span>Talimatı okur, kontrolü yapar.</span></div></div>
+          <div class="rol"><span class="rol-simge">📷</span><div><b>Belgeleyen</b><span>Adımları not eder, fotoğraf ister.</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ S5 — ADIM 1: GÜVENLIK KONTROLÜ ══════════════════════ -->
+  <div class="slide" id="s5">
+    <div class="slide-hdr">
+      <div class="sh-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5z"/><polyline points="9 12 11 14 15 10"/></svg></div>
+      <div class="sh-title">Adım 1: Güvenlik Kontrolü</div>
+      <div class="sh-badge">Yapım 1 / 6</div>
+    </div>
+    <div class="slide-body">
+      <div class="layout-full uygulama">
+        <div class="u-bas"><span class="step-num-badge">ADIM 1 · GÜVENLİK</span><span class="u-baslik">Önce Güvenlik, Sonra Tornavida</span></div>
+        <div class="u-paneller">
+          <div class="u-panel u-prova">
+            <div class="u-panel-bas"><span class="u-no">1</span>Prova: önce izle</div>
+            <div class="u-sahne"><div class="guvenlik-kontrol" id="guvenlik-kontrol"><div class="gk-sahne"><!--@dahil:adim1-guvenlik.svg--></div><div class="gk-liste" role="group" aria-label="Güvenlik kontrol listesi"><button type="button" class="gk-madde" data-gk="g-fis"><span class="gk-kutu"></span>Fiş prizden çekildi</button><button type="button" class="gk-madde" data-gk="g-bileklik"><span class="gk-kutu"></span>Bileklik takıldı ve bağlandı</button><button type="button" class="gk-madde" data-gk="g-kutu"><span class="gk-kutu"></span>Parça kutusu hazır</button></div><div class="gk-sonuc" aria-live="polite"></div></div>
+              <div class="fis-rozet"><!--@dahil:fis-rozet.svg--><span>Fiş çekili</span></div>
+            </div>
+          </div>
+          <div class="u-panel u-gercek">
+            <div class="u-panel-bas"><span class="u-no">2</span>Gerçek bilgisayarda yap</div>
+            <div class="u-foto"><!--@foto:DON-201-H10-1-guvenlik.jpg|Fişi çekilmiş bilgisayar ve kasaya bağlı antistatik bileklik--></div>
+            <ol class="u-talimat"><li>Bilgisayarı kapat, <strong>fişi prizden çek</strong>.</li><li>Antistatik bilekliği tak, klipsi kasanın <strong>boyasız metaline</strong> bağla.</li><li>Parça kutusunu masaya koy.</li></ol>
+            <div class="u-kontrol"><span>✔</span><span><strong>Kontrol:</strong> Fiş masada, prizde değil. Bileklik bağlı.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ S6 — ADIM 2: YAN KAPAĞI AÇ ══════════════════════ -->
+  <div class="slide" id="s6">
+    <div class="slide-hdr">
+      <div class="sh-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="12" height="18" rx="1"/><path d="M16 7l4 1v10l-4 1"/><circle cx="7" cy="6" r="0.8"/></svg></div>
+      <div class="sh-title">Adım 2: Yan Kapağı Aç</div>
+      <div class="sh-badge">Yapım 2 / 6</div>
+    </div>
+    <div class="slide-body">
+      <div class="layout-full uygulama">
+        <div class="u-bas"><span class="step-num-badge">ADIM 2 · KAPAK</span><span class="u-baslik">Vidalar Kutuya, Kapak Kenara</span></div>
+        <div class="u-paneller">
+          <div class="u-panel u-prova">
+            <div class="u-panel-bas"><span class="u-no">1</span>Prova: önce izle</div>
+            <div class="u-sahne"><div class="don3d" id="s6-3d" aria-label="Kasanın arkasındaki iki vida sökülüyor, yan kapak geriye kayıp çıkarılıyor"><div data-yedek hidden><!--@dahil:oz-2.svg--><span>Arkadaki vidaları sök, kapağı geriye kaydırıp çıkar.</span></div></div>
+              <div class="fis-rozet"><!--@dahil:fis-rozet.svg--><span>Fiş çekili</span></div>
+            </div>
+          </div>
+          <div class="u-panel u-gercek">
+            <div class="u-panel-bas"><span class="u-no">2</span>Gerçek bilgisayarda yap</div>
+            <div class="u-foto"><!--@foto:DON-201-H10-2-yan-kapak.jpg|Arkadaki vidaları sökülmüş, geriye kaydırılan yan kapak--></div>
+            <ol class="u-talimat"><li>Kasanın arkasındaki <strong>iki vidayı</strong> sök, kutuya koy.</li><li>Kapağı <strong>geriye kaydır</strong>, sonra dışa çek.</li><li>Kapağı masaya yatır.</li></ol>
+            <div class="u-kontrol"><span>✔</span><span><strong>Kontrol:</strong> Vidalar kutuda, kapak düz yatıyor.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ S7 — ADIM 3: PARÇALARI BUL VE ETIKETLE ══════════════════════ -->
+  <div class="slide" id="s7">
+    <div class="slide-hdr">
+      <div class="sh-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg></div>
+      <div class="sh-title">Adım 3: Parçaları Bul ve Etiketle</div>
+      <div class="sh-badge">Yapım 3 / 6</div>
+    </div>
+    <div class="slide-body">
+      <div class="layout-full uygulama">
+        <div class="u-bas"><span class="step-num-badge">ADIM 3 · TANI</span><span class="u-baslik">Her Parçaya Bir Etiket</span></div>
+        <div class="u-paneller">
+          <div class="u-panel u-prova">
+            <div class="u-panel-bas"><span class="u-no">1</span>Prova: önce izle</div>
+            <div class="u-sahne"><div class="don3d" id="s7-3d" aria-label="Açık kasada işlemci, RAM, ekran kartı, güç kaynağı, depolama birimi ve fan sırayla etiketleniyor"><div data-yedek hidden><!--@dahil:oz-3.svg--><span>İşlemci, RAM, ekran kartı, güç kaynağı, SSD ve fanı bul.</span></div></div>
+              <div class="fis-rozet"><!--@dahil:fis-rozet.svg--><span>Fiş çekili</span></div>
+            </div>
+          </div>
+          <div class="u-panel u-gercek">
+            <div class="u-panel-bas"><span class="u-no">2</span>Gerçek bilgisayarda yap</div>
+            <div class="u-foto"><!--@foto:DON-201-H10-3-parcalar.jpg|İç parçalara kâğıt etiket yapıştırılmış açık kasa--></div>
+            <ol class="u-talimat"><li>Parçayı bul, önce <strong>adını söyle</strong>.</li><li>Etiketi parçanın <strong>yanına</strong> yapıştır, kartın üstüne değil.</li><li>Kablolara dokunma.</li></ol>
+            <div class="u-kontrol"><span>✔</span><span><strong>Kontrol:</strong> En az 5 parça doğru etiketli.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ S8 — ADIM 4: RAM'I ÇIKAR ══════════════════════ -->
+  <div class="slide" id="s8">
+    <div class="slide-hdr">
+      <div class="sh-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="14" width="18" height="6" rx="1"/><path d="M12 11V3M8 7l4-4 4 4"/></svg></div>
+      <div class="sh-title">Adım 4: RAM'i Çıkar</div>
+      <div class="sh-badge">Yapım 4 / 6</div>
+    </div>
+    <div class="slide-body">
+      <div class="layout-full uygulama">
+        <div class="u-bas"><span class="step-num-badge">ADIM 4 · ÇIKAR</span><span class="u-baslik">Önce Mandallar, Sonra RAM</span></div>
+        <div class="u-paneller">
+          <div class="u-panel u-prova">
+            <div class="u-panel-bas"><span class="u-no">1</span>Prova: önce izle</div>
+            <div class="u-sahne"><div class="don3d" id="s8-3d" aria-label="RAM yuvasının iki ucundaki mandallar dışa açılıyor, RAM yükseliyor ve düz yukarı çıkarılıyor"><div data-yedek hidden><!--@dahil:oz-4.svg--><span>Mandalları dışa aç, RAM'i kenarlarından tutup düz çıkar.</span></div></div>
+              <div class="fis-rozet"><!--@dahil:fis-rozet.svg--><span>Fiş çekili</span></div>
+            </div>
+          </div>
+          <div class="u-panel u-gercek">
+            <div class="u-panel-bas"><span class="u-no">2</span>Gerçek bilgisayarda yap</div>
+            <div class="u-foto"><!--@foto:DON-201-H10-4-ram-cikar.jpg|Başparmaklarla dışa açılan iki RAM mandalı--></div>
+            <ol class="u-talimat"><li>İki uçtaki <strong>mandalı dışa</strong> bastır.</li><li>RAM'i <strong>kenarlarından</strong> tut; altın temaslara dokunma.</li><li>Düz yukarı çek, kutunun üstüne yatır.</li></ol>
+            <div class="u-kontrol"><span>✔</span><span><strong>Kontrol:</strong> RAM çıktı, temaslar temiz, mandallar açık.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ S9 — ADIM 5: RAM'I TAK ══════════════════════ -->
+  <div class="slide" id="s9">
+    <div class="slide-hdr">
+      <div class="sh-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="14" width="18" height="6" rx="1"/><path d="M12 3v8M8 7l4 4 4-4"/></svg></div>
+      <div class="sh-title">Adım 5: RAM'i Tak</div>
+      <div class="sh-badge">Yapım 5 / 6</div>
+    </div>
+    <div class="slide-body">
+      <div class="layout-full uygulama">
+        <div class="u-bas"><span class="step-num-badge">ADIM 5 · TAK</span><span class="u-baslik">Çentik Çıkıntıya, Sonra Klik</span></div>
+        <div class="u-paneller">
+          <div class="u-panel u-prova">
+            <div class="u-panel-bas"><span class="u-no">1</span>Prova: önce izle</div>
+            <div class="u-sahne"><div class="don3d" id="s9-3d" aria-label="RAM önce ters tutulunca yuvaya girmiyor; çevrilip çentik çıkıntıya hizalanınca bastırılıyor ve mandallar klik diye kapanıyor"><div data-yedek hidden><!--@dahil:oz-5.svg--><span>Çentiği çıkıntıya hizala, iki ucundan eşit bastır.</span></div></div>
+              <div class="fis-rozet"><!--@dahil:fis-rozet.svg--><span>Fiş çekili</span></div>
+            </div>
+          </div>
+          <div class="u-panel u-gercek">
+            <div class="u-panel-bas"><span class="u-no">2</span>Gerçek bilgisayarda yap</div>
+            <div class="u-foto"><!--@foto:DON-201-H10-5-ram-tak.jpg|Çentiği çıkıntıya hizalanmış RAM ve kapanmış mandallar--></div>
+            <ol class="u-talimat"><li><strong>Çentiği</strong> yuvadaki çıkıntıyla hizala.</li><li>İki ucundan <strong>eşit</strong> bastır.</li><li><strong>Klik</strong> sesini duy; mandallar kendiliğinden kapanır.</li></ol>
+            <div class="u-kontrol"><span>✔</span><span><strong>Kontrol:</strong> İki mandal kapalı, RAM eğik değil.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ S10 — ADIM 6: FOTOĞRAFLA BELGELE ══════════════════════ -->
+  <div class="slide" id="s10">
+    <div class="slide-hdr">
+      <div class="sh-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
+      <div class="sh-title">Adım 6: Fotoğrafla Belgele</div>
+      <div class="sh-badge">Yapım 6 / 6</div>
+    </div>
+    <div class="slide-body">
+      <div class="layout-full uygulama">
+        <div class="u-bas"><span class="step-num-badge">ADIM 6 · BELGELE</span><span class="u-baslik">Yaptığını Kanıtla</span></div>
+        <div class="u-paneller">
+          <div class="u-panel u-prova">
+            <div class="u-panel-bas"><span class="u-no">1</span>Prova: önce izle</div>
+            <div class="u-sahne"><div class="belgele" id="belgele"><div class="gk-sahne"><!--@dahil:adim6-belgele.svg--></div><div class="gk-liste" role="group" aria-label="Belgeleme listesi"><button type="button" class="gk-madde"><span class="gk-kutu"></span>Etiketli açık kasa</button><button type="button" class="gk-madde"><span class="gk-kutu"></span>Takılı RAM ve kapalı mandallar</button><button type="button" class="gk-madde"><span class="gk-kutu"></span>Kapağı takılmış kasa</button></div><div class="gk-sonuc" aria-live="polite"></div></div>
+              <div class="fis-rozet"><!--@dahil:fis-rozet.svg--><span>Fiş çekili</span></div>
+            </div>
+          </div>
+          <div class="u-panel u-gercek">
+            <div class="u-panel-bas"><span class="u-no">2</span>Gerçek bilgisayarda yap</div>
+            <div class="u-foto"><!--@foto:DON-201-H10-6-belgele.jpg|Grubun etiketli açık kasa fotoğrafı ve kapatılmış kasa--></div>
+            <ol class="u-talimat"><li>Öğretmenin, okul tabletiyle <strong>üç fotoğraf</strong> çeker.</li><li>Kapağı geri tak, vidaları <strong>kutudan</strong> alıp sık.</li><li>Etiketleri topla, masayı düzenle.</li></ol>
+            <div class="u-kontrol"><span>✔</span><span><strong>Kontrol:</strong> Üç fotoğraf çekildi, kapak kapalı.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ S11 — ETKINLIK: RAM'I DOĞRU TAK ══════════════════════ -->
+  <div class="slide" id="s11">
+    <div class="slide-hdr">
+      <div class="sh-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M14 17.5h7M17.5 14v7"/></svg></div>
+      <div class="sh-title">Etkinlik: RAM'i Doğru Tak</div>
+      <div class="sh-badge">Etkinlik</div>
+    </div>
+    <div class="slide-body">
+      <div class="layout-step genis-gorsel">
+        <div class="step-text">
+          <div class="step-num-badge">ETKİNLİK</div>
+          <div class="step-title">RAM'i Yuvaya Tak</div>
+          <div class="step-desc">RAM'i <strong>sürükleyip</strong> yuvanın üstüne bırak. Girmezse <strong>Çevir</strong> düğmesiyle döndür.</div>
+          <div class="step-tip"><span>🔎</span><span>Önce <strong>çentiğe</strong> bak: yuvadaki çıkıntıyla aynı tarafta mı?</span></div>
+          <div class="etk-durum" id="etk-durum" aria-live="polite">
+            <div class="etk-durum-satir" data-d="yon"><span class="etk-durum-isaret"></span>Çentik çıkıntıyla hizalı</div>
+            <div class="etk-durum-satir" data-d="otur"><span class="etk-durum-isaret"></span>RAM yuvaya oturdu</div>
+            <div class="etk-durum-satir" data-d="klik"><span class="etk-durum-isaret"></span>Mandallar klik diye kapandı</div>
+            <div class="etk-mesaj">Hazır olduğunda RAM'i sürükle ya da “Yuvaya götür”e bas.</div>
+          </div>
+        </div>
+        <div class="step-visual v3d">
+          <div class="don3d" id="s11-3d" aria-label="Etkinlik: ters duran RAM'i çevirip yuvaya takma">
+            <div data-yedek hidden><!--@dahil:oz-5.svg--><span>Bu cihazda 3D açılmadı. Gerçek RAM ile dene.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ S12 — DERINLEŞ: RAM ETIKETINI OKU ══════════════════════ -->
+  <div class="slide derinles" id="s12">
+    <div class="slide-hdr">
+      <div class="sh-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/><path d="M11 8v6M8 11h6"/></svg></div>
+      <div class="sh-title">Derinleş: RAM Etiketini Oku</div>
+      <div class="sh-badge">Derinleş</div>
+    </div>
+    <div class="slide-body">
+      <div class="layout-step">
+        <div class="step-text">
+          <div class="step-num-badge">DERİNLEŞ · İSTEĞE BAĞLI</div>
+          <div class="step-title">Etiket Ne Söylüyor?</div>
+          <div class="step-desc"><strong>8GB</strong> modülün kapasitesidir. <strong>PC4</strong>, DDR4 türünde bir bellek olduğunu söyler. <strong>3200</strong> ise hızını gösterir.</div>
+          <div class="step-tip"><span>🧮</span><span>İki tane 8GB modül takılıysa bilgisayarda toplam <strong>kaç GB</strong> bellek olur?</span></div>
+        </div>
+        <div class="step-visual">
+          <div class="illu"><!--@dahil:derinles.svg--></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ S13 — ÖZET ══════════════════════ -->
+  <div class="slide" id="s13">
+    <div class="slide-hdr">
+      <div class="sh-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="9" y1="6" x2="20" y2="6"/><line x1="9" y1="12" x2="20" y2="12"/><line x1="9" y1="18" x2="20" y2="18"/><polyline points="3 6 4.5 7.5 7 5"/><polyline points="3 12 4.5 13.5 7 11"/><polyline points="3 18 4.5 19.5 7 17"/></svg></div>
+      <div class="sh-title">Özet</div>
+      <div class="sh-badge">Özet</div>
+    </div>
+    <div class="slide-body">
+      <div class="layout-full">
+        <div class="csub">Atölyede yaptığın 6 adım:</div>
+        <div class="ozet-izgara">
+          <div class="ozet-kart"><div class="ozet-resim"><!--@dahil:oz-1.svg--></div><div><div class="ozet-bas"><b>1</b> Güvenlik</div><div class="ozet-metin">Fiş çekili, bileklik bağlı.</div></div></div>
+          <div class="ozet-kart"><div class="ozet-resim"><!--@dahil:oz-2.svg--></div><div><div class="ozet-bas"><b>2</b> Kapak</div><div class="ozet-metin">Vidalar kutuya, kapak kenara.</div></div></div>
+          <div class="ozet-kart"><div class="ozet-resim"><!--@dahil:oz-3.svg--></div><div><div class="ozet-bas"><b>3</b> Etiketle</div><div class="ozet-metin">Parçaları bul, adını yaz.</div></div></div>
+          <div class="ozet-kart"><div class="ozet-resim"><!--@dahil:oz-4.svg--></div><div><div class="ozet-bas"><b>4</b> RAM'i çıkar</div><div class="ozet-metin">Mandallar dışa, RAM düz yukarı.</div></div></div>
+          <div class="ozet-kart"><div class="ozet-resim"><!--@dahil:oz-5.svg--></div><div><div class="ozet-bas"><b>5</b> RAM'i tak</div><div class="ozet-metin">Çentik çıkıntıya, eşit bastır, klik.</div></div></div>
+          <div class="ozet-kart"><div class="ozet-resim"><!--@dahil:oz-6.svg--></div><div><div class="ozet-bas"><b>6</b> Belgele</div><div class="ozet-metin">Üç fotoğraf, kapak kapalı.</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>

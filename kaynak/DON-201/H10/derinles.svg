@@ -1,0 +1,17 @@
+<svg viewBox="0 0 360 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="RAM etiketi yakından: 8GB kapasite, PC4 bellek türü (DDR4), 3200 hız">
+<defs><linearGradient id="h10drBg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f5f3ff"/><stop offset="1" stop-color="#e0f2fe"/></linearGradient></defs>
+<rect width="360" height="240" rx="18" fill="url(#h10drBg)"/>
+<path d="M30 176 h300 v44 h-146 v-6 h-6 v6 h-148 z" fill="#1f5a3a"/><rect x="33" y="213" width="145" height="7" fill="#e3b04f"/><rect x="190" y="213" width="137" height="7" fill="#e3b04f"/>
+<rect x="46" y="24" width="208" height="104" rx="8" fill="#f4f5f7" stroke="#cbd5e1" stroke-width="2"/>
+<path d="M150 128 L130 176 M190 128 L230 176" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="3 4"/>
+<text x="62" y="72" font-family="Arial,sans-serif" font-size="40" font-weight="800" fill="#111827">8GB</text>
+<text x="62" y="110" font-family="Arial,sans-serif" font-size="19" font-weight="700" fill="#111827">1Rx8 PC4-3200AA</text>
+<rect x="56" y="36" width="92" height="46" rx="7" fill="none" stroke="#8b5cf6" stroke-width="3"/>
+<rect x="110" y="91" width="45" height="26" rx="5" fill="none" stroke="#0ea5e9" stroke-width="3"/>
+<rect x="155" y="91" width="50" height="26" rx="5" fill="none" stroke="#10b981" stroke-width="3"/>
+<path d="M148 59 H262" stroke="#8b5cf6" stroke-width="2.5"/><path d="M132 117 V146 H96" stroke="#0ea5e9" stroke-width="2.5" fill="none"/><path d="M180 117 V146 H262" stroke="#10b981" stroke-width="2.5" fill="none"/>
+<g font-family="Inter,Arial,sans-serif" font-size="12" font-weight="800">
+<rect x="262" y="47" width="86" height="24" rx="12" fill="#8b5cf6"/><text x="305" y="63" text-anchor="middle" fill="#fff">Kapasite</text>
+<rect x="12" y="134" width="118" height="24" rx="12" fill="#0ea5e9"/><text x="71" y="150" text-anchor="middle" fill="#fff">Tür: PC4 = DDR4</text>
+<rect x="262" y="134" width="86" height="24" rx="12" fill="#10b981"/><text x="305" y="150" text-anchor="middle" fill="#fff">Hız: 3200</text></g>
+</svg>

@@ -43,6 +43,30 @@ def dahil_et(metin, klasor):
     return metin
 
 
+FOTO_SIMGE = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" '
+              'stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>'
+              '<circle cx="12" cy="13" r="4"/></svg>')
+EKSIK_FOTOLAR = []
+
+
+def fotolar(metin):
+    """<!--@foto:DOSYA|açıklama--> → assets/foto/DOSYA varsa gömülü görsel, yoksa yer tutucu."""
+    import base64
+
+    def bul(m):
+        ad, aciklama = m.group(1).strip(), m.group(2).strip()
+        yol = os.path.join(KOK, "assets", "foto", ad)
+        if os.path.exists(yol):
+            tur = "image/png" if ad.lower().endswith(".png") else "image/jpeg"
+            with open(yol, "rb") as f:
+                veri = base64.b64encode(f.read()).decode("ascii")
+            return '<img class="foto-gercek" src="data:' + tur + ";base64," + veri + '" alt="' + aciklama + '">'
+        EKSIK_FOTOLAR.append(ad + " — " + aciklama)
+        return ('<div class="foto-yer" data-foto-gerekli="' + ad + " — " + aciklama + '">' + FOTO_SIMGE +
+                "<b>Gerçek fotoğraf eklenecek</b><span>" + aciklama + "</span><code>assets/foto/" + ad + "</code></div>")
+    return re.sub(r"<!--@foto:([^|>]+)\|([^>]*?)-->", bul, metin)
+
+
 def script_guvenli(js):
     return js.replace("</script", "<\\/script")
 
@@ -92,7 +116,7 @@ def derle(kod, hafta):
 
     lesson_js = dahil_et(oku(os.path.join(klasor, "lesson.js")), klasor).strip()
     kapak = dahil_et(oku(os.path.join(klasor, "kapak.html")), klasor).strip()
-    slaytlar = dahil_et(oku(os.path.join(klasor, "slaytlar.html")), klasor).rstrip()
+    slaytlar = fotolar(dahil_et(oku(os.path.join(klasor, "slaytlar.html")), klasor).rstrip())
     ders_css = oku(os.path.join(klasor, "ders.css"))
     ders_js = dahil_et(oku(os.path.join(klasor, "ders.js")), klasor)
 
@@ -134,6 +158,8 @@ def derle(kod, hafta):
     cikti = os.path.join(cikti_klasor, kod + "-" + hh + ".html")
     with open(cikti, "w", encoding="utf-8") as f:
         f.write(html)
+    for f in EKSIK_FOTOLAR:
+        print("FOTO-GEREKLİ: " + f)
     print("Yazıldı: " + os.path.relpath(cikti, KOK) + " (" + str(os.path.getsize(cikti) // 1024) + " KB, modeller: " +
           ", ".join(modeller) + ")")
     return cikti

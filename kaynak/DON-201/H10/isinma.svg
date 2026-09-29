@@ -1,0 +1,12 @@
+<svg viewBox="0 0 360 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="RAM ters çevrilmiş hâlde yuvanın üstünde; çentik ile yuvadaki çıkıntı hizalı değil">
+<defs><linearGradient id="h10isBg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0f9ff"/><stop offset="1" stop-color="#dbeafe"/></linearGradient></defs>
+<rect width="360" height="240" rx="18" fill="url(#h10isBg)"/>
+<rect x="30" y="178" width="300" height="34" rx="6" fill="#23272e"/><rect x="42" y="168" width="276" height="14" rx="3" fill="#17181b"/><rect x="48" y="171" width="264" height="4" fill="#050506"/>
+<rect x="191" y="166" width="4" height="9" fill="#17181b"/><rect x="30" y="150" width="10" height="30" rx="3" fill="#c9ccd1"/><rect x="320" y="150" width="10" height="30" rx="3" fill="#c9ccd1"/>
+<g><path d="M50.0 64.0 h260.0 v61.1 h-137.9 v-6.0 h-5 v6.0 h-117.1 z" fill="#1f5a3a"/><rect x="53.0" y="120.1" width="114.1" height="5" fill="#e3b04f"/><rect x="172.1" y="120.1" width="134.9" height="5" fill="#e3b04f"/><rect x="65.6" y="79.3" width="18.2" height="25.7" rx="1" fill="#16171a"/><rect x="95.0" y="79.3" width="18.2" height="25.7" rx="1" fill="#16171a"/><rect x="124.4" y="79.3" width="18.2" height="25.7" rx="1" fill="#16171a"/><rect x="153.7" y="79.3" width="18.2" height="25.7" rx="1" fill="#16171a"/><rect x="183.1" y="79.3" width="18.2" height="25.7" rx="1" fill="#16171a"/><rect x="212.5" y="79.3" width="18.2" height="25.7" rx="1" fill="#16171a"/><rect x="241.9" y="79.3" width="18.2" height="25.7" rx="1" fill="#16171a"/><rect x="271.3" y="79.3" width="18.2" height="25.7" rx="1" fill="#16171a"/></g>
+<line x1="169.6" y1="130" x2="169.6" y2="162" stroke="#ef4444" stroke-width="2.5" stroke-dasharray="4 4"/>
+<line x1="193" y1="130" x2="193" y2="162" stroke="#10b981" stroke-width="2.5" stroke-dasharray="4 4"/>
+<g font-family="Inter,Arial,sans-serif" font-weight="800" font-size="11"><rect x="133" y="30" width="72" height="22" rx="11" fill="#ef4444"/><text x="169" y="45" text-anchor="middle" fill="#fff">Çentik</text>
+<rect x="200" y="200" width="74" height="22" rx="11" fill="#10b981"/><text x="237" y="215" text-anchor="middle" fill="#fff">Çıkıntı</text></g>
+<circle cx="300" cy="40" r="18" fill="#fff" stroke="#f59e0b" stroke-width="3"/><text x="300" y="47" font-family="Inter,Arial,sans-serif" font-size="20" font-weight="900" text-anchor="middle" fill="#b45309">?</text>
+</svg>

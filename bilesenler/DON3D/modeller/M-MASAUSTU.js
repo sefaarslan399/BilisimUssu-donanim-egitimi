@@ -2,7 +2,8 @@
    Ön panelde güç düğmesi, güç ve disk ışıkları, üst-ön USB girişleri.
    İçeride (camdan görünür, basitleştirilmiş): anakart, işlemci soğutucusu, RAM,
    ekran kartı, SSD, güç kaynağı örtüsü (PSU'nun içi modellenmez), arka fan.
-   Ölçü birimi: cm (≈ 21 × 45 × 42). Orijin: alt-orta. Ön +Z, cam yan −X. */
+   Ölçü birimi: cm (≈ 21 × 45 × 42). Orijin: alt-orta. Ön +Z, cam yan −X.
+   ops.acik: true → cam ve basit RAM eklenmez (M-MASAUSTU-ACIK kendi yan kapağını ve RAM yuvalarını ekler). */
 (function (D) {
   'use strict';
 
@@ -37,8 +38,9 @@
   }
   D.kitFan = fan;
 
-  D.modelTanimla('M-MASAUSTU', function (K) {
+  D.modelTanimla('M-MASAUSTU', function (K, ops) {
     var THREE = K.THREE;
+    ops = ops || {};
     var g = new THREE.Group();
     K.parca(g, 'M-MASAUSTU', 'Kasa', 'İşlemci, bellek ve depolama gibi parçaları koruyan kutu.');
     var W = 21, H = 45, Dp = 42;
@@ -63,11 +65,13 @@
     K.koy(govde, K.kutu(W, 0.6, Dp, 'kasa', 0.2), 0, yz + 0.3, 0);                          // alt
     K.koy(govde, K.kutu(W, gh, 0.6, 'kasa', 0.2), 0, ym, -Dp / 2 + 0.3);                    // arka
     // Cam yan kapak ve çerçevesi
-    var cam = K.kutu(0.4, gh - 1.6, Dp - 2.4, 'cam', 0.2);
-    K.koy(govde, cam, -W / 2 + 0.2, ym, 0);
-    cam.userData.golgeYok = true;
-    cam.renderOrder = 3;
-    cam.userData.secilmez = true;
+    if (!ops.acik) {
+      var cam = K.kutu(0.4, gh - 1.6, Dp - 2.4, 'cam', 0.2);
+      K.koy(govde, cam, -W / 2 + 0.2, ym, 0);
+      cam.userData.golgeYok = true;
+      cam.renderOrder = 3;
+      cam.userData.secilmez = true;
+    }
     [[ym + gh / 2 - 0.5, Dp, 1.0], [ym - gh / 2 + 0.5, Dp, 1.0]].forEach(function (c) {
       K.koy(govde, K.kutu(0.7, c[2], c[1], 'kasa', 0.2), -W / 2 + 0.35, c[0], 0);
     });
@@ -160,7 +164,7 @@
       K.koy(ram, K.kutu(3.2, 13.3, 0.4, 'plastikKoyu', 0.1), 0, 0, z);
       K.koy(ram, K.kutu(0.4, 13.3, 0.42, 'aluminyum', 0.1), -1.5, 0, z);
     });
-    K.koy(ic, ram, xTepsi - 1.7, 33.5, -3.6);
+    if (!ops.acik) K.koy(ic, ram, xTepsi - 1.7, 33.5, -3.6);
     // Ekran kartı (yatay)
     var ekk = new THREE.Group();
     K.parca(ekk, 'ekran-karti', 'Ekran kartı', 'Ekranda görünecek görüntüyü hazırlar.');
@@ -183,11 +187,12 @@
     K.koy(ic, ssd, -3.5, yz + 11.3, 11);
     // Arka fan
     var arkaFan = fan(K, 12);
-    arkaFan.name = 'arka-fan';
+    K.parca(arkaFan, 'arka-fan', 'Kasa fanı', 'Sıcak havayı kasanın dışına atar.');
     K.koy(ic, arkaFan, 1.5, 35, -Dp / 2 + 1.9);
     ic.traverse(function (o) { if (o.isMesh) o.userData.golgeYok = true; });
     g.add(ic);
     g.userData.fanlar = [arkaFan.userData.rotor, sogFan.userData.rotor];
+    g.userData.olcu = { W: W, H: H, Dp: Dp, yz: yz, ym: ym, gh: gh, xTepsi: xTepsi };
 
     // Arka giriş/çıkış paneli (kablolar için)
     var io = K.kutu(0.3, 4.4, 16, 'aluminyum');

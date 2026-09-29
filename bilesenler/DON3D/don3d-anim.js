@@ -275,6 +275,100 @@
     } });
   };
 
+
+  /* ─── Ses: kısa "klik" ve yumuşak "hata" (MASTER ses ayarına uyar) ─── */
+  D.ses = function (tur) {
+    try {
+      if (typeof soundEnabled !== 'undefined' && !soundEnabled) return; // eslint-disable-line no-undef
+      var AC = kok.AudioContext || kok.webkitAudioContext;
+      if (!AC) return;
+      var ctx = D._sesCtx || (D._sesCtx = new AC());
+      var t = ctx.currentTime, o = ctx.createOscillator(), g = ctx.createGain();
+      if (tur === 'klik') {
+        o.type = 'square'; o.frequency.setValueAtTime(1800, t); o.frequency.exponentialRampToValueAtTime(900, t + 0.03);
+        g.gain.setValueAtTime(0.08, t); g.gain.exponentialRampToValueAtTime(0.001, t + 0.05);
+        o.start(t); o.stop(t + 0.06);
+      } else {
+        o.type = 'triangle'; o.frequency.setValueAtTime(220, t); o.frequency.exponentialRampToValueAtTime(160, t + 0.18);
+        g.gain.setValueAtTime(0.07, t); g.gain.exponentialRampToValueAtTime(0.001, t + 0.22);
+        o.start(t); o.stop(t + 0.24);
+      }
+      o.connect(g); g.connect(ctx.destination);
+    } catch (e) {}
+  };
+
+  /* ─── Yardımcı: konum tweeni (ebeveyn koordinatında) ─── */
+  function git(parca, hedef, sure, ease) {
+    var s = D.sahneBul(parca), b = parca.position.clone();
+    return D.tween({ sahne: s, sure: sure, ease: ease || 'easeInOutCubic', anahtar: 'konum', hedef: parca,
+      guncelle: function (e) { parca.position.lerpVectors(b, hedef, e); } });
+  }
+  D.git = git;
+
+  /** Parçayı ofset kadar kaydırır: DON3D.kaydir(parca, [x,y,z], sure) */
+  D.kaydir = function (parca, ofset, sure) {
+    return git(parca, parca.position.clone().add(new V3().fromArray(ofset)), sure == null ? 0.8 : sure);
+  };
+
+  /** Vidayı kendi ekseni etrafında çevirip dışarı alır (sökme) ya da geri takar. */
+  D.vida = function (vida, ops) {
+    ops = ops || {};
+    var s = D.sahneBul(vida);
+    var eksen = ops.eksen || 'z', tur = ops.tur == null ? 3 : ops.tur, yon = ops.sok === false ? 1 : -1;
+    var mesafe = ops.mesafe == null ? 0.9 : ops.mesafe;
+    var p0 = vida.position[eksen], r0 = vida.rotation[eksen];
+    return D.tween({ sahne: s, sure: ops.sure == null ? 1 : ops.sure, ease: 'easeInOutCubic', anahtar: 'vida', hedef: vida, guncelle: function (e) {
+      vida.rotation[eksen] = r0 + yon * tur * Math.PI * 2 * e;
+      vida.position[eksen] = p0 + (ops.sok === false ? 1 : -1) * mesafe * e * (ops.isaret || 1);
+    } });
+  };
+
+  /* ─── A-TAK: parçanın hizalanıp yuvaya oturması; yanlış yönde girmez; klik ─── */
+  /**
+   * DON3D.takAnim(parca, { hedef: Vector3 (ebeveyn koordinatında oturma noktası), dogru: bool,
+   *                        yukseklik: 4, engel: 0.35, yuva: M-RAM-YUVASI grubu (mandallar için) })
+   * Promise<bool> döner: true = oturdu.
+   */
+  D.takAnim = function (parca, ops) {
+    var s = D.sahneBul(parca);
+    var h = ops.hedef, yuk = ops.yukseklik == null ? 4 : ops.yukseklik;
+    var ust = new V3(h.x, h.y + yuk, h.z);
+    var once = parca.position.distanceTo(ust) > 0.05 ? git(parca, ust, 0.6) : Promise.resolve();
+    if (ops.yuva && !ops.yuva.userData.mandalAcik) once = once.then(function () { return ops.yuva.userData.mandal(true); });
+    return once.then(function () {
+      if (ops.dogru) {
+        return git(parca, new V3(h.x, h.y + 0.12, h.z), 0.7, 'easeOutCubic')
+          .then(function () { return git(parca, h.clone(), 0.18, 'easeInCubic'); })
+          .then(function () {
+            D.ses('klik');
+            return ops.yuva ? ops.yuva.userData.mandal(false, 0.22) : null;
+          })
+          .then(function () { return true; });
+      }
+      var engel = ops.engel == null ? 0.35 : ops.engel;
+      var dur = new V3(h.x, h.y + engel, h.z);
+      return git(parca, dur, 0.6, 'easeOutCubic')
+        .then(function () {
+          D.ses('hata');
+          var x0 = parca.position.x;
+          return D.tween({ sahne: s, sure: 0.4, ease: 'lineer', guncelle: function (e) { parca.position.x = x0 + Math.sin(e * Math.PI * 6) * 0.08 * (1 - e); } });
+        })
+        .then(function () { return git(parca, ust, 0.5); })
+        .then(function () { return false; });
+    });
+  };
+
+  /** A-TAK tersi: mandalları açar, parça yuvadan yükselir. Promise. */
+  D.cikarAnim = function (parca, ops) {
+    ops = ops || {};
+    var yuk = ops.yukseklik == null ? 4 : ops.yukseklik;
+    var p = parca.position.clone();
+    var once = ops.yuva ? ops.yuva.userData.mandal(true, 0.35) : Promise.resolve();
+    return once
+      .then(function () { return git(parca, new V3(p.x, p.y + 0.3, p.z), 0.25, 'easeOutCubic'); })
+      .then(function () { return git(parca, new V3(p.x, p.y + yuk, p.z), 0.8); });
+  };
+
   /* ─── A-DONUS: dönen parça (fan, HDD plakası) ─── */
   /** Parçayı sürekli döndürür. Döner: durdur() */
   D.dondurParca = function (parca, ops) {

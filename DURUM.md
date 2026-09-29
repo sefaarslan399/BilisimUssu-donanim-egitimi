@@ -7,15 +7,15 @@ Durum: `—` başlanmadı · `K` kalibrasyon (onay bekliyor) · `✓` tamam · `
 | Bileşen | Durum | Not |
 |---|---|---|
 | Motor çekirdeği (renderer, sahne yaşam döngüsü, yedek görsel) | K | Tek renderer, slayt yaşam döngüsü, otomatik kalite, `data-yedek`, hareket azaltma, HTML etiket, klavye. H01 ile birlikte onay bekliyor. |
-| Etkileşimler (E-DONDUR, E-BILGI, E-TAK) | K | Yazıldı: E-DONDUR, E-BILGI, E-SINIFLA. Kalan E-* kodları ilgili haftalarda eklenecek. |
-| Animasyon kalıpları | K | Yazıldı: A-VURGU, A-KATMAN, A-AKIS, A-DONUS. |
-| Model kütüphanesi | K | Yazıldı: M-MASAUSTU, M-MONITOR, M-KLAVYE, M-FARE. |
+| Etkileşimler (E-DONDUR, E-BILGI, E-TAK) | K | Yazıldı: E-DONDUR, E-BILGI, E-SINIFLA, E-TAK. |
+| Animasyon kalıpları | K | Yazıldı: A-VURGU, A-KATMAN, A-AKIS, A-DONUS, A-TAK (tak/çıkar, vida, kaydır). |
+| Model kütüphanesi | K | Yazıldı: M-MASAUSTU, M-MASAUSTU-ACIK, M-MONITOR, M-KLAVYE, M-FARE, M-RAM, M-RAM-YUVASI. |
 
 ## DON-201 – Bilgisayar Donanımı
 
 | Hafta | Başlık | Tür | HTML | Plan | Not |
 |---|---|---|---|---|---|
-| H01 | Donanım, Yazılım ve Bilgisayarın Dört İşi | K | ✓ | K | Ders onaylandı. Plan Format K, 3 sayfa (HTML + PDF), onay bekliyor. |
+| H01 | Donanım, Yazılım ve Bilgisayarın Dört İşi | K | ✓ | ✓ | Format K kalibrasyonu onaylandı. |
 | H02 | Bit ve Byte | K | — | — | |
 | H03 | Bağlantı Noktaları ve Çevre Birimleri | K | — | — | |
 | H04 | Güvenli Çalışma | K+U | — | — | |
@@ -24,7 +24,7 @@ Durum: `—` başlanmadı · `K` kalibrasyon (onay bekliyor) · `✓` tamam · `
 | H07 | RAM | K | — | — | |
 | H08 | Depolama Birimleri | K | — | — | |
 | H09 | Güç Kaynağı, Ekran Kartı ve Soğutma | K | — | — | |
-| H10 | Atölye 1: Kasayı Açma ve RAM Sök–Tak | U | — | — | |
+| H10 | Atölye 1: Kasayı Açma ve RAM Sök–Tak | U | K | — | Format U kalibrasyonu. 15 slayt, 883 KB. FOTO-GEREKLİ: DON-201-H10-1-guvenlik.jpg, -2-yan-kapak.jpg, -3-parcalar.jpg, -4-ram-cikar.jpg, -5-ram-tak.jpg, -6-belgele.jpg (assets/foto/). DOĞRULA: DDR4 çentiğinin milimetrik konumu modelde yaklaşık (derste ölçü verilmedi). |
 | H11 | Atölye 2: Disk Sök–Tak, Toplama ve İlk Açılış | U | — | — | |
 | H12 | Taşınabilir Cihazlar, Piller ve E-Atık | K | — | — | |
 | H13 | Basit Sorun Giderme ve Bakım | K+U | — | — | |

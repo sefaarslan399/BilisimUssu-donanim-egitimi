@@ -67,6 +67,139 @@
     return { kapat: kapat };
   };
 
+
+  /* ─── E-TAK: parçayı yuvaya sürükle; doğru yönde oturur, yanlışta geri döner ve ipucu verir ─── */
+  /**
+   * DON3D.tak(sahne, parca, hedef, {
+   *   dogruYon: function (parca) → bool,   // yön doğru mu? (ör. RAM çentiği çıkıntıyla hizalı mı)
+   *   tolerans: 1.2 (cm), yukseklik: 4, yuva: M-RAM-YUVASI grubu,
+   *   cevirEksen: 'y', onDogru, onYanlis(neden), onUzak
+   * })
+   * hedef: parça ile aynı ebeveyn koordinatında oturma noktası (Vector3).
+   * Sürükleme yatay düzlemde yapılır. "Çevir" ve "Yuvaya götür" düğmeleri dokunmatik ve klavye içindir.
+   */
+  D.tak = function (sahne, parca, hedef, ops) {
+    ops = ops || {};
+    var kap = sahne.kap;
+    var tol = ops.tolerans == null ? 1.2 : ops.tolerans;
+    var yuk = ops.yukseklik == null ? 4 : ops.yukseklik;
+    var baslangic = parca.position.clone();
+    var baslangicRot = parca.rotation.clone();
+    var mesgul = false, bitti = false;
+    var isin = new THREE.Raycaster(), duzlem = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
+    var ofset = new THREE.Vector3(), surukle = null;
+
+    // Hedef işareti: yuvanın üstünde yarı saydam kılavuz
+    var isaret = new THREE.Mesh(new THREE.BoxGeometry(ops.isaretBoyut ? ops.isaretBoyut[0] : 13.4, 0.06, ops.isaretBoyut ? ops.isaretBoyut[1] : 0.9),
+      new THREE.MeshBasicMaterial({ color: new THREE.Color(D.vurguRengi(kap)), transparent: true, opacity: 0, depthWrite: false }));
+    isaret.material.toneMapped = false;
+    isaret.position.set(hedef.x, hedef.y + (ops.isaretY || 0.6), hedef.z);
+    isaret.userData.secilmez = true; isaret.raycast = function () {};
+    parca.parent.add(isaret);
+    function isaretGoster(g) { isaret.material.opacity = g ? 0.45 : 0; }
+
+    function ndc(e) {
+      var r = kap.getBoundingClientRect();
+      return new THREE.Vector2(((e.clientX - r.left) / r.width) * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1);
+    }
+    function parcayaDegdi(e) {
+      isin.setFromCamera(ndc(e), sahne.kamera);
+      return isin.intersectObject(parca, true).length > 0;
+    }
+    function duzlemNoktasi(e) {
+      isin.setFromCamera(ndc(e), sahne.kamera);
+      var p = new THREE.Vector3();
+      var yerel = parca.parent;
+      yerel.updateWorldMatrix(true, false);
+      var dunyaY = new THREE.Vector3(0, parca.position.y, 0).applyMatrix4(yerel.matrixWorld).y;
+      duzlem.constant = -dunyaY;
+      if (!isin.ray.intersectPlane(duzlem, p)) return null;
+      return yerel.worldToLocal(p);
+    }
+    kap.addEventListener('pointerdown', function (e) {
+      if (mesgul || bitti || e.button > 0 || !parcayaDegdi(e)) return;
+      e.stopImmediatePropagation();
+      var p = duzlemNoktasi(e);
+      if (!p) return;
+      surukle = e.pointerId;
+      ofset.copy(parca.position).sub(p);
+      try { kap.setPointerCapture(e.pointerId); } catch (x) {}
+      kap.classList.add('don3d--tasiyor');
+      isaretGoster(true);
+    }, true);
+    kap.addEventListener('pointermove', function (e) {
+      if (surukle !== e.pointerId) return;
+      e.stopImmediatePropagation();
+      var p = duzlemNoktasi(e);
+      if (!p) return;
+      parca.position.x = p.x + ofset.x;
+      parca.position.z = p.z + ofset.z;
+      var yakin = Math.hypot(parca.position.x - hedef.x, parca.position.z - hedef.z) < tol;
+      isaret.material.opacity = yakin ? 0.8 : 0.35;
+      D._donguBaslat();
+    }, true);
+    function birak(e) {
+      if (surukle !== e.pointerId) return;
+      e.stopImmediatePropagation();
+      surukle = null;
+      kap.classList.remove('don3d--tasiyor');
+      isaretGoster(false);
+      var uzak = Math.hypot(parca.position.x - hedef.x, parca.position.z - hedef.z);
+      if (uzak < tol) dene();
+      else {
+        if (ops.onUzak) ops.onUzak();
+        mesgul = true;
+        D.git(parca, new THREE.Vector3(parca.position.x, hedef.y + yuk, parca.position.z), 0.3).then(function () { mesgul = false; });
+      }
+    }
+    kap.addEventListener('pointerup', birak, true);
+    kap.addEventListener('pointercancel', birak, true);
+    ['touchstart', 'touchend', 'touchmove'].forEach(function (ad) {
+      kap.addEventListener(ad, function (e) { e.stopPropagation(); }, { passive: true });
+    });
+
+    function dene() {
+      if (mesgul || bitti) return Promise.resolve(false);
+      mesgul = true;
+      var dogru = ops.dogruYon ? !!ops.dogruYon(parca) : true;
+      return D.takAnim(parca, { hedef: hedef, dogru: dogru, yukseklik: yuk, yuva: ops.yuva, engel: ops.engel }).then(function (oturdu) {
+        mesgul = false;
+        if (oturdu) {
+          bitti = true;
+          cevirBtn.disabled = true; takBtn.disabled = true;
+          if (ops.onDogru) ops.onDogru();
+        } else if (ops.onYanlis) ops.onYanlis('yon');
+        return oturdu;
+      });
+    }
+    function cevir() {
+      if (mesgul || bitti) return;
+      mesgul = true;
+      var eksen = ops.cevirEksen || 'y', r0 = parca.rotation[eksen];
+      D.tween({ sahne: sahne, sure: 0.6, guncelle: function (e) { parca.rotation[eksen] = r0 + Math.PI * e; } })
+        .then(function () { parca.rotation[eksen] = (r0 + Math.PI) % (Math.PI * 2); mesgul = false; if (ops.onCevir) ops.onCevir(); });
+    }
+    function sifirla() {
+      if (mesgul) return;
+      bitti = false;
+      cevirBtn.disabled = false; takBtn.disabled = false;
+      var once = ops.yuva && !ops.yuva.userData.mandalAcik ? ops.yuva.userData.mandal(true) : Promise.resolve();
+      mesgul = true;
+      once.then(function () { return D.git(parca, baslangic.clone(), 0.6); }).then(function () {
+        parca.rotation.copy(baslangicRot);
+        mesgul = false;
+        if (ops.onSifirla) ops.onSifirla();
+      });
+    }
+    var cevirBtn = sahne.dugme('Çevir', 'dondur', cevir, { yer: 'alt-sol', aciklama: 'Parçayı 180 derece çevir' });
+    var takBtn = sahne.dugme('Yuvaya götür', 'oynat', function () {
+      if (mesgul || bitti) return;
+      D.git(parca, new THREE.Vector3(hedef.x, parca.position.y, hedef.z), 0.5).then(dene);
+    }, { yer: 'alt-sol', sinif: 'don3d-dugme--birincil', aciklama: 'Parçayı yuvaya götürüp takmayı dene' });
+    sahne.dugme('Baştan', 'tekrar', sifirla, { yer: 'ust-sag', aciklama: 'Etkinliği baştan başlat' });
+    return { dene: dene, cevir: cevir, sifirla: sifirla };
+  };
+
   /* ─── E-SINIFLA: öğeleri doğru kutulara sürükle; anında geri bildirim ─── */
   /**
    * DON3D.sinifla(kapsayici, {

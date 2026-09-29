@@ -627,7 +627,7 @@
   SP.etiket = function (nesne, metin, ops) {
     ops = ops || {};
     var s = this;
-    var e = div('don3d-etiket' + (ops.tur ? ' don3d-etiket--' + ops.tur : ''), s.katman);
+    var e = div('don3d-etiket' + (ops.tur ? ' don3d-etiket--' + ops.tur : '') + (ops.yer === 'alt' ? ' don3d-etiket--alt' : ''), s.katman);
     var m = document.createElement('span');
     m.className = 'don3d-etiket-metin';
     m.textContent = metin || '';
@@ -636,7 +636,8 @@
     nesne.updateWorldMatrix(true, true);
     var kutu = new THREE.Box3().setFromObject(nesne);
     var nokta = kutu.isEmpty() ? nesne.getWorldPosition(new V3()) : kutu.getCenter(new V3());
-    if (ops.yer !== 'merkez' && !kutu.isEmpty()) nokta.y = kutu.max.y;
+    if (ops.yer === 'alt' && !kutu.isEmpty()) nokta.y = kutu.min.y;
+    else if (ops.yer !== 'merkez' && !kutu.isEmpty()) nokta.y = kutu.max.y;
     if (ops.ofset) nokta.add(new V3().fromArray(ops.ofset));
     var yerel = nesne.worldToLocal(nokta.clone());
     var et = {

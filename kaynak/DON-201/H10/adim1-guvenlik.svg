@@ -1,0 +1,10 @@
+<svg viewBox="0 0 360 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Güvenlik kontrolü: fiş prizden çekilmiş, antistatik bileklik kasanın metal kısmına bağlı, parça kutusu hazır">
+<defs><linearGradient id="h10gBg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f8fafc"/><stop offset="1" stop-color="#e0f2fe"/></linearGradient></defs>
+<rect width="360" height="200" rx="16" fill="url(#h10gBg)"/><rect x="0" y="160" width="360" height="40" fill="#dbe4ee"/>
+<g id="g-fis" class="gk"><rect x="18" y="58" width="44" height="60" rx="8" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2"/><circle cx="33" cy="84" r="4" fill="#475569"/><circle cx="47" cy="84" r="4" fill="#475569"/>
+<path d="M88 92 h-14 M74 84 v16" stroke="#475569" stroke-width="4" stroke-linecap="round"/><path d="M88 92 C120 92 120 130 150 130" fill="none" stroke="#1f2937" stroke-width="5"/>
+<line x1="60" y1="70" x2="96" y2="110" stroke="#ef4444" stroke-width="5" stroke-linecap="round"/><line x1="96" y1="70" x2="60" y2="110" stroke="#ef4444" stroke-width="5" stroke-linecap="round"/><text x="40" y="140" font-family="Inter,Arial,sans-serif" font-size="11" font-weight="800" text-anchor="middle" class="gk-yazi" fill="#475569">Fiş çekili</text></g>
+<rect x="150" y="40" width="70" height="120" rx="6" fill="#30343c"/><rect x="156" y="48" width="58" height="104" rx="3" fill="#3b404a"/>
+<g id="g-bileklik" class="gk"><ellipse cx="200" cy="182" rx="16" ry="9" fill="none" stroke="#1e293b" stroke-width="5"/><path d="M214 176 C236 168 236 110 214 104" fill="none" stroke="#ef4444" stroke-width="3"/><path d="M210 98 l10 2 l-3 7 l-9 -3z" fill="#9aa1aa"/><text x="262" y="150" font-family="Inter,Arial,sans-serif" font-size="11" font-weight="800" text-anchor="middle" class="gk-yazi" fill="#475569">Bileklik bağlı</text></g>
+<g id="g-kutu" class="gk"><path d="M268 104 h70 l-6 34 h-58z" fill="#3b82f6"/><rect x="264" y="98" width="78" height="9" rx="2" fill="#60a5fa"/><text x="304" y="88" font-family="Inter,Arial,sans-serif" font-size="11" font-weight="800" text-anchor="middle" class="gk-yazi" fill="#475569">Kutu hazır</text></g>
+</svg>
