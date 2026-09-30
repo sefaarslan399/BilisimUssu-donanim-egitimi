@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DON-201 H13 Öğretmen Planı — Basit Sorun Giderme ve Bakım</title>
+<style>
+@font-face{font-family:'Carlito';src:local('Carlito'),url('../../assets/font/Carlito-Regular.ttf');font-weight:400;font-style:normal}
+@font-face{font-family:'Carlito';src:local('Carlito Bold'),url('../../assets/font/Carlito-Bold.ttf');font-weight:700;font-style:normal}
+@font-face{font-family:'Carlito';src:local('Carlito Italic'),url('../../assets/font/Carlito-Italic.ttf');font-weight:400;font-style:italic}
+@page{size:A4;margin:14mm 14mm 16mm 16.5mm;
+  @bottom-center{content:'Bilişim Üssü · Etkileşimli Ders Planı · ' counter(page) ' / ' counter(pages);font-family:Carlito,Calibri,sans-serif;font-size:7.5pt;color:#6b7a82}}
+*{box-sizing:border-box}
+html{font-family:Carlito,Calibri,'Segoe UI',Arial,sans-serif;font-size:9.9pt;color:#1a1a1a;line-height:1.38}
+body{margin:0;max-width:180mm}
+@media screen{body{margin:24px auto;padding:0 12px}}
+.bant{display:flex;gap:7pt;margin-bottom:9pt}
+.bant-sol{flex:1;background:linear-gradient(135deg,#075985,#0a6aa3);color:#fff;border-radius:4pt;padding:9pt 14pt 10pt}
+.bant-ust{font-size:7.6pt;font-weight:700;letter-spacing:2.2pt;opacity:.92}
+.bant-baslik{font-size:23pt;font-weight:700;line-height:1.12;margin-top:3pt}
+.bant-baslik.uzun{font-size:18pt}
+.bant-sag{width:128pt;background:#0369a1;color:#fff;border-radius:4pt;display:flex;align-items:center;justify-content:center;font-size:14pt;font-weight:700}
+h2{background:#0369a1;color:#fff;font-size:11pt;font-weight:700;margin:12pt 0 6pt;padding:5pt 10pt;border-radius:4pt;letter-spacing:.2pt;break-after:avoid}
+h3{display:flex;justify-content:space-between;align-items:center;color:#0369a1;font-size:10.6pt;margin:9pt 0 4pt;break-after:avoid}
+h3 .sure{background:#0369a1;color:#fff;font-size:8.6pt;border-radius:9pt;padding:1.5pt 8pt}
+table{width:100%;border-collapse:collapse;margin:0 0 4pt}
+td,th{border:1px solid #b9def1;padding:4pt 7pt;vertical-align:top;text-align:left}
+th{background:#e0f2fe;color:#075985;font-size:9.2pt;font-weight:700}
+tr{break-inside:avoid}
+.genel td:first-child{width:134pt;background:#e0f2fe;color:#075985;font-weight:700}
+.kazanim{width:100%;border-collapse:collapse}
+.kazanim td{border:0;border-bottom:1px solid #eaf6fc;padding:3.5pt 4pt}
+.kazanim td:first-child{width:32pt;color:#0369a1;font-weight:700}
+.isleyis td:first-child{width:35pt;text-align:center;color:#6b7a82;font-weight:700}
+.isleyis td:nth-child(2){width:122pt}
+.adim-ad{font-weight:700}
+.adim-konu{color:#475569}
+.slayt{display:inline-block;margin-top:2pt;font-size:8pt;font-weight:700;color:#0369a1;background:#e0f2fe;border-radius:6pt;padding:0 5pt}
+q{quotes:'“' '”'}
+q::before{content:open-quote}q::after{content:close-quote}
+p{margin:3pt 0 5pt;text-align:justify}
+.kutu{border:1px solid #b9def1;border-left:3pt solid #0369a1;border-radius:3pt;padding:5pt 8pt;margin:5pt 0;background:#f5fbff;break-inside:avoid}
+.kutu b{color:#075985}
+.olcme td:first-child{width:22pt;text-align:center;font-weight:700}
+.olcme td:last-child{width:40pt;text-align:center;color:#0369a1;font-weight:700}
+.soru{font-weight:700}
+.secenek{margin-top:1pt}
+.aciklama{font-style:italic;color:#0369a1;font-size:9.5pt;margin-top:2pt}
+.soru-gorsel{float:right;margin:0 0 2pt 8pt}
+.soru-gorsel svg{height:38pt;width:auto}
+.anahtar{font-weight:700;color:#075985;margin:3pt 0 0}
+.anahtar span{font-weight:400;color:#1a1a1a}
+ol.acik{margin:2pt 0;padding-left:0;list-style:none;counter-reset:a}
+ol.acik li{counter-increment:a;display:flex;gap:10pt;padding:3pt 0}
+ol.acik li::before{content:counter(a) '.';color:#0369a1;font-weight:700;min-width:16pt}
+.etiket{color:#0369a1;font-weight:700;margin:7pt 0 2pt}
+ul.not{margin:2pt 0;padding-left:12pt}
+ul.not li{margin:2pt 0}
+.sure-tablo td:last-child,.sure-tablo th:last-child{width:62pt}
+.imza{display:flex;justify-content:space-around;margin-top:14pt;text-align:center;color:#6b7a82;break-inside:avoid;break-before:avoid;page-break-before:avoid}
+.sure-tablo{break-after:avoid;page-break-after:avoid}
+.sure-tablo tr:last-child{break-after:avoid}
+.uyg{display:grid;grid-template-columns:1fr 1fr;gap:3pt;margin-top:5pt}
+.uyg div{border-radius:3pt;padding:3pt 6pt;font-size:9pt;line-height:1.32}
+.uyg b{display:block;font-size:7.6pt;letter-spacing:.8pt}
+.uyg .goster{background:#eff6ff;border-left:2.5pt solid #3b82f6}.uyg .goster b{color:#1d4ed8}
+.uyg .sor{background:#f5f3ff;border-left:2.5pt solid #8b5cf6}.uyg .sor b{color:#6d28d9}
+.uyg .kontrol{background:#ecfdf5;border-left:2.5pt solid #10b981}.uyg .kontrol b{color:#047857}
+.uyg .sikhata{background:#fff7ed;border-left:2.5pt solid #f97316}.uyg .sikhata b{color:#c2410c}
+.guvenlik{border:1.5pt solid #ef4444;border-radius:4pt;background:#fef2f2;padding:6pt 10pt;margin:6pt 0;break-inside:avoid}
+.guvenlik b{color:#b91c1c;display:block;margin-bottom:2pt}
+.guvenlik ul{margin:2pt 0;padding-left:13pt}
+.imza b{display:block;color:#475569;margin-bottom:10pt}
+</style>
+</head>
+<body>
+<div class="bant"><div class="bant-sol"><div class="bant-ust">ÖĞRETMEN DERS PLANI (KAVRAM + UYGULAMA) · DON-201</div><div class="bant-baslik">Basit Sorun Giderme ve Bakım</div></div><div class="bant-sag">13. Hafta</div></div>
+<h2>1. GENEL BİLGİLER</h2>
+<table class="genel">
+<tr><td>Dersin Adı</td><td>Bilişim Teknolojileri ve Yazılım</td></tr>
+<tr><td>Sınıf / Seviye</td><td>Ortaokul (5–8. sınıf)</td></tr>
+<tr><td>Ünite / Konu</td><td>Donanım 201 - Bakım ve Sorumluluk — Basit Sorun Giderme ve Bakım</td></tr>
+<tr><td>Öğrenme Alanı</td><td>Bilgisayar Donanımı</td></tr>
+<tr><td>Süre</td><td>1 ders saati (35 dk)</td></tr>
+<tr><td>Yöntem ve Teknikler</td><td>Anlatım, gösteri, soru-cevap, 3D model inceleme, tahmin et–izle, arıza senaryosu canlandırma, gerçek bilgisayarda kontrol ve toz temizliği gösterisi, oyunlaştırılmış teşhis etkinliği</td></tr>
+<tr><td>Araç-Gereç ve Kaynaklar</td><td>Etkileşimli ders (LMS), projeksiyon veya akıllı tahta; gösteri için eski bir masaüstü bilgisayar (monitör, HDMI kablosu, hoparlör ve kablosuz fare ile), yedek pil, basınçlı hava kutusu, yumuşak fırça, kuru bez</td></tr>
+<tr><td>Kavramlar / Terimler</td><td>Önce Basit Olan, Açılmıyor, Görüntü Yok, Ses Yok, Fare Çalışmıyor, Yavaşlama ve Isınma, Toz Temizliği ve Bakım</td></tr>
+</table>
+<h2>2. KAZANIMLAR</h2>
+<table class="kazanim">
+<tr><td>K1.</td><td>Sorunları en basit kontrolden başlayarak giderir.</td></tr>
+<tr><td>K2.</td><td>'Açılmıyor', 'görüntü yok' ve 'ses yok' durumlarında kontrol sırasını uygular.</td></tr>
+<tr><td>K3.</td><td>Yavaşlama ile ısınmanın olası nedenlerini sıralar.</td></tr>
+<tr><td>K4.</td><td>Düzenli bakım adımlarını uygular.</td></tr>
+</table>
+<div class="guvenlik"><b>GÜVENLİK (uygulama öncesi okunur)</b><ul><li>Toz temizliği fiş çekiliyken, basınçlı hava fan tutularak yapılır (fan serbest dönmez).</li><li>Toz temizliği yalnız fiş çekiliyken ve öğretmen ya da bir yetişkin tarafından yapılır; kasanın kapağını öğrenciler açmaz.</li><li>Basınçlı hava sıkılırken fan parmakla tutulur, böylece serbest dönmez; kutu dik tutulur ve kısa püskürtmeler yapılır.</li><li>Güç kaynağının içi hiçbir koşulda açılmaz; temizlik yalnız dış hava deliklerinden yapılır.</li><li>Tozlu havayı solumamak için temizlik açık pencere önünde yapılır; öğrenciler gösteriyi en az bir metre uzaktan izler.</li><li>Kırık fiş, yanık kokusu ya da şişmiş pil gören öğrenci dokunmadan öğretmenine veya güvendiği bir yetişkine söyler.</li></ul></div>
+<h2>3. DERS İŞLENİŞİ</h2>
+<h3><span>Giriş — Dikkat Çekme ve Güdüleme</span><span class="sure">5 dk</span></h3>
+<p>Kapakta dönen kasa, monitör ve tozlu fanı gösterip sorun: <q>Evde bilgisayarınız hiç açılmadı ya da ekranı karardı mı? O an ilk ne yaptınız?</q> Birkaç deneyimi dinleyip tahtaya <q>ilk yapılan şey</q> başlığıyla yazın. Kazanımları okuyun. Isınma slaytında (Slayt 3) üç seçeneği el kaldırarak oylatın: <q>Ece’nin sorununu Adım 2’de birlikte çözeceğiz; bakalım hangi grup haklı çıkacak.</q></p>
+<h3><span>Gelişme — Kavramların İşlenişi</span><span class="sure">25 dk</span></h3>
+<table class="isleyis"><thead><tr><th>Adım</th><th>Konu</th><th>Öğretmen Notu</th></tr></thead>
+<tr><td>1</td><td><div class="adim-ad">Önce Basit Olan</div><div class="adim-konu">Önce Basit Olan: Kolaydan Zora Kontrol</div><span class="slayt">Slayt 4</span></td><td>Slayt açılınca yarış kendiliğinden başlar; saatler dönerken sorun: <q>Sizce kim daha önce bitirecek, neden?</q> Sonuçta kontrol sırası kartları tek tek yanar, Oynat ile yeniden gösterebilirsiniz. <q>Bir arızada ilk iş ‘takılı mı, açık mı’ diye bakmaktır; bu birkaç saniye sürer. Kasanın içine bakmak yetişkinin işidir ve en sona kalır</q> deyin. Öğrencilere dört basamağı kolaydan zora doğru sırayla söyletin.</td></tr>
+<tr><td>2</td><td><div class="adim-ad">Açılmıyor</div><div class="adim-konu">Açılmıyor: Işık, Fiş, Düğme</div><span class="slayt">Slayt 5</span></td><td>Senaryoyu okuyun ve önce bir öğrenciye 3 numaralı düğmeye bastırın; hiçbir şeyin olmadığını gösterin. Sonra 1 ve 2 numaralı kontrolleri sırayla yaptırın; fiş takılınca güç düğmesine bastırıp açılış dizisini izletin. Açılış denetimi ekrandayken sorun: <q>Bilgisayar şu an ne yapıyor olabilir?</q> <q>Güç ışığı sönükse önce elektriğin yolunu izleriz: priz, fiş, kablonun kasadaki ucu</q> deyin. Isınma tahminini burada karşılaştırın. Öğrencilere üç kontrolü doğru sırayla söyletin.<div class="uyg"><div class="goster"><b>GÖSTER</b>Önce 3D senaryoyu oynatın; sonra gösteri bilgisayarının fişini hafifçe gevşetip bir öğrenciye güç ışığına, ardından fişe baktırın ve fişi gövdesinden tutarak taktırın.</div><div class="sor"><b>SOR</b><q>Işık hiç yanmıyorsa neden hemen kasayı açmıyoruz?</q></div><div class="kontrol"><b>✔ KONTROL</b>Öğrenci önce ışığa, sonra fişe ve prize bakıyor; fişi kablodan değil gövdesinden tutuyor.</div><div class="sikhata"><b>⚠ SIK HATA</b>Düğmeye art arda basmak ya da fişi kontrol etmeden kasayı açmak istemek.</div></div></td></tr>
+<tr><td>3</td><td><div class="adim-ad">Görüntü Yok</div><div class="adim-konu">Görüntü Yok: Monitör, Giriş, Kablo</div><span class="slayt">Slayt 6</span></td><td>Monitördeki “Sinyal yok” yazısını gösterip sorun: <q>Monitör çalışıyor mu, çalışmıyor mu? Nereden anlarız?</q> Kontrolleri 1’den 3’e kadar tıklatın; 3. kontrolde kamera kablonun monitördeki ucuna gider, gevşek fişin yerine oturduğunu izletin. <q>Kasa çalışıyorsa arıza kasayla ekran arasındaki yoldadır: monitörün açık olması, doğru girişin seçilmesi ve kablonun iki ucunun tam oturması gerekir</q> deyin. Öğrencilere “Sinyal yok” yazısının ne anlattığını kendi sözleriyle söyletin.<div class="uyg"><div class="goster"><b>GÖSTER</b>3D provadan sonra gösteri bilgisayarında HDMI kablosunun monitördeki ucunu hafifçe çekin; ekranda uyarıyı gösterin, sonra monitörün menüsünden girişi ve kabloyu kontrol ettirin.</div><div class="sor"><b>SOR</b><q>Kablo iki girişli bir monitörde yanlış girişe takılıysa ekranda ne görürüz?</q></div><div class="kontrol"><b>✔ KONTROL</b>Monitörün ışığına bakıldı, seçili giriş okundu, kablo her iki uçta itilerek oturtuldu.</div><div class="sikhata"><b>⚠ SIK HATA</b>Monitör kapalıyken kablolarla uğraşmak ya da kasadaki başka bir görüntü çıkışına kablo takmak.</div></div></td></tr>
+<tr><td>4</td><td><div class="adim-ad">Ses Yok, Fare Çalışmıyor</div><div class="adim-konu">Ses Yok ve Fare Çalışmıyor</div><span class="slayt">Slayt 7</span></td><td>Önce “Ses yok” senaryosunda bir öğrenciye 1. kontrolü, ardından 2. kontrolü yaptırın; hoparlör açılınca dalgalar belirir. Sonra “Fare çalışmıyor” senaryosuna geçin ve bilerek 2. kontrolle başlatın; çıkan ipucunu okutun. <q>Arıza değişse de yöntem aynıdır: önce ayarlar ve düğmeler, sonra piller, en son kablo ve alıcı</q> deyin. Öğrencilere iki arızanın kontrol sırasını karşılıklı anlattırın.<div class="uyg"><div class="goster"><b>GÖSTER</b>Gösteri bilgisayarında önce görev çubuğundaki ses simgesini, sonra hoparlörün açma düğmesini ve kablonun yeşil çıkışa takılı olduğunu gösterin; kablosuz farenin altındaki açma düğmesini ve pil yuvasını açıp yedek pille değiştirin.</div><div class="sor"><b>SOR</b><q>Kablosuz farenin alıcısı kasadan çıkmışsa farenin ışığı yanar mı, imleç kıpırdar mı?</q></div><div class="kontrol"><b>✔ KONTROL</b>Öğrenci ses simgesinde sessiz işaretini ayırt ediyor; farenin açma düğmesini ve pilini doğru yerde buluyor.</div><div class="sikhata"><b>⚠ SIK HATA</b>Hoparlör kablosunu pembe mikrofon girişine takmak ya da farenin pilini kontrol etmeden yeni fare istemek.</div></div></td></tr>
+<tr><td>5</td><td><div class="adim-ad">Yavaşlama ve Isınma</div><div class="adim-konu">Yavaşlama ve Isınmanın Nedenleri</div><span class="slayt">Slayt 8</span></td><td>Önce sorun: <q>Fana toz birikirse sıcaklık ne olur, bilgisayarın hızı ne olur?</q> Tahminleri aldıktan sonra Aylar geçsin düğmesine basın; zaman sayacı, fan hızı ve termometre birlikte değişirken durup sorun: <q>Fan neden yavaşladı, ısı nereye gidemiyor?</q> <q>Toz hem kanatları ağırlaştırır hem hava yolunu kapatır; sıcak işlemci kendini korumak için hızını düşürür</q> deyin. Soldaki dört neden kartını okutun; tozun tek neden olmadığını, çok sayıda açık programın ve dolu depolamanın da bilgisayarı yavaşlatabileceğini vurgulayın. Öğrencilere yavaşlamanın en az üç nedenini sıralattırın.</td></tr>
+<tr><td>6</td><td><div class="adim-ad">Toz Temizliği ve Bakım</div><div class="adim-konu">Güvenli Toz Temizliği ve Düzenli Bakım</div><span class="slayt">Slayt 9</span></td><td>Bir öğrenciye bilerek önce Hava sık düğmesine bastırın; çıkan uyarıyı okutun. Sonra 1-2-3-4 sırasını izleyin: fiş çekilince fan durur; fan tutulmadan hava sıkılırsa fan hızla döner ve uyarı gelir; fan tutulup kısa püskürtmelerle toz uçar; fiş takılınca fan normal hızına, termometre normale döner. <q>Temizlik her zaman bir yetişkinle, fiş çekiliyken yapılır. Fanı tutarız çünkü havanın döndürdüğü fan zarar görebilir</q> deyin. Öğrencilere güvenli temizliğin dört adımını sırayla gösterttirin.<div class="uyg"><div class="goster"><b>GÖSTER</b>3D provayı oynattıktan sonra gösteri bilgisayarının fişini çekin, yan kapağı siz açın; kasa fanını parmağınızla tutarak basınçlı havayı kısa püskürtmelerle ve kutuyu dik tutarak sıkın, kalan tozu fırçayla alın.</div><div class="sor"><b>SOR</b><q>Basınçlı hava kutusunu neden eğmeden, dik tutuyoruz?</q></div><div class="kontrol"><b>✔ KONTROL</b>Fiş masada, çekili; fan parmakla sabit; püskürtmeler kısa; toz sınıfa değil pencereye ya da dışarıya doğru uçuruluyor.</div><div class="sikhata"><b>⚠ SIK HATA</b>Fanı serbest bırakıp uzun süre hava sıkmak, kutuyu ters çevirmek ya da fiş takılıyken kasanın içine uzanmak.</div></div></td></tr>
+</table>
+<div class="kutu"><b>Etkinlikler (Slayt 10–11):</b> Etkinlik 1’de (Slayt 10) öğrenciler dört arıza vakasını çözer. Her vakada belirtiyi bir öğrenciye sesli okutun, sınıfa <q>En kolay ilgili kontrol hangisi?</q> diye sorup oylatın, sonra tıklatın. Yıldız, kolay kontroller bitmeden orta kontrole geçilmediğinde verilir; Kasayı aç düğmesi her zaman uyarı verir. Etkinlik 2’de (Slayt 11) önce temizlik adımlarını sıralatın, ardından gerçek bilgisayarda toz temizliğini gösterin; öğrenciler gördüklerini üç soruda işaretler ve Bakım Kartı’nı alır. Gösteri sırasında öğrencilerin kasadan en az bir metre uzakta durmasını sağlayın (yaklaşık 10 dk).</div>
+<h3><span>Değerlendirme ve Kapanış</span><span class="sure">5 dk</span></h3>
+<p>Özet slaytındaki altı kartı birer öğrenciye kendi cümleleriyle anlattırın. Bilgi Testi’ni (Slayt 14) sınıfça çözün; yanlış çıkan soruda ilgili adım slaytına dönün. Son soru Derinleş bonusudur, puanı düşürmez. Dersi <q>Evde ekran kararırsa ilk üç kontrolün ne olur?</q> sorusuyla kapatın.</p>
+<h2>4. ÖLÇME VE DEĞERLENDİRME</h2>
+<table class="olcme"><thead><tr><th>#</th><th>Soru ve Seçenekler</th><th>Cevap</th></tr></thead>
+<tr><td>1</td><td><div class="soru">Bilgisayarında bir sorun çıktı. İşe nereden başlarsın?</div><div class="secenek">A) En basit ve en kolay kontrolden B) Kasayı hemen açmaktan C) Tüm kabloları sökmekten D) Yeni bir parça almaktan</div><div class="aciklama">Önce takılı mı, açık mı gibi kolay kontroller yapılır. Birçok sorun bu basamaklarda çözülür.</div></td><td>A</td></tr>
+<tr><td>2</td><td><div class="soru-gorsel"><svg viewBox="0 0 220 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Kasanın mavi ışığı yanıyor; monitörün ekranı karanlık ve güç ışığı sönük"><rect width="220" height="120" rx="10" fill="#eef7fe"/><g class="" transform="translate(20 18) scale(0.8)"><rect x="0" y="0" width="56" height="108" rx="5" fill="#2b2f36"/><rect x="50" y="0" width="6" height="108" rx="3" fill="#23262c"/><rect x="0" y="0" width="56" height="14" rx="5" fill="#353a43"/><rect x="6" y="20" width="44" height="82" rx="3" fill="#1d2026"/><line x1="10" y1="25" x2="46" y2="25" stroke="#2a2e35" stroke-width="2.2"/><line x1="10" y1="30" x2="46" y2="30" stroke="#2a2e35" stroke-width="2.2"/><line x1="10" y1="35" x2="46" y2="35" stroke="#2a2e35" stroke-width="2.2"/><line x1="10" y1="40" x2="46" y2="40" stroke="#2a2e35" stroke-width="2.2"/><line x1="10" y1="45" x2="46" y2="45" stroke="#2a2e35" stroke-width="2.2"/><line x1="10" y1="50" x2="46" y2="50" stroke="#2a2e35" stroke-width="2.2"/><line x1="10" y1="55" x2="46" y2="55" stroke="#2a2e35" stroke-width="2.2"/><line x1="10" y1="60" x2="46" y2="60" stroke="#2a2e35" stroke-width="2.2"/><line x1="10" y1="65" x2="46" y2="65" stroke="#2a2e35" stroke-width="2.2"/><line x1="10" y1="70" x2="46" y2="70" stroke="#2a2e35" stroke-width="2.2"/><line x1="10" y1="75" x2="46" y2="75" stroke="#2a2e35" stroke-width="2.2"/><line x1="10" y1="80" x2="46" y2="80" stroke="#2a2e35" stroke-width="2.2"/><line x1="10" y1="85" x2="46" y2="85" stroke="#2a2e35" stroke-width="2.2"/><line x1="10" y1="90" x2="46" y2="90" stroke="#2a2e35" stroke-width="2.2"/><line x1="10" y1="95" x2="46" y2="95" stroke="#2a2e35" stroke-width="2.2"/><rect x="8" y="5" width="5" height="3" rx="0.6" fill="#0f1115"/><rect x="15" y="5" width="5" height="3" rx="0.6" fill="#0f1115"/><circle cx="40" cy="7" r="3.4" fill="#4b5563"/><circle cx="40" cy="7" r="4.8" fill="none" stroke-width="1.5" stroke="#60a5fa"/><rect x="6" y="20" width="44" height="2.2" fill="#60a5fa" opacity="0.85"/><rect x="4" y="106" width="10" height="3" rx="1" fill="#111"/><rect x="42" y="106" width="10" height="3" rx="1" fill="#111"/></g><g transform="translate(84 10) scale(0.62)"><rect x="74" y="100" width="12" height="26" fill="#22252b"/><ellipse cx="80" cy="138" rx="34" ry="5" fill="#1f2228"/><rect x="0" y="0" width="160" height="100" rx="5" fill="#16181d"/><rect x="5" y="5" width="150" height="84" rx="2" fill="#05070b"/><circle cx="142" cy="95" r="1.6" fill="#374151"/><circle cx="150" cy="95" r="1.8" fill="#374151"/></g><circle cx="177" cy="69" r="8" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4 2"/><text x="134" y="113" font-family="Inter,Arial,sans-serif" font-size="9" font-weight="800" fill="#b45309" text-anchor="middle">Monitörün ışığı sönük</text></svg></div><div class="soru">Ece’nin bilgisayarında kasanın ışığı yanıyor ama ekran karanlık. Görselde monitörün ışığı da sönük. Ece önce ne yapmalı?</div><div class="secenek">A) Kasayı açıp ekran kartını sökmeli B) Klavyeyi değiştirmeli C) Monitörün güç düğmesine basmalı D) Bilgisayarı yeniden kurmalı</div><div class="aciklama">Monitörün ışığı sönükse monitör kapalı olabilir. Önce onun düğmesine basılır; sonra kablo ve giriş kontrol edilir.</div></td><td>C</td></tr>
+<tr><td>3</td><td><div class="soru">Deniz’in bilgisayarı son aylarda çok ısınıyor ve yavaşladı. Hava deliklerinde gri tüyler var. En olası neden nedir?</div><div class="secenek">A) Ekran parlaklığı çok yüksek B) Fana ve hava deliklerine toz birikmiş C) Klavyede çok tuşa basılıyor D) Monitör kablosu çok uzun</div><div class="aciklama">Toz fanı zorlar ve hava yolunu kapatır. Isı atılamaz; bilgisayar ısınır ve kendini yavaşlatır.</div></td><td>B</td></tr>
+<tr><td>4</td><td><div class="soru">Fanın tozu alınırken hangisi doğrudur?</div><div class="secenek">A) Bilgisayar çalışırken fana hava sıkılır B) Fan hızla dönsün diye serbest bırakılır C) Fan ıslak bezle ovularak silinir D) Fiş çekilir, fan tutularak kısa kısa hava sıkılır</div><div class="aciklama">Fiş çekili olmalı. Fan parmakla tutulur, böylece serbestçe dönüp zarar görmez. Bu işi bir yetişkinle yaparsın.</div></td><td>D</td></tr>
+</table>
+<p class="anahtar">Cevap Anahtarı: <span>1-A 2-C 3-B 4-D</span></p>
+<h2>5. AÇIK UÇLU / BİÇİMLENDİRİCİ DEĞERLENDİRME</h2>
+<ol class="acik">
+<li><span>«Kolaydan Zora Kontrol Sırası» kavramını kendi cümlelerinle açıkla ve günlük hayattan bir örnek ver.</span></li>
+<li><span>«Tozun Isınmaya Etkisi» kavramını kendi cümlelerinle açıkla ve günlük hayattan bir örnek ver.</span></li>
+<li><span>«Güvenli Toz Temizliği» kavramını kendi cümlelerinle açıkla ve günlük hayattan bir örnek ver.</span></li>
+<li><span>Bu derste hangi arızayı çözmek sana en kolay geldi, hangisinde zorlandın? Evde bir sorunla karşılaşsan ilk ne yaparsın?</span></li>
+</ol>
+<h2>6. ÖĞRETMEN NOTLARI VE ÖDEV</h2>
+<div class="etiket">Ödev / Sınıf Dışı Etkinlik:</div><p>Evdeki bilgisayarın ya da okul bilgisayarının hava deliklerine dışarıdan bak (dokunmadan, fişi çekili hâlde). Toz görüyor musun? Gördüklerini ve bir yetişkinle birlikte uygulayacağın bakım takvimini üç cümleyle yaz.</p>
+<div class="etiket">Öğretmen İçin Notlar:</div><ul class="not">
+<li>Derinleş (Slayt 12) isteğe bağlıdır: süre kalırsa ya da hızlı bitiren öğrencilere açın. Bip desenlerini Dinle düğmeleriyle çaldırın ve bip anlamlarının üreticiye göre değiştiğini, doğru anlamın kılavuzda olduğunu vurgulayın; belirli bir bip kodunu ezberletmeyin. Atlasanız da akış bozulmaz; bonus soru puanı düşürmez.</li>
+<li>Uygulama bölümlerinde (Adım 2, 3, 4 ve 6) önce 3D ya da 2D provayı, ardından gösteri bilgisayarında gerçek kontrolü yapın. Arızaları siz hazırlayın (fişi gevşetme, kabloyu hafifçe çekme, hoparlörü kapatma); öğrencilerin kasayı açması bu dersin konusu değildir.</li>
+<li>Yaş bandı uyarlaması: 10–12 yaş grubunda kontrol sırasını hareketle canlandırın (“takılı mı?” derken fişi gösterme gibi). 13–15 yaş grubunda işlemcinin ısınınca neden kendini yavaşlattığını ve bip kodlarının kılavuzdan nasıl okunduğunu tartıştırın.</li>
+<li>Sık görülen kavram yanılgıları: “Bilgisayar açılmıyorsa kesin bir parçası bozulmuştur”, “Yavaşlamanın tek nedeni virüstür”, “Fan ne kadar hızlı dönerse temizlik o kadar iyi olur”. Bu cümleleri doğru/yanlış sorusu olarak sorup düzeltin.</li>
+<li>3D sahneler yavaş bilgisayarda kaliteyi kendiliğinden düşürür; WebGL açılmazsa yerine çizim görünür. Hareket azaltma ayarı açık cihazlarda animasyonlar kısa geçişlerle ilerler; teşhis oyunu ve sıralama etkinliği bu ayardan etkilenmez.</li>
+<li>Her adımın sonunda 1-2 öğrenciye <q>Bu belirtide ilk neye bakarsın?</q> diye sorun; cevap kolay kontrolle başlıyorsa kavram oturmuştur (biçimlendirici değerlendirme).</li>
+<li>Teknik not: Bu derste gösterilen fan hızları ve sıcaklıklar temsilidir. Gerçekte tozlu fan bazen daha gürültülü de çalışabilir; asıl belirti yükselen sıcaklık ve ısınınca yavaşlayan bilgisayardır.</li>
+</ul>
+<table class="sure-tablo"><thead><tr><th>Aşama</th><th>Süre</th></tr></thead>
+<tr><td>Giriş — Dikkat Çekme ve Güdüleme</td><td>5 dk</td></tr>
+<tr><td>Gelişme — Kavramların İşlenişi ve Etkinlikler</td><td>25 dk</td></tr>
+<tr><td>Değerlendirme ve Kapanış</td><td>5 dk</td></tr>
+<tr><th>Toplam</th><th>35 dk</th></tr>
+</table>
+<div class="imza"><div><b>Ders Öğretmeni</b>Ad Soyad / İmza</div><div><b>Uygundur</b>Okul Müdürü</div></div>
+</body>
+</html>

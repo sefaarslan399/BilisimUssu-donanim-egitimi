@@ -1,0 +1,92 @@
+{
+  "format": "K+U",
+  "yontem": "Anlatım, gösteri, soru-cevap, 3D model inceleme, tahmin et–izle, arıza senaryosu canlandırma, gerçek bilgisayarda kontrol ve toz temizliği gösterisi, oyunlaştırılmış teşhis etkinliği",
+  "arac": "Etkileşimli ders (LMS), projeksiyon veya akıllı tahta; gösteri için eski bir masaüstü bilgisayar (monitör, HDMI kablosu, hoparlör ve kablosuz fare ile), yedek pil, basınçlı hava kutusu, yumuşak fırça, kuru bez",
+  "giris": "Kapakta dönen kasa, monitör ve tozlu fanı gösterip sorun: \"Evde bilgisayarınız hiç açılmadı ya da ekranı karardı mı? O an ilk ne yaptınız?\" Birkaç deneyimi dinleyip tahtaya \"ilk yapılan şey\" başlığıyla yazın. Kazanımları okuyun. Isınma slaytında (Slayt 3) üç seçeneği el kaldırarak oylatın: \"Ece’nin sorununu Adım 2’de birlikte çözeceğiz; bakalım hangi grup haklı çıkacak.\"",
+  "gelisme": [
+    {
+      "konu": "Önce Basit Olan: Kolaydan Zora Kontrol",
+      "slayt": 4,
+      "not": "Slayt açılınca yarış kendiliğinden başlar; saatler dönerken sorun: \"Sizce kim daha önce bitirecek, neden?\" Sonuçta kontrol sırası kartları tek tek yanar, Oynat ile yeniden gösterebilirsiniz. \"Bir arızada ilk iş ‘takılı mı, açık mı’ diye bakmaktır; bu birkaç saniye sürer. Kasanın içine bakmak yetişkinin işidir ve en sona kalır\" deyin. Öğrencilere dört basamağı kolaydan zora doğru sırayla söyletin."
+    },
+    {
+      "konu": "Açılmıyor: Işık, Fiş, Düğme",
+      "slayt": 5,
+      "not": "Senaryoyu okuyun ve önce bir öğrenciye 3 numaralı düğmeye bastırın; hiçbir şeyin olmadığını gösterin. Sonra 1 ve 2 numaralı kontrolleri sırayla yaptırın; fiş takılınca güç düğmesine bastırıp açılış dizisini izletin. Açılış denetimi ekrandayken sorun: \"Bilgisayar şu an ne yapıyor olabilir?\" \"Güç ışığı sönükse önce elektriğin yolunu izleriz: priz, fiş, kablonun kasadaki ucu\" deyin. Isınma tahminini burada karşılaştırın. Öğrencilere üç kontrolü doğru sırayla söyletin.",
+      "uygulama": {
+        "goster": "Önce 3D senaryoyu oynatın; sonra gösteri bilgisayarının fişini hafifçe gevşetip bir öğrenciye güç ışığına, ardından fişe baktırın ve fişi gövdesinden tutarak taktırın.",
+        "sor": "\"Işık hiç yanmıyorsa neden hemen kasayı açmıyoruz?\"",
+        "kontrol": "Öğrenci önce ışığa, sonra fişe ve prize bakıyor; fişi kablodan değil gövdesinden tutuyor.",
+        "sik_hata": "Düğmeye art arda basmak ya da fişi kontrol etmeden kasayı açmak istemek."
+      }
+    },
+    {
+      "konu": "Görüntü Yok: Monitör, Giriş, Kablo",
+      "slayt": 6,
+      "not": "Monitördeki “Sinyal yok” yazısını gösterip sorun: \"Monitör çalışıyor mu, çalışmıyor mu? Nereden anlarız?\" Kontrolleri 1’den 3’e kadar tıklatın; 3. kontrolde kamera kablonun monitördeki ucuna gider, gevşek fişin yerine oturduğunu izletin. \"Kasa çalışıyorsa arıza kasayla ekran arasındaki yoldadır: monitörün açık olması, doğru girişin seçilmesi ve kablonun iki ucunun tam oturması gerekir\" deyin. Öğrencilere “Sinyal yok” yazısının ne anlattığını kendi sözleriyle söyletin.",
+      "uygulama": {
+        "goster": "3D provadan sonra gösteri bilgisayarında HDMI kablosunun monitördeki ucunu hafifçe çekin; ekranda uyarıyı gösterin, sonra monitörün menüsünden girişi ve kabloyu kontrol ettirin.",
+        "sor": "\"Kablo iki girişli bir monitörde yanlış girişe takılıysa ekranda ne görürüz?\"",
+        "kontrol": "Monitörün ışığına bakıldı, seçili giriş okundu, kablo her iki uçta itilerek oturtuldu.",
+        "sik_hata": "Monitör kapalıyken kablolarla uğraşmak ya da kasadaki başka bir görüntü çıkışına kablo takmak."
+      }
+    },
+    {
+      "konu": "Ses Yok ve Fare Çalışmıyor",
+      "slayt": 7,
+      "not": "Önce “Ses yok” senaryosunda bir öğrenciye 1. kontrolü, ardından 2. kontrolü yaptırın; hoparlör açılınca dalgalar belirir. Sonra “Fare çalışmıyor” senaryosuna geçin ve bilerek 2. kontrolle başlatın; çıkan ipucunu okutun. \"Arıza değişse de yöntem aynıdır: önce ayarlar ve düğmeler, sonra piller, en son kablo ve alıcı\" deyin. Öğrencilere iki arızanın kontrol sırasını karşılıklı anlattırın.",
+      "uygulama": {
+        "goster": "Gösteri bilgisayarında önce görev çubuğundaki ses simgesini, sonra hoparlörün açma düğmesini ve kablonun yeşil çıkışa takılı olduğunu gösterin; kablosuz farenin altındaki açma düğmesini ve pil yuvasını açıp yedek pille değiştirin.",
+        "sor": "\"Kablosuz farenin alıcısı kasadan çıkmışsa farenin ışığı yanar mı, imleç kıpırdar mı?\"",
+        "kontrol": "Öğrenci ses simgesinde sessiz işaretini ayırt ediyor; farenin açma düğmesini ve pilini doğru yerde buluyor.",
+        "sik_hata": "Hoparlör kablosunu pembe mikrofon girişine takmak ya da farenin pilini kontrol etmeden yeni fare istemek."
+      }
+    },
+    {
+      "konu": "Yavaşlama ve Isınmanın Nedenleri",
+      "slayt": 8,
+      "not": "Önce sorun: \"Fana toz birikirse sıcaklık ne olur, bilgisayarın hızı ne olur?\" Tahminleri aldıktan sonra Aylar geçsin düğmesine basın; zaman sayacı, fan hızı ve termometre birlikte değişirken durup sorun: \"Fan neden yavaşladı, ısı nereye gidemiyor?\" \"Toz hem kanatları ağırlaştırır hem hava yolunu kapatır; sıcak işlemci kendini korumak için hızını düşürür\" deyin. Soldaki dört neden kartını okutun; tozun tek neden olmadığını, çok sayıda açık programın ve dolu depolamanın da bilgisayarı yavaşlatabileceğini vurgulayın. Öğrencilere yavaşlamanın en az üç nedenini sıralattırın."
+    },
+    {
+      "konu": "Güvenli Toz Temizliği ve Düzenli Bakım",
+      "slayt": 9,
+      "not": "Bir öğrenciye bilerek önce Hava sık düğmesine bastırın; çıkan uyarıyı okutun. Sonra 1-2-3-4 sırasını izleyin: fiş çekilince fan durur; fan tutulmadan hava sıkılırsa fan hızla döner ve uyarı gelir; fan tutulup kısa püskürtmelerle toz uçar; fiş takılınca fan normal hızına, termometre normale döner. \"Temizlik her zaman bir yetişkinle, fiş çekiliyken yapılır. Fanı tutarız çünkü havanın döndürdüğü fan zarar görebilir\" deyin. Öğrencilere güvenli temizliğin dört adımını sırayla gösterttirin.",
+      "uygulama": {
+        "goster": "3D provayı oynattıktan sonra gösteri bilgisayarının fişini çekin, yan kapağı siz açın; kasa fanını parmağınızla tutarak basınçlı havayı kısa püskürtmelerle ve kutuyu dik tutarak sıkın, kalan tozu fırçayla alın.",
+        "sor": "\"Basınçlı hava kutusunu neden eğmeden, dik tutuyoruz?\"",
+        "kontrol": "Fiş masada, çekili; fan parmakla sabit; püskürtmeler kısa; toz sınıfa değil pencereye ya da dışarıya doğru uçuruluyor.",
+        "sik_hata": "Fanı serbest bırakıp uzun süre hava sıkmak, kutuyu ters çevirmek ya da fiş takılıyken kasanın içine uzanmak."
+      }
+    }
+  ],
+  "etkinlik": "Etkinlik 1’de (Slayt 10) öğrenciler dört arıza vakasını çözer. Her vakada belirtiyi bir öğrenciye sesli okutun, sınıfa \"En kolay ilgili kontrol hangisi?\" diye sorup oylatın, sonra tıklatın. Yıldız, kolay kontroller bitmeden orta kontrole geçilmediğinde verilir; Kasayı aç düğmesi her zaman uyarı verir. Etkinlik 2’de (Slayt 11) önce temizlik adımlarını sıralatın, ardından gerçek bilgisayarda toz temizliğini gösterin; öğrenciler gördüklerini üç soruda işaretler ve Bakım Kartı’nı alır. Gösteri sırasında öğrencilerin kasadan en az bir metre uzakta durmasını sağlayın (yaklaşık 10 dk).",
+  "kapanis": "Özet slaytındaki altı kartı birer öğrenciye kendi cümleleriyle anlattırın. Bilgi Testi’ni (Slayt 14) sınıfça çözün; yanlış çıkan soruda ilgili adım slaytına dönün. Son soru Derinleş bonusudur, puanı düşürmez. Dersi \"Evde ekran kararırsa ilk üç kontrolün ne olur?\" sorusuyla kapatın.",
+  "acik_uclu": [
+    "Kolaydan Zora Kontrol Sırası",
+    "Tozun Isınmaya Etkisi",
+    "Güvenli Toz Temizliği"
+  ],
+  "oz_degerlendirme": "Bu derste hangi arızayı çözmek sana en kolay geldi, hangisinde zorlandın? Evde bir sorunla karşılaşsan ilk ne yaparsın?",
+  "odev": "Evdeki bilgisayarın ya da okul bilgisayarının hava deliklerine dışarıdan bak (dokunmadan, fişi çekili hâlde). Toz görüyor musun? Gördüklerini ve bir yetişkinle birlikte uygulayacağın bakım takvimini üç cümleyle yaz.",
+  "guvenlik_ek": [
+    "Toz temizliği yalnız fiş çekiliyken ve öğretmen ya da bir yetişkin tarafından yapılır; kasanın kapağını öğrenciler açmaz.",
+    "Basınçlı hava sıkılırken fan parmakla tutulur, böylece serbest dönmez; kutu dik tutulur ve kısa püskürtmeler yapılır.",
+    "Güç kaynağının içi hiçbir koşulda açılmaz; temizlik yalnız dış hava deliklerinden yapılır.",
+    "Tozlu havayı solumamak için temizlik açık pencere önünde yapılır; öğrenciler gösteriyi en az bir metre uzaktan izler.",
+    "Kırık fiş, yanık kokusu ya da şişmiş pil gören öğrenci dokunmadan öğretmenine veya güvendiği bir yetişkine söyler."
+  ],
+  "notlar": [
+    "Derinleş (Slayt 12) isteğe bağlıdır: süre kalırsa ya da hızlı bitiren öğrencilere açın. Bip desenlerini Dinle düğmeleriyle çaldırın ve bip anlamlarının üreticiye göre değiştiğini, doğru anlamın kılavuzda olduğunu vurgulayın; belirli bir bip kodunu ezberletmeyin. Atlasanız da akış bozulmaz; bonus soru puanı düşürmez.",
+    "Uygulama bölümlerinde (Adım 2, 3, 4 ve 6) önce 3D ya da 2D provayı, ardından gösteri bilgisayarında gerçek kontrolü yapın. Arızaları siz hazırlayın (fişi gevşetme, kabloyu hafifçe çekme, hoparlörü kapatma); öğrencilerin kasayı açması bu dersin konusu değildir.",
+    "Yaş bandı uyarlaması: 10–12 yaş grubunda kontrol sırasını hareketle canlandırın (“takılı mı?” derken fişi gösterme gibi). 13–15 yaş grubunda işlemcinin ısınınca neden kendini yavaşlattığını ve bip kodlarının kılavuzdan nasıl okunduğunu tartıştırın.",
+    "Sık görülen kavram yanılgıları: “Bilgisayar açılmıyorsa kesin bir parçası bozulmuştur”, “Yavaşlamanın tek nedeni virüstür”, “Fan ne kadar hızlı dönerse temizlik o kadar iyi olur”. Bu cümleleri doğru/yanlış sorusu olarak sorup düzeltin.",
+    "3D sahneler yavaş bilgisayarda kaliteyi kendiliğinden düşürür; WebGL açılmazsa yerine çizim görünür. Hareket azaltma ayarı açık cihazlarda animasyonlar kısa geçişlerle ilerler; teşhis oyunu ve sıralama etkinliği bu ayardan etkilenmez.",
+    "Her adımın sonunda 1-2 öğrenciye \"Bu belirtide ilk neye bakarsın?\" diye sorun; cevap kolay kontrolle başlıyorsa kavram oturmuştur (biçimlendirici değerlendirme).",
+    "Teknik not: Bu derste gösterilen fan hızları ve sıcaklıklar temsilidir. Gerçekte tozlu fan bazen daha gürültülü de çalışabilir; asıl belirti yükselen sıcaklık ve ısınınca yavaşlayan bilgisayardır."
+  ],
+  "sureler": [
+    ["Giriş — Dikkat Çekme ve Güdüleme", 5],
+    ["Gelişme — Kavramların İşlenişi ve Etkinlikler", 25],
+    ["Değerlendirme ve Kapanış", 5]
+  ]
+}
