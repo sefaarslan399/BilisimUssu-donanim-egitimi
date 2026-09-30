@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DON-201 H08 Öğretmen Planı — Depolama Birimleri</title>
+<style>
+@font-face{font-family:'Carlito';src:local('Carlito'),url('../../assets/font/Carlito-Regular.ttf');font-weight:400;font-style:normal}
+@font-face{font-family:'Carlito';src:local('Carlito Bold'),url('../../assets/font/Carlito-Bold.ttf');font-weight:700;font-style:normal}
+@font-face{font-family:'Carlito';src:local('Carlito Italic'),url('../../assets/font/Carlito-Italic.ttf');font-weight:400;font-style:italic}
+@page{size:A4;margin:14mm 14mm 16mm 16.5mm;
+  @bottom-center{content:'Bilişim Üssü · Etkileşimli Ders Planı · ' counter(page) ' / ' counter(pages);font-family:Carlito,Calibri,sans-serif;font-size:7.5pt;color:#6b7a82}}
+*{box-sizing:border-box}
+html{font-family:Carlito,Calibri,'Segoe UI',Arial,sans-serif;font-size:9.9pt;color:#1a1a1a;line-height:1.38}
+body{margin:0;max-width:180mm}
+@media screen{body{margin:24px auto;padding:0 12px}}
+.bant{display:flex;gap:7pt;margin-bottom:9pt}
+.bant-sol{flex:1;background:linear-gradient(135deg,#075985,#0a6aa3);color:#fff;border-radius:4pt;padding:9pt 14pt 10pt}
+.bant-ust{font-size:7.6pt;font-weight:700;letter-spacing:2.2pt;opacity:.92}
+.bant-baslik{font-size:23pt;font-weight:700;line-height:1.12;margin-top:3pt}
+.bant-baslik.uzun{font-size:18pt}
+.bant-sag{width:128pt;background:#0369a1;color:#fff;border-radius:4pt;display:flex;align-items:center;justify-content:center;font-size:14pt;font-weight:700}
+h2{background:#0369a1;color:#fff;font-size:11pt;font-weight:700;margin:12pt 0 6pt;padding:5pt 10pt;border-radius:4pt;letter-spacing:.2pt;break-after:avoid}
+h3{display:flex;justify-content:space-between;align-items:center;color:#0369a1;font-size:10.6pt;margin:9pt 0 4pt;break-after:avoid}
+h3 .sure{background:#0369a1;color:#fff;font-size:8.6pt;border-radius:9pt;padding:1.5pt 8pt}
+table{width:100%;border-collapse:collapse;margin:0 0 4pt}
+td,th{border:1px solid #b9def1;padding:4pt 7pt;vertical-align:top;text-align:left}
+th{background:#e0f2fe;color:#075985;font-size:9.2pt;font-weight:700}
+tr{break-inside:avoid}
+.genel td:first-child{width:134pt;background:#e0f2fe;color:#075985;font-weight:700}
+.kazanim{width:100%;border-collapse:collapse}
+.kazanim td{border:0;border-bottom:1px solid #eaf6fc;padding:3.5pt 4pt}
+.kazanim td:first-child{width:32pt;color:#0369a1;font-weight:700}
+.isleyis td:first-child{width:35pt;text-align:center;color:#6b7a82;font-weight:700}
+.isleyis td:nth-child(2){width:122pt}
+.adim-ad{font-weight:700}
+.adim-konu{color:#475569}
+.slayt{display:inline-block;margin-top:2pt;font-size:8pt;font-weight:700;color:#0369a1;background:#e0f2fe;border-radius:6pt;padding:0 5pt}
+q{quotes:'“' '”'}
+q::before{content:open-quote}q::after{content:close-quote}
+p{margin:3pt 0 5pt;text-align:justify}
+.kutu{border:1px solid #b9def1;border-left:3pt solid #0369a1;border-radius:3pt;padding:5pt 8pt;margin:5pt 0;background:#f5fbff;break-inside:avoid}
+.kutu b{color:#075985}
+.olcme td:first-child{width:22pt;text-align:center;font-weight:700}
+.olcme td:last-child{width:40pt;text-align:center;color:#0369a1;font-weight:700}
+.soru{font-weight:700}
+.secenek{margin-top:1pt}
+.aciklama{font-style:italic;color:#0369a1;font-size:9.5pt;margin-top:2pt}
+.soru-gorsel{float:right;margin:0 0 2pt 8pt}
+.soru-gorsel svg{height:38pt;width:auto}
+.anahtar{font-weight:700;color:#075985;margin:3pt 0 0}
+.anahtar span{font-weight:400;color:#1a1a1a}
+ol.acik{margin:2pt 0;padding-left:0;list-style:none;counter-reset:a}
+ol.acik li{counter-increment:a;display:flex;gap:10pt;padding:3pt 0}
+ol.acik li::before{content:counter(a) '.';color:#0369a1;font-weight:700;min-width:16pt}
+.etiket{color:#0369a1;font-weight:700;margin:7pt 0 2pt}
+ul.not{margin:2pt 0;padding-left:12pt}
+ul.not li{margin:2pt 0}
+.sure-tablo td:last-child,.sure-tablo th:last-child{width:62pt}
+.imza{display:flex;justify-content:space-around;margin-top:14pt;text-align:center;color:#6b7a82;break-inside:avoid;break-before:avoid;page-break-before:avoid}
+.sure-tablo{break-after:avoid;page-break-after:avoid}
+.sure-tablo tr:last-child{break-after:avoid}
+.uyg{display:grid;grid-template-columns:1fr 1fr;gap:3pt;margin-top:5pt}
+.uyg div{border-radius:3pt;padding:3pt 6pt;font-size:9pt;line-height:1.32}
+.uyg b{display:block;font-size:7.6pt;letter-spacing:.8pt}
+.uyg .goster{background:#eff6ff;border-left:2.5pt solid #3b82f6}.uyg .goster b{color:#1d4ed8}
+.uyg .sor{background:#f5f3ff;border-left:2.5pt solid #8b5cf6}.uyg .sor b{color:#6d28d9}
+.uyg .kontrol{background:#ecfdf5;border-left:2.5pt solid #10b981}.uyg .kontrol b{color:#047857}
+.uyg .sikhata{background:#fff7ed;border-left:2.5pt solid #f97316}.uyg .sikhata b{color:#c2410c}
+.guvenlik{border:1.5pt solid #ef4444;border-radius:4pt;background:#fef2f2;padding:6pt 10pt;margin:6pt 0;break-inside:avoid}
+.guvenlik b{color:#b91c1c;display:block;margin-bottom:2pt}
+.guvenlik ul{margin:2pt 0;padding-left:13pt}
+.imza b{display:block;color:#475569;margin-bottom:10pt}
+</style>
+</head>
+<body>
+<div class="bant"><div class="bant-sol"><div class="bant-ust">ÖĞRETMEN DERS PLANI · DON-201</div><div class="bant-baslik">Depolama Birimleri</div></div><div class="bant-sag">8. Hafta</div></div>
+<h2>1. GENEL BİLGİLER</h2>
+<table class="genel">
+<tr><td>Dersin Adı</td><td>Bilişim Teknolojileri ve Yazılım</td></tr>
+<tr><td>Sınıf / Seviye</td><td>Ortaokul (5–8. sınıf)</td></tr>
+<tr><td>Ünite / Konu</td><td>Donanım 201 - Kasanın İçinde — Depolama Birimleri</td></tr>
+<tr><td>Öğrenme Alanı</td><td>Bilgisayar Donanımı</td></tr>
+<tr><td>Süre</td><td>1 ders saati (35 dk)</td></tr>
+<tr><td>Yöntem ve Teknikler</td><td>Anlatım, gösteri, soru-cevap, 3D model inceleme, animasyonla modelleme, tahmin et–izle, karar verme senaryosu</td></tr>
+<tr><td>Araç-Gereç ve Kaynaklar</td><td>Etkileşimli ders (LMS), projeksiyon veya akıllı tahta; mümkünse sınıfta gösterilecek bir USB bellek, bir SD ya da microSD kart ve (varsa) eski, bozuk bir sabit disk</td></tr>
+<tr><td>Kavramlar / Terimler</td><td>Kalıcı Depolama, HDD, SSD, HDD mi SSD mi?, USB Bellek, Hafıza Kartı, Bulut ve Yedekleme</td></tr>
+</table>
+<h2>2. KAZANIMLAR</h2>
+<table class="kazanim">
+<tr><td>K1.</td><td>Kalıcı depolamayı RAM'den ayırt eder.</td></tr>
+<tr><td>K2.</td><td>HDD ile SSD'yi yapı ve hız açısından karşılaştırır.</td></tr>
+<tr><td>K3.</td><td>Taşınabilir depolama birimlerini tanır.</td></tr>
+<tr><td>K4.</td><td>Yedeklemenin önemini açıklar.</td></tr>
+</table>
+<h2>3. DERS İŞLENİŞİ</h2>
+<h3><span>Giriş — Dikkat Çekme ve Güdüleme</span><span class="sure">5 dk</span></h3>
+<p>Kapak slaytında dönen plakalı diski ve yanındaki birimleri gösterip sorun: <q>Bu dördünün ortak işi ne olabilir?</q> Birkaç cevap alın. Hedefler slaytını birlikte okuyun. Isınma slaytında (Slayt 3) üç seçeneği okutun, parmak kaldırtarak sınıfın tahminini sayın ve tahtaya yazın: <q>Bilgisayarı kapattığımızda ödev geceyi nerede geçirdi? Elektriği birazdan keseceğiz ve göreceğiz.</q></p>
+<h3><span>Gelişme — Kavramların İşlenişi</span><span class="sure">25 dk</span></h3>
+<table class="isleyis"><thead><tr><th>Adım</th><th>Konu</th><th>Öğretmen Notu</th></tr></thead>
+<tr><td>1</td><td><div class="adim-ad">Kalıcı Depolama</div><div class="adim-konu">Kalıcı Depolama</div><span class="slayt">Slayt 4</span></td><td>Slayt açılınca kısa sahne kendiliğinden oynar: ödev dolaba kopyalanır, elektrik kesilir, masa boşalır, açılınca ödev geri yüklenir. Elektrik kesildiği anda durdurun ve sorun: <q>Not neden geri gelmedi?</q> <q>RAM çalışırken kullandığımız masadır; elektrik gidince üstündekiler dağılır. Kaydettiğimiz şeyler ise dolaba, yani kalıcı depolamaya yazılır</q> deyin. Baştan düğmesiyle bu kez kaydetmeden elektriği kestirin ve sonucu karşılaştırtın. Isınmadaki tahminleri burada kontrol edin. Öğrencilere RAM ile kalıcı depolamanın farkını masa–dolap benzetmesiyle söyletin.</td></tr>
+<tr><td>2</td><td><div class="adim-ad">HDD</div><div class="adim-konu">HDD (Sabit Disk)</div><span class="slayt">Slayt 5</span></td><td>Plaka dönerken sorun: <q>Bu parlak disk sizce neye benziyor?</q> Sağ üstteki rozeti okutun: gerçekte plaka saniyede 120 tur atar, ekranda yavaşlatılmıştır. Dosya oku düğmesine basın; kafa üç ayrı ize giderken <q>Dosyanın parçaları farklı izlerde durabilir, kol her biri için yer değiştirir; plakanın da doğru yeri kafanın altına getirmesi gerekir</q> deyin. Durdur düğmesiyle kafanın rampaya çekildiğini gösterin. Köşedeki fotoğrafla gerçek diskin içini karşılaştırın ve gerçek diskin kapağının asla açılmadığını, tozun plakayı çizdiğini vurgulayın. Öğrencilere HDD'nin üç parçasını 3D modelde gösterttirin.</td></tr>
+<tr><td>3</td><td><div class="adim-ad">SSD</div><div class="adim-konu">SSD</div><span class="slayt">Slayt 6</span></td><td>Açılışta çipler sırayla yanar; önce sorun: <q>Bu sürücüde dönen ya da giden bir şey görüyor musunuz?</q> <q>SSD'de veri çiplerde durur; denetleyici çipi aynı anda birden fazla bellek çipiyle çalışır, beklenecek bir hareket yoktur</q> deyin. Oku düğmesini bir öğrenciye bastırın. SATA SSD ve M.2 SSD düğmeleriyle iki biçimi karşılaştırın; köşedeki fotoğraf da seçime göre değişir. M.2'nin anakarta kablosuz takıldığını gösterin. Öğrencilere SSD ile HDD arasındaki yapı farkını tek cümleyle söyletin.</td></tr>
+<tr><td>4</td><td><div class="adim-ad">HDD mi SSD mi?</div><div class="adim-konu">HDD mi SSD mi?</div><span class="slayt">Slayt 7</span></td><td>Önce sınıfa tahmin yaptırın, oyu bir öğrenci seçsin; sonra yarış oynar. Çubuklar dururken sorun: <q>SSD neden daha erken bitirdi?</q> Alttaki tabloyu satır satır okuyun. <q>Süreler örnektir; fark bilgisayara göre değişir ama SSD açılışları belirgin şekilde kısaltır. HDD ise aynı parayla daha fazla yer verdiği için yedek ve arşivde hâlâ kullanılır</q> deyin. Hızı abartan cümlelere karşı uyarın: SSD her işi hızlandırmaz. Öğrencilere evdeki bilgisayarda hangisini tercih edeceklerini gerekçesiyle söyletin.</td></tr>
+<tr><td>5</td><td><div class="adim-ad">USB Bellek, Hafıza Kartı</div><div class="adim-konu">USB Bellek, Hafıza Kartı</div><span class="slayt">Slayt 8</span></td><td>USB bellek, SD kart ve microSD düğmelerine sırayla öğrencilere bastırın; kamera birime yaklaşır ve kullanıldığı yer yazar. SD kartta kilidin kaydığını gösterip sorun: <q>Kilit aşağıdayken karta yeni fotoğraf kaydedilebilir mi?</q> <q>Bu küçük birimlerde de SSD'deki gibi bellek çipleri vardır; ceplerimizde taşıyabildiğimiz için kolay da kaybolurlar</q> deyin. Sınıftaki gerçek USB belleği elden ele dolaştırın ve ışık yanarken çıkarılmaması gerektiğini vurgulayın. Öğrencilere evde hafıza kartı kullanan iki cihaz söyletin.</td></tr>
+<tr><td>6</td><td><div class="adim-ad">Bulut ve Yedekleme</div><div class="adim-konu">Bulut ve Yedekleme</div><span class="slayt">Slayt 9</span></td><td>Sahne kendiliğinden oynar: dosya buluta kopyalanır, disk bozulur, dosya buluttan geri gelir. Arıza anında durdurup sağ alttaki kopya sayısını okutun ve sorun: <q>Yedek olmasaydı ne olurdu?</q> Baştan düğmesiyle yedeklemeden arıza verdirin. <q>Yedek demek, dosyanın ayrı bir yerde saklanan ek kopyası demektir; bulut ise internetteki uzak bir depodur. Aynı diskteki ikinci klasör yedek sayılmaz</q> deyin. Bulut hesap şifresinin kimseyle paylaşılmadığını hatırlatın. Öğrencilere bir dosyayı yedeklemenin iki yolunu söyletin.</td></tr>
+</table>
+<div class="kutu"><b>Etkinlikler (Slayt 10–11):</b> Etkinlik 1'de (Slayt 10) dört iş için sınıf önce sözlü oy verir, sonra bir gönüllü seçimi akıllı tahtada işaretler ve yarış izlenir. Şarkı ve internet turlarında <q>Neden aynı anda bitti?</q> diye sorup SSD'nin her işi hızlandırmadığını tartıştırın. Etkinlik 2'de (Slayt 11) Deniz'in senaryosunu küçük gruplara okutun; her grup kararını gerekçesiyle söylesin, ardından seçim yapılır. Disk bozulduğu adımda kutulardaki kopya sayısına dikkat çekin (yaklaşık 9 dk).</div>
+<h3><span>Değerlendirme ve Kapanış</span><span class="sure">5 dk</span></h3>
+<p>Özet slaytındaki altı kartı birer öğrenciye kendi cümleleriyle anlattırın. Bilgi Testi'ni (Slayt 14) sınıfça çözün; yanlış çıkan soruda ilgili adım slaytına dönüp animasyonu yeniden izletin. Son soru Derinleş bonusudur, puanı düşürmez. Dersi <q>Bu akşam hangi dosyanın yedeğini alacaksın?</q> sorusuyla kapatın.</p>
+<h2>4. ÖLÇME VE DEĞERLENDİRME</h2>
+<table class="olcme"><thead><tr><th>#</th><th>Soru ve Seçenekler</th><th>Cevap</th></tr></thead>
+<tr><td>1</td><td><div class="soru">Bilgisayarın fişi aniden çekildi. Hangisindeki bilgi kaybolur?</div><div class="secenek">A) RAM’deki kaydedilmemiş bilgi B) SSD’deki kayıtlı dosyalar C) HDD’deki fotoğraflar D) USB bellekteki dosyalar</div><div class="aciklama">RAM geçicidir; elektrik gidince içi boşalır. SSD, HDD ve USB bellek kalıcı depolamadır.</div></td><td>A</td></tr>
+<tr><td>2</td><td><div class="soru-gorsel"><svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Kapağı açık bir depolama birimi: parlak dönen plaka ve kol"><rect width="200" height="120" rx="10" fill="#eef7fe"/><g transform="translate(24 8) scale(1.0)"><rect x="0" y="0" width="150" height="104" rx="8" fill="#8a9098"/><rect x="5" y="5" width="140" height="94" rx="6" fill="#b3b9c1"/><circle cx="96" cy="52" r="46" fill="#e8ecf1" stroke="#9aa0a8" stroke-width="2"/><circle cx="96" cy="52" r="34" fill="none" stroke="#cfd5dc" stroke-width="1"/><circle cx="96" cy="52" r="22" fill="none" stroke="#cfd5dc" stroke-width="1"/><path d="M96 52 L140 40 A46 46 0 0 1 141 58 z" fill="#fff" opacity=".6"/><circle cx="96" cy="52" r="12" fill="#9ca3af" stroke="#6b7280"/><circle cx="96" cy="52" r="3" fill="#4b5563"/><path d="M22 76 A26 26 0 0 1 40 50 L50 64 z" fill="#c3c8ce" stroke="#9aa0a8"/><g transform="rotate(-18 32 80)"><path d="M32 74 L80 78 L80 82 L32 86 z" fill="#a7adb5" stroke="#6b7280" stroke-width=".8"/><path d="M78 79 L96 80 L78 81 z" fill="#d7dbe0"/><rect x="94" y="78" width="4" height="4" fill="#2f3136"/></g><circle cx="32" cy="80" r="7" fill="#8c929a" stroke="#5b616a"/><rect x="10" y="84" width="16" height="4" fill="#c47f1a"/></g></svg></div><div class="soru">Görseldeki depolama birimi hangisidir ve neden SSD’den yavaştır?</div><div class="secenek">A) SSD; bellek çipleri yavaş çalışır B) USB bellek; boyutu küçüktür C) HDD; plaka dönmeli, kafa doğru ize gitmelidir D) RAM; elektrik gidince silinir</div><div class="aciklama">Dönen plaka ve kol HDD’nin içidir. Veriyi okumak için plakanın dönmesi ve kafanın ize gitmesi gerekir.</div></td><td>C</td></tr>
+<tr><td>3</td><td><div class="soru">Ece fotoğraf makinesiyle çektiği fotoğrafları bilgisayara aktaracak. Fotoğraflar makinede nerede durur?</div><div class="secenek">A) Makinenin RAM’inde; kapanınca silinir B) Makineye takılı SD hafıza kartında C) Makinenin içindeki HDD’de D) İnternet olmadan doğrudan bulutta</div><div class="aciklama">Fotoğraf makineleri fotoğrafları çoğunlukla SD hafıza kartına kaydeder. Kart çıkarılıp bilgisayara takılabilir.</div></td><td>B</td></tr>
+<tr><td>4</td><td><div class="soru">Deniz’in proje ödevi yalnız bilgisayarında. Disk bozulursa ödevi kaybetmemek için ne yapmalıydı?</div><div class="secenek">A) Dosyanın adını değiştirmeliydi B) Ödevi aynı diskte başka bir klasöre kopyalamalıydı C) Bilgisayarı hiç kapatmamalıydı D) Ödevin bir kopyasını buluta ya da USB belleğe almalıydı</div><div class="aciklama">Yedek, başka bir yerde duran ikinci kopyadır. Aynı diskteki kopya, disk bozulunca onunla birlikte gider.</div></td><td>D</td></tr>
+</table>
+<p class="anahtar">Cevap Anahtarı: <span>1-A 2-C 3-B 4-D</span></p>
+<h2>5. AÇIK UÇLU / BİÇİMLENDİRİCİ DEĞERLENDİRME</h2>
+<ol class="acik">
+<li><span>«Kalıcı Depolama» kavramını kendi cümlelerinle açıkla ve günlük hayattan bir örnek ver.</span></li>
+<li><span>«HDD ile SSD Arasındaki Fark» kavramını kendi cümlelerinle açıkla ve günlük hayattan bir örnek ver.</span></li>
+<li><span>«Bulut ve Yedekleme» kavramını kendi cümlelerinle açıkla ve günlük hayattan bir örnek ver.</span></li>
+<li><span>Bu derste en çok hangi adım ilgini çekti, nerede zorlandın? Nedenini açıkla.</span></li>
+</ol>
+<h2>6. ÖĞRETMEN NOTLARI VE ÖDEV</h2>
+<div class="etiket">Ödev / Sınıf Dışı Etkinlik:</div><p>Evde kullandığın bir bilgisayarda, tablette ya da telefonda depolama alanının ne kadarının dolu olduğunu bir yetişkinle birlikte bul. En çok yer kaplayan iki şeyi ve bunların yedeğinin olup olmadığını bir kâğıda yaz; bir sonraki derse getir.</p>
+<div class="etiket">Öğretmen İçin Notlar:</div><ul class="not">
+<li>Derinleş (Slayt 12) isteğe bağlıdır: süre kalırsa ya da hızlı bitiren öğrenciler için kullanın. Dosya Gezgini'ndeki doluluk çubuğundan dolu alanın hesaplanması ve kutusunda 1 TB yazan diskin neden yaklaşık 931 GB göründüğü işlenir (2. haftadaki 1024 konusuyla bağlantılıdır). Atlasanız da akış bozulmaz; bonus soru puanı düşürmez.</li>
+<li>Yaş bandı uyarlaması: 10–12 yaş grubunda masa–dolap benzetmesini somut nesnelerle (masadaki defter, dolaptaki klasör) canlandırın. 13–15 yaş grubunda HDD'nin neden hâlâ üretildiğini (fiyat başına kapasite, arşiv) ve M.2 SSD'nin kablosuz bağlantısını tartıştırın.</li>
+<li>Sık görülen kavram yanılgıları: <q>Kapattığımda her şey RAM'de bekler</q>, <q>SSD internetimi de hızlandırır</q>, <q>Aynı diskte başka klasöre kopyalamak yedektir</q>, <q>HDD'nin kafası plakaya sürterek okur</q>. Her birini doğru/yanlış sorusu olarak sorup düzeltin.</li>
+<li>Teknik not: Plaka hızları 5400 ve 7200 dev/dk'dır; derste gösterilen dönüş yavaşlatılmıştır. Yarıştaki süreler örnektir ve hız farkı abartılmamalıdır; SSD özellikle açılış ve çok sayıda küçük dosyada fark yaratır. Gerçek sabit disk hiçbir zaman açılmaz; sınıfa eski bir disk getirilirse kapağı kapalı hâliyle gösterilir.</li>
+<li>3D sahneler yavaş bilgisayarda kaliteyi kendiliğinden düşürür; WebGL açılmazsa yerine çizim görünür. Hareket azaltma ayarı açık cihazlarda animasyonlar kısa geçişlerle ilerler; bu durumda düğmelerle adım adım oynatın.</li>
+<li>Her adımın sonunda 1-2 öğrenciye <q>Bu bilgi elektrik gidince kalır mı?</q> ya da <q>Bunun yedeği nerede?</q> diye sorup anlattırarak anlaşıldığını kontrol edin (biçimlendirici değerlendirme).</li>
+</ul>
+<table class="sure-tablo"><thead><tr><th>Aşama</th><th>Süre</th></tr></thead>
+<tr><td>Giriş — Dikkat Çekme ve Güdüleme</td><td>5 dk</td></tr>
+<tr><td>Gelişme — Kavramların İşlenişi ve Etkinlikler</td><td>25 dk</td></tr>
+<tr><td>Değerlendirme ve Kapanış</td><td>5 dk</td></tr>
+<tr><th>Toplam</th><th>35 dk</th></tr>
+</table>
+<div class="imza"><div><b>Ders Öğretmeni</b>Ad Soyad / İmza</div><div><b>Uygundur</b>Okul Müdürü</div></div>
+</body>
+</html>
