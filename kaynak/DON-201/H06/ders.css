@@ -1,0 +1,74 @@
+/* DON-201 H06 — İşlemci · derse özel stil (ortak stil derlemede önce eklenir) */
+
+/* Ortak 2D sahne parçaları */
+.ky-sahne,.yr-sahne,.ghz-sahne,.ye-sahne{flex:1;min-height:0;display:flex;align-items:center;justify-content:center}
+.ky-sahne svg,.yr-sahne svg,.ghz-sahne svg,.ye-sahne svg{width:100%;height:100%;max-height:100%}
+.ky-alt{flex-shrink:0;display:flex;flex-direction:column;gap:6px}
+.panel-sonuc.iyi{color:#047857}
+.panel-sonuc.kotu{color:#b91c1c}
+.h6-oynat{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:4px 16px;border-radius:999px;border:none;background:var(--brand);color:#fff;
+  font-family:var(--font);font-weight:800;font-size:clamp(13px, 0.3vw + 11px, 17px);cursor:pointer;flex-shrink:0}
+.h6-oynat svg{width:16px;height:16px}
+.h6-oynat[hidden]{display:none}
+
+/* Adım 2: A-KUYRUK */
+.ky .ky-bant{animation:none}
+.ky.calisiyor .ky-bant{animation:h6bant .5s linear infinite}
+@keyframes h6bant{to{stroke-dashoffset:-16}}
+.ky .ky-yuva{transition:fill .25s, stroke .25s}
+.ky .ky-yuva.isliyor{fill:#fde68a;stroke:#d97706;stroke-dasharray:none}
+
+/* Adım 4: E-SURGU (saat hızı) */
+.ghz-kontrol{flex-shrink:0;display:flex;align-items:center;gap:10px;background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:4px 12px}
+.ghz-kontrol label{font-weight:800;color:var(--ink2);font-size:clamp(13px, 0.3vw + 11px, 17px)}
+.ghz-kontrol input{flex:1;min-width:0;height:40px;accent-color:var(--brand);cursor:pointer}
+.ghz-kontrol output{min-width:5.2em;text-align:right;font-weight:900;color:var(--brand-dk);font-size:clamp(15px, 0.5vw + 12px, 22px)}
+
+/* Termometre (3D sahne üstünde, A-ISI) */
+.termo{position:absolute;left:10px;bottom:58px;z-index:4;display:flex;align-items:flex-end;gap:8px;pointer-events:none;
+  background:rgba(255,255,255,0.94);border-radius:14px;padding:8px 12px 8px 10px;box-shadow:0 4px 14px rgba(15,23,42,0.14)}
+.termo-cubuk{position:relative;width:20px;height:clamp(64px, 11vh + 10px, 140px)}
+.termo-tup{position:absolute;left:4px;top:0;bottom:14px;width:12px;border:2px solid #94a3b8;border-bottom:none;border-radius:7px 7px 0 0;background:#fff;overflow:hidden}
+.termo-dolgu{position:absolute;left:0;right:0;bottom:0;height:10%;background:#3b82f6;transition:height .3s linear, background .3s}
+.termo-ampul{position:absolute;left:0;bottom:0;width:20px;height:20px;border-radius:50%;border:2px solid #94a3b8;background:#3b82f6;box-sizing:border-box}
+.termo-yazi{display:flex;flex-direction:column;line-height:1.1}
+.termo-deger{font-size:clamp(16px, 0.6vw + 12px, 26px);font-weight:900;color:var(--ink)}
+.termo-durum{font-size:clamp(11px, 0.25vw + 9px, 14px);font-weight:900;text-transform:uppercase;letter-spacing:.03em;color:#1d4ed8}
+.termo[data-durum="sicak"] .termo-durum{color:#b45309}
+.termo[data-durum="cok"] .termo-durum{color:#b91c1c}
+.termo[data-durum="cok"]{box-shadow:0 0 0 3px rgba(239,68,68,0.45), 0 4px 14px rgba(15,23,42,0.14)}
+
+/* Adım 6: mikroskop görünümü */
+.mikro{position:absolute;right:10px;bottom:56px;z-index:5;width:clamp(180px, 40%, 320px);display:flex;flex-direction:column;gap:4px;
+  background:#fff;border-radius:14px;padding:6px 8px 8px;box-shadow:0 8px 22px rgba(15,23,42,0.2);border:1.5px solid var(--border)}
+.mikro[hidden]{display:none}
+.mikro-bas{display:flex;align-items:center;justify-content:space-between;gap:6px;font-size:clamp(12px, 0.3vw + 10px, 16px);color:var(--ink)}
+.mikro-kapat{width:32px;height:32px;border-radius:50%;border:1px solid var(--border);background:#fff;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0}
+.mikro-cizim{border-radius:8px;overflow:hidden;border:1.5px solid #cbd5e1}
+.mikro-cizim svg{width:100%;height:auto;display:block}
+.mk .mk-bosluk{fill:#dbeafe;transition:fill .4s}
+.mk.macunlu .mk-bosluk{fill:#6b7078}
+.mk .mk-etiket{fill:#1d4ed8}
+.mk.macunlu .mk-etiket{fill:#fff}
+.mk .ok-macun{opacity:.12;transition:opacity .4s}
+.mk.macunlu .ok-macun{opacity:1}
+.mikro-secici button{min-height:36px;padding:2px 12px;font-size:clamp(12px, 0.25vw + 10px, 15px)}
+.mikro-not{font-size:clamp(11px, 0.25vw + 9px, 14px);font-weight:800;line-height:1.3;min-height:2.6em}
+.mikro-not.iyi{color:#047857}
+.mikro-not.kotu{color:#b91c1c}
+
+/* Etkinlik 1: çekirdek yarışı paneli */
+.ye{display:flex;flex-direction:column;gap:6px;height:100%;min-height:0}
+.ye-bas{flex-shrink:0;display:flex;flex-direction:column;gap:2px}
+.ye-tur{font-size:clamp(14px, 0.45vw + 11px, 20px);font-weight:900;color:var(--brand-dk)}
+.ye-soru{font-size:clamp(13px, 0.35vw + 11px, 18px);font-weight:700;color:var(--ink)}
+.ye-alt{flex-shrink:0;display:flex;align-items:center;gap:10px;min-height:44px}
+.ye-alt .panel-sonuc{flex:1;text-align:left;font-size:clamp(12px, 0.35vw + 10px, 17px);line-height:1.3}
+.secici button.ye-dogru,.secici button.ye-dogru:disabled{opacity:1;border-color:var(--ok);background:var(--ok-bg);color:#065f46}
+.secici button.ye-yanlis,.secici button.ye-yanlis:disabled{opacity:1;border-color:var(--err);background:var(--err-bg);color:#991b1b}
+
+@media (prefers-reduced-motion: reduce){ .ky.calisiyor .ky-bant{animation:none} .termo-dolgu{transition:none} }
+
+/* 3D sahne alt düğmeleri: dar alanda metin kırılmasın, gerekirse satır kaysın */
+.don3d-arayuz-alt-orta{width:max-content;max-width:calc(100% - 16px);flex-wrap:wrap;justify-content:center}
+.don3d-arayuz-alt-orta .don3d-dugme span{white-space:nowrap}

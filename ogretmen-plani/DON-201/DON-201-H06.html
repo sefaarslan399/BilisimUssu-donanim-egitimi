@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DON-201 H06 Öğretmen Planı — İşlemci</title>
+<style>
+@font-face{font-family:'Carlito';src:local('Carlito'),url('../../assets/font/Carlito-Regular.ttf');font-weight:400;font-style:normal}
+@font-face{font-family:'Carlito';src:local('Carlito Bold'),url('../../assets/font/Carlito-Bold.ttf');font-weight:700;font-style:normal}
+@font-face{font-family:'Carlito';src:local('Carlito Italic'),url('../../assets/font/Carlito-Italic.ttf');font-weight:400;font-style:italic}
+@page{size:A4;margin:14mm 14mm 16mm 16.5mm;
+  @bottom-center{content:'Bilişim Üssü · Etkileşimli Ders Planı · ' counter(page) ' / ' counter(pages);font-family:Carlito,Calibri,sans-serif;font-size:7.5pt;color:#6b7a82}}
+*{box-sizing:border-box}
+html{font-family:Carlito,Calibri,'Segoe UI',Arial,sans-serif;font-size:9.9pt;color:#1a1a1a;line-height:1.38}
+body{margin:0;max-width:180mm}
+@media screen{body{margin:24px auto;padding:0 12px}}
+.bant{display:flex;gap:7pt;margin-bottom:9pt}
+.bant-sol{flex:1;background:linear-gradient(135deg,#075985,#0a6aa3);color:#fff;border-radius:4pt;padding:9pt 14pt 10pt}
+.bant-ust{font-size:7.6pt;font-weight:700;letter-spacing:2.2pt;opacity:.92}
+.bant-baslik{font-size:23pt;font-weight:700;line-height:1.12;margin-top:3pt}
+.bant-baslik.uzun{font-size:18pt}
+.bant-sag{width:128pt;background:#0369a1;color:#fff;border-radius:4pt;display:flex;align-items:center;justify-content:center;font-size:14pt;font-weight:700}
+h2{background:#0369a1;color:#fff;font-size:11pt;font-weight:700;margin:12pt 0 6pt;padding:5pt 10pt;border-radius:4pt;letter-spacing:.2pt;break-after:avoid}
+h3{display:flex;justify-content:space-between;align-items:center;color:#0369a1;font-size:10.6pt;margin:9pt 0 4pt;break-after:avoid}
+h3 .sure{background:#0369a1;color:#fff;font-size:8.6pt;border-radius:9pt;padding:1.5pt 8pt}
+table{width:100%;border-collapse:collapse;margin:0 0 4pt}
+td,th{border:1px solid #b9def1;padding:4pt 7pt;vertical-align:top;text-align:left}
+th{background:#e0f2fe;color:#075985;font-size:9.2pt;font-weight:700}
+tr{break-inside:avoid}
+.genel td:first-child{width:134pt;background:#e0f2fe;color:#075985;font-weight:700}
+.kazanim{width:100%;border-collapse:collapse}
+.kazanim td{border:0;border-bottom:1px solid #eaf6fc;padding:3.5pt 4pt}
+.kazanim td:first-child{width:32pt;color:#0369a1;font-weight:700}
+.isleyis td:first-child{width:35pt;text-align:center;color:#6b7a82;font-weight:700}
+.isleyis td:nth-child(2){width:122pt}
+.adim-ad{font-weight:700}
+.adim-konu{color:#475569}
+.slayt{display:inline-block;margin-top:2pt;font-size:8pt;font-weight:700;color:#0369a1;background:#e0f2fe;border-radius:6pt;padding:0 5pt}
+q{quotes:'“' '”'}
+q::before{content:open-quote}q::after{content:close-quote}
+p{margin:3pt 0 5pt;text-align:justify}
+.kutu{border:1px solid #b9def1;border-left:3pt solid #0369a1;border-radius:3pt;padding:5pt 8pt;margin:5pt 0;background:#f5fbff;break-inside:avoid}
+.kutu b{color:#075985}
+.olcme td:first-child{width:22pt;text-align:center;font-weight:700}
+.olcme td:last-child{width:40pt;text-align:center;color:#0369a1;font-weight:700}
+.soru{font-weight:700}
+.secenek{margin-top:1pt}
+.aciklama{font-style:italic;color:#0369a1;font-size:9.5pt;margin-top:2pt}
+.soru-gorsel{float:right;margin:0 0 2pt 8pt}
+.soru-gorsel svg{height:38pt;width:auto}
+.anahtar{font-weight:700;color:#075985;margin:3pt 0 0}
+.anahtar span{font-weight:400;color:#1a1a1a}
+ol.acik{margin:2pt 0;padding-left:0;list-style:none;counter-reset:a}
+ol.acik li{counter-increment:a;display:flex;gap:10pt;padding:3pt 0}
+ol.acik li::before{content:counter(a) '.';color:#0369a1;font-weight:700;min-width:16pt}
+.etiket{color:#0369a1;font-weight:700;margin:7pt 0 2pt}
+ul.not{margin:2pt 0;padding-left:12pt}
+ul.not li{margin:2pt 0}
+.sure-tablo td:last-child,.sure-tablo th:last-child{width:62pt}
+.imza{display:flex;justify-content:space-around;margin-top:14pt;text-align:center;color:#6b7a82;break-inside:avoid;break-before:avoid;page-break-before:avoid}
+.sure-tablo{break-after:avoid;page-break-after:avoid}
+.sure-tablo tr:last-child{break-after:avoid}
+.uyg{display:grid;grid-template-columns:1fr 1fr;gap:3pt;margin-top:5pt}
+.uyg div{border-radius:3pt;padding:3pt 6pt;font-size:9pt;line-height:1.32}
+.uyg b{display:block;font-size:7.6pt;letter-spacing:.8pt}
+.uyg .goster{background:#eff6ff;border-left:2.5pt solid #3b82f6}.uyg .goster b{color:#1d4ed8}
+.uyg .sor{background:#f5f3ff;border-left:2.5pt solid #8b5cf6}.uyg .sor b{color:#6d28d9}
+.uyg .kontrol{background:#ecfdf5;border-left:2.5pt solid #10b981}.uyg .kontrol b{color:#047857}
+.uyg .sikhata{background:#fff7ed;border-left:2.5pt solid #f97316}.uyg .sikhata b{color:#c2410c}
+.guvenlik{border:1.5pt solid #ef4444;border-radius:4pt;background:#fef2f2;padding:6pt 10pt;margin:6pt 0;break-inside:avoid}
+.guvenlik b{color:#b91c1c;display:block;margin-bottom:2pt}
+.guvenlik ul{margin:2pt 0;padding-left:13pt}
+.imza b{display:block;color:#475569;margin-bottom:10pt}
+</style>
+</head>
+<body>
+<div class="bant"><div class="bant-sol"><div class="bant-ust">ÖĞRETMEN DERS PLANI · DON-201</div><div class="bant-baslik">İşlemci</div></div><div class="bant-sag">6. Hafta</div></div>
+<h2>1. GENEL BİLGİLER</h2>
+<table class="genel">
+<tr><td>Dersin Adı</td><td>Bilişim Teknolojileri ve Yazılım</td></tr>
+<tr><td>Sınıf / Seviye</td><td>Ortaokul (5–8. sınıf)</td></tr>
+<tr><td>Ünite / Konu</td><td>Donanım 201 - Kasanın İçinde — İşlemci</td></tr>
+<tr><td>Öğrenme Alanı</td><td>Bilgisayar Donanımı</td></tr>
+<tr><td>Süre</td><td>1 ders saati (35 dk)</td></tr>
+<tr><td>Yöntem ve Teknikler</td><td>Anlatım, gösteri, soru-cevap, 3D model inceleme, tahmin et–izle, animasyonla modelleme (komut bandı, çekirdek yarışı, saat hızı sürgüsü), sanal ısı deneyi</td></tr>
+<tr><td>Araç-Gereç ve Kaynaklar</td><td>Etkileşimli ders (LMS), projeksiyon veya akıllı tahta; mümkünse gerçek bir işlemci (ya da fotoğrafı), eski bir kule soğutucu ve bir kasa fanı; kapalı bir kasada çalışan işlemci fanını göstermek için cam yan kapaklı bir bilgisayar</td></tr>
+<tr><td>Kavramlar / Terimler</td><td>İşlemcinin Görevi, Komut Komut Çalışma, Çekirdek, Saat Hızı (GHz), Isınma ve Soğutucu, Termal Macun</td></tr>
+</table>
+<h2>2. KAZANIMLAR</h2>
+<table class="kazanim">
+<tr><td>K1.</td><td>İşlemcinin komutları sırayla işlediğini açıklar.</td></tr>
+<tr><td>K2.</td><td>Çekirdek ve saat hızı (GHz) kavramlarını örnekle açıklar.</td></tr>
+<tr><td>K3.</td><td>İşlemcinin neden ısındığını açıklar.</td></tr>
+<tr><td>K4.</td><td>Soğutucu ve termal macunun görevini eşleştirir.</td></tr>
+</table>
+<h2>3. DERS İŞLENİŞİ</h2>
+<h3><span>Giriş — Dikkat Çekme ve Güdüleme</span><span class="sure">5 dk</span></h3>
+<p>Kapak slaytında dönen soğutucuyu ve yanındaki işlemciyi gösterip sorun: <q>Bu kadar küçük bir parçanın üstüne neden bu kadar büyük bir metal blok ve fan koyuyoruz?</q> İki üç tahmini dinleyin. Hedefler slaytında dört kazanımı kısaca okuyun. Isınma slaytında (Slayt 3) üç seçeneği okutup el kaldırarak sayın, sonucu tahtaya yazın: <q>Bunu 5. adımda soğutucuyu gerçekten kaldırarak deneyeceğiz.</q></p>
+<h3><span>Gelişme — Kavramların İşlenişi</span><span class="sure">25 dk</span></h3>
+<table class="isleyis"><thead><tr><th>Adım</th><th>Konu</th><th>Öğretmen Notu</th></tr></thead>
+<tr><td>1</td><td><div class="adim-ad">İşlemcinin Görevi</div><div class="adim-konu">İşlemcinin Görevi</div><span class="slayt">Slayt 4</span></td><td>Modeli sürükleyerek çevirin; önce metal kapağa, sonra köşedeki altın üçgene dokunup açılan kartı okutun. <q>Bilgisayarın yaptığı her hesap, her karşılaştırma bu küçük parçada olur; programlar ona ne yapacağını komutlarla söyler</q> deyin. Alt yüz düğmesine basın, parça dönerken sorun: <q>Bu altın noktalar ne işe yarıyor olabilir?</q> Yuvadaki iğnelere değdiklerini, üçgenin takarken yön gösterdiğini belirtin. Öğrencilere işlemcinin üç işini (hesaplamak, karşılaştırmak, karar vermek) söyletin.</td></tr>
+<tr><td>2</td><td><div class="adim-ad">Komut Komut Çalışma</div><div class="adim-konu">Komutların Sırayla İşlenmesi</div><span class="slayt">Slayt 5</span></td><td>Animasyon kendiliğinden başlar; ilk kart işlemciye girince durdurmak için Baştan'a, sonra Adım adım düğmesine basın. Her karttan önce sınıfa sorun: <q>Şu an sonuç kaç olacak?</q> Dört adım bitince ekranda 20 görülür. Ardından Sırayı değiştir'e basıp Oynat'ı seçin; sonuç 17 çıkınca sorun: <q>Aynı komutlar, neden başka sonuç?</q> <q>İşlemci sırayı bozmaz; sırayı değiştirirsek sonucu da değiştirmiş oluruz</q> deyin. Öğrencilere kendi hayatlarından sırası önemli bir iş (ör. çorap–ayakkabı) söyletin.</td></tr>
+<tr><td>3</td><td><div class="adim-ad">Çekirdek</div><div class="adim-konu">Çekirdek: Aşçı Benzetmesi</div><span class="slayt">Slayt 6</span></td><td>Yarış kendiliğinden başlar; başlamadan önce sorun: <q>Tek aşçılı mutfak mı, dört aşçılı mutfak mı önce bitirir?</q> Süre sayaçlarını birlikte okuyun. <q>Çekirdek, işlemcinin içindeki ayrı bir çalışan gibidir; işler paylaştırılabiliyorsa dört çekirdek yaklaşık dört kat çabuk bitirir</q> deyin ve Yarışı başlat ile bir kez daha izletin. Bir yumurtayı dört aşçının daha hızlı haşlayamayacağı örneğiyle sınırı sezdirin. Öğrencilere kendi evlerindeki bir iş paylaşımı örneğini anlattırın.</td></tr>
+<tr><td>4</td><td><div class="adim-ad">Saat Hızı (GHz)</div><div class="adim-konu">Saat Hızı (GHz)</div><span class="slayt">Slayt 7</span></td><td>Sürgü 2 GHz'de başlar. Önce sorun: <q>Sürgüyü 5'e çekersem bant ve termometre ne yapar?</q> Tahminlerden sonra sürgüyü yavaşça sağa kaydırın; dalga sıklaşır, bant hızlanır, sıcaklık yükselir. <q>Giga, milyar demektir; 3 GHz'lik bir işlemcinin saati bir saniyede 3 milyar kez atar</q> deyin. Sürgüyü geri çekip sıcaklığın düştüğünü gösterin. Öğrencilere hızın bedelinin ne olduğunu (daha çok ısı, daha çok enerji) söyletin.</td></tr>
+<tr><td>5</td><td><div class="adim-ad">Isınma ve Soğutucu</div><div class="adim-konu">Isınma ve Soğutucu</div><span class="slayt">Slayt 8</span></td><td>Termometrenin normal değerde durduğunu gösterip Soğutucuyu kaldır düğmesine basın. Soğutucu kenara konurken sorun: <q>Termometre şimdi ne yapacak?</q> İşlemcinin rengi değişip değer yükselince ısınmadaki tahminleri kontrol edin. <q>İşlemcideki milyarlarca anahtar her açılıp kapandığında biraz ısı çıkar; soğutucunun bakır boruları bu ısıyı kanatçıklara taşır, fan da havayla dışarı atar</q> deyin. Geri tak ile sıcaklığın düştüğünü izletin. Öğrencilere ısının izlediği yolu (işlemci → taban → borular → kanatçık → hava) sırayla söyletin.</td></tr>
+<tr><td>6</td><td><div class="adim-ad">Termal Macun</div><div class="adim-konu">Termal Macun</div><span class="slayt">Slayt 9</span></td><td>Katmanlar kendiliğinden ayrılır ve mikroskop penceresi açılır. Önce Macunsuz görünümü gösterip sorun: <q>Parlak iki metal yüzey neden tam oturmuyor?</q> Açık mavi boşlukları gösterin ve <q>Boşluklardaki hava ısıyı çok kötü geçirir</q> deyin. Macunlu'ya geçip okların çoğaldığını gösterin: <q>Macun bu görünmez boşlukları doldurur; bezelye tanesi kadar az miktar yeter, fazlası işe yaramaz.</q> Birleştir ile katmanları kapatın. Öğrencilere macunun neden ince sürüldüğünü açıklattırın.</td></tr>
+</table>
+<div class="kutu"><b>Etkinlikler (Slayt 10–11):</b> Etkinlik 1'de (Slayt 10) her tur için sınıfça oylama yapın, çoğunluğun seçtiği tahmini gönüllü bir öğrenci işaretlesin; yarışı izledikten sonra açıklamayı okutun. Özellikle 2. turda (bölünemeyen büyük iş) sonucu tartıştırın: <q>Diğer üç çekirdek neden boşta bekledi?</q> 3. turda hesabı tahtada gösterin (12 ÷ 4 = 3). Etkinlik 2'de (Slayt 11) dört deneyi sırayla gruplara yaptırın: soğutucuyu kaldırma, macunsuz takma, macunla takma ve fanı durdurma. Her deneyde termometre durulunca değeri tahtadaki tabloya yazdırın, sonra en düşük ve en yüksek değeri karşılaştırın (yaklaşık 12 dk).</div>
+<h3><span>Değerlendirme ve Kapanış</span><span class="sure">5 dk</span></h3>
+<p>Özet slaytındaki altı kartı birer öğrenciye kendi cümleleriyle anlattırın. Bilgi Testi'ni (Slayt 14) birlikte çözün; yanlış çıkan sorunun konusuna ait animasyona dönüp yeniden izletin. Son soru Derinleş bonusudur, puanı düşürmez. Dersi şu soruyla kapatın: <q>Bilgisayarın birden yavaşlar ve kasası ısınırsa neyi kontrol etmesini isteyeceksin?</q></p>
+<h2>4. ÖLÇME VE DEĞERLENDİRME</h2>
+<table class="olcme"><thead><tr><th>#</th><th>Soru ve Seçenekler</th><th>Cevap</th></tr></thead>
+<tr><td>1</td><td><div class="soru">Bir işlemci çekirdeği komutları nasıl işler?</div><div class="secenek">A) Sırayla, birer birer B) Hepsini aynı anda, tek hamlede C) Rastgele bir sırayla D) Yalnız en kısa komutu</div><div class="aciklama">Çekirdek komutları tek tek, verildikleri sırayla yürütür. Sıranın değişmesi sonucu da değiştirir.</div></td><td>A</td></tr>
+<tr><td>2</td><td><div class="soru-gorsel"><svg viewBox="0 0 220 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Soğutucu ile işlemci arasında ince gri bir katman oklarla gösterilmiş"><rect width="220" height="120" rx="10" fill="#eef7fe"/><g transform="translate(78 80) scale(0.82)"><rect x="-10" y="-5" width="20" height="5" rx="1.2" fill="#d5d8dc"/><rect x="-11" y="-10" width="22" height="5" rx="1.5" fill="#a9afb8"/><rect x="-27" y="-24" width="3" height="16" rx="1.5" fill="#c47a4c"/><rect x="-19" y="-24" width="3" height="16" rx="1.5" fill="#c47a4c"/><rect x="-11" y="-24" width="3" height="16" rx="1.5" fill="#c47a4c"/><rect x="-5" y="-24" width="3" height="16" rx="1.5" fill="#c47a4c"/><rect x="2" y="-24" width="3" height="16" rx="1.5" fill="#c47a4c"/><rect x="8" y="-24" width="3" height="16" rx="1.5" fill="#c47a4c"/><rect x="16" y="-24" width="3" height="16" rx="1.5" fill="#c47a4c"/><rect x="24" y="-24" width="3" height="16" rx="1.5" fill="#c47a4c"/><rect x="-32" y="-88" width="64" height="66" rx="2" fill="#cfd4da"/><rect x="-32" y="-87.0" width="64" height="0.7" fill="#9aa1aa"/><rect x="-32" y="-84.8" width="64" height="0.7" fill="#9aa1aa"/><rect x="-32" y="-82.6" width="64" height="0.7" fill="#9aa1aa"/><rect x="-32" y="-80.4" width="64" height="0.7" fill="#9aa1aa"/><rect x="-32" y="-78.2" width="64" height="0.7" fill="#9aa1aa"/><rect x="-32" y="-76.0" width="64" height="0.7" fill="#9aa1aa"/><rect x="-32" y="-73.8" width="64" height="0.7" fill="#9aa1aa"/><rect x="-32" y="-71.6" width="64" height="0.7" fill="#9aa1aa"/><rect x="-32" y="-69.4" width="64" height="0.7" fill="#9aa1aa"/><rect x="-32" y="-67.2" width="64" height="0.7" fill="#9aa1aa"/><rect x="-32" y="-65.0" width="64" height="0.7" fill="#9aa1aa"/><rect x="-32" y="-62.8" width="64" height="0.7" fill="#9aa1aa"/><rect x="-32" y="-60.6" width="64" height="0.7" fill="#9aa1aa"/><rect x="-32" y="-58.4" width="64" height="0.7" fill="#9aa1aa"/><rect x="-32" y="-56.2" width="64" height="0.7" fill="#9aa1aa"/><rect x="-32" y="-54.0" width="64" height="0.7" fill="#9aa1aa"/><rect x="-32" y="-51.8" width="64" height="0.7" fill="#9aa1aa"/><rect x="-32" y="-49.6" width="64" height="0.7" fill="#9aa1aa"/><rect x="-32" y="-47.4" width="64" height="0.7" fill="#9aa1aa"/><rect x="-32" y="-45.2" width="64" height="0.7" fill="#9aa1aa"/><rect x="-32" y="-43.0" width="64" height="0.7" fill="#9aa1aa"/><rect x="-32" y="-40.8" width="64" height="0.7" fill="#9aa1aa"/><rect x="-32" y="-38.6" width="64" height="0.7" fill="#9aa1aa"/><rect x="-32" y="-36.4" width="64" height="0.7" fill="#9aa1aa"/><rect x="-32" y="-34.2" width="64" height="0.7" fill="#9aa1aa"/><rect x="-32" y="-32.0" width="64" height="0.7" fill="#9aa1aa"/><rect x="-32" y="-29.8" width="64" height="0.7" fill="#9aa1aa"/><rect x="-32" y="-27.6" width="64" height="0.7" fill="#9aa1aa"/><rect x="-32" y="-25.4" width="64" height="0.7" fill="#9aa1aa"/><rect x="-32" y="-23.2" width="64" height="0.7" fill="#9aa1aa"/><rect x="-33" y="-92" width="66" height="5" rx="2" fill="#2b2f36"/><g transform="translate(0 -55) scale(0.94)"><rect x="-30" y="-30" width="60" height="60" rx="6" fill="#1b1d21"/><circle r="27" fill="#0d0e11"/><path d="M0 0 C 10 -6, 18 -16, 12 -26 C 4 -22, -2 -12, 0 0z" fill="#2b2f36" transform="rotate(0)"/><path d="M0 0 C 10 -6, 18 -16, 12 -26 C 4 -22, -2 -12, 0 0z" fill="#2b2f36" transform="rotate(51)"/><path d="M0 0 C 10 -6, 18 -16, 12 -26 C 4 -22, -2 -12, 0 0z" fill="#2b2f36" transform="rotate(102)"/><path d="M0 0 C 10 -6, 18 -16, 12 -26 C 4 -22, -2 -12, 0 0z" fill="#2b2f36" transform="rotate(154)"/><path d="M0 0 C 10 -6, 18 -16, 12 -26 C 4 -22, -2 -12, 0 0z" fill="#2b2f36" transform="rotate(205)"/><path d="M0 0 C 10 -6, 18 -16, 12 -26 C 4 -22, -2 -12, 0 0z" fill="#2b2f36" transform="rotate(257)"/><path d="M0 0 C 10 -6, 18 -16, 12 -26 C 4 -22, -2 -12, 0 0z" fill="#2b2f36" transform="rotate(308)"/><circle r="9" fill="#24272c"/><circle cx="-25" cy="-25" r="2" fill="#0d0e11"/><circle cx="25" cy="-25" r="2" fill="#0d0e11"/><circle cx="-25" cy="25" r="2" fill="#0d0e11"/><circle cx="25" cy="25" r="2" fill="#0d0e11"/></g></g><rect x="54" y="81" width="48" height="4" rx="1.2" fill="#6b7078"/><g transform="translate(46 102)"><rect x="6.4" y="-9.6" width="51.2" height="6.4" rx="1.3" fill="#c7cbd1"/><rect x="3.2" y="-4.3" width="57.6" height="2.1" fill="#aeb3ba"/><rect x="0" y="-2.6" width="64.0" height="2.8" rx="1" fill="#155a34"/></g><path d="M104 83 H150" stroke="#b91c1c" stroke-width="1.8"/><circle cx="104" cy="83" r="2.6" fill="#b91c1c"/><rect x="152" y="72" width="34" height="22" rx="6" fill="#fff" stroke="#b91c1c" stroke-width="1.8"/><text x="169" y="88" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="900" fill="#b91c1c" text-anchor="middle">?</text><text x="118" y="30" font-family="Inter,Arial,sans-serif" font-size="10" font-weight="800" fill="#334155" text-anchor="start">Soğutucu</text><text x="118" y="108" font-family="Inter,Arial,sans-serif" font-size="10" font-weight="800" fill="#334155" text-anchor="start">İşlemci</text></svg></div><div class="soru">Görselde soğutucu ile işlemci arasındaki ince gri katman nedir?</div><div class="secenek">A) Yapıştırıcı bant B) Toz tabakası C) Termal macun D) Yalıtım köpüğü</div><div class="aciklama">Termal macun, iki metal yüzey arasındaki mikroskobik boşlukları doldurur; ısı soğutucuya kolayca geçer.</div></td><td>C</td></tr>
+<tr><td>3</td><td><div class="soru">Ece’nin bilgisayarındaki işlemcinin saat hızı 3 GHz. Bu ne demektir?</div><div class="secenek">A) İşlemcinin 3 çekirdeği vardır B) Saniyede 3 milyar saat vuruşu yapar C) Saniyede yalnız 3 komut işler D) İşlemci 3 GB bellek taşır</div><div class="aciklama">GHz, saniyedeki saat vuruşu sayısıdır: 3 GHz, saniyede 3 milyar vuruş demektir. Çekirdek sayısı ayrı bir özelliktir.</div></td><td>B</td></tr>
+<tr><td>4</td><td><div class="soru">Deniz oyun oynarken bilgisayarı birden yavaşlıyor. Kasanın camından bakınca işlemci fanının durduğunu görüyor. En olası neden nedir?</div><div class="secenek">A) Oyunun renkleri çok canlı B) İşlemci soğuk kaldığı için yavaşladı C) RAM ekranı ısıttı D) İşlemci ısındı ve kendini korumak için yavaşladı</div><div class="aciklama">Fan durunca ısı uzaklaşamaz. İşlemci aşırı ısınınca kendini korumak için yavaşlar; bir yetişkine haber verilir.</div></td><td>D</td></tr>
+</table>
+<p class="anahtar">Cevap Anahtarı: <span>1-A 2-C 3-B 4-D</span></p>
+<h2>5. AÇIK UÇLU / BİÇİMLENDİRİCİ DEĞERLENDİRME</h2>
+<ol class="acik">
+<li><span>«Komutların Sırayla İşlenmesi» kavramını kendi cümlelerinle açıkla ve günlük hayattan bir örnek ver.</span></li>
+<li><span>«Çekirdek ve Saat Hızı» kavramını kendi cümlelerinle açıkla ve günlük hayattan bir örnek ver.</span></li>
+<li><span>«Soğutucu ve Termal Macun» kavramını kendi cümlelerinle açıkla ve günlük hayattan bir örnek ver.</span></li>
+<li><span>Bu derste en çok hangi deney ilgini çekti, hangi kavramı anlatırken zorlanırsın? Nedenini yaz.</span></li>
+</ol>
+<h2>6. ÖĞRETMEN NOTLARI VE ÖDEV</h2>
+<div class="etiket">Ödev / Sınıf Dışı Etkinlik:</div><p>Ailenden bir yetişkinle birlikte evdeki bir bilgisayarın ya da dizüstünün özellik sayfasına bak (Ayarlar → Sistem → Hakkında). İşlemcinin saat hızını (GHz) ve çekirdek sayısını bir kâğıda yaz. Bilgisayar çalışırken fanın sesini dinle: oyun ya da video açıkken ses değişiyor mu? Gözlemini bir sonraki derse getir. Kasayı açma.</p>
+<div class="etiket">Öğretmen İçin Notlar:</div><ul class="not">
+<li>Derinleş (Slayt 12) isteğe bağlıdır: süre kalırsa ya da hızlı bitiren öğrenciler için kullanın. Telefon çiplerinin birçok birimi tek çipte topladığı ve az enerji harcadığı için çoğunlukla fansız çalıştığı anlatılır. Atlasanız da akış bozulmaz; Bilgi Testi'ndeki bonus soru puanı düşürmez.</li>
+<li>Yaş bandı uyarlaması: 10–12 yaş grubunda aşçı ve mutfak benzetmesini canlandırma ile destekleyin (bir öğrenci sekiz kartı tek başına, dört öğrenci paylaşarak dağıtsın). 13–15 yaş grubunda saat hızı ile çekirdek sayısının birlikte performansı belirlediğini, ama her programın çok çekirdeği kullanamadığını tartıştırın.</li>
+<li>Sık görülen kavram yanılgıları: <q>GHz, işlemcinin kaç çekirdeği olduğunu gösterir</q>, <q>Çekirdek sayısı iki katına çıkınca her program iki kat hızlanır</q>, <q>Termal macun yapıştırıcıdır, ne kadar çok sürülürse o kadar iyi</q>, <q>Soğutucu işlemciye soğuk üfler</q>. Bu cümleleri doğru/yanlış sorusu olarak sorup düzeltin.</li>
+<li>Teknik not: Ekrandaki sıcaklık değerleri canlandırma içindir ve yaklaşık değerlerdir; gerçek değerler işlemciye, soğutucuya ve odanın sıcaklığına göre değişir. Aşırı ısınan işlemci kendini korumak için yavaşlar, gerekirse bilgisayar kendini kapatır. Termal macun iletkenliği metalden düşük, havadan çok yüksektir; bu yüzden ince bir katman yeterlidir.</li>
+<li>Güvenlik: Çalışan bir bilgisayarın kasası açılmaz; soğutucu ve fana yalnız fiş çekiliyken, öğretmen gözetiminde dokunulur. Soğutucu kanatçıklarının kenarları keskin olabilir. Sıcak bir işlemciye elle dokunulmaz; fan durmuşsa bir yetişkine haber verilir.</li>
+<li>3D sahneler yavaş bilgisayarda kaliteyi kendiliğinden düşürür; WebGL açılmazsa yerine çizim görünür. Hareket azaltma ayarı açık cihazlarda animasyonlar kısa geçişlerle ilerler, saat hızı sahnesi sürgü değerini anında gösterir.</li>
+<li>Her adımın sonunda 1-2 öğrenciye <q>Bunu küçük kardeşine nasıl anlatırsın?</q> diye sorup kavramı kendi sözleriyle anlattırarak anlaşıldığını kontrol edin (biçimlendirici değerlendirme).</li>
+</ul>
+<table class="sure-tablo"><thead><tr><th>Aşama</th><th>Süre</th></tr></thead>
+<tr><td>Giriş — Dikkat Çekme ve Güdüleme</td><td>5 dk</td></tr>
+<tr><td>Gelişme — Kavramların İşlenişi ve Etkinlikler</td><td>25 dk</td></tr>
+<tr><td>Değerlendirme ve Kapanış</td><td>5 dk</td></tr>
+<tr><th>Toplam</th><th>35 dk</th></tr>
+</table>
+<div class="imza"><div><b>Ders Öğretmeni</b>Ad Soyad / İmza</div><div><b>Uygundur</b>Okul Müdürü</div></div>
+</body>
+</html>

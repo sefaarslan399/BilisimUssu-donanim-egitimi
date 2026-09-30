@@ -68,7 +68,8 @@
 .don3d-arayuz-ust-sol{top:8px;left:8px}
 .don3d-arayuz-alt-sag{bottom:8px;right:8px}
 .don3d-arayuz-alt-sol{bottom:8px;left:8px;flex-wrap:wrap;right:8px}
-.don3d-arayuz-alt-orta{bottom:8px;left:50%;transform:translateX(-50%)}
+.don3d-arayuz-alt-orta{bottom:8px;left:50%;transform:translateX(-50%);width:max-content;max-width:calc(100% - 16px);flex-wrap:wrap;justify-content:center}
+.don3d-arayuz-alt-orta .don3d-dugme span{white-space:nowrap}
 .don3d-dugme{
   display:inline-flex;align-items:center;gap:6px;
   min-width:40px;min-height:40px;padding:0 10px;justify-content:center;
