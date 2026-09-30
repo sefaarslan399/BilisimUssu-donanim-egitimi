@@ -369,6 +369,58 @@
       .then(function () { return git(parca, new V3(p.x, p.y + yuk, p.z), 0.8); });
   };
 
+
+  /**
+   * A-TAK yardımcısı — hiza göstergesi: iki işaretin (ör. RAM çentiği ve yuvadaki çıkıntı) X hizasını
+   * dikey çizgilerle gösterir. Kaymışsa kırmızı çizgiler + ✗ etiketi, hizalıysa yeşil çizgi + ✓ etiketi.
+   * DON3D.hiza(sahne, ustIsaret, altIsaret, { esik: 0.06, yanlisMetin, dogruMetin }) → { goster(bool), durum(), kaldir() }
+   */
+  D.hiza = function (sahne, ust, alt, ops) {
+    ops = ops || {};
+    var esik = ops.esik == null ? 0.06 : ops.esik;
+    function cizgi() {
+      // WebGL çizgileri 1 px kalır; okunur olması için ince çubuk kullanılır
+      var g = new THREE.BoxGeometry(ops.kalinlik || 0.07, 1, ops.kalinlik || 0.07);
+      g.translate(0, 0.5, 0);
+      var m = new THREE.MeshBasicMaterial({ color: 0xef4444, depthTest: false, transparent: true, opacity: 0.9 });
+      m.toneMapped = false;
+      var l = new THREE.Mesh(g, m);
+      l.renderOrder = 12; l.frustumCulled = false; l.userData.secilmez = true; l.raycast = function () {};
+      sahne.scene.add(l);
+      return l;
+    }
+    var cUst = cizgi(), cAlt = cizgi();
+    var tut = new THREE.Object3D(); sahne.scene.add(tut);
+    var et = sahne.etiket(tut, '', { tur: 'hata', yer: 'merkez' });
+    var acik = true, sonDurum = null;
+    function uygula() {
+      var a = ust.getWorldPosition(new V3()), b = alt.getWorldPosition(new V3());
+      var dogru = Math.abs(a.x - b.x) < esik;
+      var y0 = b.y, y1 = Math.max(a.y, b.y + 0.3) + 0.35;
+      [[cUst, a.x], [cAlt, b.x]].forEach(function (x) {
+        x[0].position.set(x[1], y0 - 0.25, b.z + 0.45);
+        x[0].scale.set(1, y1 - y0 + 0.25, 1);
+        x[0].material.color.set(dogru ? 0x10b981 : 0xef4444);
+        x[0].visible = acik;
+      });
+      cAlt.visible = acik && !dogru;
+      tut.position.set((a.x + b.x) / 2, y1 + 0.2, b.z + 0.45);
+      if (dogru !== sonDurum) {
+        sonDurum = dogru;
+        et.el.className = 'don3d-etiket don3d-etiket--' + (dogru ? 'dogru' : 'hata');
+        et.metin(dogru ? (ops.dogruMetin || '✓ Çentik çıkıntıya denk geldi') : (ops.yanlisMetin || '✗ Çentik çıkıntıya denk gelmiyor'));
+      }
+      et.goster(acik);
+    }
+    var sok = sahne.herKare(uygula);
+    uygula();
+    return {
+      goster: function (g) { acik = !!g; uygula(); },
+      durum: function () { return sonDurum; },
+      kaldir: function () { sok(); et.kaldir(); [cUst, cAlt].forEach(function (l) { sahne.scene.remove(l); l.geometry.dispose(); l.material.dispose(); }); sahne.scene.remove(tut); }
+    };
+  };
+
   /* ─── A-DONUS: dönen parça (fan, HDD plakası) ─── */
   /** Parçayı sürekli döndürür. Döner: durdur() */
   D.dondurParca = function (parca, ops) {

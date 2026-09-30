@@ -2,7 +2,8 @@
    Ölçü birimi: cm (gövde ≈ 14,2 × 0,9 × 0,75). Orijin: anakart yüzeyinde, yuvanın ortası.
    Uzun kenar X; RAM −Y yönünde (yukarıdan aşağı) takılır. Yuvadaki çıkıntı RAM çentiğiyle hizalıdır.
    userData.oturma: RAM tam oturduğunda RAM orijininin yerel konumu (Vector3).
-   userData.mandal(acik, sure) → Promise: mandalları açar/kapatır. userData.mandalAcik: durum. */
+   userData.mandal(acik, sure) → Promise: mandalları açar/kapatır. userData.mandalAcik: durum.
+   ops.kesit: true → ön duvar yarı saydam, çıkıntı açık renkte (yakın plan anlatım için). */
 (function (D) {
   'use strict';
   D.modelTanimla('M-RAM-YUVASI', function (K, ops) {
@@ -16,7 +17,14 @@
     var govde = new THREE.Group();
     K.parca(govde, 'yuva-govde', 'Yuva', 'RAM temasları bu yarığa girer.');
     // Yarıklı gövde: iki yan duvar + taban
-    K.koy(govde, K.kutu(LB, HB, 0.25, govdeMat, 0.05), 0, HB / 2, WB / 2 - 0.125);
+    var onDuvarMat = govdeMat;
+    if (ops.kesit) {   // kesit görünümü: ön duvar yarı saydam, içteki çıkıntı görünür
+      onDuvarMat = govdeMat.clone();
+      onDuvarMat.transparent = true; onDuvarMat.opacity = 0.28; onDuvarMat.depthWrite = false;
+    }
+    var onDuvar = K.kutu(LB, HB, 0.25, onDuvarMat, 0.05);
+    K.koy(govde, onDuvar, 0, HB / 2, WB / 2 - 0.125);
+    if (ops.kesit) { onDuvar.renderOrder = 4; onDuvar.userData.golgeYok = true; onDuvar.castShadow = false; }
     K.koy(govde, K.kutu(LB, HB, 0.25, govdeMat, 0.05), 0, HB / 2, -WB / 2 + 0.125);
     K.koy(govde, K.kutu(LB, HB - DERIN, WB, govdeMat, 0.03), 0, (HB - DERIN) / 2, 0);
     // Uç blokları
@@ -25,7 +33,7 @@
     var ic = K.kutu(LB - 0.7, 0.02, WB - 0.5, K.mat('#050506'));
     K.koy(govde, ic, 0, HB - DERIN + 0.01, 0);
     var centikX = (D.RAM_OLCU && D.RAM_OLCU.centikX) || 0.51;
-    var cikinti = K.kutu(0.13, 0.36, WB - 0.5, govdeMat);
+    var cikinti = K.kutu(0.13, 0.36, WB - 0.5, ops.kesit ? K.mat('plastikAcik') : govdeMat);
     K.koy(govde, cikinti, centikX, HB - DERIN + 0.18, 0);
     K.parca(cikinti, 'cikinti', 'Yuvadaki çıkıntı', 'RAM\'in çentiği bu çıkıntıya denk gelmelidir.');
     g.add(govde);

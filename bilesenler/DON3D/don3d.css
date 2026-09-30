@@ -51,6 +51,8 @@
   text-transform:uppercase;letter-spacing:.4px;--ok-renk:#f59e0b;
   transform:translate(-50%, calc(-100% - 10px)) rotate(-2deg);
 }
+.don3d-etiket--hata .don3d-etiket-metin{background:#dc2626;color:#fff;--ok-renk:#dc2626}
+.don3d-etiket--dogru .don3d-etiket-metin{background:#059669;color:#fff;--ok-renk:#059669}
 .don3d-etiket--alt .don3d-etiket-metin{transform:translate(-50%, 10px)}
 .don3d-etiket--alt .don3d-etiket-metin::after{bottom:auto;top:-6px;border-top:0;border-bottom:6px solid var(--ok-renk)}
 .don3d-etiket--harf .don3d-etiket-metin{

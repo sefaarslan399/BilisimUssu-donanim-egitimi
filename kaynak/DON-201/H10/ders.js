@@ -237,7 +237,7 @@
     kart.position.set(0, -0.08, -0.5);
     kart.userData.secilmez = true;
     s.kok.add(kart);
-    var yA = s.ekle('M-RAM-YUVASI', { modelOps: { acik: !!ops.acik } });
+    var yA = s.ekle('M-RAM-YUVASI', { modelOps: { acik: !!ops.acik, kesit: true } });
     var yB = s.ekle('M-RAM-YUVASI', { konum: [0, 0, -1.3], modelOps: { renk: 'plastikKoyu' } });
     var ramB = D.model('M-RAM'); ramB.position.copy(yB.userData.oturma); yB.add(ramB);
     ramB.userData.secilmez = true;
@@ -300,31 +300,32 @@
     ram.position.copy(ust);
     s.yerlestir();
     D.dondur(s, { ipucu: false });
-    var etiketler = [], not = null;
+    var etiketler = [], not = null, hiza = null;
+    function hizaKaldir() { if (hiza) { hiza.kaldir(); hiza = null; } }
     function sifirla() {
       kaldirHepsi(etiketler);
+      hizaKaldir();
       if (not) { not.remove(); not = null; }
       k.yA.userData.mandal(true, 0.01);
       ram.position.copy(ust); ram.rotation.set(0, Math.PI, 0);
     }
     prova(s, [
-      { metin: 'Çentiğe ve yuvadaki çıkıntıya bak: aynı yerde mi?', calis: function () {
-        etiketler.push(s.etiket(ram.getObjectByName('centik'), 'Çentik', { tur: 'vurgu' }));
+      { metin: 'Çentiğe ve yuvadaki çıkıntıya bak: aynı hizada mı?', calis: function () {
         etiketler.push(s.etiket(k.yA.getObjectByName('cikinti'), 'Çıkıntı', { tur: 'vurgu', yer: 'alt', ofset: [0, -0.6, 0] }));
-        return D.bekle(1.6, s);
+        hiza = D.hiza(s, ram.getObjectByName('centik'), k.yA.getObjectByName('cikinti'));
+        return D.bekle(1.8, s);
       } },
-      { metin: 'Ters tutarsan RAM yuvaya girmez.', calis: function () {
-        var et = s.etiket(ram, 'Ters: girmez!', { tur: 'vurgu' });
-        etiketler.push(et);
-        return D.takAnim(ram, { hedef: k.oturma, dogru: false, yukseklik: 4, yuva: k.yA, engel: 0.6 }).then(function () { et.kaldir(); });
+      { metin: 'Çentik çıkıntıya denk gelmiyor; bu yüzden RAM oturmuyor.', calis: function () {
+        return D.takAnim(ram, { hedef: k.oturma, dogru: false, yukseklik: 4, yuva: k.yA, engel: 0.6 });
       } },
-      { metin: 'RAM\'i çevir: çentik çıkıntıyla aynı yere gelsin.', calis: function () {
+      { metin: 'RAM\'i çevir: çentik çıkıntıyla aynı hizaya gelsin.', calis: function () {
         var r0 = ram.rotation.y;
         return D.tween({ sahne: s, sure: 0.9, guncelle: function (e) { ram.rotation.y = r0 + Math.PI * e; } })
-          .then(function () { ram.rotation.y = 0; return D.bekle(0.8, s); });
+          .then(function () { ram.rotation.y = 0; return D.bekle(1.2, s); });
       } },
-      { metin: 'İki ucundan eşit bastır; mandallar klik diye kapanır.', calis: function () {
+      { metin: 'Çentik çıkıntıya denk geldi: iki ucundan eşit bastır, klik!', calis: function () {
         return D.takAnim(ram, { hedef: k.oturma, dogru: true, yukseklik: 4, yuva: k.yA }).then(function () {
+          hizaKaldir();
           kaldirHepsi(etiketler);
           etiketler.push(s.etiket(ram, 'Klik! RAM yerine oturdu', { tur: 'vurgu' }));
         });
@@ -333,7 +334,7 @@
       if (tahmin == null) return;
       not = D.div('don3d-ipucu', s.arayuz);
       not.style.bottom = '104px';
-      not.textContent = 'Tahminin: “' + TAHMINLER[tahmin] + '” ' + (tahmin === 1 ? 'Doğru tahmin!' : 'Gördün: ters RAM yuvaya girmedi.');
+      not.textContent = 'Tahminin: “' + TAHMINLER[tahmin] + '” ' + (tahmin === 1 ? 'Doğru tahmin! Çentik çıkıntıya denk gelmeyince RAM oturmadı.' : 'Gördün: çentik çıkıntıya denk gelmeyince RAM oturmadı.');
     } });
   });
 
@@ -351,29 +352,29 @@
     function satir(ad, tamam) { durum.querySelector('[data-d="' + ad + '"]').classList.toggle('tamam', !!tamam); }
     function mesajYaz(tur, t) { mesaj.className = 'etk-mesaj' + (tur ? ' ' + tur : ''); mesaj.textContent = t; }
     function yonDogru() { return Math.abs(Math.cos(ram.rotation.y) - 1) < 0.05; }
-    var etCentik = s.etiket(ram.getObjectByName('centik'), 'Çentik', { tur: 'vurgu' });
+    var hiza = D.hiza(s, ram.getObjectByName('centik'), k.yA.getObjectByName('cikinti'));
     var etCikinti = s.etiket(k.yA.getObjectByName('cikinti'), 'Çıkıntı', { tur: 'vurgu', yer: 'alt', ofset: [0, -0.6, 0] });
     var hataSay = 0;
     D.tak(s, ram, k.oturma, {
       dogruYon: yonDogru, tolerans: 1.6, yukseklik: 4, yuva: k.yA, isaretBoyut: [13.4, 0.9], isaretY: 0.6, engel: 0.6,
       onCevir: function () {
         satir('yon', yonDogru());
-        mesajYaz('', yonDogru() ? 'Çentik artık çıkıntıyla aynı tarafta. Şimdi yuvaya götür.' : 'Çentik yine çıkıntıdan uzakta. Bir kez daha çevir.');
+        mesajYaz('', yonDogru() ? '✓ Çentik çıkıntıya denk geldi. Şimdi yuvaya götür.' : 'Çentik yine çıkıntıya denk gelmiyor. Bir kez daha çevir.');
       },
       onYanlis: function () {
         hataSay++;
-        mesajYaz('yanlis', '✗ Girmedi! Çentik çıkıntıya denk gelmiyor. “Çevir” ile RAM\'i döndür.');
+        mesajYaz('yanlis', '✗ Oturmadı: çentik çıkıntıya denk gelmiyor. “Çevir” ile RAM\'i döndür.');
       },
       onUzak: function () { mesajYaz('', 'RAM\'i yuvanın tam üstüne bırak; turuncu kılavuzu takip et.'); },
       onDogru: function () {
-        etCentik.goster(false); etCikinti.goster(false);
+        hiza.goster(false); etCikinti.goster(false);
         satir('yon', true); satir('otur', true);
         setTimeout(function () { satir('klik', true); }, 250);
         mesajYaz('dogru', '✔ Harika! RAM oturdu, mandallar kapandı.' + (hataSay ? ' Denemeden öğrendin.' : ' İlk denemede başardın.'));
         if (!AZ && typeof window.confetti === 'function') window.confetti();
       },
       onSifirla: function () {
-        etCentik.goster(true); etCikinti.goster(true);
+        hiza.goster(true); etCikinti.goster(true);
         satir('yon', false); satir('otur', false); satir('klik', false);
         hataSay = 0;
         mesajYaz('', 'Hazır olduğunda RAM\'i sürükle ya da “Yuvaya götür”e bas.');

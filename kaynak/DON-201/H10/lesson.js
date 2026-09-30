@@ -26,7 +26,7 @@ const LESSON = {
       fb:'Mandallar açılınca RAM biraz yükselir. Sonra iki kenarından tutulup düz yukarı çekilir.' },
     { q:'Emre RAM\'i yuvaya bastırıyor ama RAM girmiyor. En olası neden hangisidir?',
       opts:['RAM çok soğuk','Monitör kapalı','Kasa fanı duruyor','RAM ters tutuldu; çentik çıkıntıya denk gelmiyor'], correct:3,
-      fb:'Çentik merkezde değildir; RAM yalnız bir yönde girer. RAM çevrilip çentik çıkıntıya hizalanmalıdır.' },
+      fb:'Çentik çıkıntıya denk gelmediği için RAM oturmaz. Çentik merkezde değildir; RAM çevrilip çentik çıkıntıya hizalanmalıdır.' },
     { q:'Derinleş (bonus): RAM etiketinde “8GB” yazıyor. Bu neyi gösterir?',
       opts:['Belleğin kapasitesini','Belleğin rengini','Takıldığı yuvanın numarasını','Üretim yılını'], correct:0,
       fb:'8GB, modülün bellek kapasitesidir. İki tane 8GB modül takılıysa toplam 16GB olur. Bu soru puanını düşürmez.' },
