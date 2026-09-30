@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DON-301 H03 Öğretmen Planı — Bellek Hiyerarşisi ve RAM</title>
+<style>
+@font-face{font-family:'Carlito';src:local('Carlito'),url('../../assets/font/Carlito-Regular.ttf');font-weight:400;font-style:normal}
+@font-face{font-family:'Carlito';src:local('Carlito Bold'),url('../../assets/font/Carlito-Bold.ttf');font-weight:700;font-style:normal}
+@font-face{font-family:'Carlito';src:local('Carlito Italic'),url('../../assets/font/Carlito-Italic.ttf');font-weight:400;font-style:italic}
+@page{size:A4;margin:14mm 14mm 16mm 16.5mm;
+  @bottom-center{content:'Bilişim Üssü · Etkileşimli Ders Planı · ' counter(page) ' / ' counter(pages);font-family:Carlito,Calibri,sans-serif;font-size:7.5pt;color:#6b7a82}}
+*{box-sizing:border-box}
+html{font-family:Carlito,Calibri,'Segoe UI',Arial,sans-serif;font-size:9.9pt;color:#1a1a1a;line-height:1.38}
+body{margin:0;max-width:180mm}
+@media screen{body{margin:24px auto;padding:0 12px}}
+.bant{display:flex;gap:7pt;margin-bottom:9pt}
+.bant-sol{flex:1;background:linear-gradient(135deg,#075985,#0a6aa3);color:#fff;border-radius:4pt;padding:9pt 14pt 10pt}
+.bant-ust{font-size:7.6pt;font-weight:700;letter-spacing:2.2pt;opacity:.92}
+.bant-baslik{font-size:23pt;font-weight:700;line-height:1.12;margin-top:3pt}
+.bant-baslik.uzun{font-size:18pt}
+.bant-sag{width:128pt;background:#0369a1;color:#fff;border-radius:4pt;display:flex;align-items:center;justify-content:center;font-size:14pt;font-weight:700}
+h2{background:#0369a1;color:#fff;font-size:11pt;font-weight:700;margin:12pt 0 6pt;padding:5pt 10pt;border-radius:4pt;letter-spacing:.2pt;break-after:avoid}
+h3{display:flex;justify-content:space-between;align-items:center;color:#0369a1;font-size:10.6pt;margin:9pt 0 4pt;break-after:avoid}
+h3 .sure{background:#0369a1;color:#fff;font-size:8.6pt;border-radius:9pt;padding:1.5pt 8pt}
+table{width:100%;border-collapse:collapse;margin:0 0 4pt}
+td,th{border:1px solid #b9def1;padding:4pt 7pt;vertical-align:top;text-align:left}
+th{background:#e0f2fe;color:#075985;font-size:9.2pt;font-weight:700}
+tr{break-inside:avoid}
+.genel td:first-child{width:134pt;background:#e0f2fe;color:#075985;font-weight:700}
+.kazanim{width:100%;border-collapse:collapse}
+.kazanim td{border:0;border-bottom:1px solid #eaf6fc;padding:3.5pt 4pt}
+.kazanim td:first-child{width:32pt;color:#0369a1;font-weight:700}
+.isleyis td:first-child{width:35pt;text-align:center;color:#6b7a82;font-weight:700}
+.isleyis td:nth-child(2){width:122pt}
+.adim-ad{font-weight:700}
+.adim-konu{color:#475569}
+.slayt{display:inline-block;margin-top:2pt;font-size:8pt;font-weight:700;color:#0369a1;background:#e0f2fe;border-radius:6pt;padding:0 5pt}
+q{quotes:'“' '”'}
+q::before{content:open-quote}q::after{content:close-quote}
+p{margin:3pt 0 5pt;text-align:justify}
+.kutu{border:1px solid #b9def1;border-left:3pt solid #0369a1;border-radius:3pt;padding:5pt 8pt;margin:5pt 0;background:#f5fbff;break-inside:avoid}
+.kutu b{color:#075985}
+.olcme td:first-child{width:22pt;text-align:center;font-weight:700}
+.olcme td:last-child{width:40pt;text-align:center;color:#0369a1;font-weight:700}
+.soru{font-weight:700}
+.secenek{margin-top:1pt}
+.aciklama{font-style:italic;color:#0369a1;font-size:9.5pt;margin-top:2pt}
+.soru-gorsel{float:right;margin:0 0 2pt 8pt}
+.soru-gorsel svg{height:38pt;width:auto}
+.anahtar{font-weight:700;color:#075985;margin:3pt 0 0}
+.anahtar span{font-weight:400;color:#1a1a1a}
+ol.acik{margin:2pt 0;padding-left:0;list-style:none;counter-reset:a}
+ol.acik li{counter-increment:a;display:flex;gap:10pt;padding:3pt 0}
+ol.acik li::before{content:counter(a) '.';color:#0369a1;font-weight:700;min-width:16pt}
+.etiket{color:#0369a1;font-weight:700;margin:7pt 0 2pt}
+ul.not{margin:2pt 0;padding-left:12pt}
+ul.not li{margin:2pt 0}
+.sure-tablo td:last-child,.sure-tablo th:last-child{width:62pt}
+.imza{display:flex;justify-content:space-around;margin-top:14pt;text-align:center;color:#6b7a82;break-inside:avoid;break-before:avoid;page-break-before:avoid}
+.sure-tablo{break-after:avoid;page-break-after:avoid}
+.sure-tablo tr:last-child{break-after:avoid}
+.uyg{display:grid;grid-template-columns:1fr 1fr;gap:3pt;margin-top:5pt}
+.uyg div{border-radius:3pt;padding:3pt 6pt;font-size:9pt;line-height:1.32}
+.uyg b{display:block;font-size:7.6pt;letter-spacing:.8pt}
+.uyg .goster{background:#eff6ff;border-left:2.5pt solid #3b82f6}.uyg .goster b{color:#1d4ed8}
+.uyg .sor{background:#f5f3ff;border-left:2.5pt solid #8b5cf6}.uyg .sor b{color:#6d28d9}
+.uyg .kontrol{background:#ecfdf5;border-left:2.5pt solid #10b981}.uyg .kontrol b{color:#047857}
+.uyg .sikhata{background:#fff7ed;border-left:2.5pt solid #f97316}.uyg .sikhata b{color:#c2410c}
+.guvenlik{border:1.5pt solid #ef4444;border-radius:4pt;background:#fef2f2;padding:6pt 10pt;margin:6pt 0;break-inside:avoid}
+.guvenlik b{color:#b91c1c;display:block;margin-bottom:2pt}
+.guvenlik ul{margin:2pt 0;padding-left:13pt}
+.imza b{display:block;color:#475569;margin-bottom:10pt}
+</style>
+</head>
+<body>
+<div class="bant"><div class="bant-sol"><div class="bant-ust">ÖĞRETMEN DERS PLANI · DON-301</div><div class="bant-baslik">Bellek Hiyerarşisi ve RAM</div></div><div class="bant-sag">3. Hafta</div></div>
+<h2>1. GENEL BİLGİLER</h2>
+<table class="genel">
+<tr><td>Dersin Adı</td><td>Bilgisayar Donanımı ve Sistem Kurulumu</td></tr>
+<tr><td>Sınıf / Seviye</td><td>Lise (9. sınıf)</td></tr>
+<tr><td>Ünite / Konu</td><td>Donanım 301 - Mimari — Bellek Hiyerarşisi ve RAM</td></tr>
+<tr><td>Öğrenme Alanı</td><td>Bilgisayar Donanımı</td></tr>
+<tr><td>Süre</td><td>1 ders saati (35 dk)</td></tr>
+<tr><td>Yöntem ve Teknikler</td><td>Anlatım, soru-cevap, tahmin et–izle, 3D model inceleme ve karşılaştırma, etkileşimli simülasyon (DRAM tazeleme, kanal akışı), hesaplama (gerçek gecikme), senaryo tabanlı seçim, eşli çalışma</td></tr>
+<tr><td>Araç-Gereç ve Kaynaklar</td><td>Etkileşimli ders (LMS), projeksiyon veya akıllı tahta; mümkünse gerçek bir DDR4 ve bir DDR5 modül (yoksa DIMM ile SO-DIMM), antistatik bileklik; öğrenci başına hesap makinesi ya da bilgisayar</td></tr>
+<tr><td>Kavramlar / Terimler</td><td>Bellek Hiyerarşisi, RAM Neden Uçucu?, DDR4 ve DDR5, MT/s ve CL, Tek ve Çift Kanal, DIMM ve SO-DIMM</td></tr>
+</table>
+<h2>2. KAZANIMLAR</h2>
+<table class="kazanim">
+<tr><td>K1.</td><td>Bellek hiyerarşisini hız, kapasite ve maliyete göre sıralar.</td></tr>
+<tr><td>K2.</td><td>DDR4 ile DDR5'in fiziksel olarak uyumsuz olduğunu açıklar.</td></tr>
+<tr><td>K3.</td><td>Hız (MT/s) ve gecikme (CL) değerlerini yorumlar.</td></tr>
+<tr><td>K4.</td><td>Çift kanal çalışmanın avantajını açıklar.</td></tr>
+</table>
+<h2>3. DERS İŞLENİŞİ</h2>
+<h3><span>Giriş — Dikkat Çekme ve Güdüleme</span><span class="sure">5 dk</span></h3>
+<p>Kapaktaki üç modülü döndürürken sınıfa sorun: <q>Bu kartların üçü de bellek; sizce neden biçimleri ve çentikleri birbirinden farklı?</q> Gelen yanıtları tahtanın bir köşesine not edin. Kazanımları okuyup dersin sonunda bir sistem için doğru belleği seçebileceklerini söyleyin. Isınma slaytında (Slayt 3) Ece'nin durumunu sesli okutun, el kaldırarak oylama yapın ve sonucu tahtaya yazın; <q>Adım 3'te iki modülü yuvada deneyerek sınayacağız</q> deyin. Terim Kartı'nda (Slayt 4) her öğrenciye bir terimin açılımını söyletin; MT/s ile CL'yi özellikle işaretleyin.</p>
+<h3><span>Gelişme — Kavramların İşlenişi</span><span class="sure">25 dk</span></h3>
+<table class="isleyis"><thead><tr><th>Adım</th><th>Konu</th><th>Öğretmen Notu</th></tr></thead>
+<tr><td>1</td><td><div class="adim-ad">Bellek Hiyerarşisi</div><div class="adim-konu">Bellek Hiyerarşisi</div><span class="slayt">Slayt 5</span></td><td>Önce sağdaki üç seçenekten birini sınıf oyuyla işaretletin, ardından Oynat'a basın. Sayaç RAM katmanında durduğunda duraklatıp sorun: <q>L1'e göre kaç kat bekledik?</q> <q>İşlemciye yakın bellekler küçük ama çok hızlıdır; uzaklaştıkça kapasite büyür, bayt başına fiyat düşer, bekleme uzar</q> deyin. HDD satırında süreyi günlere çevirterek farkın büyüklüğünü vurgulayın. Öğrencilere yedi katmanı hızlıdan yavaşa sırayla söyletin.</td></tr>
+<tr><td>2</td><td><div class="adim-ad">RAM Neden Uçucu?</div><div class="adim-konu">RAM'in Uçuculuğu</div><span class="slayt">Slayt 6</span></td><td>Birkaç saniye tazeleme taramasını izletin; turuncuya dönen sütunun tarama gelince yeniden dolduğunu gösterin. Sorun: <q>Tazeleme dursa ne olur?</q> Tahminlerden sonra Gücü kes düğmesine basın, soru işaretleri belirince Gücü aç ile tüm hücrelerin sıfır okunduğunu gösterin. <q>Dinamik bellekte bilgi, zamanla sızan küçük bir elektrik yüküdür; güç gidince yenilenemez ve kaybolur</q> deyin. Öğrencilere SSD'nin neden kalıcı olduğunu kendi cümleleriyle açıklattırın.</td></tr>
+<tr><td>3</td><td><div class="adim-ad">DDR4 ve DDR5</div><div class="adim-konu">DDR4 ve DDR5 Karşılaştırması</div><span class="slayt">Slayt 7</span></td><td>Modülleri önce döndürüp PMIC bölgesini gösterin. Çakıştır'a basın; yakın planda iki kırmızı çizginin ayrı durduğunu gösterip sorun: <q>Temas sayısı aynıyken tasarımcılar neden çentiği kaydırmış olabilir?</q> Ardından Yuvaya dene ile DDR5'in DDR4 yuvasında geri sektiğini, DDR4'ün ise oturduğunu izletin ve ısınmadaki oylamayla karşılaştırın. <q>Nesiller arasında gerilim ve sinyal düzeni değiştiği için yanlış takmayı fiziksel bir anahtar engeller</q> deyin. Elinizde gerçek modül varsa çentikleri yan yana tutup gösterin. Öğrencilere iki nesil arasındaki üç farkı söyletin.</td></tr>
+<tr><td>4</td><td><div class="adim-ad">MT/s ve CL</div><div class="adim-konu">Hız (MT/s) ve Gecikme (CL)</div><span class="slayt">Slayt 8</span></td><td>Tahmin sorusunu sorun: <q>4800 aktarımlı ve CL40 olan modülle, 3200 aktarımlı ve CL16 olan modülden hangisi veriyi önce teslim eder?</q> Önce DDR4-3200'ü, sonra DDR5-4800'ü seçip döngü kutucuklarının dolmasını izletin. Tahtada 16 × 2000 ÷ 3200 = 10 ns işlemini birlikte yapın. <q>CL tek başına yanıltıcıdır; döngü sayısını döngü süresiyle çarpmak gerekir. Yüksek aktarım hızı ise birim zamanda taşınan veri miktarını artırır</q> deyin. Öğrencilere DDR5-6000 CL30 için gerçek gecikmeyi hesaplattırın.</td></tr>
+<tr><td>5</td><td><div class="adim-ad">Tek ve Çift Kanal</div><div class="adim-konu">Tek ve Çift Kanal</div><span class="slayt">Slayt 9</span></td><td>Slayt açılınca tek modül düzeni görünür, kısa süre sonra çift kanala geçer. Veri şeritlerinin ikiye çıktığını ve ölçüm çubuğunun dolduğunu gösterin. Sonra Aynı kanal düğmesine basıp sorun: <q>Toplam kapasite aynı, neden hız artmadı?</q> <q>Bellek denetleyicisinin iki ayrı yolu vardır; modüller bu iki yola paylaştırılırsa aynı anda iki kat veri aktarılabilir</q> deyin. Anakart kılavuzundan yuva önerisi okumanın önemini vurgulayın. Öğrencilere iki modülün hangi yuvalara takılması gerektiğini gösterttirin.</td></tr>
+<tr><td>6</td><td><div class="adim-ad">DIMM ve SO-DIMM</div><div class="adim-konu">DIMM ve SO-DIMM</div><span class="slayt">Slayt 10</span></td><td>Boyları kıyasla düğmesiyle küçük modülün masaüstü modülünün önüne gelmesini izletin. Sonra SO-DIMM nesilleri ile iki küçük modülün çentik çizgilerini gösterin ve sorun: <q>Dizüstü bilgisayarınızın belleğini büyütmek isteseniz önce neye bakardınız?</q> <q>Masaüstü ve dizüstü modüller farklı boyda üretilir; aynı boyda olanlar da nesle göre farklı anahtarlanır. İnce cihazlarda bellek karta lehimli olabilir</q> deyin. Öğrencilere bir dizüstü için doğru bellek türünü nasıl belirleyeceklerini anlattırın.</td></tr>
+</table>
+<div class="kutu"><b>Etkinlikler (Slayt 11–12):</b> Etkinlik 1'de (Slayt 11) öğrenciler önce yedi katman kartını hızlıdan yavaşa sıralar; her yerleşen satırda insan ölçeğindeki süre görünür. Ardından üç bekleme görevini çözerler. Eşli çalışmada biri kartları yerleştirirken diğeri süreleri deftere yazsın. Etkinlik 2'de (Slayt 12) beş seçim görevini sınıfça oynayın: her görevde önce 30 saniye gerekçeli tartışma, sonra seçim. Gecikme görevinde tahtada üç hesabı paylaştırın (yaklaşık 8 dk).</div>
+<h3><span>Değerlendirme ve Kapanış</span><span class="sure">5 dk</span></h3>
+<p>Özet slaytındaki altı kartı farklı öğrencilere birer cümleyle açıklattırın. Bilgi Testi'ni (Slayt 14) bireysel çözdürün; yanlış çıkan sorularda özellikle gerçek gecikme hesabını ve aynı kanala takılan modül senaryosunu birlikte tartışın. Dersi <q>Gelecek hafta kalıcı depolamaya geçiyoruz: bugün piramidin en altında gördüğümüz SSD ve HDD'nin içini açacağız</q> köprüsüyle kapatın.</p>
+<h2>4. ÖLÇME VE DEĞERLENDİRME</h2>
+<table class="olcme"><thead><tr><th>#</th><th>Soru ve Seçenekler</th><th>Cevap</th></tr></thead>
+<tr><td>1</td><td><div class="soru">Aşağıdakilerden hangisi bellek katmanlarını en hızlıdan en yavaşa doğru sıralar?</div><div class="secenek">A) Yazmaç → L1 → L3 → RAM → SSD B) L1 → Yazmaç → RAM → L3 → SSD C) RAM → L1 → L2 → SSD → HDD D) SSD → RAM → L3 → L1 → Yazmaç</div><div class="aciklama">İşlemciye yaklaştıkça erişim hızlanır: yazmaç, önbellekler (L1 → L3), ana bellek (RAM), en sonda kalıcı depolama.</div></td><td>A</td></tr>
+<tr><td>2</td><td><div class="soru-gorsel"><svg viewBox="0 0 240 130" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Üstte DDR4 modülü, altta DDR5 yuvası; modülün çentiğinden ve yuvanın çıkıntısından inen kesik çizgiler farklı yerlerden geçiyor"><rect width="240" height="130" rx="10" fill="#f8fafc"/><g><path d="M20 10 H220 V54 H20 V54 Z" fill="#1f5a3a"/><circle cx="20" cy="26.72" r="3.08" fill="#f8fafc"/><circle cx="220" cy="26.72" r="3.08" fill="#f8fafc"/><rect x="22" y="47.839999999999996" width="196" height="5.279999999999999" fill="#e3b04f"/><rect x="129.8" y="45.2" width="4.4" height="9.68" rx="1.2" fill="#f8fafc"/><rect x="26.0" y="18.8" width="17.0" height="19.36" rx="1" fill="#16181d"/><rect x="50.4" y="18.8" width="17.0" height="19.36" rx="1" fill="#16181d"/><rect x="74.9" y="18.8" width="17.0" height="19.36" rx="1" fill="#16181d"/><rect x="99.3" y="18.8" width="17.0" height="19.36" rx="1" fill="#16181d"/><rect x="123.7" y="18.8" width="17.0" height="19.36" rx="1" fill="#16181d"/><rect x="148.1" y="18.8" width="17.0" height="19.36" rx="1" fill="#16181d"/><rect x="172.6" y="18.8" width="17.0" height="19.36" rx="1" fill="#16181d"/><rect x="197.0" y="18.8" width="17.0" height="19.36" rx="1" fill="#16181d"/><rect x="26" y="39.040000000000006" width="24.755200000000002" height="11.48" rx="3" fill="rgba(15,23,42,.72)"/><text x="30" y="46.52000000000001" font-family="Inter,Arial,sans-serif" font-size="7.48" font-weight="900" fill="#fff" text-anchor="start">DDR4</text></g><rect x="14" y="96" width="212" height="16" rx="4" fill="#111827"/><rect x="18" y="98" width="204" height="5" rx="2" fill="#374151"/><rect x="121.0" y="93" width="4" height="9" rx="1" fill="#fbbf24"/><text x="120" y="124" font-family="Inter,Arial,sans-serif" font-size="9" font-weight="800" fill="#334155" text-anchor="middle">DDR5 yuvası</text><path d="M132.0 50V102" stroke="#2563eb" stroke-width="1.6" stroke-dasharray="4 3"/><path d="M123.0 50V102" stroke="#dc2626" stroke-width="1.6" stroke-dasharray="1.5 3"/><text x="136" y="76" font-family="Inter,Arial,sans-serif" font-size="8" font-weight="800" fill="#2563eb" text-anchor="start">çentik</text><text x="119" y="88" font-family="Inter,Arial,sans-serif" font-size="8" font-weight="800" fill="#dc2626" text-anchor="end">çıkıntı</text></svg></div><div class="soru">Görselde bir DDR4 modül, DDR5 yuvasının üzerinde tutuluyor. Modül neden yuvaya girmez?</div><div class="secenek">A) DDR4’ün temas sayısı daha az B) DDR5 yuvası daha kısa C) Çentik, yuvadaki çıkıntıyla aynı hizada değil D) UEFI eski modülü engelliyor</div><div class="aciklama">İki modül de 288 temaslı ve aynı boydadır; çentik konumu farklı olduğu için yuvadaki çıkıntı yanlış nesli fiziksel olarak içeri almaz.</div></td><td>C</td></tr>
+<tr><td>3</td><td><div class="soru">DDR4-3200 CL16 bir modülün gerçek gecikmesi yaklaşık kaç nanosaniyedir?</div><div class="secenek">A) 16 ns B) 10 ns C) 5 ns D) 3,2 ns</div><div class="aciklama">Gerçek gecikme = CL × 2000 ÷ MT/s = 16 × 2000 ÷ 3200 = 10 ns.</div></td><td>B</td></tr>
+<tr><td>4</td><td><div class="soru">Ece 16 GB için iki adet 8 GB modül aldı ve ikisini de A kanalının yuvalarına (A1 ve A2) taktı. Sonuç ne olur?</div><div class="secenek">A) Bilgisayar yalnız 8 GB görür B) Bant genişliği iki katına çıkar C) Modüllerin CL değeri yarıya iner D) Sistem çalışır ama tek kanalda kalır; çift kanal için A2 ve B2 gibi farklı kanallar gerekir</div><div class="aciklama">Kapasite 16 GB görünür ama iki modül aynı kanalı paylaşır. Çift kanal için modüller kılavuzda belirtilen, farklı kanallardaki yuvalara takılmalıdır.</div></td><td>D</td></tr>
+</table>
+<p class="anahtar">Cevap Anahtarı: <span>1-A 2-C 3-B 4-D</span></p>
+<h2>5. AÇIK UÇLU / BİÇİMLENDİRİCİ DEĞERLENDİRME</h2>
+<ol class="acik">
+<li><span>«Bellek Hiyerarşisi» kavramını kendi cümlelerinle açıkla ve günlük hayattan bir örnek ver.</span></li>
+<li><span>«DDR4 ve DDR5 Uyumsuzluğu» kavramını kendi cümlelerinle açıkla ve günlük hayattan bir örnek ver.</span></li>
+<li><span>«Çift Kanal Çalışma» kavramını kendi cümlelerinle açıkla ve günlük hayattan bir örnek ver.</span></li>
+<li><span>Bu derste en çok hangi adım ilgini çekti, hangisinde zorlandın? Zorlandığın konuyu bir arkadaşına nasıl anlatırdın?</span></li>
+</ol>
+<h2>6. ÖĞRETMEN NOTLARI VE ÖDEV</h2>
+<div class="etiket">Ödev / Sınıf Dışı Etkinlik:</div><p>Evde ya da okulda erişebildiğin bir bilgisayarın bellek bilgisini bul (Görev Yöneticisi &gt; Performans &gt; Bellek ya da sistem bilgisi ekranı). Bellek türünü, hızını (MT/s), kaç yuvanın dolu olduğunu ve modül biçimini (DIMM / SO-DIMM) yaz. Çift kanalda çalışıp çalışmadığını gerekçesiyle belirt; biliniyorsa CL değeriyle gerçek gecikmeyi hesapla.</p>
+<div class="etiket">Öğretmen İçin Notlar:</div><ul class="not">
+<li>Lise düzeyi: terimler İngilizce karşılıklarıyla verilir (Terim Kartı, Slayt 4). Öğrencilerden MT/s, CL, DIMM gibi kısaltmaları açılımlarıyla birlikte kullanmalarını isteyin.</li>
+<li>Süreler yaklaşık değerlerdir ve işlemci modeline göre değişir; derste verilen sayılar büyüklük sırasını göstermek içindir. 1 ns = 1 sn benzetmesinin yalnızca oranları hissettirmek için kullanıldığını belirtin.</li>
+<li>Teknik not: MHz ile MT/s sık karıştırılır. DDR belleklerde saat frekansı aktarım hızının yarısıdır; etiketlerdeki 3200 ya da 4800 değeri MT/s'dir. Bant genişliği hesabında 64 bitlik (8 baytlık) modül genişliği kullanılır; DDR5'te bu genişlik iki bağımsız 32 bitlik alt kanala bölünür.</li>
+<li>Sık görülen kavram yanılgıları: <q>CL küçükse bellek her zaman daha hızlıdır</q>, <q>Aynı pin sayısındaki modüller birbirinin yerine takılabilir</q>, <q>İki modül takınca her zaman çift kanal olur</q>, <q>RAM kapatınca da bilgiyi saklar</q>. Bu cümleleri doğru/yanlış sorusu olarak sorup gerekçeyle düzeltin.</li>
+<li>Gerçek modül gösterecekseniz antistatik bileklik takın, modülü kenarlarından tutun ve altın temaslara dokunmayın; öğrencilere de bu tutuşu gösterttirin.</li>
+<li>Hareket azaltma ayarı açık cihazlarda animasyonlar kısa geçişlerle ilerler; 3D sahneler sürükleyerek döndürülebilir, ok tuşları ve R (sıfırla) ile de kullanılabilir.</li>
+<li>Her adımın sonunda 1-2 öğrenciye kavramı kendi cümleleriyle anlattırarak anlaşıldığını kontrol edin (biçimlendirici değerlendirme).</li>
+</ul>
+<table class="sure-tablo"><thead><tr><th>Aşama</th><th>Süre</th></tr></thead>
+<tr><td>Giriş — Dikkat Çekme ve Güdüleme</td><td>5 dk</td></tr>
+<tr><td>Gelişme — Kavramların İşlenişi ve Etkinlikler</td><td>25 dk</td></tr>
+<tr><td>Değerlendirme ve Kapanış</td><td>5 dk</td></tr>
+<tr><th>Toplam</th><th>35 dk</th></tr>
+</table>
+<div class="imza"><div><b>Ders Öğretmeni</b>Ad Soyad / İmza</div><div><b>Uygundur</b>Okul Müdürü</div></div>
+</body>
+</html>

@@ -1,0 +1,149 @@
+{
+  "format": "U",
+  "altbaslik": "Grup olarak okuldaki bir bilgisayarın değerlerini ekrandan topluyor, portlarını sayıyor ve onu kanıta dayalı bir kimlik kartıyla sınıfa tanıtıyorsun.",
+  "rozetler": ["Ortaokul 5–8", "Süre: 1 ders (35 dk)", "Grup: 3–4 kişi", "Çalışan okul bilgisayarı", "Zorluk: Kolay–Orta"],
+  "senaryo": {
+    "baslik": "LABORATUVAR ENVANTERİ",
+    "metin": "Okul idaresi, bilişim laboratuvarındaki makinelerin hangi derslerde işe yarayacağını gösteren bir envanter istiyor. Her grup kendisine verilen bilgisayarın “nüfus kâğıdını” çıkaracak: ekrandan değerlerini okuyacak, bağlantı noktalarını sayacak ve bu makinenin neye yetip neye yetmediğini kanıtlarıyla anlatacak.",
+    "gorev": "Makinenin işlemci, bellek, depolama ve ekran kartı bilgisini ekrandan oku; portlarını türlerine göre say; dört iş için gerekçeli karar ver; kartı hazırlayıp bir dakikada sun."
+  },
+  "ogrenci_ne_yapiyor": "Her aşamayı önce etkileşimli derste kısa bir provada izliyor, sonra grubuyla gerçek bilgisayarda uyguluyor: Hakkında sayfasından ve Görev Yöneticisi’nden değerleri okuyup basılı tabloya birimleriyle yazıyor, kasanın önünü ve arkasını kablolara dokunmadan inceleyip portları türlerine göre sayıyor, bellek–disk–ekran kartı değerlerine bakarak ödev, çizim, oyun ve programlama için “çünkü”lü kararlar veriyor, değerleri kart üreticiye girip etiketli mini modeli ve kartı oluşturuyor, son olarak kartını bir dakikalık bir sunumla sınıfa tanıtıyor.",
+  "kunye": {
+    "grup": "3–4 kişilik gruplar; roller: okuyucu (ekranı kullanır), yazıcı (tabloyu doldurur), sayıcı (portları sayar), sunucu (kartı anlatır)",
+    "donanim": "Grup başına çalışan bir masaüstü bilgisayar (yoksa dizüstü) · basılı kimlik tablosu ve kart şablonu · el feneri (isteğe bağlı)",
+    "on_kosul": "H02 Bit ve Byte (GB, MB; 1000 ile 1024 farkı), H03 Bağlantı noktaları, H06 İşlemci, H07 RAM, H08 Depolama, H09 Ekran kartı",
+    "degerlendirme": "Süreç gözlemi + kimlik kartı ürün rubriği + bir dakikalık sunum + 4 soruluk bilgi testi (değerin bulunduğu ekran, port sayımı, işe uygunluk kararı, gerekçe cümlesi)"
+  },
+  "kavramlar": [
+    { "baslik": "Sistem bilgisi ekranları", "metin": "Windows’ta Ayarlar > Sistem > Hakkında, işlemcinin model adını ve saat hızını, yüklü belleği ve sistem türünü (64 bit) listeler. Görev Yöneticisi (Ctrl+Shift+Esc) Performans sekmesinde çekirdek sayısını, diskin SSD mi HDD mi olduğunu, kapasitesini ve GPU adını verir. dxdiag (Win+R) belleği MB cinsinden, Ekran sekmesinde ekran kartının adını yazar. Linux tabanlı okul bilgisayarlarında benzer bilgiler çoğunlukla Ayarlar > Hakkında bölümündedir." },
+    { "baslik": "Birimler: bellek ve disk", "metin": "Hakkında sayfasındaki “8,00 GB (7,80 GB kullanılabilir)” ifadesinde aradaki küçük fark donanıma, çoğunlukla tümleşik grafiğe ayrılan bellektir. dxdiag aynı belleği 8192 MB diye gösterir (8 × 1024). Üreticinin 256 GB dediği disk işletim sisteminde yaklaşık 238 GB görünür: üretici 10⁹, işletim sistemi 1024³ bayt ile hesaplar. Öğrenci ekranda gördüğünü birimiyle yazar; iki değer de doğrudur." },
+    { "baslik": "Çekirdek ve GHz", "metin": "Görev Yöneticisi “Çekirdekler” ve “Mantıksal işlemciler” sayısını ayrı gösterir; kartta fiziksel çekirdek sayısı kullanılır. Saat hızı (GHz) farklı kuşaktaki işlemcileri karşılaştırmak için tek başına yeterli değildir. Bu nedenle derste GHz yalnız not edilir, uygunluk kararında çekirdek sayısı ve bellek kullanılır." },
+    { "baslik": "Tümleşik ve harici ekran kartı", "metin": "Tümleşik grafik işlemcinin içindedir ve sistem belleğini paylaşır. Harici kart, anakarttaki PCIe yuvasına takılı ayrı bir karttır ve kendi belleği vardır; görüntü çıkışları kasanın arkasında, alttaki genişleme yuvası kapaklarının hizasında durur. Grup emin olamazsa öğretmen GPU adına bakarak karar verir." },
+    { "baslik": "Port sayımı", "metin": "USB-A, USB-C, HDMI, DisplayPort, VGA, RJ45 ve 3,5 mm ses jakları ayrı türlerdir (H03). Sayım türe göre yapılır ve ön panel eklenir. Harici ekran kartının görüntü çıkışları da “görüntü” sütununa yazılır. Takılı kablolar yerinden oynatılmadan, yalnız bakılarak sayılır." },
+    { "baslik": "Uygunluk kuralları", "metin": "Derste öğrenci düzeyine indirilmiş kurallar kullanılır: ödev/ofis ve programlamada belirleyici bellektir (8 GB ve üstü uygun, 4 GB idare eder, 2 GB zorlanır); çizim ve fotoğraf için 8 GB bellek, 4 çekirdek ve SSD aranır; oyun için harici ekran kartı, 16 GB bellek ve 4 çekirdek aranır, tümleşik grafikte yalnız basit oyunlar önerilir. Bunlar kesin sınır değil, gerekçe kurmayı öğreten bir başlangıç ölçütüdür." }
+  ],
+  "nasil": {
+    "baslik": "Değer → ölçüt → gerekçeli karar",
+    "kartlar": [
+      { "ust": "DEĞER", "baslik": "Ekrandan oku", "metin": "Bellek, disk türü, çekirdek, ekran kartı." },
+      { "ust": "ÖLÇÜT", "baslik": "İşin ihtiyacıyla karşılaştır", "metin": "Örn. çizim için 8 GB + SSD + 4 çekirdek." },
+      { "ust": "SONUÇ", "baslik": "“…çünkü…” cümlesi", "metin": "Karar, bir değere dayanarak söylenir." }
+    ],
+    "metin": "Kimlik kartı yalnız bir değer listesi değildir; asıl ürün, değerlerden çıkarılan gerekçeli yorumdur. Öğrenci önce değeri ekrandan doğru birimle okur, sonra işin ihtiyacıyla karşılaştırır ve kararını bu değere dayandırır. “Kasası büyük”, “rengi güzel”, “portu çok” gibi görünüşe dayalı cümleler gerekçe sayılmaz. Kart üreticideki öneriler aynı basit ölçütlerle hesaplanır; öğretmen, grubun kendi kararıyla üreticinin önerisini karşılaştırarak tartışma başlatabilir."
+  },
+  "kontrol_listesi": [
+    "Her grup için çalışan bir bilgisayar ayırın; öğrenci hesabıyla Ayarlar ve Görev Yöneticisi’nin açıldığını önceden deneyin.",
+    "Kimlik tablosunu (özellik–değer–nereden okundu) ve kart şablonunu grup sayısı kadar basın.",
+    "Kasaların arkası görülebilecek biçimde masaları düzenleyin; bilgisayarları öğrencinin itmesine gerek kalmasın.",
+    "Her makinenin değerlerini kendiniz bir kez not edin; özellikle ekran kartının tümleşik mi harici mi olduğunu belirleyin.",
+    "Etkileşimli dersi akıllı tahtada açın; 3D sahnelerin ve kart üreticinin çalıştığını kontrol edin (3D açılmazsa yerine çizim görünür).",
+    "Belgeleme için okulun tabletini ya da kendi kameranızı hazırlayın; öğrenci telefonu kullanılmaz.",
+    "Gerçek fotoğraflar derse eklenmemişse, her aşamada kendi makinenizde ekranı ve arka paneli canlı gösterin."
+  ],
+  "malzemeler": [
+    ["Çalışan masaüstü bilgisayar", "1", "Öğrenci hesabı açık; ayar değiştirme yetkisi gerekmez"],
+    ["Basılı kimlik tablosu", "1", "Özellik, değer (birimiyle), nereden okundu"],
+    ["Kart şablonu (A5)", "1", "Kart üretici kullanılamazsa elle doldurulur"],
+    ["Kalem, renkli kalem", "1 takım", "Uygunluk rozetleri için ✓ / ~ / ✗ işaretleri"],
+    ["El feneri", "Sınıf başı 1–2", "Arka paneli aydınlatmak için; kablolara dokunulmaz"],
+    ["Okul tableti / kamera", "Sınıf başı 1", "Belgeleme; fotoğrafı öğretmen çeker"]
+  ],
+  "akis": [
+    { "asama": "Giriş ve görev", "bas": 0, "son": 4, "ogretmen": "Envanter senaryosunu anlat; “Bir makinenin belleğini öğrenmenin en kolay yolu ne?” diye tahmin aldır. Rolleri dağıt.", "ogrenci": "Tahminini seçer, rolünü alır, tabloyu önüne koyar.", "kontrol": "Her grupta dört rol belli mi?", "slayt": "1–3" },
+    { "asama": "Bul ve tabloya yaz", "bas": 4, "son": 11, "ogretmen": "Sistem bilgisi provasını üç ekranla oynat; birimsiz sayı hatasında dur. Grupları dolaşarak okumayı izle.", "ogrenci": "Hakkında ve Görev Yöneticisi’nden değerleri okur, tabloya birimleriyle yazar.", "kontrol": "İşlemci, bellek, disk türü ve boyutu yazıldı mı; birimler var mı?", "slayt": "4–5" },
+    { "asama": "Portları say", "bas": 11, "son": 15, "ogretmen": "Arka panel provasını oynat; sayımın türe göre yapıldığını göster. Kablolara dokunulmadığını denetle.", "ogrenci": "Önü ve arkayı inceler, dört türde sayı yazar.", "kontrol": "Ön panel eklendi mi, toplam tutarlı mı?", "slayt": "6" },
+    { "asama": "Yorumla", "bas": 15, "son": 21, "ogretmen": "Üç örnek makinenin karşılaştırmasını izlet; tahtada bir “çünkü” cümlesini birlikte kur. Etkinlik 2’yi bir gönüllüye yaptır.", "ogrenci": "Dört iş için karar verir, her kararı bir değere dayandırır.", "kontrol": "Her kararın yanında değere dayalı bir gerekçe var mı?", "slayt": "7, 11" },
+    { "asama": "Kartı hazırla", "bas": 21, "son": 28, "ogretmen": "Etiketleme provasını oynat; ardından grupların değerlerini kart üreticiye girmesini sağla. Kartları tabletle fotoğrafla.", "ogrenci": "Değerleri girer, mini modeldeki etiketleri kontrol eder, kartı adlandırır.", "kontrol": "Kartta 8 alan dolu ve en az bir “uygun” iş var mı?", "slayt": "8, 10" },
+    { "asama": "Sun", "bas": 28, "son": 32, "ogretmen": "Sunum provasını göster; 2–3 grubu birer dakika sundur, süreyi tut.", "ogrenci": "Sunucu kartı dört bölümde anlatır; grup soruları yanıtlar.", "kontrol": "Sunum bir gerekçe cümlesiyle bitti mi?", "slayt": "9" },
+    { "asama": "Test ve kapanış", "bas": 32, "son": 35, "ogretmen": "Zaman varsa yükseltme slaytını tartıştır; özetin ardından bilgi testini çözdür.", "ogrenci": "Testi çözer, kartını teslim eder.", "kontrol": "Gerekçenin bir değere dayanması gerektiğini söyleyebiliyor mu?", "slayt": "12–15" }
+  ],
+  "adimlar": [
+    { "baslik": "Sistem bilgisini bul", "goster": "Provayı Hakkında ekranıyla oynatın; imleç Sistem’e, sonra Hakkında’ya gittiğinde durdurup satırları gösterin. Ardından Görev Yöneticisi ve dxdiag seçeneklerini de oynatın. Sonra kendi makinenizde Ctrl+Shift+Esc ile Performans sekmesini açın. “Bu ekranda işlemcinin adı ve hızı var; çekirdek sayısını Görev Yöneticisi’nden alacağız.”", "sor": "“Kasayı açmadan belleği öğrenebildik; kasayı açmanın ne gibi riskleri olurdu?” (statik elektrik, gereksiz sök–tak)", "kontrol": "Okuyucu, işlemci satırını ve bellek satırını parmağıyla gösterebiliyor.", "sik_hata": "“Kullanılabilir 7,80 GB” yazılıyor → yüklü değerin (8 GB) karta yazıldığını, farkın donanıma ayrılan pay olduğunu açıklayın." },
+    { "baslik": "Tabloyu doldur", "goster": "Provada bellek satırında yalnız “8” yazıldığı ana dikkat çekin: “Bu sekiz ne? Çekirdek mi, gigabayt mı?” Birim eklenince devam ettirin. Sonra 238 GB notunu H02’ye bağlayın.", "sor": "“Kutusunda 256 GB yazan disk ekranda neden 238 GB görünüyor?” (1000 ile 1024 farkı)", "kontrol": "Tablonun her satırında birim var; ayrı ekran kartı yoksa “tümleşik” yazılmış.", "sik_hata": "Değerler “Nereden okundu?” sütunu boş bırakılıyor → her satıra ekranın adını (Hakkında, Görev Yöneticisi, dxdiag) yazdırın." },
+    { "baslik": "Portları say", "goster": "3D provayı oynatın: portlar türüne göre sırayla parlar, sayaçlar artar, sonda ön panel eklenir. Gerçek kasada el feneriyle arkayı aydınlatın; parmakla portları göstermeyin, kalemle işaret edin.", "sor": "“HDMI ile DisplayPort’u aynı sütuna mı yazarız?” (ikisi de görüntü taşır; tür adı notta ayrıca yazılabilir)", "kontrol": "Dört türün her birine bir sayı yazılmış, ön panel toplamda var.", "sik_hata": "Takılı kablolar çıkarılıp portlar sayılıyor → kabloya dokunmadan, takılı portun da sayıldığını hatırlatın." },
+    { "baslik": "Ne için uygun?", "goster": "Provada A, B ve C makinelerini sırayla seçin; rozetler belirirken “Bu sonuç hangi değerden geliyor?” diye sorun. Tahtaya “… için uygun, çünkü …” kalıbını yazın.", "sor": "“Portu çok olan bir bilgisayar çizim için daha mı iyidir?” (hayır; çizimde bellek, çekirdek ve disk türü belirleyicidir)", "kontrol": "Grup dört işin her biri için ✓ / ~ / ✗ işaretlemiş ve bir değer adı geçen gerekçe yazmış.", "sik_hata": "Gerekçe görünüşe dayanıyor (“kasası büyük”, “yeni görünüyor”) → “Hangi sayıya baktın?” diye sorarak değere yönlendirin." },
+    { "baslik": "Kimlik kartını hazırla", "goster": "3D provayı oynatın: parçalar sırayla parlar ve numaralı etiket alır, sonra etiketli model kartın yüzüne yerleşir. Ardından Etkinlik 1’de bir grubun değerlerini birlikte girin; her girişte ilgili parçanın parladığını gösterin.", "sor": "“Ekran kartını ‘tümleşik’ seçince modelde ne değişti, neden?” (ayrı kart yok; görüntü işlemcide)", "kontrol": "Kart üreticide ilerleme 8 / 8; kart adı verilmiş; uygunluk rozetleri grubun kararıyla tutarlı.", "sik_hata": "Disk boyutu TB olarak yazılmak isteniyor → kutuya GB girildiğini, 1 TB için 1000 yazılabileceğini söyleyin." },
+    { "baslik": "Sun", "goster": "Sunum provasını oynatın; sayaç 15’er saniye azalırken dört bölümün (ad, değerler, portlar, uygunluk) sırayla işaretlendiğini gösterin. Bir grubu örnek olarak kaldırın ve süreyi siz tutun.", "sor": "“Dinleyici sadece bir cümle hatırlayacak olsa, hangisi olmalı?” (gerekçeli uygunluk cümlesi)", "kontrol": "Sunum bir dakikayı geçmedi ve “çünkü” içeren bir cümleyle bitti.", "sik_hata": "Sunucu değerleri tablodan tek tek okuyor → yalnız dört bölümü anlatmasını, değerleri karttan göstermesini isteyin." }
+  ],
+  "yapim_tablosu": [
+    ["İşlemci (ad, hız)", "Ayarlar > Sistem > Hakkında", "Model adı + GHz, ör. 2,40 GHz", "Kartta marka yazılabilir; derste yalnız değer kullanılır"],
+    ["Çekirdek sayısı", "Görev Yöneticisi > Performans > CPU", "“Çekirdekler” satırı, ör. 4", "Mantıksal işlemci sayısıyla karıştırılmaz"],
+    ["Bellek (RAM)", "Hakkında ya da dxdiag > Sistem", "Yüklü değer, ör. 8 GB (dxdiag: 8192 MB)", "Kullanılabilir değer değil, yüklü değer"],
+    ["Depolama", "Görev Yöneticisi > Performans > Disk 0", "Tür + boyut, ör. SSD · 238 GB", "Ekrandaki değer yazılır"],
+    ["Ekran kartı", "Görev Yöneticisi > GPU 0 ya da dxdiag > Ekran", "Tümleşik / harici", "Emin olunamazsa öğretmen karar verir"],
+    ["Portlar", "Kasanın önü ve arkası", "USB · görüntü · ağ · ses sayıları", "Kablolara dokunulmaz"]
+  ],
+  "fotolar": [
+    ["DON-201-H14-1-sistem-bilgisi.jpg", "1. Hakkında sayfası açık"],
+    ["DON-201-H14-2-tablo.jpg", "2. Birimleriyle doldurulmuş tablo"],
+    ["DON-201-H14-3-portlar.jpg", "3. Arka panelde port sayımı"],
+    ["DON-201-H14-4-uygunluk.jpg", "4. Gerekçeli uygunluk notları"],
+    ["DON-201-H14-5-kimlik-karti.jpg", "5. Tamamlanmış kimlik kartı"],
+    ["DON-201-H14-6-sunum.jpg", "6. Grup sunumu"]
+  ],
+  "sokratik": [
+    "Bir bilgisayarı tanımak için neden önce kasayı açmak yerine ekrana bakıyoruz?",
+    "Birimi yazılmamış bir sayı, kartı okuyan birini nasıl yanıltabilir?",
+    "İki makinenin GHz değeri aynıysa, ikisi de aynı hızda mıdır? Neden emin olamayız?",
+    "Bir makine “oyun için zorlanır” diyorsak bu onun kötü bir bilgisayar olduğu anlamına gelir mi?",
+    "Sınıfımızdaki makinelerden hangisi programlama dersine en uygun? Kartlardaki hangi değer bunu söylüyor?",
+    "Tek bir parçayı değiştirme şansın olsaydı, kendi kartındaki makinede hangisini seçerdin ve ne kazanırdın?"
+  ],
+  "sik_hatalar": [
+    ["Görev Yöneticisi basit görünümde açılıyor", "Pencere küçük görünümde", "“Daha fazla ayrıntı” düğmesine bastırın; Performans sekmesini gösterin."],
+    ["Çekirdek yerine 8 yazılıyor", "Mantıksal işlemci sayısı okunmuş", "CPU ekranında “Çekirdekler” satırını parmakla gösterin."],
+    ["Bellek 7,8 GB yazılıyor", "Kullanılabilir değer okunmuş", "Yüklü değeri (8 GB) yazdırın; farkın nedenini kısaca anlatın."],
+    ["Disk türü bulunamıyor", "Performans’ta disk kutucuğuna tıklanmamış", "Sol listedeki Disk 0’ı seçtirip SSD/HDD yazısını gösterin."],
+    ["Portlar iki kez sayılıyor", "Sayılan port işaretlenmemiş", "Sayıcıya soldan sağa, yukarıdan aşağıya tek yönde saydırın."],
+    ["Uygunluk kararında gerekçe yok", "Karar sezgiyle verilmiş", "“Hangi sayıya baktın?” sorusunu sorun; kalıp cümleyi tahtadan okutun."],
+    ["Kart üreticide ilerleme 8’e ulaşmıyor", "Port sayaçlarına hiç dokunulmamış ya da bir metin kutusu boş", "Bölüm düğmelerinde ✓ olmayan bölümü açtırın."]
+  ],
+  "ogrenci_sorun_giderme": [
+    ["Hakkında sayfasını bulamadım", "Ayarlar’ı aç, Sistem’e gir, listenin en altına in."],
+    ["Görev Yöneticisi’nde sekme yok", "“Daha fazla ayrıntı”ya bas, sonra Performans’ı seç."],
+    ["Diskim 1 TB, kutuya ne yazayım?", "Ekranda yazan GB değerini yaz; 1 TB ≈ 1000 GB."],
+    ["Ekran kartım tümleşik mi?", "GPU adını öğretmenine göster; ayrı kart yoksa “tümleşik” seç."]
+  ],
+  "farklilastirma": {
+    "hizli": "Derinleş slaytında kendi kartının verileriyle yükseltme senaryolarını dene ve en fazla kazanç getiren tek yükseltmeyi gerekçesiyle yaz; ikinci bir makinenin kartını da hazırlayıp iki kartı karşılaştır.",
+    "zorlanan": "Önce yalnız üç değeri (bellek, disk türü, ekran kartı) buldurun; kart üreticide “Örnekle doldur” düğmesiyle tamamlanmış bir kartı birlikte inceleyin, sonra kendi değerlerini tek tek değiştirerek girmesini isteyin.",
+    "grup": "3–4 kişilik gruplar: okuyucu ekranı kullanır, yazıcı tabloyu doldurur, sayıcı portları sayar, sunucu kartı anlatır. Roller her aşamada saat yönünde değişir; herkes en az bir değeri kendisi okur ve bir gerekçe cümlesi kurar."
+  },
+  "gozlem": [
+    "Değerleri doğru ekrandan okuyor ve hangi ekrandan aldığını söyleyebiliyor.",
+    "Her sayıyı birimiyle yazıyor; yüklü bellekle kullanılabilir belleği ayırt ediyor.",
+    "Portları kablolara dokunmadan, türüne göre sayıyor ve ön paneli ekliyor.",
+    "Uygunluk kararlarını bir değere dayandırıyor; görünüşe dayalı gerekçeyi düzeltebiliyor.",
+    "Kartını süreyi aşmadan, dört bölümle sunuyor; rolüne uyuyor."
+  ],
+  "rubrik": [
+    ["Değerleri bulma", "Yardımla 1–2 değer buluyor", "Değerlerin çoğunu buluyor, birim eksikleri var", "Tüm değerleri doğru ekrandan, birimleriyle buluyor"],
+    ["Port sayımı", "Türleri karıştırıyor", "Türler doğru, ön panel eksik", "Önü ve arkayı türüne göre eksiksiz sayıyor"],
+    ["Uygunluk kararı", "Karar var, gerekçe yok", "Gerekçe var ama görünüşe dayalı", "Dört kararın her biri bir değere dayanıyor"],
+    ["Kimlik kartı", "Alanların yarısı boş", "Alanlar dolu, uygunluk bölümü eksik", "Kart eksiksiz, adlandırılmış ve okunaklı"],
+    ["Sunum ve grup", "Tablodan okuyarak, süre aşımıyla", "Dört bölüm var ama gerekçe zayıf", "Bir dakikada, gerekçe cümlesiyle; roller paylaşılmış"]
+  ],
+  "kapanis": "Toparlama: Sunulan kartlardan ikisini tahtada yan yana açın ve “Bu iki makineden hangisi robotik kulübüne, hangisi resim kulübüne gitmeli?” diye sorun; öğrencilerin kararlarını değerlere dayandırmasını bekleyin. Isınmadaki tahminleri hatırlatıp bilgiyi kasayı açmadan bulduğumuzu vurgulayın. Ödev: evdeki ya da bir yakınındaki bir bilgisayarın (yoksa bir ürün tanıtım broşürünün) kimlik kartını aynı şablonla hazırlamak. Köprü: Bu proje donanım ünitesinin kapanışıdır; kartlar sınıf panosunda envanter olarak sergilenir ve okul yönetimiyle paylaşılır.",
+  "guvenlik_ek": [
+    "Bilgisayar açıkken kasanın arkasındaki kablolar çekilmez, takılıp çıkarılmaz; portlar yalnız bakılarak sayılır.",
+    "Arkayı görmek için kasa ya da monitör öğrenci tarafından itilmez, kaldırılmaz; gerekirse öğretmen çevirir.",
+    "Ayarlar ve Görev Yöneticisi’nde yalnız bilgi okunur; hiçbir ayar değiştirilmez, “Görevi sonlandır” kullanılmaz.",
+    "Bu projede kasa açılmaz; bütün bilgiler ekrandan ve dışarıdan bakarak toplanır.",
+    "Masada yiyecek ve içecek bulunmaz; priz ve uzatma kablolarının üzerine basılmaz."
+  ],
+  "bitirme": {
+    "baslik": "Kimlik kartı ve sunum",
+    "urun": "Adlandırılmış, sekiz alanı dolu bilgisayar kimlik kartı (kart üreticiden PNG ya da elle doldurulmuş şablon) + birimleriyle doldurulmuş tablo + dört işe ait gerekçeli uygunluk kararları.",
+    "sunum": [
+      "Sunucu kartı bir dakikada dört bölümle anlatır: ad, değerler, portlar, uygunluk.",
+      "Dinleyen gruplar her sunumdan sonra bir soru sorar: “Bu kararı hangi değere dayandırdınız?”",
+      "Kartlar sınıf panosunda envanter olarak sergilenir; öğretmen fotoğraflarını okul yönetimine iletir."
+    ]
+  },
+  "kaynaklar": [
+    "Windows destek belgeleri — Windows’ta bilgisayar özelliklerini bulma (Ayarlar > Sistem > Hakkında) ve Görev Yöneticisi Performans sekmesi",
+    "Windows destek belgeleri — DirectX Tanılama Aracı (dxdiag) kullanımı",
+    "Okulun bilişim teknolojileri laboratuvarı donanım envanteri ve kullanım yönergesi",
+    "Bilişim Üssü DON-201 H02, H03, H06–H09 öğretmen planları (birimler, portlar, parçalar)"
+  ]
+}

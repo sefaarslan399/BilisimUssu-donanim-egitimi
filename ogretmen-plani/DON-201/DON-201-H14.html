@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DON-201 H14 Öğretmen Uygulama Planı — Proje: Bilgisayar Kimlik Kartı</title>
+<style>
+@page{size:A4;margin:15mm 15mm 16mm 15mm;
+  @bottom-left{content:'Bilişim Üssü · Öğretmen Uygulama Planı';font-family:'DejaVu Sans',sans-serif;font-size:7pt;color:#94a3b8}
+  @bottom-right{content:counter(page) ' / ' counter(pages);font-family:'DejaVu Sans',sans-serif;font-size:7pt;color:#94a3b8}}
+*{box-sizing:border-box}
+html{font-family:'DejaVu Sans',Verdana,sans-serif;font-size:8.6pt;color:#0f172a;line-height:1.5}
+body{margin:0;max-width:180mm}
+@media screen{body{margin:24px auto;padding:0 12px;background:#f8fafc}}
+.ust-rozet{display:inline-block;border:1.5px solid #e2e8f0;border-radius:12pt;padding:2pt 9pt;font-size:7pt;font-weight:700;letter-spacing:.6pt}
+h1{font-size:18pt;margin:6pt 0 3pt;color:#0f172a;line-height:1.2}
+.alt-baslik{font-size:9.6pt;color:#334155;margin:0 0 7pt}
+.rozetler{display:flex;flex-wrap:wrap;gap:5pt;padding-bottom:9pt;border-bottom:2.5pt solid #0ea5e9;margin-bottom:10pt}
+.rozetler span{border:1px solid #e2e8f0;border-radius:10pt;padding:2pt 8pt;font-size:7.4pt;font-weight:700;background:#fff}
+.rozetler span:first-child{color:#0369a1;border-color:#bae6fd}
+.kart{background:#fff;border:1px solid #e2e8f0;border-radius:9pt;padding:11pt 13pt;margin:0 0 10pt}
+.kart h2{display:flex;align-items:center;gap:8pt;font-size:12.5pt;color:#1e1b4b;margin:0 0 8pt;break-after:avoid}
+.ikon{width:20pt;height:20pt;border-radius:5pt;background:linear-gradient(135deg,#0ea5e9,#0369a1);display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+.ikon svg{width:12pt;height:12pt}
+h3{font-size:9.6pt;color:#1e1b4b;margin:9pt 0 5pt;break-after:avoid}
+p{margin:3pt 0 6pt}
+.senaryo{background:linear-gradient(135deg,#f5f3ff,#eff6ff);border-left:3pt solid #7c3aed;border-radius:6pt;padding:8pt 11pt;margin-bottom:8pt}
+.senaryo .etiket{font-size:7pt;font-weight:700;letter-spacing:1pt;color:#1e1b4b}
+.senaryo p{margin:4pt 0}
+table{width:100%;border-collapse:collapse;margin:2pt 0 6pt}
+th{background:#eef2ff;color:#1e1b4b;font-weight:700;text-align:left;font-size:7.8pt}
+td,th{padding:4pt 6pt;border-bottom:1px solid #e2e8f0;vertical-align:top}
+tr{break-inside:avoid}
+.kunye td:first-child{width:118pt;font-weight:700;color:#334155}
+.kunye ul{margin:0;padding-left:11pt}
+.kavramlar{display:grid;grid-template-columns:1fr 1fr;gap:7pt}
+.kavram{background:#f8fafc;border:1px solid #e2e8f0;border-radius:7pt;padding:7pt 9pt;break-inside:avoid}
+.kavram b{display:block;color:#0369a1;font-size:8.8pt;margin-bottom:2pt}
+.akis3{display:flex;align-items:stretch;gap:5pt;margin:6pt 0;padding:10pt;border-radius:8pt;background:linear-gradient(135deg,#eef2ff,#e0f2fe);break-inside:avoid}
+.akis3-baslik{display:block;text-align:center;margin:0 auto 6pt;background:#1e1b4b;color:#fff;border-radius:9pt;padding:2pt 10pt;font-weight:700;font-size:8pt;width:max-content}
+.akis3-kart{flex:1;background:#fff;border-radius:7pt;overflow:hidden;text-align:center;box-shadow:0 1pt 3pt rgba(15,23,42,.12)}
+.akis3-ust{color:#fff;font-weight:700;font-size:7.4pt;letter-spacing:.8pt;padding:4pt}
+.akis3-kart:nth-child(1) .akis3-ust{background:#10b981}.akis3-kart:nth-child(3) .akis3-ust{background:#6366f1}.akis3-kart:nth-child(5) .akis3-ust{background:#f59e0b}
+.akis3-kart b{display:block;font-size:9pt;margin:5pt 5pt 2pt}
+.akis3-kart span{display:block;font-size:7.6pt;color:#334155;padding:0 6pt 6pt}
+.akis3-ok{align-self:center;color:#64748b;font-weight:700}
+.kutu-liste{list-style:none;padding:0;margin:0}
+.kutu-liste li{display:flex;gap:7pt;margin:0 0 5pt;break-inside:avoid}
+.kutu-liste li::before{content:'';flex-shrink:0;width:9pt;height:9pt;border:1.3pt solid #0f172a;border-radius:2.5pt;margin-top:1.5pt}
+.zaman{margin:4pt 0 10pt}
+.zaman-bar{display:flex;height:16pt;border-radius:4pt;overflow:hidden;gap:1.5pt}
+.zaman-bar div{display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:7pt;white-space:nowrap}
+.zaman-etiket{display:flex;gap:1.5pt;font-size:6.6pt;color:#334155;margin-top:2pt}
+.zaman-etiket div{text-align:center;overflow:hidden}
+.zaman-etiket b{display:block;font-size:6.8pt;color:#1e1b4b}
+.zaman-olcek{display:flex;justify-content:space-between;font-size:6.4pt;color:#94a3b8;margin-top:3pt;border-top:1px solid #e2e8f0;padding-top:1pt}
+.akis td:first-child{width:70pt;font-weight:700;color:#1e1b4b}
+.akis td:first-child span{display:block;font-weight:400;color:#64748b}
+.akis td:last-child{width:34pt;text-align:center}
+.slaytlar{display:flex;flex-wrap:wrap;gap:4pt}
+.slaytlar span{border:1px solid #e2e8f0;border-radius:9pt;padding:1.5pt 7pt;font-size:7.2pt;background:#f8fafc}
+.slaytlar b{color:#0369a1;margin-right:2pt}
+.adim{border:1px solid #dbeafe;border-radius:8pt;overflow:hidden;margin:0 0 7pt;break-inside:avoid}
+.adim-bas{display:flex;align-items:center;gap:7pt;background:#e0f2fe;padding:5pt 9pt;font-weight:700;color:#1e1b4b}
+.adim-bas span{width:15pt;height:15pt;border-radius:4pt;background:#0ea5e9;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:7.6pt}
+.adim table{margin:0}
+.adim td{border-bottom:1px solid #f1f5f9}
+.adim td:first-child{width:74pt;padding-right:0}
+.et{display:inline-block;width:66pt;text-align:center;border-radius:5pt;padding:2pt 0;font-size:6.8pt;font-weight:700;letter-spacing:.5pt}
+.et-goster{background:#dbeafe;color:#1d4ed8}.et-sor{background:#ede9fe;color:#7c3aed}.et-kontrol{background:#d1fae5;color:#059669}.et-hata{background:#fef9c3;color:#92400e}
+.fotolar{display:grid;grid-template-columns:repeat(3,1fr);gap:6pt;margin-top:4pt}
+.foto{break-inside:avoid}
+.foto img{width:100%;height:72pt;object-fit:cover;border-radius:6pt;display:block}
+.foto-yer{height:72pt;border:1.2pt dashed #94a3b8;border-radius:6pt;background:#f8fafc;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#64748b;font-size:6.6pt;padding:4pt;overflow:hidden}
+.foto-yer svg{width:14pt;height:14pt;color:#94a3b8}
+.foto-yer b{font-size:7pt;color:#475569}.foto-yer span{display:none}.foto-yer code{font-size:6pt}
+.foto figcaption{font-size:7.2pt;font-weight:700;color:#1e1b4b;margin-top:2pt}
+ul.madde{margin:2pt 0;padding-left:12pt}ul.madde li{margin:2pt 0}
+.fark{display:grid;grid-template-columns:78pt 1fr;gap:3pt 8pt}
+.fark b{color:#0369a1}
+.rubrik td:first-child{font-weight:700;width:78pt}
+.rubrik th{text-align:center}.rubrik th:first-child{text-align:left}
+.cevap td:nth-child(3){font-weight:700;color:#0369a1;width:104pt}
+.guvenlik-madde{background:#fee2e2;border-left:3pt solid #dc2626;border-radius:5pt;padding:6pt 9pt;margin:0 0 5pt;break-inside:avoid}
+.bitirme{background:linear-gradient(135deg,#fef3c7,#fff7ed);border-radius:7pt;padding:8pt 11pt;border-left:3pt solid #f59e0b;margin-bottom:6pt}
+.bitirme .etiket{font-size:7pt;font-weight:700;letter-spacing:1pt;color:#92400e}
+.imza-alt{margin-top:8pt;font-size:7.4pt;color:#64748b;text-align:center}
+</style>
+</head>
+<body>
+<span class="ust-rozet">ÖĞRETMEN UYGULAMA PLANI · DON-201 · H14</span>
+<h1>Proje: Bilgisayar Kimlik Kartı</h1>
+<p class="alt-baslik">Grup olarak okuldaki bir bilgisayarın değerlerini ekrandan topluyor, portlarını sayıyor ve onu kanıta dayalı bir kimlik kartıyla sınıfa tanıtıyorsun.</p>
+<div class="rozetler"><span>Ortaokul 5–8</span><span>Süre: 1 ders (35 dk)</span><span>Grup: 3–4 kişi</span><span>Çalışan okul bilgisayarı</span><span>Zorluk: Kolay–Orta</span></div>
+<section class="kart"><h2><span class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15 9 22 9 16.5 13.5 18.5 21 12 16.8 5.5 21 7.5 13.5 2 9 9 9"/></svg></span>Hikâye / Senaryo</h2>
+<div class="senaryo"><div class="etiket">LABORATUVAR ENVANTERİ</div><p>Okul idaresi, bilişim laboratuvarındaki makinelerin hangi derslerde işe yarayacağını gösteren bir envanter istiyor. Her grup kendisine verilen bilgisayarın “nüfus kâğıdını” çıkaracak: ekrandan değerlerini okuyacak, bağlantı noktalarını sayacak ve bu makinenin neye yetip neye yetmediğini kanıtlarıyla anlatacak.</p><p><b>Görev:</b> Makinenin işlemci, bellek, depolama ve ekran kartı bilgisini ekrandan oku; portlarını türlerine göre say; dört iş için gerekçeli karar ver; kartı hazırlayıp bir dakikada sun.</p></div>
+<p><b>Öğrenci bu derste ne yapıyor?</b> Her aşamayı önce etkileşimli derste kısa bir provada izliyor, sonra grubuyla gerçek bilgisayarda uyguluyor: Hakkında sayfasından ve Görev Yöneticisi’nden değerleri okuyup basılı tabloya birimleriyle yazıyor, kasanın önünü ve arkasını kablolara dokunmadan inceleyip portları türlerine göre sayıyor, bellek–disk–ekran kartı değerlerine bakarak ödev, çizim, oyun ve programlama için “çünkü”lü kararlar veriyor, değerleri kart üreticiye girip etiketli mini modeli ve kartı oluşturuyor, son olarak kartını bir dakikalık bir sunumla sınıfa tanıtıyor.</p></section>
+<section class="kart"><h2><span class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8l-9-5-9 5v8l9 5 9-5z"/><path d="M3.3 7 12 12l8.7-5M12 22V12"/></svg></span>1. Ders Künyesi</h2>
+<table class="kunye">
+<tr><td>Ders kodu / hafta</td><td>DON-201 · Donanım 201 · H14 · Bakım ve Sorumluluk</td></tr>
+<tr><td>Seviye / sınıf</td><td>Ortaokul · 5–8</td></tr>
+<tr><td>Süre / grup</td><td>1 ders (35 dk) · 3–4 kişilik gruplar; roller: okuyucu (ekranı kullanır), yazıcı (tabloyu doldurur), sayıcı (portları sayar), sunucu (kartı anlatır)</td></tr>
+<tr><td>Donanım / platform</td><td>Grup başına çalışan bir masaüstü bilgisayar (yoksa dizüstü) · basılı kimlik tablosu ve kart şablonu · el feneri (isteğe bağlı)</td></tr>
+<tr><td>Kazanımlar</td><td><ul><li>K1. Sistem bilgisinden işlemci, RAM ve depolama değerlerini bulur.</li><li>K2. Bilgisayarın portlarını sayıp listeler.</li><li>K3. Bilgisayarın hangi işler için uygun olduğunu gerekçelendirir.</li><li>K4. Kimlik kartını hazırlayıp sunar.</li></ul></td></tr>
+<tr><td>Ön koşul</td><td>H02 Bit ve Byte (GB, MB; 1000 ile 1024 farkı), H03 Bağlantı noktaları, H06 İşlemci, H07 RAM, H08 Depolama, H09 Ekran kartı</td></tr>
+<tr><td>Değerlendirme</td><td>Süreç gözlemi + kimlik kartı ürün rubriği + bir dakikalık sunum + 4 soruluk bilgi testi (değerin bulunduğu ekran, port sayımı, işe uygunluk kararı, gerekçe cümlesi)</td></tr>
+<tr><td>Öğrenci dersi</td><td>15 slayt (LMS v9.3) · 4 soruluk bilgi testi + 1 Derinleş bonus sorusu</td></tr>
+</table></section>
+<section class="kart"><h2><span class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg></span>2. Öğretmen İçin Kavramsal Arka Plan</h2>
+<p>Öğrencilerin sorularını yanıtlayabilmen için bu ders şu kavramlara dayanır:</p>
+<div class="kavramlar"><div class="kavram"><b>Sistem bilgisi ekranları</b>Windows’ta Ayarlar &gt; Sistem &gt; Hakkında, işlemcinin model adını ve saat hızını, yüklü belleği ve sistem türünü (64 bit) listeler. Görev Yöneticisi (Ctrl+Shift+Esc) Performans sekmesinde çekirdek sayısını, diskin SSD mi HDD mi olduğunu, kapasitesini ve GPU adını verir. dxdiag (Win+R) belleği MB cinsinden, Ekran sekmesinde ekran kartının adını yazar. Linux tabanlı okul bilgisayarlarında benzer bilgiler çoğunlukla Ayarlar &gt; Hakkında bölümündedir.</div><div class="kavram"><b>Birimler: bellek ve disk</b>Hakkında sayfasındaki “8,00 GB (7,80 GB kullanılabilir)” ifadesinde aradaki küçük fark donanıma, çoğunlukla tümleşik grafiğe ayrılan bellektir. dxdiag aynı belleği 8192 MB diye gösterir (8 × 1024). Üreticinin 256 GB dediği disk işletim sisteminde yaklaşık 238 GB görünür: üretici 10⁹, işletim sistemi 1024³ bayt ile hesaplar. Öğrenci ekranda gördüğünü birimiyle yazar; iki değer de doğrudur.</div><div class="kavram"><b>Çekirdek ve GHz</b>Görev Yöneticisi “Çekirdekler” ve “Mantıksal işlemciler” sayısını ayrı gösterir; kartta fiziksel çekirdek sayısı kullanılır. Saat hızı (GHz) farklı kuşaktaki işlemcileri karşılaştırmak için tek başına yeterli değildir. Bu nedenle derste GHz yalnız not edilir, uygunluk kararında çekirdek sayısı ve bellek kullanılır.</div><div class="kavram"><b>Tümleşik ve harici ekran kartı</b>Tümleşik grafik işlemcinin içindedir ve sistem belleğini paylaşır. Harici kart, anakarttaki PCIe yuvasına takılı ayrı bir karttır ve kendi belleği vardır; görüntü çıkışları kasanın arkasında, alttaki genişleme yuvası kapaklarının hizasında durur. Grup emin olamazsa öğretmen GPU adına bakarak karar verir.</div><div class="kavram"><b>Port sayımı</b>USB-A, USB-C, HDMI, DisplayPort, VGA, RJ45 ve 3,5 mm ses jakları ayrı türlerdir (H03). Sayım türe göre yapılır ve ön panel eklenir. Harici ekran kartının görüntü çıkışları da “görüntü” sütununa yazılır. Takılı kablolar yerinden oynatılmadan, yalnız bakılarak sayılır.</div><div class="kavram"><b>Uygunluk kuralları</b>Derste öğrenci düzeyine indirilmiş kurallar kullanılır: ödev/ofis ve programlamada belirleyici bellektir (8 GB ve üstü uygun, 4 GB idare eder, 2 GB zorlanır); çizim ve fotoğraf için 8 GB bellek, 4 çekirdek ve SSD aranır; oyun için harici ekran kartı, 16 GB bellek ve 4 çekirdek aranır, tümleşik grafikte yalnız basit oyunlar önerilir. Bunlar kesin sınır değil, gerekçe kurmayı öğreten bir başlangıç ölçütüdür.</div></div>
+<h3>Nasıl çalışır?</h3>
+<div class="akis3-baslik">Değer → ölçüt → gerekçeli karar</div><div class="akis3"><div class="akis3-kart"><div class="akis3-ust">DEĞER</div><b>Ekrandan oku</b><span>Bellek, disk türü, çekirdek, ekran kartı.</span></div><div class="akis3-ok">→</div><div class="akis3-kart"><div class="akis3-ust">ÖLÇÜT</div><b>İşin ihtiyacıyla karşılaştır</b><span>Örn. çizim için 8 GB + SSD + 4 çekirdek.</span></div><div class="akis3-ok">→</div><div class="akis3-kart"><div class="akis3-ust">SONUÇ</div><b>“…çünkü…” cümlesi</b><span>Karar, bir değere dayanarak söylenir.</span></div></div>
+<p>Kimlik kartı yalnız bir değer listesi değildir; asıl ürün, değerlerden çıkarılan gerekçeli yorumdur. Öğrenci önce değeri ekrandan doğru birimle okur, sonra işin ihtiyacıyla karşılaştırır ve kararını bu değere dayandırır. “Kasası büyük”, “rengi güzel”, “portu çok” gibi görünüşe dayalı cümleler gerekçe sayılmaz. Kart üreticideki öneriler aynı basit ölçütlerle hesaplanır; öğretmen, grubun kendi kararıyla üreticinin önerisini karşılaştırarak tartışma başlatabilir.</p></section>
+<section class="kart"><h2><span class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="8 12 11 15 16 9"/></svg></span>3. Ön Hazırlık (Ders Öncesi)</h2>
+<h3>Kontrol listesi</h3>
+<ul class="kutu-liste"><li>Her grup için çalışan bir bilgisayar ayırın; öğrenci hesabıyla Ayarlar ve Görev Yöneticisi’nin açıldığını önceden deneyin.</li><li>Kimlik tablosunu (özellik–değer–nereden okundu) ve kart şablonunu grup sayısı kadar basın.</li><li>Kasaların arkası görülebilecek biçimde masaları düzenleyin; bilgisayarları öğrencinin itmesine gerek kalmasın.</li><li>Her makinenin değerlerini kendiniz bir kez not edin; özellikle ekran kartının tümleşik mi harici mi olduğunu belirleyin.</li><li>Etkileşimli dersi akıllı tahtada açın; 3D sahnelerin ve kart üreticinin çalıştığını kontrol edin (3D açılmazsa yerine çizim görünür).</li><li>Belgeleme için okulun tabletini ya da kendi kameranızı hazırlayın; öğrenci telefonu kullanılmaz.</li><li>Gerçek fotoğraflar derse eklenmemişse, her aşamada kendi makinenizde ekranı ve arka paneli canlı gösterin.</li></ul>
+<h3>Malzemeler (grup başına)</h3>
+<table><thead><tr><th>Malzeme</th><th>Adet</th><th>Not</th></tr></thead>
+<tr><td>Çalışan masaüstü bilgisayar</td><td>1</td><td>Öğrenci hesabı açık; ayar değiştirme yetkisi gerekmez</td></tr>
+<tr><td>Basılı kimlik tablosu</td><td>1</td><td>Özellik, değer (birimiyle), nereden okundu</td></tr>
+<tr><td>Kart şablonu (A5)</td><td>1</td><td>Kart üretici kullanılamazsa elle doldurulur</td></tr>
+<tr><td>Kalem, renkli kalem</td><td>1 takım</td><td>Uygunluk rozetleri için ✓ / ~ / ✗ işaretleri</td></tr>
+<tr><td>El feneri</td><td>Sınıf başı 1–2</td><td>Arka paneli aydınlatmak için; kablolara dokunulmaz</td></tr>
+<tr><td>Okul tableti / kamera</td><td>Sınıf başı 1</td><td>Belgeleme; fotoğrafı öğretmen çeker</td></tr>
+</table></section>
+<section class="kart"><h2><span class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>4. Dakika Dakika Ders Akışı</h2>
+<div class="zaman"><div class="zaman-bar"><div style="flex:4;background:#6366f1">4 dk</div><div style="flex:7;background:#0ea5e9">7 dk</div><div style="flex:4;background:#10b981">4 dk</div><div style="flex:6;background:#f59e0b">6 dk</div><div style="flex:7;background:#ec4899">7 dk</div><div style="flex:4;background:#8b5cf6">4 dk</div><div style="flex:3;background:#14b8a6">3 dk</div></div><div class="zaman-etiket"><div style="flex:4"><b>Giriş ve görev</b>slayt 1–3</div><div style="flex:7"><b>Bul ve tabloya yaz</b>slayt 4–5</div><div style="flex:4"><b>Portları say</b>slayt 6</div><div style="flex:6"><b>Yorumla</b>slayt 7, 11</div><div style="flex:7"><b>Kartı hazırla</b>slayt 8, 10</div><div style="flex:4"><b>Sun</b>slayt 9</div><div style="flex:3"><b>Test ve kapanış</b>slayt 12–15</div></div><div class="zaman-olcek"><span>0′</span><span>5′</span><span>10′</span><span>15′</span><span>20′</span><span>25′</span><span>30′</span><span>35′</span></div></div>
+<table class="akis"><thead><tr><th>Aşama / süre</th><th>Öğretmen ne yapar/söyler</th><th>Öğrenci ne yapar</th><th>✔ Kontrol noktası</th><th>Slayt</th></tr></thead>
+<tr><td>Giriş ve görev<span>0–4 dk</span></td><td>Envanter senaryosunu anlat; “Bir makinenin belleğini öğrenmenin en kolay yolu ne?” diye tahmin aldır. Rolleri dağıt.</td><td>Tahminini seçer, rolünü alır, tabloyu önüne koyar.</td><td>Her grupta dört rol belli mi?</td><td>1–3</td></tr>
+<tr><td>Bul ve tabloya yaz<span>4–11 dk</span></td><td>Sistem bilgisi provasını üç ekranla oynat; birimsiz sayı hatasında dur. Grupları dolaşarak okumayı izle.</td><td>Hakkında ve Görev Yöneticisi’nden değerleri okur, tabloya birimleriyle yazar.</td><td>İşlemci, bellek, disk türü ve boyutu yazıldı mı; birimler var mı?</td><td>4–5</td></tr>
+<tr><td>Portları say<span>11–15 dk</span></td><td>Arka panel provasını oynat; sayımın türe göre yapıldığını göster. Kablolara dokunulmadığını denetle.</td><td>Önü ve arkayı inceler, dört türde sayı yazar.</td><td>Ön panel eklendi mi, toplam tutarlı mı?</td><td>6</td></tr>
+<tr><td>Yorumla<span>15–21 dk</span></td><td>Üç örnek makinenin karşılaştırmasını izlet; tahtada bir “çünkü” cümlesini birlikte kur. Etkinlik 2’yi bir gönüllüye yaptır.</td><td>Dört iş için karar verir, her kararı bir değere dayandırır.</td><td>Her kararın yanında değere dayalı bir gerekçe var mı?</td><td>7, 11</td></tr>
+<tr><td>Kartı hazırla<span>21–28 dk</span></td><td>Etiketleme provasını oynat; ardından grupların değerlerini kart üreticiye girmesini sağla. Kartları tabletle fotoğrafla.</td><td>Değerleri girer, mini modeldeki etiketleri kontrol eder, kartı adlandırır.</td><td>Kartta 8 alan dolu ve en az bir “uygun” iş var mı?</td><td>8, 10</td></tr>
+<tr><td>Sun<span>28–32 dk</span></td><td>Sunum provasını göster; 2–3 grubu birer dakika sundur, süreyi tut.</td><td>Sunucu kartı dört bölümde anlatır; grup soruları yanıtlar.</td><td>Sunum bir gerekçe cümlesiyle bitti mi?</td><td>9</td></tr>
+<tr><td>Test ve kapanış<span>32–35 dk</span></td><td>Zaman varsa yükseltme slaytını tartıştır; özetin ardından bilgi testini çözdür.</td><td>Testi çözer, kartını teslim eder.</td><td>Gerekçenin bir değere dayanması gerektiğini söyleyebiliyor mu?</td><td>12–15</td></tr>
+</table>
+<h3>Öğrenci dersindeki slaytlar</h3>
+<div class="slaytlar"><span><b>1</b>Kapak</span><span><b>2</b>Hedefler</span><span><b>3</b>Isınma: Tahmin Et</span><span><b>4</b>Adım 1: Sistem Bilgisini Bul</span><span><b>5</b>Adım 2: Tabloyu Doldur</span><span><b>6</b>Adım 3: Portları Say</span><span><b>7</b>Adım 4: Ne İçin Uygun?</span><span><b>8</b>Adım 5: Kimlik Kartını Hazırla</span><span><b>9</b>Adım 6: Sun</span><span><b>10</b>Etkinlik: Kimlik Kartı Üretici</span><span><b>11</b>Etkinlik: Uygun mu?</span><span><b>12</b>Derinleş: Yükseltme Önerisi</span><span><b>13</b>Özet</span><span><b>14</b>Bilgi Testi</span><span><b>15</b>Tebrikler!</span></div></section>
+<section class="kart"><h2><span class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></span>5. Adım Adım Yönlendirme (Öğretmen Scripti)</h2>
+<p>Her yapım adımında: önce 3D provayı oynat, sonra gerçekte göster; hangi soruyu soracağın, neyi kontrol edeceğin ve sık hatada nasıl müdahale edeceğin.</p>
+<div class="adim"><div class="adim-bas"><span>1</span>Sistem Bilgisini Bul</div><table><tr><td><span class="et et-goster">GÖSTER</span></td><td>Provayı Hakkında ekranıyla oynatın; imleç Sistem’e, sonra Hakkında’ya gittiğinde durdurup satırları gösterin. Ardından Görev Yöneticisi ve dxdiag seçeneklerini de oynatın. Sonra kendi makinenizde Ctrl+Shift+Esc ile Performans sekmesini açın. “Bu ekranda işlemcinin adı ve hızı var; çekirdek sayısını Görev Yöneticisi’nden alacağız.”</td></tr><tr><td><span class="et et-sor">SOR</span></td><td>“Kasayı açmadan belleği öğrenebildik; kasayı açmanın ne gibi riskleri olurdu?” (statik elektrik, gereksiz sök–tak)</td></tr><tr><td><span class="et et-kontrol">✔ KONTROL</span></td><td>Okuyucu, işlemci satırını ve bellek satırını parmağıyla gösterebiliyor.</td></tr><tr><td><span class="et et-hata">⚠ SIK HATA</span></td><td>“Kullanılabilir 7,80 GB” yazılıyor → yüklü değerin (8 GB) karta yazıldığını, farkın donanıma ayrılan pay olduğunu açıklayın.</td></tr></table></div>
+<div class="adim"><div class="adim-bas"><span>2</span>Tabloyu Doldur</div><table><tr><td><span class="et et-goster">GÖSTER</span></td><td>Provada bellek satırında yalnız “8” yazıldığı ana dikkat çekin: “Bu sekiz ne? Çekirdek mi, gigabayt mı?” Birim eklenince devam ettirin. Sonra 238 GB notunu H02’ye bağlayın.</td></tr><tr><td><span class="et et-sor">SOR</span></td><td>“Kutusunda 256 GB yazan disk ekranda neden 238 GB görünüyor?” (1000 ile 1024 farkı)</td></tr><tr><td><span class="et et-kontrol">✔ KONTROL</span></td><td>Tablonun her satırında birim var; ayrı ekran kartı yoksa “tümleşik” yazılmış.</td></tr><tr><td><span class="et et-hata">⚠ SIK HATA</span></td><td>Değerler “Nereden okundu?” sütunu boş bırakılıyor → her satıra ekranın adını (Hakkında, Görev Yöneticisi, dxdiag) yazdırın.</td></tr></table></div>
+<div class="adim"><div class="adim-bas"><span>3</span>Portları Say</div><table><tr><td><span class="et et-goster">GÖSTER</span></td><td>3D provayı oynatın: portlar türüne göre sırayla parlar, sayaçlar artar, sonda ön panel eklenir. Gerçek kasada el feneriyle arkayı aydınlatın; parmakla portları göstermeyin, kalemle işaret edin.</td></tr><tr><td><span class="et et-sor">SOR</span></td><td>“HDMI ile DisplayPort’u aynı sütuna mı yazarız?” (ikisi de görüntü taşır; tür adı notta ayrıca yazılabilir)</td></tr><tr><td><span class="et et-kontrol">✔ KONTROL</span></td><td>Dört türün her birine bir sayı yazılmış, ön panel toplamda var.</td></tr><tr><td><span class="et et-hata">⚠ SIK HATA</span></td><td>Takılı kablolar çıkarılıp portlar sayılıyor → kabloya dokunmadan, takılı portun da sayıldığını hatırlatın.</td></tr></table></div>
+<div class="adim"><div class="adim-bas"><span>4</span>Ne İçin Uygun?</div><table><tr><td><span class="et et-goster">GÖSTER</span></td><td>Provada A, B ve C makinelerini sırayla seçin; rozetler belirirken “Bu sonuç hangi değerden geliyor?” diye sorun. Tahtaya “… için uygun, çünkü …” kalıbını yazın.</td></tr><tr><td><span class="et et-sor">SOR</span></td><td>“Portu çok olan bir bilgisayar çizim için daha mı iyidir?” (hayır; çizimde bellek, çekirdek ve disk türü belirleyicidir)</td></tr><tr><td><span class="et et-kontrol">✔ KONTROL</span></td><td>Grup dört işin her biri için ✓ / ~ / ✗ işaretlemiş ve bir değer adı geçen gerekçe yazmış.</td></tr><tr><td><span class="et et-hata">⚠ SIK HATA</span></td><td>Gerekçe görünüşe dayanıyor (“kasası büyük”, “yeni görünüyor”) → “Hangi sayıya baktın?” diye sorarak değere yönlendirin.</td></tr></table></div>
+<div class="adim"><div class="adim-bas"><span>5</span>Kimlik Kartını Hazırla</div><table><tr><td><span class="et et-goster">GÖSTER</span></td><td>3D provayı oynatın: parçalar sırayla parlar ve numaralı etiket alır, sonra etiketli model kartın yüzüne yerleşir. Ardından Etkinlik 1’de bir grubun değerlerini birlikte girin; her girişte ilgili parçanın parladığını gösterin.</td></tr><tr><td><span class="et et-sor">SOR</span></td><td>“Ekran kartını ‘tümleşik’ seçince modelde ne değişti, neden?” (ayrı kart yok; görüntü işlemcide)</td></tr><tr><td><span class="et et-kontrol">✔ KONTROL</span></td><td>Kart üreticide ilerleme 8 / 8; kart adı verilmiş; uygunluk rozetleri grubun kararıyla tutarlı.</td></tr><tr><td><span class="et et-hata">⚠ SIK HATA</span></td><td>Disk boyutu TB olarak yazılmak isteniyor → kutuya GB girildiğini, 1 TB için 1000 yazılabileceğini söyleyin.</td></tr></table></div>
+<div class="adim"><div class="adim-bas"><span>6</span>Sun</div><table><tr><td><span class="et et-goster">GÖSTER</span></td><td>Sunum provasını oynatın; sayaç 15’er saniye azalırken dört bölümün (ad, değerler, portlar, uygunluk) sırayla işaretlendiğini gösterin. Bir grubu örnek olarak kaldırın ve süreyi siz tutun.</td></tr><tr><td><span class="et et-sor">SOR</span></td><td>“Dinleyici sadece bir cümle hatırlayacak olsa, hangisi olmalı?” (gerekçeli uygunluk cümlesi)</td></tr><tr><td><span class="et et-kontrol">✔ KONTROL</span></td><td>Sunum bir dakikayı geçmedi ve “çünkü” içeren bir cümleyle bitti.</td></tr><tr><td><span class="et et-hata">⚠ SIK HATA</span></td><td>Sunucu değerleri tablodan tek tek okuyor → yalnız dört bölümü anlatmasını, değerleri karttan göstermesini isteyin.</td></tr></table></div>
+</section>
+<section class="kart"><h2><span class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="9" y1="6" x2="20" y2="6"/><line x1="9" y1="12" x2="20" y2="12"/><line x1="9" y1="18" x2="20" y2="18"/><circle cx="4.5" cy="6" r="1"/><circle cx="4.5" cy="12" r="1"/><circle cx="4.5" cy="18" r="1"/></svg></span>6. Yapım Sırası ve Kontrol Tablosu</h2>
+<table><thead><tr><th>Parça</th><th>Yuva / Bağlantı</th><th>Doğru yön işareti</th><th>Not</th></tr></thead>
+<tr><td>İşlemci (ad, hız)</td><td>Ayarlar &gt; Sistem &gt; Hakkında</td><td>Model adı + GHz, ör. 2,40 GHz</td><td>Kartta marka yazılabilir; derste yalnız değer kullanılır</td></tr>
+<tr><td>Çekirdek sayısı</td><td>Görev Yöneticisi &gt; Performans &gt; CPU</td><td>“Çekirdekler” satırı, ör. 4</td><td>Mantıksal işlemci sayısıyla karıştırılmaz</td></tr>
+<tr><td>Bellek (RAM)</td><td>Hakkında ya da dxdiag &gt; Sistem</td><td>Yüklü değer, ör. 8 GB (dxdiag: 8192 MB)</td><td>Kullanılabilir değer değil, yüklü değer</td></tr>
+<tr><td>Depolama</td><td>Görev Yöneticisi &gt; Performans &gt; Disk 0</td><td>Tür + boyut, ör. SSD · 238 GB</td><td>Ekrandaki değer yazılır</td></tr>
+<tr><td>Ekran kartı</td><td>Görev Yöneticisi &gt; GPU 0 ya da dxdiag &gt; Ekran</td><td>Tümleşik / harici</td><td>Emin olunamazsa öğretmen karar verir</td></tr>
+<tr><td>Portlar</td><td>Kasanın önü ve arkası</td><td>USB · görüntü · ağ · ses sayıları</td><td>Kablolara dokunulmaz</td></tr>
+</table>
+<h3>Fotoğraflı sıra</h3>
+<div class="fotolar"><figure class="foto" style="margin:0"><div class="foto-yer" data-foto-gerekli="DON-201-H14-1-sistem-bilgisi.jpg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg><b>Fotoğraf eklenecek</b></div><figcaption>1. Hakkında sayfası açık</figcaption></figure><figure class="foto" style="margin:0"><div class="foto-yer" data-foto-gerekli="DON-201-H14-2-tablo.jpg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg><b>Fotoğraf eklenecek</b></div><figcaption>2. Birimleriyle doldurulmuş tablo</figcaption></figure><figure class="foto" style="margin:0"><div class="foto-yer" data-foto-gerekli="DON-201-H14-3-portlar.jpg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg><b>Fotoğraf eklenecek</b></div><figcaption>3. Arka panelde port sayımı</figcaption></figure><figure class="foto" style="margin:0"><div class="foto-yer" data-foto-gerekli="DON-201-H14-4-uygunluk.jpg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg><b>Fotoğraf eklenecek</b></div><figcaption>4. Gerekçeli uygunluk notları</figcaption></figure><figure class="foto" style="margin:0"><div class="foto-yer" data-foto-gerekli="DON-201-H14-5-kimlik-karti.jpg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg><b>Fotoğraf eklenecek</b></div><figcaption>5. Tamamlanmış kimlik kartı</figcaption></figure><figure class="foto" style="margin:0"><div class="foto-yer" data-foto-gerekli="DON-201-H14-6-sunum.jpg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg><b>Fotoğraf eklenecek</b></div><figcaption>6. Grup sunumu</figcaption></figure></div></section>
+<section class="kart"><h2><span class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12" y2="17"/></svg></span>7. Yönlendirici (Sokratik) Sorular</h2>
+<ul class="madde"><li>Bir bilgisayarı tanımak için neden önce kasayı açmak yerine ekrana bakıyoruz?</li><li>Birimi yazılmamış bir sayı, kartı okuyan birini nasıl yanıltabilir?</li><li>İki makinenin GHz değeri aynıysa, ikisi de aynı hızda mıdır? Neden emin olamayız?</li><li>Bir makine “oyun için zorlanır” diyorsak bu onun kötü bir bilgisayar olduğu anlamına gelir mi?</li><li>Sınıfımızdaki makinelerden hangisi programlama dersine en uygun? Kartlardaki hangi değer bunu söylüyor?</li><li>Tek bir parçayı değiştirme şansın olsaydı, kendi kartındaki makinede hangisini seçerdin ve ne kazanırdın?</li></ul></section>
+<section class="kart"><h2><span class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12" y2="17"/></svg></span>8. Sık Hatalar ve Anında Müdahale</h2>
+<table><thead><tr><th>Belirti</th><th>Olası neden</th><th>Öğretmen müdahalesi</th></tr></thead>
+<tr><td>Görev Yöneticisi basit görünümde açılıyor</td><td>Pencere küçük görünümde</td><td>“Daha fazla ayrıntı” düğmesine bastırın; Performans sekmesini gösterin.</td></tr>
+<tr><td>Çekirdek yerine 8 yazılıyor</td><td>Mantıksal işlemci sayısı okunmuş</td><td>CPU ekranında “Çekirdekler” satırını parmakla gösterin.</td></tr>
+<tr><td>Bellek 7,8 GB yazılıyor</td><td>Kullanılabilir değer okunmuş</td><td>Yüklü değeri (8 GB) yazdırın; farkın nedenini kısaca anlatın.</td></tr>
+<tr><td>Disk türü bulunamıyor</td><td>Performans’ta disk kutucuğuna tıklanmamış</td><td>Sol listedeki Disk 0’ı seçtirip SSD/HDD yazısını gösterin.</td></tr>
+<tr><td>Portlar iki kez sayılıyor</td><td>Sayılan port işaretlenmemiş</td><td>Sayıcıya soldan sağa, yukarıdan aşağıya tek yönde saydırın.</td></tr>
+<tr><td>Uygunluk kararında gerekçe yok</td><td>Karar sezgiyle verilmiş</td><td>“Hangi sayıya baktın?” sorusunu sorun; kalıp cümleyi tahtadan okutun.</td></tr>
+<tr><td>Kart üreticide ilerleme 8’e ulaşmıyor</td><td>Port sayaçlarına hiç dokunulmamış ya da bir metin kutusu boş</td><td>Bölüm düğmelerinde ✓ olmayan bölümü açtırın.</td></tr>
+</table>
+<h3>Öğrencinin derste gördüğü sorun giderme</h3>
+<table><thead><tr><th>Belirti</th><th>Çözüm</th></tr></thead>
+<tr><td>Hakkında sayfasını bulamadım</td><td>Ayarlar’ı aç, Sistem’e gir, listenin en altına in.</td></tr>
+<tr><td>Görev Yöneticisi’nde sekme yok</td><td>“Daha fazla ayrıntı”ya bas, sonra Performans’ı seç.</td></tr>
+<tr><td>Diskim 1 TB, kutuya ne yazayım?</td><td>Ekranda yazan GB değerini yaz; 1 TB ≈ 1000 GB.</td></tr>
+<tr><td>Ekran kartım tümleşik mi?</td><td>GPU adını öğretmenine göster; ayrı kart yoksa “tümleşik” seç.</td></tr>
+</table></section>
+<section class="kart"><h2><span class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></span>9. Farklılaştırma</h2>
+<div class="fark"><b>Hızlı bitiren için</b><span>Derinleş slaytında kendi kartının verileriyle yükseltme senaryolarını dene ve en fazla kazanç getiren tek yükseltmeyi gerekçesiyle yaz; ikinci bir makinenin kartını da hazırlayıp iki kartı karşılaştır.</span><b>Zorlanan için</b><span>Önce yalnız üç değeri (bellek, disk türü, ekran kartı) buldurun; kart üreticide “Örnekle doldur” düğmesiyle tamamlanmış bir kartı birlikte inceleyin, sonra kendi değerlerini tek tek değiştirerek girmesini isteyin.</span><b>Grup yönetimi</b><span>3–4 kişilik gruplar: okuyucu ekranı kullanır, yazıcı tabloyu doldurur, sayıcı portları sayar, sunucu kartı anlatır. Roller her aşamada saat yönünde değişir; herkes en az bir değeri kendisi okur ve bir gerekçe cümlesi kurar.</span></div></section>
+<section class="kart"><h2><span class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>10. Değerlendirme</h2>
+<h3>Gözlem kontrol listesi (süreç)</h3>
+<ul class="kutu-liste"><li>Değerleri doğru ekrandan okuyor ve hangi ekrandan aldığını söyleyebiliyor.</li><li>Her sayıyı birimiyle yazıyor; yüklü bellekle kullanılabilir belleği ayırt ediyor.</li><li>Portları kablolara dokunmadan, türüne göre sayıyor ve ön paneli ekliyor.</li><li>Uygunluk kararlarını bir değere dayandırıyor; görünüşe dayalı gerekçeyi düzeltebiliyor.</li><li>Kartını süreyi aşmadan, dört bölümle sunuyor; rolüne uyuyor.</li></ul>
+<h3>Ürün değerlendirme rubriği</h3>
+<table class="rubrik"><thead><tr><th>Ölçüt</th><th>Başlangıç (1)</th><th>Gelişiyor (2)</th><th>Yeterli (3)</th></tr></thead>
+<tr><td>Değerleri bulma</td><td>Yardımla 1–2 değer buluyor</td><td>Değerlerin çoğunu buluyor, birim eksikleri var</td><td>Tüm değerleri doğru ekrandan, birimleriyle buluyor</td></tr>
+<tr><td>Port sayımı</td><td>Türleri karıştırıyor</td><td>Türler doğru, ön panel eksik</td><td>Önü ve arkayı türüne göre eksiksiz sayıyor</td></tr>
+<tr><td>Uygunluk kararı</td><td>Karar var, gerekçe yok</td><td>Gerekçe var ama görünüşe dayalı</td><td>Dört kararın her biri bir değere dayanıyor</td></tr>
+<tr><td>Kimlik kartı</td><td>Alanların yarısı boş</td><td>Alanlar dolu, uygunluk bölümü eksik</td><td>Kart eksiksiz, adlandırılmış ve okunaklı</td></tr>
+<tr><td>Sunum ve grup</td><td>Tablodan okuyarak, süre aşımıyla</td><td>Dört bölüm var ama gerekçe zayıf</td><td>Bir dakikada, gerekçe cümlesiyle; roller paylaşılmış</td></tr>
+</table>
+<h3>Bilgi testi cevap anahtarı</h3>
+<table class="cevap"><thead><tr><th>#</th><th>Soru</th><th>Doğru cevap</th><th>Açıklama</th></tr></thead>
+<tr><td>1</td><td>Bir bilgisayarın işlemci ve RAM bilgisini en kolay nerede bulursun?</td><td>A) Ayarlar &gt; Sistem &gt; Hakkında ekranında</td><td>Hakkında ekranı işlemciyi ve yüklü RAM’i gösterir. Kasayı açmaya gerek yoktur.</td></tr>
+<tr><td>2</td><td>Görseldeki arka panelde kaç USB-A portu var?</td><td>C) 4</td><td>Dikdörtgen, içinde dil olan dört USB-A var. HDMI, ağ ve ses girişleri ayrı türdür.</td></tr>
+<tr><td>3</td><td>Ece bilgisayarda çizim ve fotoğraf düzenleme yapacak. Hangi kimlik kartı ona daha uygundur?</td><td>B) 8 GB RAM, SSD, 4 çekirdek</td><td>Çizim programları için 8 GB RAM, 4 çekirdek ve hızlı SSD iyi bir başlangıçtır. Port sayısı hızı değiştirmez.</td></tr>
+<tr><td>4</td><td>Deniz kimlik kartını sunuyor. Hangi cümle en iyi gerekçedir?</td><td>D) “8 GB RAM’i ve SSD’si var; ödev ve programlama için uygun.”</td><td>İyi gerekçe bir değere dayanır: RAM, depolama türü ya da ekran kartı. Kasanın boyutu ve rengi gerekçe değildir.</td></tr>
+</table>
+<p><b>Cevap anahtarı:</b> 1-A 2-C 3-B 4-D. Derinleş bonus sorusu puanı düşürmez.</p></section>
+<section class="kart"><h2><span class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>11. Kapanış ve Genişletme</h2>
+<p>Toparlama: Sunulan kartlardan ikisini tahtada yan yana açın ve “Bu iki makineden hangisi robotik kulübüne, hangisi resim kulübüne gitmeli?” diye sorun; öğrencilerin kararlarını değerlere dayandırmasını bekleyin. Isınmadaki tahminleri hatırlatıp bilgiyi kasayı açmadan bulduğumuzu vurgulayın. Ödev: evdeki ya da bir yakınındaki bir bilgisayarın (yoksa bir ürün tanıtım broşürünün) kimlik kartını aynı şablonla hazırlamak. Köprü: Bu proje donanım ünitesinin kapanışıdır; kartlar sınıf panosunda envanter olarak sergilenir ve okul yönetimiyle paylaşılır.</p></section>
+<section class="kart"><h2><span class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5z"/></svg></span>Güvenlik</h2>
+<div class="guvenlik-madde">Bilgisayar açıkken kasanın arkasındaki kablolar çekilmez, takılıp çıkarılmaz; portlar yalnız bakılarak sayılır.</div>
+<div class="guvenlik-madde">Arkayı görmek için kasa ya da monitör öğrenci tarafından itilmez, kaldırılmaz; gerekirse öğretmen çevirir.</div>
+<div class="guvenlik-madde">Ayarlar ve Görev Yöneticisi’nde yalnız bilgi okunur; hiçbir ayar değiştirilmez, “Görevi sonlandır” kullanılmaz.</div>
+<div class="guvenlik-madde">Bu projede kasa açılmaz; bütün bilgiler ekrandan ve dışarıdan bakarak toplanır.</div>
+<div class="guvenlik-madde">Masada yiyecek ve içecek bulunmaz; priz ve uzatma kablolarının üzerine basılmaz.</div>
+</section>
+<section class="kart"><h2><span class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg></span>Bitirme: Kimlik kartı ve sunum</h2>
+<div class="bitirme"><div class="etiket">ÜRÜN</div><p>Adlandırılmış, sekiz alanı dolu bilgisayar kimlik kartı (kart üreticiden PNG ya da elle doldurulmuş şablon) + birimleriyle doldurulmuş tablo + dört işe ait gerekçeli uygunluk kararları.</p></div>
+<h3>Böyle sun</h3>
+<ul class="madde"><li>Sunucu kartı bir dakikada dört bölümle anlatır: ad, değerler, portlar, uygunluk.</li><li>Dinleyen gruplar her sunumdan sonra bir soru sorar: “Bu kararı hangi değere dayandırdınız?”</li><li>Kartlar sınıf panosunda envanter olarak sergilenir; öğretmen fotoğraflarını okul yönetimine iletir.</li></ul></section>
+<section class="kart"><h2><span class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V2H6.5A2.5 2.5 0 0 0 4 4.5v15z"/></svg></span>Referans Kaynaklar</h2>
+<ul class="madde"><li>Windows destek belgeleri — Windows’ta bilgisayar özelliklerini bulma (Ayarlar &gt; Sistem &gt; Hakkında) ve Görev Yöneticisi Performans sekmesi</li><li>Windows destek belgeleri — DirectX Tanılama Aracı (dxdiag) kullanımı</li><li>Okulun bilişim teknolojileri laboratuvarı donanım envanteri ve kullanım yönergesi</li><li>Bilişim Üssü DON-201 H02, H03, H06–H09 öğretmen planları (birimler, portlar, parçalar)</li></ul><p class="imza-alt">Bilişim Üssü · Öğretmen Uygulama Planı · DON-201 H14 · Proje: Bilgisayar Kimlik Kartı</p></section>
+</body>
+</html>

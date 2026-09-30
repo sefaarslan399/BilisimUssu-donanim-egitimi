@@ -9,7 +9,7 @@ Durum: `—` başlanmadı · `K` kalibrasyon (onay bekliyor) · `✓` tamam · `
 | Motor çekirdeği (renderer, sahne yaşam döngüsü, yedek görsel) | K | Tek renderer, slayt yaşam döngüsü, otomatik kalite, `data-yedek`, hareket azaltma, HTML etiket, klavye. H01 ile birlikte onay bekliyor. |
 | Etkileşimler (E-DONDUR, E-BILGI, E-TAK) | K | Yazıldı: E-DONDUR, E-BILGI, E-SINIFLA, E-TAK, E-SAYAC (ampullerle bit/sayı/harf), E-TAHMIN (tahmin et–izle). |
 | Animasyon kalıpları | K | Yazıldı: A-VURGU, A-KATMAN, A-AKIS, A-DONUS, A-TAK (tak/çıkar, vida, kaydır, hiza), A-SAYAC (bit göstergesi), A-DOLUM (bellek dolumu), A-OLCEK (bin kat ölçek), A-FIS (kablo ucunu porta takma), A-KAMERA-TUR, A-DALGA (2D), A-UYARI. E-DOGRU-YANLIS eklendi. |
-| Model kütüphanesi | K | Yazıldı: M-MASAUSTU, M-MASAUSTU-ACIK, M-MONITOR, M-KLAVYE, M-FARE, M-RAM, M-RAM-YUVASI, M-AMPUL-SIRASI, M-ARKA-PANEL, M-KABLO-UCLARI, M-DIZUSTU, M-PSU, M-ANTISTATIK-BILEKLIK, M-PIL, M-CRT, M-GUC-FISI, M-CPU, M-FAN (tozlu API), M-SOGUTUCU. |
+| Model kütüphanesi | K | Yazıldı: M-MASAUSTU, M-MASAUSTU-ACIK, M-MONITOR, M-KLAVYE, M-FARE, M-RAM, M-RAM-YUVASI, M-AMPUL-SIRASI, M-ARKA-PANEL, M-KABLO-UCLARI, M-DIZUSTU, M-PSU, M-ANTISTATIK-BILEKLIK, M-PIL, M-CRT, M-GUC-FISI, M-CPU, M-FAN (tozlu API), M-SOGUTUCU, M-RAM-DDR5, M-SODIMM. |
 
 ## DON-201 – Bilgisayar Donanımı
 
@@ -28,7 +28,7 @@ Durum: `—` başlanmadı · `K` kalibrasyon (onay bekliyor) · `✓` tamam · `
 | H11 | Atölye 2: Disk Sök–Tak, Toplama ve İlk Açılış | U | — | — | |
 | H12 | Taşınabilir Cihazlar, Piller ve E-Atık | K | — | — | |
 | H13 | Basit Sorun Giderme ve Bakım | K+U | — | — | |
-| H14 | Proje: Bilgisayar Kimlik Kartı | U | — | — | |
+| H14 | Proje: Bilgisayar Kimlik Kartı | U | K | K | 15 slayt. Uygulama provaları: sistem bilgisi ekranları (2D), tablo, port sayma (3D arka panel), uygunluk yorumu, kart hazırlama (3D kasa, A-VURGU), sunum; E-KIMLIK-KARTI (canlı kart + etiketli mini model + PNG indirme), uygunluk kararı, yükseltme önerisi (Derinleş). FOTO-GEREKLİ: DON-201-H14-1…6 (6). DOĞRULA: Türkçe Windows satır adları sadeleştirildi; uygunluk eşikleri basitleştirilmiş. |
 
 ## DON-301 – Bilgisayar Donanımı ve Sistem Kurulumu
 
@@ -36,7 +36,7 @@ Durum: `—` başlanmadı · `K` kalibrasyon (onay bekliyor) · `✓` tamam · `
 |---|---|---|---|---|---|
 | H01 | Bilgisayar Mimarisine Giriş | K | K | K | Lise kalibrasyonu (Format K). 15 slayt; terim kartı slaytı, 3D yok (müfredatta sahne3d yok): katman diyagramı, Von Neumann şeması, bellek tablosu simülasyonu, yol animasyonu (OKU/YAZ), önek karşılaştırıcı, 931 GiB hesabı, kapasite dönüştürücü, karşılaştırma oyunu. |
 | H02 | İşlemci | K | — | — | |
-| H03 | Bellek Hiyerarşisi ve RAM | K | — | — | |
+| H03 | Bellek Hiyerarşisi ve RAM | K | K | K | 15 slayt. 3D: DDR4/DDR5 çentik karşılaştırması + yuvaya deneme, DIMM ve SO-DIMM; 2D: hiyerarşi ve insan ölçeği, DRAM tazeleme/uçuculuk, MT/s ve CL, tek/çift kanal. FOTO-GEREKLİ: DON-301-H03-ddr4-ddr5.jpg. DOĞRULA: DDR5 DIMM ve SO-DIMM çentik konumları ikincil kaynaktan (derste mm verilmiyor); M-RAM çentiği 5,1 mm (kaynak 5,575 mm diyor). |
 | H04 | Depolama | K | — | — | |
 | H05 | Anakart | K | — | — | |
 | H06 | Güç Kaynağı ve Soğutma | K | — | — | |
