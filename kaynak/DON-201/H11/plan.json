@@ -1,0 +1,147 @@
+{
+  "format": "U",
+  "altbaslik": "Geçen hafta açtığınız bilgisayarın diskini söküp yeniden takıyor, kasayı kapatıyor ve öğretmen onayından sonra ilk açılışı birlikte yapıyorsunuz.",
+  "rozetler": ["Ortaokul 5–8", "Süre: 1 ders (35 dk)", "Grup: 3–4 kişi", "Eski masaüstü bilgisayar", "Zorluk: Orta"],
+  "senaryo": {
+    "baslik": "TESLİM GÜNÜ",
+    "metin": "Teknik servis ekibi, geçen hafta içini incelediğiniz bilgisayarları geri istiyor. Ama önce her grubun diski yerinden çıkarıp doğru biçimde geri takması ve bilgisayarın sorunsuz açıldığını kanıtlaması gerekiyor. Ekip lideri, açılıştan önce her kasayı kendisi kontrol edecek.",
+    "gorev": "Diski söküp yeniden tak, iki kablosunu doğru yönde bağla, kasayı kapat ve öğretmen onayıyla açıp RAM ile diskin sistemde göründüğünü kanıtla."
+  },
+  "ogrenci_ne_yapiyor": "Her yapım adımını önce etkileşimli dersteki 3D provada izliyor, sonra grubuyla gerçek bilgisayarda tekrarlıyor: diskin yerini ve iki kablosunu buluyor, kabloları ucundan tutarak çıkarıyor, kızak vidalarını söküp diski alıyor; diski geri kaydırıp vidalıyor, L biçimli uçları hizalayarak kabloları takıyor ve her ucu kontrol ediyor. Kapağı kapatıp öğretmenini çağırıyor; onaydan sonra açılışı izliyor ve sistem bilgisinde belleği ve diski buluyor.",
+  "kunye": {
+    "grup": "3–4 kişilik gruplar; roller: uygulayan, kontrolcü, belgeleyen (H10'daki gruplar korunur)",
+    "donanim": "Grup başına eski masaüstü bilgisayar (SATA diskli) · yıldız tornavida · antistatik bileklik · parça kutusu; sınıfta 1 monitör, klavye ve uzatma kablosu (öğretmen masasında)",
+    "on_kosul": "H04 Güvenli Çalışma, H08 Depolama Birimleri, H10 Atölye 1 (kasayı açma, RAM sök–tak)",
+    "degerlendirme": "Süreç gözlemi + ürün rubriği (açılış testi) + 4 soruluk bilgi testi (kablo ayırt etme, L yönü, öğretmen onayı, disk görünmeme nedeni)"
+  },
+  "kavramlar": [
+    { "baslik": "SATA veri kablosu", "metin": "Diskle anakart arasındaki veriyi taşıyan ince, yassı kablodur. İki ucu da aynı 7 pinli, L anahtarlı dişi uçtur; bir ucu diske, öbürü anakarttaki SATA girişine takılır. Bazı uçlarda metal kilit mandalı bulunur, çıkarırken bu mandala bastırılır." },
+    { "baslik": "SATA güç kablosu", "metin": "Güç kaynağından gelen 15 pinli, daha geniş uçtur. Genellikle sarı (12 V), kırmızı (5 V) ve siyah (toprak) teller taşır; bazı güç kaynaklarında turuncu (3,3 V) tel de vardır. Güç kaynağına bağlı ucu sökülmez; yalnız disk tarafı çıkarılır." },
+    { "baslik": "L anahtar (yön kılavuzu)", "metin": "Hem veri hem güç girişinin plastik dili, bir ucunda kısa bir çıkıntı taşır ve önden bakınca L harfine benzer. Kablo ucundaki boşluk da aynı L biçimindedir; ters tutulan uç çıkıntıya takılır ve girmez. Zorlamak dili kırar." },
+    { "baslik": "Disk kızağı ve vidalar", "metin": "3,5 inç disk, kasadaki metal kızağa yandan vidalarla (genellikle kaba dişli, her yanda 2 vida) tutturulur. Bazı kasalarda vidasız plastik raylar kullanılır. Disk, konnektörleri kablolara ulaşılabilecek tarafa bakacak biçimde yerleştirilir." },
+    { "baslik": "İlk açılış ve kısa donanım kontrolü", "metin": "Güç düğmesine basılınca bilgisayar önce kısa bir donanım kontrolü (POST) yapar, sonra ayarlarda belirtilen diskten işletim sistemini başlatır. Açılış diski bağlı değilse ekranda “önyüklenebilir aygıt/açılış diski bulunamadı” türünde bir ileti çıkar." },
+    { "baslik": "Sistem bilgisi ve BIOS ekranı", "metin": "İşletim sistemi açıldıktan sonra ayarlardaki sistem bilgisi (hakkında) sayfası yüklü belleği, dosya gezgini ya da depolama sayfası diski gösterir. Açılışta ekranda yazan tuşla (çoğunlukla Del ya da F2) girilen BIOS/UEFI ana sayfası da belleği ve SATA girişlerindeki diskleri listeler." }
+  ],
+  "nasil": {
+    "baslik": "Disk → iki SATA kablosu → sistem görür",
+    "kartlar": [
+      { "ust": "PARÇA", "baslik": "Disk kızakta", "metin": "Vidalarla sabit, konnektörler kablo tarafında." },
+      { "ust": "BAĞLANTI", "baslik": "Veri + güç uçları", "metin": "L'ler hizalı, iki uç da boşluksuz oturmuş." },
+      { "ust": "SONUÇ", "baslik": "Sistem görür", "metin": "Açılış başarılı; bellek ve disk sistem bilgisinde listelenir." }
+    ],
+    "metin": "Disk çalışmak için iki şeye ihtiyaç duyar: güç kaynağından elektrik ve anakartla veri alışverişi. Güç ucu takılı değilse disk hiç dönmez; veri ucu gevşekse disk döner ama anakart onu göremez. İki durumda da bilgisayar açılış diskini bulamaz ve işletim sistemi başlamaz. Bu yüzden açılıştan önce dört uç (diskteki iki uç, anakarttaki veri ucu, güç kaynağından gelen demet) gözle kontrol edilir; kasa kapatılır ve açılışa yalnız öğretmen karar verir."
+  },
+  "kontrol_listesi": [
+    "Her grubun H10'da kullandığı bilgisayarı aynı masaya koyun; fişleri prizden çekili, kabloları masada toplu olsun.",
+    "Her bilgisayarda SATA diskin (HDD ya da 2,5 inç SSD) takılı olduğunu ve açılış diskinin bu disk olduğunu önceden bir kez açarak doğrulayın.",
+    "Disk kızağı vidalarını bir kez gevşetip yeniden sıkın; vidasız raylı kasalarda rayın nasıl açıldığını kendiniz deneyin.",
+    "Açılış testi için öğretmen masasında tek bir monitör, klavye ve topraklı uzatma kablosu hazırlayın; bilgisayarlar sırayla buraya getirilir ya da fişi siz takarsınız.",
+    "Kısa bir onay listesi çıktısı (kablolar, vidalar, kapak, alet) hazırlayın; her grubun onayını bu listeye imzayla verin.",
+    "Etkileşimli dersi akıllı tahtada açın; 3D provaların ve açılış provasının çalıştığını kontrol edin (3D açılmazsa yerine çizim görünür).",
+    "Gerçek fotoğraflar derse eklenmemişse her adımı kendi masanızdaki bilgisayarda gösterin."
+  ],
+  "malzemeler": [
+    ["Eski masaüstü bilgisayar", "1", "SATA disk takılı; fişi çekili"],
+    ["Yıldız tornavida", "1", "Kızak ve kapak vidaları için"],
+    ["Antistatik bileklik", "1 kişi başı", "Klips kasanın boyasız metaline"],
+    ["Parça kutusu", "1", "Disk ve kapak vidaları ayrı bölmelerde"],
+    ["Onay listesi çıktısı", "1", "Öğretmen imzası için"],
+    ["Monitör, klavye, uzatma kablosu", "Sınıf başı 1 takım", "Açılış testi öğretmen masasında"]
+  ],
+  "akis": [
+    { "asama": "Giriş ve güvenlik", "bas": 0, "son": 4, "ogretmen": "Teslim günü senaryosunu anlat; “Kablo ucunu ters tutsak ne olur?” tahminini aldır. Güvenlik şeridini gruplara sesli işaretlet.", "ogrenci": "Tahmin eder, rollerini alır, fişin çekili olduğunu gösterir, bilekliği bağlar.", "kontrol": "Tüm fişler masada, bileklik klipsleri metalde mi?", "slayt": "1–4" },
+    { "asama": "Diski ve kabloları bul", "bas": 4, "son": 8, "ogretmen": "3D provayı oynat; mavi ve turuncu etiketlerde durup iki kabloyu karşılaştır. Gerçek kasada kabloları dokunmadan göster.", "ogrenci": "Diskin yerini ve iki kabloyu bulur, adlarını söyler.", "kontrol": "Uygulayan iki kabloyu doğru adla gösteriyor mu?", "slayt": "5" },
+    { "asama": "Diski sök", "bas": 8, "son": 13, "ogretmen": "Kabloların ucundan çekilişini ve vidaların kutuya gidişini izlet; grupları dolaşıp kablodan çekeni durdur.", "ogrenci": "Uçları çıkarır, vidaları söker, diski kızaktan alıp masaya yatırır.", "kontrol": "Vidalar kutuda, kablo uçları sağlam mı?", "slayt": "6" },
+    { "asama": "Diski tak ve kontrol et", "bas": 13, "son": 21, "ogretmen": "Ters takma denemesinde provayı durdurup sor; sonra kontrol provasındaki yarım takılı ucu göster. Her grubun uçlarını kontrolcüye tek tek gösterttir.", "ogrenci": "Diski kaydırıp vidalar, L'leri hizalayıp kabloları takar, üç ucu kontrol eder.", "kontrol": "Disk sallanmıyor, uçlarda boşluk yok mu?", "slayt": "7–8" },
+    { "asama": "Kapat ve öğretmen onayı", "bas": 21, "son": 25, "ogretmen": "Kapanış listesini tahtada birlikte işaretleyin; her kasayı kendin kontrol edip onay listesini imzala.", "ogrenci": "Kasada alet kalmadığını kontrol eder, kapağı takar, öğretmeni çağırır.", "kontrol": "Onay imzası atıldı mı; fişe öğrenci dokunmadı mı?", "slayt": "9" },
+    { "asama": "Açılış ve doğrulama", "bas": 25, "son": 31, "ogretmen": "Açılış provasını oynat, sonra “Kablo gevşek olsaydı?” senaryosunu göster. Fişi kendin tak; grubun güç düğmesine basmasına izin ver.", "ogrenci": "Güç ışığını ve fanı gözler, sistem bilgisinde belleği ve diski bulur, not eder.", "kontrol": "RAM ve disk sistem bilgisinde görünüyor mu?", "slayt": "10" },
+    { "asama": "Pekiştir ve test", "bas": 31, "son": 35, "ogretmen": "Bir gönüllüye E-TAK etkinliğini tahtada yaptır; hızlı gruplara Derinleş'i göster, bilgi testini çözdür.", "ogrenci": "Kabloları sanal olarak doğru girişlere takar, testi çözer.", "kontrol": "Dar ucun veri, geniş ucun güç olduğunu söyleyebiliyor mu?", "slayt": "11–15" }
+  ],
+  "adimlar": [
+    { "baslik": "Diski ve kablolarını bul", "goster": "Önce 3D provayı oynatın: disk kızakta parlar, veri kablosu mavi, güç kablosu turuncu etiketle belirir. Sonra gerçek kasada iki ucu parmağınızla gösterin; dokunmayın.", "sor": "“Hangi kablo daha geniş uçlu? Sizce neden güç ucu daha çok pinli?” (güç, birden çok gerilim ve toprak taşır)", "kontrol": "Uygulayan iki kabloyu adıyla gösterdi; kontrolcü ucun genişliğini söyledi.", "sik_hata": "Renkten karar veriliyor → kablo rengi üreticiye göre değişir; uç genişliğine ve pin sayısına baktırın." },
+    { "baslik": "Diski sök", "goster": "Provada mandala basılıp ucun düz çekildiği anı gösterin. Gerçek kasada veri ucunu kendi elinizle ucundan tutup çıkarın, sonra vidaları kutuya koyun.", "sor": "“Kablodan asılırsak ne olur?” (tel ucundan kopar ya da uç kırılır)", "kontrol": "İki uç çıkarıldı; vidalar kutuda; disk etiketi yukarı bakacak biçimde masada.", "sik_hata": "Mandallı uç zorla çekiliyor → mandala bastırmadan çekmeyi durdurun; güç kaynağı tarafındaki uçlara dokunulmaz." },
+    { "baslik": "Diski tak", "goster": "Provada ters tutulan veri ucunun girmediği yerde durun, tahminleri sorun; uç çevrilince “klik” ile oturduğunu gösterin. Gerçek uçta L boşluğunu öğrencilere yakından gösterin.", "sor": "“L çıkıntısı olmasaydı kabloyu kaç yönde takabilirdik?” (iki yönde; yanlış yön kısa devre riski yaratırdı)", "kontrol": "Disk kızakta sallanmıyor; vidalar sıkı ama zorlanmamış; iki uç tam oturmuş.", "sik_hata": "Uç ters zorlanıyor → dil kırılabilir; öğrenciyi durdurup ucu çevirtin, hiç güç kullanmadan ittirin." },
+    { "baslik": "Kabloları kontrol et", "goster": "Provada yarım takılı güç ucunu ve aradaki boşluğu gösterin; ardından anakarttaki SATA girişini bulun. Gerçek kasada kontrolcüye üç ucu (diskteki iki uç, anakarttaki veri ucu) tek tek gösterttirin.", "sor": "“Veri kablosunun öbür ucu gevşekse ne olur?” (disk döner ama bilgisayar onu göremez)", "kontrol": "Üç uçta boşluk yok; kablolar fana ve keskin kenara değmiyor.", "sik_hata": "Yalnız disk tarafına bakılıyor → anakart ucunu da kontrol ettirin; kablo fan kanadına yakınsa kenara aldırın." },
+    { "baslik": "Kapağı kapat, öğretmen onayı", "goster": "Tahtadaki kapanış listesinde ilk üç maddeyi sınıfça işaretleyin; son madde kilitli kalır. Her grubun kasasını kendiniz inceleyip onay listesini imzalayın.", "sor": "“Kasanın içinde unutulan bir vida neden tehlikelidir?” (anakartta kısa devreye yol açabilir)", "kontrol": "Kapak kapalı ve iki vidası sıkı; kasada alet yok; onay imzası atıldı.", "sik_hata": "Öğrenci fişi kendisi takmaya kalkıyor → fişi yalnız siz takarsınız; kuralı tahtaya yazın." },
+    { "baslik": "Açılış ve doğrulama", "goster": "Önce açılış provasını oynatın; sonra “Kablo gevşek olsaydı?” düğmesiyle hata iletisini gösterin. Gerçek açılışta fişi siz takın, güç düğmesine grubun uygulayanı bassın.", "sor": "“Ekranda ‘açılış diski bulunamadı’ yazarsa ilk neyi kontrol ederiz?” (fiş çekildikten sonra disk kablolarını)", "kontrol": "Güç ışığı yandı, fan döndü; sistem bilgisinde bellek (ör. 8 GB) ve disk görünüyor; belgeleyen not aldı.", "sik_hata": "Disk görünmüyor → bilgisayarı siz kapatıp fişi çekin; grup veri ve güç uçlarını yeniden kontrol etsin, sonra yeniden onay alsın." }
+  ],
+  "yapim_tablosu": [
+    ["3,5 inç disk", "Disk kızağı · yanlarda 2+2 vida", "Konnektörler kablo tarafında, etiket yukarı", "Vidalar parça kutusundan"],
+    ["SATA veri ucu (7 pin)", "Diskteki dar giriş", "Uçtaki L boşluğu ↔ girişteki L dili", "Mandallıysa klik; öbür ucu anakartta"],
+    ["SATA veri ucu (öbür uç)", "Anakart SATA girişi (ör. SATA 1)", "Aynı L eşleşmesi", "Genellikle 1 numaralı giriş kullanılır"],
+    ["SATA güç ucu (15 pin)", "Diskteki geniş giriş", "L dili ↔ L boşluğu; boşluk kalmaz", "Güç kaynağı tarafı sökülmez"],
+    ["Yan kapak", "Kasa arkası · 2 vida", "Önce yerine oturt, sonra öne kaydır", "Kapanmadan kablolar içeri alınır"]
+  ],
+  "fotolar": [
+    ["DON-201-H11-1-disk-kablolar.jpg", "1. Kızaktaki disk ve iki kablo"],
+    ["DON-201-H11-2-disk-sok.jpg", "2. Uç ucundan çekiliyor, disk kızaktan çıkıyor"],
+    ["DON-201-H11-3-disk-tak.jpg", "3. L hizalı uç porta takılıyor"],
+    ["DON-201-H11-4-kablo-kontrol.jpg", "4. Boşluksuz uçlar ve anakart girişi"],
+    ["DON-201-H11-5-ogretmen-onay.jpg", "5. Kapalı kasa ve öğretmen kontrolü"],
+    ["DON-201-H11-6-sistem-bilgisi.jpg", "6. Sistem bilgisinde RAM ve disk"]
+  ],
+  "sokratik": [
+    "Veri ve güç girişi aynı büyüklükte olsaydı ne tür hatalar yapılabilirdi?",
+    "L biçimi hem kabloyu hem diski nasıl korur?",
+    "Kabloyu ucundan tutmak ile kablodan çekmek arasında ne fark var?",
+    "Açılışa neden öğrenci değil öğretmen karar veriyor?",
+    "Disk döndüğü hâlde bilgisayar diski göremiyorsa hangi kabloyu şüpheli sayarsın?",
+    "Sistem bilgisinde belleği ve diski görmek, bir teknisyene neyi kanıtlar?"
+  ],
+  "sik_hatalar": [
+    ["Uç porta girmiyor", "L ters tutulmuş ya da güç ucu veri girişine denenmiş", "Durdurun; ucu çevirtip dar–geniş eşleşmesini sordurun, zorlatmayın."],
+    ["Uç takıldı ama sallanıyor", "Yarım oturmuş", "Ucundan düz bastırıp klik bekletin; boşluğu kontrolcüye gösterttirin."],
+    ["Disk kızağa girmiyor", "Ters yönde kaydırılıyor ya da vida yarı takılı kalmış", "Konnektör yönünü ve eski vidaları kontrol ettirin."],
+    ["Vida tutmuyor", "Yanlış (ince dişli) vida ya da eğri takılmış", "Kutudaki doğru vidayı seçtirin; önce elle birkaç tur çevirtin."],
+    ["Açılışta disk bulunamadı iletisi", "Veri ya da güç ucu gevşek; anakart ucu çıkmış", "Siz kapatıp fişi çekin; grup uçları kontrol etsin, yeniden onay verin."],
+    ["Fan dönüyor, ekranda görüntü yok", "Monitör kablosu ya da RAM yerinden oynamış", "Fişi çekin; H10'daki RAM kontrolünü ve monitör bağlantısını yaptırın."],
+    ["Kapak kapanmıyor", "Kablo kapak kenarına sıkışmış", "Kabloları içeri toplatıp kapağı yeniden kaydırtın."]
+  ],
+  "ogrenci_sorun_giderme": [
+    ["Kablo girmiyor", "Ucu çevir: iki L aynı yöne baksın. Zorlama."],
+    ["Hangi giriş?", "Dar uç dar girişe, geniş uç geniş girişe."],
+    ["Uç oynuyor", "Ucundan düz it; boşluk kalmasın."],
+    ["Disk görünmüyor", "Öğretmenini çağır; fiş çekildikten sonra kabloları kontrol et."]
+  ],
+  "farklilastirma": {
+    "hizli": "BIOS ekranında bellek (MB) ve SATA girişi satırlarını okuma (Derinleş); 8192 MB'ın kaç GB ettiğini hesaplama; varsa ikinci bir disk ya da 2,5 inç SSD'nin kablolarını karşılaştırma.",
+    "zorlanan": "Önce E-TAK etkinliğini akıllı tahtada yaptırın; gerçek uçta L boşluğunu ve porttaki L dilini yan yana gösterip yalnız bir kabloyla başlatın. Vidalamayı sizin gözetiminizde, elle birkaç tur çevirerek başlatın.",
+    "grup": "Roller H10'daki gibi: uygulayan (diske ve uçlara yalnız o dokunur), kontrolcü (adımı sesli okur, üç ucu kontrol eder), belgeleyen (notları ve fotoğraf karelerini söyler). Sökmede ve takmada uygulayan değişir; açılışta güç düğmesine son uygulayan basar."
+  },
+  "gozlem": [
+    "Kasayla çalışmadan önce fişin çekili olduğunu ve bilekliğin bağlı olduğunu kontrol ediyor.",
+    "Veri ve güç kablosunu uç genişliğinden ayırt ediyor.",
+    "Kabloları ucundan tutarak çıkarıyor; vidaları kutuya koyuyor.",
+    "L'leri hizalayıp zorlamadan takıyor; üç ucu kontrol ediyor.",
+    "Kapağı kapatıp öğretmen onayını bekliyor; açılışta belleği ve diski buluyor."
+  ],
+  "rubrik": [
+    ["Kabloları tanıma", "Kabloları karıştırıyor", "Yardımla ayırt ediyor", "Uç genişliği ve pin sayısıyla kendisi ayırt ediyor"],
+    ["Disk sök–tak", "Diski zorluyor, vida kayıp", "Yardımla söküp takıyor", "Kızak yönü ve vidalarla bağımsız söküp takıyor"],
+    ["Kablo takma", "Ucu zorluyor ya da ters deniyor", "Çevirerek, yardımla takıyor", "L'yi hizalayıp tek denemede, boşluksuz takıyor"],
+    ["Güvenlik ve onay", "Fişe izinsiz dokunuyor", "Hatırlatmayla onay bekliyor", "Kapanış listesini yapıp öğretmen onayını kendiliğinden bekliyor"],
+    ["Doğrulama ve belgeleme", "Açılış sonucu not edilmemiş", "Yalnız açıldığı yazılmış", "Bellek ve disk bilgisi okunup not edilmiş, fotoğraflar tam"]
+  ],
+  "kapanis": "Toparlama: 2–3 gruba açılış notlarını okutun (“Bellek kaç GB, disk kaç GB göründü?”). Isınmadaki tahminleri hatırlatıp ters ucun neden girmediğini sınıfça söyleyin. Ödev: evdeki ya da okuldaki bir bilgisayarın sistem bilgisi sayfasından bellek ve depolama miktarını not etmek; bilgisayar yoksa bir ürün tanıtım kartından okumak. Köprü: H12'de dizüstü, tablet ve telefon gibi taşınabilir cihazların içine, pillere ve elektronik atığa bakacaksınız.",
+  "guvenlik_ek": [
+    "Güç kaynağının içi ve güç kaynağına bağlı kablo uçları sökülmez; yalnız disk tarafındaki uç çıkarılır.",
+    "Kasanın iç kenarları keskin olabilir; disk iki elle, yavaş hareketle çıkarılır ve takılır.",
+    "Kapak kapanmadan önce kasada vida, tornavida ya da etiket kalmadığı kontrol edilir; unutulan metal parça kısa devre yapabilir.",
+    "Açılış testinde fişi öğretmen takar ve çeker; açılış sırasında kasanın içine el sokulmaz, kasa açılmaz."
+  ],
+  "bitirme": {
+    "baslik": "Çalışan sistem ve belgeleme",
+    "urun": "Diski kızakta vidalı, iki kablosu doğru takılı, kapağı kapalı ve öğretmen onaylı bilgisayar; açılışta sistem bilgisinde görünen bellek ve disk bilgisini içeren kısa not + altı fotoğraflı adım belgesi.",
+    "sunum": [
+      "Her grup açılış notunu tahtada okur: bellek miktarı, disk kapasitesi, açılış süresince gözlenen ışık ve fan.",
+      "Belgeleyen, altı fotoğrafı adım sırasına göre gösterir; kontrolcü hangi uçları kontrol ettiğini söyler.",
+      "Disk görünmeyen grup, sorunu nasıl bulup giderdiğini kısa bir “arıza raporu” ile anlatır."
+    ]
+  },
+  "kaynaklar": [
+    "Kullanılan bilgisayarın anakart kılavuzu — SATA girişleri ve açılış (BIOS/UEFI) bölümü",
+    "Kasa kılavuzu — 3,5 inç disk kızağı montajı",
+    "SATA-IO — Serial ATA konnektör ve kablo tanımları (sata-io.org)",
+    "Okulun bilişim teknolojileri atölyesi güvenlik yönergesi"
+  ]
+}

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DON-201 H11 Öğretmen Uygulama Planı — Atölye 2: Disk Sök–Tak, Toplama ve İlk Açılış</title>
+<style>
+@page{size:A4;margin:15mm 15mm 16mm 15mm;
+  @bottom-left{content:'Bilişim Üssü · Öğretmen Uygulama Planı';font-family:'DejaVu Sans',sans-serif;font-size:7pt;color:#94a3b8}
+  @bottom-right{content:counter(page) ' / ' counter(pages);font-family:'DejaVu Sans',sans-serif;font-size:7pt;color:#94a3b8}}
+*{box-sizing:border-box}
+html{font-family:'DejaVu Sans',Verdana,sans-serif;font-size:8.6pt;color:#0f172a;line-height:1.5}
+body{margin:0;max-width:180mm}
+@media screen{body{margin:24px auto;padding:0 12px;background:#f8fafc}}
+.ust-rozet{display:inline-block;border:1.5px solid #e2e8f0;border-radius:12pt;padding:2pt 9pt;font-size:7pt;font-weight:700;letter-spacing:.6pt}
+h1{font-size:18pt;margin:6pt 0 3pt;color:#0f172a;line-height:1.2}
+.alt-baslik{font-size:9.6pt;color:#334155;margin:0 0 7pt}
+.rozetler{display:flex;flex-wrap:wrap;gap:5pt;padding-bottom:9pt;border-bottom:2.5pt solid #0ea5e9;margin-bottom:10pt}
+.rozetler span{border:1px solid #e2e8f0;border-radius:10pt;padding:2pt 8pt;font-size:7.4pt;font-weight:700;background:#fff}
+.rozetler span:first-child{color:#0369a1;border-color:#bae6fd}
+.kart{background:#fff;border:1px solid #e2e8f0;border-radius:9pt;padding:11pt 13pt;margin:0 0 10pt}
+.kart h2{display:flex;align-items:center;gap:8pt;font-size:12.5pt;color:#1e1b4b;margin:0 0 8pt;break-after:avoid}
+.ikon{width:20pt;height:20pt;border-radius:5pt;background:linear-gradient(135deg,#0ea5e9,#0369a1);display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+.ikon svg{width:12pt;height:12pt}
+h3{font-size:9.6pt;color:#1e1b4b;margin:9pt 0 5pt;break-after:avoid}
+p{margin:3pt 0 6pt}
+.senaryo{background:linear-gradient(135deg,#f5f3ff,#eff6ff);border-left:3pt solid #7c3aed;border-radius:6pt;padding:8pt 11pt;margin-bottom:8pt}
+.senaryo .etiket{font-size:7pt;font-weight:700;letter-spacing:1pt;color:#1e1b4b}
+.senaryo p{margin:4pt 0}
+table{width:100%;border-collapse:collapse;margin:2pt 0 6pt}
+th{background:#eef2ff;color:#1e1b4b;font-weight:700;text-align:left;font-size:7.8pt}
+td,th{padding:4pt 6pt;border-bottom:1px solid #e2e8f0;vertical-align:top}
+tr{break-inside:avoid}
+.kunye td:first-child{width:118pt;font-weight:700;color:#334155}
+.kunye ul{margin:0;padding-left:11pt}
+.kavramlar{display:grid;grid-template-columns:1fr 1fr;gap:7pt}
+.kavram{background:#f8fafc;border:1px solid #e2e8f0;border-radius:7pt;padding:7pt 9pt;break-inside:avoid}
+.kavram b{display:block;color:#0369a1;font-size:8.8pt;margin-bottom:2pt}
+.akis3{display:flex;align-items:stretch;gap:5pt;margin:6pt 0;padding:10pt;border-radius:8pt;background:linear-gradient(135deg,#eef2ff,#e0f2fe);break-inside:avoid}
+.akis3-baslik{display:block;text-align:center;margin:0 auto 6pt;background:#1e1b4b;color:#fff;border-radius:9pt;padding:2pt 10pt;font-weight:700;font-size:8pt;width:max-content}
+.akis3-kart{flex:1;background:#fff;border-radius:7pt;overflow:hidden;text-align:center;box-shadow:0 1pt 3pt rgba(15,23,42,.12)}
+.akis3-ust{color:#fff;font-weight:700;font-size:7.4pt;letter-spacing:.8pt;padding:4pt}
+.akis3-kart:nth-child(1) .akis3-ust{background:#10b981}.akis3-kart:nth-child(3) .akis3-ust{background:#6366f1}.akis3-kart:nth-child(5) .akis3-ust{background:#f59e0b}
+.akis3-kart b{display:block;font-size:9pt;margin:5pt 5pt 2pt}
+.akis3-kart span{display:block;font-size:7.6pt;color:#334155;padding:0 6pt 6pt}
+.akis3-ok{align-self:center;color:#64748b;font-weight:700}
+.kutu-liste{list-style:none;padding:0;margin:0}
+.kutu-liste li{display:flex;gap:7pt;margin:0 0 5pt;break-inside:avoid}
+.kutu-liste li::before{content:'';flex-shrink:0;width:9pt;height:9pt;border:1.3pt solid #0f172a;border-radius:2.5pt;margin-top:1.5pt}
+.zaman{margin:4pt 0 10pt}
+.zaman-bar{display:flex;height:16pt;border-radius:4pt;overflow:hidden;gap:1.5pt}
+.zaman-bar div{display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:7pt;white-space:nowrap}
+.zaman-etiket{display:flex;gap:1.5pt;font-size:6.6pt;color:#334155;margin-top:2pt}
+.zaman-etiket div{text-align:center;overflow:hidden}
+.zaman-etiket b{display:block;font-size:6.8pt;color:#1e1b4b}
+.zaman-olcek{display:flex;justify-content:space-between;font-size:6.4pt;color:#94a3b8;margin-top:3pt;border-top:1px solid #e2e8f0;padding-top:1pt}
+.akis td:first-child{width:70pt;font-weight:700;color:#1e1b4b}
+.akis td:first-child span{display:block;font-weight:400;color:#64748b}
+.akis td:last-child{width:34pt;text-align:center}
+.slaytlar{display:flex;flex-wrap:wrap;gap:4pt}
+.slaytlar span{border:1px solid #e2e8f0;border-radius:9pt;padding:1.5pt 7pt;font-size:7.2pt;background:#f8fafc}
+.slaytlar b{color:#0369a1;margin-right:2pt}
+.adim{border:1px solid #dbeafe;border-radius:8pt;overflow:hidden;margin:0 0 7pt;break-inside:avoid}
+.adim-bas{display:flex;align-items:center;gap:7pt;background:#e0f2fe;padding:5pt 9pt;font-weight:700;color:#1e1b4b}
+.adim-bas span{width:15pt;height:15pt;border-radius:4pt;background:#0ea5e9;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:7.6pt}
+.adim table{margin:0}
+.adim td{border-bottom:1px solid #f1f5f9}
+.adim td:first-child{width:74pt;padding-right:0}
+.et{display:inline-block;width:66pt;text-align:center;border-radius:5pt;padding:2pt 0;font-size:6.8pt;font-weight:700;letter-spacing:.5pt}
+.et-goster{background:#dbeafe;color:#1d4ed8}.et-sor{background:#ede9fe;color:#7c3aed}.et-kontrol{background:#d1fae5;color:#059669}.et-hata{background:#fef9c3;color:#92400e}
+.fotolar{display:grid;grid-template-columns:repeat(3,1fr);gap:6pt;margin-top:4pt}
+.foto{break-inside:avoid}
+.foto img{width:100%;height:72pt;object-fit:cover;border-radius:6pt;display:block}
+.foto-yer{height:72pt;border:1.2pt dashed #94a3b8;border-radius:6pt;background:#f8fafc;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#64748b;font-size:6.6pt;padding:4pt;overflow:hidden}
+.foto-yer svg{width:14pt;height:14pt;color:#94a3b8}
+.foto-yer b{font-size:7pt;color:#475569}.foto-yer span{display:none}.foto-yer code{font-size:6pt}
+.foto figcaption{font-size:7.2pt;font-weight:700;color:#1e1b4b;margin-top:2pt}
+ul.madde{margin:2pt 0;padding-left:12pt}ul.madde li{margin:2pt 0}
+.fark{display:grid;grid-template-columns:78pt 1fr;gap:3pt 8pt}
+.fark b{color:#0369a1}
+.rubrik td:first-child{font-weight:700;width:78pt}
+.rubrik th{text-align:center}.rubrik th:first-child{text-align:left}
+.cevap td:nth-child(3){font-weight:700;color:#0369a1;width:104pt}
+.guvenlik-madde{background:#fee2e2;border-left:3pt solid #dc2626;border-radius:5pt;padding:6pt 9pt;margin:0 0 5pt;break-inside:avoid}
+.bitirme{background:linear-gradient(135deg,#fef3c7,#fff7ed);border-radius:7pt;padding:8pt 11pt;border-left:3pt solid #f59e0b;margin-bottom:6pt}
+.bitirme .etiket{font-size:7pt;font-weight:700;letter-spacing:1pt;color:#92400e}
+.imza-alt{margin-top:8pt;font-size:7.4pt;color:#64748b;text-align:center}
+</style>
+</head>
+<body>
+<span class="ust-rozet">ÖĞRETMEN UYGULAMA PLANI · DON-201 · H11</span>
+<h1>Atölye 2: Disk Sök–Tak, Toplama ve İlk Açılış</h1>
+<p class="alt-baslik">Geçen hafta açtığınız bilgisayarın diskini söküp yeniden takıyor, kasayı kapatıyor ve öğretmen onayından sonra ilk açılışı birlikte yapıyorsunuz.</p>
+<div class="rozetler"><span>Ortaokul 5–8</span><span>Süre: 1 ders (35 dk)</span><span>Grup: 3–4 kişi</span><span>Eski masaüstü bilgisayar</span><span>Zorluk: Orta</span></div>
+<section class="kart"><h2><span class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15 9 22 9 16.5 13.5 18.5 21 12 16.8 5.5 21 7.5 13.5 2 9 9 9"/></svg></span>Hikâye / Senaryo</h2>
+<div class="senaryo"><div class="etiket">TESLİM GÜNÜ</div><p>Teknik servis ekibi, geçen hafta içini incelediğiniz bilgisayarları geri istiyor. Ama önce her grubun diski yerinden çıkarıp doğru biçimde geri takması ve bilgisayarın sorunsuz açıldığını kanıtlaması gerekiyor. Ekip lideri, açılıştan önce her kasayı kendisi kontrol edecek.</p><p><b>Görev:</b> Diski söküp yeniden tak, iki kablosunu doğru yönde bağla, kasayı kapat ve öğretmen onayıyla açıp RAM ile diskin sistemde göründüğünü kanıtla.</p></div>
+<p><b>Öğrenci bu derste ne yapıyor?</b> Her yapım adımını önce etkileşimli dersteki 3D provada izliyor, sonra grubuyla gerçek bilgisayarda tekrarlıyor: diskin yerini ve iki kablosunu buluyor, kabloları ucundan tutarak çıkarıyor, kızak vidalarını söküp diski alıyor; diski geri kaydırıp vidalıyor, L biçimli uçları hizalayarak kabloları takıyor ve her ucu kontrol ediyor. Kapağı kapatıp öğretmenini çağırıyor; onaydan sonra açılışı izliyor ve sistem bilgisinde belleği ve diski buluyor.</p></section>
+<section class="kart"><h2><span class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8l-9-5-9 5v8l9 5 9-5z"/><path d="M3.3 7 12 12l8.7-5M12 22V12"/></svg></span>1. Ders Künyesi</h2>
+<table class="kunye">
+<tr><td>Ders kodu / hafta</td><td>DON-201 · Donanım 201 · H11 · Sök–Tak Atölyesi</td></tr>
+<tr><td>Seviye / sınıf</td><td>Ortaokul · 5–8</td></tr>
+<tr><td>Süre / grup</td><td>1 ders (35 dk) · 3–4 kişilik gruplar; roller: uygulayan, kontrolcü, belgeleyen (H10'daki gruplar korunur)</td></tr>
+<tr><td>Donanım / platform</td><td>Grup başına eski masaüstü bilgisayar (SATA diskli) · yıldız tornavida · antistatik bileklik · parça kutusu; sınıfta 1 monitör, klavye ve uzatma kablosu (öğretmen masasında)</td></tr>
+<tr><td>Kazanımlar</td><td><ul><li>K1. Diskin veri ve güç kablolarını tanır.</li><li>K2. Diski söküp yeniden takar.</li><li>K3. Kasayı kapatır ve öğretmen kontrolünden sonra açılış testini yapar.</li><li>K4. Sistem bilgisinde RAM ve diskin göründüğünü doğrular.</li></ul></td></tr>
+<tr><td>Ön koşul</td><td>H04 Güvenli Çalışma, H08 Depolama Birimleri, H10 Atölye 1 (kasayı açma, RAM sök–tak)</td></tr>
+<tr><td>Değerlendirme</td><td>Süreç gözlemi + ürün rubriği (açılış testi) + 4 soruluk bilgi testi (kablo ayırt etme, L yönü, öğretmen onayı, disk görünmeme nedeni)</td></tr>
+<tr><td>Öğrenci dersi</td><td>15 slayt (LMS v9.3) · 4 soruluk bilgi testi + 1 Derinleş bonus sorusu</td></tr>
+</table></section>
+<section class="kart"><h2><span class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg></span>2. Öğretmen İçin Kavramsal Arka Plan</h2>
+<p>Öğrencilerin sorularını yanıtlayabilmen için bu ders şu kavramlara dayanır:</p>
+<div class="kavramlar"><div class="kavram"><b>SATA veri kablosu</b>Diskle anakart arasındaki veriyi taşıyan ince, yassı kablodur. İki ucu da aynı 7 pinli, L anahtarlı dişi uçtur; bir ucu diske, öbürü anakarttaki SATA girişine takılır. Bazı uçlarda metal kilit mandalı bulunur, çıkarırken bu mandala bastırılır.</div><div class="kavram"><b>SATA güç kablosu</b>Güç kaynağından gelen 15 pinli, daha geniş uçtur. Genellikle sarı (12 V), kırmızı (5 V) ve siyah (toprak) teller taşır; bazı güç kaynaklarında turuncu (3,3 V) tel de vardır. Güç kaynağına bağlı ucu sökülmez; yalnız disk tarafı çıkarılır.</div><div class="kavram"><b>L anahtar (yön kılavuzu)</b>Hem veri hem güç girişinin plastik dili, bir ucunda kısa bir çıkıntı taşır ve önden bakınca L harfine benzer. Kablo ucundaki boşluk da aynı L biçimindedir; ters tutulan uç çıkıntıya takılır ve girmez. Zorlamak dili kırar.</div><div class="kavram"><b>Disk kızağı ve vidalar</b>3,5 inç disk, kasadaki metal kızağa yandan vidalarla (genellikle kaba dişli, her yanda 2 vida) tutturulur. Bazı kasalarda vidasız plastik raylar kullanılır. Disk, konnektörleri kablolara ulaşılabilecek tarafa bakacak biçimde yerleştirilir.</div><div class="kavram"><b>İlk açılış ve kısa donanım kontrolü</b>Güç düğmesine basılınca bilgisayar önce kısa bir donanım kontrolü (POST) yapar, sonra ayarlarda belirtilen diskten işletim sistemini başlatır. Açılış diski bağlı değilse ekranda “önyüklenebilir aygıt/açılış diski bulunamadı” türünde bir ileti çıkar.</div><div class="kavram"><b>Sistem bilgisi ve BIOS ekranı</b>İşletim sistemi açıldıktan sonra ayarlardaki sistem bilgisi (hakkında) sayfası yüklü belleği, dosya gezgini ya da depolama sayfası diski gösterir. Açılışta ekranda yazan tuşla (çoğunlukla Del ya da F2) girilen BIOS/UEFI ana sayfası da belleği ve SATA girişlerindeki diskleri listeler.</div></div>
+<h3>Nasıl çalışır?</h3>
+<div class="akis3-baslik">Disk → iki SATA kablosu → sistem görür</div><div class="akis3"><div class="akis3-kart"><div class="akis3-ust">PARÇA</div><b>Disk kızakta</b><span>Vidalarla sabit, konnektörler kablo tarafında.</span></div><div class="akis3-ok">→</div><div class="akis3-kart"><div class="akis3-ust">BAĞLANTI</div><b>Veri + güç uçları</b><span>L'ler hizalı, iki uç da boşluksuz oturmuş.</span></div><div class="akis3-ok">→</div><div class="akis3-kart"><div class="akis3-ust">SONUÇ</div><b>Sistem görür</b><span>Açılış başarılı; bellek ve disk sistem bilgisinde listelenir.</span></div></div>
+<p>Disk çalışmak için iki şeye ihtiyaç duyar: güç kaynağından elektrik ve anakartla veri alışverişi. Güç ucu takılı değilse disk hiç dönmez; veri ucu gevşekse disk döner ama anakart onu göremez. İki durumda da bilgisayar açılış diskini bulamaz ve işletim sistemi başlamaz. Bu yüzden açılıştan önce dört uç (diskteki iki uç, anakarttaki veri ucu, güç kaynağından gelen demet) gözle kontrol edilir; kasa kapatılır ve açılışa yalnız öğretmen karar verir.</p></section>
+<section class="kart"><h2><span class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="8 12 11 15 16 9"/></svg></span>3. Ön Hazırlık (Ders Öncesi)</h2>
+<h3>Kontrol listesi</h3>
+<ul class="kutu-liste"><li>Her grubun H10'da kullandığı bilgisayarı aynı masaya koyun; fişleri prizden çekili, kabloları masada toplu olsun.</li><li>Her bilgisayarda SATA diskin (HDD ya da 2,5 inç SSD) takılı olduğunu ve açılış diskinin bu disk olduğunu önceden bir kez açarak doğrulayın.</li><li>Disk kızağı vidalarını bir kez gevşetip yeniden sıkın; vidasız raylı kasalarda rayın nasıl açıldığını kendiniz deneyin.</li><li>Açılış testi için öğretmen masasında tek bir monitör, klavye ve topraklı uzatma kablosu hazırlayın; bilgisayarlar sırayla buraya getirilir ya da fişi siz takarsınız.</li><li>Kısa bir onay listesi çıktısı (kablolar, vidalar, kapak, alet) hazırlayın; her grubun onayını bu listeye imzayla verin.</li><li>Etkileşimli dersi akıllı tahtada açın; 3D provaların ve açılış provasının çalıştığını kontrol edin (3D açılmazsa yerine çizim görünür).</li><li>Gerçek fotoğraflar derse eklenmemişse her adımı kendi masanızdaki bilgisayarda gösterin.</li></ul>
+<h3>Malzemeler (grup başına)</h3>
+<table><thead><tr><th>Malzeme</th><th>Adet</th><th>Not</th></tr></thead>
+<tr><td>Eski masaüstü bilgisayar</td><td>1</td><td>SATA disk takılı; fişi çekili</td></tr>
+<tr><td>Yıldız tornavida</td><td>1</td><td>Kızak ve kapak vidaları için</td></tr>
+<tr><td>Antistatik bileklik</td><td>1 kişi başı</td><td>Klips kasanın boyasız metaline</td></tr>
+<tr><td>Parça kutusu</td><td>1</td><td>Disk ve kapak vidaları ayrı bölmelerde</td></tr>
+<tr><td>Onay listesi çıktısı</td><td>1</td><td>Öğretmen imzası için</td></tr>
+<tr><td>Monitör, klavye, uzatma kablosu</td><td>Sınıf başı 1 takım</td><td>Açılış testi öğretmen masasında</td></tr>
+</table></section>
+<section class="kart"><h2><span class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>4. Dakika Dakika Ders Akışı</h2>
+<div class="zaman"><div class="zaman-bar"><div style="flex:4;background:#6366f1">4 dk</div><div style="flex:4;background:#0ea5e9">4 dk</div><div style="flex:5;background:#10b981">5 dk</div><div style="flex:8;background:#f59e0b">8 dk</div><div style="flex:4;background:#ec4899">4 dk</div><div style="flex:6;background:#8b5cf6">6 dk</div><div style="flex:4;background:#14b8a6">4 dk</div></div><div class="zaman-etiket"><div style="flex:4"><b>Giriş ve güvenlik</b>slayt 1–4</div><div style="flex:4"><b>Diski ve kabloları bul</b>slayt 5</div><div style="flex:5"><b>Diski sök</b>slayt 6</div><div style="flex:8"><b>Diski tak ve kontrol et</b>slayt 7–8</div><div style="flex:4"><b>Kapat ve öğretmen onayı</b>slayt 9</div><div style="flex:6"><b>Açılış ve doğrulama</b>slayt 10</div><div style="flex:4"><b>Pekiştir ve test</b>slayt 11–15</div></div><div class="zaman-olcek"><span>0′</span><span>5′</span><span>10′</span><span>15′</span><span>20′</span><span>25′</span><span>30′</span><span>35′</span></div></div>
+<table class="akis"><thead><tr><th>Aşama / süre</th><th>Öğretmen ne yapar/söyler</th><th>Öğrenci ne yapar</th><th>✔ Kontrol noktası</th><th>Slayt</th></tr></thead>
+<tr><td>Giriş ve güvenlik<span>0–4 dk</span></td><td>Teslim günü senaryosunu anlat; “Kablo ucunu ters tutsak ne olur?” tahminini aldır. Güvenlik şeridini gruplara sesli işaretlet.</td><td>Tahmin eder, rollerini alır, fişin çekili olduğunu gösterir, bilekliği bağlar.</td><td>Tüm fişler masada, bileklik klipsleri metalde mi?</td><td>1–4</td></tr>
+<tr><td>Diski ve kabloları bul<span>4–8 dk</span></td><td>3D provayı oynat; mavi ve turuncu etiketlerde durup iki kabloyu karşılaştır. Gerçek kasada kabloları dokunmadan göster.</td><td>Diskin yerini ve iki kabloyu bulur, adlarını söyler.</td><td>Uygulayan iki kabloyu doğru adla gösteriyor mu?</td><td>5</td></tr>
+<tr><td>Diski sök<span>8–13 dk</span></td><td>Kabloların ucundan çekilişini ve vidaların kutuya gidişini izlet; grupları dolaşıp kablodan çekeni durdur.</td><td>Uçları çıkarır, vidaları söker, diski kızaktan alıp masaya yatırır.</td><td>Vidalar kutuda, kablo uçları sağlam mı?</td><td>6</td></tr>
+<tr><td>Diski tak ve kontrol et<span>13–21 dk</span></td><td>Ters takma denemesinde provayı durdurup sor; sonra kontrol provasındaki yarım takılı ucu göster. Her grubun uçlarını kontrolcüye tek tek gösterttir.</td><td>Diski kaydırıp vidalar, L'leri hizalayıp kabloları takar, üç ucu kontrol eder.</td><td>Disk sallanmıyor, uçlarda boşluk yok mu?</td><td>7–8</td></tr>
+<tr><td>Kapat ve öğretmen onayı<span>21–25 dk</span></td><td>Kapanış listesini tahtada birlikte işaretleyin; her kasayı kendin kontrol edip onay listesini imzala.</td><td>Kasada alet kalmadığını kontrol eder, kapağı takar, öğretmeni çağırır.</td><td>Onay imzası atıldı mı; fişe öğrenci dokunmadı mı?</td><td>9</td></tr>
+<tr><td>Açılış ve doğrulama<span>25–31 dk</span></td><td>Açılış provasını oynat, sonra “Kablo gevşek olsaydı?” senaryosunu göster. Fişi kendin tak; grubun güç düğmesine basmasına izin ver.</td><td>Güç ışığını ve fanı gözler, sistem bilgisinde belleği ve diski bulur, not eder.</td><td>RAM ve disk sistem bilgisinde görünüyor mu?</td><td>10</td></tr>
+<tr><td>Pekiştir ve test<span>31–35 dk</span></td><td>Bir gönüllüye E-TAK etkinliğini tahtada yaptır; hızlı gruplara Derinleş'i göster, bilgi testini çözdür.</td><td>Kabloları sanal olarak doğru girişlere takar, testi çözer.</td><td>Dar ucun veri, geniş ucun güç olduğunu söyleyebiliyor mu?</td><td>11–15</td></tr>
+</table>
+<h3>Öğrenci dersindeki slaytlar</h3>
+<div class="slaytlar"><span><b>1</b>Kapak</span><span><b>2</b>Hedefler</span><span><b>3</b>Isınma: Tahmin Et</span><span><b>4</b>Hazırlık ve Güvenlik</span><span><b>5</b>Adım 1: Diski ve Kablolarını Bul</span><span><b>6</b>Adım 2: Diski Sök</span><span><b>7</b>Adım 3: Diski Tak</span><span><b>8</b>Adım 4: Kabloları Kontrol Et</span><span><b>9</b>Adım 5: Kapağı Kapat, Öğretmen Onayı</span><span><b>10</b>Adım 6: Açılış ve Doğrulama</span><span><b>11</b>Etkinlik: Kabloları Doğru Tak</span><span><b>12</b>Derinleş: BIOS’ta Donanımı Oku</span><span><b>13</b>Özet</span><span><b>14</b>Bilgi Testi</span><span><b>15</b>Tebrikler!</span></div></section>
+<section class="kart"><h2><span class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></span>5. Adım Adım Yönlendirme (Öğretmen Scripti)</h2>
+<p>Her yapım adımında: önce 3D provayı oynat, sonra gerçekte göster; hangi soruyu soracağın, neyi kontrol edeceğin ve sık hatada nasıl müdahale edeceğin.</p>
+<div class="adim"><div class="adim-bas"><span>1</span>Diski ve Kablolarını Bul</div><table><tr><td><span class="et et-goster">GÖSTER</span></td><td>Önce 3D provayı oynatın: disk kızakta parlar, veri kablosu mavi, güç kablosu turuncu etiketle belirir. Sonra gerçek kasada iki ucu parmağınızla gösterin; dokunmayın.</td></tr><tr><td><span class="et et-sor">SOR</span></td><td>“Hangi kablo daha geniş uçlu? Sizce neden güç ucu daha çok pinli?” (güç, birden çok gerilim ve toprak taşır)</td></tr><tr><td><span class="et et-kontrol">✔ KONTROL</span></td><td>Uygulayan iki kabloyu adıyla gösterdi; kontrolcü ucun genişliğini söyledi.</td></tr><tr><td><span class="et et-hata">⚠ SIK HATA</span></td><td>Renkten karar veriliyor → kablo rengi üreticiye göre değişir; uç genişliğine ve pin sayısına baktırın.</td></tr></table></div>
+<div class="adim"><div class="adim-bas"><span>2</span>Diski Sök</div><table><tr><td><span class="et et-goster">GÖSTER</span></td><td>Provada mandala basılıp ucun düz çekildiği anı gösterin. Gerçek kasada veri ucunu kendi elinizle ucundan tutup çıkarın, sonra vidaları kutuya koyun.</td></tr><tr><td><span class="et et-sor">SOR</span></td><td>“Kablodan asılırsak ne olur?” (tel ucundan kopar ya da uç kırılır)</td></tr><tr><td><span class="et et-kontrol">✔ KONTROL</span></td><td>İki uç çıkarıldı; vidalar kutuda; disk etiketi yukarı bakacak biçimde masada.</td></tr><tr><td><span class="et et-hata">⚠ SIK HATA</span></td><td>Mandallı uç zorla çekiliyor → mandala bastırmadan çekmeyi durdurun; güç kaynağı tarafındaki uçlara dokunulmaz.</td></tr></table></div>
+<div class="adim"><div class="adim-bas"><span>3</span>Diski Tak</div><table><tr><td><span class="et et-goster">GÖSTER</span></td><td>Provada ters tutulan veri ucunun girmediği yerde durun, tahminleri sorun; uç çevrilince “klik” ile oturduğunu gösterin. Gerçek uçta L boşluğunu öğrencilere yakından gösterin.</td></tr><tr><td><span class="et et-sor">SOR</span></td><td>“L çıkıntısı olmasaydı kabloyu kaç yönde takabilirdik?” (iki yönde; yanlış yön kısa devre riski yaratırdı)</td></tr><tr><td><span class="et et-kontrol">✔ KONTROL</span></td><td>Disk kızakta sallanmıyor; vidalar sıkı ama zorlanmamış; iki uç tam oturmuş.</td></tr><tr><td><span class="et et-hata">⚠ SIK HATA</span></td><td>Uç ters zorlanıyor → dil kırılabilir; öğrenciyi durdurup ucu çevirtin, hiç güç kullanmadan ittirin.</td></tr></table></div>
+<div class="adim"><div class="adim-bas"><span>4</span>Kabloları Kontrol Et</div><table><tr><td><span class="et et-goster">GÖSTER</span></td><td>Provada yarım takılı güç ucunu ve aradaki boşluğu gösterin; ardından anakarttaki SATA girişini bulun. Gerçek kasada kontrolcüye üç ucu (diskteki iki uç, anakarttaki veri ucu) tek tek gösterttirin.</td></tr><tr><td><span class="et et-sor">SOR</span></td><td>“Veri kablosunun öbür ucu gevşekse ne olur?” (disk döner ama bilgisayar onu göremez)</td></tr><tr><td><span class="et et-kontrol">✔ KONTROL</span></td><td>Üç uçta boşluk yok; kablolar fana ve keskin kenara değmiyor.</td></tr><tr><td><span class="et et-hata">⚠ SIK HATA</span></td><td>Yalnız disk tarafına bakılıyor → anakart ucunu da kontrol ettirin; kablo fan kanadına yakınsa kenara aldırın.</td></tr></table></div>
+<div class="adim"><div class="adim-bas"><span>5</span>Kapağı Kapat, Öğretmen Onayı</div><table><tr><td><span class="et et-goster">GÖSTER</span></td><td>Tahtadaki kapanış listesinde ilk üç maddeyi sınıfça işaretleyin; son madde kilitli kalır. Her grubun kasasını kendiniz inceleyip onay listesini imzalayın.</td></tr><tr><td><span class="et et-sor">SOR</span></td><td>“Kasanın içinde unutulan bir vida neden tehlikelidir?” (anakartta kısa devreye yol açabilir)</td></tr><tr><td><span class="et et-kontrol">✔ KONTROL</span></td><td>Kapak kapalı ve iki vidası sıkı; kasada alet yok; onay imzası atıldı.</td></tr><tr><td><span class="et et-hata">⚠ SIK HATA</span></td><td>Öğrenci fişi kendisi takmaya kalkıyor → fişi yalnız siz takarsınız; kuralı tahtaya yazın.</td></tr></table></div>
+<div class="adim"><div class="adim-bas"><span>6</span>Açılış ve Doğrulama</div><table><tr><td><span class="et et-goster">GÖSTER</span></td><td>Önce açılış provasını oynatın; sonra “Kablo gevşek olsaydı?” düğmesiyle hata iletisini gösterin. Gerçek açılışta fişi siz takın, güç düğmesine grubun uygulayanı bassın.</td></tr><tr><td><span class="et et-sor">SOR</span></td><td>“Ekranda ‘açılış diski bulunamadı’ yazarsa ilk neyi kontrol ederiz?” (fiş çekildikten sonra disk kablolarını)</td></tr><tr><td><span class="et et-kontrol">✔ KONTROL</span></td><td>Güç ışığı yandı, fan döndü; sistem bilgisinde bellek (ör. 8 GB) ve disk görünüyor; belgeleyen not aldı.</td></tr><tr><td><span class="et et-hata">⚠ SIK HATA</span></td><td>Disk görünmüyor → bilgisayarı siz kapatıp fişi çekin; grup veri ve güç uçlarını yeniden kontrol etsin, sonra yeniden onay alsın.</td></tr></table></div>
+</section>
+<section class="kart"><h2><span class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="9" y1="6" x2="20" y2="6"/><line x1="9" y1="12" x2="20" y2="12"/><line x1="9" y1="18" x2="20" y2="18"/><circle cx="4.5" cy="6" r="1"/><circle cx="4.5" cy="12" r="1"/><circle cx="4.5" cy="18" r="1"/></svg></span>6. Yapım Sırası ve Kontrol Tablosu</h2>
+<table><thead><tr><th>Parça</th><th>Yuva / Bağlantı</th><th>Doğru yön işareti</th><th>Not</th></tr></thead>
+<tr><td>3,5 inç disk</td><td>Disk kızağı · yanlarda 2+2 vida</td><td>Konnektörler kablo tarafında, etiket yukarı</td><td>Vidalar parça kutusundan</td></tr>
+<tr><td>SATA veri ucu (7 pin)</td><td>Diskteki dar giriş</td><td>Uçtaki L boşluğu ↔ girişteki L dili</td><td>Mandallıysa klik; öbür ucu anakartta</td></tr>
+<tr><td>SATA veri ucu (öbür uç)</td><td>Anakart SATA girişi (ör. SATA 1)</td><td>Aynı L eşleşmesi</td><td>Genellikle 1 numaralı giriş kullanılır</td></tr>
+<tr><td>SATA güç ucu (15 pin)</td><td>Diskteki geniş giriş</td><td>L dili ↔ L boşluğu; boşluk kalmaz</td><td>Güç kaynağı tarafı sökülmez</td></tr>
+<tr><td>Yan kapak</td><td>Kasa arkası · 2 vida</td><td>Önce yerine oturt, sonra öne kaydır</td><td>Kapanmadan kablolar içeri alınır</td></tr>
+</table>
+<h3>Fotoğraflı sıra</h3>
+<div class="fotolar"><figure class="foto" style="margin:0"><div class="foto-yer" data-foto-gerekli="DON-201-H11-1-disk-kablolar.jpg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg><b>Fotoğraf eklenecek</b></div><figcaption>1. Kızaktaki disk ve iki kablo</figcaption></figure><figure class="foto" style="margin:0"><div class="foto-yer" data-foto-gerekli="DON-201-H11-2-disk-sok.jpg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg><b>Fotoğraf eklenecek</b></div><figcaption>2. Uç ucundan çekiliyor, disk kızaktan çıkıyor</figcaption></figure><figure class="foto" style="margin:0"><div class="foto-yer" data-foto-gerekli="DON-201-H11-3-disk-tak.jpg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg><b>Fotoğraf eklenecek</b></div><figcaption>3. L hizalı uç porta takılıyor</figcaption></figure><figure class="foto" style="margin:0"><div class="foto-yer" data-foto-gerekli="DON-201-H11-4-kablo-kontrol.jpg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg><b>Fotoğraf eklenecek</b></div><figcaption>4. Boşluksuz uçlar ve anakart girişi</figcaption></figure><figure class="foto" style="margin:0"><div class="foto-yer" data-foto-gerekli="DON-201-H11-5-ogretmen-onay.jpg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg><b>Fotoğraf eklenecek</b></div><figcaption>5. Kapalı kasa ve öğretmen kontrolü</figcaption></figure><figure class="foto" style="margin:0"><div class="foto-yer" data-foto-gerekli="DON-201-H11-6-sistem-bilgisi.jpg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg><b>Fotoğraf eklenecek</b></div><figcaption>6. Sistem bilgisinde RAM ve disk</figcaption></figure></div></section>
+<section class="kart"><h2><span class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12" y2="17"/></svg></span>7. Yönlendirici (Sokratik) Sorular</h2>
+<ul class="madde"><li>Veri ve güç girişi aynı büyüklükte olsaydı ne tür hatalar yapılabilirdi?</li><li>L biçimi hem kabloyu hem diski nasıl korur?</li><li>Kabloyu ucundan tutmak ile kablodan çekmek arasında ne fark var?</li><li>Açılışa neden öğrenci değil öğretmen karar veriyor?</li><li>Disk döndüğü hâlde bilgisayar diski göremiyorsa hangi kabloyu şüpheli sayarsın?</li><li>Sistem bilgisinde belleği ve diski görmek, bir teknisyene neyi kanıtlar?</li></ul></section>
+<section class="kart"><h2><span class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12" y2="17"/></svg></span>8. Sık Hatalar ve Anında Müdahale</h2>
+<table><thead><tr><th>Belirti</th><th>Olası neden</th><th>Öğretmen müdahalesi</th></tr></thead>
+<tr><td>Uç porta girmiyor</td><td>L ters tutulmuş ya da güç ucu veri girişine denenmiş</td><td>Durdurun; ucu çevirtip dar–geniş eşleşmesini sordurun, zorlatmayın.</td></tr>
+<tr><td>Uç takıldı ama sallanıyor</td><td>Yarım oturmuş</td><td>Ucundan düz bastırıp klik bekletin; boşluğu kontrolcüye gösterttirin.</td></tr>
+<tr><td>Disk kızağa girmiyor</td><td>Ters yönde kaydırılıyor ya da vida yarı takılı kalmış</td><td>Konnektör yönünü ve eski vidaları kontrol ettirin.</td></tr>
+<tr><td>Vida tutmuyor</td><td>Yanlış (ince dişli) vida ya da eğri takılmış</td><td>Kutudaki doğru vidayı seçtirin; önce elle birkaç tur çevirtin.</td></tr>
+<tr><td>Açılışta disk bulunamadı iletisi</td><td>Veri ya da güç ucu gevşek; anakart ucu çıkmış</td><td>Siz kapatıp fişi çekin; grup uçları kontrol etsin, yeniden onay verin.</td></tr>
+<tr><td>Fan dönüyor, ekranda görüntü yok</td><td>Monitör kablosu ya da RAM yerinden oynamış</td><td>Fişi çekin; H10'daki RAM kontrolünü ve monitör bağlantısını yaptırın.</td></tr>
+<tr><td>Kapak kapanmıyor</td><td>Kablo kapak kenarına sıkışmış</td><td>Kabloları içeri toplatıp kapağı yeniden kaydırtın.</td></tr>
+</table>
+<h3>Öğrencinin derste gördüğü sorun giderme</h3>
+<table><thead><tr><th>Belirti</th><th>Çözüm</th></tr></thead>
+<tr><td>Kablo girmiyor</td><td>Ucu çevir: iki L aynı yöne baksın. Zorlama.</td></tr>
+<tr><td>Hangi giriş?</td><td>Dar uç dar girişe, geniş uç geniş girişe.</td></tr>
+<tr><td>Uç oynuyor</td><td>Ucundan düz it; boşluk kalmasın.</td></tr>
+<tr><td>Disk görünmüyor</td><td>Öğretmenini çağır; fiş çekildikten sonra kabloları kontrol et.</td></tr>
+</table></section>
+<section class="kart"><h2><span class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></span>9. Farklılaştırma</h2>
+<div class="fark"><b>Hızlı bitiren için</b><span>BIOS ekranında bellek (MB) ve SATA girişi satırlarını okuma (Derinleş); 8192 MB'ın kaç GB ettiğini hesaplama; varsa ikinci bir disk ya da 2,5 inç SSD'nin kablolarını karşılaştırma.</span><b>Zorlanan için</b><span>Önce E-TAK etkinliğini akıllı tahtada yaptırın; gerçek uçta L boşluğunu ve porttaki L dilini yan yana gösterip yalnız bir kabloyla başlatın. Vidalamayı sizin gözetiminizde, elle birkaç tur çevirerek başlatın.</span><b>Grup yönetimi</b><span>Roller H10'daki gibi: uygulayan (diske ve uçlara yalnız o dokunur), kontrolcü (adımı sesli okur, üç ucu kontrol eder), belgeleyen (notları ve fotoğraf karelerini söyler). Sökmede ve takmada uygulayan değişir; açılışta güç düğmesine son uygulayan basar.</span></div></section>
+<section class="kart"><h2><span class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>10. Değerlendirme</h2>
+<h3>Gözlem kontrol listesi (süreç)</h3>
+<ul class="kutu-liste"><li>Kasayla çalışmadan önce fişin çekili olduğunu ve bilekliğin bağlı olduğunu kontrol ediyor.</li><li>Veri ve güç kablosunu uç genişliğinden ayırt ediyor.</li><li>Kabloları ucundan tutarak çıkarıyor; vidaları kutuya koyuyor.</li><li>L'leri hizalayıp zorlamadan takıyor; üç ucu kontrol ediyor.</li><li>Kapağı kapatıp öğretmen onayını bekliyor; açılışta belleği ve diski buluyor.</li></ul>
+<h3>Ürün değerlendirme rubriği</h3>
+<table class="rubrik"><thead><tr><th>Ölçüt</th><th>Başlangıç (1)</th><th>Gelişiyor (2)</th><th>Yeterli (3)</th></tr></thead>
+<tr><td>Kabloları tanıma</td><td>Kabloları karıştırıyor</td><td>Yardımla ayırt ediyor</td><td>Uç genişliği ve pin sayısıyla kendisi ayırt ediyor</td></tr>
+<tr><td>Disk sök–tak</td><td>Diski zorluyor, vida kayıp</td><td>Yardımla söküp takıyor</td><td>Kızak yönü ve vidalarla bağımsız söküp takıyor</td></tr>
+<tr><td>Kablo takma</td><td>Ucu zorluyor ya da ters deniyor</td><td>Çevirerek, yardımla takıyor</td><td>L'yi hizalayıp tek denemede, boşluksuz takıyor</td></tr>
+<tr><td>Güvenlik ve onay</td><td>Fişe izinsiz dokunuyor</td><td>Hatırlatmayla onay bekliyor</td><td>Kapanış listesini yapıp öğretmen onayını kendiliğinden bekliyor</td></tr>
+<tr><td>Doğrulama ve belgeleme</td><td>Açılış sonucu not edilmemiş</td><td>Yalnız açıldığı yazılmış</td><td>Bellek ve disk bilgisi okunup not edilmiş, fotoğraflar tam</td></tr>
+</table>
+<h3>Bilgi testi cevap anahtarı</h3>
+<table class="cevap"><thead><tr><th>#</th><th>Soru</th><th>Doğru cevap</th><th>Açıklama</th></tr></thead>
+<tr><td>1</td><td>Diskin arkasına iki kablo takılır. Veri kablosunu güç kablosundan nasıl ayırt edersin?</td><td>A) Veri kablosunun ucu dar (7 pin), güç kablosununki geniştir (15 pin)</td><td>Veri ucu dar ve 7 pinlidir; güç ucu geniş ve 15 pinlidir. Renkler üreticiye göre değişebilir, uç genişliği değişmez.</td></tr>
+<tr><td>2</td><td>Görseldeki kablo ucu porta neden girmiyor?</td><td>C) Kablo ucundaki L, porttaki L’ye göre ters durduğu için</td><td>SATA uçları L biçimlidir. Uç çevrilip L’ler aynı yöne gelince kablo düz itilir ve oturur.</td></tr>
+<tr><td>3</td><td>Deniz diski taktı, kabloları kontrol etti ve kapağı kapattı. Şimdi ne yapmalı?</td><td>B) Öğretmenini çağırıp kontrol ve izin beklemeli</td><td>Açılış yalnızca öğretmen kontrolünden sonra, öğretmenin izniyle yapılır. Fişi öğretmen takar.</td></tr>
+<tr><td>4</td><td>Ece’nin grubu bilgisayarı açtı. Ekranda “açılış diski bulunamadı” yazıyor. En olası neden hangisidir?</td><td>D) Diskin veri ya da güç kablosu tam oturmamış</td><td>Ekranda yazı çıktığına göre monitör çalışıyor. Disk görünmüyorsa önce fiş çekilir, sonra disk kabloları kontrol edilir.</td></tr>
+</table>
+<p><b>Cevap anahtarı:</b> 1-A 2-C 3-B 4-D. Derinleş bonus sorusu puanı düşürmez.</p></section>
+<section class="kart"><h2><span class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>11. Kapanış ve Genişletme</h2>
+<p>Toparlama: 2–3 gruba açılış notlarını okutun (“Bellek kaç GB, disk kaç GB göründü?”). Isınmadaki tahminleri hatırlatıp ters ucun neden girmediğini sınıfça söyleyin. Ödev: evdeki ya da okuldaki bir bilgisayarın sistem bilgisi sayfasından bellek ve depolama miktarını not etmek; bilgisayar yoksa bir ürün tanıtım kartından okumak. Köprü: H12'de dizüstü, tablet ve telefon gibi taşınabilir cihazların içine, pillere ve elektronik atığa bakacaksınız.</p></section>
+<section class="kart"><h2><span class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5z"/></svg></span>Güvenlik</h2>
+<div class="guvenlik-madde">Kablolar yalnızca fiş çekiliyken takılır.</div>
+<div class="guvenlik-madde">Açılışı yalnızca öğretmen kontrolünden sonra öğretmen izniyle yapılır.</div>
+<div class="guvenlik-madde">Güç kaynağının içi ve güç kaynağına bağlı kablo uçları sökülmez; yalnız disk tarafındaki uç çıkarılır.</div>
+<div class="guvenlik-madde">Kasanın iç kenarları keskin olabilir; disk iki elle, yavaş hareketle çıkarılır ve takılır.</div>
+<div class="guvenlik-madde">Kapak kapanmadan önce kasada vida, tornavida ya da etiket kalmadığı kontrol edilir; unutulan metal parça kısa devre yapabilir.</div>
+<div class="guvenlik-madde">Açılış testinde fişi öğretmen takar ve çeker; açılış sırasında kasanın içine el sokulmaz, kasa açılmaz.</div>
+</section>
+<section class="kart"><h2><span class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg></span>Bitirme: Çalışan sistem ve belgeleme</h2>
+<div class="bitirme"><div class="etiket">ÜRÜN</div><p>Diski kızakta vidalı, iki kablosu doğru takılı, kapağı kapalı ve öğretmen onaylı bilgisayar; açılışta sistem bilgisinde görünen bellek ve disk bilgisini içeren kısa not + altı fotoğraflı adım belgesi.</p></div>
+<h3>Böyle sun</h3>
+<ul class="madde"><li>Her grup açılış notunu tahtada okur: bellek miktarı, disk kapasitesi, açılış süresince gözlenen ışık ve fan.</li><li>Belgeleyen, altı fotoğrafı adım sırasına göre gösterir; kontrolcü hangi uçları kontrol ettiğini söyler.</li><li>Disk görünmeyen grup, sorunu nasıl bulup giderdiğini kısa bir “arıza raporu” ile anlatır.</li></ul></section>
+<section class="kart"><h2><span class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V2H6.5A2.5 2.5 0 0 0 4 4.5v15z"/></svg></span>Referans Kaynaklar</h2>
+<ul class="madde"><li>Kullanılan bilgisayarın anakart kılavuzu — SATA girişleri ve açılış (BIOS/UEFI) bölümü</li><li>Kasa kılavuzu — 3,5 inç disk kızağı montajı</li><li>SATA-IO — Serial ATA konnektör ve kablo tanımları (sata-io.org)</li><li>Okulun bilişim teknolojileri atölyesi güvenlik yönergesi</li></ul><p class="imza-alt">Bilişim Üssü · Öğretmen Uygulama Planı · DON-201 H11 · Atölye 2: Disk Sök–Tak, Toplama ve İlk Açılış</p></section>
+</body>
+</html>
