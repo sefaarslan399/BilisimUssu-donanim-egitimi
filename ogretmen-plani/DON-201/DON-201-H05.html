@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DON-201 H05 Öğretmen Planı — Anakart</title>
+<style>
+@font-face{font-family:'Carlito';src:local('Carlito'),url('../../assets/font/Carlito-Regular.ttf');font-weight:400;font-style:normal}
+@font-face{font-family:'Carlito';src:local('Carlito Bold'),url('../../assets/font/Carlito-Bold.ttf');font-weight:700;font-style:normal}
+@font-face{font-family:'Carlito';src:local('Carlito Italic'),url('../../assets/font/Carlito-Italic.ttf');font-weight:400;font-style:italic}
+@page{size:A4;margin:14mm 14mm 16mm 16.5mm;
+  @bottom-center{content:'Bilişim Üssü · Etkileşimli Ders Planı · ' counter(page) ' / ' counter(pages);font-family:Carlito,Calibri,sans-serif;font-size:7.5pt;color:#6b7a82}}
+*{box-sizing:border-box}
+html{font-family:Carlito,Calibri,'Segoe UI',Arial,sans-serif;font-size:9.9pt;color:#1a1a1a;line-height:1.38}
+body{margin:0;max-width:180mm}
+@media screen{body{margin:24px auto;padding:0 12px}}
+.bant{display:flex;gap:7pt;margin-bottom:9pt}
+.bant-sol{flex:1;background:linear-gradient(135deg,#075985,#0a6aa3);color:#fff;border-radius:4pt;padding:9pt 14pt 10pt}
+.bant-ust{font-size:7.6pt;font-weight:700;letter-spacing:2.2pt;opacity:.92}
+.bant-baslik{font-size:23pt;font-weight:700;line-height:1.12;margin-top:3pt}
+.bant-baslik.uzun{font-size:18pt}
+.bant-sag{width:128pt;background:#0369a1;color:#fff;border-radius:4pt;display:flex;align-items:center;justify-content:center;font-size:14pt;font-weight:700}
+h2{background:#0369a1;color:#fff;font-size:11pt;font-weight:700;margin:12pt 0 6pt;padding:5pt 10pt;border-radius:4pt;letter-spacing:.2pt;break-after:avoid}
+h3{display:flex;justify-content:space-between;align-items:center;color:#0369a1;font-size:10.6pt;margin:9pt 0 4pt;break-after:avoid}
+h3 .sure{background:#0369a1;color:#fff;font-size:8.6pt;border-radius:9pt;padding:1.5pt 8pt}
+table{width:100%;border-collapse:collapse;margin:0 0 4pt}
+td,th{border:1px solid #b9def1;padding:4pt 7pt;vertical-align:top;text-align:left}
+th{background:#e0f2fe;color:#075985;font-size:9.2pt;font-weight:700}
+tr{break-inside:avoid}
+.genel td:first-child{width:134pt;background:#e0f2fe;color:#075985;font-weight:700}
+.kazanim{width:100%;border-collapse:collapse}
+.kazanim td{border:0;border-bottom:1px solid #eaf6fc;padding:3.5pt 4pt}
+.kazanim td:first-child{width:32pt;color:#0369a1;font-weight:700}
+.isleyis td:first-child{width:35pt;text-align:center;color:#6b7a82;font-weight:700}
+.isleyis td:nth-child(2){width:122pt}
+.adim-ad{font-weight:700}
+.adim-konu{color:#475569}
+.slayt{display:inline-block;margin-top:2pt;font-size:8pt;font-weight:700;color:#0369a1;background:#e0f2fe;border-radius:6pt;padding:0 5pt}
+q{quotes:'“' '”'}
+q::before{content:open-quote}q::after{content:close-quote}
+p{margin:3pt 0 5pt;text-align:justify}
+.kutu{border:1px solid #b9def1;border-left:3pt solid #0369a1;border-radius:3pt;padding:5pt 8pt;margin:5pt 0;background:#f5fbff;break-inside:avoid}
+.kutu b{color:#075985}
+.olcme td:first-child{width:22pt;text-align:center;font-weight:700}
+.olcme td:last-child{width:40pt;text-align:center;color:#0369a1;font-weight:700}
+.soru{font-weight:700}
+.secenek{margin-top:1pt}
+.aciklama{font-style:italic;color:#0369a1;font-size:9.5pt;margin-top:2pt}
+.soru-gorsel{float:right;margin:0 0 2pt 8pt}
+.soru-gorsel svg{height:38pt;width:auto}
+.anahtar{font-weight:700;color:#075985;margin:3pt 0 0}
+.anahtar span{font-weight:400;color:#1a1a1a}
+ol.acik{margin:2pt 0;padding-left:0;list-style:none;counter-reset:a}
+ol.acik li{counter-increment:a;display:flex;gap:10pt;padding:3pt 0}
+ol.acik li::before{content:counter(a) '.';color:#0369a1;font-weight:700;min-width:16pt}
+.etiket{color:#0369a1;font-weight:700;margin:7pt 0 2pt}
+ul.not{margin:2pt 0;padding-left:12pt}
+ul.not li{margin:2pt 0}
+.sure-tablo td:last-child,.sure-tablo th:last-child{width:62pt}
+.imza{display:flex;justify-content:space-around;margin-top:14pt;text-align:center;color:#6b7a82;break-inside:avoid;break-before:avoid;page-break-before:avoid}
+.sure-tablo{break-after:avoid;page-break-after:avoid}
+.sure-tablo tr:last-child{break-after:avoid}
+.uyg{display:grid;grid-template-columns:1fr 1fr;gap:3pt;margin-top:5pt}
+.uyg div{border-radius:3pt;padding:3pt 6pt;font-size:9pt;line-height:1.32}
+.uyg b{display:block;font-size:7.6pt;letter-spacing:.8pt}
+.uyg .goster{background:#eff6ff;border-left:2.5pt solid #3b82f6}.uyg .goster b{color:#1d4ed8}
+.uyg .sor{background:#f5f3ff;border-left:2.5pt solid #8b5cf6}.uyg .sor b{color:#6d28d9}
+.uyg .kontrol{background:#ecfdf5;border-left:2.5pt solid #10b981}.uyg .kontrol b{color:#047857}
+.uyg .sikhata{background:#fff7ed;border-left:2.5pt solid #f97316}.uyg .sikhata b{color:#c2410c}
+.guvenlik{border:1.5pt solid #ef4444;border-radius:4pt;background:#fef2f2;padding:6pt 10pt;margin:6pt 0;break-inside:avoid}
+.guvenlik b{color:#b91c1c;display:block;margin-bottom:2pt}
+.guvenlik ul{margin:2pt 0;padding-left:13pt}
+.imza b{display:block;color:#475569;margin-bottom:10pt}
+</style>
+</head>
+<body>
+<div class="bant"><div class="bant-sol"><div class="bant-ust">ÖĞRETMEN DERS PLANI · DON-201</div><div class="bant-baslik">Anakart</div></div><div class="bant-sag">5. Hafta</div></div>
+<h2>1. GENEL BİLGİLER</h2>
+<table class="genel">
+<tr><td>Dersin Adı</td><td>Bilişim Teknolojileri ve Yazılım</td></tr>
+<tr><td>Sınıf / Seviye</td><td>Ortaokul (5–8. sınıf)</td></tr>
+<tr><td>Ünite / Konu</td><td>Donanım 201 - Kasanın İçinde — Anakart</td></tr>
+<tr><td>Öğrenme Alanı</td><td>Bilgisayar Donanımı</td></tr>
+<tr><td>Süre</td><td>1 ders saati (35 dk)</td></tr>
+<tr><td>Yöntem ve Teknikler</td><td>Anlatım, gösteri, soru-cevap, 3D model inceleme, kamera turu, animasyonla modelleme (ışık akışı), tahmin et–izle, parça avı oyunu ve gerçek anakart üzerinde grup çalışması</td></tr>
+<tr><td>Araç-Gereç ve Kaynaklar</td><td>Etkileşimli ders (LMS), projeksiyon veya akıllı tahta; mümkünse eski ya da arızalı bir masaüstü anakartı (her grup için bir tane ya da sınıfça bir tane), yoksa büyük basılı bir anakart fotoğrafı; numaralı yapışkan not kâğıtları</td></tr>
+<tr><td>Kavramlar / Terimler</td><td>Kasa Türleri, Anakart: Parçaların Yolları, İşlemci Soketi, RAM Yuvaları, Genişleme Yuvaları (PCIe, M.2), Arka Panel</td></tr>
+</table>
+<h2>2. KAZANIMLAR</h2>
+<table class="kazanim">
+<tr><td>K1.</td><td>Anakartın parçaları birbirine bağladığını açıklar.</td></tr>
+<tr><td>K2.</td><td>İşlemci soketi, RAM yuvaları ve genişleme yuvalarını anakart üzerinde bulur.</td></tr>
+<tr><td>K3.</td><td>Arka panel portlarını tanır.</td></tr>
+<tr><td>K4.</td><td>Kasa türlerini karşılaştırır.</td></tr>
+</table>
+<h2>3. DERS İŞLENİŞİ</h2>
+<h3><span>Giriş — Dikkat Çekme ve Güdüleme</span><span class="sure">5 dk</span></h3>
+<p>Kapak slaytında yavaşça dönen anakartı ve üzerindeki renkli ışık izlerini izletin. Sorun: <q>Bu yeşil-siyah levhanın üstünde ışıklar neden bir yerden başka bir yere koşuyor?</q> Birkaç cevap alın, düzeltmeyin. Hedefler slaytında dört kazanımı sesli okutun. Isınma slaytında (Slayt 3) üç seçeneği tahtaya yazın, her seçenek için el kaldırtıp sayıları not edin: <q>Tahminlerimizi ikinci adımda, ışıklı yolları izlerken yoklayacağız.</q></p>
+<h3><span>Gelişme — Kavramların İşlenişi</span><span class="sure">25 dk</span></h3>
+<table class="isleyis"><thead><tr><th>Adım</th><th>Konu</th><th>Öğretmen Notu</th></tr></thead>
+<tr><td>1</td><td><div class="adim-ad">Kasa Türleri</div><div class="adim-konu">Kasa Türleri</div><span class="slayt">Slayt 4</span></td><td>Slayt açılınca üç bilgisayar kendi tablasında döner; önce yalnız izletin ve sorun: <q>Hangisini sırt çantana koyabilirsin, hangisi masadan hiç kalkmaz?</q> Ardından Masaüstü, Dizüstü ve Tümleşik düğmelerine sırayla bastırın; kamera o türe yaklaşırken soldaki tablonun satırı renklenir. <q>Kule kasada parçalar ayrı bir kutudadır, bu yüzden açıp yeni parça eklemek kolaydır; dizüstünde her şey sıkıştırılmıştır; tümleşikte bilgisayarın kendisi ekranın arkasına gizlenmiştir</q> deyin. Tümleşiği döndürüp arkasındaki kalın gövdeyi gösterin. Öğrencilere evde ya da okulda gördükleri bilgisayarın hangi türe girdiğini söyletin.</td></tr>
+<tr><td>2</td><td><div class="adim-ad">Anakart: Parçaların Yolları</div><div class="adim-konu">Anakart ve Bakır Yollar</div><span class="slayt">Slayt 5</span></td><td>Işık akışı kendiliğinden başlar: önce işlemci ile RAM arasında mavi, sonra ekran kartı yuvasına turuncu, en son SATA portundan işlemciye yeşil ışık gider ve geri döner. İlk turu sessizce izletin, sonra RAM yolu düğmesiyle yalnız mavi yolu yeniden oynatıp sorun: <q>Işık gidip neden geri geliyor?</q> <q>Anakart bir şehrin yol ağı gibidir; bilgiler kablo yerine kartın içine gömülü ince bakır şeritlerde gider gelir</q> deyin. Isınma tahminlerini burada açıklayın; ekranda öğrencinin kendi tahmini de yazar. Köşedeki gerçek fotoğrafa dikkat çekip gerçek kartta da ince çizgilerin görüldüğünü söyleyin. Öğrencilere ışığın geçtiği iki parçanın adını söyletin.</td></tr>
+<tr><td>3</td><td><div class="adim-ad">İşlemci Soketi</div><div class="adim-konu">İşlemci Soketi</div><span class="slayt">Slayt 6</span></td><td>Kamera turu başlar: tepedeki şeritte 1. durak yanar ve görüntü sokete yaklaşır. Kapak kapalıyken sorun: <q>Bu siyah kapağın altında sizce ne saklanıyor?</q> Tahminleri aldıktan sonra Kolu kaldır düğmesine bastırın; metal kol kalkar, plaka açılır, altın renkli pimler ve köşedeki üçgen belirir. <q>Bu pimler saç teli kadar incedir, parmakla bile eğilebilir; o yüzden soketin kapağı ancak işlemci takılırken çıkarılır. Köşedeki üçgen, işlemcinin üstündeki üçgenle aynı köşeye gelmelidir</q> deyin. Parçalara dokunulunca açılan kartları bir öğrenciye okutun. Öğrencilere işlemcinin yönünü neyin belirlediğini söyletin.</td></tr>
+<tr><td>4</td><td><div class="adim-ad">RAM Yuvaları</div><div class="adim-konu">RAM Yuvaları</div><span class="slayt">Slayt 7</span></td><td>Kamera ikinci durağa, soketin yanındaki dört uzun yuvaya kayar; yuvaların ucunda 1'den 4'e numaralar çıkar. Mandallar kapalıyken sorun: <q>Yuvaların iki ucundaki beyaz tırnaklar ne işe yarıyor olabilir?</q> Önce Mandalları aç düğmesine, sonra RAM tak düğmesine bastırın; bellek modülü ikinci yuvaya iner, bir tık sesi duyulur ve mandallar kendiliğinden kapanır. <q>Mandallar RAM'i kilitler; RAM tam oturunca kendiliğinden kapanır, bu da doğru takıldığının işaretidir</q> deyin. Gerçek bir yuvada mandalı dışa doğru itmeyi gösterin. Öğrencilere bu anakartta kaç RAM yuvası olduğunu saydırın.</td></tr>
+<tr><td>5</td><td><div class="adim-ad">Genişleme Yuvaları (PCIe, M.2)</div><div class="adim-konu">Genişleme Yuvaları: PCIe ve M.2</div><span class="slayt">Slayt 8</span></td><td>Üçüncü durakta kamera en uzun yatay yuvada durur ve etiketi gösterir. <q>Bu yuvalara bilgisayara yeni bir yetenek katan kartlar takılır; en uzunu ekran kartı içindir</q> deyin. PCIe x1 düğmesine bastırıp kısa yuvayı karşılaştırtın. Ardından M.2 düğmesine basın ve animasyonu birlikte izleyin: küçük SSD önce eğik girer, sonra bastırılır, en son ucundan vidalanır. İzlerken sorun: <q>Neden vidaya ihtiyaç var, yuva onu tutmuyor mu?</q> Öğrencilere M.2 SSD'nin takılış sırasını üç kelimeyle söyletin: <q>eğik, bastır, vidala</q>.</td></tr>
+<tr><td>6</td><td><div class="adim-ad">Arka Panel</div><div class="adim-konu">Arka Panel</div><span class="slayt">Slayt 9</span></td><td>Son durakta kamera anakartın arka kenarına döner; bazı portlar sırayla parlar. <q>Üçüncü haftada kasanın arkasında gördüğümüz portlar aslında doğrudan anakartın üstünde duruyor</q> deyin. Gönüllü öğrencilere HDMI, ağ ve yeşil ses girişine dokundurup açılan kartları okutun. Turu tekrarla düğmesiyle kameranın yolunu yeniden izletip dört durağı sırayla saydırın. Öğrencilere sınıftaki bir bilgisayarın arkasında iki portu gösterttirin ve adlarını söyletin.</td></tr>
+</table>
+<div class="kutu"><b>Etkinlikler (Slayt 10–11):</b> Etkinlik 1'de (Slayt 10) sahnenin üstündeki kart bir parça adı sorar; akıllı tahtada sırayla gelen öğrenciler parçayı bulup dokunur. Yanlış dokunuşta ekranda dokunulan parçanın adı çıkar; ikinci yanlışta ipucu, üçüncüsünde parçanın yeri parlar. Süreyi sınıfça takip edin ve ikinci turda rekoru kırmayı hedef olarak koyun (yaklaşık 5 dk). Etkinlik 2'de (Slayt 11) sınıfı 3–4 kişilik gruplara ayırın ve her gruba gerçek bir anakart ya da basılı fotoğraf verin. Gruplar kartlardaki altı parçayı gerçek kartta bulur, numaralı not kâğıtlarını parçanın yanına yapıştırır, RAM, PCIe, M.2, SATA ve arka USB sayılarını sayar. Siz gruplar arasında dolaşıp <q>Bunun soket olduğunu nereden anladınız?</q> diye sorun. Bir grup sözcüsü sayıları tahtadaki kartlara girer ve kimlik kartını oluşturur; farklı anakartlarda sayıların neden değiştiğini tartıştırın (yaklaşık 7 dk). Gerçek anakartta öğrenciler pimlere ve lehim noktalarına dokunmaz, kartı yalnız kenarından tutar.</div>
+<h3><span>Değerlendirme ve Kapanış</span><span class="sure">5 dk</span></h3>
+<p>Özet slaytındaki altı küçük resmi sırayla gösterip her birini farklı bir öğrenciye bir cümleyle açıklattırın. Bilgi Testi'ni (Slayt 14) sınıfça çözün; yanlışların çoğunlaştığı soruda ilgili durağın slaytına dönüp animasyonu bir kez daha oynatın. Beşinci soru Derinleş bonusudur, puanı düşürmez. Dersi şu soruyla kapatın: <q>Anakart olmasaydı işlemci RAM'e nasıl ulaşırdı?</q></p>
+<h2>4. ÖLÇME VE DEĞERLENDİRME</h2>
+<table class="olcme"><thead><tr><th>#</th><th>Soru ve Seçenekler</th><th>Cevap</th></tr></thead>
+<tr><td>1</td><td><div class="soru">Anakartın bilgisayardaki asıl görevi nedir?</div><div class="secenek">A) Bütün parçaları birbirine bağlamak B) Yalnız görüntüyü ekrana vermek C) Dosyaları kalıcı olarak saklamak D) Bilgisayarı serin tutmak</div><div class="aciklama">Anakart, işlemciyi, RAM’i, diskleri ve kartları bakır yollarla birbirine bağlar.</div></td><td>A</td></tr>
+<tr><td>2</td><td><div class="soru-gorsel"><svg viewBox="0 0 170 130" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Anakart çizimi; alt yarıdaki uzun yatay yuva turuncu çerçeveyle işaretli"><rect width="170" height="130" rx="10" fill="#eef7fe"/><rect x="35.0" y="5.0" width="96.4" height="120.5" rx="1.6" fill="#1f2d28"/><path d="M80.8 24.9 H90.7" stroke="#4b7666" stroke-width="0.5"/><path d="M80.8 26.9 H90.7" stroke="#4b7666" stroke-width="0.5"/><path d="M80.8 28.9 H90.7" stroke="#4b7666" stroke-width="0.5"/><path d="M80.8 30.9 H90.7" stroke="#4b7666" stroke-width="0.5"/><path d="M80.8 32.8 H90.7" stroke="#4b7666" stroke-width="0.5"/><path d="M80.8 34.8 H90.7" stroke="#4b7666" stroke-width="0.5"/><path d="M65.8 47.1 V67.2" stroke="#4b7666" stroke-width="0.5"/><path d="M67.4 47.1 V67.2" stroke="#4b7666" stroke-width="0.5"/><path d="M69.0 47.1 V67.2" stroke="#4b7666" stroke-width="0.5"/><path d="M70.6 47.1 V67.2" stroke="#4b7666" stroke-width="0.5"/><path d="M72.1 47.1 V67.2" stroke="#4b7666" stroke-width="0.5"/><path d="M110.4 96.8 H126.6" stroke="#4b7666" stroke-width="0.5"/><path d="M110.4 98.4 H126.6" stroke="#4b7666" stroke-width="0.5"/><path d="M110.4 100.0 H126.6" stroke="#4b7666" stroke-width="0.5"/><path d="M110.4 101.6 H126.6" stroke="#4b7666" stroke-width="0.5"/><path d="M79.2 45.1 L87.5 53.4 V82.6 L92.3 87.4" fill="none" stroke="#4b7666" stroke-width="0.6"/><rect x="39.3" y="6.0" width="8.7" height="52.9" rx="1.2" fill="#2c3037"/><rect x="33.4" y="6.8" width="5.9" height="7.1" rx="0.4" fill="#9aa3ad"/><rect x="33.4" y="15.5" width="5.9" height="7.1" rx="0.4" fill="#9aa3ad"/><rect x="33.4" y="24.6" width="5.9" height="7.1" rx="0.4" fill="#9aa3ad"/><rect x="33.4" y="34.8" width="5.9" height="7.1" rx="0.4" fill="#9aa3ad"/><rect x="33.4" y="47.5" width="5.9" height="7.1" rx="0.4" fill="#9aa3ad"/><rect x="48.4" y="10.9" width="37.1" height="6.7" rx="0.8" fill="#4b525c"/><rect x="48.2" y="18.2" width="6.7" height="31.2" rx="0.8" fill="#4b525c"/><rect x="54.2" y="6.0" width="8.3" height="4.0" rx="0.4" fill="#101114"/><rect x="123.0" y="31.1" width="4.1" height="20.9" rx="0.4" fill="#101114"/><rect x="82.6" y="7.8" width="4.3" height="2.0" rx="0.2" fill="#e9eaec"/><rect x="58.7" y="20.2" width="22.9" height="26.9" rx="1.2" fill="#c3c9d0"/><rect x="61.1" y="23.4" width="18.2" height="20.5" rx="0.8" fill="#2a2d33"/><rect x="62.6" y="25.1" width="15.0" height="17.0" rx="0.4" fill="#c99a3f"/><path d="M61.3 23.6 h2.8 L61.3 26.3 z" fill="#f3c85a"/><rect x="90.8" y="8.0" width="3.0" height="56.1" rx="0.4" fill="#4a4f58"/><rect x="90.6" y="6.4" width="3.3" height="2.4" rx="0.4" fill="#d7dbe0"/><rect x="90.6" y="63.3" width="3.3" height="2.4" rx="0.4" fill="#d7dbe0"/><rect x="94.7" y="8.0" width="3.0" height="56.1" rx="0.4" fill="#17181b"/><rect x="94.6" y="6.4" width="3.3" height="2.4" rx="0.4" fill="#d7dbe0"/><rect x="94.6" y="63.3" width="3.3" height="2.4" rx="0.4" fill="#d7dbe0"/><rect x="98.7" y="8.0" width="3.0" height="56.1" rx="0.4" fill="#4a4f58"/><rect x="98.5" y="6.4" width="3.3" height="2.4" rx="0.4" fill="#d7dbe0"/><rect x="98.5" y="63.3" width="3.3" height="2.4" rx="0.4" fill="#d7dbe0"/><rect x="102.6" y="8.0" width="3.0" height="56.1" rx="0.4" fill="#17181b"/><rect x="102.5" y="6.4" width="3.3" height="2.4" rx="0.4" fill="#d7dbe0"/><rect x="102.5" y="63.3" width="3.3" height="2.4" rx="0.4" fill="#d7dbe0"/><rect x="42.5" y="67.3" width="35.2" height="3.0" rx="0.4" fill="#b8bec6"/><rect x="42.5" y="75.2" width="9.9" height="3.0" rx="0.4" fill="#0f1012"/><rect x="42.5" y="91.4" width="35.2" height="3.0" rx="0.4" fill="#0f1012"/><rect x="42.5" y="99.3" width="9.9" height="3.0" rx="0.4" fill="#0f1012"/><rect x="47.4" y="52.0" width="3.6" height="9.1" rx="0.4" fill="#0f1012"/><circle cx="82.6" cy="56.5" r="1.2" fill="#c9a44c"/><rect x="47.4" y="80.2" width="3.6" height="9.1" rx="0.4" fill="#0f1012"/><circle cx="82.6" cy="84.8" r="1.2" fill="#c9a44c"/><rect x="92.3" y="85.4" width="18.2" height="18.2" rx="1.6" fill="#4b525c"/><rect x="94.6" y="87.8" width="13.4" height="13.4" rx="1.2" fill="#aab1ba"/><rect x="126.6" y="96.6" width="4.3" height="5.1" rx="0.4" fill="#101114"/><rect x="126.6" y="104.5" width="4.3" height="5.1" rx="0.4" fill="#101114"/><circle cx="73.7" cy="112.6" r="4.0" fill="#cfd4da" stroke="#111" stroke-width="0.6"/><rect x="114.8" y="120.7" width="4.7" height="2.0" rx="0.2" fill="#e3b04f"/><rect x="102.2" y="120.7" width="4.7" height="2.0" rx="0.2" fill="#e3b04f"/><rect x="42.9" y="120.7" width="4.7" height="2.0" rx="0.2" fill="#e3b04f"/><rect x="123.5" y="69.8" width="4.0" height="9.1" rx="0.4" fill="#1e3a8a"/><rect x="39.5" y="64.3" width="41.2" height="9.0" rx="4.0" fill="none" stroke="#f59e0b" stroke-width="2.5"/><path d="M150 70 L120 70" stroke="#f59e0b" stroke-width="3" stroke-linecap="round"/><path d="M120 70 l7 -5 v10z" fill="#f59e0b"/><circle cx="156" cy="70" r="9" fill="#fff" stroke="#f59e0b" stroke-width="2"/><text x="156" y="74.5" font-family="Inter,Arial,sans-serif" font-size="12" font-weight="900" fill="#b45309" text-anchor="middle">?</text></svg></div><div class="soru">Görselde işaretli yuva hangisidir?</div><div class="secenek">A) RAM yuvası B) İşlemci soketi C) PCIe x16 yuvası D) SATA portu</div><div class="aciklama">Kartın alt yarısında yatay duran en uzun yuva PCIe x16’dır. RAM yuvaları soketin yanında dizilir.</div></td><td>C</td></tr>
+<tr><td>3</td><td><div class="soru">Ece monitör kablosunu kasanın arkasına takacak. Hangi bölgeye bakmalı?</div><div class="secenek">A) Güç kaynağının fanına B) Anakartın arka paneline C) RAM yuvalarının mandallarına D) SATA portlarına</div><div class="aciklama">HDMI ve diğer portlar anakartın arka panelindedir; kasanın arkasından dışarı bakar.</div></td><td>B</td></tr>
+<tr><td>4</td><td><div class="soru">Deniz’in ailesi büyük ekranlı, ayrı kasası olmayan ve masada az yer kaplayan bir bilgisayar istiyor. Hangisi uygun?</div><div class="secenek">A) Kule kasalı masaüstü B) Dizüstü bilgisayar C) Oyun konsolu D) Tümleşik bilgisayar</div><div class="aciklama">Tümleşik bilgisayarda parçalar ekranın arkasındadır; ayrı kasa gerekmez.</div></td><td>D</td></tr>
+</table>
+<p class="anahtar">Cevap Anahtarı: <span>1-A 2-C 3-B 4-D</span></p>
+<h2>5. AÇIK UÇLU / BİÇİMLENDİRİCİ DEĞERLENDİRME</h2>
+<ol class="acik">
+<li><span>«Anakart: Parçaların Yolları» kavramını kendi cümlelerinle açıkla ve günlük hayattan bir örnek ver.</span></li>
+<li><span>«İşlemci Soketi» kavramını kendi cümlelerinle açıkla ve günlük hayattan bir örnek ver.</span></li>
+<li><span>«Kasa Türleri» kavramını kendi cümlelerinle açıkla ve günlük hayattan bir örnek ver.</span></li>
+<li><span>Parça avında en çok hangi parçayı bulmakta zorlandın? Onu bir dahaki sefere nasıl tanıyacağını yaz.</span></li>
+</ol>
+<h2>6. ÖĞRETMEN NOTLARI VE ÖDEV</h2>
+<div class="etiket">Ödev / Sınıf Dışı Etkinlik:</div><p>Evde ya da bir yakınının yanında bir bilgisayarın türünü (masaüstü, dizüstü, tümleşik) belirle. Masaüstü ise kasanın arka panelindeki portları say; dizüstü ise yanlarındaki portları say. Bulduğun sayıları ve bilgisayarın türünü bir tabloya yazıp getir. Kasayı kesinlikle açma.</p>
+<div class="etiket">Öğretmen İçin Notlar:</div><ul class="not">
+<li>Derinleş (Slayt 12) isteğe bağlıdır. Çipsetin işlemciye yardımcı bir çip olduğu, diskleri, bazı USB'leri, ağı ve sesi tek bir yoldan işlemciye ilettiği bir şema üzerinden gösterilir. Hızlı bitiren ya da 13–15 yaş grubundaki öğrencilerle kullanın; atlanırsa akış bozulmaz, Bilgi Testi'ndeki bonus soru puanı düşürmez.</li>
+<li>Yaş bandı uyarlaması: 10–12 yaş grubunda parçaları benzetmelerle tanıtın (soket = işlemcinin koltuğu, RAM yuvası = kitap rafı, bakır yollar = şehir yolları) ve gerçek anakartı elden ele dolaştırırken yalnız kenarından tutturun. 13–15 yaş grubunda aynı kartta PCIe x16 ile x1 yuvasının uzunluk farkını ölçtürün ve farklı anakartlarda neden farklı sayıda yuva olduğunu tartıştırın.</li>
+<li>Sık görülen kavram yanılgıları: <q>Parçalar birbirine kablolarla bağlanır</q>, <q>RAM yuvası ile PCIe yuvası aynıdır, ikisi de uzun</q>, <q>İşlemci her yönde takılabilir</q>, <q>Tümleşik bilgisayar sadece bir monitördür</q>. Bu cümleleri doğru mu yanlış mı diye sorup ilgili durağa dönerek düzeltin.</li>
+<li>Teknik not: Modeldeki anakart ATX boyutundadır (yaklaşık 30,5 × 24,4 cm). Gerçek anakartlarda yuva sayısı ve yerleşim markaya ve modele göre değişir; RAM yuvaları hep soketin yanında, PCIe yuvaları hep arka panele dik ve yatay dizilir. Soket türü (pimleri sokette ya da işlemcide) üreticiye göre farklıdır; derste pimleri sokette olan tür gösterilir.</li>
+<li>Güvenlik: Gerçek anakartla çalışılacaksa kart fişten ve kasadan ayrılmış olmalıdır. Öğrenciler kartı kenarından tutar, soket pimlerine ve altın temaslara dokunmaz; mümkünse antistatik bileklik kullanılır (4. hafta). CMOS pilini çıkarmaya çalışmazlar; düğme pil yutulursa tehlikelidir.</li>
+<li>3D sahneler yavaş bilgisayarda kaliteyi kendiliğinden düşürür; WebGL açılmazsa yerine anakart çizimi görünür ve etkinlik gerçek anakart ya da çizim üzerinden sürdürülür. Hareket azaltma ayarı açık cihazlarda kamera turu ve ışık akışı kısa geçişlerle ilerler.</li>
+<li>Biçimlendirici değerlendirme: Her duraktan sonra bir öğrenciye tahtadaki anakartta o parçayı parmakla gösterttirin ve bir cümleyle görevini söyletin. Parça avındaki yanlış dokunuş sayısını not edip en çok karıştırılan parçayı kapanışta yeniden gösterin.</li>
+</ul>
+<table class="sure-tablo"><thead><tr><th>Aşama</th><th>Süre</th></tr></thead>
+<tr><td>Giriş — Dikkat Çekme ve Güdüleme</td><td>5 dk</td></tr>
+<tr><td>Gelişme — Kavramların İşlenişi ve Etkinlikler</td><td>25 dk</td></tr>
+<tr><td>Değerlendirme ve Kapanış</td><td>5 dk</td></tr>
+<tr><th>Toplam</th><th>35 dk</th></tr>
+</table>
+<div class="imza"><div><b>Ders Öğretmeni</b>Ad Soyad / İmza</div><div><b>Uygundur</b>Okul Müdürü</div></div>
+</body>
+</html>
