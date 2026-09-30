@@ -1,0 +1,57 @@
+{
+  "format": "K",
+  "yontem": "Anlatım, gösteri, soru-cevap, 3D model üzerinde deney, tahmin et–izle, görevli uygulama, oyunlaştırılmış tahmin etkinliği",
+  "arac": "Etkileşimli ders (LMS), projeksiyon veya akıllı tahta; isteğe bağlı olarak sınıftan bir el feneri ya da lamba anahtarı",
+  "giris": "Kapak slaytında ampuller kendiliğinden yanıp söner ve üstteki göstergede harfler belirir. Birkaç harf geçene kadar bekleyip sorun: \"Ampuller nasıl harf yazıyor olabilir?\" İki üç cevabı dinleyin. Hedefler slaytında kazanımları paylaşın. Isınma slaytında (Slayt 3) üç seçeneği okutun, el kaldırarak sınıfın tahminini sayın ve tahtaya yazın: \"Cevabı ilk ampulü yakınca öğreneceğiz.\"",
+  "gelisme": [
+    {
+      "konu": "Açık ya da Kapalı",
+      "slayt": 4,
+      "not": "Tek ampule bir öğrenciyi dokundurun; ampul yanınca göstergede \"Açık = 1\" yazar. Sınıfın ışığını ya da bir el fenerini açıp kapatarak aynı fikri gösterin. \"Bilgisayarın içinde bir yerde elektrik ya vardır ya yoktur; olan duruma 1, olmayana 0 deriz\" deyin. Isınmadaki tahminleri burada kontrol edin: harf kabloda açık–kapalı sinyallerle gider."
+    },
+    {
+      "konu": "Bit: En Küçük Bilgi",
+      "slayt": 5,
+      "not": "Önce 1 bit düğmesine basın: yalnız iki desen çıkar. Sonra 2 bit ve 3 bit düğmelerine bastırıp desenleri sayın. Sorun: \"Bir ampul daha eklersek desen sayısı ne olur?\" Cevap dört bitte on altıdır. \"Bir ampulün tuttuğu tek bilgiye, yani tek bir 1 veya 0'a bit adı verilir; ampul eklendikçe desen sayısı iki katına çıkar\" deyin. Öğrencilere 3 bitle yapılabilecek bir deseni söyletin."
+    },
+    {
+      "konu": "8 Bit = 1 Byte",
+      "slayt": 6,
+      "not": "Ampullerin altındaki değerleri okutun: en soldaki 128'den başlar, her adımda yarıya iner, en sağda 1 olur. Bir öğrenciye 1 değerli ampulü, bir başkasına 128 değerli ampulü yaktırın; göstergedeki sayının toplandığını gösterin. \"Sekiz bitlik bir gruba byte denir; sayıyı bulmak için yalnız yanan ampullerin değerlerini toplarız\" deyin. Hepsi yanınca 255, hepsi sönünce 0 çıktığını gösterin."
+    },
+    {
+      "konu": "Harfler de Sayıdır",
+      "slayt": 7,
+      "not": "Slayt açılınca ampuller kendiliğinden A, B ve C harflerini yazar. Ardından A yaz, B yaz ve C yaz düğmelerine bastırın. Sorun: \"A 65 ise B kaçtır?\" \"Bilgisayar harfleri sayı olarak saklar; her harfin bir numarası vardır ve bu numara 1 ile 0'larla yazılır\" deyin. Öğrencilere D harfinin sayısını tahmin ettirin (68)."
+    },
+    {
+      "konu": "KB, MB, GB, TB",
+      "slayt": 8,
+      "not": "Oynat düğmesine basın; turuncu kutu bin kutudan birine dönüşürken bekleyin. Her basamakta alttaki örneği okutun: bir harf, yarım sayfa yazı, kalın bir roman, yaklaşık 250 fotoğraf, yaklaşık 500 film. \"Her birim bir öncekinin bin katıdır: bin byte bir kilobayt, bin kilobayt bir megabayt yapar; ardından gigabayt ve terabayt gelir\" deyin. Tahtaya byte < KB < MB < GB < TB sırasını yazdırın."
+    },
+    {
+      "konu": "Kaç Dosya Sığar?",
+      "slayt": 9,
+      "not": "Önce ekrandaki bölme görselini gösterip sınıfa el kaldırarak tahmin yaptırın; en çok oyu alan seçeneği işaretleyin. Belleğin dolmasını birlikte izleyin. Ardından hesabı tahtada yapın: 32 GB = 32 000 MB, 32 000 ÷ 4 = 8000. \"Kaç dosya sığacağını bulmak için önce birimi aynı yaparız, sonra kapasiteyi dosya boyutuna böleriz\" deyin."
+    }
+  ],
+  "etkinlik": "Etkinlik 1'de (Slayt 10) gönüllü öğrenciler akıllı tahtada ampullere dokunarak dört görevi sırayla tamamlar: 5 sayısı, 255, A harfi (65) ve seçtikleri bir büyük harf. Her görevden önce sınıfa \"Hangi ampuller yanmalı?\" diye sorun ve cevabı tahtada toplama ile doğrulatın. Etkinlik 2'de (Slayt 11) sınıfı iki gruba ayırın: önce birimler küçükten büyüğe sıralanır, sonra üç turda şarkı, film ve e-kitap soruları gelir. Her turda gruplar tahminini seçmeden önce kâğıda kısa bir hesap yazar; doğru tahmin eden grup puan alır (yaklaşık 8 dk).",
+  "kapanis": "Özet slaytındaki altı kartı sırayla birer öğrenciye kendi cümleleriyle anlattırın. Bilgi Testi'ni (Slayt 14) sınıfça çözün; yanlış çıkan soruda ilgili adım slaytına dönüp ampullerle yeniden gösterin. Son soru Derinleş bonusudur, puanı düşürmez. Dersi \"Telefonunun kaç GB olduğunu biliyor musun?\" sorusuyla kapatın ve ödevi bağlayın.",
+  "acik_uclu": ["1 ve 0", "Harfler Sayıdır", "Bellek Birimleri"],
+  "oz_degerlendirme": "Bu derste en çok hangi adım ilgini çekti, nerede zorlandın? Nedenini açıkla.",
+  "odev": "Evdeki bir telefonun, tabletin ya da USB belleğin kapasitesini öğren (ayarlar bölümünde yazar). Bir fotoğrafın yaklaşık 4 MB olduğunu düşünerek bu cihaza kaç fotoğraf sığacağını hesapla. Hesabını adım adım yazıp bir sonraki derse getir.",
+  "notlar": [
+    "Derinleş (Slayt 12) isteğe bağlıdır: süre kalırsa ya da hızlı bitiren öğrenciler için kullanın. Burada 8 bitle 256 farklı desen yapıldığı ve 1 TB diskin bilgisayarda neden yaklaşık 931 GB göründüğü anlatılır. Atlasanız da akış bozulmaz; Bilgi Testi'ndeki bonus soru puanı düşürmez.",
+    "1000 mi, 1024 mü? Derste hesap kolaylığı için 1 KB = 1000 byte kullanılır (disk üreticileri de böyle sayar). Bilgisayar ise bazen 1 KB'ı 1024 byte sayar. Öğrenci sorarsa iki sayımın da kullanıldığını, bu yüzden disk boyutunun ekranda biraz küçük göründüğünü söyleyin.",
+    "Türkçe harfler: Derste kullanılan 65 = A gibi numaralar İngiliz alfabesinin harfleri içindir. Ç, Ğ, İ, Ö, Ş ve Ü gibi harfler daha büyük numaralarla ve çoğu zaman birden fazla byte ile saklanır. Etkinlik 1'de öğrencilere bu yüzden A–Z arasından harf seçtirin.",
+    "Yaş bandı uyarlaması: 10–12 yaş grubunda ampulleri tek tek yakıp değerleri parmakla toplatarak somut ilerleyin. 13–15 yaş grubunda bir sayıyı (ör. 100) ampullere çevirme işini en büyük değerden başlayarak yaptırın ve ikilik sayı sistemi adını anın.",
+    "Sık görülen kavram yanılgıları: \"Bit ile byte aynı şeydir\", \"1 GB 100 MB'tır\", \"Harfler bilgisayarda resim olarak durur\". Bu cümleleri doğru/yanlış sorusu olarak sorup düzeltin.",
+    "3D sahneler yavaş bilgisayarda kaliteyi kendiliğinden düşürür; WebGL açılmazsa yerine çizim görünür. Hareket azaltma ayarı açık cihazlarda animasyonlar \"Adım adım\" düğmesiyle ilerler.",
+    "Her adımın sonunda 1-2 öğrenciye \"Bu adımda ne öğrendik?\" diye sorup anlattırarak anlaşıldığını kontrol edin (biçimlendirici değerlendirme)."
+  ],
+  "sureler": [
+    ["Giriş — Dikkat Çekme ve Güdüleme", 5],
+    ["Gelişme — Kavramların İşlenişi ve Etkinlikler", 25],
+    ["Değerlendirme ve Kapanış", 5]
+  ]
+}

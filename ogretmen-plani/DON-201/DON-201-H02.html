@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DON-201 H02 Öğretmen Planı — Bit ve Byte</title>
+<style>
+@font-face{font-family:'Carlito';src:local('Carlito'),url('../../assets/font/Carlito-Regular.ttf');font-weight:400;font-style:normal}
+@font-face{font-family:'Carlito';src:local('Carlito Bold'),url('../../assets/font/Carlito-Bold.ttf');font-weight:700;font-style:normal}
+@font-face{font-family:'Carlito';src:local('Carlito Italic'),url('../../assets/font/Carlito-Italic.ttf');font-weight:400;font-style:italic}
+@page{size:A4;margin:14mm 14mm 16mm 16.5mm;
+  @bottom-center{content:'Bilişim Üssü · Etkileşimli Ders Planı · ' counter(page) ' / ' counter(pages);font-family:Carlito,Calibri,sans-serif;font-size:7.5pt;color:#6b7a82}}
+*{box-sizing:border-box}
+html{font-family:Carlito,Calibri,'Segoe UI',Arial,sans-serif;font-size:9.9pt;color:#1a1a1a;line-height:1.38}
+body{margin:0;max-width:180mm}
+@media screen{body{margin:24px auto;padding:0 12px}}
+.bant{display:flex;gap:7pt;margin-bottom:9pt}
+.bant-sol{flex:1;background:linear-gradient(135deg,#075985,#0a6aa3);color:#fff;border-radius:4pt;padding:9pt 14pt 10pt}
+.bant-ust{font-size:7.6pt;font-weight:700;letter-spacing:2.2pt;opacity:.92}
+.bant-baslik{font-size:23pt;font-weight:700;line-height:1.12;margin-top:3pt}
+.bant-baslik.uzun{font-size:18pt}
+.bant-sag{width:128pt;background:#0369a1;color:#fff;border-radius:4pt;display:flex;align-items:center;justify-content:center;font-size:14pt;font-weight:700}
+h2{background:#0369a1;color:#fff;font-size:11pt;font-weight:700;margin:12pt 0 6pt;padding:5pt 10pt;border-radius:4pt;letter-spacing:.2pt;break-after:avoid}
+h3{display:flex;justify-content:space-between;align-items:center;color:#0369a1;font-size:10.6pt;margin:9pt 0 4pt;break-after:avoid}
+h3 .sure{background:#0369a1;color:#fff;font-size:8.6pt;border-radius:9pt;padding:1.5pt 8pt}
+table{width:100%;border-collapse:collapse;margin:0 0 4pt}
+td,th{border:1px solid #b9def1;padding:4pt 7pt;vertical-align:top;text-align:left}
+th{background:#e0f2fe;color:#075985;font-size:9.2pt;font-weight:700}
+tr{break-inside:avoid}
+.genel td:first-child{width:134pt;background:#e0f2fe;color:#075985;font-weight:700}
+.kazanim{width:100%;border-collapse:collapse}
+.kazanim td{border:0;border-bottom:1px solid #eaf6fc;padding:3.5pt 4pt}
+.kazanim td:first-child{width:32pt;color:#0369a1;font-weight:700}
+.isleyis td:first-child{width:35pt;text-align:center;color:#6b7a82;font-weight:700}
+.isleyis td:nth-child(2){width:122pt}
+.adim-ad{font-weight:700}
+.adim-konu{color:#475569}
+.slayt{display:inline-block;margin-top:2pt;font-size:8pt;font-weight:700;color:#0369a1;background:#e0f2fe;border-radius:6pt;padding:0 5pt}
+q{quotes:'“' '”'}
+q::before{content:open-quote}q::after{content:close-quote}
+p{margin:3pt 0 5pt;text-align:justify}
+.kutu{border:1px solid #b9def1;border-left:3pt solid #0369a1;border-radius:3pt;padding:5pt 8pt;margin:5pt 0;background:#f5fbff;break-inside:avoid}
+.kutu b{color:#075985}
+.olcme td:first-child{width:22pt;text-align:center;font-weight:700}
+.olcme td:last-child{width:40pt;text-align:center;color:#0369a1;font-weight:700}
+.soru{font-weight:700}
+.secenek{margin-top:1pt}
+.aciklama{font-style:italic;color:#0369a1;font-size:9.5pt;margin-top:2pt}
+.soru-gorsel{float:right;margin:0 0 2pt 8pt}
+.soru-gorsel svg{height:38pt;width:auto}
+.anahtar{font-weight:700;color:#075985;margin:3pt 0 0}
+.anahtar span{font-weight:400;color:#1a1a1a}
+ol.acik{margin:2pt 0;padding-left:0;list-style:none;counter-reset:a}
+ol.acik li{counter-increment:a;display:flex;gap:10pt;padding:3pt 0}
+ol.acik li::before{content:counter(a) '.';color:#0369a1;font-weight:700;min-width:16pt}
+.etiket{color:#0369a1;font-weight:700;margin:7pt 0 2pt}
+ul.not{margin:2pt 0;padding-left:12pt}
+ul.not li{margin:2pt 0}
+.sure-tablo td:last-child,.sure-tablo th:last-child{width:62pt}
+.imza{display:flex;justify-content:space-around;margin-top:14pt;text-align:center;color:#6b7a82;break-inside:avoid}
+.imza b{display:block;color:#475569;margin-bottom:10pt}
+</style>
+</head>
+<body>
+<div class="bant"><div class="bant-sol"><div class="bant-ust">ÖĞRETMEN DERS PLANI · DON-201</div><div class="bant-baslik">Bit ve Byte</div></div><div class="bant-sag">2. Hafta</div></div>
+<h2>1. GENEL BİLGİLER</h2>
+<table class="genel">
+<tr><td>Dersin Adı</td><td>Bilişim Teknolojileri ve Yazılım</td></tr>
+<tr><td>Sınıf / Seviye</td><td>Ortaokul (5–8. sınıf)</td></tr>
+<tr><td>Ünite / Konu</td><td>Donanım 201 - Bilgisayarı Tanıyalım — Bit ve Byte</td></tr>
+<tr><td>Öğrenme Alanı</td><td>Bilgisayar Donanımı</td></tr>
+<tr><td>Süre</td><td>1 ders saati (35 dk)</td></tr>
+<tr><td>Yöntem ve Teknikler</td><td>Anlatım, gösteri, soru-cevap, 3D model üzerinde deney, tahmin et–izle, görevli uygulama, oyunlaştırılmış tahmin etkinliği</td></tr>
+<tr><td>Araç-Gereç ve Kaynaklar</td><td>Etkileşimli ders (LMS), projeksiyon veya akıllı tahta; isteğe bağlı olarak sınıftan bir el feneri ya da lamba anahtarı</td></tr>
+<tr><td>Kavramlar / Terimler</td><td>Açık–Kapalı: 1 ve 0, Bit, Byte, Harfler Sayıdır, KB–MB–GB–TB, Kaç Fotoğraf Sığar?</td></tr>
+</table>
+<h2>2. KAZANIMLAR</h2>
+<table class="kazanim">
+<tr><td>K1.</td><td>Bilgisayarın veriyi 1 ve 0 ile temsil ettiğini açıklar.</td></tr>
+<tr><td>K2.</td><td>8 bitin 1 byte olduğunu gösterir.</td></tr>
+<tr><td>K3.</td><td>KB, MB, GB ve TB birimlerini büyüklük sırasına koyar.</td></tr>
+<tr><td>K4.</td><td>Bir belleğe kaç dosya sığacağını tahmin eder.</td></tr>
+</table>
+<h2>3. DERS İŞLENİŞİ</h2>
+<h3><span>Giriş — Dikkat Çekme ve Güdüleme</span><span class="sure">5 dk</span></h3>
+<p>Kapak slaytında ampuller kendiliğinden yanıp söner ve üstteki göstergede harfler belirir. Birkaç harf geçene kadar bekleyip sorun: <q>Ampuller nasıl harf yazıyor olabilir?</q> İki üç cevabı dinleyin. Hedefler slaytında kazanımları paylaşın. Isınma slaytında (Slayt 3) üç seçeneği okutun, el kaldırarak sınıfın tahminini sayın ve tahtaya yazın: <q>Cevabı ilk ampulü yakınca öğreneceğiz.</q></p>
+<h3><span>Gelişme — Kavramların İşlenişi</span><span class="sure">25 dk</span></h3>
+<table class="isleyis"><thead><tr><th>Adım</th><th>Konu</th><th>Öğretmen Notu</th></tr></thead>
+<tr><td>1</td><td><div class="adim-ad">Açık–Kapalı: 1 ve 0</div><div class="adim-konu">Açık ya da Kapalı</div><span class="slayt">Slayt 4</span></td><td>Tek ampule bir öğrenciyi dokundurun; ampul yanınca göstergede <q>Açık = 1</q> yazar. Sınıfın ışığını ya da bir el fenerini açıp kapatarak aynı fikri gösterin. <q>Bilgisayarın içinde bir yerde elektrik ya vardır ya yoktur; olan duruma 1, olmayana 0 deriz</q> deyin. Isınmadaki tahminleri burada kontrol edin: harf kabloda açık–kapalı sinyallerle gider.</td></tr>
+<tr><td>2</td><td><div class="adim-ad">Bit</div><div class="adim-konu">Bit: En Küçük Bilgi</div><span class="slayt">Slayt 5</span></td><td>Önce 1 bit düğmesine basın: yalnız iki desen çıkar. Sonra 2 bit ve 3 bit düğmelerine bastırıp desenleri sayın. Sorun: <q>Bir ampul daha eklersek desen sayısı ne olur?</q> Cevap dört bitte on altıdır. <q>Bir ampulün tuttuğu tek bilgiye, yani tek bir 1 veya 0'a bit adı verilir; ampul eklendikçe desen sayısı iki katına çıkar</q> deyin. Öğrencilere 3 bitle yapılabilecek bir deseni söyletin.</td></tr>
+<tr><td>3</td><td><div class="adim-ad">Byte</div><div class="adim-konu">8 Bit = 1 Byte</div><span class="slayt">Slayt 6</span></td><td>Ampullerin altındaki değerleri okutun: en soldaki 128'den başlar, her adımda yarıya iner, en sağda 1 olur. Bir öğrenciye 1 değerli ampulü, bir başkasına 128 değerli ampulü yaktırın; göstergedeki sayının toplandığını gösterin. <q>Sekiz bitlik bir gruba byte denir; sayıyı bulmak için yalnız yanan ampullerin değerlerini toplarız</q> deyin. Hepsi yanınca 255, hepsi sönünce 0 çıktığını gösterin.</td></tr>
+<tr><td>4</td><td><div class="adim-ad">Harfler Sayıdır</div><div class="adim-konu">Harfler de Sayıdır</div><span class="slayt">Slayt 7</span></td><td>Slayt açılınca ampuller kendiliğinden A, B ve C harflerini yazar. Ardından A yaz, B yaz ve C yaz düğmelerine bastırın. Sorun: <q>A 65 ise B kaçtır?</q> <q>Bilgisayar harfleri sayı olarak saklar; her harfin bir numarası vardır ve bu numara 1 ile 0'larla yazılır</q> deyin. Öğrencilere D harfinin sayısını tahmin ettirin (68).</td></tr>
+<tr><td>5</td><td><div class="adim-ad">KB–MB–GB–TB</div><div class="adim-konu">KB, MB, GB, TB</div><span class="slayt">Slayt 8</span></td><td>Oynat düğmesine basın; turuncu kutu bin kutudan birine dönüşürken bekleyin. Her basamakta alttaki örneği okutun: bir harf, yarım sayfa yazı, kalın bir roman, yaklaşık 250 fotoğraf, yaklaşık 500 film. <q>Her birim bir öncekinin bin katıdır: bin byte bir kilobayt, bin kilobayt bir megabayt yapar; ardından gigabayt ve terabayt gelir</q> deyin. Tahtaya byte &lt; KB &lt; MB &lt; GB &lt; TB sırasını yazdırın.</td></tr>
+<tr><td>6</td><td><div class="adim-ad">Kaç Fotoğraf Sığar?</div><div class="adim-konu">Kaç Dosya Sığar?</div><span class="slayt">Slayt 9</span></td><td>Önce ekrandaki bölme görselini gösterip sınıfa el kaldırarak tahmin yaptırın; en çok oyu alan seçeneği işaretleyin. Belleğin dolmasını birlikte izleyin. Ardından hesabı tahtada yapın: 32 GB = 32 000 MB, 32 000 ÷ 4 = 8000. <q>Kaç dosya sığacağını bulmak için önce birimi aynı yaparız, sonra kapasiteyi dosya boyutuna böleriz</q> deyin.</td></tr>
+</table>
+<div class="kutu"><b>Etkinlikler (Slayt 10–11):</b> Etkinlik 1'de (Slayt 10) gönüllü öğrenciler akıllı tahtada ampullere dokunarak dört görevi sırayla tamamlar: 5 sayısı, 255, A harfi (65) ve seçtikleri bir büyük harf. Her görevden önce sınıfa <q>Hangi ampuller yanmalı?</q> diye sorun ve cevabı tahtada toplama ile doğrulatın. Etkinlik 2'de (Slayt 11) sınıfı iki gruba ayırın: önce birimler küçükten büyüğe sıralanır, sonra üç turda şarkı, film ve e-kitap soruları gelir. Her turda gruplar tahminini seçmeden önce kâğıda kısa bir hesap yazar; doğru tahmin eden grup puan alır (yaklaşık 8 dk).</div>
+<h3><span>Değerlendirme ve Kapanış</span><span class="sure">5 dk</span></h3>
+<p>Özet slaytındaki altı kartı sırayla birer öğrenciye kendi cümleleriyle anlattırın. Bilgi Testi'ni (Slayt 14) sınıfça çözün; yanlış çıkan soruda ilgili adım slaytına dönüp ampullerle yeniden gösterin. Son soru Derinleş bonusudur, puanı düşürmez. Dersi <q>Telefonunun kaç GB olduğunu biliyor musun?</q> sorusuyla kapatın ve ödevi bağlayın.</p>
+<h2>4. ÖLÇME VE DEĞERLENDİRME</h2>
+<table class="olcme"><thead><tr><th>#</th><th>Soru ve Seçenekler</th><th>Cevap</th></tr></thead>
+<tr><td>1</td><td><div class="soru">Bilgisayar harfleri, fotoğrafları ve sesleri nasıl saklar?</div><div class="secenek">A) 1 ve 0’lardan oluşan sayılarla B) Küçük kâğıt kopyalarıyla C) Renkli ışıklarla D) Harfleri olduğu gibi çizerek</div><div class="aciklama">Bilgisayarın içinde her şey açık (1) ve kapalı (0) elektrik durumlarıyla, yani sayılarla saklanır.</div></td><td>A</td></tr>
+<tr><td>2</td><td><div class="soru-gorsel"><svg viewBox="0 0 340 80" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Yan yana 8 ampul; bazıları yanıyor"><rect width="340" height="80" rx="10" fill="#eef7fe"/><rect x="10" y="56" width="320" height="12" rx="4" fill="#2a2d33"/><circle cx="30" cy="34" r="20" fill="#fcd34d" opacity=".35"/><circle cx="30" cy="34" r="12" fill="#fde68a" stroke="#f59e0b" stroke-width="2"/><rect x="24" y="44" width="10" height="8" rx="2" fill="#9aa1aa"/><path d="M25 36 q4 -6 8 0" fill="none" stroke="#b45309" stroke-width="1.6"/><circle cx="70" cy="34" r="12" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2"/><rect x="64" y="44" width="10" height="8" rx="2" fill="#9aa1aa"/><path d="M65 36 q4 -6 8 0" fill="none" stroke="#94a3b8" stroke-width="1.6"/><circle cx="110" cy="34" r="20" fill="#fcd34d" opacity=".35"/><circle cx="110" cy="34" r="12" fill="#fde68a" stroke="#f59e0b" stroke-width="2"/><rect x="104" y="44" width="10" height="8" rx="2" fill="#9aa1aa"/><path d="M105 36 q4 -6 8 0" fill="none" stroke="#b45309" stroke-width="1.6"/><circle cx="150" cy="34" r="20" fill="#fcd34d" opacity=".35"/><circle cx="150" cy="34" r="12" fill="#fde68a" stroke="#f59e0b" stroke-width="2"/><rect x="144" y="44" width="10" height="8" rx="2" fill="#9aa1aa"/><path d="M145 36 q4 -6 8 0" fill="none" stroke="#b45309" stroke-width="1.6"/><circle cx="190" cy="34" r="12" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2"/><rect x="184" y="44" width="10" height="8" rx="2" fill="#9aa1aa"/><path d="M185 36 q4 -6 8 0" fill="none" stroke="#94a3b8" stroke-width="1.6"/><circle cx="230" cy="34" r="12" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2"/><rect x="224" y="44" width="10" height="8" rx="2" fill="#9aa1aa"/><path d="M225 36 q4 -6 8 0" fill="none" stroke="#94a3b8" stroke-width="1.6"/><circle cx="270" cy="34" r="20" fill="#fcd34d" opacity=".35"/><circle cx="270" cy="34" r="12" fill="#fde68a" stroke="#f59e0b" stroke-width="2"/><rect x="264" y="44" width="10" height="8" rx="2" fill="#9aa1aa"/><path d="M265 36 q4 -6 8 0" fill="none" stroke="#b45309" stroke-width="1.6"/><circle cx="310" cy="34" r="12" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2"/><rect x="304" y="44" width="10" height="8" rx="2" fill="#9aa1aa"/><path d="M305 36 q4 -6 8 0" fill="none" stroke="#94a3b8" stroke-width="1.6"/></svg></div><div class="soru">Görseldeki ampul sırası kaç bittir ve kaç byte eder?</div><div class="secenek">A) 4 bit, yarım byte B) 16 bit, 2 byte C) 8 bit, 1 byte D) 1 bit, 1 byte</div><div class="aciklama">Her ampul bir bittir. 8 ampul 8 bit eder; 8 bit de 1 byte’tır.</div></td><td>C</td></tr>
+<tr><td>3</td><td><div class="soru">Hangi seçenekte birimler küçükten büyüğe doğru sıralanmıştır?</div><div class="secenek">A) GB, MB, KB, TB B) KB, MB, GB, TB C) MB, KB, TB, GB D) TB, GB, MB, KB</div><div class="aciklama">Her birim bir öncekinin yaklaşık 1000 katıdır: KB, MB, GB, TB.</div></td><td>B</td></tr>
+<tr><td>4</td><td><div class="soru">Ece’nin telefonunda 8 GB boş yer var. Her video 2 GB. En çok kaç video sığar?</div><div class="secenek">A) 16 B) 2 C) 6 D) 4</div><div class="aciklama">8 GB’ı 2 GB’a böleriz: 8 ÷ 2 = 4 video sığar.</div></td><td>D</td></tr>
+</table>
+<p class="anahtar">Cevap Anahtarı: <span>1-A 2-C 3-B 4-D</span></p>
+<h2>5. AÇIK UÇLU / BİÇİMLENDİRİCİ DEĞERLENDİRME</h2>
+<ol class="acik">
+<li><span>«1 ve 0» kavramını kendi cümlelerinle açıkla ve günlük hayattan bir örnek ver.</span></li>
+<li><span>«Harfler Sayıdır» kavramını kendi cümlelerinle açıkla ve günlük hayattan bir örnek ver.</span></li>
+<li><span>«Bellek Birimleri» kavramını kendi cümlelerinle açıkla ve günlük hayattan bir örnek ver.</span></li>
+<li><span>Bu derste en çok hangi adım ilgini çekti, nerede zorlandın? Nedenini açıkla.</span></li>
+</ol>
+<h2>6. ÖĞRETMEN NOTLARI VE ÖDEV</h2>
+<div class="etiket">Ödev / Sınıf Dışı Etkinlik:</div><p>Evdeki bir telefonun, tabletin ya da USB belleğin kapasitesini öğren (ayarlar bölümünde yazar). Bir fotoğrafın yaklaşık 4 MB olduğunu düşünerek bu cihaza kaç fotoğraf sığacağını hesapla. Hesabını adım adım yazıp bir sonraki derse getir.</p>
+<div class="etiket">Öğretmen İçin Notlar:</div><ul class="not">
+<li>Derinleş (Slayt 12) isteğe bağlıdır: süre kalırsa ya da hızlı bitiren öğrenciler için kullanın. Burada 8 bitle 256 farklı desen yapıldığı ve 1 TB diskin bilgisayarda neden yaklaşık 931 GB göründüğü anlatılır. Atlasanız da akış bozulmaz; Bilgi Testi'ndeki bonus soru puanı düşürmez.</li>
+<li>1000 mi, 1024 mü? Derste hesap kolaylığı için 1 KB = 1000 byte kullanılır (disk üreticileri de böyle sayar). Bilgisayar ise bazen 1 KB'ı 1024 byte sayar. Öğrenci sorarsa iki sayımın da kullanıldığını, bu yüzden disk boyutunun ekranda biraz küçük göründüğünü söyleyin.</li>
+<li>Türkçe harfler: Derste kullanılan 65 = A gibi numaralar İngiliz alfabesinin harfleri içindir. Ç, Ğ, İ, Ö, Ş ve Ü gibi harfler daha büyük numaralarla ve çoğu zaman birden fazla byte ile saklanır. Etkinlik 1'de öğrencilere bu yüzden A–Z arasından harf seçtirin.</li>
+<li>Yaş bandı uyarlaması: 10–12 yaş grubunda ampulleri tek tek yakıp değerleri parmakla toplatarak somut ilerleyin. 13–15 yaş grubunda bir sayıyı (ör. 100) ampullere çevirme işini en büyük değerden başlayarak yaptırın ve ikilik sayı sistemi adını anın.</li>
+<li>Sık görülen kavram yanılgıları: <q>Bit ile byte aynı şeydir</q>, <q>1 GB 100 MB'tır</q>, <q>Harfler bilgisayarda resim olarak durur</q>. Bu cümleleri doğru/yanlış sorusu olarak sorup düzeltin.</li>
+<li>3D sahneler yavaş bilgisayarda kaliteyi kendiliğinden düşürür; WebGL açılmazsa yerine çizim görünür. Hareket azaltma ayarı açık cihazlarda animasyonlar <q>Adım adım</q> düğmesiyle ilerler.</li>
+<li>Her adımın sonunda 1-2 öğrenciye <q>Bu adımda ne öğrendik?</q> diye sorup anlattırarak anlaşıldığını kontrol edin (biçimlendirici değerlendirme).</li>
+</ul>
+<table class="sure-tablo"><thead><tr><th>Aşama</th><th>Süre</th></tr></thead>
+<tr><td>Giriş — Dikkat Çekme ve Güdüleme</td><td>5 dk</td></tr>
+<tr><td>Gelişme — Kavramların İşlenişi ve Etkinlikler</td><td>25 dk</td></tr>
+<tr><td>Değerlendirme ve Kapanış</td><td>5 dk</td></tr>
+<tr><th>Toplam</th><th>35 dk</th></tr>
+</table>
+<div class="imza"><div><b>Ders Öğretmeni</b>Ad Soyad / İmza</div><div><b>Uygundur</b>Okul Müdürü</div></div>
+</body>
+</html>

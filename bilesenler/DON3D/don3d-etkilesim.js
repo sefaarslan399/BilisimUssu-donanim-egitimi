@@ -200,6 +200,106 @@
     return { dene: dene, cevir: cevir, sifirla: sifirla };
   };
 
+
+  /* ─── E-SAYAC: ampullere tıklayarak sayı/harf oluştur ─── */
+  /**
+   * DON3D.sayac(sahne, ampulSirasi, { basamaklar: true, harf: false, bitEtiketi: true, kilitli: false,
+   *                                   gosterge: true, onDegis(bitler, sayi) })
+   * Döner: { ayarla(sayi, sure) → Promise, sayi(), bitler(), gosterge }
+   */
+  D.sayac = function (sahne, model, ops) {
+    ops = ops || {};
+    var amp = model.userData.ampuller, n = amp.length;
+    var bitEt = [];
+    var gosterge = ops.gosterge === false ? null : D.sayacGosterge(sahne.arayuz, { harf: !!ops.harf, bitler: n > 1 ? undefined : false, sayi: n > 1 ? undefined : false });
+    if (gosterge && n === 1) gosterge.el.classList.add('dsy-tek');
+    amp.forEach(function (a, i) {
+      if (ops.bitEtiketi !== false) {
+        var t = sahne.etiket(a, '0', { tur: 'bit', yer: 'alt', ofset: [0, -0.4, 4.2] });
+        bitEt.push(t);
+      }
+    });
+    function bitler() { return model.userData.durum.slice(); }
+    function sayi() { return bitler().reduce(function (s, b) { return s * 2 + (b ? 1 : 0); }, 0); }
+    function yenile() {
+      var b = bitler();
+      bitEt.forEach(function (t, i) {
+        var deger = Math.pow(2, n - 1 - i);
+        t.metin((b[i] ? '1' : '0') + (ops.basamaklar ? '\n' + deger : ''));
+        t.el.classList.toggle('don3d-etiket--bit-acik', !!b[i]);
+      });
+      if (gosterge && n > 1) gosterge.guncelle(b);
+      if (gosterge && n === 1) gosterge.el.textContent = b[0] ? 'Açık = 1' : 'Kapalı = 0';
+      if (ops.onDegis) ops.onDegis(b, sayi());
+    }
+    if (!ops.kilitli) {
+      sahne.tiklaninca(function (p) {
+        if (!p || !/^ampul-\d+$/.test(p.name)) return;
+        var i = p.userData.indeks;
+        model.userData.ayarla(i, !model.userData.durum[i]);
+        D.ses('klik');
+        yenile();
+      });
+    }
+    var api = {
+      gosterge: gosterge, bitler: bitler, sayi: sayi, yenile: yenile,
+      ayarla: function (deger, sure) {
+        var z = [];
+        for (var i = 0; i < n; i++) {
+          var b = (deger >> (n - 1 - i)) & 1;
+          z.push(model.userData.ayarla(i, !!b, sure));
+        }
+        return Promise.all(z).then(function () { yenile(); });
+      }
+    };
+    yenile();
+    return api;
+  };
+
+  /* ─── E-TAHMIN: önce tahmin seç, sonra animasyonu izle ve karşılaştır ─── */
+  /**
+   * DON3D.tahmin(el, {  giris?: 'seçimden önce sahnede duran HTML', soru, secenekler: ['80', '800', …], dogru: indeks, sonra: function () → Promise,
+   *                    aciklama, onBitti(dogruMu) })
+   * Döner: { sifirla() }
+   */
+  D.tahmin = function (el, ops) {
+    el.innerHTML = '';
+    var kok = D.div('dth', el);
+    var soru = D.div('dth-soru', kok); soru.textContent = ops.soru;
+    var sec = D.div('dth-secenekler', kok);
+    sec.setAttribute('role', 'group');
+    var sahne = D.div('dth-sahne', kok);
+    if (ops.giris) sahne.innerHTML = ops.giris;   // seçimden önce gösterilen soru görseli
+    var sonuc = D.div('dth-sonuc', kok);
+    sonuc.setAttribute('aria-live', 'polite');
+    sonuc.textContent = 'Önce tahminini seç.';
+    var dugmeler = ops.secenekler.map(function (t, i) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'dth-sec'; b.textContent = t;
+      b.addEventListener('click', function () { sec_(i); });
+      sec.appendChild(b);
+      return b;
+    });
+    function sec_(i) {
+      dugmeler.forEach(function (b) { b.disabled = true; });
+      dugmeler[i].classList.add('dth-secili');
+      sonuc.className = 'dth-sonuc';
+      sonuc.textContent = 'Tahminin: ' + ops.secenekler[i] + '. Şimdi izle…';
+      Promise.resolve(ops.sonra ? ops.sonra(sahne) : null).then(function () {
+        var dogru = i === ops.dogru;
+        dugmeler[ops.dogru].classList.add('dth-dogru');
+        if (!dogru) dugmeler[i].classList.add('dth-yanlis');
+        sonuc.className = 'dth-sonuc ' + (dogru ? 'dth-sonuc--dogru' : 'dth-sonuc--yanlis');
+        sonuc.innerHTML = D.simge(dogru ? 'dogru' : 'yanlis') + '<span></span>';
+        sonuc.lastChild.textContent = (dogru ? 'Tahminin doğru! ' : 'Doğrusu: ' + ops.secenekler[ops.dogru] + '. ') + (ops.aciklama || '');
+        if (ops.onBitti) ops.onBitti(dogru, i);
+      });
+    }
+    return {
+      sifirla: function () { D.tahmin(el, ops); }
+    };
+  };
+
   /* ─── E-SINIFLA: öğeleri doğru kutulara sürükle; anında geri bildirim ─── */
   /**
    * DON3D.sinifla(kapsayici, {

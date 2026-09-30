@@ -421,6 +421,139 @@
     };
   };
 
+
+  /* ─── A-SAYAC: ampul/anahtar durumuna bağlı canlı bit → sayı → harf göstergesi (HTML) ─── */
+  /** Yazdırılabilir ASCII harfi (32–126); değilse null. */
+  D.harfKodu = function (n) {
+    if (n === 32) return 'boşluk';
+    return n > 32 && n < 127 ? String.fromCharCode(n) : null;
+  };
+  /**
+   * DON3D.sayacGosterge(ebeveynEl, { bitler: true, sayi: true, harf: false, etiketler })
+   * Döner: { el, guncelle(bitDizisi) } — bitDizisi soldan sağa (en büyük basamak solda).
+   */
+  D.sayacGosterge = function (ebeveyn, ops) {
+    ops = ops || {};
+    var el = D.div('dsy-gosterge', ebeveyn);
+    el.setAttribute('aria-live', 'polite');
+    function alan(ad, sinif) {
+      if (ops[ad] === false) return null;
+      var a = D.div('dsy-alan ' + sinif, el);
+      var b = D.div('dsy-baslik', a); b.textContent = (ops.etiketler && ops.etiketler[ad]) || { bitler: 'Bitler', sayi: 'Sayı', harf: 'Harf' }[ad];
+      return D.div('dsy-deger', a);
+    }
+    var eBit = alan('bitler', 'dsy-bitler'), eSayi = alan('sayi', 'dsy-sayi'), eHarf = ops.harf ? alan('harf', 'dsy-harf') : null;
+    function guncelle(bitler) {
+      var sayi = 0;
+      bitler.forEach(function (b) { sayi = sayi * 2 + (b ? 1 : 0); });
+      if (eBit) {
+        var t = bitler.map(function (b) { return b ? '1' : '0'; }).join('');
+        eBit.textContent = t.length === 8 ? t.slice(0, 4) + ' ' + t.slice(4) : t;
+      }
+      if (eSayi) eSayi.textContent = String(sayi);
+      if (eHarf) { var h = D.harfKodu(sayi); eHarf.textContent = h || '—'; eHarf.classList.toggle('dsy-bos', !h); }
+      return sayi;
+    }
+    return { el: el, guncelle: guncelle };
+  };
+
+  /* ─── A-DOLUM: kapasite çubuğunun öğelerle dolması (HTML) ─── */
+  /**
+   * DON3D.dolum(el, { kapasite, ogeBoyut, birim, ogeAd, simge (svg), hucre: 40, sure })
+   * Kapasite ve öğe boyutu aynı birimdedir (ör. MB). Promise döner (dolan öğe sayısı).
+   */
+  /** Sayı yazımı: 4 basamağa kadar bitişik (8000), 5+ basamak boşlukla gruplanır (32 000). */
+  D.sayiYaz = function (n) {
+    var s = String(Math.round(n));
+    return s.length < 5 ? s : s.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+  };
+  D.dolum = function (el, ops) {
+    el.innerHTML = '';
+    var kok = D.div('ddl', el);
+    var ust = D.div('ddl-ust', kok);
+    var sayac = D.div('ddl-sayac', ust);
+    var not = D.div('ddl-not', ust);
+    var hucreSay = ops.hucre || 40;
+    var adet = Math.floor(ops.kapasite / ops.ogeBoyut);
+    var hucreBasi = Math.max(1, Math.round(adet / hucreSay));
+    not.textContent = 'Her simge ≈ ' + D.sayiYaz(hucreBasi) + ' ' + ops.ogeAd;
+    var izgara = D.div('ddl-izgara', kok);
+    var hucreler = [];
+    for (var i = 0; i < hucreSay; i++) {
+      var h = D.div('ddl-hucre', izgara);
+      h.innerHTML = ops.simge || '';
+      hucreler.push(h);
+    }
+    var bar = D.div('ddl-bar', kok), dolgu = D.div('ddl-dolgu', bar);
+    var alt = D.div('ddl-alt', kok);
+    alt.textContent = '0 / ' + D.sayiYaz(ops.kapasite) + ' ' + ops.birim;
+    return D.tween({ sure: D.azHareket() ? 0.1 : (ops.sure || 2.4), ease: 'easeInOutCubic', guncelle: function (e) {
+      var n = Math.round(adet * e);
+      sayac.textContent = D.sayiYaz(n) + ' ' + ops.ogeAd;
+      var dolu = Math.round(hucreSay * e);
+      hucreler.forEach(function (h, i) { h.classList.toggle('ddl-dolu', i < dolu); });
+      dolgu.style.width = (e * 100).toFixed(1) + '%';
+      alt.textContent = D.sayiYaz(n * ops.ogeBoyut) + ' / ' + D.sayiYaz(ops.kapasite) + ' ' + ops.birim;
+    } }).then(function () { kok.classList.add('ddl-bitti'); return adet; });
+  };
+
+  /* ─── A-OLCEK: ölçek karşılaştırması — "kamera" uzaklaşır, bir kutucuk 1000 kutucuktan biri olur (2D) ─── */
+  /**
+   * DON3D.olcek(el, { basamaklar: [{ ad: '1 byte', ornek: '1 harf' }, …], carpan: 1000 })
+   * Döner: { git(i) → Promise, oynat() → Promise, indeks }
+   */
+  D.olcek = function (el, ops) {
+    el.innerHTML = '';
+    var SUT = 40, SAT = 25;                    // 40 × 25 = 1000 kutucuk
+    var kok = D.div('dol', el);
+    var sahne = D.div('dol-sahne', kok);
+    sahne.setAttribute('data-bilincli-kirpma', '');   // ızgara büyütülerek kırpılır; kaydırma testi bunu sorun saymaz
+    var ic = D.div('dol-ic', sahne);
+    var svg = '<svg viewBox="0 0 ' + SUT * 10 + ' ' + SAT * 10 + '" preserveAspectRatio="xMidYMid meet" aria-hidden="true">';
+    for (var y = 0; y < SAT; y++) for (var x = 0; x < SUT; x++) {
+      svg += '<rect x="' + (x * 10 + 0.8) + '" y="' + (y * 10 + 0.8) + '" width="8.4" height="8.4" rx="1.4" class="' + (x === 0 && y === 0 ? 'dol-ilk' : 'dol-k') + '"/>';
+    }
+    ic.innerHTML = svg + '</svg>';
+    var yazi = D.div('dol-yazi', kok);
+    yazi.setAttribute('aria-live', 'polite');
+    var i0 = 0, calis = false;
+    var api = { indeks: 0 };
+    function yazYaz(i, tam) {
+      var b = ops.basamaklar[i], o = ops.basamaklar[i - 1];
+      yazi.innerHTML = '<b></b><span></span>';
+      yazi.firstChild.textContent = b.ad + (o && tam ? ' = ' + D.sayiYaz(ops.carpan || 1000) + ' ' + o.ad.replace(/^1 /, '') : '');
+      yazi.lastChild.textContent = b.ornek ? '≈ ' + b.ornek : '';
+    }
+    // Yakın görünüm: ilk kutucuk görüntünün ortasında ve iri; uzaklaştıkça ızgara yerine oturur.
+    var YAKIN = 14, OX = 0.5 / SUT, OY = 0.5 / SAT;
+    function olcekle(s) {
+      var f = (s - 1) / (YAKIN - 1);
+      ic.style.transform = 'translate(' + ((0.5 - OX) * 100 * f).toFixed(3) + '%, ' + ((0.5 - OY) * 100 * f).toFixed(3) + '%) scale(' + s + ')';
+    }
+    ic.style.transformOrigin = (OX * 100) + '% ' + (OY * 100) + '%';
+    api.git = function (i) {
+      if (calis) return Promise.resolve();
+      i = Math.max(0, Math.min(ops.basamaklar.length - 1, i));
+      api.indeks = i;
+      if (i === 0) { olcekle(YAKIN); kok.classList.add('dol-yakin'); yazYaz(0, false); return Promise.resolve(); }
+      calis = true;
+      kok.classList.add('dol-yakin');
+      olcekle(YAKIN);
+      yazYaz(i - 1, false);
+      return D.bekle(0.5).then(function () {
+        kok.classList.remove('dol-yakin');
+        return D.tween({ sure: 1.6, ease: 'easeInOutCubic', guncelle: function (e) { olcekle(Math.pow(YAKIN, 1 - e)); } });
+      }).then(function () { yazYaz(i, true); calis = false; });
+    };
+    api.oynat = function () {
+      var z = Promise.resolve();
+      for (var k = 1; k < ops.basamaklar.length; k++) (function (k) { z = z.then(function () { return api.git(k); }).then(function () { return D.bekle(1.2); }); })(k);
+      return z;
+    };
+    api.git(0);
+    return api;
+  };
+
   /* ─── A-DONUS: dönen parça (fan, HDD plakası) ─── */
   /** Parçayı sürekli döndürür. Döner: durdur() */
   D.dondurParca = function (parca, ops) {

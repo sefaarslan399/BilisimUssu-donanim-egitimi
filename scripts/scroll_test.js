@@ -62,6 +62,7 @@ async function olc(page) {
       if (fark <= A.esik || el.clientHeight === 0) return;
       const kaydirilabilir = /(auto|scroll)/.test(st.overflowY);
       if (kaydirilabilir) return; // bilinçli dinamik kapsayıcı
+      if (el.closest('[data-bilincli-kirpma]')) return; // yakınlaştırma penceresi gibi bilerek kırpılan görsel (ör. A-OLCEK)
       if (st.overflowY === 'hidden' || st.overflowY === 'clip' || el.matches('.code-body')) {
         sorunlar.push('(b) ' + ad(el) + ' içerik kesiliyor: ' + fark + 'px');
       }

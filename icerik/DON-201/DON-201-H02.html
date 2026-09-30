@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Donanım, Yazılım ve Bilgisayarın Dört İşi</title>
+<title>Bit ve Byte</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Nunito:wght@600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -878,7 +878,7 @@ body.grade-lise .quiz-opt{font-weight:500}
 }
 </style>
 <style data-ders>
-/* DON-201 H01 — derse özel stil (MASTER'a dokunmadan) */
+/* DON-201 H02 — derse özel stil (MASTER'a dokunmadan; H01 temeli) */
 
 /* Ortaokul font tavanları (docs/uretim-standartlari.md) */
 body.grade-ortaokul{
@@ -978,15 +978,15 @@ body.grade-ortaokul{
   gap:clamp(4px, 0.4vw + 2px, 12px);min-height:0;overflow:hidden;
   background:#fff;border:1.5px solid var(--border);border-radius:var(--radius);padding:clamp(6px, 0.4vw + 4px, 14px);
 }
-.ozet-resim{width:clamp(70px, 6vw + 20px, 170px);min-height:0;flex-shrink:1}
-.ozet-resim svg{width:100%;height:auto;display:block;max-height:14vh}
+.ozet-resim{width:clamp(90px, 9vw + 20px, 220px);min-height:0;flex-shrink:1}
+.ozet-resim svg{width:100%;height:auto;display:block;max-height:20vh}
 .ozet-bas{font-weight:900;font-size:clamp(14px, 0.45vw + 11px, 20px);color:var(--ink)}
 .ozet-bas b{display:inline-flex;align-items:center;justify-content:center;width:1.5em;height:1.5em;border-radius:6px;background:var(--brand);color:#fff;margin-right:4px;font-size:0.85em}
 .ozet-metin{font-size:clamp(12px, 0.35vw + 10px, 17px);color:var(--ink2);font-weight:600;line-height:1.35;margin-top:2px}
 
 /* Quiz görseli */
 .q-gorsel{display:block;margin-top:clamp(4px, 0.3vw + 2px, 10px)}
-.q-gorsel svg{height:clamp(52px, 5vh + 20px, 96px);width:auto;display:block}
+.q-gorsel svg{height:clamp(72px, 9vh + 20px, 130px);width:auto;display:block}
 .quiz-q .bonus{display:inline-block;margin-right:6px;padding:1px 8px;border-radius:999px;background:#ede9fe;color:#5b21b6;font-size:0.8em}
 
 /* Hedef simgeleri */
@@ -1002,6 +1002,70 @@ body.grade-ortaokul{
   .step-visual.v3d{min-height:clamp(180px, 38vh, 360px)}
   .ozet-izgara{grid-template-columns:repeat(2, minmax(0, 1fr))}
 }
+
+/* 2D görsel panel (etkileşimli çizimler) */
+.step-visual.gorsel2d{padding:clamp(8px, 0.6vw + 4px, 16px);align-items:stretch;justify-content:stretch}
+.step-visual.gorsel2d.koyu{background:linear-gradient(135deg, #e0f2fe, #f8fafc)}
+.gorsel2d-ic{flex:1;min-width:0;min-height:0;display:flex;flex-direction:column;gap:8px}
+
+/* Adım 2: bit kombinasyonları */
+.bk-secici{display:flex;gap:6px;justify-content:center;flex-shrink:0}
+.bk-secici button{min-height:40px;padding:4px 14px;border-radius:999px;border:1.5px solid var(--border);background:#fff;font-family:var(--font);font-weight:800;font-size:clamp(13px, 0.35vw + 11px, 17px);color:var(--ink2);cursor:pointer}
+.bk-secici button[aria-pressed="true"]{border-color:var(--brand);background:var(--brand-lt);color:var(--brand-dk)}
+.bk-izgara{flex:1;min-height:0;display:flex;flex-wrap:wrap;gap:clamp(8px, 1vw, 16px);align-content:center;justify-content:center}
+.bk-desen{display:flex;flex-direction:column;align-items:center;gap:6px;background:#fff;border:1.5px solid var(--border);border-radius:16px;padding:clamp(8px, 0.8vw, 14px) clamp(10px, 1vw, 16px);box-shadow:0 4px 12px rgba(15,23,42,.06);animation:bkBelir .35s both}
+@keyframes bkBelir{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:none}}
+.bk-ampuller{display:flex;gap:6px}
+.bk-ampul{width:clamp(26px, 2.2vw + 8px, 52px);height:clamp(26px, 2.2vw + 8px, 52px);border-radius:50%;border:2px solid #94a3b8;background:#f1f5f9}
+.bk-ampul.acik{border-color:#f59e0b;background:#fde68a;box-shadow:0 0 10px rgba(245,158,11,.6)}
+.bk-kod{font-family:var(--mono);font-weight:800;font-size:clamp(14px, 0.6vw + 10px, 22px);color:var(--ink)}
+.bk-sonuc{flex-shrink:0;text-align:center;font-weight:900;font-size:clamp(14px, 0.45vw + 11px, 20px);color:var(--brand-dk)}
+
+/* Adım 5: ölçek kontrolleri */
+.olcek-kontrol{display:flex;gap:6px;justify-content:center;flex-shrink:0}
+.olcek-kontrol button{min-height:40px;min-width:44px;padding:4px 14px;border-radius:999px;border:1.5px solid var(--border);background:#fff;font-family:var(--font);font-weight:800;font-size:clamp(13px, 0.35vw + 11px, 17px);color:var(--ink2);cursor:pointer}
+.olcek-kontrol button.birincil{background:var(--brand);border-color:var(--brand);color:#fff}
+.olcek-merdiven{display:flex;gap:4px;justify-content:center;flex-wrap:wrap;flex-shrink:0}
+.olcek-merdiven span{padding:2px 10px;border-radius:999px;background:#fff;border:1.5px solid var(--border);font-weight:800;font-size:clamp(11px, 0.25vw + 9px, 14px);color:var(--muted)}
+.olcek-merdiven span.aktif{border-color:#f59e0b;background:#fef3c7;color:#92400e}
+
+/* Etkinlik 1: görev listesi */
+.gorevler{list-style:none;margin:0;padding:clamp(8px, 0.4vw + 6px, 14px);display:flex;flex-direction:column;gap:6px;background:#fff;border:1.5px solid var(--border);border-radius:var(--radius)}
+.gorevler li{display:flex;align-items:center;gap:8px;font-size:clamp(13px, 0.35vw + 10px, 17px);font-weight:600;color:var(--muted);padding:3px 6px;border-radius:8px}
+.gorevler li.simdi{color:var(--ink);background:var(--brand-lt)}
+.gorevler li.tamam{color:#065f46}
+.g-isaret{width:22px;height:22px;border-radius:50%;border:2px solid #cbd5e1;flex-shrink:0;display:inline-flex;align-items:center;justify-content:center}
+.gorevler li.simdi .g-isaret{border-color:var(--brand)}
+.gorevler li.tamam .g-isaret{background:var(--ok);border-color:var(--ok)}
+.gorevler li.tamam .g-isaret::after{content:'✓';color:#fff;font-size:13px;font-weight:900}
+
+/* Etkinlik 2: birim sıralama ve oyun */
+.bo{display:flex;flex-direction:column;gap:8px;height:100%;min-height:0}
+.bo-baslik{font-weight:900;font-size:clamp(15px, 0.5vw + 11px, 21px);color:var(--ink)}
+.bo-kartlar{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.bo-kart{min-width:clamp(80px, 4vw + 44px, 140px);min-height:clamp(64px, 4vw + 34px, 120px);border-radius:14px;border:2px solid var(--border);background:#fff;cursor:pointer;
+  font-family:var(--font);font-weight:900;font-size:clamp(20px, 1.2vw + 12px, 34px);color:var(--brand-dk);box-shadow:0 4px 12px rgba(15,23,42,0.08)}
+.bo-kart:disabled{opacity:.35;cursor:default;box-shadow:none}
+.bo-sira{display:flex;gap:6px;justify-content:center;min-height:clamp(44px, 2vw + 28px, 64px);align-items:center;flex-wrap:wrap;
+  border:2px dashed #cbd5e1;border-radius:14px;padding:6px}
+.bo-sira span{padding:6px 12px;border-radius:10px;background:var(--ok-bg);color:#065f46;font-weight:900;font-size:clamp(15px, 0.5vw + 11px, 22px)}
+.bo-sira span + span::before{content:'<';margin-right:6px;color:var(--muted)}
+.bo-sonraki{align-self:flex-end;min-height:42px;padding:4px 18px;border-radius:999px;border:none;background:var(--brand);color:#fff;font-family:var(--font);font-weight:800;font-size:clamp(13px, 0.35vw + 11px, 17px);cursor:pointer}
+.bo-ozet{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center}
+.bo-ozet b{font-size:clamp(28px, 2vw + 16px, 54px);color:var(--brand-dk)}
+
+/* Tahmin öncesi bölme görseli: [depo] ÷ [dosya] = ? */
+.h2-bol{height:100%;display:flex;align-items:center;justify-content:center;gap:clamp(6px, 1vw, 16px);flex-wrap:wrap;padding:8px}
+.h2-bol-oge{display:flex;flex-direction:column;align-items:center;gap:4px;padding:clamp(10px, 1vw, 18px);border-radius:18px;background:#fff;border:2px solid var(--border);box-shadow:0 6px 16px rgba(15,23,42,.07);min-width:clamp(86px, 7vw + 30px, 170px)}
+.h2-bol-oge svg{width:clamp(44px, 3.5vw + 16px, 90px);height:auto;display:block}
+.h2-bol-oge b{font-size:clamp(18px, 1vw + 12px, 32px);font-weight:900;color:var(--ink)}
+.h2-bol-oge span{font-size:clamp(12px, 0.35vw + 10px, 16px);font-weight:700;color:var(--ink2)}
+.h2-bol-depo{border-color:#94a3b8}
+.h2-bol-soru{border-style:dashed;border-color:var(--brand)}
+.h2-bol-soru i{font-style:normal;display:flex;align-items:center;justify-content:center;width:clamp(44px, 3.5vw + 16px, 90px);aspect-ratio:1;border-radius:50%;background:var(--brand-lt);color:var(--brand-dk);font-weight:900;font-size:clamp(24px, 2vw + 12px, 48px)}
+.h2-bol-isaret{font-size:clamp(24px, 1.8vw + 12px, 46px);font-weight:900;color:var(--muted)}
+.bo-kartlar{flex:1;align-content:center}
+.bo-ozet .bo-sonraki{align-self:center}
 </style>
 </head>
 <body class="grade-ortaokul">
@@ -1023,11 +1087,8 @@ body.grade-ortaokul{
       <div class="layout-cover">
         <div class="cover-visual">
           <div class="cover-svg kapak-3d">
-            <div class="don3d" id="kapak-3d" aria-label="Yavaşça dönen masaüstü bilgisayar kasası">
-              <div data-yedek hidden><svg viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Masaüstü bilgisayar kasası">
-<polygon points="60,40 150,28 150,210 60,222" fill="#30343c"/><polygon points="150,28 176,40 176,214 150,210" fill="#1d2027"/><polygon points="60,40 86,28 176,40 150,28" fill="#3b404a"/>
-<polygon points="68,56 142,46 142,196 68,206" fill="#23262c"/><circle cx="104" cy="36" r="4" fill="#bfe3ff"/>
-</svg></div>
+            <div class="don3d" id="kapak-3d" aria-label="Sekiz ampullük sıra; yanan ampuller sırayla harfleri yazıyor">
+              <div data-yedek hidden><svg viewBox="0 0 360 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="8 ampullük sıra: 0100 0001 = 65 = A"><rect width="360" height="200" rx="16" fill="#eef7fe"/><rect x="16" y="130" width="328" height="22" rx="6" fill="#2a2d33"/><circle cx="40" cy="110" r="13" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2"/><rect x="34" y="121" width="11" height="9" rx="2" fill="#9aa1aa"/><path d="M35 112 q4 -6 9 0" fill="none" stroke="#94a3b8" stroke-width="1.6"/><circle cx="80" cy="110" r="21" fill="#fcd34d" opacity=".35"/><circle cx="80" cy="110" r="13" fill="#fde68a" stroke="#f59e0b" stroke-width="2"/><rect x="74" y="121" width="11" height="9" rx="2" fill="#9aa1aa"/><path d="M75 112 q4 -6 9 0" fill="none" stroke="#b45309" stroke-width="1.6"/><circle cx="120" cy="110" r="13" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2"/><rect x="114" y="121" width="11" height="9" rx="2" fill="#9aa1aa"/><path d="M115 112 q4 -6 9 0" fill="none" stroke="#94a3b8" stroke-width="1.6"/><circle cx="160" cy="110" r="13" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2"/><rect x="154" y="121" width="11" height="9" rx="2" fill="#9aa1aa"/><path d="M155 112 q4 -6 9 0" fill="none" stroke="#94a3b8" stroke-width="1.6"/><circle cx="200" cy="110" r="13" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2"/><rect x="194" y="121" width="11" height="9" rx="2" fill="#9aa1aa"/><path d="M195 112 q4 -6 9 0" fill="none" stroke="#94a3b8" stroke-width="1.6"/><circle cx="240" cy="110" r="13" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2"/><rect x="234" y="121" width="11" height="9" rx="2" fill="#9aa1aa"/><path d="M235 112 q4 -6 9 0" fill="none" stroke="#94a3b8" stroke-width="1.6"/><circle cx="280" cy="110" r="13" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2"/><rect x="274" y="121" width="11" height="9" rx="2" fill="#9aa1aa"/><path d="M275 112 q4 -6 9 0" fill="none" stroke="#94a3b8" stroke-width="1.6"/><circle cx="320" cy="110" r="21" fill="#fcd34d" opacity=".35"/><circle cx="320" cy="110" r="13" fill="#fde68a" stroke="#f59e0b" stroke-width="2"/><rect x="314" y="121" width="11" height="9" rx="2" fill="#9aa1aa"/><path d="M315 112 q4 -6 9 0" fill="none" stroke="#b45309" stroke-width="1.6"/><text x="40" y="176" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="800" text-anchor="middle" fill="#0f172a">0</text><text x="80" y="176" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="800" text-anchor="middle" fill="#0f172a">1</text><text x="120" y="176" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="800" text-anchor="middle" fill="#0f172a">0</text><text x="160" y="176" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="800" text-anchor="middle" fill="#0f172a">0</text><text x="200" y="176" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="800" text-anchor="middle" fill="#0f172a">0</text><text x="240" y="176" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="800" text-anchor="middle" fill="#0f172a">0</text><text x="280" y="176" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="800" text-anchor="middle" fill="#0f172a">0</text><text x="320" y="176" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="800" text-anchor="middle" fill="#0f172a">1</text><text x="180" y="40" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="900" text-anchor="middle" fill="#0369a1">0100 0001 = 65 = A</text></svg></div>
             </div>
           </div>
         </div>
@@ -1076,7 +1137,7 @@ body.grade-ortaokul{
        6. Quiz doğru cevap dağılımı dengeli (örn: 0,2,3,1).
   ══════════════════════════════════════════════════════════════════════ -->
 
-  <!-- ══════════════════════ S3 — ISINMA ══════════════════════ -->
+  <!-- ══════════════════════ S3 ══════════════════════ -->
   <div class="slide" id="s3">
     <div class="slide-hdr">
       <div class="sh-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg></div>
@@ -1087,272 +1148,272 @@ body.grade-ortaokul{
       <div class="layout-step">
         <div class="step-text">
           <div class="step-num-badge">ISINMA</div>
-          <div class="step-title">Harf Nereden Geçer?</div>
-          <div class="step-desc">Klavyede <strong>A</strong> tuşuna bastın. Harf ekrana gelene kadar hangi yolu izler?</div>
+          <div class="step-title">Harf Kabloda Neye Dönüşür?</div>
+          <div class="step-desc">Geçen hafta A harfi klavyeden kasaya gitti. Sence kablonun içinde hangi biçimde yolculuk etti?</div>
           <div class="tahmin" role="group" aria-label="Tahmin seçenekleri">
-            <button type="button" class="tahmin-sec" data-tahmin="0"><span class="tahmin-harf">A</span><span>Doğrudan ekrana gider.</span></button>
-            <button type="button" class="tahmin-sec" data-tahmin="1"><span class="tahmin-harf">B</span><span>Önce kasaya, sonra ekrana gider.</span></button>
-            <button type="button" class="tahmin-sec" data-tahmin="2"><span class="tahmin-harf">C</span><span>Önce internete, sonra ekrana gider.</span></button>
+            <button type="button" class="tahmin-sec" data-tahmin="0"><span class="tahmin-harf">A</span><span>Küçük bir harf resmi olarak.</span></button>
+            <button type="button" class="tahmin-sec" data-tahmin="1"><span class="tahmin-harf">B</span><span>Açık–kapalı elektrik sinyalleri olarak.</span></button>
+            <button type="button" class="tahmin-sec" data-tahmin="2"><span class="tahmin-harf">C</span><span>Sesli bir mesaj olarak.</span></button>
             <div class="tahmin-geri" id="tahmin-geri" aria-live="polite"></div>
           </div>
         </div>
         <div class="step-visual">
-          <div class="illu"><svg viewBox="0 0 360 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Klavyede A tuşuna basılıyor; harfin ekrana hangi yoldan gittiği soru işaretiyle gösteriliyor">
-<defs><linearGradient id="h01isBg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0f9ff"/><stop offset="1" stop-color="#dbeafe"/></linearGradient></defs>
-<rect width="360" height="240" rx="18" fill="url(#h01isBg)"/><rect x="0" y="184" width="360" height="56" fill="#dbe4ee"/>
-<rect x="24" y="80" width="64" height="112" rx="6" fill="#30343c"/><rect x="30" y="88" width="52" height="98" rx="3" fill="#1d2027"/><circle cx="56" cy="84" r="3" fill="#bfe3ff"/>
-<rect x="190" y="40" width="146" height="92" rx="6" fill="#17181b"/><rect x="196" y="46" width="134" height="76" rx="2" fill="#f8fafc"/><rect x="196" y="46" width="134" height="12" fill="#e2e8f0"/>
-<rect x="206" y="68" width="12" height="18" fill="#0ea5e9" opacity=".25"/><line x1="222" y1="68" x2="222" y2="86" stroke="#0f172a" stroke-width="2"/>
-<rect x="256" y="132" width="14" height="22" fill="#2a2d33"/><rect x="232" y="152" width="62" height="7" rx="3" fill="#2a2d33"/>
-<rect x="112" y="190" width="132" height="24" rx="5" fill="#2a2d33"/><g fill="#4b5059"><rect x="118" y="195" width="120" height="4" rx="1"/><rect x="118" y="201" width="120" height="4" rx="1"/><rect x="118" y="207" width="120" height="4" rx="1"/></g>
-<rect x="132" y="192" width="14" height="12" rx="2" fill="#f59e0b"/><text x="139" y="202" font-family="Inter,Arial,sans-serif" font-size="9" font-weight="800" text-anchor="middle" fill="#1f1300">A</text>
-<path d="M146 186 C150 150 110 150 96 132" fill="none" stroke="#f59e0b" stroke-width="3" stroke-dasharray="3 7" stroke-linecap="round"/>
-<path d="M94 110 C130 60 170 70 188 84" fill="none" stroke="#f59e0b" stroke-width="3" stroke-dasharray="3 7" stroke-linecap="round"/>
-<circle cx="120" cy="150" r="15" fill="#fff" stroke="#f59e0b" stroke-width="2.5"/><text x="120" y="156" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="900" text-anchor="middle" fill="#b45309">?</text>
-<circle cx="146" cy="70" r="15" fill="#fff" stroke="#f59e0b" stroke-width="2.5"/><text x="146" y="76" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="900" text-anchor="middle" fill="#b45309">?</text>
-<g transform="translate(252 12)"><rect width="84" height="22" rx="11" fill="#0ea5e9"/><text x="42" y="15" font-family="Inter,Arial,sans-serif" font-size="11" font-weight="800" text-anchor="middle" fill="#fff">Tahmin et!</text></g>
+          <div class="illu"><svg viewBox="0 0 360 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Klavyeden kasaya giden kablonun içinde A harfi resim mi, elektrik sinyali mi, ses mi olarak gidiyor sorusu">
+<defs><linearGradient id="h02isBg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0f9ff"/><stop offset="1" stop-color="#dbeafe"/></linearGradient></defs>
+<rect width="360" height="240" rx="18" fill="url(#h02isBg)"/>
+<!-- klavye -->
+<rect x="14" y="178" width="104" height="30" rx="6" fill="#2a2d33"/>
+<g fill="#4b5059"><rect x="20" y="183" width="92" height="5" rx="1.5"/><rect x="20" y="191" width="92" height="5" rx="1.5"/><rect x="30" y="199" width="72" height="5" rx="1.5"/></g>
+<rect x="34" y="181" width="14" height="10" rx="2" fill="#f59e0b"/><text x="41" y="189.5" font-family="Inter,Arial,sans-serif" font-size="8" font-weight="900" text-anchor="middle" fill="#fff">A</text>
+<!-- kasa -->
+<rect x="276" y="112" width="68" height="104" rx="7" fill="#30343c"/><rect x="283" y="120" width="54" height="88" rx="3" fill="#1d2027"/><circle cx="310" cy="116" r="2.5" fill="#bfe3ff"/>
+<!-- kablo -->
+<path d="M118 190 C190 190 200 160 276 160" fill="none" stroke="#1f2937" stroke-width="10" stroke-linecap="round"/>
+<path d="M118 190 C190 190 200 160 276 160" fill="none" stroke="#475569" stroke-width="5" stroke-linecap="round"/>
+<circle cx="197" cy="174" r="15" fill="#fff" stroke="#f59e0b" stroke-width="3"/>
+<text x="197" y="181" font-family="Inter,Arial,sans-serif" font-size="19" font-weight="900" text-anchor="middle" fill="#b45309">?</text>
+<!-- balon kuyrukları -->
+<g stroke="#94a3b8" stroke-width="2" stroke-dasharray="3 4" fill="none"><path d="M70 118 L185 164"/><path d="M180 118 L195 158"/><path d="M290 118 L210 164"/></g>
+<!-- tahmin balonları -->
+<g font-family="Inter,Arial,sans-serif" font-weight="800" text-anchor="middle">
+<rect x="20" y="20" width="100" height="98" rx="14" fill="#fff" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="44" y="32" width="52" height="46" rx="6" fill="#e0f2fe" stroke="#38bdf8" stroke-width="2"/>
+<path d="M48 74 L62 58 L72 68 L80 60 L92 74 Z" fill="#7dd3fc"/><circle cx="84" cy="44" r="5" fill="#fbbf24"/>
+<text x="70" y="66" font-size="22" font-weight="900" fill="#0f172a">A</text>
+<text x="70" y="104" font-size="13" fill="#334155">resim mi?</text>
+<rect x="130" y="20" width="100" height="98" rx="14" fill="#fff" stroke="#cbd5e1" stroke-width="2"/>
+<g fill="#f59e0b"><rect x="146" y="40" width="10" height="30" rx="3"/><rect x="176" y="40" width="10" height="30" rx="3"/><rect x="206" y="40" width="10" height="30" rx="3"/></g>
+<g fill="#e2e8f0"><rect x="161" y="40" width="10" height="30" rx="3"/><rect x="191" y="40" width="10" height="30" rx="3"/></g>
+<text x="180" y="104" font-size="13" fill="#334155">elektrik mi?</text>
+<rect x="240" y="20" width="100" height="98" rx="14" fill="#fff" stroke="#cbd5e1" stroke-width="2"/>
+<path d="M266 48 H276 L290 36 V80 L276 68 H266 Z" fill="#64748b"/>
+<g fill="none" stroke="#64748b" stroke-width="3" stroke-linecap="round"><path d="M298 48 Q304 58 298 68"/><path d="M306 42 Q316 58 306 74"/></g>
+<text x="290" y="104" font-size="13" fill="#334155">ses mi?</text>
+</g>
 </svg></div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ══════════════════════ S4 — ADIM 1: DONANIM ══════════════════════ -->
+  <!-- ══════════════════════ S4 ══════════════════════ -->
   <div class="slide" id="s4">
     <div class="slide-hdr">
-      <div class="sh-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8"/><path d="M12 16v4"/></svg></div>
-      <div class="sh-title">Adım 1: Donanım</div>
+      <div class="sh-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/><path d="M12 6v4"/></svg></div>
+      <div class="sh-title">Adım 1: Açık–Kapalı: 1 ve 0</div>
       <div class="sh-badge">Kavram 1 / 6</div>
     </div>
     <div class="slide-body">
       <div class="layout-step genis-gorsel">
         <div class="step-text">
-          <div class="step-num-badge">ADIM 1 · DONANIM</div>
-          <div class="step-title">Dokunabildiğin Parçalar</div>
-          <div class="step-desc"><strong>Donanım</strong>, bilgisayarın elle dokunabildiğin parçalarıdır. Kasa, ekran, klavye ve fare birer donanımdır.</div>
-          <div class="step-tip"><span>👆</span><span>Modeli parmağınla çevir. Bir parçaya dokununca <strong>adını ve görevini</strong> gör.</span></div>
+          <div class="step-num-badge">ADIM 1 · AÇIK–KAPALI</div>
+          <div class="step-title">Işık Yanar, Işık Söner</div>
+          <div class="step-desc">Bilgisayarın içinde her şey elektrikle çalışır. Bir yerde elektrik ya <strong>vardır</strong> ya <strong>yoktur</strong>. Var olan duruma <strong>1</strong>, olmayana <strong>0</strong> deriz.</div>
+          <div class="step-tip"><span>👆</span><span>Ampule dokun: yanınca <strong>1</strong>, sönünce <strong>0</strong> olur.</span></div>
         </div>
         <div class="step-visual v3d">
-          <div class="don3d" id="s4-3d" aria-label="Masaüstü bilgisayar seti: kasa, monitör, klavye ve fare sırayla parlıyor">
-            <div data-yedek hidden><svg viewBox="0 0 360 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Masaüstü bilgisayar: kasa, monitör, klavye ve fare">
-<rect width="360" height="240" rx="18" fill="#eef7fe"/><rect x="0" y="178" width="360" height="62" fill="#dbe4ee"/><rect x="0" y="176" width="360" height="4" fill="#c5d0dc"/>
-<rect x="30" y="66" width="72" height="124" rx="7" fill="#30343c"/><rect x="37" y="75" width="58" height="108" rx="4" fill="#1d2027"/><circle cx="46" cy="82" r="2.2" fill="#ffb347"/><circle cx="66" cy="72" r="3.4" fill="#bfe3ff"/>
-<rect x="128" y="50" width="156" height="96" rx="6" fill="#17181b"/><rect x="134" y="56" width="144" height="80" rx="2" fill="#0e7490"/><path d="M134 116 C170 100 214 128 278 108 V136 H134 Z" fill="#0f766e"/><rect x="134" y="130" width="144" height="6" fill="#0f172a" opacity=".7"/>
-<rect x="199" y="146" width="14" height="24" fill="#2a2d33"/><rect x="172" y="168" width="68" height="8" rx="3" fill="#2a2d33"/>
-<rect x="140" y="190" width="124" height="20" rx="4" fill="#2a2d33"/><g fill="#4b5059"><rect x="146" y="194" width="112" height="3" rx="1"/><rect x="146" y="199" width="112" height="3" rx="1"/><rect x="146" y="204" width="112" height="3" rx="1"/></g>
-<ellipse cx="292" cy="200" rx="10" ry="14" fill="#26292f"/><line x1="292" y1="187" x2="292" y2="197" stroke="#0b0c0e" stroke-width="1.5"/>
-</svg><span>Kasa, monitör, klavye ve fare: hepsi donanımdır.</span></div>
+          <div class="don3d" id="s4-3d" aria-label="Tek ampul: dokununca yanıyor ve 1 oluyor, tekrar dokununca sönüyor ve 0 oluyor">
+            <div data-yedek hidden><svg viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Açık ve kapalı: 1 ve 0"><rect width="80" height="60" rx="10" fill="#e0f2fe"/><circle cx="26" cy="26" r="18" fill="#fcd34d" opacity=".35"/><circle cx="26" cy="26" r="10" fill="#fde68a" stroke="#f59e0b" stroke-width="2"/><rect x="21" y="34" width="9" height="7" rx="2" fill="#9aa1aa"/><path d="M22 28 q3 -5 7 0" fill="none" stroke="#b45309" stroke-width="1.6"/><circle cx="56" cy="26" r="10" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2"/><rect x="51" y="34" width="9" height="7" rx="2" fill="#9aa1aa"/><path d="M52 28 q3 -5 7 0" fill="none" stroke="#94a3b8" stroke-width="1.6"/><text x="26" y="55" font-family="Arial" font-size="12" font-weight="900" text-anchor="middle" fill="#92400e">1</text><text x="56" y="55" font-family="Arial" font-size="12" font-weight="900" text-anchor="middle" fill="#475569">0</text></svg><span>Açık = 1, kapalı = 0</span></div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ══════════════════════ S5 — ADIM 2: YAZILIM ══════════════════════ -->
+  <!-- ══════════════════════ S5 ══════════════════════ -->
   <div class="slide" id="s5">
     <div class="slide-hdr">
-      <div class="sh-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 8 4 12 8 16"/><polyline points="16 8 20 12 16 16"/><line x1="14" y1="5" x2="10" y2="19"/></svg></div>
-      <div class="sh-title">Adım 2: Yazılım</div>
+      <div class="sh-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="4" width="10" height="16" rx="3"/><path d="M12 9v6"/></svg></div>
+      <div class="sh-title">Adım 2: Bit</div>
       <div class="sh-badge">Kavram 2 / 6</div>
     </div>
     <div class="slide-body">
-      <div class="layout-step genis-gorsel">
+      <div class="layout-step">
         <div class="step-text">
-          <div class="step-num-badge">ADIM 2 · YAZILIM</div>
-          <div class="step-title">Donanıma Yol Gösteren Programlar</div>
-          <div class="step-desc"><strong>Yazılım</strong>, donanıma ne yapacağını söyleyen programlardır. Ona dokunamazsın; ekranda çalışırken görürsün.</div>
-          <div class="step-tip"><span>💡</span><span>Uygulamayı değiştir: <strong>ekran aynı kalır</strong>, yalnız yazılım değişir.</span></div>
+          <div class="step-num-badge">ADIM 2 · BİT</div>
+          <div class="step-title">En Küçük Bilgi: Bit</div>
+          <div class="step-desc">Tek bir 1 ya da 0’a <strong>bit</strong> denir. Bit, bilginin en küçük parçasıdır. Her yeni bit, olası durumları <strong>ikiye katlar</strong>.</div>
+          <div class="step-tip"><span>💡</span><span>Ampul sayısını seç: 1 bit 2 durum, 2 bit 4 durum, 3 bit 8 durum.</span></div>
         </div>
-        <div class="step-visual v3d">
-          <div class="don3d" id="s5-3d" aria-label="Monitörün önünde yazılım katmanı beliriyor; uygulama değişiyor, monitör aynı kalıyor">
-            <div data-yedek hidden><svg viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Yazılım"><rect width="80" height="60" rx="10" fill="#e0f2fe"/><rect x="14" y="10" width="52" height="40" rx="4" fill="#fff" stroke="#94a3b8"/><rect x="14" y="10" width="52" height="8" rx="3" fill="#8b5cf6"/><path d="M30 28 l-7 6 l7 6 M50 28 l7 6 l-7 6 M44 26 l-8 16" fill="none" stroke="#0369a1" stroke-width="2.5" stroke-linecap="round"/></svg><span>Monitör aynı kalır; üzerinde çalışan yazılım değişir.</span></div>
-          </div>
-        </div>
+        <div class="step-visual gorsel2d "><div class="gorsel2d-ic" id="bit-kombin"></div></div>
       </div>
     </div>
   </div>
 
-  <!-- ══════════════════════ S6 — ADIM 3: GİRDİ ══════════════════════ -->
+  <!-- ══════════════════════ S6 ══════════════════════ -->
   <div class="slide" id="s6">
     <div class="slide-hdr">
-      <div class="sh-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="12" rx="2"/><path d="M6 11h.01M10 11h.01M14 11h.01M18 11h.01M7 15h10"/></svg></div>
-      <div class="sh-title">Adım 3: Girdi</div>
+      <div class="sh-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="10" rx="2"/><path d="M6 7v10M10 7v10M14 7v10M18 7v10"/></svg></div>
+      <div class="sh-title">Adım 3: Byte</div>
       <div class="sh-badge">Kavram 3 / 6</div>
     </div>
     <div class="slide-body">
       <div class="layout-step genis-gorsel">
         <div class="step-text">
-          <div class="step-num-badge">ADIM 3 · GİRDİ</div>
-          <div class="step-title">Bilgi İçeri Girer</div>
-          <div class="step-desc"><strong>Girdi</strong>, bilgisayara bilgi vermektir. A tuşuna basınca harf, kabloyla kasaya gider.</div>
-          <div class="step-tip"><span>⌨️</span><span>Klavye, fare ve mikrofon <strong>girdi birimleridir</strong>.</span></div>
+          <div class="step-num-badge">ADIM 3 · BYTE</div>
+          <div class="step-title">8 Bit Bir Araya Gelince</div>
+          <div class="step-desc">8 bit yan yana gelince <strong>1 byte</strong> olur. Her ampulün bir değeri vardır: 128, 64 … 1. <strong>Yanan</strong> ampullerin değerleri toplanır.</div>
+          <div class="step-tip"><span>🔢</span><span>Hepsini yak: <strong>255</strong>. Hepsini söndür: <strong>0</strong>.</span></div>
         </div>
         <div class="step-visual v3d">
-          <div class="don3d" id="s6-3d" aria-label="A tuşuna basılıyor; harf ışık olarak kablodan kasaya gidiyor">
-            <div data-yedek hidden><svg viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Girdi"><rect width="80" height="60" rx="10" fill="#e0f2fe"/><rect x="10" y="30" width="60" height="16" rx="3" fill="#2a2d33"/><g fill="#4b5059"><rect x="14" y="34" width="52" height="3"/><rect x="14" y="39" width="52" height="3"/></g><rect x="20" y="32" width="10" height="8" rx="1.5" fill="#f59e0b"/><path d="M25 26 v-14 M19 18 l6 -7 l6 7" fill="none" stroke="#0ea5e9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><span>A tuşuna basınca harf kabloyla kasaya gider.</span></div>
+          <div class="don3d" id="s6-3d" aria-label="Sekiz ampul; her birinin altında 1 ya da 0 ve değeri yazıyor, üstte toplam sayı görünüyor">
+            <div data-yedek hidden><svg viewBox="0 0 360 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="8 ampullük sıra: 0100 0001 = 65 = A"><rect width="360" height="200" rx="16" fill="#eef7fe"/><rect x="16" y="130" width="328" height="22" rx="6" fill="#2a2d33"/><circle cx="40" cy="110" r="13" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2"/><rect x="34" y="121" width="11" height="9" rx="2" fill="#9aa1aa"/><path d="M35 112 q4 -6 9 0" fill="none" stroke="#94a3b8" stroke-width="1.6"/><circle cx="80" cy="110" r="21" fill="#fcd34d" opacity=".35"/><circle cx="80" cy="110" r="13" fill="#fde68a" stroke="#f59e0b" stroke-width="2"/><rect x="74" y="121" width="11" height="9" rx="2" fill="#9aa1aa"/><path d="M75 112 q4 -6 9 0" fill="none" stroke="#b45309" stroke-width="1.6"/><circle cx="120" cy="110" r="13" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2"/><rect x="114" y="121" width="11" height="9" rx="2" fill="#9aa1aa"/><path d="M115 112 q4 -6 9 0" fill="none" stroke="#94a3b8" stroke-width="1.6"/><circle cx="160" cy="110" r="13" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2"/><rect x="154" y="121" width="11" height="9" rx="2" fill="#9aa1aa"/><path d="M155 112 q4 -6 9 0" fill="none" stroke="#94a3b8" stroke-width="1.6"/><circle cx="200" cy="110" r="13" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2"/><rect x="194" y="121" width="11" height="9" rx="2" fill="#9aa1aa"/><path d="M195 112 q4 -6 9 0" fill="none" stroke="#94a3b8" stroke-width="1.6"/><circle cx="240" cy="110" r="13" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2"/><rect x="234" y="121" width="11" height="9" rx="2" fill="#9aa1aa"/><path d="M235 112 q4 -6 9 0" fill="none" stroke="#94a3b8" stroke-width="1.6"/><circle cx="280" cy="110" r="13" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2"/><rect x="274" y="121" width="11" height="9" rx="2" fill="#9aa1aa"/><path d="M275 112 q4 -6 9 0" fill="none" stroke="#94a3b8" stroke-width="1.6"/><circle cx="320" cy="110" r="21" fill="#fcd34d" opacity=".35"/><circle cx="320" cy="110" r="13" fill="#fde68a" stroke="#f59e0b" stroke-width="2"/><rect x="314" y="121" width="11" height="9" rx="2" fill="#9aa1aa"/><path d="M315 112 q4 -6 9 0" fill="none" stroke="#b45309" stroke-width="1.6"/><text x="40" y="176" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="800" text-anchor="middle" fill="#0f172a">0</text><text x="80" y="176" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="800" text-anchor="middle" fill="#0f172a">1</text><text x="120" y="176" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="800" text-anchor="middle" fill="#0f172a">0</text><text x="160" y="176" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="800" text-anchor="middle" fill="#0f172a">0</text><text x="200" y="176" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="800" text-anchor="middle" fill="#0f172a">0</text><text x="240" y="176" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="800" text-anchor="middle" fill="#0f172a">0</text><text x="280" y="176" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="800" text-anchor="middle" fill="#0f172a">0</text><text x="320" y="176" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="800" text-anchor="middle" fill="#0f172a">1</text><text x="180" y="40" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="900" text-anchor="middle" fill="#0369a1">0100 0001 = 65 = A</text></svg><span>8 bit = 1 byte</span></div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ══════════════════════ S7 — ADIM 4: İŞLEM ══════════════════════ -->
+  <!-- ══════════════════════ S7 ══════════════════════ -->
   <div class="slide" id="s7">
     <div class="slide-hdr">
-      <div class="sh-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="1.5"/><rect x="9.5" y="9.5" width="5" height="5"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg></div>
-      <div class="sh-title">Adım 4: İşlem</div>
+      <div class="sh-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 20 9 4 14 20"/><line x1="6" y1="14" x2="12" y2="14"/><path d="M17 9h4M19 7v4"/></svg></div>
+      <div class="sh-title">Adım 4: Harfler Sayıdır</div>
       <div class="sh-badge">Kavram 4 / 6</div>
     </div>
     <div class="slide-body">
       <div class="layout-step genis-gorsel">
         <div class="step-text">
-          <div class="step-num-badge">ADIM 4 · İŞLEM</div>
-          <div class="step-title">Kasada Karar Verilir</div>
-          <div class="step-desc"><strong>İşlem</strong>, gelen bilgiyi anlayıp ne yapılacağına karar vermektir. Bu işi kasadaki <strong>işlemci</strong> yapar.</div>
-          <div class="step-tip"><span>🍳</span><span>İşlemci bir aşçıya benzer: <strong>malzemeyi alır, yemeği hazırlar</strong>.</span></div>
+          <div class="step-num-badge">ADIM 4 · HARFLER</div>
+          <div class="step-title">Her Harfin Bir Sayısı Var</div>
+          <div class="step-desc">Bilgisayar harfleri <strong>sayı</strong> olarak saklar. A harfinin sayısı <strong>65</strong>’tir. Byte’taki 1 ve 0’lar bu sayıyı tutar.</div>
+          <div class="step-tip"><span>🔤</span><span>Düğmelere bas: ampuller A, B, C harflerini yazsın.</span></div>
         </div>
         <div class="step-visual v3d">
-          <div class="don3d" id="s7-3d" aria-label="Harf kasanın içindeki işlemciye ulaşıyor">
-            <div data-yedek hidden><svg viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="İşlem"><rect width="80" height="60" rx="10" fill="#e0f2fe"/><g stroke="#b45309" stroke-width="2"><path d="M32 14v-5M40 14v-5M48 14v-5M32 50v-5M40 50v-5M48 50v-5M26 22h-5M26 30h-5M26 38h-5M54 22h5M54 30h5M54 38h5"/></g><rect x="26" y="14" width="28" height="32" rx="3" fill="#475569"/><rect x="31" y="19" width="18" height="22" rx="2" fill="#94a3b8"/></svg><span>Harf kasadaki işlemciye ulaşır; işlemci karar verir.</span></div>
+          <div class="don3d" id="s7-3d" aria-label="Sekiz ampul A, B ve C harflerinin sayılarını yazıyor; üstte bit, sayı ve harf görünüyor">
+            <div data-yedek hidden><svg viewBox="0 0 360 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="8 ampullük sıra: 0100 0001 = 65 = A"><rect width="360" height="200" rx="16" fill="#eef7fe"/><rect x="16" y="130" width="328" height="22" rx="6" fill="#2a2d33"/><circle cx="40" cy="110" r="13" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2"/><rect x="34" y="121" width="11" height="9" rx="2" fill="#9aa1aa"/><path d="M35 112 q4 -6 9 0" fill="none" stroke="#94a3b8" stroke-width="1.6"/><circle cx="80" cy="110" r="21" fill="#fcd34d" opacity=".35"/><circle cx="80" cy="110" r="13" fill="#fde68a" stroke="#f59e0b" stroke-width="2"/><rect x="74" y="121" width="11" height="9" rx="2" fill="#9aa1aa"/><path d="M75 112 q4 -6 9 0" fill="none" stroke="#b45309" stroke-width="1.6"/><circle cx="120" cy="110" r="13" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2"/><rect x="114" y="121" width="11" height="9" rx="2" fill="#9aa1aa"/><path d="M115 112 q4 -6 9 0" fill="none" stroke="#94a3b8" stroke-width="1.6"/><circle cx="160" cy="110" r="13" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2"/><rect x="154" y="121" width="11" height="9" rx="2" fill="#9aa1aa"/><path d="M155 112 q4 -6 9 0" fill="none" stroke="#94a3b8" stroke-width="1.6"/><circle cx="200" cy="110" r="13" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2"/><rect x="194" y="121" width="11" height="9" rx="2" fill="#9aa1aa"/><path d="M195 112 q4 -6 9 0" fill="none" stroke="#94a3b8" stroke-width="1.6"/><circle cx="240" cy="110" r="13" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2"/><rect x="234" y="121" width="11" height="9" rx="2" fill="#9aa1aa"/><path d="M235 112 q4 -6 9 0" fill="none" stroke="#94a3b8" stroke-width="1.6"/><circle cx="280" cy="110" r="13" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2"/><rect x="274" y="121" width="11" height="9" rx="2" fill="#9aa1aa"/><path d="M275 112 q4 -6 9 0" fill="none" stroke="#94a3b8" stroke-width="1.6"/><circle cx="320" cy="110" r="21" fill="#fcd34d" opacity=".35"/><circle cx="320" cy="110" r="13" fill="#fde68a" stroke="#f59e0b" stroke-width="2"/><rect x="314" y="121" width="11" height="9" rx="2" fill="#9aa1aa"/><path d="M315 112 q4 -6 9 0" fill="none" stroke="#b45309" stroke-width="1.6"/><text x="40" y="176" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="800" text-anchor="middle" fill="#0f172a">0</text><text x="80" y="176" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="800" text-anchor="middle" fill="#0f172a">1</text><text x="120" y="176" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="800" text-anchor="middle" fill="#0f172a">0</text><text x="160" y="176" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="800" text-anchor="middle" fill="#0f172a">0</text><text x="200" y="176" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="800" text-anchor="middle" fill="#0f172a">0</text><text x="240" y="176" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="800" text-anchor="middle" fill="#0f172a">0</text><text x="280" y="176" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="800" text-anchor="middle" fill="#0f172a">0</text><text x="320" y="176" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="800" text-anchor="middle" fill="#0f172a">1</text><text x="180" y="40" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="900" text-anchor="middle" fill="#0369a1">0100 0001 = 65 = A</text></svg><span>0100 0001 = 65 = A</span></div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ══════════════════════ S8 — ADIM 5: ÇIKTI ══════════════════════ -->
+  <!-- ══════════════════════ S8 ══════════════════════ -->
   <div class="slide" id="s8">
     <div class="slide-hdr">
-      <div class="sh-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/><path d="M10 8l3 2-3 2"/></svg></div>
-      <div class="sh-title">Adım 5: Çıktı</div>
+      <div class="sh-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="14" width="4" height="6"/><rect x="9" y="10" width="4" height="10"/><rect x="15" y="5" width="4" height="15"/></svg></div>
+      <div class="sh-title">Adım 5: KB–MB–GB–TB</div>
       <div class="sh-badge">Kavram 5 / 6</div>
     </div>
     <div class="slide-body">
       <div class="layout-step genis-gorsel">
         <div class="step-text">
-          <div class="step-num-badge">ADIM 5 · ÇIKTI</div>
-          <div class="step-title">Sonuç Dışarı Çıkar</div>
-          <div class="step-desc"><strong>Çıktı</strong>, sonucun bize gösterilmesidir. Harf kasadan ekrana gider ve görünür.</div>
-          <div class="step-tip"><span>🔊</span><span>Ekran, hoparlör ve yazıcı <strong>çıktı birimleridir</strong>.</span></div>
+          <div class="step-num-badge">ADIM 5 · BİRİMLER</div>
+          <div class="step-title">Binlerce, Milyonlarca Byte</div>
+          <div class="step-desc">Byte’lar binerli gruplanır. <strong>1000 byte 1 KB</strong>, 1000 KB 1 MB eder. Sonra <strong>GB</strong> ve <strong>TB</strong> gelir.</div>
+          <div class="step-tip"><span>🔍</span><span>Oynat’a bas: tek bir kutu, bin kutudan biri olsun.</span></div>
         </div>
-        <div class="step-visual v3d">
-          <div class="don3d" id="s8-3d" aria-label="Harf kasadan kabloyla monitöre gidiyor ve ekranda beliriyor">
-            <div data-yedek hidden><svg viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Çıktı"><rect width="80" height="60" rx="10" fill="#e0f2fe"/><rect x="14" y="8" width="52" height="34" rx="3" fill="#17181b"/><rect x="17" y="11" width="46" height="28" fill="#f8fafc"/><text x="40" y="32" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="900" text-anchor="middle" fill="#0f172a">A</text><rect x="36" y="42" width="8" height="8" fill="#2a2d33"/><rect x="28" y="49" width="24" height="4" rx="2" fill="#2a2d33"/></svg><span>Harf kasadan ekrana gider ve görünür.</span></div>
-          </div>
-        </div>
+        <div class="step-visual gorsel2d koyu"><div class="gorsel2d-ic" id="olcek"></div></div>
       </div>
     </div>
   </div>
 
-  <!-- ══════════════════════ S9 — ADIM 6: DEPOLAMA ══════════════════════ -->
+  <!-- ══════════════════════ S9 ══════════════════════ -->
   <div class="slide" id="s9">
     <div class="slide-hdr">
-      <div class="sh-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 15h6"/><circle cx="17" cy="15" r="1"/></svg></div>
-      <div class="sh-title">Adım 6: Depolama</div>
+      <div class="sh-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 17l-5-5-9 7"/></svg></div>
+      <div class="sh-title">Adım 6: Kaç Fotoğraf Sığar?</div>
       <div class="sh-badge">Kavram 6 / 6</div>
     </div>
     <div class="slide-body">
       <div class="layout-step genis-gorsel">
         <div class="step-text">
-          <div class="step-num-badge">ADIM 6 · DEPOLAMA</div>
-          <div class="step-title">Bilgi Saklanır</div>
-          <div class="step-desc"><strong>Depolama</strong>, bilgiyi sonra kullanmak için saklamaktır. Yazdığın harf diske kaydedilir. Bilgisayar kapansa da kayıt kaybolmaz.</div>
-          <div class="step-tip"><span>💾</span><span>SSD, USB bellek ve telefon hafızası <strong>depolama birimleridir</strong>.</span></div>
+          <div class="step-num-badge">ADIM 6 · TAHMİN</div>
+          <div class="step-title">Önce Tahmin, Sonra Hesap</div>
+          <div class="step-desc">Bir fotoğraf yaklaşık <strong>4 MB</strong> olsun. Belleğin boyutunu fotoğrafın boyutuna <strong>bölersek</strong> kaç tane sığacağını buluruz.</div>
+          <div class="step-tip"><span>🤔</span><span>Önce tahminini seç, sonra belleğin dolmasını izle.</span></div>
         </div>
-        <div class="step-visual v3d">
-          <div class="don3d" id="s9-3d" aria-label="Harf işlemciden depolama birimine gidiyor ve kaydediliyor; disk ışığı yanıp sönüyor">
-            <div data-yedek hidden><svg viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Depolama"><rect width="80" height="60" rx="10" fill="#e0f2fe"/><rect x="16" y="14" width="48" height="32" rx="4" fill="#a9afb8"/><rect x="22" y="20" width="36" height="16" rx="2" fill="#fff"/><g fill="#94a3b8"><rect x="26" y="24" width="24" height="2.5"/><rect x="26" y="29" width="16" height="2.5"/></g><circle cx="58" cy="41" r="2.5" fill="#ffb347"/></svg><span>Harf depolama birimine kaydedilir.</span></div>
-          </div>
-        </div>
+        <div class="step-visual gorsel2d "><div class="gorsel2d-ic" id="foto-tahmin"></div></div>
       </div>
     </div>
   </div>
 
-  <!-- ══════════════════════ S10 — ETKİNLİK 1 ══════════════════════ -->
+  <!-- ══════════════════════ S10 ══════════════════════ -->
   <div class="slide" id="s10">
     <div class="slide-hdr">
       <div class="sh-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M14 17.5h7M17.5 14v7"/></svg></div>
-      <div class="sh-title">Etkinlik: Donanım mı, Yazılım mı?</div>
+      <div class="sh-title">Etkinlik: Ampullerle Harf Yaz</div>
       <div class="sh-badge">Etkinlik 1 / 2</div>
     </div>
     <div class="slide-body">
       <div class="layout-step genis-gorsel">
         <div class="step-text">
           <div class="step-num-badge">ETKİNLİK 1</div>
-          <div class="step-title">Donanım mı, Yazılım mı?</div>
-          <div class="step-desc">Kartları doğru kutuya <strong>sürükle</strong>. İstersen önce karta, sonra kutuya dokun.</div>
-          <div class="step-tip"><span>🤔</span><span>Kendine sor: <strong>Elimle dokunabilir miyim?</strong></span></div>
-          <div class="etk-ilerleme" id="ilerleme-1" aria-live="polite">
-            <div class="etk-ilerleme-ust"><span>İlerleme</span><span class="etk-ilerleme-sayi"><b>0</b> / 8</span></div>
-            <div class="etk-ilerleme-bar"><span></span></div>
-          </div>
+          <div class="step-title">Ampullerle Harf Yaz</div>
+          <div class="step-desc">Ampullere dokunarak her görevdeki sayıyı ya da harfi oluştur.</div>
+          <div class="step-tip"><span>💡</span><span>Değerler soldan sağa: <strong>128, 64, 32, 16, 8, 4, 2, 1</strong>.</span></div>
+          <ol class="gorevler" id="gorevler">
+            <li data-g="0"><span class="g-isaret"></span><span><strong>5</strong> sayısını yap.</span></li>
+            <li data-g="1"><span class="g-isaret"></span><span>Hepsini yak: <strong>255</strong>.</span></li>
+            <li data-g="2"><span class="g-isaret"></span><span><strong>A</strong> harfini yaz (65).</span></li>
+            <li data-g="3"><span class="g-isaret"></span><span>İstediğin bir <strong>büyük harfi</strong> yaz (A–Z).</span></li>
+          </ol>
         </div>
-        <div class="step-visual etk-panel">
-          <div class="etk-alan" id="sinifla-1"></div>
+        <div class="step-visual v3d">
+          <div class="don3d" id="s10-3d" aria-label="Etkinlik: ampullere dokunarak istenen sayı ve harfleri oluşturma">
+            <div data-yedek hidden><svg viewBox="0 0 360 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="8 ampullük sıra: 0100 0001 = 65 = A"><rect width="360" height="200" rx="16" fill="#eef7fe"/><rect x="16" y="130" width="328" height="22" rx="6" fill="#2a2d33"/><circle cx="40" cy="110" r="13" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2"/><rect x="34" y="121" width="11" height="9" rx="2" fill="#9aa1aa"/><path d="M35 112 q4 -6 9 0" fill="none" stroke="#94a3b8" stroke-width="1.6"/><circle cx="80" cy="110" r="21" fill="#fcd34d" opacity=".35"/><circle cx="80" cy="110" r="13" fill="#fde68a" stroke="#f59e0b" stroke-width="2"/><rect x="74" y="121" width="11" height="9" rx="2" fill="#9aa1aa"/><path d="M75 112 q4 -6 9 0" fill="none" stroke="#b45309" stroke-width="1.6"/><circle cx="120" cy="110" r="13" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2"/><rect x="114" y="121" width="11" height="9" rx="2" fill="#9aa1aa"/><path d="M115 112 q4 -6 9 0" fill="none" stroke="#94a3b8" stroke-width="1.6"/><circle cx="160" cy="110" r="13" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2"/><rect x="154" y="121" width="11" height="9" rx="2" fill="#9aa1aa"/><path d="M155 112 q4 -6 9 0" fill="none" stroke="#94a3b8" stroke-width="1.6"/><circle cx="200" cy="110" r="13" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2"/><rect x="194" y="121" width="11" height="9" rx="2" fill="#9aa1aa"/><path d="M195 112 q4 -6 9 0" fill="none" stroke="#94a3b8" stroke-width="1.6"/><circle cx="240" cy="110" r="13" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2"/><rect x="234" y="121" width="11" height="9" rx="2" fill="#9aa1aa"/><path d="M235 112 q4 -6 9 0" fill="none" stroke="#94a3b8" stroke-width="1.6"/><circle cx="280" cy="110" r="13" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2"/><rect x="274" y="121" width="11" height="9" rx="2" fill="#9aa1aa"/><path d="M275 112 q4 -6 9 0" fill="none" stroke="#94a3b8" stroke-width="1.6"/><circle cx="320" cy="110" r="21" fill="#fcd34d" opacity=".35"/><circle cx="320" cy="110" r="13" fill="#fde68a" stroke="#f59e0b" stroke-width="2"/><rect x="314" y="121" width="11" height="9" rx="2" fill="#9aa1aa"/><path d="M315 112 q4 -6 9 0" fill="none" stroke="#b45309" stroke-width="1.6"/><text x="40" y="176" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="800" text-anchor="middle" fill="#0f172a">0</text><text x="80" y="176" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="800" text-anchor="middle" fill="#0f172a">1</text><text x="120" y="176" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="800" text-anchor="middle" fill="#0f172a">0</text><text x="160" y="176" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="800" text-anchor="middle" fill="#0f172a">0</text><text x="200" y="176" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="800" text-anchor="middle" fill="#0f172a">0</text><text x="240" y="176" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="800" text-anchor="middle" fill="#0f172a">0</text><text x="280" y="176" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="800" text-anchor="middle" fill="#0f172a">0</text><text x="320" y="176" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="800" text-anchor="middle" fill="#0f172a">1</text><text x="180" y="40" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="900" text-anchor="middle" fill="#0369a1">0100 0001 = 65 = A</text></svg><span>Bu cihazda 3D açılmadı; kâğıda 8 kutu çizip dene.</span></div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ══════════════════════ S11 — ETKİNLİK 2 ══════════════════════ -->
+  <!-- ══════════════════════ S11 ══════════════════════ -->
   <div class="slide" id="s11">
     <div class="slide-hdr">
-      <div class="sh-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v6M9 6l3 3 3-3"/><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M8 16h8"/></svg></div>
-      <div class="sh-title">Etkinlik: Dört İş Kutusu</div>
+      <div class="sh-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="10" rx="5"/><path d="M7 10v4M5 12h4"/><circle cx="16" cy="11" r="1"/><circle cx="18" cy="13" r="1"/></svg></div>
+      <div class="sh-title">Etkinlik: Bellek Tahmin Oyunu</div>
       <div class="sh-badge">Etkinlik 2 / 2</div>
     </div>
     <div class="slide-body">
       <div class="layout-step genis-gorsel">
         <div class="step-text">
           <div class="step-num-badge">ETKİNLİK 2</div>
-          <div class="step-title">Dört İş Kutusu</div>
-          <div class="step-desc">Bilgisayar, telefon ve çamaşır makinesi parçalarını <strong>yaptıkları işe</strong> göre ayır.</div>
-          <div class="step-tip"><span>🤔</span><span>Kendine sor: Bu parça <strong>bilgi mi alıyor, karar mı veriyor, gösteriyor mu, saklıyor mu?</strong></span></div>
+          <div class="step-title">Bellek Tahmin Oyunu</div>
+          <div class="step-desc">Önce birimleri sırala. Sonra her turda tahminini seç ve belleğin dolmasını izle.</div>
+          <div class="step-tip"><span>🧮</span><span>Birimi aynı yap, sonra böl: <strong>1 GB = 1000 MB</strong>.</span></div>
           <div class="etk-ilerleme" id="ilerleme-2" aria-live="polite">
-            <div class="etk-ilerleme-ust"><span>İlerleme</span><span class="etk-ilerleme-sayi"><b>0</b> / 8</span></div>
+            <div class="etk-ilerleme-ust"><span>Tur</span><span class="etk-ilerleme-sayi"><b>1</b> / 4</span></div>
             <div class="etk-ilerleme-bar"><span></span></div>
           </div>
         </div>
         <div class="step-visual etk-panel">
-          <div class="etk-alan" id="sinifla-2"></div>
+          <div class="etk-alan" id="bellek-oyunu"></div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ══════════════════════ S12 — DERİNLEŞ ══════════════════════ -->
+  <!-- ══════════════════════ S12 ══════════════════════ -->
   <div class="slide derinles" id="s12">
     <div class="slide-hdr">
       <div class="sh-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/><path d="M11 8v6M8 11h6"/></svg></div>
-      <div class="sh-title">Derinleş: Hem Girdi Hem Çıktı</div>
+      <div class="sh-title">Derinleş: 256 ve 1024</div>
       <div class="sh-badge">Derinleş</div>
     </div>
     <div class="slide-body">
       <div class="layout-step">
         <div class="step-text">
           <div class="step-num-badge">DERİNLEŞ · İSTEĞE BAĞLI</div>
-          <div class="step-title">Hem Girdi Hem Çıktı</div>
-          <div class="step-desc">Dokunmatik ekran dokunuşunu alır ve görüntü gösterir. Yani hem <strong>girdi</strong> hem <strong>çıktı</strong> birimidir. Çamaşır makinesi ve arabada da küçük bilgisayarlar vardır: <strong>gömülü sistem</strong>.</div>
-          <div class="step-tip"><span>🔎</span><span>Evinde içinde gömülü sistem olan <strong>üç cihaz</strong> bulabilir misin?</span></div>
+          <div class="step-title">0–255 ve 1000 mi, 1024 mü?</div>
+          <div class="step-desc">8 bitle <strong>256</strong> farklı desen yapılır: 0’dan 255’e. Bilgisayar bazen 1 KB’ı <strong>1024</strong> byte sayar. Bu yüzden 1 TB disk bilgisayarda yaklaşık <strong>931 GB</strong> görünür.</div>
+          <div class="step-tip"><span>🧮</span><span>2 × 2 × 2 × 2 × 2 × 2 × 2 × 2 = ?</span></div>
         </div>
         <div class="step-visual">
-          <div class="illu"><svg viewBox="0 0 360 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Tablette parmak dokunuyor: dokunuş girdi, görüntü çıktı. Yanda içinde küçük bilgisayar çipi olan çamaşır makinesi ve araba.">
-<defs><linearGradient id="h01drBg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f5f3ff"/><stop offset="1" stop-color="#e0f2fe"/></linearGradient></defs>
-<rect width="360" height="240" rx="18" fill="url(#h01drBg)"/>
-<g transform="translate(22 30)"><rect width="150" height="104" rx="10" fill="#1e293b"/><rect x="8" y="8" width="134" height="88" rx="4" fill="#e0f2fe"/><rect x="18" y="18" width="50" height="30" rx="4" fill="#0ea5e9"/><rect x="76" y="18" width="56" height="30" rx="4" fill="#a78bfa"/><rect x="18" y="56" width="114" height="30" rx="4" fill="#fde68a"/>
-<path d="M92 118 v-44 a7 7 0 0 1 14 0 v22 l14 4 a8 8 0 0 1 6 9 l-4 18 h-30 z" fill="#f2c9a5" stroke="#b7835c" stroke-width="1.5"/><circle cx="99" cy="70" r="11" fill="none" stroke="#f59e0b" stroke-width="2.5"/><circle cx="99" cy="70" r="18" fill="none" stroke="#f59e0b" stroke-width="1.5" opacity=".5"/></g>
-<g font-family="Inter,Arial,sans-serif" font-size="11" font-weight="800"><rect x="22" y="172" width="70" height="22" rx="11" fill="#0ea5e9"/><text x="57" y="187" text-anchor="middle" fill="#fff">Girdi ↓</text><rect x="102" y="172" width="70" height="22" rx="11" fill="#10b981"/><text x="137" y="187" text-anchor="middle" fill="#fff">Çıktı ↑</text></g>
-<g transform="translate(206 26)"><rect width="74" height="96" rx="8" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/><rect width="74" height="18" rx="6" fill="#e2e8f0"/><circle cx="56" cy="9" r="5" fill="#cbd5e1" stroke="#64748b"/><circle cx="37" cy="56" r="24" fill="#bae6fd" stroke="#64748b" stroke-width="3"/>
-<rect x="46" y="62" width="34" height="30" rx="4" fill="#475569" stroke="#fff" stroke-width="2"/><rect x="54" y="70" width="18" height="14" rx="2" fill="#94a3b8"/></g>
-<g transform="translate(236 150)"><path d="M6 36 h96 v-12 l-14 -4 l-16 -16 h-38 l-16 16 l-12 4 z" fill="#0ea5e9"/><circle cx="28" cy="38" r="9" fill="#1e293b"/><circle cx="82" cy="38" r="9" fill="#1e293b"/><rect x="44" y="-6" width="26" height="20" rx="3" fill="#475569" stroke="#fff" stroke-width="2"/><rect x="50" y="-1" width="14" height="10" rx="2" fill="#94a3b8"/></g>
-<rect x="212" y="206" width="136" height="22" rx="11" fill="#8b5cf6"/><text x="280" y="221" font-family="Inter,Arial,sans-serif" font-size="11" font-weight="800" text-anchor="middle" fill="#fff">İçlerinde gömülü sistem</text>
+          <div class="illu"><svg viewBox="0 0 360 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Kutusunda 1 TB yazan disk; bilgisayar ekranında 931 GB görünüyor. Altında 2 üzeri 8 eşittir 256.">
+<defs><linearGradient id="h02drBg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f5f3ff"/><stop offset="1" stop-color="#e0f2fe"/></linearGradient></defs>
+<rect width="360" height="240" rx="18" fill="url(#h02drBg)"/>
+<g transform="translate(24 34)"><rect width="118" height="92" rx="8" fill="#a9afb8"/><rect x="10" y="10" width="98" height="46" rx="4" fill="#f8fafc"/><text x="59" y="42" font-family="Arial,sans-serif" font-size="26" font-weight="900" text-anchor="middle" fill="#0f172a">1 TB</text><circle cx="96" cy="76" r="4" fill="#ffb347"/><text x="59" y="112" font-family="Inter,Arial,sans-serif" font-size="11" font-weight="800" text-anchor="middle" fill="#475569">Kutuda yazan</text></g>
+<path d="M150 80 h40 M180 72 l10 8 -10 8" stroke="#8b5cf6" stroke-width="3" fill="none" stroke-linecap="round"/>
+<g transform="translate(198 24)"><rect width="140" height="96" rx="7" fill="#17181b"/><rect x="7" y="7" width="126" height="76" rx="3" fill="#f8fafc"/><rect x="18" y="20" width="104" height="14" rx="3" fill="#e2e8f0"/><rect x="18" y="20" width="10" height="14" rx="3" fill="#0ea5e9"/><text x="70" y="64" font-family="Arial,sans-serif" font-size="20" font-weight="900" text-anchor="middle" fill="#0f172a">931 GB</text><rect x="62" y="96" width="16" height="12" fill="#2a2d33"/><text x="70" y="126" font-family="Inter,Arial,sans-serif" font-size="11" font-weight="800" text-anchor="middle" fill="#475569">Bilgisayarda görünen</text></g>
+<g transform="translate(40 168)" font-family="Inter,Arial,sans-serif" font-weight="900"><rect width="280" height="46" rx="12" fill="#fff" stroke="#8b5cf6" stroke-width="2"/><text x="140" y="30" font-size="18" text-anchor="middle" fill="#5b21b6">2⁸ = 256 desen → 0 … 255</text></g>
 </svg></div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ══════════════════════ S13 — ÖZET ══════════════════════ -->
+  <!-- ══════════════════════ S13 ══════════════════════ -->
   <div class="slide" id="s13">
     <div class="slide-hdr">
       <div class="sh-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="9" y1="6" x2="20" y2="6"/><line x1="9" y1="12" x2="20" y2="12"/><line x1="9" y1="18" x2="20" y2="18"/><polyline points="3 6 4.5 7.5 7 5"/><polyline points="3 12 4.5 13.5 7 11"/><polyline points="3 18 4.5 19.5 7 17"/></svg></div>
@@ -1363,12 +1424,12 @@ body.grade-ortaokul{
       <div class="layout-full">
         <div class="csub">Bugün öğrendiğin 6 adım:</div>
         <div class="ozet-izgara">
-          <div class="ozet-kart"><div class="ozet-resim"><svg viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Donanım"><rect width="80" height="60" rx="10" fill="#e0f2fe"/><rect x="10" y="12" width="18" height="36" rx="3" fill="#30343c"/><rect x="32" y="12" width="38" height="24" rx="3" fill="#17181b"/><rect x="35" y="15" width="32" height="18" fill="#0e7490"/><rect x="34" y="42" width="34" height="7" rx="2" fill="#2a2d33"/></svg></div><div><div class="ozet-bas"><b>1</b> Donanım</div><div class="ozet-metin">Elle dokunabildiğin parçalar.</div></div></div>
-          <div class="ozet-kart"><div class="ozet-resim"><svg viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Yazılım"><rect width="80" height="60" rx="10" fill="#e0f2fe"/><rect x="14" y="10" width="52" height="40" rx="4" fill="#fff" stroke="#94a3b8"/><rect x="14" y="10" width="52" height="8" rx="3" fill="#8b5cf6"/><path d="M30 28 l-7 6 l7 6 M50 28 l7 6 l-7 6 M44 26 l-8 16" fill="none" stroke="#0369a1" stroke-width="2.5" stroke-linecap="round"/></svg></div><div><div class="ozet-bas"><b>2</b> Yazılım</div><div class="ozet-metin">Donanıma yol gösteren programlar.</div></div></div>
-          <div class="ozet-kart"><div class="ozet-resim"><svg viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Girdi"><rect width="80" height="60" rx="10" fill="#e0f2fe"/><rect x="10" y="30" width="60" height="16" rx="3" fill="#2a2d33"/><g fill="#4b5059"><rect x="14" y="34" width="52" height="3"/><rect x="14" y="39" width="52" height="3"/></g><rect x="20" y="32" width="10" height="8" rx="1.5" fill="#f59e0b"/><path d="M25 26 v-14 M19 18 l6 -7 l6 7" fill="none" stroke="#0ea5e9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="ozet-bas"><b>3</b> Girdi</div><div class="ozet-metin">Bilgisayara bilgi vermek.</div></div></div>
-          <div class="ozet-kart"><div class="ozet-resim"><svg viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="İşlem"><rect width="80" height="60" rx="10" fill="#e0f2fe"/><g stroke="#b45309" stroke-width="2"><path d="M32 14v-5M40 14v-5M48 14v-5M32 50v-5M40 50v-5M48 50v-5M26 22h-5M26 30h-5M26 38h-5M54 22h5M54 30h5M54 38h5"/></g><rect x="26" y="14" width="28" height="32" rx="3" fill="#475569"/><rect x="31" y="19" width="18" height="22" rx="2" fill="#94a3b8"/></svg></div><div><div class="ozet-bas"><b>4</b> İşlem</div><div class="ozet-metin">İşlemcinin karar vermesi.</div></div></div>
-          <div class="ozet-kart"><div class="ozet-resim"><svg viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Çıktı"><rect width="80" height="60" rx="10" fill="#e0f2fe"/><rect x="14" y="8" width="52" height="34" rx="3" fill="#17181b"/><rect x="17" y="11" width="46" height="28" fill="#f8fafc"/><text x="40" y="32" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="900" text-anchor="middle" fill="#0f172a">A</text><rect x="36" y="42" width="8" height="8" fill="#2a2d33"/><rect x="28" y="49" width="24" height="4" rx="2" fill="#2a2d33"/></svg></div><div><div class="ozet-bas"><b>5</b> Çıktı</div><div class="ozet-metin">Sonucun bize gösterilmesi.</div></div></div>
-          <div class="ozet-kart"><div class="ozet-resim"><svg viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Depolama"><rect width="80" height="60" rx="10" fill="#e0f2fe"/><rect x="16" y="14" width="48" height="32" rx="4" fill="#a9afb8"/><rect x="22" y="20" width="36" height="16" rx="2" fill="#fff"/><g fill="#94a3b8"><rect x="26" y="24" width="24" height="2.5"/><rect x="26" y="29" width="16" height="2.5"/></g><circle cx="58" cy="41" r="2.5" fill="#ffb347"/></svg></div><div><div class="ozet-bas"><b>6</b> Depolama</div><div class="ozet-metin">Bilginin saklanması.</div></div></div>
+          <div class="ozet-kart"><div class="ozet-resim"><svg viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Açık ve kapalı: 1 ve 0"><rect width="80" height="60" rx="10" fill="#e0f2fe"/><circle cx="26" cy="26" r="18" fill="#fcd34d" opacity=".35"/><circle cx="26" cy="26" r="10" fill="#fde68a" stroke="#f59e0b" stroke-width="2"/><rect x="21" y="34" width="9" height="7" rx="2" fill="#9aa1aa"/><path d="M22 28 q3 -5 7 0" fill="none" stroke="#b45309" stroke-width="1.6"/><circle cx="56" cy="26" r="10" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2"/><rect x="51" y="34" width="9" height="7" rx="2" fill="#9aa1aa"/><path d="M52 28 q3 -5 7 0" fill="none" stroke="#94a3b8" stroke-width="1.6"/><text x="26" y="55" font-family="Arial" font-size="12" font-weight="900" text-anchor="middle" fill="#92400e">1</text><text x="56" y="55" font-family="Arial" font-size="12" font-weight="900" text-anchor="middle" fill="#475569">0</text></svg></div><div><div class="ozet-bas"><b>1</b> Açık–Kapalı</div><div class="ozet-metin">Elektrik var: 1, yok: 0.</div></div></div>
+          <div class="ozet-kart"><div class="ozet-resim"><svg viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bit"><rect width="80" height="60" rx="10" fill="#e0f2fe"/><rect x="30" y="14" width="20" height="30" rx="5" fill="#fff" stroke="#0ea5e9" stroke-width="3"/><text x="40" y="36" font-family="Arial" font-size="18" font-weight="900" text-anchor="middle" fill="#0369a1">1</text><text x="40" y="56" font-family="Inter,Arial" font-size="9" font-weight="800" text-anchor="middle" fill="#475569">1 bit</text></svg></div><div><div class="ozet-bas"><b>2</b> Bit</div><div class="ozet-metin">En küçük bilgi parçası.</div></div></div>
+          <div class="ozet-kart"><div class="ozet-resim"><svg viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Byte"><rect width="80" height="60" rx="10" fill="#e0f2fe"/><rect x="8" y="18" width="7" height="16" rx="2" fill="#f59e0b"/><rect x="16" y="18" width="7" height="16" rx="2" fill="#cbd5e1"/><rect x="25" y="18" width="7" height="16" rx="2" fill="#f59e0b"/><rect x="33" y="18" width="7" height="16" rx="2" fill="#f59e0b"/><rect x="42" y="18" width="7" height="16" rx="2" fill="#cbd5e1"/><rect x="50" y="18" width="7" height="16" rx="2" fill="#f59e0b"/><rect x="59" y="18" width="7" height="16" rx="2" fill="#cbd5e1"/><rect x="67" y="18" width="7" height="16" rx="2" fill="#f59e0b"/><text x="40" y="52" font-family="Inter,Arial" font-size="10" font-weight="900" text-anchor="middle" fill="#0369a1">8 bit = 1 byte</text></svg></div><div><div class="ozet-bas"><b>3</b> Byte</div><div class="ozet-metin">8 bit bir araya gelir.</div></div></div>
+          <div class="ozet-kart"><div class="ozet-resim"><svg viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Harfler sayıdır"><rect width="80" height="60" rx="10" fill="#e0f2fe"/><text x="22" y="40" font-family="Arial" font-size="24" font-weight="900" text-anchor="middle" fill="#0f172a">A</text><text x="42" y="37" font-family="Arial" font-size="14" font-weight="900" text-anchor="middle" fill="#64748b">=</text><text x="62" y="38" font-family="Arial" font-size="17" font-weight="900" text-anchor="middle" fill="#0369a1">65</text></svg></div><div><div class="ozet-bas"><b>4</b> Harfler Sayıdır</div><div class="ozet-metin">A = 65 = 0100 0001.</div></div></div>
+          <div class="ozet-kart"><div class="ozet-resim"><svg viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Birimler"><rect width="80" height="60" rx="10" fill="#e0f2fe"/><rect x="8" y="38" width="8" height="8" rx="1.5" fill="#f59e0b"/><rect x="20" y="30" width="14" height="16" rx="2" fill="#38bdf8"/><rect x="38" y="20" width="16" height="26" rx="2" fill="#0ea5e9"/><rect x="58" y="10" width="16" height="36" rx="2" fill="#0369a1"/><text x="40" y="56" font-family="Inter,Arial" font-size="8" font-weight="800" text-anchor="middle" fill="#475569">KB · MB · GB · TB</text></svg></div><div><div class="ozet-bas"><b>5</b> KB–MB–GB–TB</div><div class="ozet-metin">Her biri bin kat büyür.</div></div></div>
+          <div class="ozet-kart"><div class="ozet-resim"><svg viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Kaç fotoğraf sığar"><rect width="80" height="60" rx="10" fill="#e0f2fe"/><rect x="10" y="20" width="60" height="16" rx="8" fill="#e2e8f0"/><rect x="10" y="20" width="42" height="16" rx="8" fill="#10b981"/><rect x="20" y="42" width="12" height="9" rx="2" fill="#0ea5e9"/><circle cx="24" cy="46" r="2" fill="#fff"/><rect x="36" y="42" width="12" height="9" rx="2" fill="#0ea5e9"/><rect x="52" y="42" width="12" height="9" rx="2" fill="#0ea5e9" opacity=".4"/></svg></div><div><div class="ozet-bas"><b>6</b> Kaç Sığar?</div><div class="ozet-metin">Kapasite ÷ dosya boyutu.</div></div></div>
         </div>
       </div>
     </div>
@@ -1423,52 +1484,52 @@ body.grade-ortaokul{
    ════════════════════════════════════════════════════════════════════ */
 const LESSON = {
   grade:    'ortaokul',
-  week:     '1. Hafta',
-  title:    'Donanım, Yazılım ve Bilgisayarın Dört İşi',
-  desc:     'Bilgisayarın parçalarını tanı, bir harfin klavyeden ekrana yolculuğunu izle.',
+  week:     '2. Hafta',
+  title:    'Bit ve Byte',
+  desc:     'Ampulleri yakıp söndür; 1 ve 0’larla sayı ve harf yaz, belleğe kaç fotoğraf sığacağını tahmin et.',
   goals: [
-    'Donanımı yazılımdan ayırt edebileceğim.',
-    'Girdi, işlem, çıktı ve depolamayı bir örnekle anlatabileceğim.',
-    'Klavye, ekran gibi birimleri görevine göre gruplayabileceğim.',
-    'Telefonda ve çamaşır makinesinde dört işi bulabileceğim.',
+    'Bilgisayarın her şeyi 1 ve 0 ile sakladığını açıklayabileceğim.',
+    '8 bitin 1 byte ettiğini ampullerle gösterebileceğim.',
+    'KB, MB, GB ve TB birimlerini küçükten büyüğe sıralayabileceğim.',
+    'Bir belleğe kaç dosya sığacağını tahmin edip hesaplayabileceğim.',
   ],
   sections: [
-    { icon:'1', label:'Donanım ve Yazılım', sub:'Dokunulan parça, çalışan program' },
-    { icon:'2', label:'Dört İş', sub:'Girdi · İşlem · Çıktı · Depolama' },
-    { icon:'3', label:'Etkinlik ve Test', sub:'Sınıflandır, dene, pekiştir' },
+    { icon:'1', label:'1 ve 0', sub:'Açık–kapalı, bit, byte' },
+    { icon:'2', label:'Harfler Sayıdır', sub:'Ampullerle harf yaz' },
+    { icon:'3', label:'Bellek Birimleri', sub:'KB, MB, GB, TB ve tahmin' },
   ],
   quiz: [
-    { q:'Elif telefonuna yeni bir oyun indirdi. Telefonuna ne eklenmiş oldu?',
-      opts:['Yazılım','Donanım','Yeni bir ekran','Daha büyük bir pil'], correct:0,
-      fb:'İndirilen oyun bir programdır, yani yazılımdır. Telefonun parçaları değişmedi.' },
-    { q:'Hesap makinesi uygulamasında 7 + 5 yazıp “=” tuşuna bastın. Toplama hangi işte yapılır?',
-      opts:['Girdi','Çıktı','İşlem','Depolama'], correct:2,
-      fb:'Sayıları toplamak işlemdir. Bu işi işlemci yapar; sonuç sonra ekranda görünür.' },
-    { q:'Görseldeki cihaz bilgisayarın hangi işini yapar?<span class="q-gorsel"><svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Yazıcı: kâğıda belge basıyor"><rect x="36" y="4" width="48" height="18" fill="#fff" stroke="#94a3b8" stroke-width="1.5"/><rect x="12" y="20" width="96" height="34" rx="6" fill="#64748b"/><rect x="18" y="26" width="30" height="5" rx="2" fill="#475569"/><circle cx="96" cy="30" r="3" fill="#10b981"/><rect x="28" y="48" width="64" height="30" fill="#fff" stroke="#94a3b8" stroke-width="1.5"/><g stroke="#cbd5e1" stroke-width="2"><line x1="36" y1="58" x2="84" y2="58"/><line x1="36" y1="65" x2="76" y2="65"/><line x1="36" y1="72" x2="66" y2="72"/></g></svg></span>',
-      opts:['Girdi','Çıktı','İşlem','Depolama'], correct:1,
-      fb:'Yazıcı, bilgisayardaki belgeyi kâğıda basar. Sonucu dışarı verdiği için çıktı birimidir.' },
-    { q:'Çamaşır makinesinin program düğmesini “Hızlı yıkama”ya çevirdin. Bu hangi iştir?',
-      opts:['Çıktı','Depolama','İşlem','Girdi'], correct:3,
-      fb:'Düğmeyle makineye bilgi veriyorsun. Makineye bilgi vermek girdidir.' },
-    { q:'Derinleş (bonus): Tabletin dokunmatik ekranı neden hem girdi hem çıktı birimidir?',
-      opts:['Dokunuşu alır ve görüntüyü gösterir','Yalnızca görüntü gösterir','Dosyaları kalıcı saklar','Kararları kendisi verir'], correct:0,
-      fb:'Dokunmatik ekran dokunuşunu alır (girdi) ve sonucu gösterir (çıktı). Bu soru puanını düşürmez.' },
+    { q:'Bilgisayar harfleri, fotoğrafları ve sesleri nasıl saklar?',
+      opts:['1 ve 0’lardan oluşan sayılarla','Küçük kâğıt kopyalarıyla','Renkli ışıklarla','Harfleri olduğu gibi çizerek'], correct:0,
+      fb:'Bilgisayarın içinde her şey açık (1) ve kapalı (0) elektrik durumlarıyla, yani sayılarla saklanır.' },
+    { q:'Görseldeki ampul sırası kaç bittir ve kaç byte eder?<span class="q-gorsel"><svg viewBox="0 0 340 80" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Yan yana 8 ampul; bazıları yanıyor"><rect width="340" height="80" rx="10" fill="#eef7fe"/><rect x="10" y="56" width="320" height="12" rx="4" fill="#2a2d33"/><circle cx="30" cy="34" r="20" fill="#fcd34d" opacity=".35"/><circle cx="30" cy="34" r="12" fill="#fde68a" stroke="#f59e0b" stroke-width="2"/><rect x="24" y="44" width="10" height="8" rx="2" fill="#9aa1aa"/><path d="M25 36 q4 -6 8 0" fill="none" stroke="#b45309" stroke-width="1.6"/><circle cx="70" cy="34" r="12" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2"/><rect x="64" y="44" width="10" height="8" rx="2" fill="#9aa1aa"/><path d="M65 36 q4 -6 8 0" fill="none" stroke="#94a3b8" stroke-width="1.6"/><circle cx="110" cy="34" r="20" fill="#fcd34d" opacity=".35"/><circle cx="110" cy="34" r="12" fill="#fde68a" stroke="#f59e0b" stroke-width="2"/><rect x="104" y="44" width="10" height="8" rx="2" fill="#9aa1aa"/><path d="M105 36 q4 -6 8 0" fill="none" stroke="#b45309" stroke-width="1.6"/><circle cx="150" cy="34" r="20" fill="#fcd34d" opacity=".35"/><circle cx="150" cy="34" r="12" fill="#fde68a" stroke="#f59e0b" stroke-width="2"/><rect x="144" y="44" width="10" height="8" rx="2" fill="#9aa1aa"/><path d="M145 36 q4 -6 8 0" fill="none" stroke="#b45309" stroke-width="1.6"/><circle cx="190" cy="34" r="12" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2"/><rect x="184" y="44" width="10" height="8" rx="2" fill="#9aa1aa"/><path d="M185 36 q4 -6 8 0" fill="none" stroke="#94a3b8" stroke-width="1.6"/><circle cx="230" cy="34" r="12" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2"/><rect x="224" y="44" width="10" height="8" rx="2" fill="#9aa1aa"/><path d="M225 36 q4 -6 8 0" fill="none" stroke="#94a3b8" stroke-width="1.6"/><circle cx="270" cy="34" r="20" fill="#fcd34d" opacity=".35"/><circle cx="270" cy="34" r="12" fill="#fde68a" stroke="#f59e0b" stroke-width="2"/><rect x="264" y="44" width="10" height="8" rx="2" fill="#9aa1aa"/><path d="M265 36 q4 -6 8 0" fill="none" stroke="#b45309" stroke-width="1.6"/><circle cx="310" cy="34" r="12" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2"/><rect x="304" y="44" width="10" height="8" rx="2" fill="#9aa1aa"/><path d="M305 36 q4 -6 8 0" fill="none" stroke="#94a3b8" stroke-width="1.6"/></svg></span>',
+      opts:['4 bit, yarım byte','16 bit, 2 byte','8 bit, 1 byte','1 bit, 1 byte'], correct:2,
+      fb:'Her ampul bir bittir. 8 ampul 8 bit eder; 8 bit de 1 byte’tır.' },
+    { q:'Hangi seçenekte birimler küçükten büyüğe doğru sıralanmıştır?',
+      opts:['GB, MB, KB, TB','KB, MB, GB, TB','MB, KB, TB, GB','TB, GB, MB, KB'], correct:1,
+      fb:'Her birim bir öncekinin yaklaşık 1000 katıdır: KB, MB, GB, TB.' },
+    { q:'Ece’nin telefonunda 8 GB boş yer var. Her video 2 GB. En çok kaç video sığar?',
+      opts:['16','2','6','4'], correct:3,
+      fb:'8 GB’ı 2 GB’a böleriz: 8 ÷ 2 = 4 video sığar.' },
+    { q:'Derinleş (bonus): 1 byte en fazla kaç farklı sayı tutabilir?',
+      opts:['256 (0’dan 255’e)','8','100','1000'], correct:0,
+      fb:'8 bitle 2 × 2 × 2 × 2 × 2 × 2 × 2 × 2 = 256 farklı desen yapılır: 0’dan 255’e. Bu soru puanını düşürmez.' },
   ],
-  doneMsg: 'Artık donanımı, yazılımı ve bilgisayarın dört işini biliyorsun!',
+  doneMsg: 'Artık 1 ve 0’larla sayı ve harf yazabiliyor, bellek birimlerini tanıyorsun!',
 };
 
 const SLIDE_LABELS = [
   '1. Kapak',
   '2. Hedefler',
   '3. Isınma: Tahmin Et',
-  '4. Adım 1: Donanım',
-  '5. Adım 2: Yazılım',
-  '6. Adım 3: Girdi',
-  '7. Adım 4: İşlem',
-  '8. Adım 5: Çıktı',
-  '9. Adım 6: Depolama',
-  '10. Etkinlik: Donanım mı, Yazılım mı?',
-  '11. Etkinlik: Dört İş Kutusu',
+  '4. Adım 1: Açık–Kapalı: 1 ve 0',
+  '5. Adım 2: Bit',
+  '6. Adım 3: Byte',
+  '7. Adım 4: Harfler Sayıdır',
+  '8. Adım 5: KB–MB–GB–TB',
+  '9. Adım 6: Kaç Fotoğraf Sığar?',
+  '10. Etkinlik: Ampullerle Harf Yaz',
+  '11. Etkinlik: Bellek Tahmin Oyunu',
   '12. Derinleş',
   '13. Özet',
   '14. Bilgi Testi',
@@ -4154,465 +4215,129 @@ function(t,e){"object"==typeof exports&&"undefined"!=typeof module?e(exports):"f
   };
 })(typeof window !== 'undefined' ? window : this);
 
-/* M-MASAUSTU — kapalı masaüstü kasa (ATX orta kule), sol yanda cam kapak.
-   Ön panelde güç düğmesi, güç ve disk ışıkları, üst-ön USB girişleri.
-   İçeride (camdan görünür, basitleştirilmiş): anakart, işlemci soğutucusu, RAM,
-   ekran kartı, SSD, güç kaynağı örtüsü (PSU'nun içi modellenmez), arka fan.
-   Ölçü birimi: cm (≈ 21 × 45 × 42). Orijin: alt-orta. Ön +Z, cam yan −X.
-   ops.acik: true → cam ve basit RAM eklenmez (M-MASAUSTU-ACIK kendi yan kapağını ve RAM yuvalarını ekler). */
+/* M-AMPUL-SIRASI — deney panosu üzerinde ampul sırası (varsayılan 8), her ampulün önünde anahtar.
+   Ölçü birimi: cm. Orijin: pano alt-orta. Ampuller X boyunca; soldaki ampul en büyük basamaktır (128).
+   ops.adet: ampul sayısı (1–8).
+   userData.ampuller: ampul grupları (ad 'ampul-0' … soldan sağa), her biri tıklanabilir.
+   userData.ayarla(i, acik, sure) → Promise · userData.durum: [bool…] */
 (function (D) {
   'use strict';
-
-  function fan(K, cap) {
-    var THREE = K.THREE;
-    var f = new THREE.Group();
-    var cer = cap / 2;
-    [[0, cer - 0.4, cap, 0.8], [0, -cer + 0.4, cap, 0.8]].forEach(function (c) {
-      K.koy(f, K.kutu(c[2], c[3], 2.4, 'plastikSiyah', 0.2), c[0], c[1], 0);
-    });
-    [[cer - 0.4, 0], [-cer + 0.4, 0]].forEach(function (c) {
-      K.koy(f, K.kutu(0.8, cap, 2.4, 'plastikSiyah', 0.2), c[0], c[1], 0);
-    });
-    var rotor = new THREE.Group();
-    rotor.name = 'rotor';
-    var gobek = K.silindir(1.9, 1.6, 'plastikKoyu', 24);
-    gobek.rotation.x = Math.PI / 2;
-    rotor.add(gobek);
-    var kanatGeo = K.yuvarlakKutuGeo(1.8, cer - 2.4, 0.18, 0.08, 1);
-    for (var i = 0; i < 7; i++) {
-      var piv = new THREE.Group();
-      piv.rotation.z = (i / 7) * Math.PI * 2;
-      var k = new THREE.Mesh(kanatGeo, K.mat('plastikKoyu'));
-      k.position.y = 1.9 + (cer - 2.4) / 2 - 0.3;
-      k.rotation.y = 0.45;
-      piv.add(k);
-      rotor.add(piv);
-    }
-    f.add(rotor);
-    f.userData.rotor = rotor;
-    return f;
+  var haleDokusu = null;
+  function haleDoku(THREE) {
+    if (haleDokusu) return haleDokusu;
+    var c = document.createElement('canvas'); c.width = c.height = 128;
+    var ctx = c.getContext('2d');
+    var g = ctx.createRadialGradient(64, 64, 6, 64, 64, 64);
+    g.addColorStop(0, 'rgba(255,214,120,0.95)'); g.addColorStop(0.4, 'rgba(255,190,80,0.45)'); g.addColorStop(1, 'rgba(255,170,60,0)');
+    ctx.fillStyle = g; ctx.fillRect(0, 0, 128, 128);
+    haleDokusu = new THREE.CanvasTexture(c);
+    haleDokusu.colorSpace = THREE.SRGBColorSpace;
+    return haleDokusu;
   }
-  D.kitFan = fan;
 
-  D.modelTanimla('M-MASAUSTU', function (K, ops) {
+  D.modelTanimla('M-AMPUL-SIRASI', function (K, ops) {
     var THREE = K.THREE;
     ops = ops || {};
+    var n = Math.max(1, Math.min(8, ops.adet || 8));
+    var ARA = 7.4;
     var g = new THREE.Group();
-    K.parca(g, 'M-MASAUSTU', 'Kasa', 'İşlemci, bellek ve depolama gibi parçaları koruyan kutu.');
-    var W = 21, H = 45, Dp = 42;
-    var yz = 1.6;               // kasa gövdesi alt yüzü (ayaklar üstü)
-    var ym = yz + (H - yz) / 2; // gövde dikey merkez
-    var gh = H - yz;            // gövde yüksekliği
+    K.parca(g, 'M-AMPUL-SIRASI', 'Ampul sırası', 'Her ampul bir bittir: yanıyorsa 1, sönükse 0.');
+    var W = n * ARA + 2, Dz = 13;
+    var pano = K.kutu(W, 2.2, Dz, 'plastikKoyu', 0.6);
+    K.koy(g, pano, 0, 1.1, 0);
+    pano.userData.secilmez = true;
+    // Ön şerit (anahtarların durduğu açık gri bant)
+    var serit = K.kutu(W - 1.2, 0.2, 3.6, 'plastikGri', 0.1);
+    K.koy(g, serit, 0, 2.25, Dz / 2 - 2.4);
+    serit.userData.secilmez = true;
 
-    // Ayaklar
-    [[-1, -1], [1, -1], [-1, 1], [1, 1]].forEach(function (p) {
-      K.koy(g, K.silindir(1.3, yz, 'kaucuk', 16), p[0] * (W / 2 - 2.2), yz / 2, p[1] * (Dp / 2 - 3));
-    });
-
-    // Gövde panelleri
-    var ustDoku = K.izgaraDoku('#23262c', '#0b0c0f');
-    ustDoku.wrapS = ustDoku.wrapT = THREE.RepeatWrapping;
-    ustDoku.repeat.set(2, 4);
-    var ustMat = new THREE.MeshStandardMaterial({ map: ustDoku, roughness: 0.5, metalness: 0.45 });
-    var govde = new THREE.Group();
-    K.parca(govde, 'govde', 'Kasa gövdesi', 'Metal gövde parçaları korur ve ısıyı dağıtır.');
-    K.koy(govde, K.kutu(0.6, gh, Dp, 'kasa', 0.25), W / 2 - 0.3, ym, 0);                    // sağ yan
-    K.koy(govde, K.kutu(W, 0.6, Dp, ustMat, 0.25), 0, H - 0.3, 0);                          // üst
-    K.koy(govde, K.kutu(W, 0.6, Dp, 'kasa', 0.2), 0, yz + 0.3, 0);                          // alt
-    K.koy(govde, K.kutu(W, gh, 0.6, 'kasa', 0.2), 0, ym, -Dp / 2 + 0.3);                    // arka
-    // Cam yan kapak ve çerçevesi
-    if (!ops.acik) {
-      var cam = K.kutu(0.4, gh - 1.6, Dp - 2.4, 'cam', 0.2);
-      K.koy(govde, cam, -W / 2 + 0.2, ym, 0);
-      cam.userData.golgeYok = true;
-      cam.renderOrder = 3;
-      cam.userData.secilmez = true;
+    var camMat = new THREE.MeshStandardMaterial({ color: 0xf5f7fa, roughness: 0.08, metalness: 0, transparent: true, opacity: 0.32, depthWrite: false });
+    var ampuller = [], durum = [];
+    for (var i = 0; i < n; i++) {
+      var x = (i - (n - 1) / 2) * ARA;
+      var a = new THREE.Group();
+      K.parca(a, 'ampul-' + i, 'Ampul ' + (i + 1), 'Dokun: yak ya da söndür.');
+      a.userData.indeks = i;
+      // Duy (seramik) ve vida gövdesi
+      K.koy(a, K.silindir(1.55, 1.4, 'plastikBeyaz', 24), 0, 0.7, 0);
+      var vida = K.silindir(1.0, 1.7, 'aluminyumMat', 20);
+      K.koy(a, vida, 0, 2.2, 0);
+      for (var r = 0; r < 3; r++) K.koy(a, new THREE.Mesh(new THREE.TorusGeometry(1.02, 0.07, 6, 20), K.mat('aluminyum')), 0, 1.6 + r * 0.45, 0).rotation.x = Math.PI / 2;
+      // Cam: boyun + küre
+      var boyun = new THREE.Mesh(new THREE.CylinderGeometry(1.25, 0.98, 1.4, 24, 1, true), camMat);
+      K.koy(a, boyun, 0, 3.7, 0);
+      var kure = new THREE.Mesh(new THREE.SphereGeometry(2.25, 28, 20), camMat);
+      K.koy(a, kure, 0, 6.0, 0);
+      kure.userData.golgeYok = true; boyun.userData.golgeYok = true;
+      kure.renderOrder = 2; boyun.renderOrder = 2;
+      // Flaman (ışıyan tel) ve taşıyıcı teller
+      var flamanMat = new THREE.MeshStandardMaterial({ color: 0x3a3530, emissive: new THREE.Color('#ffb347'), emissiveIntensity: 0, roughness: 0.5 });
+      var flaman = new THREE.Mesh(new THREE.TorusGeometry(0.55, 0.07, 6, 16, Math.PI), flamanMat);
+      K.koy(a, flaman, 0, 5.9, 0);
+      [-0.55, 0.55].forEach(function (tx) { K.koy(a, K.silindir(0.04, 2.6, 'celik', 6), tx, 4.6, 0); });
+      // Işık halesi (yanınca görünür)
+      var hale = new THREE.Sprite(new THREE.SpriteMaterial({ map: haleDoku(THREE), transparent: true, opacity: 0, depthWrite: false }));
+      hale.material.toneMapped = false;
+      hale.scale.set(9, 9, 1);
+      hale.position.set(0, 6, 0);
+      hale.userData.secilmez = true; hale.raycast = function () {};
+      a.add(hale);
+      // Anahtar (öne doğru)
+      var anahtar = new THREE.Group();
+      var yuva = K.kutu(2.0, 0.5, 1.6, 'plastikSiyah', 0.15);
+      anahtar.add(yuva);
+      var kol = K.kutu(1.4, 0.45, 0.9, K.mat('plastikBeyaz'), 0.12);
+      kol.position.y = 0.4;
+      anahtar.add(kol);
+      anahtar.position.set(0, 2.45, Dz / 2 - 2.4 - 1.1);
+      a.add(anahtar);
+      a.userData.kol = kol; a.userData.flaman = flamanMat; a.userData.hale = hale; a.userData.cam = kure;
+      a.position.set(x, 2.2, -1.2);
+      // anahtar pano üstünde, ampulün önünde
+      anahtar.position.set(0, 0.25, Dz / 2 - 2.4 + 1.2);
+      g.add(a);
+      ampuller.push(a); durum.push(false);
+      kol.rotation.x = -0.35;
     }
-    [[ym + gh / 2 - 0.5, Dp, 1.0], [ym - gh / 2 + 0.5, Dp, 1.0]].forEach(function (c) {
-      K.koy(govde, K.kutu(0.7, c[2], c[1], 'kasa', 0.2), -W / 2 + 0.35, c[0], 0);
-    });
-    [Dp / 2 - 0.6, -Dp / 2 + 0.6].forEach(function (z) {
-      K.koy(govde, K.kutu(0.7, gh, 1.2, 'kasa', 0.2), -W / 2 + 0.35, ym, z);
-    });
-    g.add(govde);
+    var camAcikMat = camMat.clone();
+    camAcikMat.emissive = new THREE.Color('#ffd27a'); camAcikMat.emissiveIntensity = 0.55; camAcikMat.opacity = 0.5;
 
-    // Ön panel: plastik çerçeve + ortada delikli hava girişi
-    var on = new THREE.Group();
-    K.parca(on, 'on-panel', 'Ön panel', 'Hava girişi, düğmeler ve ön girişler buradadır.');
-    K.koy(on, K.kutu(W + 0.6, H - 0.4, 1.8, 'plastikSiyah', 0.7), 0, H / 2 + 0.3, Dp / 2 + 0.6);
-    var agDoku = K.izgaraDoku('#1a1c21', '#060708');
-    agDoku.wrapS = agDoku.wrapT = THREE.RepeatWrapping;
-    agDoku.repeat.set(2, 5);
-    var ag = K.duzlem(W - 5, H - 11, new THREE.MeshStandardMaterial({ map: agDoku, roughness: 0.7, metalness: 0.2 }));
-    K.koy(on, ag, 0, H / 2 - 1.5, Dp / 2 + 1.52);
-    g.add(on);
-
-    // Üst-ön: güç düğmesi (halka ışıklı), USB girişleri, ses girişi, disk ışığı
-    var yUst = H + 0.02;
-    var dugme = new THREE.Group();
-    K.parca(dugme, 'guc-dugmesi', 'Güç düğmesi', 'Bilgisayarı açar. Kapatmak için işletim sistemi kullanılır.');
-    var dugmeGovde = K.silindir(1.05, 0.5, 'aluminyum', 28);
-    K.koy(dugme, dugmeGovde, 0, 0.25, 0);
-    var halkaMat = K.led('#bfe3ff', 1.6);
-    var halka = new THREE.Mesh(new THREE.TorusGeometry(1.2, 0.12, 8, 32), halkaMat);
-    halka.rotation.x = -Math.PI / 2;
-    K.koy(dugme, halka, 0, 0.08, 0);
-    halka.rotation.x = -Math.PI / 2;
-    halka.name = 'guc-isigi';
-    K.koy(g, dugme, -5.5, yUst, Dp / 2 - 3.2);
-
-    var portlar = new THREE.Group();
-    K.parca(portlar, 'on-portlar', 'Ön USB girişleri', 'USB bellek, kulaklık gibi cihazlar buraya takılır.');
-    [-1.2, 1.2].forEach(function (x) {
-      K.koy(portlar, K.kutu(1.35, 0.1, 0.6, 'cip'), x, 0, 0);
-      K.koy(portlar, K.kutu(1.1, 0.12, 0.2, 'usbMavi'), x, 0.01, 0.08);
-    });
-    K.koy(portlar, K.kutu(0.95, 0.1, 0.38, 'cip', 0.12), 3.3, 0, 0);
-    var ses = K.silindir(0.3, 0.1, 'cip', 16); K.koy(portlar, ses, 5.0, 0, 0);
-    K.koy(g, portlar, 1.2, yUst, Dp / 2 - 3.2);
-
-    var diskLed = new THREE.Mesh(new THREE.SphereGeometry(0.22, 10, 8), K.led('#ffb347', 0.25));
-    K.parca(diskLed, 'disk-isigi', 'Disk ışığı', 'Depolama birimi çalışırken yanıp söner.');
-    K.koy(g, diskLed, -8, yUst, Dp / 2 - 3.2);
-
-    // ── İç parçalar (camdan görünür) ──
-    var ic = new THREE.Group();
-    ic.name = 'ic';
-    var xTepsi = W / 2 - 1.0;
-    // Anakart (sağ yan duvara bağlı, bileşenler −X yönüne bakar)
-    var pcbDoku = K.canvasDoku(256, 320, function (ctx, w, h) {
-      ctx.fillStyle = '#23272e'; ctx.fillRect(0, 0, w, h);
-      var r = K.rng(7);
-      ctx.strokeStyle = 'rgba(120,135,150,0.35)'; ctx.lineWidth = 1;
-      for (var i = 0; i < 70; i++) {
-        var x = r() * w, y = r() * h;
-        ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x + (r() - 0.5) * 80, y); ctx.lineTo(x + (r() - 0.5) * 80, y + (r() - 0.5) * 80); ctx.stroke();
-      }
-      ctx.fillStyle = '#3a3f48';                                   // genişleme yuvaları
-      for (var k = 0; k < 3; k++) ctx.fillRect(w * 0.08, h * (0.55 + k * 0.1), w * 0.62, 7);
-      ctx.fillStyle = '#d9dce1'; ctx.fillRect(w * 0.9, h * 0.1, 10, h * 0.28); // 24 pin güç girişi
-      ctx.strokeStyle = 'rgba(220,225,232,0.55)'; ctx.lineWidth = 2;
-      ctx.strokeRect(w * 0.2, h * 0.08, w * 0.34, w * 0.34);           // soket çerçevesi
-    });
-    var anakart = K.kutu(0.2, 30.5, 24.4, new THREE.MeshStandardMaterial({ map: pcbDoku, roughness: 0.6, metalness: 0.1 }));
-    K.parca(anakart, 'anakart', 'Anakart', 'Tüm parçaları birbirine bağlayan ana devre kartı.');
-    K.koy(ic, anakart, xTepsi, 28.5, -8.4);
-    // İşlemci + kule soğutucu
-    var islemci = new THREE.Group();
-    K.parca(islemci, 'islemci', 'İşlemci', 'Gelen bilgiyi işler ve ne yapılacağına karar verir. Soğutucunun altındadır.');
-    var yuva = K.kutu(0.4, 5.6, 5.6, 'plastikAcik', 0.1); K.koy(islemci, yuva, 0, 0, 0);
-    var kule = K.kutu(12.5, 12, 5.2, 'aluminyumMat', 0.2); K.koy(islemci, kule, -7.2, 1.2, 0);
-    var boru = K.silindir(0.35, 11, 'bakir', 12);
-    boru.rotation.z = Math.PI / 2;
-    K.koy(islemci, boru, -5, -1.6, -1.2); boru.rotation.z = Math.PI / 2;
-    var boru2 = K.silindir(0.35, 11, 'bakir', 12);
-    K.koy(islemci, boru2, -5, -1.6, 1.2); boru2.rotation.z = Math.PI / 2;
-    var sogFan = fan(K, 12);
-    sogFan.rotation.y = Math.PI / 2;
-    K.koy(islemci, sogFan, -7.2, 1.2, 3.9);
-    sogFan.rotation.y = 0;
-    islemci.userData.rotor = sogFan.userData.rotor;
-    K.koy(ic, islemci, xTepsi - 0.3, 35, -11);
-    // RAM (dikey yuvalarda iki modül)
-    var ram = new THREE.Group();
-    K.parca(ram, 'ram', 'RAM', 'Çalışan programların geçici olarak tutulduğu bellek.');
-    [-0.5, 0.5].forEach(function (z) {
-      K.koy(ram, K.kutu(3.2, 13.3, 0.4, 'plastikKoyu', 0.1), 0, 0, z);
-      K.koy(ram, K.kutu(0.4, 13.3, 0.42, 'aluminyum', 0.1), -1.5, 0, z);
-    });
-    if (!ops.acik) K.koy(ic, ram, xTepsi - 1.7, 33.5, -3.6);
-    // Ekran kartı (yatay)
-    var ekk = new THREE.Group();
-    K.parca(ekk, 'ekran-karti', 'Ekran kartı', 'Ekranda görünecek görüntüyü hazırlar.');
-    K.koy(ekk, K.kutu(12, 3.6, 26, 'plastikKoyu', 0.5), 0, 0, 0);
-    K.koy(ekk, K.kutu(11.6, 0.3, 25.6, 'aluminyumMat', 0.1), 0, 1.95, 0);
-    [-6.5, 6.5].forEach(function (z) {
-      var h = K.silindir(4.6, 0.3, 'plastikSiyah', 28); K.koy(ekk, h, 0, -1.9, z);
-      var gb = K.silindir(1.4, 0.35, 'plastikGri', 20); K.koy(ekk, gb, 0, -2.0, z);
-    });
-    K.koy(ic, ekk, xTepsi - 6.2, 21.5, -7.6);
-    // Güç kaynağı örtüsü (PSU içi modellenmez)
-    var ortu = K.kutu(W - 1.4, 9.2, Dp - 1.8, 'kasaIc', 0.3);
-    K.parca(ortu, 'guc-kaynagi', 'Güç kaynağı (örtünün altında)', 'Prizden gelen elektriği parçalara uygun hâle getirir. İçi asla açılmaz.');
-    K.koy(ic, ortu, 0, yz + 0.6 + 4.6, 0);
-    // SSD (örtünün üstünde)
-    var ssd = new THREE.Group();
-    K.parca(ssd, 'depolama', 'Depolama birimi (SSD)', 'Dosyaları ve programları kalıcı olarak saklar.');
-    K.koy(ssd, K.kutu(7, 0.7, 10, 'aluminyumMat', 0.2), 0, 0, 0);
-    K.koy(ssd, K.kutu(5.6, 0.02, 5, 'plastikBeyaz'), 0, 0.37, 0.8);
-    K.koy(ic, ssd, -3.5, yz + 11.3, 11);
-    // Arka fan
-    var arkaFan = fan(K, 12);
-    K.parca(arkaFan, 'arka-fan', 'Kasa fanı', 'Sıcak havayı kasanın dışına atar.');
-    K.koy(ic, arkaFan, 1.5, 35, -Dp / 2 + 1.9);
-    ic.traverse(function (o) { if (o.isMesh) o.userData.golgeYok = true; });
-    g.add(ic);
-    g.userData.fanlar = [arkaFan.userData.rotor, sogFan.userData.rotor];
-    g.userData.olcu = { W: W, H: H, Dp: Dp, yz: yz, ym: ym, gh: gh, xTepsi: xTepsi };
-
-    // Arka giriş/çıkış paneli (kablolar için)
-    var io = K.kutu(0.3, 4.4, 16, 'aluminyum');
-    io.rotation.y = Math.PI / 2;
-    K.koy(g, io, 1.3, 40, -Dp / 2 - 0.05);
-    io.rotation.y = Math.PI / 2;
-    K.parca(io, 'arka-panel', 'Arka giriş paneli', 'Klavye, fare, ağ ve ses kabloları buraya takılır.');
-    var giris = new THREE.Object3D(); giris.name = 'kablo-giris';
-    K.koy(g, giris, -2, 40, -Dp / 2 - 0.4);
-    var cikis = new THREE.Object3D(); cikis.name = 'goruntu-cikis';
-    K.koy(g, cikis, -2.5, 21.5, -Dp / 2 - 0.4);
-    return g;
-  });
-})(window.DON3D);
-
-/* M-MONITOR — 24" monitör (16:9), ayak, arka görüntü girişleri görünür.
-   Ölçü birimi: cm. Orijin: ayağın alt-orta noktası, ekran +Z'ye bakar.
-   userData.ekran: { mesh, doku, ciz(fn(ctx,w,h)), masaustu() } */
-(function (D) {
-  'use strict';
-  function masaustuCiz(ctx, w, h) {
-    var g = ctx.createLinearGradient(0, 0, w, h);
-    g.addColorStop(0, '#1e3a8a'); g.addColorStop(0.55, '#0e7490'); g.addColorStop(1, '#0f766e');
-    ctx.fillStyle = g; ctx.fillRect(0, 0, w, h);
-    // yumuşak tepeler (jenerik duvar kâğıdı)
-    ctx.fillStyle = 'rgba(255,255,255,0.08)';
-    ctx.beginPath(); ctx.moveTo(0, h * 0.72);
-    ctx.bezierCurveTo(w * 0.3, h * 0.52, w * 0.55, h * 0.86, w, h * 0.6);
-    ctx.lineTo(w, h); ctx.lineTo(0, h); ctx.fill();
-    // görev çubuğu
-    ctx.fillStyle = 'rgba(15,23,42,0.82)'; ctx.fillRect(0, h - 22, w, 22);
-    var renkler = ['#38bdf8', '#f59e0b', '#10b981', '#a78bfa', '#f472b6'];
-    for (var i = 0; i < 5; i++) {
-      ctx.fillStyle = renkler[i];
-      D.kit.yuvarlakDikdortgen(ctx, w / 2 - 70 + i * 30, h - 18, 20, 14, 3); ctx.fill();
+    function uygula(i, e) {
+      var a = ampuller[i];
+      a.userData.flaman.emissiveIntensity = 3.2 * e;
+      a.userData.hale.material.opacity = 0.85 * e;
+      a.userData.cam.material = e > 0.5 ? camAcikMat : camMat;
+      a.userData.kol.rotation.x = -0.35 + 0.7 * e;
     }
-    // masaüstü simgeleri
-    for (var j = 0; j < 4; j++) {
-      ctx.fillStyle = 'rgba(255,255,255,0.85)';
-      D.kit.yuvarlakDikdortgen(ctx, 14, 14 + j * 42, 26, 26, 5); ctx.fill();
-      ctx.fillStyle = 'rgba(255,255,255,0.6)'; ctx.fillRect(12, 43 + j * 42, 30, 3);
-    }
-  }
-  D.ekranMasaustu = masaustuCiz;
-
-  D.modelTanimla('M-MONITOR', function (K) {
-    var THREE = K.THREE;
-    var g = new THREE.Group();
-    K.parca(g, 'M-MONITOR', 'Monitör', 'Görüntüyü gösteren çıktı birimi.');
-    var W = 54.4, H = 32.6, yMerkez = 28;
-
-    // Ayak ve boyun
-    var ayak = K.kutu(22, 1.0, 17, 'plastikKoyu', 0.45);
-    K.koy(g, ayak, 0, 0.5, -3);
-    var boyun = K.kutu(5, 19, 2.2, 'plastikKoyu', 0.6);
-    K.koy(g, boyun, 0, 10.5, -6.2);
-    K.parca(ayak, 'ayak', 'Ayak', 'Monitörü masada dengede tutar.');
-
-    // Panel gövdesi ve arka kapak
-    var panel = K.kutu(W, H, 1.6, 'plastikSiyah', 0.5);
-    K.koy(g, panel, 0, yMerkez, -2);
-    var arka = K.kutu(30, 20, 3.2, 'plastikSiyah', 1.3);
-    K.koy(g, arka, 0, yMerkez - 1.5, -3.8);
-
-    // Ekran yüzeyi (ışık yayan canvas dokusu)
-    var doku = K.canvasDoku(512, 288, masaustuCiz);
-    var ekranMat = new THREE.MeshStandardMaterial({
-      color: 0x050608, emissive: 0xffffff, emissiveMap: doku, emissiveIntensity: 0.95, roughness: 0.2, metalness: 0
-    });
-    var ekran = K.duzlem(W - 1.6, H - 2.6, ekranMat);
-    K.koy(g, ekran, 0, yMerkez + 0.5, -1.18);
-    K.parca(ekran, 'ekran', 'Ekran', 'Görüntünün oluştuğu yüzey.');
-    ekran.userData.golgeYok = true;
-
-    // Alt çerçeve: güç düğmesi ve güç ışığı
-    var led = new THREE.Mesh(new THREE.SphereGeometry(0.18, 10, 8), K.led('#e2f3ff', 1.6));
-    K.koy(g, led, W / 2 - 3, yMerkez - H / 2 + 0.55, -1.15);
-    K.parca(led, 'guc-isigi');
-
-    // Arka görüntü girişleri (alt yüzeye bakar)
-    var girisler = new THREE.Group();
-    K.parca(girisler, 'girisler', 'Görüntü girişleri', 'HDMI ve DisplayPort kabloları buraya takılır.');
-    var yAlt = yMerkez - 1.5 - 10 + 0.02;
-    var hdmi = K.kutu(1.5, 0.12, 0.6, 'cip'); K.koy(girisler, hdmi, -4, yAlt, -3.8);
-    var dp = K.kutu(1.7, 0.12, 0.7, 'cip'); K.koy(girisler, dp, -1.6, yAlt, -3.8);
-    var guc = K.kutu(1.2, 0.12, 0.9, 'cip'); K.koy(girisler, guc, 5, yAlt, -3.8);
-    g.add(girisler);
-    var girisNoktasi = new THREE.Object3D(); girisNoktasi.name = 'giris-noktasi';
-    K.koy(g, girisNoktasi, -3, yAlt - 0.3, -3.8);
-
-    g.userData.ekran = {
-      mesh: ekran, doku: doku,
-      ciz: function (fn) { doku.userData.ciz(fn); },
-      masaustu: function () { doku.userData.ciz(masaustuCiz); ekranMat.emissiveMap = doku; ekranMat.needsUpdate = true; }
+    g.userData.ampuller = ampuller;
+    g.userData.durum = durum;
+    g.userData.ayarla = function (i, acik, sure) {
+      var bas = durum[i] ? 1 : 0, son = acik ? 1 : 0;
+      durum[i] = !!acik;
+      if (bas === son) { uygula(i, son); return Promise.resolve(); }
+      return D.tween({ sahne: D.sahneBul(g), sure: sure == null ? 0.25 : sure, anahtar: 'ampul', hedef: ampuller[i], ease: 'easeOutCubic',
+        guncelle: function (e) { uygula(i, bas + (son - bas) * e); } });
     };
-    return g;
-  });
-})(window.DON3D);
-
-/* M-KLAVYE — Türkçe Q düzenli, sayısal tuş takımı olmayan (TKL) kablolu klavye.
-   Ölçü birimi: cm. Orijin: alt-orta. Arka (kablo çıkışı) −Z, kullanıcı tarafı +Z.
-   'tus-A' ayrı parçadır (basma animasyonu için). 'kablo-cikis' kablo çapasıdır. */
-(function (D) {
-  'use strict';
-  var U = 1.9;          // tuş aralığı (1u)
-  var KAP = 1.72;       // tuş başlığı
-  var SATIRLAR = [
-    // [z, [ [genişlik(u), yazı] ... ]]  — boşluk için yazı null, gen. negatif
-    [-5.0, [[1, 'Esc'], [-1], [1, 'F1'], [1, 'F2'], [1, 'F3'], [1, 'F4'], [-0.5], [1, 'F5'], [1, 'F6'], [1, 'F7'], [1, 'F8'], [-0.5], [1, 'F9'], [1, 'F10'], [1, 'F11'], [1, 'F12']]],
-    [-2.9, [[1, '"'], [1, '1'], [1, '2'], [1, '3'], [1, '4'], [1, '5'], [1, '6'], [1, '7'], [1, '8'], [1, '9'], [1, '0'], [1, '*'], [1, '-'], [2, 'Sil']]],
-    [-1.0, [[1.5, 'Tab'], [1, 'Q'], [1, 'W'], [1, 'E'], [1, 'R'], [1, 'T'], [1, 'Y'], [1, 'U'], [1, 'I'], [1, 'O'], [1, 'P'], [1, 'Ğ'], [1, 'Ü'], [1.5, 'Enter']]],
-    [0.9, [[1.75, 'Caps'], [1, 'A'], [1, 'S'], [1, 'D'], [1, 'F'], [1, 'G'], [1, 'H'], [1, 'J'], [1, 'K'], [1, 'L'], [1, 'Ş'], [1, 'İ'], [1, ','], [1.25, '']]],
-    [2.8, [[1.25, 'Shift'], [1, '<'], [1, 'Z'], [1, 'X'], [1, 'C'], [1, 'V'], [1, 'B'], [1, 'N'], [1, 'M'], [1, 'Ö'], [1, 'Ç'], [1, '.'], [2.75, 'Shift']]],
-    [4.7, [[1.25, 'Ctrl'], [1.25, ''], [1.25, 'Alt'], [6.25, ''], [1.25, 'AltGr'], [1.25, 'Fn'], [1.25, ''], [1.25, 'Ctrl']]]
-  ];
-  var GEZINTI = [
-    [-5.0, [[1, ''], [1, ''], [1, '']]],
-    [-2.9, [[1, 'Ins'], [1, 'Home'], [1, 'PgUp']]],
-    [-1.0, [[1, 'Del'], [1, 'End'], [1, 'PgDn']]],
-    [2.8, [[-1], [1, '↑']]],
-    [4.7, [[1, '←'], [1, '↓'], [1, '→']]]
-  ];
-
-  D.modelTanimla('M-KLAVYE', function (K) {
-    var THREE = K.THREE;
-    var g = new THREE.Group();
-    K.parca(g, 'M-KLAVYE', 'Klavye', 'Harf, rakam ve komut girmeyi sağlayan girdi birimi.');
-    var BW = 36.6, BD = 13.2, BH = 2.0;
-    var govde = K.kutu(BW, BH, BD, 'plastikKoyu', 0.55);
-    K.koy(g, govde, 0, BH / 2, 0);
-    var ust = BH + 0.42;
-    var x0 = -BW / 2 + 0.75;
-
-    var tuslar = [], yazilar = [], tusA = null, tusAYazi = null;
-    function satir(liste, xBas) {
-      liste.forEach(function (sat) {
-        var z = sat[0], x = xBas;
-        sat[1].forEach(function (t) {
-          var gen = t[0];
-          if (gen < 0) { x += -gen * U; return; }
-          var cx = x + gen * U / 2;
-          if (t[1] === 'A') { tusA = [cx, z]; tusAYazi = 'A'; }
-          else { tuslar.push([cx, ust, z, (gen * U - (U - KAP)) / KAP]); if (t[1]) yazilar.push([cx, z, t[1], gen]); }
-          x += gen * U;
-        });
-      });
-    }
-    satir(SATIRLAR, x0);
-    satir(GEZINTI, x0 + 15.5 * U);
-
-    var tusGeo = K.yuvarlakKutuGeo(KAP, 0.8, KAP, 0.26, 1);
-    var tusMat = K.mat('tus');
-    var ornek = K.ornekle(tusGeo, tusMat, tuslar);
-    ornek.name = 'tuslar';
-    g.add(ornek);
-
-    // Tuş yazıları: tek saydam doku (canvas ≤ 512 px)
-    var doku = K.canvasDoku(512, 186, function (ctx, w, h) {
-      ctx.clearRect(0, 0, w, h);
-      ctx.fillStyle = '#d7dbe1';
-      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-      yazilar.forEach(function (y) {
-        var px = (y[0] / BW + 0.5) * w, pz = (y[1] / BD + 0.5) * h;
-        var kisa = y[2].length === 1;
-        ctx.font = (kisa ? '700 13px' : '600 8px') + ' Inter, Arial, sans-serif';
-        ctx.fillText(y[2], px, pz);
-      });
-    });
-    var yaziMat = new THREE.MeshBasicMaterial({ map: doku, transparent: true, depthWrite: false });
-    var yaziDuzlem = new THREE.Mesh(new THREE.PlaneGeometry(BW, BD), yaziMat);
-    yaziDuzlem.rotation.x = -Math.PI / 2;
-    yaziDuzlem.position.y = ust + 0.41;
-    yaziDuzlem.userData.golgeYok = true;
-    yaziDuzlem.userData.vurguHaric = true;
-    yaziDuzlem.raycast = function () {};
-    g.add(yaziDuzlem);
-
-    // A tuşu (ayrı parça + kendi yazısı)
-    var a = new THREE.Group();
-    K.parca(a, 'tus-A', 'A tuşu', 'Basınca bilgisayara “A” harfi gönderilir.');
-    var aKap = new THREE.Mesh(tusGeo, K.mat('tus'));
-    a.add(aKap);
-    var aDoku = K.canvasDoku(64, 64, function (ctx, w, h) {
-      ctx.clearRect(0, 0, w, h); ctx.fillStyle = '#eef1f5';
-      ctx.font = '800 40px Inter, Arial, sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-      ctx.fillText(tusAYazi, w / 2, h / 2 + 2);
-    });
-    var aYazi = new THREE.Mesh(new THREE.PlaneGeometry(KAP * 0.8, KAP * 0.8),
-      new THREE.MeshBasicMaterial({ map: aDoku, transparent: true, depthWrite: false }));
-    aYazi.rotation.x = -Math.PI / 2; aYazi.position.y = 0.41;
-    aYazi.userData.vurguHaric = true; aYazi.userData.golgeYok = true;
-    a.add(aYazi);
-    K.koy(g, a, tusA[0], ust, tusA[1]);
-
-    // Durum ışıkları
-    for (var i = 0; i < 3; i++) {
-      var l = K.kutu(0.5, 0.1, 0.2, i === 1 ? K.led('#7dd3fc', 1.2) : 'plastikSiyah');
-      K.koy(g, l, BW / 2 - 4.6 + i * 1.2, BH + 0.05, -BD / 2 + 0.7);
-    }
-    // Arka ayaklar (hafif eğim)
-    [-1, 1].forEach(function (sx) { K.koy(g, K.kutu(4, 0.6, 1.2, 'kaucuk', 0.2), sx * (BW / 2 - 4), 0.1, -BD / 2 + 1.2); });
-
-    var cikis = new THREE.Object3D(); cikis.name = 'kablo-cikis';
-    K.koy(g, cikis, 0, 1.0, -BD / 2 - 0.2);
-    var kablo = K.kutu(1.2, 0.8, 0.8, 'plastikSiyah', 0.25);
-    K.koy(g, kablo, 0, 1.0, -BD / 2 - 0.2);
-    return g;
-  });
-})(window.DON3D);
-
-/* M-FARE — kablosuz optik fare. Ölçü birimi: cm (≈ 6,2 × 3,8 × 11,6).
-   Orijin: alt-orta. Ön (tuşlar) +Z. */
-(function (D) {
-  'use strict';
-  D.modelTanimla('M-FARE', function (K) {
-    var THREE = K.THREE;
-    var g = new THREE.Group();
-    K.parca(g, 'M-FARE', 'Fare', 'İmleci hareket ettirip tıklamayı sağlayan girdi birimi.');
-
-    // Üst kabuk: yarım küre, tuş ayrım çizgisi dokuda
-    var doku = K.canvasDoku(256, 128, function (ctx, w, h) {
-      ctx.fillStyle = '#26292f'; ctx.fillRect(0, 0, w, h);
-      ctx.strokeStyle = '#0b0c0e'; ctx.lineWidth = 2;
-      ctx.beginPath(); ctx.moveTo(w * 0.25, 0); ctx.lineTo(w * 0.25, h * 0.62); ctx.stroke();
-    });
-    var kabukMat = new THREE.MeshStandardMaterial({ map: doku, roughness: 0.42, metalness: 0.05 });
-    var kabuk = new THREE.Mesh(new THREE.SphereGeometry(1, 40, 16, 0, Math.PI * 2, 0, Math.PI / 2), kabukMat);
-    kabuk.scale.set(3.1, 3.4, 5.8);
-    kabuk.position.y = 0.4;
-    g.add(kabuk);
-    K.parca(kabuk, 'kabuk', 'Sol ve sağ tuş', 'Tıklama ile seçim yapılır.');
-
-    var taban = new THREE.Mesh(new THREE.CylinderGeometry(1, 1, 0.4, 40), K.mat('plastikSiyah'));
-    taban.scale.set(3.1, 1, 5.8);
-    taban.position.y = 0.2;
-    g.add(taban);
-
-    // Kaydırma tekerleği
-    var tekerlek = K.silindir(0.55, 0.7, 'kaucuk', 20);
-    tekerlek.rotation.z = Math.PI / 2;
-    K.koy(g, tekerlek, 0, 3.3, 2.3);
-    tekerlek.rotation.z = Math.PI / 2;
-    K.parca(tekerlek, 'tekerlek', 'Kaydırma tekerleği', 'Sayfayı aşağı ve yukarı kaydırır.');
+    ampuller.forEach(function (a, i) { uygula(i, 0); });
     return g;
   });
 })(window.DON3D);
 </script>
 <script data-ders>
-/* DON-201 H01 — Donanım, Yazılım ve Bilgisayarın Dört İşi · ders betiği */
+/* DON-201 H02 — Bit ve Byte · ders betiği */
 (function () {
   'use strict';
-  var D = window.DON3D, THREE = window.THREE;
-  var V3 = THREE.Vector3;
-  var K = D.kit;
+  var D = window.DON3D;
   D.baslat({ kalite: 'otomatik' });
   var AZ = D.azHareket();
   var tahmin = null;
 
   /* ─────────── Hedefler: kazanım başına küçük simge ─────────── */
   var HEDEF_SIMGE = [
-    '<path d="M4 6h10v8H4z"/><path d="M7 18h4"/><path d="M16 9l4 3-4 3"/>',
-    '<circle cx="12" cy="12" r="8"/><path d="M12 4v4M20 12h-4M12 20v-4M4 12h4"/>',
-    '<rect x="3" y="4" width="7" height="7" rx="1"/><rect x="14" y="4" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>',
-    '<rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/>'
+    '<rect x="7" y="4" width="10" height="16" rx="3"/><path d="M12 9v6"/>',
+    '<rect x="2" y="7" width="20" height="10" rx="2"/><path d="M6 7v10M10 7v10M14 7v10M18 7v10"/>',
+    '<rect x="3" y="14" width="4" height="6"/><rect x="9" y="10" width="4" height="10"/><rect x="15" y="5" width="4" height="15"/>',
+    '<rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 17l-5-5-9 7"/>'
   ];
   document.querySelectorAll('#s2-goals .goal-check').forEach(function (el, i) {
     el.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
@@ -4644,325 +4369,291 @@ function(t,e){"object"==typeof exports&&"undefined"!=typeof module?e(exports):"f
   };
   quizBasligiDuzelt();
 
-  /* ─────────── Isınma: tahmin et → sonra izle ─────────── */
-  var TAHMINLER = ['Doğrudan ekrana gider.', 'Önce kasaya, sonra ekrana gider.', 'Önce internete, sonra ekrana gider.'];
+  /* ─────────── Isınma: tahmin et → Adım 1'de gör ─────────── */
+  var TAHMINLER = ['Küçük bir harf resmi olarak.', 'Açık–kapalı elektrik sinyalleri olarak.', 'Sesli bir mesaj olarak.'];
   document.querySelectorAll('.tahmin-sec').forEach(function (b) {
     b.addEventListener('click', function () {
       document.querySelectorAll('.tahmin-sec').forEach(function (x) { x.classList.remove('secili'); x.setAttribute('aria-pressed', 'false'); });
-      b.classList.add('secili');
-      b.setAttribute('aria-pressed', 'true');
+      b.classList.add('secili'); b.setAttribute('aria-pressed', 'true');
       tahmin = +b.dataset.tahmin;
-      document.getElementById('tahmin-geri').textContent = '📌 Tahminini aldık. Adım 3–5’te harfin yolculuğunu izleyip kontrol edeceğiz.';
+      document.getElementById('tahmin-geri').textContent = '📌 Tahminini aldık. Adım 1’de ampulle birlikte göreceğiz.';
     });
   });
 
-  /* ─────────── Ekran içerikleri (marka-nötr) ─────────── */
-  function pencere(ctx, w, h, baslik, renk) {
-    ctx.fillStyle = '#cfd8e3'; ctx.fillRect(0, 0, w, h);
-    ctx.fillStyle = '#fff'; K.yuvarlakDikdortgen(ctx, 12, 10, w - 24, h - 34, 8); ctx.fill();
-    ctx.fillStyle = renk || '#e2e8f0'; K.yuvarlakDikdortgen(ctx, 12, 10, w - 24, 24, 8); ctx.fill();
-    ctx.fillRect(12, 26, w - 24, 8);
-    ['#ef4444', '#f59e0b', '#10b981'].forEach(function (c, i) { ctx.fillStyle = c; ctx.beginPath(); ctx.arc(28 + i * 16, 22, 5, 0, 7); ctx.fill(); });
-    ctx.fillStyle = renk ? '#fff' : '#475569'; ctx.font = '700 13px Inter, Arial, sans-serif'; ctx.textBaseline = 'middle';
-    ctx.fillText(baslik, 84, 22);
-    ctx.fillStyle = 'rgba(15,23,42,0.85)'; ctx.fillRect(0, h - 20, w, 20);
-  }
-  function editorCiz(metin) {
-    return function (ctx, w, h) {
-      pencere(ctx, w, h, 'belge.txt');
-      ctx.fillStyle = '#0f172a'; ctx.font = '800 72px Inter, Arial, sans-serif'; ctx.textBaseline = 'alphabetic';
-      ctx.fillText(metin, 44, 130);
-      var x = 44 + ctx.measureText(metin).width + 6;
-      ctx.fillStyle = '#0ea5e9'; ctx.fillRect(x, 74, 5, 66);
-    };
-  }
-  var UYGULAMALAR = [
-    { ad: 'Oyun', ciz: function (ctx, w, h) {
-      pencere(ctx, w, h, 'Oyun', '#8b5cf6');
-      var g = ctx.createLinearGradient(0, 34, 0, h - 24); g.addColorStop(0, '#7dd3fc'); g.addColorStop(1, '#e0f2fe');
-      ctx.fillStyle = g; ctx.fillRect(12, 34, w - 24, h - 58);
-      ctx.fillStyle = '#16a34a'; ctx.fillRect(12, h - 64, w - 24, 40);
-      ctx.fillStyle = '#b45309'; [[120, 150, 90], [280, 110, 110], [400, 170, 70]].forEach(function (p) { ctx.fillRect(p[0], p[1], p[2], 16); });
-      ctx.fillStyle = '#facc15'; [[160, 132], [320, 92], [350, 92], [430, 152]].forEach(function (p) { ctx.beginPath(); ctx.arc(p[0], p[1], 8, 0, 7); ctx.fill(); });
-      ctx.fillStyle = '#ef4444'; ctx.fillRect(60, h - 104, 30, 40);
-      ctx.fillStyle = '#fff'; ctx.fillRect(66, h - 96, 7, 7); ctx.fillRect(78, h - 96, 7, 7);
-      ctx.fillStyle = '#0f172a'; ctx.font = '800 16px Inter, Arial, sans-serif'; ctx.fillText('Puan: 120', w - 120, 50);
-    } },
-    { ad: 'Harita', ciz: function (ctx, w, h) {
-      pencere(ctx, w, h, 'Harita', '#10b981');
-      ctx.fillStyle = '#ecfdf5'; ctx.fillRect(12, 34, w - 24, h - 58);
-      ctx.fillStyle = '#bbf7d0'; ctx.fillRect(40, 60, 120, 80);
-      ctx.fillStyle = '#bae6fd'; ctx.beginPath(); ctx.moveTo(12, 200); ctx.bezierCurveTo(160, 160, 300, 250, w - 12, 190); ctx.lineTo(w - 12, 220); ctx.bezierCurveTo(300, 280, 160, 190, 12, 230); ctx.fill();
-      ctx.strokeStyle = '#fff'; ctx.lineWidth = 10;
-      [[12, 150, w - 12, 120], [220, 34, 260, h - 24], [380, 34, 330, h - 24]].forEach(function (l) { ctx.beginPath(); ctx.moveTo(l[0], l[1]); ctx.lineTo(l[2], l[3]); ctx.stroke(); });
-      ctx.strokeStyle = '#0ea5e9'; ctx.lineWidth = 5; ctx.setLineDash([10, 6]);
-      ctx.beginPath(); ctx.moveTo(90, 145); ctx.lineTo(240, 128); ctx.lineTo(360, 110); ctx.stroke(); ctx.setLineDash([]);
-      ctx.fillStyle = '#ef4444'; ctx.beginPath(); ctx.arc(360, 88, 14, Math.PI, 0); ctx.lineTo(360, 116); ctx.closePath(); ctx.fill();
-      ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.arc(360, 88, 5, 0, 7); ctx.fill();
-    } },
-    { ad: 'Resim', ciz: function (ctx, w, h) {
-      pencere(ctx, w, h, 'Resim programı', '#ec4899');
-      ctx.fillStyle = '#f1f5f9'; ctx.fillRect(12, 34, 56, h - 58);
-      ['#ef4444', '#f59e0b', '#facc15', '#10b981', '#0ea5e9', '#8b5cf6'].forEach(function (c, i) { ctx.fillStyle = c; ctx.beginPath(); ctx.arc(40, 56 + i * 32, 11, 0, 7); ctx.fill(); });
-      ctx.fillStyle = '#fef3c7'; ctx.beginPath(); ctx.arc(420, 80, 30, 0, 7); ctx.fill();
-      ctx.fillStyle = '#f59e0b'; ctx.beginPath(); ctx.arc(420, 80, 22, 0, 7); ctx.fill();
-      ctx.fillStyle = '#0ea5e9'; ctx.fillRect(160, 130, 120, 90);
-      ctx.fillStyle = '#ef4444'; ctx.beginPath(); ctx.moveTo(145, 132); ctx.lineTo(220, 72); ctx.lineTo(295, 132); ctx.fill();
-      ctx.fillStyle = '#fff'; ctx.fillRect(205, 170, 30, 50);
-      ctx.strokeStyle = '#10b981'; ctx.lineWidth = 8; ctx.lineCap = 'round';
-      ctx.beginPath(); ctx.moveTo(90, 250); ctx.bezierCurveTo(200, 225, 330, 262, 480, 240); ctx.stroke();
-    } },
-    { ad: 'Yazı', ciz: function (ctx, w, h) {
-      pencere(ctx, w, h, 'Yazı programı', '#0ea5e9');
-      ctx.fillStyle = '#0f172a'; ctx.font = '800 24px Inter, Arial, sans-serif'; ctx.textBaseline = 'alphabetic';
-      ctx.fillText('Bilgisayarın dört işi', 40, 76);
-      ctx.fillStyle = '#94a3b8';
-      [300, 380, 340, 260, 360, 220].forEach(function (lw, i) { ctx.fillRect(40, 100 + i * 24, lw, 10); });
-    } }
-  ];
-
-  /* ─────────── Masa düzeni: kasa, monitör, klavye, fare + kablolar ─────────── */
-  var YON_MASA = [-0.5, 0.62, 1.3];
-  function dunya(o) { o.updateWorldMatrix(true, false); return o.getWorldPosition(new V3()); }
-  function merkez(o) { o.updateWorldMatrix(true, true); return new THREE.Box3().setFromObject(o).getCenter(new V3()); }
-
-  function masaKur(s) {
-    var kasa = s.ekle('M-MASAUSTU', { konum: [-47, 0, -9], donus: [0, 0.32, 0] });
-    var mon = s.ekle('M-MONITOR', { konum: [0, 0, -6] });
-    var kla = s.ekle('M-KLAVYE', { konum: [0, 0, 20] });
-    var fare = s.ekle('M-FARE', { konum: [27, 0, 21], donus: [0, -0.12, 0] });
-    s.kok.updateMatrixWorld(true);
-    function kw(x, y, z) { return kasa.localToWorld(new V3(x, y, z)); }
-    var kc = dunya(kla.getObjectByName('kablo-cikis'));
-    var klavyeYol = [kc, new V3(kc.x, 0.5, kc.z - 5), new V3(-12, 0.5, -3), new V3(-26, 0.5, -20),
-      kw(-2, 0.5, -30), kw(-2, 18, -27), kw(-2, 35, -24), dunya(kasa.getObjectByName('kablo-giris'))];
-    var mg = dunya(mon.getObjectByName('giris-noktasi'));
-    var monYol = [mg, new V3(mg.x, mg.y - 5, mg.z - 5), new V3(mg.x, 0.5, -17), new V3(-22, 0.5, -26),
-      kw(-2.5, 0.5, -31), kw(-2.5, 12, -27), dunya(kasa.getObjectByName('goruntu-cikis'))];
-    var k1 = K.kablo(klavyeYol, 0.28); k1.name = 'klavye-kablosu'; s.kok.add(k1);
-    var k2 = K.kablo(monYol, 0.36); k2.name = 'goruntu-kablosu'; s.kok.add(k2);
-    return { kasa: kasa, mon: mon, kla: kla, fare: fare, klavyeYol: klavyeYol, monYol: monYol, kw: kw };
+  /* ─────────── Ortak: ampul sahnesi ─────────── */
+  function ampulSahnesi(kap, ops) {
+    ops = ops || {};
+    var s = D.sahne(kap, { etiket: kap.getAttribute('aria-label'), otomatikDonus: false, arkaPlan: ops.arkaPlan,
+      kamera: ops.kamera || { yon: [0.1, 0.55, 1], pay: 0.92, hedefOfset: [0, -1, 0] } });
+    var m = s.ekle('M-AMPUL-SIRASI', { modelOps: { adet: ops.adet || 8 } });
+    s.yerlestir();
+    if (ops.dondur !== false) D.dondur(s, { ipucu: false, sinir: { minPolar: 0.5, maxPolar: 1.35, minYakin: 0.6, maxYakin: 1.4 } });
+    return { s: s, m: m };
   }
 
-  /* ─────────── Kapak: dönen kasa ─────────── */
+  /* Kapak: ampuller B, Y, T, E harflerini sırayla yazar */
   D.tembel('#kapak-3d', function (kap) {
-    D.sahne(kap, { modeller: ['M-MASAUSTU'], arkaPlan: 'seffaf', etiket: kap.getAttribute('aria-label'),
-      kamera: { yon: [-0.95, 0.45, 1.1], pay: 0.95 }, turSuresi: 8 });
+    var a = ampulSahnesi(kap, { arkaPlan: 'seffaf', dondur: false, kamera: { yon: [0.28, 0.6, 1], pay: 1.08, hedefOfset: [0, -1, 0] } });
+    var sy = D.sayac(a.s, a.m, { kilitli: true, harf: true, bitEtiketi: false });
+    var harfler = [66, 89, 84, 69], i = 0;
+    (function dongu() {
+      sy.ayarla(harfler[i % harfler.length], 0.3).then(function () { return D.bekle(1.6, a.s); }).then(function () { i++; dongu(); });
+    })();
   });
 
-  /* ─────────── Adım 1: Donanım — parçalar sırayla parlar (A-VURGU), E-DONDUR, E-BILGI ─────────── */
+  /* Adım 1: tek ampul */
   D.tembel('#s4-3d', function (kap) {
-    var s = D.sahne(kap, { etiket: kap.getAttribute('aria-label'), kamera: { yon: YON_MASA }, turSuresi: 26 });
-    var m = masaKur(s);
-    s.yerlestir();
-    D.dondur(s, { ipucu: 'Sürükle: döndür · Dokun: bilgi' });
-    D.bilgi(s, ['M-MASAUSTU', 'M-MONITOR', 'M-KLAVYE', 'M-FARE']);
-    var durdu = false;
-    s.tiklaninca(function () { durdu = true; });
-    var sira = [m.kasa, m.mon, m.kla, m.fare];
-    (function dongu() {
-      if (durdu) return;
-      D.siraylaVurgula(sira, { bekle: 1.5 }).then(function () {
-        if (!durdu) D.bekle(1.2, s).then(dongu);
-      });
-    })();
+    var a = ampulSahnesi(kap, { adet: 1, kamera: { yon: [0.3, 0.45, 1], pay: 0.9, hedefOfset: [0, 0.5, 0] } });
+    var ilk = true;
+    D.sayac(a.s, a.m, { bitEtiketi: false,
+      onDegis: function (b) {
+        if (!ilk || !b[0]) return;
+        ilk = false;
+        var not = D.div('don3d-ipucu', a.s.arayuz);
+        not.style.bottom = '12px';
+        not.textContent = tahmin == null ? 'Kablodaki harf de böyle açık–kapalı sinyallerle gider.' :
+          'Tahminin: “' + TAHMINLER[tahmin] + '” ' + (tahmin === 1 ? 'Doğru! Harf 1 ve 0 sinyalleriyle gider.' : 'Harf aslında 1 ve 0 sinyalleriyle gider.');
+      }
+    });
+    var ip = D.div('don3d-ipucu', a.s.arayuz);
+    ip.innerHTML = D.simge('oynat') + '<span>Ampule dokun</span>';
+    a.s.kap.addEventListener('pointerdown', function () { ip.classList.add('don3d-ipucu--gizli'); }, { once: true });
   });
 
-  /* ─────────── Adım 2: Yazılım — A-KATMAN ─────────── */
-  D.tembel('#s5-3d', function (kap) {
-    var s = D.sahne(kap, { etiket: kap.getAttribute('aria-label'), otomatikDonus: false,
-      kamera: { yon: [-0.28, 0.28, 1.3], pay: 0.78 } });
-    var mon = s.ekle('M-MONITOR');
-    s.ekle('M-KLAVYE', { konum: [0, 0, 20] });
-    s.ekle('M-FARE', { konum: [27, 0, 21], donus: [0, -0.12, 0] });
-    s.yerlestir();
-    D.dondur(s, { ipucu: false });
-    mon.getObjectByName('ekran').userData.vurguHaric = true;
-    var kat = D.katman(s, mon.userData.ekran.mesh, { ayrik: 7, katmanlar: UYGULAMALAR.map(function (u) {
-      return { ad: 'Yazılım: ' + u.ad, ciz: u.ciz };
-    }) });
-    s.etiket(mon.getObjectByName('ayak'), 'Donanım: aynı monitör', { yer: 'merkez', ofset: [0, 3, 0] });
-    var dugmeler = [], elle = false;
-    function sec(i) {
-      dugmeler.forEach(function (b, j) { b.classList.toggle('don3d-dugme--secili', i === j); b.setAttribute('aria-pressed', i === j ? 'true' : 'false'); });
-      return kat.sec(i);
-    }
-    UYGULAMALAR.forEach(function (u, i) {
-      dugmeler.push(s.dugme(u.ad, null, function () { elle = true; sec(i); }, { yer: 'alt-orta', aciklama: 'Yazılım: ' + u.ad }));
+  /* Adım 2: bit sayısı → olası desenler (2D) */
+  (function () {
+    var kok = document.getElementById('bit-kombin');
+    if (!kok) return;
+    var secici = D.div('bk-secici', kok);
+    var izgara = D.div('bk-izgara', kok);
+    var sonuc = D.div('bk-sonuc', kok);
+    sonuc.setAttribute('aria-live', 'polite');
+    var dugmeler = [1, 2, 3].map(function (n) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.textContent = n + ' bit';
+      b.addEventListener('click', function () { goster(n); });
+      secici.appendChild(b);
+      return b;
     });
-    var i = 0;
-    (function dongu() {
-      if (elle) return;
-      sec(i % UYGULAMALAR.length).then(function () { return D.bekle(3.2, s); }).then(function () { i++; if (!elle && i < 8) dongu(); });
-    })();
-  });
-
-  /* ─────────── Adım 3–6: harfin yolculuğu — A-AKIS ─────────── */
-  var ASAMALAR = ['Girdi', 'İşlem', 'Çıktı', 'Depolama'];
-  function yolculuk(kap, asama) {
-    var s = D.sahne(kap, { etiket: kap.getAttribute('aria-label'), otomatikDonus: false, kamera: { yon: YON_MASA } });
-    var m = masaKur(s);
-    s.yerlestir();
-    D.dondur(s, { ipucu: false });
-    var ekran = m.mon.userData.ekran;
-    ekran.mesh.userData.vurguHaric = true;
-    ekran.ciz(editorCiz(''));
-
-    // Aşama şeridi
-    var serit = D.div('asama-serit', s.arayuz);
-    serit.setAttribute('aria-hidden', 'true');
-    var cipler = ASAMALAR.map(function (ad, i) {
-      if (i) { var o = document.createElement('span'); o.className = 'asama-ok'; o.textContent = '→'; serit.appendChild(o); }
-      var c = document.createElement('span');
-      c.className = 'asama';
-      c.innerHTML = '<b>' + (i + 1) + '</b> ' + ad;
-      serit.appendChild(c);
-      return c;
-    });
-    function cipDurum(i, d) {
-      cipler[i].classList.toggle('asama--aktif', d === 'aktif');
-      cipler[i].classList.toggle('asama--bitti', d === 'bitti');
-    }
-
-    var tusA = m.kla.getObjectByName('tus-A');
-    var islemci = m.kasa.getObjectByName('islemci');
-    var ekk = m.kasa.getObjectByName('ekran-karti');
-    var ssd = m.kasa.getObjectByName('depolama');
-    var diskIsigi = m.kasa.getObjectByName('disk-isigi');
-    var cpu = dunya(islemci);
-    var yollar = [
-      [merkez(tusA).add(new V3(0, 0.8, 0))].concat(m.klavyeYol.slice(1)),
-      [dunya(m.kasa.getObjectByName('kablo-giris')), m.kw(-2, 38, -17), cpu],
-      [cpu, merkez(ekk), dunya(m.kasa.getObjectByName('goruntu-cikis'))].concat(m.monYol.slice().reverse().slice(1), [merkez(ekran.mesh)]),
-      [cpu, m.kw(-1, 20, 2), merkez(ssd)]
-    ];
-    var kasaGorunum = { theta: -0.95, phi: 1.12, yakinlik: 0.55, hedef: m.kw(0, 24, 0) };
-    var genelGorunum = null;
-    var notEl = null;
-
-    function asamaOynat(i, hizli) {
-      var hiz = hizli ? 160 : 34;
-      var vurguBekle = hizli ? 0.15 : 1.3;
-      cipDurum(i, 'aktif');
-      var once = Promise.resolve();
-      if (!hizli && (i === 1 || i === 3)) once = s.kameraGit(kasaGorunum, 1);
-      if (!hizli && (i === 0 || i === 2) && genelGorunum) once = s.kameraGit(genelGorunum, 0.9);
-      if (i === 0) once = once.then(function () { return D.bas(tusA); });
-      return once.then(function () {
-        return D.akis(s, yollar[i], { etiket: 'A', hiz: hiz, parcacik: hizli ? 6 : 14 });
-      }).then(function () {
-        if (i === 0) return D.vurgula(tusA, { etiket: 'Girdi: A tuşu', sure: 0.4 }).then(function () { return D.bekle(vurguBekle, s); }).then(function () { return D.vurguKaldir(tusA); });
-        if (i === 1) return D.vurgula(islemci, { etiket: 'İşlem: “A yazılacak” kararı' }).then(function () { return D.bekle(vurguBekle, s); }).then(function () { return D.vurguKaldir(islemci); });
-        if (i === 2) {
-          ekran.ciz(editorCiz('A'));
-          var et = s.etiket(ekran.mesh, 'Çıktı: ekranda A', { tur: 'vurgu' });
-          return D.bekle(vurguBekle + 0.3, s).then(function () { et.kaldir(); });
+    function goster(n) {
+      dugmeler.forEach(function (b, i) { b.setAttribute('aria-pressed', i + 1 === n ? 'true' : 'false'); });
+      izgara.innerHTML = '';
+      var adet = Math.pow(2, n);
+      for (var d = 0; d < adet; d++) {
+        var k = D.div('bk-desen', izgara);
+        k.style.animationDelay = (AZ ? 0 : d * 0.06) + 's';
+        var amp = D.div('bk-ampuller', k), kod = '';
+        for (var j = n - 1; j >= 0; j--) {
+          var b = (d >> j) & 1;
+          D.div('bk-ampul' + (b ? ' acik' : ''), amp);
+          kod += b;
         }
-        D.yanipSon(diskIsigi, { kez: 4, sure: 1.2 });
-        return D.vurgula(ssd, { etiket: 'Depolama: A kaydedildi' }).then(function () { return D.bekle(vurguBekle + 0.4, s); }).then(function () { return D.vurguKaldir(ssd); });
-      }).then(function () { cipDurum(i, 'bitti'); });
+        D.div('bk-kod', k).textContent = kod;
+      }
+      sonuc.textContent = n + ' bit → ' + adet + ' farklı desen';
     }
+    goster(2);
+  })();
 
-    var calisiyor = false, adimSira = 0;
-    var oynatBtn = s.dugme('Oynat', 'oynat', function () { oynat(); }, { yer: 'alt-sol', sinif: 'don3d-dugme--birincil', aciklama: 'Harfin yolculuğunu oynat' });
-    var adimBtn = AZ ? s.dugme('Adım adım', 'adim', function () { adim(); }, { yer: 'alt-sol', aciklama: 'Bir sonraki işi göster' }) : null;
+  /* Adım 3: byte — 8 ampul, basamak değerleri */
+  D.tembel('#s6-3d', function (kap) {
+    var a = ampulSahnesi(kap);
+    D.sayac(a.s, a.m, { basamaklar: true });
+  });
 
-    function hazirla() {
-      ekran.ciz(editorCiz(''));
-      cipler.forEach(function (c, i) { cipDurum(i, null); });
-      if (notEl) { notEl.remove(); notEl = null; }
-      if (!genelGorunum) genelGorunum = { theta: s.orb.theta, phi: s.orb.phi, yakinlik: s.orb.yakinlik, hedef: s.orb.hedef.clone() };
+  /* Adım 4: harfler sayıdır */
+  D.tembel('#s7-3d', function (kap) {
+    var a = ampulSahnesi(kap);
+    var sy = D.sayac(a.s, a.m, { basamaklar: true, harf: true });
+    var dugmeler = [];
+    [['A', 65], ['B', 66], ['C', 67]].forEach(function (h) {
+      dugmeler.push(a.s.dugme(h[0] + ' yaz', null, function () { elle = true; sec(h[1]); }, { yer: 'alt-orta', aciklama: h[0] + ' harfini ampullerle yaz' }));
+    });
+    var elle = false;
+    function sec(n) {
+      dugmeler.forEach(function (b, i) { b.classList.toggle('don3d-dugme--secili', 65 + i === n); });
+      return sy.ayarla(n, 0.3);
+    }
+    if (!AZ) {
+      var i = 0;
+      (function dongu() {
+        if (elle || i > 2) return;
+        D.bekle(i ? 1.8 : 0.6, a.s).then(function () { if (!elle) return sec(65 + i); }).then(function () { i++; dongu(); });
+      })();
+    }
+  });
+
+  /* Adım 5: A-OLCEK — byte → KB → MB → GB → TB */
+  (function () {
+    var kok = document.getElementById('olcek');
+    if (!kok) return;
+    var BASAMAK = [
+      { ad: '1 byte', ornek: 'bir harf' }, { ad: '1 KB', ornek: 'yarım sayfa yazı' }, { ad: '1 MB', ornek: 'kalın bir roman' },
+      { ad: '1 GB', ornek: 'yaklaşık 250 fotoğraf' }, { ad: '1 TB', ornek: 'yaklaşık 500 film' }
+    ];
+    var merdiven = D.div('olcek-merdiven', kok);
+    var etiketler = ['byte', 'KB', 'MB', 'GB', 'TB'].map(function (t) { var e = document.createElement('span'); e.textContent = t; merdiven.appendChild(e); return e; });
+    var alan = D.div('', kok); alan.style.flex = '1'; alan.style.minHeight = '0';
+    var ol = D.olcek(alan, { basamaklar: BASAMAK, carpan: 1000 });
+    var kontrol = D.div('olcek-kontrol', kok);
+    function isaretle() { etiketler.forEach(function (e, i) { e.classList.toggle('aktif', i === ol.indeks); }); }
+    function btn(t, sinif, fn, aciklama) {
+      var b = document.createElement('button'); b.type = 'button'; b.textContent = t; if (sinif) b.className = sinif;
+      b.setAttribute('aria-label', aciklama || t);
+      b.addEventListener('click', function () { fn().then(isaretle); isaretle(); }); kontrol.appendChild(b); return b;
+    }
+    btn('◀', '', function () { return ol.git(ol.indeks - 1); }, 'Önceki birim');
+    btn('▶ Oynat', 'birincil', function () { return ol.git(0).then(function () { return ol.oynat(); }); }, 'Tüm birimleri oynat');
+    btn('▶', '', function () { return ol.git(ol.indeks + 1); }, 'Sonraki birim');
+    isaretle();
+    // slayt açılınca bir kez kendiliğinden oynar
+    var slayt = document.getElementById('s8'), oynadi = false;
+    new MutationObserver(function () {
+      if (!oynadi && slayt.classList.contains('active') && !AZ) {
+        oynadi = true;
+        setTimeout(function () { ol.git(0).then(function () { var z = Promise.resolve(); [1, 2, 3, 4].forEach(function (k) { z = z.then(function () { return ol.git(k); }).then(function () { isaretle(); return D.bekle(1.2); }); }); }); }, 500);
+      }
+    }).observe(slayt, { attributes: true, attributeFilter: ['class'] });
+  })();
+
+  /* Adım 6: E-TAHMIN + A-DOLUM — 32 GB belleğe kaç fotoğraf? */
+  var SIMGE = {
+    foto: '<svg viewBox="0 0 24 18" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="1" y="1" width="22" height="16" rx="3" fill="#0ea5e9"/><circle cx="7" cy="6" r="2" fill="#fde68a"/><path d="M1 15 l7-6 5 4 4-3 6 5v2H1z" fill="#0369a1"/></svg>', muzik: '<svg viewBox="0 0 24 18" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="1" y="1" width="22" height="16" rx="3" fill="#8b5cf6"/><path d="M10 13V5l7-2v8" fill="none" stroke="#fff" stroke-width="1.8"/><circle cx="8.5" cy="13" r="2" fill="#fff"/><circle cx="15.5" cy="11" r="2" fill="#fff"/></svg>',
+    film: '<svg viewBox="0 0 24 18" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="1" y="1" width="22" height="16" rx="3" fill="#0f172a"/><g fill="#fff"><rect x="3" y="3" width="2" height="2"/><rect x="3" y="8" width="2" height="2"/><rect x="3" y="13" width="2" height="2"/><rect x="19" y="3" width="2" height="2"/><rect x="19" y="8" width="2" height="2"/><rect x="19" y="13" width="2" height="2"/></g><path d="M10 6v6l5-3z" fill="#f59e0b"/></svg>', kitap: '<svg viewBox="0 0 24 18" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 2h9l1 1 1-1h9v14h-9l-1 1-1-1H2z" fill="#10b981"/><path d="M12 3v13" stroke="#065f46" stroke-width="1.2"/><g stroke="#fff" stroke-width="1"><path d="M4 6h6M4 9h6M14 6h6M14 9h6"/></g></svg>'
+  };
+  var DEPO_SVG = '<svg viewBox="0 0 40 48" aria-hidden="true"><path d="M4 4h22l10 10v30H4z" fill="#334155"/><path d="M8 8h16l8 8v24H8z" fill="#475569"/>' +
+    '<g fill="#f2c257"><rect x="10" y="4" width="3" height="7"/><rect x="15" y="4" width="3" height="7"/><rect x="20" y="4" width="3" height="7"/></g></svg>';
+  /* Seçimden önce: [depo] ÷ [dosya] = ? */
+  function bolmeGiris(kapasite, depoAd, boyut, simge, ogeAd) {
+    function oge(sinif, gorsel, b, s) {
+      return '<div class="h2-bol-oge ' + sinif + '">' + gorsel + '<b>' + b + '</b><span>' + s + '</span></div>';
+    }
+    return '<div class="h2-bol" aria-hidden="true">' + oge('h2-bol-depo', DEPO_SVG, kapasite, depoAd) +
+      '<div class="h2-bol-isaret">÷</div>' + oge('', simge, boyut, '1 ' + ogeAd) +
+      '<div class="h2-bol-isaret">=</div>' + oge('h2-bol-soru', '<i>?</i>', 'kaç', ogeAd) + '</div>';
+  }
+  (function () {
+    var kok = document.getElementById('foto-tahmin');
+    if (!kok) return;
+    D.tahmin(kok, {
+      soru: '32 GB belleğe 4 MB’lık fotoğraftan kaç tane sığar?',
+      secenekler: ['80', '800', '8000', '80 000'], dogru: 2,
+      giris: bolmeGiris('32 GB', 'bellek', '4 MB', SIMGE.foto, 'fotoğraf'),
+      sonra: function (sahne) { return D.dolum(sahne, { kapasite: 32000, ogeBoyut: 4, birim: 'MB', ogeAd: 'fotoğraf', simge: SIMGE.foto }); },
+      aciklama: '32 GB = 32 000 MB; 32 000 ÷ 4 = 8000 fotoğraf.'
+    });
+  })();
+
+  /* Etkinlik 1: görevlerle harf yaz (E-SAYAC) */
+  D.tembel('#s10-3d', function (kap) {
+    var a = ampulSahnesi(kap);
+    var GOREV = [
+      function (n) { return n === 5; }, function (n) { return n === 255; },
+      function (n) { return n === 65; }, function (n) { return n >= 65 && n <= 90; }
+    ];
+    var liste = document.querySelectorAll('#gorevler li'), sira = 0;
+    function isaretle() {
+      liste.forEach(function (li, i) { li.classList.toggle('tamam', i < sira); li.classList.toggle('simdi', i === sira); });
+    }
+    isaretle();
+    var sy = D.sayac(a.s, a.m, { basamaklar: true, harf: true, onDegis: function (b, n) {
+      if (sira >= GOREV.length || !GOREV[sira](n)) return;
+      sira++;
+      isaretle();
+      if (sira === GOREV.length) {
+        var not = D.div('don3d-ipucu', a.s.arayuz); not.style.bottom = '64px';
+        not.textContent = '✔ Tüm görevler tamam! ' + (D.harfKodu(n) || '') + ' harfini ampullerle yazdın.';
+        if (!AZ && typeof window.confetti === 'function') window.confetti();
+      }
+    } });
+    a.s.dugme('Hepsini söndür', 'sifirla', function () { sy.ayarla(0, 0.2); }, { yer: 'alt-sol', aciklama: 'Tüm ampulleri söndür' });
+  });
+
+  /* Etkinlik 2: bellek tahmin oyunu — önce birimleri sırala, sonra 3 tahmin turu */
+  (function () {
+    var kok = document.getElementById('bellek-oyunu');
+    if (!kok) return;
+    var ilerleme = document.getElementById('ilerleme-2');
+    var dogruSay = 0;
+    var TURLAR = [
+      { soru: '8 GB telefon hafızasına 4 MB’lık şarkıdan kaç tane sığar?', secenekler: ['20', '200', '2000', '20 000'], dogru: 2,
+        kapasite: 8000, oge: 4, birim: 'MB', ad: 'şarkı', simge: SIMGE.muzik, giris: ['8 GB', 'telefon', '4 MB'], aciklama: '8 GB = 8000 MB; 8000 ÷ 4 = 2000 şarkı.' },
+      { soru: '1 TB diske 2 GB’lık filmden kaç tane sığar?', secenekler: ['50', '500', '5', '5000'], dogru: 1,
+        kapasite: 1000, oge: 2, birim: 'GB', ad: 'film', simge: SIMGE.film, giris: ['1 TB', 'disk', '2 GB'], aciklama: '1 TB = 1000 GB; 1000 ÷ 2 = 500 film.' },
+      { soru: '16 GB USB belleğe 2 MB’lık e-kitaptan kaç tane sığar?', secenekler: ['80', '800', '80 000', '8000'], dogru: 3,
+        kapasite: 16000, oge: 2, birim: 'MB', ad: 'e-kitap', simge: SIMGE.kitap, giris: ['16 GB', 'USB bellek', '2 MB'], aciklama: '16 GB = 16 000 MB; 16 000 ÷ 2 = 8000 e-kitap.' }
+    ];
+    function tur(n) {
+      ilerleme.querySelector('.etk-ilerleme-sayi b').textContent = Math.min(n, 4);
+      ilerleme.querySelector('.etk-ilerleme-bar span').style.width = ((n - 1) / 4 * 100) + '%';
+    }
+    function siralama() {
+      tur(1);
+      kok.innerHTML = '';
+      var bo = D.div('bo', kok);
+      D.div('bo-baslik', bo).textContent = 'Tur 1: Birimlere küçükten büyüğe doğru dokun.';
+      var sira = D.div('bo-sira', bo);
+      var kartlar = D.div('bo-kartlar', bo);
+      var geri = D.div('dth-sonuc', bo); geri.setAttribute('aria-live', 'polite');
+      geri.textContent = 'En küçük birimle başla.';
+      var DOGRU = ['byte', 'KB', 'MB', 'GB', 'TB'], adim = 0, hata = 0;
+      ['GB', 'byte', 'TB', 'KB', 'MB'].forEach(function (t) {
+        var b = document.createElement('button'); b.type = 'button'; b.className = 'bo-kart'; b.textContent = t;
+        b.addEventListener('click', function () {
+          if (t === DOGRU[adim]) {
+            b.disabled = true; adim++;
+            var e = document.createElement('span'); e.textContent = t; sira.appendChild(e);
+            geri.className = 'dth-sonuc dth-sonuc--dogru'; geri.textContent = adim < 5 ? '✓ Doğru. Sıradaki daha büyük birim hangisi?' : '✓ Sıralama tamam!';
+            if (adim === 5) {
+              if (!hata) dogruSay++;
+              var s = document.createElement('button'); s.type = 'button'; s.className = 'bo-sonraki'; s.textContent = 'Tahmin turlarına geç →';
+              s.addEventListener('click', function () { tahminTuru(0); });
+              bo.appendChild(s);
+            }
+          } else {
+            hata++;
+            geri.className = 'dth-sonuc dth-sonuc--yanlis';
+            geri.textContent = '✗ Henüz değil. ' + t + ', ' + DOGRU[adim] + '’dan büyüktür.';
+          }
+        });
+        kartlar.appendChild(b);
+      });
+    }
+    function tahminTuru(i) {
+      tur(i + 2);
+      var t = TURLAR[i];
+      kok.innerHTML = '';
+      var bo = D.div('bo', kok);
+      D.div('bo-baslik', bo).textContent = 'Tur ' + (i + 2) + ': Tahmin et';
+      var alan = D.div('', bo); alan.style.flex = '1'; alan.style.minHeight = '0';
+      D.tahmin(alan, {
+        soru: t.soru, secenekler: t.secenekler, dogru: t.dogru, aciklama: t.aciklama,
+        giris: bolmeGiris(t.giris[0], t.giris[1], t.giris[2], t.simge, t.ad),
+        sonra: function (sahne) { return D.dolum(sahne, { kapasite: t.kapasite, ogeBoyut: t.oge, birim: t.birim, ogeAd: t.ad, simge: t.simge, sure: 1.8 }); },
+        onBitti: function (dogru) {
+          if (dogru) dogruSay++;
+          var s = document.createElement('button'); s.type = 'button'; s.className = 'bo-sonraki';
+          s.textContent = i < TURLAR.length - 1 ? 'Sonraki tur →' : 'Sonucu gör →';
+          s.addEventListener('click', function () { if (i < TURLAR.length - 1) tahminTuru(i + 1); else bitir(); });
+          bo.appendChild(s);
+        }
+      });
     }
     function bitir() {
-      calisiyor = false;
-      oynatBtn.querySelector('span').textContent = 'Tekrar oynat';
-      if (asama === 3 && tahmin != null) {
-        notEl = D.div('don3d-ipucu', s.arayuz);
-        notEl.style.bottom = '56px';
-        notEl.textContent = 'Tahminin: “' + TAHMINLER[tahmin] + '” ' + (tahmin === 1 ? 'Doğru tahmin!' : 'Gördün: harf önce kasaya gitti.');
-      }
+      ilerleme.querySelector('.etk-ilerleme-bar span').style.width = '100%';
+      ilerleme.classList.add('etk-ilerleme--bitti');
+      kok.innerHTML = '';
+      var bo = D.div('bo', kok), oz = D.div('bo-ozet', bo);
+      oz.innerHTML = '<b></b><span></span>';
+      oz.firstChild.textContent = dogruSay + ' / 4';
+      oz.lastChild.textContent = dogruSay >= 3 ? 'Harika tahminci! Birimi aynı yapıp böldün.' : 'İpucu: önce GB’ı MB’a çevir (× 1000), sonra dosya boyutuna böl.';
+      var s = document.createElement('button'); s.type = 'button'; s.className = 'bo-sonraki'; s.textContent = 'Yeniden oyna';
+      s.addEventListener('click', function () { dogruSay = 0; ilerleme.classList.remove('etk-ilerleme--bitti'); siralama(); });
+      oz.appendChild(s);
+      if (!AZ && dogruSay >= 3 && typeof window.confetti === 'function') window.confetti();
     }
-    function oynat() {
-      if (calisiyor) return;
-      calisiyor = true; adimSira = 0;
-      hazirla();
-      var zincir = Promise.resolve();
-      for (var i = 0; i < asama; i++) {
-        (function (i) { zincir = zincir.then(function () { return asamaOynat(i, i < asama - 1); }); })(i);
-      }
-      zincir.then(bitir, function (e) { console.error(e); calisiyor = false; });
-    }
-    function adim() {
-      if (calisiyor) return;
-      if (adimSira === 0) hazirla();
-      if (adimSira >= asama) { adimSira = 0; hazirla(); }
-      calisiyor = true;
-      asamaOynat(adimSira, false).then(function () {
-        calisiyor = false; adimSira++;
-        if (adimSira >= asama) bitir();
-      });
-    }
-    // Slayt açılınca bir kez kendiliğinden oynar (hareket azaltmada öğrenci başlatır)
-    if (!AZ) D.bekle(0.6, s).then(oynat);
-    return s;
-  }
-  [['#s6-3d', 1], ['#s7-3d', 2], ['#s8-3d', 3], ['#s9-3d', 4]].forEach(function (x) {
-    D.tembel(x[0], function (kap) { yolculuk(kap, x[1]); });
-  });
-
-  /* ─────────── Etkinlik 1: Donanım mı, yazılım mı? — E-SINIFLA ─────────── */
-  function ilerlemeBagla(id) {
-    var el = document.getElementById(id);
-    return function (dogru, toplam) {
-      el.querySelector('.etk-ilerleme-sayi b').textContent = dogru;
-      el.querySelector('.etk-ilerleme-bar span').style.width = Math.round(dogru / toplam * 100) + '%';
-      el.classList.toggle('etk-ilerleme--bitti', dogru === toplam);
-    };
-  }
-  D.tembel('#sinifla-1', function (kap) {
-    D.sinifla(kap, {
-      onIlerleme: ilerlemeBagla('ilerleme-1'),
-      kutular: [
-        { id: 'd', ad: 'Donanım', aciklama: 'Elimle dokunabilirim.', renk: '#f59e0b', resim: '<svg viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Donanım"><rect width="80" height="60" rx="10" fill="#e0f2fe"/><rect x="10" y="12" width="18" height="36" rx="3" fill="#30343c"/><rect x="32" y="12" width="38" height="24" rx="3" fill="#17181b"/><rect x="35" y="15" width="32" height="18" fill="#0e7490"/><rect x="34" y="42" width="34" height="7" rx="2" fill="#2a2d33"/></svg>' },
-        { id: 'y', ad: 'Yazılım', aciklama: 'Dokunamam; ekranda çalışır.', renk: '#8b5cf6', resim: '<svg viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Yazılım"><rect width="80" height="60" rx="10" fill="#e0f2fe"/><rect x="14" y="10" width="52" height="40" rx="4" fill="#fff" stroke="#94a3b8"/><rect x="14" y="10" width="52" height="8" rx="3" fill="#8b5cf6"/><path d="M30 28 l-7 6 l7 6 M50 28 l7 6 l-7 6 M44 26 l-8 16" fill="none" stroke="#0369a1" stroke-width="2.5" stroke-linecap="round"/></svg>' }
-      ],
-      ogeler: [
-        { id: 'klavye', ad: 'Klavye', model: 'M-KLAVYE', kutu: 'd', ipucu: 'Klavyeye elinle dokunabilirsin.' },
-        { id: 'oyun', ad: 'Oyun', svg: '<svg viewBox="0 0 64 48" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Oyun"><rect x="2" y="2" width="60" height="44" rx="6" fill="#fff" stroke="#cbd5e1"/><rect x="2" y="2" width="60" height="9" rx="4" fill="#8b5cf6"/><circle cx="8" cy="6.5" r="1.6" fill="#fff"/><circle cx="13" cy="6.5" r="1.6" fill="#fff" opacity=".7"/><rect x="4" y="12" width="56" height="32" fill="#bae6fd"/><rect x="4" y="38" width="56" height="6" fill="#16a34a"/><rect x="14" y="30" width="8" height="8" rx="1" fill="#f59e0b"/><rect x="34" y="24" width="10" height="5" fill="#b45309"/><rect x="46" y="18" width="10" height="5" fill="#b45309"/><circle cx="50" cy="14.5" r="2" fill="#facc15"/></svg>', kutu: 'y', ipucu: 'Oyun bir programdır; ona elinle dokunamazsın.' },
-        { id: 'monitor', ad: 'Monitör', model: 'M-MONITOR', kutu: 'd', ipucu: 'Monitör, masada duran bir parçadır.' },
-        { id: 'harita', ad: 'Harita uygulaması', svg: '<svg viewBox="0 0 64 48" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Harita uygulaması"><rect x="2" y="2" width="60" height="44" rx="6" fill="#fff" stroke="#cbd5e1"/><rect x="2" y="2" width="60" height="9" rx="4" fill="#10b981"/><circle cx="8" cy="6.5" r="1.6" fill="#fff"/><circle cx="13" cy="6.5" r="1.6" fill="#fff" opacity=".7"/><rect x="4" y="12" width="56" height="32" fill="#dcfce7"/><path d="M4 30 L60 22 M22 12 L30 44 M4 40 L44 12" stroke="#fff" stroke-width="3"/><path d="M40 20 a5 5 0 0 1 10 0 c0 4 -5 9 -5 9 s-5 -5 -5 -9z" fill="#ef4444"/><circle cx="45" cy="20" r="1.8" fill="#fff"/></svg>', kutu: 'y', ipucu: 'Uygulamalar ekranda çalışan programlardır.' },
-        { id: 'fare', ad: 'Fare', model: 'M-FARE', kutu: 'd', ipucu: 'Fareyi eline alıp hareket ettirirsin.' },
-        { id: 'resim', ad: 'Resim programı', svg: '<svg viewBox="0 0 64 48" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Resim programı"><rect x="2" y="2" width="60" height="44" rx="6" fill="#fff" stroke="#cbd5e1"/><rect x="2" y="2" width="60" height="9" rx="4" fill="#ec4899"/><circle cx="8" cy="6.5" r="1.6" fill="#fff"/><circle cx="13" cy="6.5" r="1.6" fill="#fff" opacity=".7"/><rect x="4" y="12" width="12" height="32" fill="#f1f5f9"/><circle cx="10" cy="17" r="2.4" fill="#ef4444"/><circle cx="10" cy="24" r="2.4" fill="#0ea5e9"/><circle cx="10" cy="31" r="2.4" fill="#f59e0b"/><circle cx="10" cy="38" r="2.4" fill="#10b981"/><path d="M22 38 C30 18 40 40 54 18" fill="none" stroke="#8b5cf6" stroke-width="3" stroke-linecap="round"/></svg>', kutu: 'y', ipucu: 'Program, donanıma ne yapacağını söyler.' },
-        { id: 'kasa', ad: 'Kasa', model: 'M-MASAUSTU', yon: [-0.9, 0.45, 1.1], kutu: 'd', ipucu: 'Kasanın içinde dokunulabilen parçalar var.' },
-        { id: 'tarayici', ad: 'Web tarayıcısı', svg: '<svg viewBox="0 0 64 48" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Web tarayıcısı"><rect x="2" y="2" width="60" height="44" rx="6" fill="#fff" stroke="#cbd5e1"/><rect x="2" y="2" width="60" height="9" rx="4" fill="#0ea5e9"/><circle cx="8" cy="6.5" r="1.6" fill="#fff"/><circle cx="13" cy="6.5" r="1.6" fill="#fff" opacity=".7"/><rect x="8" y="14" width="48" height="6" rx="3" fill="#e2e8f0"/><circle cx="32" cy="32" r="10" fill="none" stroke="#0369a1" stroke-width="2"/><ellipse cx="32" cy="32" rx="4.5" ry="10" fill="none" stroke="#0369a1" stroke-width="1.6"/><line x1="22" y1="32" x2="42" y2="32" stroke="#0369a1" stroke-width="1.6"/></svg>', kutu: 'y', ipucu: 'Tarayıcı, internet sayfalarını açan bir programdır.' }
-      ],
-      bitisMetni: 'Harika! Donanımı yazılımdan ayırdın.'
-    });
-  });
-
-  /* ─────────── Etkinlik 2: Dört iş kutusu — E-SINIFLA ─────────── */
-  D.tembel('#sinifla-2', function (kap) {
-    D.sinifla(kap, {
-      onIlerleme: ilerlemeBagla('ilerleme-2'),
-      kutular: [
-        { id: 'g', ad: 'Girdi', aciklama: 'Bilgi verir.', renk: '#0ea5e9', resim: '<svg viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Girdi"><rect width="80" height="60" rx="10" fill="#e0f2fe"/><rect x="10" y="30" width="60" height="16" rx="3" fill="#2a2d33"/><g fill="#4b5059"><rect x="14" y="34" width="52" height="3"/><rect x="14" y="39" width="52" height="3"/></g><rect x="20" y="32" width="10" height="8" rx="1.5" fill="#f59e0b"/><path d="M25 26 v-14 M19 18 l6 -7 l6 7" fill="none" stroke="#0ea5e9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>' },
-        { id: 'i', ad: 'İşlem', aciklama: 'Karar verir.', renk: '#f59e0b', resim: '<svg viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="İşlem"><rect width="80" height="60" rx="10" fill="#e0f2fe"/><g stroke="#b45309" stroke-width="2"><path d="M32 14v-5M40 14v-5M48 14v-5M32 50v-5M40 50v-5M48 50v-5M26 22h-5M26 30h-5M26 38h-5M54 22h5M54 30h5M54 38h5"/></g><rect x="26" y="14" width="28" height="32" rx="3" fill="#475569"/><rect x="31" y="19" width="18" height="22" rx="2" fill="#94a3b8"/></svg>' },
-        { id: 'c', ad: 'Çıktı', aciklama: 'Gösterir.', renk: '#10b981', resim: '<svg viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Çıktı"><rect width="80" height="60" rx="10" fill="#e0f2fe"/><rect x="14" y="8" width="52" height="34" rx="3" fill="#17181b"/><rect x="17" y="11" width="46" height="28" fill="#f8fafc"/><text x="40" y="32" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="900" text-anchor="middle" fill="#0f172a">A</text><rect x="36" y="42" width="8" height="8" fill="#2a2d33"/><rect x="28" y="49" width="24" height="4" rx="2" fill="#2a2d33"/></svg>' },
-        { id: 'd', ad: 'Depolama', aciklama: 'Saklar.', renk: '#8b5cf6', resim: '<svg viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Depolama"><rect width="80" height="60" rx="10" fill="#e0f2fe"/><rect x="16" y="14" width="48" height="32" rx="4" fill="#a9afb8"/><rect x="22" y="20" width="36" height="16" rx="2" fill="#fff"/><g fill="#94a3b8"><rect x="26" y="24" width="24" height="2.5"/><rect x="26" y="29" width="16" height="2.5"/></g><circle cx="58" cy="41" r="2.5" fill="#ffb347"/></svg>' }
-      ],
-      ogeler: [
-        { id: 'mikrofon', ad: 'Mikrofon', svg: '<svg viewBox="0 0 64 48" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mikrofon"><rect x="25" y="4" width="14" height="24" rx="7" fill="#475569"/><g stroke="#94a3b8" stroke-width="1.2"><line x1="27" y1="10" x2="37" y2="10"/><line x1="27" y1="14" x2="37" y2="14"/><line x1="27" y1="18" x2="37" y2="18"/></g><path d="M20 20 a12 12 0 0 0 24 0" fill="none" stroke="#334155" stroke-width="2.5"/><line x1="32" y1="32" x2="32" y2="40" stroke="#334155" stroke-width="2.5"/><rect x="24" y="40" width="16" height="4" rx="2" fill="#334155"/></svg>', kutu: 'g', ipucu: 'Mikrofon sesini bilgisayara verir.' },
-        { id: 'yazici', ad: 'Yazıcı', svg: '<svg viewBox="0 0 64 48" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Yazıcı"><rect x="18" y="4" width="28" height="12" fill="#fff" stroke="#94a3b8"/><rect x="8" y="14" width="48" height="20" rx="4" fill="#64748b"/><circle cx="48" cy="20" r="2" fill="#10b981"/><rect x="16" y="30" width="32" height="16" fill="#fff" stroke="#94a3b8"/><g stroke="#cbd5e1" stroke-width="1.5"><line x1="20" y1="36" x2="44" y2="36"/><line x1="20" y1="41" x2="38" y2="41"/></g></svg>', kutu: 'c', ipucu: 'Yazıcı sonucu kâğıda basar.' },
-        { id: 'islemci', ad: 'Bilgisayarın işlemcisi', svg: '<svg viewBox="0 0 64 48" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bilgisayarın işlemcisi"><g stroke="#b45309" stroke-width="2"><path d="M22 10v-5M28 10v-5M34 10v-5M40 10v-5M22 43v-5M28 43v-5M34 43v-5M40 43v-5M14 18h-5M14 24h-5M14 30h-5M50 18h5M50 24h5M50 30h5"/></g><rect x="14" y="9" width="36" height="30" rx="3" fill="#475569"/><rect x="20" y="15" width="24" height="18" rx="2" fill="#94a3b8"/><path d="M14 36 l4 3 h-4z" fill="#facc15"/></svg>', kutu: 'i', ipucu: 'İşlemci bilgiyi işler ve karar verir.' },
-        { id: 'usb', ad: 'USB bellek', svg: '<svg viewBox="0 0 64 48" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="USB bellek"><rect x="8" y="16" width="34" height="16" rx="4" fill="#0ea5e9"/><rect x="42" y="18" width="14" height="12" rx="1" fill="#cbd5e1" stroke="#94a3b8"/><rect x="46" y="21" width="3" height="2.5" fill="#64748b"/><rect x="46" y="25" width="3" height="2.5" fill="#64748b"/><circle cx="14" cy="24" r="2" fill="#fff"/></svg>', kutu: 'd', ipucu: 'USB bellek dosyaları saklar.' },
-        { id: 'camasir', ad: 'Çamaşır makinesi düğmesi', svg: '<svg viewBox="0 0 64 48" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Çamaşır makinesinin program düğmesi"><rect x="14" y="3" width="36" height="42" rx="4" fill="#f1f5f9" stroke="#94a3b8"/><rect x="14" y="3" width="36" height="9" rx="3" fill="#e2e8f0"/><circle cx="41" cy="7.5" r="3.2" fill="#f59e0b" stroke="#b45309"/><line x1="41" y1="7.5" x2="43" y2="5.5" stroke="#1f1300" stroke-width="1.2"/><circle cx="32" cy="28" r="11" fill="#bae6fd" stroke="#64748b" stroke-width="2"/><path d="M24 30 q8 -6 16 0" fill="none" stroke="#0ea5e9" stroke-width="1.6"/></svg>', kutu: 'g', ipucu: 'Düğmeyle makineye hangi programı istediğini söylersin.' },
-        { id: 'hoparlor', ad: 'Hoparlör', svg: '<svg viewBox="0 0 64 48" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Hoparlör"><rect x="20" y="3" width="24" height="42" rx="5" fill="#334155"/><circle cx="32" cy="14" r="5" fill="#1e293b" stroke="#64748b"/><circle cx="32" cy="32" r="9" fill="#1e293b" stroke="#64748b" stroke-width="1.5"/><circle cx="32" cy="32" r="3" fill="#64748b"/><path d="M50 22 q4 6 0 12M54 18 q7 10 0 20" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round"/></svg>', kutu: 'c', ipucu: 'Hoparlör sesi dışarı verir.' },
-        { id: 'telcip', ad: 'Telefonun işlemci çipi', svg: '<svg viewBox="0 0 64 48" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Telefonun işlemci çipi"><rect x="20" y="2" width="24" height="44" rx="5" fill="#1e293b"/><rect x="23" y="7" width="18" height="32" rx="2" fill="#334155"/><rect x="27" y="17" width="10" height="10" rx="1.5" fill="#94a3b8"/><g stroke="#cbd5e1" stroke-width="1"><path d="M29 17v-3M32 17v-3M35 17v-3M29 30v-3M32 30v-3M35 30v-3"/></g></svg>', kutu: 'i', ipucu: 'Telefonun içindeki çip de işlem yapar.' },
-        { id: 'telhafiza', ad: 'Telefonun hafızası', svg: '<svg viewBox="0 0 64 48" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Telefonun hafızası (kayıtlı fotoğraflar)"><rect x="20" y="2" width="24" height="44" rx="5" fill="#1e293b"/><rect x="23" y="7" width="18" height="32" rx="2" fill="#f8fafc"/><path d="M26 16 h5 l2 2 h6 v10 h-13z" fill="#f59e0b"/><g fill="#94a3b8"><rect x="26" y="31" width="12" height="2" rx="1"/><rect x="26" y="35" width="8" height="2" rx="1"/></g></svg>', kutu: 'd', ipucu: 'Fotoğrafların telefon hafızasında saklanır.' }
-      ],
-      bitisMetni: 'Süper! Dört işi her cihazda buldun.'
-    });
-  });
+    siralama();
+  })();
 })();
 </script>
 </body>
