@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DON-301 H11 Öğretmen Planı — BIOS/UEFI ve Önyükleme</title>
+<style>
+@font-face{font-family:'Carlito';src:local('Carlito'),url('../../assets/font/Carlito-Regular.ttf');font-weight:400;font-style:normal}
+@font-face{font-family:'Carlito';src:local('Carlito Bold'),url('../../assets/font/Carlito-Bold.ttf');font-weight:700;font-style:normal}
+@font-face{font-family:'Carlito';src:local('Carlito Italic'),url('../../assets/font/Carlito-Italic.ttf');font-weight:400;font-style:italic}
+@page{size:A4;margin:14mm 14mm 16mm 16.5mm;
+  @bottom-center{content:'Bilişim Üssü · Etkileşimli Ders Planı · ' counter(page) ' / ' counter(pages);font-family:Carlito,Calibri,sans-serif;font-size:7.5pt;color:#6b7a82}}
+*{box-sizing:border-box}
+html{font-family:Carlito,Calibri,'Segoe UI',Arial,sans-serif;font-size:9.9pt;color:#1a1a1a;line-height:1.38}
+body{margin:0;max-width:180mm}
+@media screen{body{margin:24px auto;padding:0 12px}}
+.bant{display:flex;gap:7pt;margin-bottom:9pt}
+.bant-sol{flex:1;background:linear-gradient(135deg,#075985,#0a6aa3);color:#fff;border-radius:4pt;padding:9pt 14pt 10pt}
+.bant-ust{font-size:7.6pt;font-weight:700;letter-spacing:2.2pt;opacity:.92}
+.bant-baslik{font-size:23pt;font-weight:700;line-height:1.12;margin-top:3pt}
+.bant-baslik.uzun{font-size:18pt}
+.bant-sag{width:128pt;background:#0369a1;color:#fff;border-radius:4pt;display:flex;align-items:center;justify-content:center;font-size:14pt;font-weight:700}
+h2{background:#0369a1;color:#fff;font-size:11pt;font-weight:700;margin:12pt 0 6pt;padding:5pt 10pt;border-radius:4pt;letter-spacing:.2pt;break-after:avoid}
+h3{display:flex;justify-content:space-between;align-items:center;color:#0369a1;font-size:10.6pt;margin:9pt 0 4pt;break-after:avoid}
+h3 .sure{background:#0369a1;color:#fff;font-size:8.6pt;border-radius:9pt;padding:1.5pt 8pt}
+table{width:100%;border-collapse:collapse;margin:0 0 4pt}
+td,th{border:1px solid #b9def1;padding:4pt 7pt;vertical-align:top;text-align:left}
+th{background:#e0f2fe;color:#075985;font-size:9.2pt;font-weight:700}
+tr{break-inside:avoid}
+.genel td:first-child{width:134pt;background:#e0f2fe;color:#075985;font-weight:700}
+.kazanim{width:100%;border-collapse:collapse}
+.kazanim td{border:0;border-bottom:1px solid #eaf6fc;padding:3.5pt 4pt}
+.kazanim td:first-child{width:32pt;color:#0369a1;font-weight:700}
+.isleyis td:first-child{width:35pt;text-align:center;color:#6b7a82;font-weight:700}
+.isleyis td:nth-child(2){width:122pt}
+.adim-ad{font-weight:700}
+.adim-konu{color:#475569}
+.slayt{display:inline-block;margin-top:2pt;font-size:8pt;font-weight:700;color:#0369a1;background:#e0f2fe;border-radius:6pt;padding:0 5pt}
+q{quotes:'“' '”'}
+q::before{content:open-quote}q::after{content:close-quote}
+p{margin:3pt 0 5pt;text-align:justify}
+.kutu{border:1px solid #b9def1;border-left:3pt solid #0369a1;border-radius:3pt;padding:5pt 8pt;margin:5pt 0;background:#f5fbff;break-inside:avoid}
+.kutu b{color:#075985}
+.olcme td:first-child{width:22pt;text-align:center;font-weight:700}
+.olcme td:last-child{width:40pt;text-align:center;color:#0369a1;font-weight:700}
+.soru{font-weight:700}
+.secenek{margin-top:1pt}
+.aciklama{font-style:italic;color:#0369a1;font-size:9.5pt;margin-top:2pt}
+.soru-gorsel{float:right;margin:0 0 2pt 8pt}
+.soru-gorsel svg{height:38pt;width:auto}
+.anahtar{font-weight:700;color:#075985;margin:3pt 0 0}
+.anahtar span{font-weight:400;color:#1a1a1a}
+ol.acik{margin:2pt 0;padding-left:0;list-style:none;counter-reset:a}
+ol.acik li{counter-increment:a;display:flex;gap:10pt;padding:3pt 0}
+ol.acik li::before{content:counter(a) '.';color:#0369a1;font-weight:700;min-width:16pt}
+.etiket{color:#0369a1;font-weight:700;margin:7pt 0 2pt}
+ul.not{margin:2pt 0;padding-left:12pt}
+ul.not li{margin:2pt 0}
+.sure-tablo td:last-child,.sure-tablo th:last-child{width:62pt}
+.imza{display:flex;justify-content:space-around;margin-top:14pt;text-align:center;color:#6b7a82;break-inside:avoid;break-before:avoid;page-break-before:avoid}
+.sure-tablo{break-after:avoid;page-break-after:avoid}
+.sure-tablo tr:last-child{break-after:avoid}
+.uyg{display:grid;grid-template-columns:1fr 1fr;gap:3pt;margin-top:5pt}
+.uyg div{border-radius:3pt;padding:3pt 6pt;font-size:9pt;line-height:1.32}
+.uyg b{display:block;font-size:7.6pt;letter-spacing:.8pt}
+.uyg .goster{background:#eff6ff;border-left:2.5pt solid #3b82f6}.uyg .goster b{color:#1d4ed8}
+.uyg .sor{background:#f5f3ff;border-left:2.5pt solid #8b5cf6}.uyg .sor b{color:#6d28d9}
+.uyg .kontrol{background:#ecfdf5;border-left:2.5pt solid #10b981}.uyg .kontrol b{color:#047857}
+.uyg .sikhata{background:#fff7ed;border-left:2.5pt solid #f97316}.uyg .sikhata b{color:#c2410c}
+.guvenlik{border:1.5pt solid #ef4444;border-radius:4pt;background:#fef2f2;padding:6pt 10pt;margin:6pt 0;break-inside:avoid}
+.guvenlik b{color:#b91c1c;display:block;margin-bottom:2pt}
+.guvenlik ul{margin:2pt 0;padding-left:13pt}
+.imza b{display:block;color:#475569;margin-bottom:10pt}
+</style>
+</head>
+<body>
+<div class="bant"><div class="bant-sol"><div class="bant-ust">ÖĞRETMEN DERS PLANI (KAVRAM + UYGULAMA) · DON-301</div><div class="bant-baslik">BIOS/UEFI ve Önyükleme</div></div><div class="bant-sag">11. Hafta</div></div>
+<h2>1. GENEL BİLGİLER</h2>
+<table class="genel">
+<tr><td>Dersin Adı</td><td>Bilgisayar Donanımı ve Sistem Kurulumu</td></tr>
+<tr><td>Sınıf / Seviye</td><td>Lise (9. sınıf)</td></tr>
+<tr><td>Ünite / Konu</td><td>Donanım 301 - Montaj ve Kurulum — BIOS/UEFI ve Önyükleme</td></tr>
+<tr><td>Öğrenme Alanı</td><td>Bilgisayar Donanımı</td></tr>
+<tr><td>Süre</td><td>1 ders saati (35 dk)</td></tr>
+<tr><td>Yöntem ve Teknikler</td><td>Anlatım, gösteri, soru-cevap, tahmin et–izle (POST ışıkları), teknik tablo üzerinde karşılaştırma, simülatörde görev tabanlı uygulama, gerçek bilgisayarda gözetimli UEFI incelemesi, grup çalışması</td></tr>
+<tr><td>Araç-Gereç ve Kaynaklar</td><td>Etkileşimli ders (LMS), projeksiyon veya akıllı tahta; öğretmen gösterisi için UEFI’ye girilebilen bir bilgisayar (tercihen hata ışıkları olan bir anakartla), kurulum dosyaları yazılmış bir USB bellek (8 GB ve üstü), grup başına bir bilgisayar ya da montaj seti, anakart kılavuzu (basılı ya da PDF)</td></tr>
+<tr><td>Kavramlar / Terimler</td><td>Firmware: BIOS ve UEFI, POST ve Bip Kodları, UEFI'de Donanım Bilgisi, Önyükleme Sırası, XMP/EXPO, Secure Boot ve TPM</td></tr>
+</table>
+<h2>2. KAZANIMLAR</h2>
+<table class="kazanim">
+<tr><td>K1.</td><td>BIOS ile UEFI'yi karşılaştırır.</td></tr>
+<tr><td>K2.</td><td>POST, bip kodları ve debug LED'lerini yorumlar.</td></tr>
+<tr><td>K3.</td><td>Önyükleme sırasını ayarlar.</td></tr>
+<tr><td>K4.</td><td>XMP/EXPO, Secure Boot ve TPM ayarlarını yapar.</td></tr>
+</table>
+<div class="guvenlik"><b>GÜVENLİK (uygulama öncesi okunur)</b><ul><li>UEFI’de yalnız öğretmenin söylediği ayar değiştirilir; voltaj, frekans ve fan ayarlarına dokunulmaz.</li><li>Firmware (BIOS/UEFI) güncellemesi derste yapılmaz; güncelleme sırasında elektrik kesilirse anakart açılmaz hâle gelebilir.</li><li>Okul bilgisayarlarında Secure Boot ve TPM kapatılmaz, TPM temizlenmez; TPM’e bağlı şifreli disklerde veri kaybı ya da kurtarma anahtarı gereksinimi doğar.</li><li>UEFI parolası belirlenmez ve var olan parola değiştirilmez.</li><li>Keşif turunda çıkış her zaman “Kaydetmeden çık” ile yapılır; emin olunmayan bir değişiklik fark edilirse öğretmene haber verilir.</li><li>Ayarları sıfırlama (CMOS temizleme) yalnız öğretmen tarafından ve fiş çekiliyken yapılır.</li><li>Kasa açıkken hata ışıklarına bakılırken iç parçalara dokunulmaz; kablo takıp çıkarmak için önce bilgisayar kapatılır ve fiş çekilir.</li></ul></div>
+<h2>3. DERS İŞLENİŞİ</h2>
+<h3><span>Giriş — Dikkat Çekme ve Güdüleme</span><span class="sure">5 dk</span></h3>
+<p>Kapak slaytındaki zinciri gösterip sorun: <q>Güç düğmesine bastığınız an ile masaüstünün gelmesi arasında bilgisayar neler yapıyor olabilir?</q> Gelen cevapları tahtaya sırayla yazın, sonra doğru sıraya dizmeyi derse bırakın. Hedefler slaytında dört kazanımı okutun. Isınma slaytında (Slayt 3) sınıfı üç seçenek arasında oylatın ve sonucu tahtaya not edin: <q>Bu tahmini ikinci adımda, anakartın ışıklarına bakarak sınayacağız.</q> Terim Kartı slaytında (Slayt 4) her kısaltmanın açılımını bir öğrenciye söyletin; <q>UEFI’ye neden hâlâ BIOS deniyor?</q> sorusunu açık bırakın.</p>
+<h3><span>Gelişme — Kavramların İşlenişi</span><span class="sure">25 dk</span></h3>
+<table class="isleyis"><thead><tr><th>Adım</th><th>Konu</th><th>Öğretmen Notu</th></tr></thead>
+<tr><td>1</td><td><div class="adim-ad">Firmware: BIOS ve UEFI</div><div class="adim-konu">BIOS, UEFI ve CSM Karşılaştırması</div><span class="slayt">Slayt 5</span></td><td>Slayt açılınca sütunlar kendiliğinden değişir; UEFI + CSM görünümünde durdurup sorun: <q>Uyumluluk katmanı açıldığında hangi güvenlik özelliğinden vazgeçmiş oluyoruz?</q> Ardından Disk düzeni satırına dokunup alt şeritteki MBR ve GPT bölümlerini karşılaştırın. <q>Eski yöntem ilk sektördeki küçük bir kod parçasına güvenir; yeni yöntem ise ayrı bir sistem bölümündeki dosyayı açar, bu yüzden daha büyük diskleri ve imza denetimini destekler</q> deyin. Tahtaya 2³² × 512 B = 2 TiB hesabını yazın. Öğrencilere iki önyükleme yolunu sırasıyla söyletin.</td></tr>
+<tr><td>2</td><td><div class="adim-ad">POST ve Bip Kodları</div><div class="adim-konu">POST, Hata Işıkları ve Bip Kodları</div><span class="slayt">Slayt 6</span></td><td>Sorunsuz açılış kendiliğinden oynar; zincir çubuğundaki aşamaları parmakla izletin. Sonra RAM oturmamış senaryosunu seçin, sınıfa ışık tahmini yaptırın ve oynatın; ısınmadaki oylamayı burada karşılaştırın. Disk yok senaryosunda ekranın neden görüntü verdiğini sorun: <q>Bu kez ekran kartı aşaması geçildiği için mesajı görebiliyoruz.</q> <q>Işıklar işlemci, bellek, görüntü ve disk sırasıyla denetlenir; takılınan yerde ışık yanık kalır, bip dizilerinin anlamı ise her üreticinin kılavuzunda ayrı bir tabloda verilir</q> deyin. Öğrencilere dört ışığın sırasını ve her birinde ilk bakılacak parçayı söyletin.<div class="uyg"><div class="goster"><b>GÖSTER</b>Önce animasyonu oynatın; ardından gösteri bilgisayarını açıp anakarttaki ışıkların sırayla yanıp söndüğünü sınıfa izletin, kılavuzda hata ışıkları ve bip tablosunun bulunduğu sayfayı gösterin.</div><div class="sor"><b>SOR</b><q>Monitörde hiçbir şey yokken sorunun ekran kartında mı bellekte mi olduğunu nasıl ayırt ederiz?</q></div><div class="kontrol"><b>✔ KONTROL</b>Öğrenciler kılavuzda ilgili tabloyu bulup gösterdi; açılışta hangi ışığın en son söndüğünü söyleyebiliyor.</div><div class="sikhata"><b>⚠ SIK HATA</b>Görüntü gelmeyince hemen monitörü ya da işletim sistemini suçlamak; bip dizisini kılavuza bakmadan internetteki başka bir üreticinin tablosuyla yorumlamak.</div></div></td></tr>
+<tr><td>3</td><td><div class="adim-ad">UEFI'de Donanım Bilgisi</div><div class="adim-konu">UEFI Ana Ekranında Donanımı Doğrulama</div><span class="slayt">Slayt 7</span></td><td>Satırlar sırayla vurgulanırken her birinde durup <q>Bu değer yanlış olsaydı ne düşünürdük?</q> diye sorun. Toplam bellek satırında örnek verin: <q>İki 16 GB modül taktık ama 16 GB görünüyorsa ilk şüphemiz yuvaya oturmayan modüldür.</q> <q>Bu ekran, işletim sistemi yokken bile parçaların tanınıp tanınmadığını gösteren ilk kontrol noktasıdır</q> deyin. Saatin düğme pille korunduğunu vurgulayın. Öğrencilere montajdan sonra bakacakları üç satırı gerekçesiyle söyletin.<div class="uyg"><div class="goster"><b>GÖSTER</b>Önce slayttaki ekranı inceletin; sonra gösteri bilgisayarını yeniden başlatıp açılış ekranında yazan tuşla UEFI’ye girin ve ana sekmedeki işlemci, bellek ve disk bilgisini yüksek sesle okuyun.</div><div class="sor"><b>SOR</b><q>Açılış çok hızlıysa ve tuşa basmaya yetişemiyorsak UEFI’ye başka hangi yoldan girebiliriz?</q></div><div class="kontrol"><b>✔ KONTROL</b>Gösteri bilgisayarında UEFI ana ekranı açık; bellek toplamı ve disk listesi takılı parçalarla eşleşiyor.</div><div class="sikhata"><b>⚠ SIK HATA</b>Giriş tuşuna geç basıp işletim sisteminin açılmasını beklemek; ekranda gezinirken fark etmeden bir değeri değiştirmek.</div></div></td></tr>
+<tr><td>4</td><td><div class="adim-ad">Önyükleme Sırası</div><div class="adim-konu">Önyükleme Sırası ve Önyükleme Modu</div><span class="slayt">Slayt 8</span></td><td>Açılış denemesi kendiliğinden oynar ve SSD’de durur. Sonra USB’yi yukarı taşıyıp yeniden denetin. Ardından Legacy modunu seçip sorun: <q>Neden SSD bu kez atlandı?</q> <q>Firmware listedeki ilk geçerli önyükleyiciyi arar; UEFI modunda .efi dosyasına, eski modda ilk sektördeki koda bakar, bulamazsa sıradaki aygıta geçer</q> deyin. Kalıcı sıra değişikliği ile tek seferlik açılış menüsü arasındaki farkı tahtada iki sütunla gösterin. Öğrencilere kurulum belleğinden açmanın iki yolunu söyletin.<div class="uyg"><div class="goster"><b>GÖSTER</b>Önce simülasyonda USB’yi öne alın; sonra gösteri bilgisayarına kurulum belleğini takıp tek seferlik açılış menüsünü açın ve listede belleğin UEFI girdisini gösterin, kurulumu başlatmadan menüden çıkın.</div><div class="sor"><b>SOR</b><q>Aynı USB bellek listede iki kez, biri UEFI etiketli görünüyorsa hangisini seçmeliyiz?</q></div><div class="kontrol"><b>✔ KONTROL</b>USB bellek açılış menüsünde görünüyor; öğrenciler UEFI girdisini doğru seçiyor ve kurulum başlatılmadan çıkılıyor.</div><div class="sikhata"><b>⚠ SIK HATA</b>Kalıcı sırayı değiştirip kurulumdan sonra geri almayı unutmak (sistem hep bellekten açılmaya çalışır); belleğin Legacy girdisini seçip UEFI kurulumu beklemek.</div></div></td></tr>
+<tr><td>5</td><td><div class="adim-ad">XMP/EXPO</div><div class="adim-konu">XMP/EXPO Bellek Profili</div><span class="slayt">Slayt 9</span></td><td>Önce tahmini sorun: <q>4800’den 6000’e çıkınca bant genişliği yüzde kaç artar?</q> Cevapları aldıktan sonra profil kendiliğinden açılır; çubukların değişimini izletin ve 6000 ÷ 4800 = 1,25 hesabını tahtada yapın. <q>Modülün üzerindeki yüksek hız bir sözdür; UEFI’de profil seçilmedikçe bellek herkesin desteklediği güvenli standart hızda kalır</q> deyin. Profilin bir hız aşırtma olduğunu, kararsızlıkta kapatılacağını vurgulayın. Öğrencilere gecikmenin nanosaniye olarak neden azaldığını açıklattırın.<div class="uyg"><div class="goster"><b>GÖSTER</b>Önce animasyonu oynatın; sonra gösteri bilgisayarında bellek profili ayarının yerini gösterin. Profili yalnız gösteri bilgisayarında açıp kaydedin, yeniden başlatınca ana ekranda hızın değiştiğini okutun.</div><div class="sor"><b>SOR</b><q>Profil açıldıktan sonra bilgisayar açılmazsa ilk ne yaparız?</q></div><div class="kontrol"><b>✔ KONTROL</b>Ana ekranda bellek hızı etiketteki değere yükseldi; bilgisayar kararlı açılıyor. Kararsızlık varsa profil kapatıldı.</div><div class="sikhata"><b>⚠ SIK HATA</b>Etiketteki hızın kendiliğinden geldiğini sanmak; profil çalışmayınca bellek voltajını elle yükseltmeye kalkmak.</div></div></td></tr>
+<tr><td>6</td><td><div class="adim-ad">Secure Boot ve TPM</div><div class="adim-konu">Secure Boot ve TPM</div><span class="slayt">Slayt 10</span></td><td>İmzalı senaryo kendiliğinden oynar; ardından iki değiştirilmiş senaryoyu sırayla oynatıp sorun: <q>İkinci durumda sistemi kim durdurdu, üçüncüde kim fark etti?</q> <q>Güvenli önyükleme imzası bozuk bir önyükleyicinin çalışmasına izin vermez; TPM ise açılış zincirini ölçer ve zincir değişirse kendisine bağlı disk şifresinin anahtarını teslim etmez</q> deyin. Güncel işletim sistemlerinin bir kısmının kurulumda TPM 2.0 ve Secure Boot desteği istediğini ekleyin. Öğrencilere iki özelliğin farkını birer cümleyle söyletin.<div class="uyg"><div class="goster"><b>GÖSTER</b>Önce üç senaryoyu oynatın; sonra gösteri bilgisayarında güvenlik sekmesini açıp Secure Boot ve TPM durum satırlarını okuyun, hiçbir değeri değiştirmeden sekmeden çıkın.</div><div class="sor"><b>SOR</b><q>Okul bilgisayarında Secure Boot’u kapatmak neden kötü bir fikirdir?</q></div><div class="kontrol"><b>✔ KONTROL</b>Öğrenciler iki durumu doğru okuyup not etti; ayarlar değiştirilmedi.</div><div class="sikhata"><b>⚠ SIK HATA</b>Durum satırını okumak yerine seçeneği açıp yanlışlıkla değiştirmek; TPM temizleme seçeneğini zararsız bir sıfırlama sanmak.</div></div></td></tr>
+</table>
+<div class="kutu"><b>Etkinlikler (Slayt 11–12):</b> Etkinlik 1’de öğrenciler ikişerli gruplar hâlinde simülatördeki altı görevi yapar; biri klavyeyi, diğeri görev listesini yönetir, yarıda roller değişir. Akıllı tahtada bir grubu dokunmatikle çalıştırın. Bir öğrenciden bilerek CSM’yi açmasını isteyin ve çıkan uyarıyı sınıfa okutun. Etkinlik 2’de gruplar kendi masalarındaki bilgisayarda açılışı izler, UEFI’ye girer ve keşif kartını doldurur; bu turda hiçbir ayar değiştirilmez ve çıkışta kaydetmeden çıkılır. Bilgisayar sayısı azsa gruplar sırayla çalışır, bekleyen gruplar simülatörde devam eder (yaklaşık 10 dk).</div>
+<h3><span>Değerlendirme ve Kapanış</span><span class="sure">5 dk</span></h3>
+<p>Özet slaytında her kartı bir gruba anlattırın. Bilgi Testi’ni (Slayt 14) bireysel çözdürün; yanlış çıkan soruda ilgili adım slaytına dönüp animasyonu yeniden oynatın. Dersi şu köprüyle kapatın: <q>Önyükleme sırasını ayarlamayı ve kurulum belleğini tanımayı öğrendik; gelecek hafta aynı bellekle işletim sistemini kuracağız.</q></p>
+<h2>4. ÖLÇME VE DEĞERLENDİRME</h2>
+<table class="olcme"><thead><tr><th>#</th><th>Soru ve Seçenekler</th><th>Cevap</th></tr></thead>
+<tr><td>1</td><td><div class="soru">Aşağıdakilerden hangisi UEFI’nin sunduğu, eski BIOS’ta bulunmayan bir özelliktir?</div><div class="secenek">A) Önyükleyicinin dijital imzasını doğrulayan Secure Boot B) Açılışta POST ile donanımı sınaması C) Önyükleme sırasının değiştirilebilmesi D) Sistem saatinin tutulması</div><div class="aciklama">POST, önyükleme sırası ve sistem saati BIOS’ta da vardır. İmza denetimi yapan Secure Boot ise UEFI ile gelir.</div></td><td>A</td></tr>
+<tr><td>2</td><td><div class="soru-gorsel"><svg viewBox="0 0 220 110" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Anakart hata ışıkları: CPU, DRAM, VGA ve BOOT; VGA ışığı yanık ve okla gösterilmiş"><rect width="220" height="110" rx="10" fill="#14532d"/><text x="110" y="18" font-family="Inter,Arial,sans-serif" font-size="10" font-weight="800" fill="#dcfce7" text-anchor="middle">Açılışta yanık kalan ışık</text><circle cx="22" cy="58" r="6" fill="#334155" stroke="#0f172a" stroke-width="1"/><text x="33" y="61.5" font-family="JetBrains Mono,Consolas,monospace" font-size="8" font-weight="800" fill="#e2e8f0" text-anchor="start">CPU</text><circle cx="72" cy="58" r="6" fill="#334155" stroke="#0f172a" stroke-width="1"/><text x="83" y="61.5" font-family="JetBrains Mono,Consolas,monospace" font-size="8" font-weight="800" fill="#e2e8f0" text-anchor="start">DRAM</text><circle cx="122" cy="58" r="6" fill="#ef4444" stroke="#0f172a" stroke-width="1"/><circle cx="122" cy="58" r="9" fill="none" stroke="#ef4444" stroke-opacity=".45" stroke-width="3"/><text x="133" y="61.5" font-family="JetBrains Mono,Consolas,monospace" font-size="8" font-weight="800" fill="#fde68a" text-anchor="start">VGA</text><circle cx="172" cy="58" r="6" fill="#334155" stroke="#0f172a" stroke-width="1"/><text x="183" y="61.5" font-family="JetBrains Mono,Consolas,monospace" font-size="8" font-weight="800" fill="#e2e8f0" text-anchor="start">BOOT</text><path d="M128 90 V74" stroke="#fecaca" stroke-width="2"/><path d="M124 76l4-7 4 7z" fill="#fecaca"/><text x="128" y="102" font-family="Inter,Arial,sans-serif" font-size="9" font-weight="800" fill="#fecaca" text-anchor="middle">yanık</text></svg></div><div class="soru">Açılışta görseldeki hata ışığı yanık kalıyor ve monitörde görüntü yok. En olası sorun hangisidir?</div><div class="secenek">A) RAM modülleri yuvaya tam oturmamış B) İşletim sistemi dosyaları silinmiş C) Ekran kartı ya da görüntü bağlantısında sorun var D) Önyükleme sırası yanlış ayarlanmış</div><div class="aciklama">VGA ışığı, POST’un ekran kartı aşamasında takıldığını gösterir. Kartın oturması, ek güç kablosu ve monitör bağlantısı kontrol edilir.</div></td><td>C</td></tr>
+<tr><td>3</td><td><div class="soru">Ece işletim sistemi kurmak için kurulum belleğini taktı, ama bilgisayar her seferinde diskteki eski sistemle açılıyor. Ece ne yapmalı?</div><div class="secenek">A) Secure Boot’u kapatmalı B) UEFI’de USB belleği önyükleme sırasında diskin önüne almalı ya da tek seferlik önyükleme menüsünü kullanmalı C) XMP/EXPO profilini etkinleştirmeli D) Anakart pilini çıkarıp ayarları sıfırlamalı</div><div class="aciklama">Firmware aygıtları sırayla dener ve ilk önyüklenebilir aygıtta durur. USB öne alınmalı ya da tek seferlik menüden seçilmelidir.</div></td><td>B</td></tr>
+<tr><td>4</td><td><div class="soru">Deniz kutusunda “DDR5-6000” yazan bellekleri taktı. UEFI’de bellek hızı 4800 MT/s görünüyor. Bunun en olası nedeni nedir?</div><div class="secenek">A) Bellekler arızalı B) Anakart bellekleri tanımadı C) Secure Boot bellek hızını sınırlıyor D) XMP/EXPO profili etkin değil; bellek standart (JEDEC) hızda çalışıyor</div><div class="aciklama">Bellek önce güvenli JEDEC hızında çalışır. Etiketteki hız, UEFI’de XMP/EXPO profili seçilince uygulanır.</div></td><td>D</td></tr>
+</table>
+<p class="anahtar">Cevap Anahtarı: <span>1-A 2-C 3-B 4-D</span></p>
+<h2>5. AÇIK UÇLU / BİÇİMLENDİRİCİ DEĞERLENDİRME</h2>
+<ol class="acik">
+<li><span>«BIOS ile UEFI Farkı» kavramını kendi cümlelerinle açıkla ve günlük hayattan bir örnek ver.</span></li>
+<li><span>«POST ve Hata Işıkları» kavramını kendi cümlelerinle açıkla ve günlük hayattan bir örnek ver.</span></li>
+<li><span>«Secure Boot ile TPM Farkı» kavramını kendi cümlelerinle açıkla ve günlük hayattan bir örnek ver.</span></li>
+<li><span>Bu derste en çok hangi adım ilgini çekti, nerede zorlandın? Nedenini açıkla.</span></li>
+</ol>
+<h2>6. ÖĞRETMEN NOTLARI VE ÖDEV</h2>
+<div class="etiket">Ödev / Sınıf Dışı Etkinlik:</div><p>Evdeki ya da okuldaki bir bilgisayarın anakart kılavuzunu (üreticinin sitesinden PDF olarak) bul. Kılavuzda UEFI’ye giriş tuşunu, tek seferlik açılış menüsü tuşunu ve hata ışıkları ya da bip kodları tablosunu işaretle. Üç bilgiyi sayfa numaralarıyla birlikte bir sonraki derse getir.</p>
+<div class="etiket">Öğretmen İçin Notlar:</div><ul class="not">
+<li>Lise düzeyi: terimler İngilizce karşılıklarıyla verilir (Terim Kartı, Slayt 4). Öğrencilerden BIOS, UEFI, CSM, POST, TPM kısaltmalarını açılımlarıyla kullanmalarını isteyin; günlük dilde UEFI’ye de “BIOS” dendiğini belirtin.</li>
+<li>Uygulama bölümlerinde (Adım 2–6) önce slayttaki animasyonu ya da simülasyonu, sonra gösteri bilgisayarını kullanın. Öğrenciler bu hafta gerçek sistemde yalnız okuma yapar; ayar değişikliği simülatörde denenir. Bellek profilini yalnız gösteri bilgisayarında açın.</li>
+<li>Marka farkı: UEFI ekranlarının görünümü, sekme adları ve giriş tuşları üreticiye göre değişir. Simülatör bilerek marka-nötr tasarlanmıştır; öğrencilerden aynı ayarı farklı adlarla aramalarını isteyin (ör. önyükleme önceliği, açılış seçenekleri).</li>
+<li>Teknik not: UEFI kurulumlarında sistem diski çoğunlukla GPT’dir; ancak UEFI, FAT biçimli bir EFI bölümü bulunan MBR düzenli çıkarılabilir belleklerden de açılabilir. “UEFI yalnız GPT’den açar” genellemesini düzeltin. Bazı anakartlarda CSM açıkken hem UEFI hem Legacy girdiler birlikte listelenir.</li>
+<li>Sık görülen kavram yanılgıları: “BIOS ile UEFI aynı şeyin eski ve yeni adıdır, fark yoktur”, “Bip kodları her bilgisayarda aynıdır”, “Bellek etiketteki hızla kendiliğinden çalışır”, “Secure Boot virüs koruma yazılımıdır”. Bu cümleleri doğru/yanlış sorusu olarak sorup düzeltin.</li>
+<li>Hareket azaltma ayarı açık cihazlarda animasyonlar kısa geçişlerle ilerler; tüm senaryolar düğmelerle tek tek de oynatılabilir. Simülatör klavye (ok tuşları, Enter, Esc, F10) ve dokunmayla kullanılır.</li>
+<li>Her adımın sonunda 1–2 öğrenciye <q>Bu ayar ya da ışık bize ne söylüyor?</q> diye sorup kendi cümleleriyle anlattırarak anlaşıldığını kontrol edin (biçimlendirici değerlendirme).</li>
+</ul>
+<table class="sure-tablo"><thead><tr><th>Aşama</th><th>Süre</th></tr></thead>
+<tr><td>Giriş — Dikkat Çekme ve Güdüleme</td><td>5 dk</td></tr>
+<tr><td>Gelişme — Kavramların İşlenişi ve Etkinlikler</td><td>25 dk</td></tr>
+<tr><td>Değerlendirme ve Kapanış</td><td>5 dk</td></tr>
+<tr><th>Toplam</th><th>35 dk</th></tr>
+</table>
+<div class="imza"><div><b>Ders Öğretmeni</b>Ad Soyad / İmza</div><div><b>Uygundur</b>Okul Müdürü</div></div>
+</body>
+</html>
