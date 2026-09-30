@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DON-301 H13 Öğretmen Planı — Sorun Giderme, Bakım ve Veri Güvenliği</title>
+<style>
+@font-face{font-family:'Carlito';src:local('Carlito'),url('../../assets/font/Carlito-Regular.ttf');font-weight:400;font-style:normal}
+@font-face{font-family:'Carlito';src:local('Carlito Bold'),url('../../assets/font/Carlito-Bold.ttf');font-weight:700;font-style:normal}
+@font-face{font-family:'Carlito';src:local('Carlito Italic'),url('../../assets/font/Carlito-Italic.ttf');font-weight:400;font-style:italic}
+@page{size:A4;margin:14mm 14mm 16mm 16.5mm;
+  @bottom-center{content:'Bilişim Üssü · Etkileşimli Ders Planı · ' counter(page) ' / ' counter(pages);font-family:Carlito,Calibri,sans-serif;font-size:7.5pt;color:#6b7a82}}
+*{box-sizing:border-box}
+html{font-family:Carlito,Calibri,'Segoe UI',Arial,sans-serif;font-size:9.9pt;color:#1a1a1a;line-height:1.38}
+body{margin:0;max-width:180mm}
+@media screen{body{margin:24px auto;padding:0 12px}}
+.bant{display:flex;gap:7pt;margin-bottom:9pt}
+.bant-sol{flex:1;background:linear-gradient(135deg,#075985,#0a6aa3);color:#fff;border-radius:4pt;padding:9pt 14pt 10pt}
+.bant-ust{font-size:7.6pt;font-weight:700;letter-spacing:2.2pt;opacity:.92}
+.bant-baslik{font-size:23pt;font-weight:700;line-height:1.12;margin-top:3pt}
+.bant-baslik.uzun{font-size:18pt}
+.bant-sag{width:128pt;background:#0369a1;color:#fff;border-radius:4pt;display:flex;align-items:center;justify-content:center;font-size:14pt;font-weight:700}
+h2{background:#0369a1;color:#fff;font-size:11pt;font-weight:700;margin:12pt 0 6pt;padding:5pt 10pt;border-radius:4pt;letter-spacing:.2pt;break-after:avoid}
+h3{display:flex;justify-content:space-between;align-items:center;color:#0369a1;font-size:10.6pt;margin:9pt 0 4pt;break-after:avoid}
+h3 .sure{background:#0369a1;color:#fff;font-size:8.6pt;border-radius:9pt;padding:1.5pt 8pt}
+table{width:100%;border-collapse:collapse;margin:0 0 4pt}
+td,th{border:1px solid #b9def1;padding:4pt 7pt;vertical-align:top;text-align:left}
+th{background:#e0f2fe;color:#075985;font-size:9.2pt;font-weight:700}
+tr{break-inside:avoid}
+.genel td:first-child{width:134pt;background:#e0f2fe;color:#075985;font-weight:700}
+.kazanim{width:100%;border-collapse:collapse}
+.kazanim td{border:0;border-bottom:1px solid #eaf6fc;padding:3.5pt 4pt}
+.kazanim td:first-child{width:32pt;color:#0369a1;font-weight:700}
+.isleyis td:first-child{width:35pt;text-align:center;color:#6b7a82;font-weight:700}
+.isleyis td:nth-child(2){width:122pt}
+.adim-ad{font-weight:700}
+.adim-konu{color:#475569}
+.slayt{display:inline-block;margin-top:2pt;font-size:8pt;font-weight:700;color:#0369a1;background:#e0f2fe;border-radius:6pt;padding:0 5pt}
+q{quotes:'“' '”'}
+q::before{content:open-quote}q::after{content:close-quote}
+p{margin:3pt 0 5pt;text-align:justify}
+.kutu{border:1px solid #b9def1;border-left:3pt solid #0369a1;border-radius:3pt;padding:5pt 8pt;margin:5pt 0;background:#f5fbff;break-inside:avoid}
+.kutu b{color:#075985}
+.olcme td:first-child{width:22pt;text-align:center;font-weight:700}
+.olcme td:last-child{width:40pt;text-align:center;color:#0369a1;font-weight:700}
+.soru{font-weight:700}
+.secenek{margin-top:1pt}
+.aciklama{font-style:italic;color:#0369a1;font-size:9.5pt;margin-top:2pt}
+.soru-gorsel{float:right;margin:0 0 2pt 8pt}
+.soru-gorsel svg{height:38pt;width:auto}
+.anahtar{font-weight:700;color:#075985;margin:3pt 0 0}
+.anahtar span{font-weight:400;color:#1a1a1a}
+ol.acik{margin:2pt 0;padding-left:0;list-style:none;counter-reset:a}
+ol.acik li{counter-increment:a;display:flex;gap:10pt;padding:3pt 0}
+ol.acik li::before{content:counter(a) '.';color:#0369a1;font-weight:700;min-width:16pt}
+.etiket{color:#0369a1;font-weight:700;margin:7pt 0 2pt}
+ul.not{margin:2pt 0;padding-left:12pt}
+ul.not li{margin:2pt 0}
+.sure-tablo td:last-child,.sure-tablo th:last-child{width:62pt}
+.imza{display:flex;justify-content:space-around;margin-top:14pt;text-align:center;color:#6b7a82;break-inside:avoid;break-before:avoid;page-break-before:avoid}
+.sure-tablo{break-after:avoid;page-break-after:avoid}
+.sure-tablo tr:last-child{break-after:avoid}
+.uyg{display:grid;grid-template-columns:1fr 1fr;gap:3pt;margin-top:5pt}
+.uyg div{border-radius:3pt;padding:3pt 6pt;font-size:9pt;line-height:1.32}
+.uyg b{display:block;font-size:7.6pt;letter-spacing:.8pt}
+.uyg .goster{background:#eff6ff;border-left:2.5pt solid #3b82f6}.uyg .goster b{color:#1d4ed8}
+.uyg .sor{background:#f5f3ff;border-left:2.5pt solid #8b5cf6}.uyg .sor b{color:#6d28d9}
+.uyg .kontrol{background:#ecfdf5;border-left:2.5pt solid #10b981}.uyg .kontrol b{color:#047857}
+.uyg .sikhata{background:#fff7ed;border-left:2.5pt solid #f97316}.uyg .sikhata b{color:#c2410c}
+.guvenlik{border:1.5pt solid #ef4444;border-radius:4pt;background:#fef2f2;padding:6pt 10pt;margin:6pt 0;break-inside:avoid}
+.guvenlik b{color:#b91c1c;display:block;margin-bottom:2pt}
+.guvenlik ul{margin:2pt 0;padding-left:13pt}
+.imza b{display:block;color:#475569;margin-bottom:10pt}
+</style>
+</head>
+<body>
+<div class="bant"><div class="bant-sol"><div class="bant-ust">ÖĞRETMEN DERS PLANI (KAVRAM + UYGULAMA) · DON-301</div><div class="bant-baslik uzun">Sorun Giderme, Bakım ve Veri Güvenliği</div></div><div class="bant-sag">13. Hafta</div></div>
+<h2>1. GENEL BİLGİLER</h2>
+<table class="genel">
+<tr><td>Dersin Adı</td><td>Bilgisayar Donanımı ve Sistem Kurulumu</td></tr>
+<tr><td>Sınıf / Seviye</td><td>Lise (9. sınıf)</td></tr>
+<tr><td>Ünite / Konu</td><td>Donanım 301 - Bakım ve Proje — Sorun Giderme, Bakım ve Veri Güvenliği</td></tr>
+<tr><td>Öğrenme Alanı</td><td>Bilgisayar Donanımı</td></tr>
+<tr><td>Süre</td><td>1 ders saati (35 dk)</td></tr>
+<tr><td>Yöntem ve Teknikler</td><td>Anlatım, gösteri, soru-cevap, tahmin et–izle (ısınma grafiği, bakım provası), karar ağacıyla teşhis, vaka tabanlı öğrenme (teşhis simülatörü), gözetimli gerçek sistem bakımı, grup çalışması</td></tr>
+<tr><td>Araç-Gereç ve Kaynaklar</td><td>Etkileşimli ders (LMS), projeksiyon veya akıllı tahta; gösteri için yan kapağı açılabilen bir masaüstü bilgisayar (tercihen hata ışıklı anakart), antistatik bileklik, yumuşak fırça, basınçlı hava kutusu (yalnız öğretmende), fanı tutmak için plastik çubuk ya da tahta dil çubuğu, anakart kılavuzu, grup başına bir bilgisayar, disk sağlığını okuyabilen bir yardımcı program, bakım kartı çıktısı ya da defter</td></tr>
+<tr><td>Kavramlar / Terimler</td><td>Sorun Giderme Yöntemi, Açılmıyor / Görüntü Yok, Isınma ve Yavaşlama, Önleyici Bakım, Güvenli Veri Silme, E-Atık</td></tr>
+</table>
+<h2>2. KAZANIMLAR</h2>
+<table class="kazanim">
+<tr><td>K1.</td><td>Sistematik sorun giderme adımlarını uygular.</td></tr>
+<tr><td>K2.</td><td>Açılmama, görüntü olmaması ve aşırı ısınma durumlarını teşhis eder.</td></tr>
+<tr><td>K3.</td><td>Önleyici bakım yapar.</td></tr>
+<tr><td>K4.</td><td>Veriyi güvenli siler ve e-atık sürecini açıklar.</td></tr>
+</table>
+<div class="guvenlik"><b>GÜVENLİK (uygulama öncesi okunur)</b><ul><li>Kasa yalnız bilgisayar kapalıyken ve fiş prizden çekiliyken açılır; fiş çekildikten sonra güç düğmesine birkaç saniye basılır.</li><li>Kasa içinde çalışırken antistatik bileklik takılır; bileklik yoksa önce kasanın boyasız metal yüzeyine dokunulur.</li><li>Güç kaynağının kapağı hiçbir koşulda açılmaz; içindeki kondansatörler fiş çekildikten sonra da tehlikeli gerilim tutabilir. Arızalı güç kaynağı bütün olarak değiştirilir.</li><li>Basınçlı hava kutusu yalnız öğretmen tarafından ya da doğrudan gözetimde, dik tutularak ve kısa püskürtmelerle kullanılır; ters tutulan kutudan çıkan sıvı cildi dondurabilir, yüze ve göze tutulmaz.</li><li>Püskürtme sırasında fan plastik bir çubukla ya da parmakla sabitlenir; metal tornavida kanatlar arasına sokulmaz.</li><li>Temizlikte elektrik süpürgesi ve ıslak bez kullanılmaz; toz kartların üstüne değil kasanın dışına doğru üflenir, ortam havalandırılır.</li><li>Şişmiş pil fark edilirse cihaza dokunulmaz ve öğretmene haber verilir; piller e-atıktan ayrı toplanır.</li><li>Okul bilgisayarlarında disk silme, biçimlendirme ve şifreleme işlemleri derste denenmez; yalnız simülatörde yapılır.</li></ul></div>
+<h2>3. DERS İŞLENİŞİ</h2>
+<h3><span>Giriş — Dikkat Çekme ve Güdüleme</span><span class="sure">5 dk</span></h3>
+<p>Kapak slaytında dönen açık kasayı gösterip sorun: <q>Bir bilgisayar bozulduğunda ilk ne yaparsınız?</q> Gelen cevapları tahtada iki sütuna ayırın: <q>parça değiştir</q> diyenler ve <q>önce bak, dene</q> diyenler. Hedefler slaytında dört kazanımı sırayla okutun. Isınma slaytında (Slayt 3) sınıfı üç seçenek arasında oylatın, sonucu tahtanın köşesine yazın: <q>Bu oylamayı önce yöntemle, sonra sıcaklık grafiğiyle sınayacağız.</q> Terim Kartı slaytında (Slayt 4) her İngilizce terimi bir öğrenciye Türkçe karşılığıyla okutun; <q>Belirti ile hipotez arasındaki fark nedir?</q> sorusunu açık bırakın.</p>
+<h3><span>Gelişme — Kavramların İşlenişi</span><span class="sure">25 dk</span></h3>
+<table class="isleyis"><thead><tr><th>Adım</th><th>Konu</th><th>Öğretmen Notu</th></tr></thead>
+<tr><td>1</td><td><div class="adim-ad">Sorun Giderme Yöntemi</div><div class="adim-konu">Sistematik Sorun Giderme Döngüsü</div><span class="slayt">Slayt 5</span></td><td>Slayt açılınca döngü kendiliğinden ilerler; üçüncü aşamada durdurup ikinci aşamadaki sıralama tablosunu gösterin ve sorun: <q>Neden anakartı listenin en sonuna koyduk; arızalı olma ihtimali yok mu?</q> <q>Tek tek ve ucuzdan pahalıya denersek, sorunu hangi değişikliğin çözdüğünü kesin biliriz; beş şeyi birden değiştirirsek hem para harcarız hem de nedeni asla öğrenemeyiz</q> deyin. Turuncu kesik okla, çürüyen hipotezde listeye geri dönüldüğünü gösterin. Isınmadaki oylamaya dönüp güç kaynağını seçenlere <q>Bu hangi aşamada ve ne kadar pahalı bir testti?</q> diye sorun. Öğrencilere altı aşamayı sırasıyla ve her birine bir örnek vererek söyletin.</td></tr>
+<tr><td>2</td><td><div class="adim-ad">Açılmıyor / Görüntü Yok</div><div class="adim-konu">Açılmama ve Görüntü Gelmemesi: Karar Ağacı</div><span class="slayt">Slayt 6</span></td><td>Slayt açılınca önce sağlam bir açılış oynar; ışıkların sırayla yanıp söndüğünü parmakla izletin. Ardından ağaçta önce <q>hiç tepki yok</q> dalını seçip priz, kablo ve anahtar testlerini birlikte yürütün; sonra baştan alıp <q>fanlar dönüyor</q> dalında DRAM ışığını seçin ve onarımı oynatın. <q>İlk soru hep aynıdır: elektrik kasaya ulaşıyor mu? Ulaşıyorsa sorun ya açılış denetiminde ya da görüntü yolundadır</q> deyin. Ekran kartı takılıyken monitör kablosunun anakart çıkışına bağlanmasının neden sık yapılan bir hata olduğunu açıklayın. Öğrencilere iki ana dalı ve her dalda ilk bakılacak iki şeyi söyletin.<div class="uyg"><div class="goster"><b>GÖSTER</b>Önce karar ağacındaki bir dalı oynatın; sonra gösteri bilgisayarında arka anahtarı 0 konumuna alıp sınıfa <q>Hiç tepki yok</q> belirtisini yaşatın, ardından anahtarı açıp açılıştaki hata ışıklarını izletin.</div><div class="sor"><b>SOR</b><q>Fanlar dönüyor ama ekran siyahsa monitörü değiştirmeden önce hangi iki şeye bakarız?</q></div><div class="kontrol"><b>✔ KONTROL</b>Öğrenciler belirtiyi doğru dala yerleştiriyor; hata ışığının adını ve ilk test edilecek parçayı söyleyebiliyor.</div><div class="sikhata"><b>⚠ SIK HATA</b>Güç ışığı yanmıyor diye hemen güç kaynağını değiştirmeye kalkmak; monitörün girişini (kaynağını) kontrol etmeden kabloyu ya da ekran kartını suçlamak.</div></div></td></tr>
+<tr><td>3</td><td><div class="adim-ad">Isınma ve Yavaşlama</div><div class="adim-konu">Isıl Kısma, Aşırı Isınma ve Disk Sağlığı</div><span class="slayt">Slayt 7</span></td><td>Kendiliğinden kapanma vakasında yük testi kendiliğinden oynar; sarı bölgeye girildiğinde alt paneldeki saat hızı çizgisinin düştüğünü gösterip sorun: <q>Oyun neden kapanmadan önce takılmaya başladı?</q> <q>İşlemci önce hızını düşürerek kendini korur; bu da yetmezse elektriği keser. Kapanma bir arıza değil, koruma tepkisidir; asıl sorun ısının dışarı atılamamasıdır</q> deyin. Fan hızını okutun, soğutucu bulgusunu gösterin, sonra temizleyip testi yeniden oynatın. İkinci vakaya geçip önce bilerek <q>Diski değiştir</q> düğmesine basın ve uyarıyı okutun; ardından SMART tablosunu doldurun. Öğrencilere yeniden atanmış sektör sayısının artmasının ne anlama geldiğini ve ilk yapılacak işi söyletin.<div class="uyg"><div class="goster"><b>GÖSTER</b>Önce grafiği oynatın; sonra gösteri bilgisayarında izleme ekranında (UEFI donanım durumu ya da işletim sistemi aracı) işlemci sıcaklığını ve fan hızını okuyun, ardından disk sağlığı aracında SMART tablosunu açıp ham değer sütununu gösterin.</div><div class="sor"><b>SOR</b><q>SMART genel durumu İYİ görünse bile hangi satırın artması bizi uyarmalı?</q></div><div class="kontrol"><b>✔ KONTROL</b>Öğrenciler boştaki ve yükteki sıcaklığı karşılaştırabiliyor; SMART tablosunda yeniden atanmış ve bekleyen sektör satırlarını bulabiliyor.</div><div class="sikhata"><b>⚠ SIK HATA</b>Yavaşlayan bilgisayarda hemen disk birleştirme ya da sistem kurulumu başlatmak (arızalanan diski daha çok yorar); sıcaklık yerine yalnız fanın dönüp dönmediğine bakmak.</div></div></td></tr>
+<tr><td>4</td><td><div class="adim-ad">Önleyici Bakım</div><div class="adim-konu">Önleyici Bakım: Toz, Fan ve Basınçlı Hava</div><span class="slayt">Slayt 8</span></td><td>Sahnedeki tahmin sorusunu sınıfa oylatın, sonra provayı oynatın. Toz birikirken sağ üstteki sıcaklık ve fan değerlerinin değişimini okutun. Fişin çekildiği aşamada durdurup sorun: <q>Fiş çekildikten sonra güç düğmesine neden basıyoruz?</q> <q>Kondansatörlerde kalan enerjiyi boşaltırız; ayrıca basınçlı hava fanı rüzgârgülü gibi çevirir, fan tasarlandığından çok daha hızlı dönerse yatağı aşınır ya da bozulur</q> deyin. Kutunun neden dik tutulduğunu (ters tutulunca çok soğuk sıvı itici gaz püskürür) vurgulayın. Sahneyi döndürüp tozun fanın arkasından dışarı atıldığını gösterin. Öğrencilere bakımın beş adımını sırasıyla gösterttirin.<div class="uyg"><div class="goster"><b>GÖSTER</b>Önce provayı oynatın; sonra gösteri bilgisayarını kapatıp fişini çekin, yan kapağı açın, bir fanı plastik çubukla tutarak kutuyu dik biçimde kısa püskürtmelerle kullanın. Güç kaynağının yalnız dış ızgarasını gösterin, kapağına dokunmayın.</div><div class="sor"><b>SOR</b><q>Toz filtresi olan bir kasada bakım aralığı neden daha uzun olabilir; bu sınıfta hangi etkenler tozu artırır?</q></div><div class="kontrol"><b>✔ KONTROL</b>Fiş çekili, bileklik takılı; fan sabitken kısa püskürtme yapıldı; bakım öncesi ve sonrası sıcaklık kaydedildi.</div><div class="sikhata"><b>⚠ SIK HATA</b>Bilgisayar açıkken ya da fişi takılıyken temizlik yapmak; kutuyu eğip sallamak ya da uzun süre sürekli püskürtmek; elektrik süpürgesiyle kartlara dokunmak (statik elektrik riski).</div></div></td></tr>
+<tr><td>5</td><td><div class="adim-ad">Güvenli Veri Silme</div><div class="adim-konu">3-2-1 Yedek, Şifreleme ve Güvenli Silme</div><span class="slayt">Slayt 9</span></td><td>Önce yedek almadan bir silme yöntemine basıp uyarıyı okutun, ardından 3-2-1 yedeğini alın. Hızlı biçimlendirmeyi uygulayıp sorun: <q>Dosya tablosu boş, peki bloklardaki harfler neden duruyor?</q> <q>İşletim sistemi silmede yalnız dosyanın adresini unutur; kitabın içindekiler sayfasını yırtmak gibi, sayfalar hâlâ ciltte durur</q> deyin. SSD'ye geçip tüm diskin üzerine yazmayı deneyin ve yedek alandaki kalıntıları gösterin; sonra güvenli silme komutunu uygulayın. Şifreli SSD'de anahtarı yok etmenin neden saniyeler sürdüğünü tartıştırın. Öğrencilere 3-2-1 kuralının her rakamını kendi dosyalarından bir örnekle söyletin.<div class="uyg"><div class="goster"><b>GÖSTER</b>Önce simülasyonda üç disk türünü karşılaştırın; sonra gösteri bilgisayarında işletim sisteminin disk şifreleme durumunu ve yedekleme ayarlarının yerini gösterin. Gerçek bir diski bu derste silmeyin.</div><div class="sor"><b>SOR</b><q>Bozulduğu için açılmayan ve silinemeyen bir diskteki öğrenci verilerini nasıl güvenceye alırız?</q></div><div class="kontrol"><b>✔ KONTROL</b>Öğrenciler kendi dosyaları için üç kopyanın nerede duracağını yazdı; HDD ve SSD için doğru silme yöntemini ayırt edebiliyor.</div><div class="sikhata"><b>⚠ SIK HATA</b>Çöp kutusunu boşaltmayı ya da hızlı biçimlendirmeyi kalıcı silme sanmak; iki kopyayı aynı harici diskte tutup 3-2-1 yapıldığını düşünmek; şifreleme anahtarını ya da kurtarma anahtarını yedeklemeden şifrelemeyi açmak.</div></div></td></tr>
+<tr><td>6</td><td><div class="adim-ad">E-Atık</div><div class="adim-konu">E-Atık Süreci</div><span class="slayt">Slayt 10</span></td><td>Çalışmayan cihaz yolu kendiliğinden oynar; her durakta kısa açıklamayı okutun. Ardından <q>Çöpe atılırsa</q> düğmesine basıp sorun: <q>Bir bilgisayarın içinde hem değerli hem de zararlı neler var?</q> <q>Elektronik atık ayrı toplanırsa altın, bakır ve alüminyum yeniden kullanılır; çöpe giderse bu metaller kaybolur, kurşun gibi maddeler de doğaya karışır</q> deyin. Okulda ya da ilçede en yakın e-atık toplama noktasını birlikte bulun. Pilin cihazdan ayrı toplanması gerektiğini vurgulayın. Öğrencilere çalışan ve çalışmayan bir bilgisayarın izleyeceği yolu sırasıyla söyletin.</td></tr>
+</table>
+<div class="kutu"><b>Etkinlikler (Slayt 11–12):</b> Etkinlik 1'de öğrenciler ikişerli gruplar hâlinde teşhis simülatöründeki beş vakayı çözer: biri belirtiyi okuyup hipotezi işaretler, diğeri testleri seçer; her vakadan sonra roller değişir. Her vakanın sonunda gruba <q>Hangi test en çok bilgi verdi, hangisi gereksizdi?</q> diye sorun. Akıllı tahtada bir grubu vaka 1'de bilerek güç kaynağıyla değiştirme testine yönlendirin ve tek değişken uyarısını sınıfa okutun. Rapor ekranındaki ortalama puanı gruplar arasında karşılaştırın. Etkinlik 2'de gruplar kendi masalarındaki bilgisayarı kapatıp fişini çeker, yalnız gözle ve elle bakım kontrolü yapar, sıcaklık ile disk sağlığını okur ve kartı doldurur; basınçlı hava yalnız öğretmen tarafından ve gözetimde kullanılır (yaklaşık 10 dk).</div>
+<h3><span>Değerlendirme ve Kapanış</span><span class="sure">5 dk</span></h3>
+<p>Özet slaytında her kartı bir gruba bir cümleyle anlattırın. Bilgi Testi'ni (Slayt 14) bireysel çözdürün; yanlış çıkan soruda ilgili adım slaytına dönüp animasyonu yeniden oynatın. Isınmadaki oylamaya son kez dönüp sonucu birlikte düzeltin. Dersi şu köprüyle kapatın: <q>Artık bir sistemi kurabiliyor, açabiliyor, arızasını bulabiliyor ve bakımını yapabiliyoruz; gelecek hafta bunların hepsini bir sistem önerisi ve montaj raporunda birleştireceğiz.</q></p>
+<h2>4. ÖLÇME VE DEĞERLENDİRME</h2>
+<table class="olcme"><thead><tr><th>#</th><th>Soru ve Seçenekler</th><th>Cevap</th></tr></thead>
+<tr><td>1</td><td><div class="soru">Sistematik sorun gidermede belirtiler toplandı ve olası nedenler sıralandı. Sıradaki doğru adım hangisidir?</div><div class="secenek">A) Nedenleri en kolay ve ucuz testten başlayarak, her seferinde tek değişiklikle sınamak B) En pahalı parçayı değiştirip sonucu beklemek C) Zaman kazanmak için birkaç parçayı aynı anda değiştirmek D) Sorun ne olursa olsun önce işletim sistemini yeniden kurmak</div><div class="aciklama">Tek değişiklikle yapılan ucuz testler, sorunu neyin çözdüğünü gösterir. Aynı anda birkaç değişiklik yapılırsa gerçek neden gizlenir.</div></td><td>A</td></tr>
+<tr><td>2</td><td><div class="soru-gorsel"><svg viewBox="0 0 230 110" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Tozlu kasa fanı ve basınçlı hava kutusu; nasıl temizleneceği soruluyor"><rect width="230" height="110" rx="10" fill="#f1f5f9"/><rect x="96" y="10" width="92" height="90" rx="8" fill="#1f2937"/><circle cx="142" cy="55" r="34" fill="#0f172a" stroke="#64748b" stroke-width="2"/><g class=""><path d="M142 55 l0 -29" stroke="#a8a29e" stroke-width="10.2" stroke-linecap="round" transform="rotate(0 142 55)"/><path d="M142 55 l0 -29" stroke="#a8a29e" stroke-width="10.2" stroke-linecap="round" transform="rotate(120 142 55)"/><path d="M142 55 l0 -29" stroke="#a8a29e" stroke-width="10.2" stroke-linecap="round" transform="rotate(240 142 55)"/></g><circle cx="142" cy="55" r="6.800000000000001" fill="#cbd5e1"/><ellipse cx="136" cy="47" rx="4.4799999999999995" ry="3.2" fill="#a8a29e" opacity=".9"/><ellipse cx="149" cy="52" rx="3.6399999999999997" ry="2.6" fill="#a8a29e" opacity=".9"/><ellipse cx="139" cy="62" rx="3.9199999999999995" ry="2.8" fill="#a8a29e" opacity=".9"/><ellipse cx="151" cy="63" rx="3.08" ry="2.2" fill="#a8a29e" opacity=".9"/><ellipse cx="132" cy="58" rx="2.8" ry="2" fill="#a8a29e" opacity=".9"/><rect x="20" y="38" width="26" height="58" rx="7" fill="#60a5fa" stroke="#1d4ed8" stroke-width="2"/><rect x="20" y="60.04" width="26" height="16" fill="#eff6ff"/><text x="33" y="71.03999999999999" font-family="Inter,Arial,sans-serif" font-size="7" font-weight="800" fill="#1e3a8a" text-anchor="middle">HAVA</text><rect x="26" y="31" width="14" height="8" rx="2" fill="#1e293b"/><path d="M40 35 h26" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round"/><text x="64" y="24" font-family="Inter,Arial,sans-serif" font-size="20" font-weight="900" fill="#b45309" text-anchor="middle">?</text><text x="208" y="40" font-family="Inter,Arial,sans-serif" font-size="20" font-weight="900" fill="#b45309" text-anchor="middle">?</text></svg></div><div class="soru">Görseldeki tozlu kasa basınçlı havayla temizlenecek. Hangisi doğru uygulamadır?</div><div class="secenek">A) Bilgisayar açıkken püskürtmek; fanlar tozu dışarı atar B) Kutuyu ters çevirip uzun ve sürekli püskürtmek C) Fiş çekiliyken fanı sabitleyip kısa püskürtmelerle temizlemek D) Güç kaynağının kapağını açıp içini de temizlemek</div><div class="aciklama">Bakım fiş çekiliyken yapılır. Sabitlenmeyen fan aşırı hızlanıp zarar görebilir; ters tutulan kutudan soğuk sıvı çıkabilir. Güç kaynağı açılmaz.</div></td><td>C</td></tr>
+<tr><td>3</td><td><div class="soru">Ece’nin bilgisayarı oyunda yaklaşık 20 dakika sonra kendiliğinden kapanıyor. İzleme ekranında işlemci sıcaklığı 98 °C, işlemci fanı 450 dev/dk görünüyor. En doğru sonraki adım hangisidir?</div><div class="secenek">A) Güç kaynağını yenisiyle değiştirmek B) Fiş çekiliyken soğutucu ve fanı incelemek; toz varsa temizleyip fanın dönüşünü sınamak C) İşletim sistemini baştan kurmak D) Ekran kartını değiştirmek</div><div class="aciklama">Yüksek sıcaklık ve yavaş fan ısınma hipotezini destekler. En ucuz test soğutucu ve fanın incelenmesidir; parça değişimi son çaredir.</div></td><td>B</td></tr>
+<tr><td>4</td><td><div class="soru">Deniz, okulun SSD’li eski bilgisayarlarını bağışlamadan önce öğrenci dosyalarını kalıcı olarak silmek istiyor. Hangisi doğrudur?</div><div class="secenek">A) Dosyaları silip çöp kutusunu boşaltmak yeterlidir B) Hızlı biçimlendirme veriyi geri getirilemez yapar C) SSD’ler veriyi kendiliğinden temizler; bir şey yapmaya gerek yoktur D) Gerekli veriler yedeklendikten sonra SSD’nin güvenli silme komutu ya da şifreli diskte anahtarı yok etme yöntemi kullanılır</div><div class="aciklama">Silme ve hızlı biçimlendirme yalnız dosya adreslerini kaldırır. Güvenli silme komutu ya da anahtarın yok edilmesi, SSD’nin yedek alanı dahil tüm veriyi okunamaz yapar.</div></td><td>D</td></tr>
+</table>
+<p class="anahtar">Cevap Anahtarı: <span>1-A 2-C 3-B 4-D</span></p>
+<h2>5. AÇIK UÇLU / BİÇİMLENDİRİCİ DEĞERLENDİRME</h2>
+<ol class="acik">
+<li><span>«Sistematik Sorun Giderme Aşamaları» kavramını kendi cümlelerinle açıkla ve günlük hayattan bir örnek ver.</span></li>
+<li><span>«Isıl Kısma ve Koruma Kapanması» kavramını kendi cümlelerinle açıkla ve günlük hayattan bir örnek ver.</span></li>
+<li><span>«3-2-1 Yedekleme ve Güvenli Silme» kavramını kendi cümlelerinle açıkla ve günlük hayattan bir örnek ver.</span></li>
+<li><span>Simülatörde en çok puan kaybettiğin vaka hangisiydi? Hangi testi daha önce seçseydin daha az zaman harcardın? Açıkla.</span></li>
+</ol>
+<h2>6. ÖĞRETMEN NOTLARI VE ÖDEV</h2>
+<div class="etiket">Ödev / Sınıf Dışı Etkinlik:</div><p>Evdeki bir bilgisayar ya da dizüstü için "bakım ve yedek kartı" hazırla: son temizlik tarihini, disk sağlığı durumunu (bir yetişkinle birlikte, disk sağlığı aracından okuyarak) ve kendi dosyaların için 3-2-1 planını (üç kopyanın nerede duracağı) yaz. Ayrıca ilçendeki bir e-atık toplama noktasının yerini bul. Kartı bir sonraki derse getir.</p>
+<div class="etiket">Öğretmen İçin Notlar:</div><ul class="not">
+<li>Lise düzeyi: terimler İngilizce karşılıklarıyla verilir (Terim Kartı, Slayt 4). Öğrencilerden teşhis konuşurken belirti, hipotez, test ve sonuç sözcüklerini bilinçli kullanmalarını isteyin; simülatör raporunu bu dörtlü yapıyla deftere yazdırın.</li>
+<li>Uygulama bölümlerinde (Adım 2–5) önce slayttaki simülasyonu ya da provayı, sonra gösteri bilgisayarını kullanın. Öğrenciler bu hafta gerçek sistemde yalnız gözle, elle (fiş çekili) ve okuma araçlarıyla çalışır; silme ve biçimlendirme yalnız simülatörde denenir.</li>
+<li>Teknik not: Isıl kısma sınırı ve kapanma sıcaklığı işlemci modeline göre değişir; derste verilen 95–100 °C değerleri temsilîdir. SMART öznitelik numaraları (5, 197, 198, 199) HDD'lerde yaygındır; NVMe SSD'ler farklı sağlık alanları (kullanılan ömür yüzdesi, kullanılabilir yedek alan, bütünlük hataları) raporlar. SSD'de TRIM, silinen blokları zamanla temizleyebilir; ancak ne zaman olacağı garanti edilmediği için kalıcı silme yöntemi yerine geçmez.</li>
+<li>Sık görülen kavram yanılgıları: <q>Kapanıyorsa güç kaynağı bozuktur</q>, <q>Çöp kutusunu boşaltınca dosya yok olur</q>, <q>Yedek almak için dosyayı aynı diskte başka klasöre kopyalamak yeter</q>, <q>Basınçlı hava ne kadar uzun tutulursa o kadar iyi temizler</q>. Bu cümleleri doğru/yanlış sorusu olarak sorup gerekçesiyle düzeltin.</li>
+<li>Farklılaştırma: Hızlı bitiren gruplardan simülatörde bir vakayı hiç gereksiz parça değiştirmeden ve 90 puanın üstünde çözmelerini, ardından kendi arıza vakalarını belirti–test–sonuç tablosuyla yazmalarını isteyin. Zorlanan gruplarla vaka 1'i birlikte, her testten sonra <q>Hangi neden elendi?</q> diye sorarak çözün.</li>
+<li>Hareket azaltma ayarı açık cihazlarda animasyonlar kısa geçişlerle ilerler; 3D bakım provası <q>Adım adım</q> düğmesiyle tek tek oynatılabilir. Tüm simülasyonlar dokunmatik ekranda ve klavyeyle (Tab, Enter) kullanılabilir.</li>
+<li>Her adımın sonunda 1–2 öğrenciye <q>Bu belirtiyi görsen ilk hangi testi yapardın ve neden?</q> diye sorup kendi cümleleriyle anlattırarak anlaşıldığını kontrol edin (biçimlendirici değerlendirme).</li>
+</ul>
+<table class="sure-tablo"><thead><tr><th>Aşama</th><th>Süre</th></tr></thead>
+<tr><td>Giriş — Dikkat Çekme ve Güdüleme</td><td>5 dk</td></tr>
+<tr><td>Gelişme — Kavramların İşlenişi ve Etkinlikler</td><td>25 dk</td></tr>
+<tr><td>Değerlendirme ve Kapanış</td><td>5 dk</td></tr>
+<tr><th>Toplam</th><th>35 dk</th></tr>
+</table>
+<div class="imza"><div><b>Ders Öğretmeni</b>Ad Soyad / İmza</div><div><b>Uygundur</b>Okul Müdürü</div></div>
+</body>
+</html>
