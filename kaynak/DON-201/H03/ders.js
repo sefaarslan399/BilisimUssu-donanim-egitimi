@@ -79,9 +79,9 @@
         .then(function () { mesaj('USB-C iki yönde de girer.', 'dogru'); calisiyor = false; });
       D.fisKonumla(fC, pC, 3.5, Math.PI);
     }
-    a.s.dugme('USB-A dene', D.simge('oynat'), usbA, { yer: 'alt-orta', aciklama: 'USB-A ucunu ters tutup takmayı dene' });
-    a.s.dugme('USB-C dene', D.simge('oynat'), usbC, { yer: 'alt-orta', aciklama: 'USB-C ucunu iki yönde takmayı dene' });
-    a.s.dugme('Baştan', D.simge('sifirla'), function () {
+    a.s.dugme('USB-A dene', 'oynat', usbA, { yer: 'alt-orta', aciklama: 'USB-A ucunu ters tutup takmayı dene' });
+    a.s.dugme('USB-C dene', 'oynat', usbC, { yer: 'alt-orta', aciklama: 'USB-C ucunu iki yönde takmayı dene' });
+    a.s.dugme('Baştan', 'sifirla', function () {
       if (calisiyor) return;
       D.fisKonumla(fA, pA, 3.5); D.fisKonumla(fC, pC, 3.5); mesaj('');
     }, { yer: 'ust-sag', aciklama: 'Uçları başa al' });
@@ -113,7 +113,7 @@
         });
         z.then(function () { mesaj(adimlar[adimlar.length - 1].son || '', 'dogru'); });
       }
-      a.s.dugme('Tekrar oynat', D.simge('tekrar'), oynat, { yer: 'alt-orta', aciklama: 'Kamera turunu yeniden oynat' });
+      a.s.dugme('Tekrar oynat', 'tekrar', oynat, { yer: 'alt-orta', aciklama: 'Kamera turunu yeniden oynat' });
       D.bekle(0.6, a.s).then(oynat);
     });
   }
@@ -268,7 +268,7 @@
       b.setAttribute('aria-pressed', 'false');
       tepsiDugme[f.tur] = b;
     });
-    a.s.dugme('Baştan', D.simge('sifirla'), function () {
+    a.s.dugme('Baştan', 'sifirla', function () {
       if (mesgul) return;
       Object.keys(dolu).forEach(function (k) { dolu[k].parent.remove(dolu[k]); });
       if (fis) fis.parent.remove(fis);

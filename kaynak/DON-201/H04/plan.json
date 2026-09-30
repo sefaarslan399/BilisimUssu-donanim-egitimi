@@ -1,0 +1,51 @@
+{
+  "format": "K+U",
+  "yontem": "Anlatım, gösteri, soru-cevap, 3D model inceleme, tahmin et–izle, gerçek araçla uygulama (bileklik takma, parça tutma), doğru/yanlış sahne analizi, güvenlik sözleşmesi",
+  "arac": "Etkileşimli ders (LMS), projeksiyon veya akıllı tahta; gösteri için fişli eski bir kasa, antistatik bileklik, eski bir RAM modülü, etiketli parça kutusu",
+  "giris": "Kapak slaytında dönen bileklik, RAM ve uyarı etiketli güç kaynağını gösterip sorun: \"Atölyede bizi ve parçaları neler tehlikeye sokar?\" İki üç cevabı tahtaya yazın. Hedefler slaytında kazanımları paylaşın. Isınma slaytında (Slayt 3) üç seçeneği okutun ve el kaldırarak oylayın: \"Tahminimizi Adım 2'de fişi çekince kontrol edeceğiz.\"",
+  "gelisme": [
+    {"konu": "Kuralların Nedenleri", "slayt": 4,
+     "not": "Üç kartı sırayla gönüllü öğrencilere çevirtin. Her kartta önce tehlikeyi okutup sorun: \"Bu tehlikeye karşı ne yaparız?\" Cevaptan sonra kartı çevirin. \"Atölyede hiçbir kural keyfi değildir; her biri elektriğe, statik elektriğe ya da dağınıklığa karşı bizi korur\" deyin. Öğrencilere üç tehlikeyi sırayla söyletin."},
+    {"konu": "Fişi Çekme ve Kalan Elektriği Boşaltma", "slayt": 5,
+     "not": "Önce Kapat düğmesine basın ve yeşil bekleme ışığını gösterin: \"Bilgisayar kapandı; neden bu ışık hâlâ yanıyor?\" Ardından Fişi çek ve 5 sn bas düğmelerine sırayla bastırın. \"Kapatmak elektriği kesmez; fişi çekeriz, sonra düğmeye basılı tutarak içerideki son elektriği boşaltırız\" deyin. Isınma tahminlerini burada karşılaştırın. Öğrencilere iki adımı sırasıyla söyletin.",
+     "uygulama": {"goster": "Önce 3D sahnedeki üç düğmeyi oynatın, sonra gösteri kasasında fişi prizden tutarak çekin ve güç düğmesine 5 saniye basılı tutun.",
+                  "sor": "\"Fişi çekerken kablodan mı, fişin gövdesinden mi tutarız?\"",
+                  "kontrol": "Fiş masada duruyor, prize takılı değil; güç düğmesine 5 saniye basıldı.",
+                  "sik_hata": "Yalnız bilgisayarı kapatıp fişi takılı bırakmak ya da fişi kablodan asılarak çekmek."}},
+    {"konu": "Statik Elektrik", "slayt": 6,
+     "not": "Animasyon Bilekliksiz modda kendiliğinden oynar; karakter yürürken artı işaretlerini gösterip sorun: \"Vücudumuzda ne birikiyor?\" Kıvılcım atlayınca durdurun. Sonra Bileklikli modu oynatın. \"Halıda yürürken ya da yün kazağa sürtünürken vücudumuz elektrik toplar; buna statik elektrik denir ve çipe atlayınca onu bozabilir\" deyin. Öğrencilere statik elektriği hissettikleri bir anı anlattırın (kapı kolu, kazak)."},
+    {"konu": "Bileklik Takma ve Parçayı Doğru Tutma", "slayt": 7,
+     "not": "Doğru tutuş ile yanlış tutuşu art arda gösterin, kırmızı etiketi okutun. Bilekliği bağla düğmesiyle klipsin boyasız metale gidişini izletin. \"Bilekliği deriye değecek şekilde takar, klipsi kasanın boyanmamış metal bir yerine bağlarız; parçayı hep kısa kenarlarından tutarız\" deyin. Öğrencilere gerçek RAM'i kenarından tutarak birbirine uzattırın.",
+     "uygulama": {"goster": "Önce 3D provada doğru ve yanlış tutuşu oynatın; sonra kendi bileğinize bilekliği takıp klipsi gösteri kasasının boyasız metaline bağlayın.",
+                  "sor": "\"Klipsi boyalı yüzeye taksaydık elektrik akar mıydı?\"",
+                  "kontrol": "Bileklik deriye değiyor, klips boyasız metalde; RAM kısa kenarlarından tutuluyor, altın temaslara parmak değmiyor.",
+                  "sik_hata": "Bilekliği giysinin üstüne takmak, klipsi boyalı yüzeye bağlamak ya da RAM'i altın temaslarından kavramak."}},
+    {"konu": "Asla Açılmayan Parçalar", "slayt": 8,
+     "not": "Üç nesneye sırayla dokundurun; her birinde titreşen uyarıyı ve kartı okutun. Sorun: \"Fiş çekilmişse güç kaynağının içi neden hâlâ tehlikeli olabilir?\" \"Güç kaynağı, şişmiş pil ve tüplü monitör hiçbir koşulda açılmaz; böyle bir şey görürsen dokunmadan öğretmenine ya da güvendiğin bir yetişkine söylersin\" deyin. Güç kaynağındaki uyarı etiketini gerçek parçada gösterin. Öğrencilere üç nesneyi ve nedenlerini söyletin."},
+    {"konu": "Vida ve Parça Düzeni", "slayt": 9,
+     "not": "Animasyonda vidaların kaplara gidişini izletin, Tekrar oynat ile yeniden gösterin. \"Söktüğümüz her vidayı hemen o parçanın kabına koyar ve kabı etiketleriz; masada yalnız o an gereken araç durur\" deyin. Parça kutusunu sınıfa gösterip bölmeleri adlandırtın. Öğrencilere masalarını çalışmaya hazır hâle getirtin.",
+     "uygulama": {"goster": "Önce animasyonu oynatın; sonra gösteri kasasının yan kapak vidalarını söküp 1 numaralı bölmeye koyun ve bölmeye etiket yapıştırın.",
+                  "sor": "\"Vidaları karıştırırsak kasayı kapatırken ne sorun yaşarız?\"",
+                  "kontrol": "Her vida kendi etiketli bölmesinde; masada yalnız tornavida ve parça kutusu var.",
+                  "sik_hata": "Vidaları masaya dağınık bırakmak ya da tek bir kaba karışık koymak."}}
+  ],
+  "etkinlik": "Etkinlik 1'de (Slayt 10) altı sahneyi sınıfça yorumlayın: her sahnede önce birkaç öğrenciye \"Neden?\" diye sorun, sonra karar verdirin; açıklama kutusunu yüksek sesle okutun. Etkinlik 2'de (Slayt 11) her öğrenci ya da grup kuralları tek tek işaretleyip adını yazarak sözleşmeyi imzalar; imzalanan kartı atölye panosuna asılmak üzere kâğıda da yazdırabilirsiniz (yaklaşık 8 dk).",
+  "kapanis": "Özet slaytındaki altı kartı birer öğrenciye anlattırın. Bilgi Testi'ni (Slayt 14) sınıfça çözün; yanlış çıkan soruda ilgili adım slaytına dönün. Son soru Derinleş bonusudur, puanı düşürmez. Dersi \"Atölyeye girdiğinde ilk yapacağın üç şey nedir?\" sorusuyla kapatın.",
+  "acik_uclu": ["Statik Elektrik", "Antistatik Bileklik", "Asla Açılmayan Parçalar"],
+  "oz_degerlendirme": "Bu derste en çok hangi adım ilgini çekti, nerede zorlandın? Nedenini açıkla.",
+  "odev": "Evde statik elektriğin oluşabileceği üç durum bul (ör. halı, yün kazak, kuru hava). Her biri için bilgisayar parçasını korumak adına ne yapman gerektiğini bir cümleyle yaz ve bir sonraki derse getir.",
+  "guvenlik_ek": [
+    "Gösterilerde kullanılan kasanın fişi ders boyunca prize takılmaz.",
+    "Öğrenciler yalnız öğretmenin verdiği eski ve çalışmayan parçalarla tutuş alıştırması yapar.",
+    "Şişmiş ya da hasarlı bir pil görülürse dokunulmaz; öğretmene ya da güvendiği bir yetişkine söylenir."
+  ],
+  "notlar": [
+    "Derinleş (Slayt 12) isteğe bağlıdır: süre kalırsa ya da hızlı bitiren öğrenciler için kullanın. Hissedilmeyen statik boşalmanın bile çipe zarar verebileceği anlatılır. Atlasanız da akış bozulmaz; Bilgi Testi'ndeki bonus soru puanı düşürmez.",
+    "Uygulama bölümlerinde (Adım 2, 4, 6) önce 3D provayı, sonra gerçek araçla gösteriyi yapın; öğrencilerin kendileri kasayı bu hafta açmaz, bu Atölye 1'in (10. hafta) konusudur.",
+    "Yaş bandı uyarlaması: 10–12 yaş grubunda kuralları hareketle canlandırın (fişi çekme, bilekliği takma). 13–15 yaş grubunda statik elektriğin neden kuru havada arttığını ve topraklamanın ne demek olduğunu tartıştırın.",
+    "Sık görülen kavram yanılgıları: \"Bilgisayarı kapatınca içi tamamen güvenlidir\", \"Statik elektrik hissedilmiyorsa zararsızdır\", \"Güç kaynağı açılıp temizlenebilir\". Bu cümleleri doğru/yanlış sorusu olarak sorup düzeltin.",
+    "3D sahneler yavaş bilgisayarda kaliteyi kendiliğinden düşürür; WebGL açılmazsa yerine çizim görünür. Hareket azaltma ayarı açık cihazlarda animasyonlar kısa geçişlerle ilerler.",
+    "Her adımın sonunda 1-2 öğrenciye \"Bu kural bizi neye karşı koruyor?\" diye sorup anlattırarak anlaşıldığını kontrol edin (biçimlendirici değerlendirme)."
+  ],
+  "sureler": [["Giriş — Dikkat Çekme ve Güdüleme", 5], ["Gelişme — Kavramların İşlenişi ve Etkinlikler", 25], ["Değerlendirme ve Kapanış", 5]]
+}

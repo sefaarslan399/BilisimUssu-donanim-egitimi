@@ -286,3 +286,34 @@
   .dsn-oge:hover,.dsn-oge--secili{transform:none}
   .don3d-etiket,.don3d-ipucu,.dsn-oge{transition:none}
 }
+
+/* E-DOGRU-YANLIS */
+.dy{display:flex;flex-direction:column;gap:8px;height:100%;min-height:0}
+.dy-noktalar{display:flex;gap:6px;justify-content:center;flex-shrink:0}
+.dy-nokta{width:12px;height:12px;border-radius:50%;background:#cbd5e1}
+.dy-nokta.simdi{outline:2px solid var(--brand, #0ea5e9);outline-offset:2px}
+.dy-nokta.iyi{background:var(--ok, #10b981)}
+.dy-nokta.kotu{background:var(--err, #ef4444)}
+.dy-kart{flex:1;min-height:0;display:flex;flex-direction:column;background:#fff;border:1.5px solid var(--border, #e2e8f0);border-radius:16px;overflow:hidden}
+.dy-gorsel{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg, #f0f9ff, #e0f2fe)}
+.dy-gorsel svg{width:100%;height:100%;max-height:100%}
+.dy-metin{flex-shrink:0;padding:8px 12px;font-weight:800;font-size:clamp(14px, 0.4vw + 11px, 20px);color:var(--ink, #0f172a);text-align:center;border-top:1.5px solid var(--border, #e2e8f0)}
+.dy-secim{display:grid;grid-template-columns:1fr 1fr;gap:8px;flex-shrink:0}
+.dy-sec{display:flex;align-items:center;justify-content:center;gap:8px;min-height:52px;border-radius:14px;border:2px solid var(--border, #e2e8f0);background:#fff;cursor:pointer;
+  font-family:var(--font, inherit);font-weight:900;font-size:clamp(15px, 0.45vw + 12px, 21px)}
+.dy-sec--d{color:#047857}
+.dy-sec--y{color:#b91c1c}
+.dy-sec:disabled{cursor:default;opacity:.55}
+.dy-sec.dy-sec--iyi{opacity:1;background:var(--ok-bg, #d1fae5);border-color:var(--ok, #10b981)}
+.dy-sec.dy-sec--kotu{opacity:1;background:var(--err-bg, #fee2e2);border-color:var(--err, #ef4444)}
+.dy-sec svg.don3d-simge{width:22px;height:22px}
+.dy-geri{flex-shrink:0;display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;min-height:0;border-radius:12px;font-size:clamp(12px, 0.3vw + 10px, 16px);line-height:1.35}
+.dy-geri:empty{display:none}
+.dy-geri.iyi,.dy-geri.kotu{padding:6px 10px}
+.dy-geri.iyi{background:var(--ok-bg, #d1fae5);color:#065f46}
+.dy-geri.kotu{background:var(--err-bg, #fee2e2);color:#991b1b}
+.dy-geri span{flex:1 1 60%;font-weight:600}
+.dy-ileri{margin-left:auto;min-height:40px;padding:4px 16px;border-radius:999px;border:none;background:var(--brand, #0ea5e9);color:#fff;font-family:var(--font, inherit);font-weight:800;cursor:pointer}
+.dy-geri.dy-son{flex:1;flex-direction:column;justify-content:center;text-align:center;gap:10px}
+.dy-geri.dy-son b{font-size:clamp(30px, 2vw + 16px, 56px);color:var(--brand-dk, #0369a1)}
+.dy-geri.dy-son .dy-ileri{margin:0}

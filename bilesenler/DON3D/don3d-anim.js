@@ -606,6 +606,20 @@
     return api;
   };
 
+  /* ─── A-UYARI: tehlikeli nesnede kırmızı vurgu + titreşim (+ isteğe bağlı kilit etiketi) ─── */
+  /** DON3D.uyari(parca, { etiket: 'metin' | false, genlik: cm }) → Promise */
+  D.uyari = function (parca, ops) {
+    ops = ops || {};
+    var s = D.sahneBul(parca);
+    D.vurgula(parca, { renk: '#ef4444', etiket: ops.etiket == null ? false : ops.etiket, sure: 0.25 });
+    D.ses('hata');
+    var p0 = parca.userData._uyariKonum || (parca.userData._uyariKonum = parca.position.clone());
+    var gen = ops.genlik == null ? 0.6 : ops.genlik;
+    return D.tween({ sahne: s, sure: D.azHareket() ? 0.01 : 0.7, anahtar: 'uyari', hedef: parca, ease: 'lineer', guncelle: function (e) {
+      parca.position.x = p0.x + Math.sin(e * Math.PI * 12) * (1 - e) * gen;
+    } }).then(function () { parca.position.copy(p0); });
+  };
+
   /* ─── A-DONUS: dönen parça (fan, HDD plakası) ─── */
   /** Parçayı sürekli döndürür. Döner: durdur() */
   D.dondurParca = function (parca, ops) {

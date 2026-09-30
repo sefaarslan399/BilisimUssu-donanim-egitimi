@@ -300,6 +300,71 @@
     };
   };
 
+  /* ─── E-DOGRU-YANLIS: animasyonlu mini sahneler için doğru/yanlış kararı (2D) ─── */
+  /**
+   * DON3D.dogruYanlis(el, { sahneler: [{ svg, metin, dogru: bool, aciklama }], onIlerleme(dogruSayisi, toplam), onBitti(dogruSayisi) })
+   * Sahne SVG'si ekranda oynar; öğrenci "Doğru" ya da "Yanlış" seçer, açıklama gelir, "Sonraki" ile ilerler.
+   */
+  D.dogruYanlis = function (el, ops) {
+    if (typeof el === 'string') el = document.querySelector(el);
+    var i = 0, puan = 0, n = ops.sahneler.length;
+    el.innerHTML = '';
+    var kok = D.div('dy', el);
+    var nokta = D.div('dy-noktalar', kok);
+    var kart = D.div('dy-kart', kok);
+    var gorsel = D.div('dy-gorsel', kart);
+    var metin = D.div('dy-metin', kart);
+    var secim = D.div('dy-secim', kok);
+    var geri = D.div('dy-geri', kok);
+    geri.setAttribute('aria-live', 'polite');
+    function dugme(ebeveyn, sinif, html, fn) {
+      var b = document.createElement('button'); b.type = 'button'; b.className = sinif; b.innerHTML = html;
+      b.addEventListener('click', fn); ebeveyn.appendChild(b); return b;
+    }
+    var bD = dugme(secim, 'dy-sec dy-sec--d', D.simge('dogru') + '<span>Doğru</span>', function () { cevap(true); });
+    var bY = dugme(secim, 'dy-sec dy-sec--y', D.simge('yanlis') + '<span>Yanlış</span>', function () { cevap(false); });
+    var noktalar = ops.sahneler.map(function () { return D.div('dy-nokta', nokta); });
+    function goster() {
+      var sh = ops.sahneler[i];
+      gorsel.innerHTML = sh.svg;
+      metin.textContent = sh.metin;
+      bD.disabled = bY.disabled = false;
+      bD.className = 'dy-sec dy-sec--d'; bY.className = 'dy-sec dy-sec--y';
+      geri.className = 'dy-geri'; geri.innerHTML = '';
+      noktalar.forEach(function (d, k) { d.classList.toggle('simdi', k === i); });
+    }
+    function cevap(dedi) {
+      var sh = ops.sahneler[i], dogru = dedi === sh.dogru;
+      bD.disabled = bY.disabled = true;
+      (dedi ? bD : bY).classList.add(dogru ? 'dy-sec--iyi' : 'dy-sec--kotu');
+      if (dogru) { puan++; D.ses('klik'); } else D.ses('hata');
+      noktalar[i].classList.add(dogru ? 'iyi' : 'kotu');
+      geri.className = 'dy-geri ' + (dogru ? 'iyi' : 'kotu');
+      geri.innerHTML = '<b></b><span></span>';
+      geri.firstChild.textContent = (dogru ? '✓ Bildin! ' : '✗ Dikkat! ') + 'Bu davranış ' + (sh.dogru ? 'DOĞRU. ' : 'YANLIŞ. ');
+      geri.lastChild.textContent = sh.aciklama;
+      if (ops.onIlerleme) ops.onIlerleme(i + 1, n, puan);
+      var ileri = document.createElement('button');
+      ileri.type = 'button'; ileri.className = 'dy-ileri';
+      ileri.textContent = i < n - 1 ? 'Sonraki sahne →' : 'Sonucu gör →';
+      ileri.addEventListener('click', function () { i++; if (i < n) goster(); else bitir(); });
+      geri.appendChild(ileri);
+    }
+    function bitir() {
+      kart.hidden = true; secim.hidden = true;
+      geri.className = 'dy-geri dy-son';
+      geri.innerHTML = '<b></b><span></span>';
+      geri.firstChild.textContent = puan + ' / ' + n;
+      geri.lastChild.textContent = puan === n ? 'Harika! Tüm güvenlik kararlarını doğru verdin.' : 'Yanlış verdiğin kararların açıklamalarını bir kez daha oku.';
+      var yeniden = document.createElement('button');
+      yeniden.type = 'button'; yeniden.className = 'dy-ileri'; yeniden.textContent = 'Yeniden oyna';
+      yeniden.addEventListener('click', function () { D.dogruYanlis(el, ops); });
+      geri.appendChild(yeniden);
+      if (ops.onBitti) ops.onBitti(puan);
+    }
+    goster();
+  };
+
   /* ─── E-SINIFLA: öğeleri doğru kutulara sürükle; anında geri bildirim ─── */
   /**
    * DON3D.sinifla(kapsayici, {

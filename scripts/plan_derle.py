@@ -116,8 +116,28 @@ ul.not{margin:2pt 0;padding-left:12pt}
 ul.not li{margin:2pt 0}
 .sure-tablo td:last-child,.sure-tablo th:last-child{width:62pt}
 .imza{display:flex;justify-content:space-around;margin-top:14pt;text-align:center;color:#6b7a82;break-inside:avoid}
+.uyg{display:grid;grid-template-columns:1fr 1fr;gap:3pt;margin-top:5pt}
+.uyg div{border-radius:3pt;padding:3pt 6pt;font-size:9pt;line-height:1.32}
+.uyg b{display:block;font-size:7.6pt;letter-spacing:.8pt}
+.uyg .goster{background:#eff6ff;border-left:2.5pt solid #3b82f6}.uyg .goster b{color:#1d4ed8}
+.uyg .sor{background:#f5f3ff;border-left:2.5pt solid #8b5cf6}.uyg .sor b{color:#6d28d9}
+.uyg .kontrol{background:#ecfdf5;border-left:2.5pt solid #10b981}.uyg .kontrol b{color:#047857}
+.uyg .sikhata{background:#fff7ed;border-left:2.5pt solid #f97316}.uyg .sikhata b{color:#c2410c}
+.guvenlik{border:1.5pt solid #ef4444;border-radius:4pt;background:#fef2f2;padding:6pt 10pt;margin:6pt 0;break-inside:avoid}
+.guvenlik b{color:#b91c1c;display:block;margin-bottom:2pt}
+.guvenlik ul{margin:2pt 0;padding-left:13pt}
 .imza b{display:block;color:#475569;margin-bottom:10pt}
 """
+
+
+def uyg_kutular(u):
+    """Format K+U: uygulama adımının GÖSTER / SOR / KONTROL / SIK HATA kutuları."""
+    if not u:
+        return ""
+    return ('<div class="uyg"><div class="goster"><b>GÖSTER</b>' + konusma(u["goster"]) + '</div>'
+            '<div class="sor"><b>SOR</b>' + konusma(u["sor"]) + '</div>'
+            '<div class="kontrol"><b>✔ KONTROL</b>' + konusma(u["kontrol"]) + '</div>'
+            '<div class="sikhata"><b>⚠ SIK HATA</b>' + konusma(u["sik_hata"]) + '</div></div>')
 
 
 def plan_html(kod, hafta):
@@ -138,7 +158,8 @@ def plan_html(kod, hafta):
     s = []
     s.append('<!DOCTYPE html>\n<html lang="tr">\n<head>\n<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width, initial-scale=1.0">\n')
     s.append("<title>" + e(kod + " " + hh + " Öğretmen Planı — " + h["baslik"]) + "</title>\n<style>" + CSS + "</style>\n</head>\n<body>\n")
-    s.append('<div class="bant"><div class="bant-sol"><div class="bant-ust">ÖĞRETMEN DERS PLANI · ' + e(kod) + '</div>'
+    ku = plan.get("format") == "K+U"
+    s.append('<div class="bant"><div class="bant-sol"><div class="bant-ust">ÖĞRETMEN DERS PLANI' + (' (KAVRAM + UYGULAMA)' if ku else '') + ' · ' + e(kod) + '</div>'
              '<div class="bant-baslik' + (' uzun' if len(h["baslik"]) > 30 else '') + '">' + e(h["baslik"]) + '</div></div>'
              '<div class="bant-sag">' + str(hafta) + '. Hafta</div></div>\n')
 
@@ -162,6 +183,14 @@ def plan_html(kod, hafta):
         s.append("<tr><td>K" + str(i + 1) + ".</td><td>" + e(k) + "</td></tr>\n")
     s.append("</table>\n")
 
+    if ku:
+        # Format K+U: güvenlik kutusu zorunlu (JSON güvenlik + plana özgü maddeler)
+        s.append('<div class="guvenlik"><b>GÜVENLİK (uygulama öncesi okunur)</b><ul>')
+        gv = h.get("guvenlik") or ""
+        gv = gv if isinstance(gv, list) else [x.strip() for x in gv.split(".") if x.strip()]
+        for m in gv + plan.get("guvenlik_ek", []):
+            s.append("<li>" + e(m.rstrip(".") + ".") + "</li>")
+        s.append("</ul></div>\n")
     sure = dict((x[0].split(" — ")[0], x[1]) for x in plan["sureler"])
     s.append("<h2>3. DERS İŞLENİŞİ</h2>\n")
     s.append('<h3><span>Giriş — Dikkat Çekme ve Güdüleme</span><span class="sure">' + str(sure["Giriş"]) + " dk</span></h3>\n")
@@ -171,7 +200,7 @@ def plan_html(kod, hafta):
     for i, g in enumerate(plan["gelisme"]):
         s.append("<tr><td>" + str(i + 1) + "</td><td><div class=\"adim-ad\">" + e(h["adimlar"][i]) + "</div>"
                  "<div class=\"adim-konu\">" + e(g["konu"]) + "</div><span class=\"slayt\">Slayt " + str(g["slayt"]) + "</span></td>"
-                 "<td>" + konusma(g["not"]) + "</td></tr>\n")
+                 "<td>" + konusma(g["not"]) + uyg_kutular(g.get("uygulama")) + "</td></tr>\n")
     s.append("</table>\n")
     s.append('<div class="kutu"><b>Etkinlikler (Slayt 10–11):</b> ' + konusma(plan["etkinlik"]) + "</div>\n")
     s.append('<h3><span>Değerlendirme ve Kapanış</span><span class="sure">' + str(sure["Değerlendirme ve Kapanış"]) + " dk</span></h3>\n")
@@ -197,7 +226,7 @@ def plan_html(kod, hafta):
 
     s.append("<h2>6. ÖĞRETMEN NOTLARI VE ÖDEV</h2>\n")
     s.append('<div class="etiket">Ödev / Sınıf Dışı Etkinlik:</div><p>' + e(plan["odev"]) + "</p>\n")
-    if h.get("guvenlik"):
+    if h.get("guvenlik") and not ku:
         s.append('<div class="kutu"><b>Güvenlik:</b> ' + e(h["guvenlik"]) + "</div>\n")
     s.append('<div class="etiket">Öğretmen İçin Notlar:</div><ul class="not">\n')
     for n in plan["notlar"]:
