@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DON-301 H06 Öğretmen Planı — Güç Kaynağı ve Soğutma</title>
+<style>
+@font-face{font-family:'Carlito';src:local('Carlito'),url('../../assets/font/Carlito-Regular.ttf');font-weight:400;font-style:normal}
+@font-face{font-family:'Carlito';src:local('Carlito Bold'),url('../../assets/font/Carlito-Bold.ttf');font-weight:700;font-style:normal}
+@font-face{font-family:'Carlito';src:local('Carlito Italic'),url('../../assets/font/Carlito-Italic.ttf');font-weight:400;font-style:italic}
+@page{size:A4;margin:14mm 14mm 16mm 16.5mm;
+  @bottom-center{content:'Bilişim Üssü · Etkileşimli Ders Planı · ' counter(page) ' / ' counter(pages);font-family:Carlito,Calibri,sans-serif;font-size:7.5pt;color:#6b7a82}}
+*{box-sizing:border-box}
+html{font-family:Carlito,Calibri,'Segoe UI',Arial,sans-serif;font-size:9.9pt;color:#1a1a1a;line-height:1.38}
+body{margin:0;max-width:180mm}
+@media screen{body{margin:24px auto;padding:0 12px}}
+.bant{display:flex;gap:7pt;margin-bottom:9pt}
+.bant-sol{flex:1;background:linear-gradient(135deg,#075985,#0a6aa3);color:#fff;border-radius:4pt;padding:9pt 14pt 10pt}
+.bant-ust{font-size:7.6pt;font-weight:700;letter-spacing:2.2pt;opacity:.92}
+.bant-baslik{font-size:23pt;font-weight:700;line-height:1.12;margin-top:3pt}
+.bant-baslik.uzun{font-size:18pt}
+.bant-sag{width:128pt;background:#0369a1;color:#fff;border-radius:4pt;display:flex;align-items:center;justify-content:center;font-size:14pt;font-weight:700}
+h2{background:#0369a1;color:#fff;font-size:11pt;font-weight:700;margin:12pt 0 6pt;padding:5pt 10pt;border-radius:4pt;letter-spacing:.2pt;break-after:avoid}
+h3{display:flex;justify-content:space-between;align-items:center;color:#0369a1;font-size:10.6pt;margin:9pt 0 4pt;break-after:avoid}
+h3 .sure{background:#0369a1;color:#fff;font-size:8.6pt;border-radius:9pt;padding:1.5pt 8pt}
+table{width:100%;border-collapse:collapse;margin:0 0 4pt}
+td,th{border:1px solid #b9def1;padding:4pt 7pt;vertical-align:top;text-align:left}
+th{background:#e0f2fe;color:#075985;font-size:9.2pt;font-weight:700}
+tr{break-inside:avoid}
+.genel td:first-child{width:134pt;background:#e0f2fe;color:#075985;font-weight:700}
+.kazanim{width:100%;border-collapse:collapse}
+.kazanim td{border:0;border-bottom:1px solid #eaf6fc;padding:3.5pt 4pt}
+.kazanim td:first-child{width:32pt;color:#0369a1;font-weight:700}
+.isleyis td:first-child{width:35pt;text-align:center;color:#6b7a82;font-weight:700}
+.isleyis td:nth-child(2){width:122pt}
+.adim-ad{font-weight:700}
+.adim-konu{color:#475569}
+.slayt{display:inline-block;margin-top:2pt;font-size:8pt;font-weight:700;color:#0369a1;background:#e0f2fe;border-radius:6pt;padding:0 5pt}
+q{quotes:'“' '”'}
+q::before{content:open-quote}q::after{content:close-quote}
+p{margin:3pt 0 5pt;text-align:justify}
+.kutu{border:1px solid #b9def1;border-left:3pt solid #0369a1;border-radius:3pt;padding:5pt 8pt;margin:5pt 0;background:#f5fbff;break-inside:avoid}
+.kutu b{color:#075985}
+.olcme td:first-child{width:22pt;text-align:center;font-weight:700}
+.olcme td:last-child{width:40pt;text-align:center;color:#0369a1;font-weight:700}
+.soru{font-weight:700}
+.secenek{margin-top:1pt}
+.aciklama{font-style:italic;color:#0369a1;font-size:9.5pt;margin-top:2pt}
+.soru-gorsel{float:right;margin:0 0 2pt 8pt}
+.soru-gorsel svg{height:38pt;width:auto}
+.anahtar{font-weight:700;color:#075985;margin:3pt 0 0}
+.anahtar span{font-weight:400;color:#1a1a1a}
+ol.acik{margin:2pt 0;padding-left:0;list-style:none;counter-reset:a}
+ol.acik li{counter-increment:a;display:flex;gap:10pt;padding:3pt 0}
+ol.acik li::before{content:counter(a) '.';color:#0369a1;font-weight:700;min-width:16pt}
+.etiket{color:#0369a1;font-weight:700;margin:7pt 0 2pt}
+ul.not{margin:2pt 0;padding-left:12pt}
+ul.not li{margin:2pt 0}
+.sure-tablo td:last-child,.sure-tablo th:last-child{width:62pt}
+.imza{display:flex;justify-content:space-around;margin-top:14pt;text-align:center;color:#6b7a82;break-inside:avoid;break-before:avoid;page-break-before:avoid}
+.sure-tablo{break-after:avoid;page-break-after:avoid}
+.sure-tablo tr:last-child{break-after:avoid}
+.uyg{display:grid;grid-template-columns:1fr 1fr;gap:3pt;margin-top:5pt}
+.uyg div{border-radius:3pt;padding:3pt 6pt;font-size:9pt;line-height:1.32}
+.uyg b{display:block;font-size:7.6pt;letter-spacing:.8pt}
+.uyg .goster{background:#eff6ff;border-left:2.5pt solid #3b82f6}.uyg .goster b{color:#1d4ed8}
+.uyg .sor{background:#f5f3ff;border-left:2.5pt solid #8b5cf6}.uyg .sor b{color:#6d28d9}
+.uyg .kontrol{background:#ecfdf5;border-left:2.5pt solid #10b981}.uyg .kontrol b{color:#047857}
+.uyg .sikhata{background:#fff7ed;border-left:2.5pt solid #f97316}.uyg .sikhata b{color:#c2410c}
+.guvenlik{border:1.5pt solid #ef4444;border-radius:4pt;background:#fef2f2;padding:6pt 10pt;margin:6pt 0;break-inside:avoid}
+.guvenlik b{color:#b91c1c;display:block;margin-bottom:2pt}
+.guvenlik ul{margin:2pt 0;padding-left:13pt}
+.imza b{display:block;color:#475569;margin-bottom:10pt}
+</style>
+</head>
+<body>
+<div class="bant"><div class="bant-sol"><div class="bant-ust">ÖĞRETMEN DERS PLANI · DON-301</div><div class="bant-baslik">Güç Kaynağı ve Soğutma</div></div><div class="bant-sag">6. Hafta</div></div>
+<h2>1. GENEL BİLGİLER</h2>
+<table class="genel">
+<tr><td>Dersin Adı</td><td>Bilgisayar Donanımı ve Sistem Kurulumu</td></tr>
+<tr><td>Sınıf / Seviye</td><td>Lise (9. sınıf)</td></tr>
+<tr><td>Ünite / Konu</td><td>Donanım 301 - Bileşenler ve Uyumluluk — Güç Kaynağı ve Soğutma</td></tr>
+<tr><td>Öğrenme Alanı</td><td>Bilgisayar Donanımı</td></tr>
+<tr><td>Süre</td><td>1 ders saati (35 dk)</td></tr>
+<tr><td>Yöntem ve Teknikler</td><td>Anlatım, soru-cevap, tahmin et–izle, 2D teknik animasyon (AC→DC dönüşümü), güç bütçesi hesaplama, grafik okuma (verim eğrisi), 3D model inceleme (konnektörler ve soğutucu), parametre sürgülü simülasyon (kasa hava akışı), problem çözme, eşli çalışma</td></tr>
+<tr><td>Araç-Gereç ve Kaynaklar</td><td>Etkileşimli ders (LMS), projeksiyon veya akıllı tahta; öğrenci başına hesap makinesi ya da bilgisayar; mümkünse kapağı hiç açılmamış bir ATX güç kaynağı (yalnız etiketini ve konnektörlerini göstermek için), bir kule soğutucu ve bir kasa fanı</td></tr>
+<tr><td>Kavramlar / Terimler</td><td>AC'den DC'ye (12V/5V/3.3V), Güç Hesabı, 80 PLUS Verimlilik, Güç Kabloları, TDP ve Soğutucu Türleri, Kasa Hava Akışı</td></tr>
+</table>
+<h2>2. KAZANIMLAR</h2>
+<table class="kazanim">
+<tr><td>K1.</td><td>Güç kaynağının AC'yi DC gerilimlere dönüştürdüğünü açıklar.</td></tr>
+<tr><td>K2.</td><td>Sistemin güç ihtiyacını pay bırakarak hesaplar.</td></tr>
+<tr><td>K3.</td><td>80 PLUS sertifikalarını yorumlar.</td></tr>
+<tr><td>K4.</td><td>Hava ve sıvı soğutmayı TDP üzerinden karşılaştırır.</td></tr>
+</table>
+<h2>3. DERS İŞLENİŞİ</h2>
+<h3><span>Giriş — Dikkat Çekme ve Güdüleme</span><span class="sure">5 dk</span></h3>
+<p>Kapaktaki güç kaynağını ve konnektörleri döndürürken sorun: <q>Duvardaki prizde 230 volt var; işlemcinin içine girebilen gerilim ise bir voltun biraz üzerinde. Aradaki farkı kim, nasıl kapatıyor?</q> Yanıtları tahtanın köşesine yazın. Kazanımları okuyun ve dersin sonunda kendi bilgisayarları için güç kaynağı ve soğutucu seçebileceklerini söyleyin. Isınma slaytında (Slayt 3) Ece’nin hesabını okutun, üç seçenek için el kaldırarak oylama yapın ve sonucu yazın; <q>Adım 2’de bütçeyi parça parça kurup bu oylamayı sınayacağız</q> deyin. Terim Kartı’nda (Slayt 4) her terimi bir öğrenciye okutun; TDP ve CFM kısaltmalarının açılımını ayrıca sorun.</p>
+<h3><span>Gelişme — Kavramların İşlenişi</span><span class="sure">25 dk</span></h3>
+<table class="isleyis"><thead><tr><th>Adım</th><th>Konu</th><th>Öğretmen Notu</th></tr></thead>
+<tr><td>1</td><td><div class="adim-ad">AC'den DC'ye (12V/5V/3.3V)</div><div class="adim-konu">AC’den DC’ye ve Gerilim Hatları</div><span class="slayt">Slayt 5</span></td><td>Slayt açılınca dönüşüm kendiliğinden oynar; dalga kutuya girerken durdurmadan sorun: <q>Kablodaki gerilim neden bir artıya bir eksiye gidiyor, bilgisayar bunu doğrudan kullanabilir mi?</q> Üç hat sırayla belirdiğinde hangi bileşenin hangi hattan beslendiğini tahtaya tablo olarak yazdırın. <q>Şebeke gerilimi sürekli yön değiştirir; bilgisayar parçaları ise yönü ve değeri sabit, düşük gerilimler ister. Kutunun içindeki devreler bunu sağlar ve fiş çekildikten sonra da tehlikeli yük saklayabilir, bu yüzden kapağı hiçbir koşulda açılmaz</q> deyin. Ardından Etiketi oku görünümüne geçip +12 V akım değerine dokunun; tahtada 12 × 45 = 540 işlemini yaptırın. Öğrencilere +5 V hattının hangi aygıtları beslediğini söyletin.</td></tr>
+<tr><td>2</td><td><div class="adim-ad">Güç Hesabı</div><div class="adim-konu">Güç Bütçesi ve Pay</div><span class="slayt">Slayt 6</span></td><td>Oynat’a basmadan önce sorun: <q>Yedi parçanın toplamı kaç watt tutar, tahmininizi deftere yazın.</q> Çubuk dolarken ilk iki parçada durup işlemci ve ekran kartının bütçenin çoğunu oluşturduğunu gösterin. Çizgili pay bölümü eklenince <q>Neden tam toplamı değil de dörtte bir fazlasını hedefliyoruz?</q> diye sorun ve anlık yük sıçramaları, yaşlanma, sessizlik, ileride parça ekleme gerekçelerini toplayın. Üç güç kaynağı kartına sırayla dokunup yük yüzdelerini karşılaştırın; ısınmadaki oylamaya geri dönün. <q>Hesap en ağır yük anına göre yapılır; hedef, bir üst standart değeri seçmektir</q> deyin. Öğrencilere 300 watt çeken bir sistem için önerilen değeri hesaplattırın.</td></tr>
+<tr><td>3</td><td><div class="adim-ad">80 PLUS Verimlilik</div><div class="adim-konu">80 PLUS ve Verim</div><span class="slayt">Slayt 7</span></td><td>Önce tahmin ettirin: <q>Aynı yükte Bronze ile Gold arasında ısı farkı kaç watt olur?</q> Gold ve yüzde elli yük seçiliyken enerji çubuklarını okutun, sonra Bronze’a geçip kırmızı çubuğun uzadığını gösterin. Eğride hangi yükte verimin tepe yaptığını sorun. <q>Güç kaynağına giren enerjinin bir bölümü çıkışa ulaşmaz, kutunun içinde ısıya dönüşür; sertifika bu kaybın üst sınırını belirler. Duvardan çekilen değer, çıkış gücünün verime bölünmesiyle bulunur</q> deyin. Tahtada 275 ÷ 0,90 işlemini birlikte yapın. Öğrencilere Titanium ile Bronze arasındaki farkı tam yükte hesaplattırın.</td></tr>
+<tr><td>4</td><td><div class="adim-ad">Güç Kabloları</div><div class="adim-konu">Güç Konnektörleri</div><span class="slayt">Slayt 8</span></td><td>Slayt açılınca kısa tur oynar; her konnektör pin yüzünü çevirip gösterir, turu kesmeden izletin. Ardından EPS ≠ PCIe düğmesine basıp sorun: <q>İkisi de sekiz pinli; hangi özelliğe bakarak ayırt edersiniz?</q> Kilit tarafındaki sarı tellere dikkat çekin. Ayır düğmesiyle 20+4 ve 6+2 parçaların neden ayrılabildiğini tartışın. <q>Konnektörlerin biçimi ve pin kuleleri yanlış takmayı zorlaştırmak için farklıdır; takılmıyorsa bastırılmaz, türü kontrol edilir</q> deyin. Elinizde gerçek güç kaynağı varsa yalnız kablolarını ve kilit tırnağını gösterin. Öğrencilere dört konnektörü takıldıkları yerle eşleştirerek söyletin.</td></tr>
+<tr><td>5</td><td><div class="adim-ad">TDP ve Soğutucu Türleri</div><div class="adim-konu">TDP ve Soğutucu Türleri</div><span class="slayt">Slayt 9</span></td><td>Isı yolu düğmesiyle kırmızı parçacığın işlemciden havaya kadar izlediği yolu gösterin ve katmanları sırayla söyletin. Sonra 65, 125, 170 ve 250 watt seçeneklerini sırayla deneyin; termometre ve işlemci rengi değişirken sorun: <q>Bu kule hangi değerden sonra yetersiz kalıyor, o noktada ne önerirsiniz?</q> <q>Soğutucu seçerken işlemcinin ürettiği ısı ile soğutucunun uzaklaştırabileceği ısı karşılaştırılır. Sıvılı sistemler ısıyı yok etmez, radyatöre taşır; sonunda yine kasa havası devreye girer</q> deyin. Öğrencilere hava ve sıvı soğutmanın birer üstün ve zayıf yönünü söyletin.</td></tr>
+<tr><td>6</td><td><div class="adim-ad">Kasa Hava Akışı</div><div class="adim-konu">Kasa Hava Akışı</div><span class="slayt">Slayt 10</span></td><td>Önerilen düzenle açılan haritada soğuk hava konilerini ve arkadan çıkan sıcak havayı gösterin. Arka fan ters düzenine geçmeden önce tahmin aldırın: <q>Arka fan içeri üflerse işlemci sıcaklığı artar mı, azalır mı?</q> Geçişten sonra ölçüm kutularındaki değişimi birkaç saniye izletin. Yalnız çıkış düzeninde gri toz noktalarının aralıklardan girdiğini gösterin, fansız düzende sıcaklığın tırmandığını izletin. <q>Sıcak hava yükselir; bu yüzden soğuk hava önden ve alttan alınır, arkadan ve üstten atılır. Girişin çıkıştan biraz fazla olması tozu filtreli girişlere yönlendirir</q> deyin. Öğrencilere pozitif ve negatif basıncın farkını kendi cümleleriyle anlattırın.</td></tr>
+</table>
+<div class="kutu"><b>Etkinlikler (Slayt 11–12):</b> Etkinlik 1’de (Slayt 11) öğrenciler hesaplayıcıyı her görevin sistemine göre ayarlar ve önerilen güç kaynağını seçer; üçüncü görevde sertifikayı değiştirip ısı farkını bulurlar. Eşli çalışmada biri hesaplayıcıyı kullanırken diğeri aynı hesabı deftere elle yapsın, sonuçları karşılaştırsınlar. Etkinlik 2’de (Slayt 12) ters takılmış arka fanla başlayan kasayı düzenletin; dört görevi istedikleri sırayla bitirebilirler. Sessiz ve serin görevinde farklı çözümleri tahtada paylaştırın (yaklaşık 10 dk).</div>
+<h3><span>Değerlendirme ve Kapanış</span><span class="sure">5 dk</span></h3>
+<p>Özet slaytındaki altı kartı farklı öğrencilere birer cümleyle açıklattırın. Bilgi Testi’ni (Slayt 14) bireysel çözdürün; yanlış çıkan sorularda özellikle verim hesabında bölme yerine çarpma yapılması hatasını ve pay hesabını tahtada birlikte düzeltin. Dersi <q>Gelecek hafta ekran kartını inceleyeceğiz; bugün bütçenin en büyük dilimini oluşturduğunu gördünüz</q> köprüsüyle kapatın.</p>
+<h2>4. ÖLÇME VE DEĞERLENDİRME</h2>
+<table class="olcme"><thead><tr><th>#</th><th>Soru ve Seçenekler</th><th>Cevap</th></tr></thead>
+<tr><td>1</td><td><div class="soru">Masaüstü bilgisayardaki güç kaynağının (PSU) temel görevi nedir?</div><div class="secenek">A) Prizdeki AC gerilimi +12 V, +5 V ve +3,3 V gibi düşük DC gerilimlere dönüştürmek B) Anakarttan gelen DC gerilimi AC’ye çevirip bileşenlere dağıtmak C) Elektrik kesilince sistemi saatlerce çalıştıracak enerjiyi depolamak D) İşlemcinin saat hızını ve çekirdek sayısını ayarlamak</div><div class="aciklama">Güç kaynağı şebekedeki 230 V AC’yi bileşenlerin kullandığı düşük ve sabit DC gerilimlere çevirir. Enerji depolayan cihaz kesintisiz güç kaynağıdır (UPS), PSU değildir.</div></td><td>A</td></tr>
+<tr><td>2</td><td><div class="soru-gorsel"><svg viewBox="0 0 240 130" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Yığılmış çubuk: işlemci 105 W, ekran kartı 200 W, diğer 55 W; toplam 360 W, yüzde 25 pay eklenince kaç W"><rect width="240" height="130" rx="10" fill="#f8fafc"/><text x="120" y="20" font-family="Inter,Arial,sans-serif" font-size="10" font-weight="800" fill="#334155" text-anchor="middle">Tam yükte bileşen güçleri</text><rect x="14.0" y="32" width="61.8" height="26" fill="#4f46e5"/><text x="44.91666666666667" y="49" font-family="Inter,Arial,sans-serif" font-size="8.5" font-weight="800" fill="#fff" text-anchor="middle">İşlemci 105 W</text><rect x="75.8" y="32" width="117.8" height="26" fill="#0e7490"/><text x="134.72222222222223" y="49" font-family="Inter,Arial,sans-serif" font-size="8.5" font-weight="800" fill="#fff" text-anchor="middle">Ekran kartı 200 W</text><rect x="193.6" y="32" width="32.4" height="26" fill="#b45309"/><text x="209.8055555555556" y="49" font-family="Inter,Arial,sans-serif" font-size="8.5" font-weight="800" fill="#fff" text-anchor="middle">55 W</text><path d="M14 66H226" stroke="#334155" stroke-width="1.2"/><path d="M14 62v8M226 62v8" stroke="#334155" stroke-width="1.2"/><text x="120" y="82" font-family="Inter,Arial,sans-serif" font-size="11" font-weight="900" fill="#0f172a" text-anchor="middle">Toplam ≈ 360 W</text><rect x="46" y="94" width="148" height="24" rx="12" fill="#fff" stroke="#f59e0b" stroke-width="2"/><text x="120" y="110" font-family="Inter,Arial,sans-serif" font-size="11" font-weight="900" fill="#b45309" text-anchor="middle">+ %25 pay → ? W</text></svg></div><div class="soru">Görseldeki sistemin bileşenleri toplam yaklaşık 360 W çekiyor. %25 pay bırakılırsa hangi güç kaynağı en uygundur?</div><div class="secenek">A) 360 W B) 400 W C) 450 W D) 1000 W</div><div class="aciklama">360 W × 1,25 = 450 W. Tam toplamı seçmek pay bırakmaz; çok büyük bir güç kaynağı ise gereksiz pahalıdır ve düşük yükte verimsiz çalışır.</div></td><td>C</td></tr>
+<tr><td>3</td><td><div class="soru">Deniz’in bilgisayarı oyun sırasında 450 W DC güç çekiyor. Güç kaynağı bu yükte %90 verimle (80 PLUS Gold) çalışıyor. Prizden yaklaşık ne kadar güç çekilir?</div><div class="secenek">A) 405 W B) 500 W C) 450 W D) 540 W</div><div class="aciklama">Prizden çekilen = DC güç ÷ verim = 450 ÷ 0,90 = 500 W. Aradaki 50 W güç kaynağında ısıya dönüşür.</div></td><td>B</td></tr>
+<tr><td>4</td><td><div class="soru">Ece, TDP değeri 170 W olan bir işlemci için soğutucu seçiyor. Hangi seçim en uygundur?</div><div class="secenek">A) İşlemci kutusundan çıkan 65 W’lık alçak soğutucu; işlemci zaten kendini korur B) Fansız pasif soğutucu; sessiz olduğu için yeterlidir C) Termal macunu kalın sürmek; ısı daha iyi iletilir D) TDP kapasitesi en az 170 W olan büyük kule soğutucu ya da 240/360 mm sıvı soğutucu</div><div class="aciklama">Soğutucunun ısı kapasitesi işlemcinin TDP değerini karşılamalıdır. Yetersiz soğutucuda işlemci ısınıp yavaşlar; kalın macun ise ısı iletimini kötüleştirir.</div></td><td>D</td></tr>
+</table>
+<p class="anahtar">Cevap Anahtarı: <span>1-A 2-C 3-B 4-D</span></p>
+<h2>5. AÇIK UÇLU / BİÇİMLENDİRİCİ DEĞERLENDİRME</h2>
+<ol class="acik">
+<li><span>«AC ve DC Gerilim» kavramını kendi cümlelerinle açıkla ve günlük hayattan bir örnek ver.</span></li>
+<li><span>«Güç Payı Bırakma» kavramını kendi cümlelerinle açıkla ve günlük hayattan bir örnek ver.</span></li>
+<li><span>«Pozitif ve Negatif Kasa Basıncı» kavramını kendi cümlelerinle açıkla ve günlük hayattan bir örnek ver.</span></li>
+<li><span>Bu derste en çok hangi hesap ya da görsel ilgini çekti, hangisinde zorlandın? Zorlandığın konuyu bir arkadaşına nasıl açıklardın?</span></li>
+</ol>
+<h2>6. ÖĞRETMEN NOTLARI VE ÖDEV</h2>
+<div class="etiket">Ödev / Sınıf Dışı Etkinlik:</div><p>Erişebildiğin bir masaüstü bilgisayarın (okul ya da ev) işlemci ve ekran kartı modelini sistem bilgisi ekranından bul. Üreticinin sitesinden TDP ve kart gücü değerlerini yaz, diğer parçalar için dersteki yaklaşık değerleri kullanarak güç bütçesini hesapla ve %25 payla önerilen güç kaynağını belirle. Kasanın açılmadan görülebilen fanlarını (ön, arka, üst) sayıp yönlerini tahmin ederek bir hava akışı taslağı çiz. Güç kaynağının kapağını açma; etiketi yalnız dışarıdan oku.</p>
+<div class="kutu"><b>Güvenlik:</b> Güç kaynağı açılmaz; içi hiçbir görselde açık gösterilmez.</div>
+<div class="etiket">Öğretmen İçin Notlar:</div><ul class="not">
+<li>Lise düzeyi: terimler İngilizce karşılıklarıyla verilir (Terim Kartı, Slayt 4). Öğrencilerden PSU, TDP, EPS, CFM gibi kısaltmaları açılımlarıyla birlikte kullanmalarını isteyin.</li>
+<li>Güvenlik: Güç kaynağı hiçbir koşulda açılmaz; içindeki kondansatörler fiş çekildikten sonra da tehlikeli gerilim tutabilir. Derste güç kaynağının içi hiçbir görselde gösterilmez; gerçek cihaz gösterecekseniz yalnız dış yüzünü, etiketini ve kablolarını gösterin, kabloları takıp çıkarırken fişin prizden çekili olduğunu vurgulayın.</li>
+<li>Teknik not: 80 PLUS değerleri 115 V test koşullarındaki en düşük verimdir; 230 V şebekede verim genellikle birkaç puan yüksektir. Derste kullanılan bileşen güçleri, soğutucu kapasiteleri ve hava akışı simülasyonundaki sıcaklıklar yaklaşık ve örnek değerlerdir; gerçek seçimde üreticinin verdiği değerlere bakılır. İşlemcilerin kısa süreli olarak TDP’nin üzerine çıkabildiğini merak eden öğrencilere ek olarak söyleyebilirsiniz.</li>
+<li>Sık görülen kavram yanılgıları: <q>Güç kaynağı ne kadar büyükse bilgisayar o kadar çok elektrik harcar</q>, <q>Prizden çekilen güç = çıkış × verim</q>, <q>Sıvı soğutma ısıyı yok eder</q>, <q>Termal macun ne kadar kalın sürülürse o kadar iyi</q>, <q>Fan sayısı arttıkça her zaman daha iyi soğutur</q>. Bu cümleleri doğru/yanlış sorusu olarak sorup gerekçeyle düzeltin.</li>
+<li>Hareket azaltma ayarı açık cihazlarda animasyonlar kısa geçişlerle ilerler; 3D sahneler sürükleyerek, ok tuşları ve R (sıfırla) ile de kullanılabilir. Hava akışı haritası bu durumda doğrudan son durumunu gösterir.</li>
+<li>Her adımın sonunda 1-2 öğrenciye kavramı kendi cümleleriyle anlattırarak anlaşıldığını kontrol edin (biçimlendirici değerlendirme).</li>
+</ul>
+<table class="sure-tablo"><thead><tr><th>Aşama</th><th>Süre</th></tr></thead>
+<tr><td>Giriş — Dikkat Çekme ve Güdüleme</td><td>5 dk</td></tr>
+<tr><td>Gelişme — Kavramların İşlenişi ve Etkinlikler</td><td>25 dk</td></tr>
+<tr><td>Değerlendirme ve Kapanış</td><td>5 dk</td></tr>
+<tr><th>Toplam</th><th>35 dk</th></tr>
+</table>
+<div class="imza"><div><b>Ders Öğretmeni</b>Ad Soyad / İmza</div><div><b>Uygundur</b>Okul Müdürü</div></div>
+</body>
+</html>
