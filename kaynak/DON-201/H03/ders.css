@@ -1,0 +1,44 @@
+/* DON-201 H03 — derse özel stil (ortak stil derlemede önce eklenir) */
+
+/* Adım 5: kablolu / Wi-Fi / Bluetooth */
+.dalga-sahne{flex:1;min-height:0;display:flex;align-items:center;justify-content:center}
+.dalga-sahne svg{width:100%;height:100%;max-height:100%}
+.dalga-sahne .g-kablolu,.dalga-sahne .g-wifi,.dalga-sahne .g-bt{transition:opacity .35s}
+.dalga-sahne svg:not([data-mod="kablolu"]) .g-kablolu,
+.dalga-sahne svg:not([data-mod="wifi"]) .g-wifi,
+.dalga-sahne svg:not([data-mod="bt"]) .g-bt{opacity:.22}
+.dalga-sahne svg:not([data-mod="wifi"]) .g-wifi .halka,
+.dalga-sahne svg:not([data-mod="bt"]) .g-bt .halka{visibility:hidden}
+.dalga-sahne .halka{transform-box:fill-box;transform-origin:center;animation:h3halka 2.4s linear infinite;opacity:0}
+.dalga-sahne .halka.bt{animation-duration:1.6s}
+.dalga-sahne .halka.h2{animation-delay:.8s}
+.dalga-sahne .halka.h3{animation-delay:1.6s}
+.dalga-sahne .halka.bt.h2{animation-delay:.8s}
+@keyframes h3halka{0%{transform:scale(.4);opacity:.9}100%{transform:scale(4.6);opacity:0}}
+.dalga-sahne .halka.bt{animation-name:h3halkaBt}
+@keyframes h3halkaBt{0%{transform:scale(.6);opacity:.9}100%{transform:scale(3.6);opacity:0}}
+.dalga-sahne .akis{animation:h3akis 1s linear infinite}
+.dalga-sahne svg:not([data-mod="kablolu"]) .akis{animation:none;opacity:0}
+@keyframes h3akis{to{stroke-dashoffset:-32}}
+.dalga-tablo{flex-shrink:0;display:grid;grid-template-columns:auto repeat(3, minmax(0, 1fr));gap:6px;align-items:stretch}
+.dalga-tablo > b{display:flex;align-items:center;padding:4px 10px;border-radius:10px;background:var(--brand);color:#fff;font-size:clamp(12px, 0.3vw + 10px, 16px)}
+.dalga-tablo > div{display:flex;flex-direction:column;padding:4px 8px;border-radius:10px;background:#fff;border:1.5px solid var(--border)}
+.dalga-tablo span{font-size:clamp(10px, 0.2vw + 9px, 13px);font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.03em}
+.dalga-tablo strong{font-size:clamp(12px, 0.3vw + 10px, 16px);color:var(--ink)}
+
+/* Etkinlik 1: kablo ucu tepsisi */
+.fis-tepsi{display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:6px}
+.fis-sec{display:flex;align-items:center;gap:8px;min-height:48px;padding:4px 10px;border-radius:12px;border:1.5px solid var(--border);background:#fff;cursor:pointer;
+  font-family:var(--font);font-weight:800;font-size:clamp(12px, 0.3vw + 10px, 16px);color:var(--ink2);text-align:left}
+.fis-sec[aria-pressed="true"]{border-color:var(--brand);background:var(--brand-lt);color:var(--brand-dk)}
+.fis-sec:disabled{opacity:.45;cursor:default}
+.fis-simge{width:30px;height:22px;flex-shrink:0;border-radius:4px;position:relative;background:#1d1f24}
+.fis-simge::after{content:'';position:absolute;left:50%;top:-6px;transform:translateX(-50%);background:#cbd5e1;border:1px solid #94a3b8}
+.fis-simge--hdmi::after{width:20px;height:8px;clip-path:polygon(0 0,100% 0,100% 60%,85% 100%,15% 100%,0 60%)}
+.fis-simge--usba::after{width:16px;height:7px}
+.fis-simge--rj45{background:#3b82f6}
+.fis-simge--rj45::after{width:14px;height:10px;top:-9px;background:#dbeafe}
+.fis-simge--jak{background:#22c55e;width:14px;border-radius:7px}
+.fis-simge--jak::after{width:5px;height:10px;top:-10px;border-radius:3px}
+.fis-sec:disabled .fis-simge{opacity:.6}
+@media (prefers-reduced-motion: reduce){ .dalga-sahne .halka,.dalga-sahne .akis{animation:none;opacity:.6} }

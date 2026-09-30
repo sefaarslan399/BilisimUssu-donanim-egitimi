@@ -111,14 +111,30 @@ def derle(kod, hafta):
     klasor = os.path.join(KOK, "kaynak", kod, hh)
     if not os.path.isdir(klasor):
         raise SystemExit("HATA: kaynak klasörü yok: " + klasor)
-    meta = json.loads(oku(os.path.join(klasor, "ders.json")))
     html = oku(MASTER)
-
-    lesson_js = dahil_et(oku(os.path.join(klasor, "lesson.js")), klasor).strip()
-    kapak = dahil_et(oku(os.path.join(klasor, "kapak.html")), klasor).strip()
-    slaytlar = fotolar(dahil_et(oku(os.path.join(klasor, "slaytlar.html")), klasor).rstrip())
-    ders_css = oku(os.path.join(klasor, "ders.css"))
-    ders_js = dahil_et(oku(os.path.join(klasor, "ders.js")), klasor)
+    ders_py = os.path.join(klasor, "ders.py")
+    if os.path.exists(ders_py):
+        # Yeni düzen: ders.py tanımından lesson.js / kapak / slaytlar üretilir; ortak stil ve betik eklenir.
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        import ders_uret
+        ns = {}
+        exec(compile(oku(ders_py), ders_py, "exec"), ns)
+        meta = {"modeller": ns.get("MODELLER", [])}
+        lesson_ham, kapak_ham, slaytlar_ham, on_js = ders_uret.uret(ns)
+        lesson_js = dahil_et(lesson_ham, klasor).strip()
+        kapak = dahil_et(kapak_ham, klasor).strip()
+        slaytlar = fotolar(dahil_et(slaytlar_ham, klasor).rstrip())
+        ortak = os.path.join(KOK, "bilesenler", "ortak")
+        ders_css = oku(os.path.join(ortak, "ders-ortak.css")) + "\n" + (oku(os.path.join(klasor, "ders.css")) if os.path.exists(os.path.join(klasor, "ders.css")) else "")
+        ders_js = (oku(os.path.join(ortak, "ders-ortak.js")) + "\n" + on_js + "\n" +
+                   dahil_et(oku(os.path.join(klasor, "ders.js")), klasor))
+    else:
+        meta = json.loads(oku(os.path.join(klasor, "ders.json")))
+        lesson_js = dahil_et(oku(os.path.join(klasor, "lesson.js")), klasor).strip()
+        kapak = dahil_et(oku(os.path.join(klasor, "kapak.html")), klasor).strip()
+        slaytlar = fotolar(dahil_et(oku(os.path.join(klasor, "slaytlar.html")), klasor).rstrip())
+        ders_css = oku(os.path.join(klasor, "ders.css"))
+        ders_js = dahil_et(oku(os.path.join(klasor, "ders.js")), klasor)
 
     baslik = re.search(r"title:\s*'([^']*)'", lesson_js)
     if baslik:

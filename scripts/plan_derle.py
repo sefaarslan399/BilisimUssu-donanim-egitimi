@@ -40,7 +40,14 @@ def konusma(t):
 
 
 def lesson_oku(klasor):
-    js = dahil_et(oku(os.path.join(klasor, "lesson.js")), klasor)
+    if os.path.exists(os.path.join(klasor, "ders.py")):
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        import ders_uret
+        ns = {}
+        exec(compile(oku(os.path.join(klasor, "ders.py")), "ders.py", "exec"), ns)
+        js = dahil_et(ders_uret.uret(ns)[0], klasor)
+    else:
+        js = dahil_et(oku(os.path.join(klasor, "lesson.js")), klasor)
     kod = js + "\nprocess.stdout.write(JSON.stringify({LESSON: LESSON, SLIDE_LABELS: SLIDE_LABELS}));"
     r = subprocess.run(["node", "-e", kod], capture_output=True, text=True, check=True)
     return json.loads(r.stdout)

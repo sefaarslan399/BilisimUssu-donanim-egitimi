@@ -323,6 +323,58 @@
     } });
   };
 
+  /* ─── A-FIS: kablo ucunun porta takılması (A-TAK'ın yatay türü) ───
+     Port grubunun ağzı yerel (0,0,0), dışarı yönü yerel +Z'dir; fişin ucu yerel orijin, gövdesi +Z'dedir. */
+  var _q = new THREE.Quaternion(), _qz = new THREE.Quaternion(), _Z = new V3(0, 0, 1);
+  /** Fişi portun önüne yerleştirir: uzaklik (cm, dışarı yönde), yuvarlanma (rad, fişin kendi ekseninde). */
+  D.fisKonumla = function (fis, port, uzaklik, yuvarlanma) {
+    port.updateWorldMatrix(true, false);
+    var q = port.getWorldQuaternion(new THREE.Quaternion());
+    if (yuvarlanma) q.multiply(_qz.setFromAxisAngle(_Z, yuvarlanma));
+    var ebeveyn = fis.parent;
+    ebeveyn.updateWorldMatrix(true, false);
+    var eq = ebeveyn.getWorldQuaternion(_q).invert();
+    fis.quaternion.copy(eq.multiply(q));
+    fis.position.copy(ebeveyn.worldToLocal(D.fisHedef(port, uzaklik)));
+  };
+  /** Portun ağzından dışarı yönde uzaklik kadar ötedeki dünya noktası. */
+  D.fisHedef = function (port, uzaklik) {
+    var q = port.getWorldQuaternion(new THREE.Quaternion());
+    return port.localToWorld(new V3(0, 0, 0)).add(new V3(0, 0, 1).applyQuaternion(q).multiplyScalar(uzaklik));
+  };
+  /**
+   * Fişi porta takmayı dener. ops: { uygun: bool, ters: bool (USB-A ters), cevir: bool (ters ise çevirip tak),
+   *   bas: başlangıç uzaklığı (cm), sure: yaklaşma süresi }. Döner Promise<bool> (takıldı mı).
+   */
+  D.fisTak = function (fis, port, ops) {
+    ops = ops || {};
+    var s = D.sahneBul(fis), ebeveyn = fis.parent;
+    var giris = fis.userData.giris || 1;
+    var yuv = ops.ters ? Math.PI : 0;
+    function nokta(u) { return ebeveyn.worldToLocal(D.fisHedef(port, u)); }
+    D.fisKonumla(fis, port, ops.bas == null ? 4 : ops.bas, yuv);
+    var sure = D.azHareket() ? 0.01 : 1;
+    var z = git(fis, nokta(0.4), (ops.sure || 0.6) * sure);
+    function tak() {
+      return git(fis, nokta(-giris * 0.9), 0.35 * sure, 'easeInCubic').then(function () { D.ses('klik'); return true; });
+    }
+    if (ops.uygun !== false && !ops.ters) return z.then(tak);
+    return z.then(function () { return git(fis, nokta(0.05), 0.18 * sure); })
+      .then(function () { D.ses('hata'); return git(fis, nokta(0.9), 0.3 * sure, 'easeOutCubic'); })
+      .then(function () {
+        if (!(ops.ters && ops.cevir && ops.uygun !== false)) return false;
+        return D.bekle(0.35, s).then(function () {
+          return D.tween({ sahne: s, sure: 0.7 * sure, anahtar: 'cevir', hedef: fis, guncelle: function (e) {
+            D.fisKonumla(fis, port, 0.9, Math.PI * (1 - e));
+          } });
+        }).then(function () { return git(fis, nokta(0.4), 0.25 * sure); }).then(tak);
+      });
+  };
+  /** Fişi porttan çıkarır (dışarı çeker). */
+  D.fisCikar = function (fis, port, uzaklik) {
+    return git(fis, fis.parent.worldToLocal(D.fisHedef(port, uzaklik == null ? 4 : uzaklik)), D.azHareket() ? 0.01 : 0.5);
+  };
+
   /* ─── A-TAK: parçanın hizalanıp yuvaya oturması; yanlış yönde girmez; klik ─── */
   /**
    * DON3D.takAnim(parca, { hedef: Vector3 (ebeveyn koordinatında oturma noktası), dogru: bool,

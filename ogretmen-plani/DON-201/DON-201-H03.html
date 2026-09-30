@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DON-201 H03 Öğretmen Planı — Bağlantı Noktaları ve Çevre Birimleri</title>
+<style>
+@font-face{font-family:'Carlito';src:local('Carlito'),url('../../assets/font/Carlito-Regular.ttf');font-weight:400;font-style:normal}
+@font-face{font-family:'Carlito';src:local('Carlito Bold'),url('../../assets/font/Carlito-Bold.ttf');font-weight:700;font-style:normal}
+@font-face{font-family:'Carlito';src:local('Carlito Italic'),url('../../assets/font/Carlito-Italic.ttf');font-weight:400;font-style:italic}
+@page{size:A4;margin:14mm 14mm 16mm 16.5mm;
+  @bottom-center{content:'Bilişim Üssü · Etkileşimli Ders Planı · ' counter(page) ' / ' counter(pages);font-family:Carlito,Calibri,sans-serif;font-size:7.5pt;color:#6b7a82}}
+*{box-sizing:border-box}
+html{font-family:Carlito,Calibri,'Segoe UI',Arial,sans-serif;font-size:9.9pt;color:#1a1a1a;line-height:1.38}
+body{margin:0;max-width:180mm}
+@media screen{body{margin:24px auto;padding:0 12px}}
+.bant{display:flex;gap:7pt;margin-bottom:9pt}
+.bant-sol{flex:1;background:linear-gradient(135deg,#075985,#0a6aa3);color:#fff;border-radius:4pt;padding:9pt 14pt 10pt}
+.bant-ust{font-size:7.6pt;font-weight:700;letter-spacing:2.2pt;opacity:.92}
+.bant-baslik{font-size:23pt;font-weight:700;line-height:1.12;margin-top:3pt}
+.bant-baslik.uzun{font-size:18pt}
+.bant-sag{width:128pt;background:#0369a1;color:#fff;border-radius:4pt;display:flex;align-items:center;justify-content:center;font-size:14pt;font-weight:700}
+h2{background:#0369a1;color:#fff;font-size:11pt;font-weight:700;margin:12pt 0 6pt;padding:5pt 10pt;border-radius:4pt;letter-spacing:.2pt;break-after:avoid}
+h3{display:flex;justify-content:space-between;align-items:center;color:#0369a1;font-size:10.6pt;margin:9pt 0 4pt;break-after:avoid}
+h3 .sure{background:#0369a1;color:#fff;font-size:8.6pt;border-radius:9pt;padding:1.5pt 8pt}
+table{width:100%;border-collapse:collapse;margin:0 0 4pt}
+td,th{border:1px solid #b9def1;padding:4pt 7pt;vertical-align:top;text-align:left}
+th{background:#e0f2fe;color:#075985;font-size:9.2pt;font-weight:700}
+tr{break-inside:avoid}
+.genel td:first-child{width:134pt;background:#e0f2fe;color:#075985;font-weight:700}
+.kazanim{width:100%;border-collapse:collapse}
+.kazanim td{border:0;border-bottom:1px solid #eaf6fc;padding:3.5pt 4pt}
+.kazanim td:first-child{width:32pt;color:#0369a1;font-weight:700}
+.isleyis td:first-child{width:35pt;text-align:center;color:#6b7a82;font-weight:700}
+.isleyis td:nth-child(2){width:122pt}
+.adim-ad{font-weight:700}
+.adim-konu{color:#475569}
+.slayt{display:inline-block;margin-top:2pt;font-size:8pt;font-weight:700;color:#0369a1;background:#e0f2fe;border-radius:6pt;padding:0 5pt}
+q{quotes:'“' '”'}
+q::before{content:open-quote}q::after{content:close-quote}
+p{margin:3pt 0 5pt;text-align:justify}
+.kutu{border:1px solid #b9def1;border-left:3pt solid #0369a1;border-radius:3pt;padding:5pt 8pt;margin:5pt 0;background:#f5fbff;break-inside:avoid}
+.kutu b{color:#075985}
+.olcme td:first-child{width:22pt;text-align:center;font-weight:700}
+.olcme td:last-child{width:40pt;text-align:center;color:#0369a1;font-weight:700}
+.soru{font-weight:700}
+.secenek{margin-top:1pt}
+.aciklama{font-style:italic;color:#0369a1;font-size:9.5pt;margin-top:2pt}
+.soru-gorsel{float:right;margin:0 0 2pt 8pt}
+.soru-gorsel svg{height:38pt;width:auto}
+.anahtar{font-weight:700;color:#075985;margin:3pt 0 0}
+.anahtar span{font-weight:400;color:#1a1a1a}
+ol.acik{margin:2pt 0;padding-left:0;list-style:none;counter-reset:a}
+ol.acik li{counter-increment:a;display:flex;gap:10pt;padding:3pt 0}
+ol.acik li::before{content:counter(a) '.';color:#0369a1;font-weight:700;min-width:16pt}
+.etiket{color:#0369a1;font-weight:700;margin:7pt 0 2pt}
+ul.not{margin:2pt 0;padding-left:12pt}
+ul.not li{margin:2pt 0}
+.sure-tablo td:last-child,.sure-tablo th:last-child{width:62pt}
+.imza{display:flex;justify-content:space-around;margin-top:14pt;text-align:center;color:#6b7a82;break-inside:avoid}
+.imza b{display:block;color:#475569;margin-bottom:10pt}
+</style>
+</head>
+<body>
+<div class="bant"><div class="bant-sol"><div class="bant-ust">ÖĞRETMEN DERS PLANI · DON-201</div><div class="bant-baslik uzun">Bağlantı Noktaları ve Çevre Birimleri</div></div><div class="bant-sag">3. Hafta</div></div>
+<h2>1. GENEL BİLGİLER</h2>
+<table class="genel">
+<tr><td>Dersin Adı</td><td>Bilişim Teknolojileri ve Yazılım</td></tr>
+<tr><td>Sınıf / Seviye</td><td>Ortaokul (5–8. sınıf)</td></tr>
+<tr><td>Ünite / Konu</td><td>Donanım 201 - Bilgisayarı Tanıyalım — Bağlantı Noktaları ve Çevre Birimleri</td></tr>
+<tr><td>Öğrenme Alanı</td><td>Bilgisayar Donanımı</td></tr>
+<tr><td>Süre</td><td>1 ders saati (35 dk)</td></tr>
+<tr><td>Yöntem ve Teknikler</td><td>Anlatım, gösteri, soru-cevap, 3D model inceleme, kamera turu, tahmin et–izle, eşleştirme ve sınıflandırma etkinlikleri</td></tr>
+<tr><td>Araç-Gereç ve Kaynaklar</td><td>Etkileşimli ders (LMS), projeksiyon veya akıllı tahta; mümkünse sınıftaki bir bilgisayarın arka paneli ve birkaç gerçek kablo (USB, HDMI, ağ kablosu, kulaklık)</td></tr>
+<tr><td>Kavramlar / Terimler</td><td>Port Nedir?, USB (Type-A, Type-C), Görüntü: HDMI, Ses Giriş–Çıkışı, Ağ Portu ve Kablosuz, Doğru Kablo, Doğru Port</td></tr>
+</table>
+<h2>2. KAZANIMLAR</h2>
+<table class="kazanim">
+<tr><td>K1.</td><td>Portun ne olduğunu açıklar.</td></tr>
+<tr><td>K2.</td><td>USB, HDMI, ses ve ağ portlarını görünüşlerinden tanır.</td></tr>
+<tr><td>K3.</td><td>Kablolu ve kablosuz bağlantıyı (Wi-Fi, Bluetooth) karşılaştırır.</td></tr>
+<tr><td>K4.</td><td>Bir cihaz için doğru kablo ile doğru portu eşleştirir.</td></tr>
+</table>
+<h2>3. DERS İŞLENİŞİ</h2>
+<h3><span>Giriş — Dikkat Çekme ve Güdüleme</span><span class="sure">5 dk</span></h3>
+<p>Kapak slaytında kabloları takılı arka paneli gösterip sorun: <q>Bu kabloların her biri neden farklı bir deliğe gidiyor?</q> İki üç cevabı dinleyin. Hedefler slaytında kazanımları paylaşın. Isınma slaytında (Slayt 3) üç seçeneği okutun, el kaldırarak sınıfın tahminini sayın ve tahtaya yazın: <q>Tahminimizi portlara dokunduğumuzda kontrol edeceğiz.</q></p>
+<h3><span>Gelişme — Kavramların İşlenişi</span><span class="sure">25 dk</span></h3>
+<table class="isleyis"><thead><tr><th>Adım</th><th>Konu</th><th>Öğretmen Notu</th></tr></thead>
+<tr><td>1</td><td><div class="adim-ad">Port Nedir?</div><div class="adim-konu">Port Nedir?</div><span class="slayt">Slayt 4</span></td><td>Slayt açılınca dört port sırayla parlar; bekleyin. Sonra bir öğrenciye bir porta dokundurun ve açılan kartı okutun. <q>Port, bir cihazın kablosunu bilgisayara bağladığımız yuvadır; her birinin biçimi başka bir cihaza göredir</q> deyin. Isınmadaki tahminleri burada kontrol edin. Öğrencilere sınıftaki bilgisayarın arkasında iki port gösterttirin.</td></tr>
+<tr><td>2</td><td><div class="adim-ad">USB (Type-A, Type-C)</div><div class="adim-konu">USB-A ve USB-C</div><span class="slayt">Slayt 5</span></td><td>Animasyon kendiliğinden başlar: USB-A ucu ters gelir, girmez, çevrilir ve takılır. Durdurup sorun: <q>Neden ilk denemede girmedi?</q> Ardından USB-C dene düğmesine bastırın. <q>USB-A'nın içinde tek taraflı bir dil vardır, bu yüzden tek yönde girer; USB-C'nin ucu simetriktir, iki yönde de girer</q> deyin. Gerçek bir USB belleği ters tutup zorlamadan çevirmeyi gösterin. Öğrencilere evdeki iki USB cihazı söyletin.</td></tr>
+<tr><td>3</td><td><div class="adim-ad">Görüntü: HDMI</div><div class="adim-konu">HDMI ile Görüntü</div><span class="slayt">Slayt 6</span></td><td>Kamera HDMI portuna yaklaşırken sorun: <q>Bu portun köşelerinde farklı ne görüyorsunuz?</q> Kablo oturduktan sonra kamera DisplayPort'a geçer; iki portun köşelerini karşılaştırtın. <q>HDMI kablosu görüntüyü ve sesi aynı anda monitöre ya da televizyona götürür</q> deyin. Tekrar oynat düğmesiyle turu yeniden izletin. Öğrencilere HDMI kablosu kullanılan iki cihazı söyletin.</td></tr>
+<tr><td>4</td><td><div class="adim-ad">Ses Giriş–Çıkışı</div><div class="adim-konu">Ses Girişleri</div><span class="slayt">Slayt 7</span></td><td>Kamera ses girişlerini tek tek gezerken her etiketi yüksek sesle okutun. <q>Kulaklığı yeşil ÇIKIŞ'a, mikrofonu pembe MİK'e takarız; renklerin yanında yazılar da vardır, renk görmekte zorlanan arkadaşımız yazıyı okur</q> deyin. Renk körlüğü olan öğrenciler için yazılı etiketin önemini vurgulayın. Öğrencilere kulaklığın hangi girişe takıldığını söyletin.</td></tr>
+<tr><td>5</td><td><div class="adim-ad">Ağ Portu ve Kablosuz</div><div class="adim-konu">Ağ ve Kablosuz Bağlantı</div><span class="slayt">Slayt 8</span></td><td>Sahne sırayla Kablolu, Wi-Fi ve Bluetooth görünümlerini gösterir; alttaki üç kutuyu birlikte okuyun. Sorun: <q>Kulaklığı modemin yanına mı götürmemiz gerekir, telefonun yanına mı?</q> <q>Wi-Fi interneti evin içinde kablosuz dağıtır; Bluetooth ise yalnız birkaç adım uzaktaki cihazları eşleştirir</q> deyin. Öğrencilere evde Bluetooth ile bağlanan bir cihaz söyletin.</td></tr>
+<tr><td>6</td><td><div class="adim-ad">Doğru Kablo, Doğru Port</div><div class="adim-konu">Doğru Kablo, Doğru Port</div><span class="slayt">Slayt 9</span></td><td>Dizüstü modelinde Monitör, Fare, Şarj ve Kulaklık düğmelerine sırayla öğrencilere bastırın; kamera ilgili yan porta gider ve kablo takılır. <q>Kablo porta zorlanmaz; biçimi uyan uç kolayca girer, girmiyorsa yönüne ya da portuna bakarız</q> deyin. Sınıftaki bir dizüstünün yan portlarını gösterin. Öğrencilere zorlanan kablonun portu nasıl bozabileceğini anlattırın.</td></tr>
+</table>
+<div class="kutu"><b>Etkinlikler (Slayt 10–11):</b> Etkinlik 1'de (Slayt 10) gönüllü öğrenciler akıllı tahtada önce bir kablo ucu seçer, sonra arka panelde porta dokunur. Yanlış porta giden uç sığmaz ve geri döner; ekranda çıkan nedeni sınıfa okutun. Kulaklık jakını bilerek pembe girişe götürüp renk ve yazı ayrımını tartıştırın. Etkinlik 2'de (Slayt 11) sekiz cihaz kartı USB, HDMI, ses jakı ve kablosuz kutularına ayrılır; kablosuz kulaklık ve Bluetooth hoparlörde durup <q>Bunun kablosu nerede?</q> diye sorun (yaklaşık 8 dk).</div>
+<h3><span>Değerlendirme ve Kapanış</span><span class="sure">5 dk</span></h3>
+<p>Özet slaytındaki altı kartı sırayla birer öğrenciye kendi cümleleriyle anlattırın. Bilgi Testi'ni (Slayt 14) sınıfça çözün; yanlış çıkan soruda ilgili adım slaytına dönüp animasyonu yeniden izletin. Son soru Derinleş bonusudur, puanı düşürmez. Dersi <q>Kablo girmiyorsa ilk ne yaparsın?</q> sorusuyla kapatın.</p>
+<h2>4. ÖLÇME VE DEĞERLENDİRME</h2>
+<table class="olcme"><thead><tr><th>#</th><th>Soru ve Seçenekler</th><th>Cevap</th></tr></thead>
+<tr><td>1</td><td><div class="soru">Port nedir?</div><div class="secenek">A) Kablonun takıldığı bağlantı yuvası B) Bilgisayarın içindeki bir program C) Ekrandaki bir simge D) Kasanın açma düğmesi</div><div class="aciklama">Port, bir cihazın kablosunun takıldığı bağlantı yuvasıdır.</div></td><td>A</td></tr>
+<tr><td>2</td><td><div class="soru-gorsel"><svg viewBox="0 0 200 110" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Alt köşeleri eğik, geniş ve ince bir port"><rect width="200" height="110" rx="10" fill="#3a3f48"/><g transform="translate(100 55) scale(4.2)"><path d="M-15 -5.5H15V2L11.5 5.5H-11.5L-15 2Z" fill="#cbd5e1" stroke="#94a3b8"/><path d="M-13.5 -4H13.5V1.4L10.8 4H-10.8L-13.5 1.4Z" fill="#0f172a"/><rect x="-10" y="-2" width="20" height="2.4" fill="#334155"/></g></svg></div><div class="soru">Görselde gösterilen port hangisidir?</div><div class="secenek">A) USB-A B) Ağ portu (RJ45) C) HDMI D) Ses jakı</div><div class="aciklama">Alt köşeleri eğik, geniş ve ince port HDMI’dır. Görüntü ve sesi taşır.</div></td><td>C</td></tr>
+<tr><td>3</td><td><div class="soru">Elif kablosuz kulaklığını telefonuna bağlamak istiyor. Hangi bağlantıyı kullanmalı?</div><div class="secenek">A) Ağ kablosu B) Bluetooth C) HDMI kablosu D) Ses jakının pembe girişi</div><div class="aciklama">Kulaklık gibi yakındaki cihazlar kablosuz olarak Bluetooth ile bağlanır.</div></td><td>B</td></tr>
+<tr><td>4</td><td><div class="soru">Selim monitörü bilgisayara bağlayacak. Elinde USB, ağ ve HDMI kabloları var. Ne yapmalı?</div><div class="secenek">A) USB kablosunu ses girişine takmalı B) Ağ kablosunu HDMI portuna takmalı C) USB kablosunu HDMI portuna zorlamalı D) HDMI kablosunu HDMI portuna takmalı</div><div class="aciklama">Monitörün görüntü kablosu HDMI’dır ve yalnız HDMI portuna uyar. Kablo zorlanmaz.</div></td><td>D</td></tr>
+</table>
+<p class="anahtar">Cevap Anahtarı: <span>1-A 2-C 3-B 4-D</span></p>
+<h2>5. AÇIK UÇLU / BİÇİMLENDİRİCİ DEĞERLENDİRME</h2>
+<ol class="acik">
+<li><span>«Port» kavramını kendi cümlelerinle açıkla ve günlük hayattan bir örnek ver.</span></li>
+<li><span>«Kablolu ve Kablosuz Bağlantı» kavramını kendi cümlelerinle açıkla ve günlük hayattan bir örnek ver.</span></li>
+<li><span>«Doğru Kablo, Doğru Port» kavramını kendi cümlelerinle açıkla ve günlük hayattan bir örnek ver.</span></li>
+<li><span>Bu derste en çok hangi adım ilgini çekti, nerede zorlandın? Nedenini açıkla.</span></li>
+</ol>
+<h2>6. ÖĞRETMEN NOTLARI VE ÖDEV</h2>
+<div class="etiket">Ödev / Sınıf Dışı Etkinlik:</div><p>Evdeki bir bilgisayarın, televizyonun ya da oyun konsolunun arkasına bak. Gördüğün portları say ve adlarını bir tabloya yaz. Her portun yanına oraya hangi cihazın takıldığını ekle ve bir sonraki derse getir.</p>
+<div class="etiket">Öğretmen İçin Notlar:</div><ul class="not">
+<li>Derinleş (Slayt 12) isteğe bağlıdır: süre kalırsa ya da hızlı bitiren öğrenciler için kullanın. Aynı görünen USB-C kablolarının hızlarının farklı olabileceği anlatılır. Atlasanız da akış bozulmaz; Bilgi Testi'ndeki bonus soru puanı düşürmez.</li>
+<li>Erişilebilirlik: Ses girişleri hem renkle hem yazıyla (ÇIKIŞ, MİK, GİRİŞ) gösterilir. Renk tek başına bilgi taşımaz; renk ayırt etmekte zorlanan öğrencilere yazılı etiketi okuma alışkanlığı kazandırın.</li>
+<li>Güvenlik: Kablo takıp çıkarırken ucundan, gövdesinden tutulur; kablonun kendisinden çekilmez. Giren uç zorlanmaz, zorlanan port kırılabilir.</li>
+<li>Yaş bandı uyarlaması: 10–12 yaş grubunda gerçek kabloları elden ele dolaştırıp uçların biçimini parmakla hissettirin. 13–15 yaş grubunda aynı işi yapan portları (HDMI ve DisplayPort) karşılaştırıp neden iki farklı standart olduğunu tartıştırın.</li>
+<li>Sık görülen kavram yanılgıları: <q>USB'nin her ucu aynıdır</q>, <q>Kulaklık hangi yuvarlak deliğe takılırsa çalışır</q>, <q>Wi-Fi ile Bluetooth aynı şeydir</q>. Bu cümleleri doğru/yanlış sorusu olarak sorup düzeltin.</li>
+<li>3D sahneler yavaş bilgisayarda kaliteyi kendiliğinden düşürür; WebGL açılmazsa yerine çizim görünür. Hareket azaltma ayarı açık cihazlarda animasyonlar kısa geçişlerle ilerler.</li>
+<li>Her adımın sonunda 1-2 öğrenciye <q>Bu portu nereden tanırsın?</q> diye sorup anlattırarak anlaşıldığını kontrol edin (biçimlendirici değerlendirme).</li>
+</ul>
+<table class="sure-tablo"><thead><tr><th>Aşama</th><th>Süre</th></tr></thead>
+<tr><td>Giriş — Dikkat Çekme ve Güdüleme</td><td>5 dk</td></tr>
+<tr><td>Gelişme — Kavramların İşlenişi ve Etkinlikler</td><td>25 dk</td></tr>
+<tr><td>Değerlendirme ve Kapanış</td><td>5 dk</td></tr>
+<tr><th>Toplam</th><th>35 dk</th></tr>
+</table>
+<div class="imza"><div><b>Ders Öğretmeni</b>Ad Soyad / İmza</div><div><b>Uygundur</b>Okul Müdürü</div></div>
+</body>
+</html>

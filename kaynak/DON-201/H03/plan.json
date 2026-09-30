@@ -1,0 +1,35 @@
+{
+  "format": "K",
+  "yontem": "Anlatım, gösteri, soru-cevap, 3D model inceleme, kamera turu, tahmin et–izle, eşleştirme ve sınıflandırma etkinlikleri",
+  "arac": "Etkileşimli ders (LMS), projeksiyon veya akıllı tahta; mümkünse sınıftaki bir bilgisayarın arka paneli ve birkaç gerçek kablo (USB, HDMI, ağ kablosu, kulaklık)",
+  "giris": "Kapak slaytında kabloları takılı arka paneli gösterip sorun: \"Bu kabloların her biri neden farklı bir deliğe gidiyor?\" İki üç cevabı dinleyin. Hedefler slaytında kazanımları paylaşın. Isınma slaytında (Slayt 3) üç seçeneği okutun, el kaldırarak sınıfın tahminini sayın ve tahtaya yazın: \"Tahminimizi portlara dokunduğumuzda kontrol edeceğiz.\"",
+  "gelisme": [
+    {"konu": "Port Nedir?", "slayt": 4,
+     "not": "Slayt açılınca dört port sırayla parlar; bekleyin. Sonra bir öğrenciye bir porta dokundurun ve açılan kartı okutun. \"Port, bir cihazın kablosunu bilgisayara bağladığımız yuvadır; her birinin biçimi başka bir cihaza göredir\" deyin. Isınmadaki tahminleri burada kontrol edin. Öğrencilere sınıftaki bilgisayarın arkasında iki port gösterttirin."},
+    {"konu": "USB-A ve USB-C", "slayt": 5,
+     "not": "Animasyon kendiliğinden başlar: USB-A ucu ters gelir, girmez, çevrilir ve takılır. Durdurup sorun: \"Neden ilk denemede girmedi?\" Ardından USB-C dene düğmesine bastırın. \"USB-A'nın içinde tek taraflı bir dil vardır, bu yüzden tek yönde girer; USB-C'nin ucu simetriktir, iki yönde de girer\" deyin. Gerçek bir USB belleği ters tutup zorlamadan çevirmeyi gösterin. Öğrencilere evdeki iki USB cihazı söyletin."},
+    {"konu": "HDMI ile Görüntü", "slayt": 6,
+     "not": "Kamera HDMI portuna yaklaşırken sorun: \"Bu portun köşelerinde farklı ne görüyorsunuz?\" Kablo oturduktan sonra kamera DisplayPort'a geçer; iki portun köşelerini karşılaştırtın. \"HDMI kablosu görüntüyü ve sesi aynı anda monitöre ya da televizyona götürür\" deyin. Tekrar oynat düğmesiyle turu yeniden izletin. Öğrencilere HDMI kablosu kullanılan iki cihazı söyletin."},
+    {"konu": "Ses Girişleri", "slayt": 7,
+     "not": "Kamera ses girişlerini tek tek gezerken her etiketi yüksek sesle okutun. \"Kulaklığı yeşil ÇIKIŞ'a, mikrofonu pembe MİK'e takarız; renklerin yanında yazılar da vardır, renk görmekte zorlanan arkadaşımız yazıyı okur\" deyin. Renk körlüğü olan öğrenciler için yazılı etiketin önemini vurgulayın. Öğrencilere kulaklığın hangi girişe takıldığını söyletin."},
+    {"konu": "Ağ ve Kablosuz Bağlantı", "slayt": 8,
+     "not": "Sahne sırayla Kablolu, Wi-Fi ve Bluetooth görünümlerini gösterir; alttaki üç kutuyu birlikte okuyun. Sorun: \"Kulaklığı modemin yanına mı götürmemiz gerekir, telefonun yanına mı?\" \"Wi-Fi interneti evin içinde kablosuz dağıtır; Bluetooth ise yalnız birkaç adım uzaktaki cihazları eşleştirir\" deyin. Öğrencilere evde Bluetooth ile bağlanan bir cihaz söyletin."},
+    {"konu": "Doğru Kablo, Doğru Port", "slayt": 9,
+     "not": "Dizüstü modelinde Monitör, Fare, Şarj ve Kulaklık düğmelerine sırayla öğrencilere bastırın; kamera ilgili yan porta gider ve kablo takılır. \"Kablo porta zorlanmaz; biçimi uyan uç kolayca girer, girmiyorsa yönüne ya da portuna bakarız\" deyin. Sınıftaki bir dizüstünün yan portlarını gösterin. Öğrencilere zorlanan kablonun portu nasıl bozabileceğini anlattırın."}
+  ],
+  "etkinlik": "Etkinlik 1'de (Slayt 10) gönüllü öğrenciler akıllı tahtada önce bir kablo ucu seçer, sonra arka panelde porta dokunur. Yanlış porta giden uç sığmaz ve geri döner; ekranda çıkan nedeni sınıfa okutun. Kulaklık jakını bilerek pembe girişe götürüp renk ve yazı ayrımını tartıştırın. Etkinlik 2'de (Slayt 11) sekiz cihaz kartı USB, HDMI, ses jakı ve kablosuz kutularına ayrılır; kablosuz kulaklık ve Bluetooth hoparlörde durup \"Bunun kablosu nerede?\" diye sorun (yaklaşık 8 dk).",
+  "kapanis": "Özet slaytındaki altı kartı sırayla birer öğrenciye kendi cümleleriyle anlattırın. Bilgi Testi'ni (Slayt 14) sınıfça çözün; yanlış çıkan soruda ilgili adım slaytına dönüp animasyonu yeniden izletin. Son soru Derinleş bonusudur, puanı düşürmez. Dersi \"Kablo girmiyorsa ilk ne yaparsın?\" sorusuyla kapatın.",
+  "acik_uclu": ["Port", "Kablolu ve Kablosuz Bağlantı", "Doğru Kablo, Doğru Port"],
+  "oz_degerlendirme": "Bu derste en çok hangi adım ilgini çekti, nerede zorlandın? Nedenini açıkla.",
+  "odev": "Evdeki bir bilgisayarın, televizyonun ya da oyun konsolunun arkasına bak. Gördüğün portları say ve adlarını bir tabloya yaz. Her portun yanına oraya hangi cihazın takıldığını ekle ve bir sonraki derse getir.",
+  "notlar": [
+    "Derinleş (Slayt 12) isteğe bağlıdır: süre kalırsa ya da hızlı bitiren öğrenciler için kullanın. Aynı görünen USB-C kablolarının hızlarının farklı olabileceği anlatılır. Atlasanız da akış bozulmaz; Bilgi Testi'ndeki bonus soru puanı düşürmez.",
+    "Erişilebilirlik: Ses girişleri hem renkle hem yazıyla (ÇIKIŞ, MİK, GİRİŞ) gösterilir. Renk tek başına bilgi taşımaz; renk ayırt etmekte zorlanan öğrencilere yazılı etiketi okuma alışkanlığı kazandırın.",
+    "Güvenlik: Kablo takıp çıkarırken ucundan, gövdesinden tutulur; kablonun kendisinden çekilmez. Giren uç zorlanmaz, zorlanan port kırılabilir.",
+    "Yaş bandı uyarlaması: 10–12 yaş grubunda gerçek kabloları elden ele dolaştırıp uçların biçimini parmakla hissettirin. 13–15 yaş grubunda aynı işi yapan portları (HDMI ve DisplayPort) karşılaştırıp neden iki farklı standart olduğunu tartıştırın.",
+    "Sık görülen kavram yanılgıları: \"USB'nin her ucu aynıdır\", \"Kulaklık hangi yuvarlak deliğe takılırsa çalışır\", \"Wi-Fi ile Bluetooth aynı şeydir\". Bu cümleleri doğru/yanlış sorusu olarak sorup düzeltin.",
+    "3D sahneler yavaş bilgisayarda kaliteyi kendiliğinden düşürür; WebGL açılmazsa yerine çizim görünür. Hareket azaltma ayarı açık cihazlarda animasyonlar kısa geçişlerle ilerler.",
+    "Her adımın sonunda 1-2 öğrenciye \"Bu portu nereden tanırsın?\" diye sorup anlattırarak anlaşıldığını kontrol edin (biçimlendirici değerlendirme)."
+  ],
+  "sureler": [["Giriş — Dikkat Çekme ve Güdüleme", 5], ["Gelişme — Kavramların İşlenişi ve Etkinlikler", 25], ["Değerlendirme ve Kapanış", 5]]
+}

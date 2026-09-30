@@ -8,16 +8,16 @@ Durum: `—` başlanmadı · `K` kalibrasyon (onay bekliyor) · `✓` tamam · `
 |---|---|---|
 | Motor çekirdeği (renderer, sahne yaşam döngüsü, yedek görsel) | K | Tek renderer, slayt yaşam döngüsü, otomatik kalite, `data-yedek`, hareket azaltma, HTML etiket, klavye. H01 ile birlikte onay bekliyor. |
 | Etkileşimler (E-DONDUR, E-BILGI, E-TAK) | K | Yazıldı: E-DONDUR, E-BILGI, E-SINIFLA, E-TAK, E-SAYAC (ampullerle bit/sayı/harf), E-TAHMIN (tahmin et–izle). |
-| Animasyon kalıpları | K | Yazıldı: A-VURGU, A-KATMAN, A-AKIS, A-DONUS, A-TAK (tak/çıkar, vida, kaydır, hiza), A-SAYAC (bit göstergesi), A-DOLUM (bellek dolumu), A-OLCEK (bin kat ölçek). |
-| Model kütüphanesi | K | Yazıldı: M-MASAUSTU, M-MASAUSTU-ACIK, M-MONITOR, M-KLAVYE, M-FARE, M-RAM, M-RAM-YUVASI, M-AMPUL-SIRASI. |
+| Animasyon kalıpları | K | Yazıldı: A-VURGU, A-KATMAN, A-AKIS, A-DONUS, A-TAK (tak/çıkar, vida, kaydır, hiza), A-SAYAC (bit göstergesi), A-DOLUM (bellek dolumu), A-OLCEK (bin kat ölçek), A-FIS (kablo ucunu porta takma), A-KAMERA-TUR, A-DALGA (2D). |
+| Model kütüphanesi | K | Yazıldı: M-MASAUSTU, M-MASAUSTU-ACIK, M-MONITOR, M-KLAVYE, M-FARE, M-RAM, M-RAM-YUVASI, M-AMPUL-SIRASI, M-ARKA-PANEL, M-KABLO-UCLARI, M-DIZUSTU. |
 
 ## DON-201 – Bilgisayar Donanımı
 
 | Hafta | Başlık | Tür | HTML | Plan | Not |
 |---|---|---|---|---|---|
 | H01 | Donanım, Yazılım ve Bilgisayarın Dört İşi | K | ✓ | ✓ | Format K kalibrasyonu onaylandı. |
-| H02 | Bit ve Byte | K | K | K | 15 slayt, 874 KB. 3D: kapak, Adım 1, 3, 4, Etkinlik 1 (ampul sırası); 2D: bit desenleri, KB–TB ölçeği, bellek dolumu, bellek tahmin oyunu. Fotoğraf gerekmiyor. |
-| H03 | Bağlantı Noktaları ve Çevre Birimleri | K | — | — | |
+| H02 | Bit ve Byte | K | ✓ | ✓ | 15 slayt, 874 KB. 3D: kapak, Adım 1, 3, 4, Etkinlik 1 (ampul sırası); 2D: bit desenleri, KB–TB ölçeği, bellek dolumu, bellek tahmin oyunu. Fotoğraf gerekmiyor. |
+| H03 | Bağlantı Noktaları ve Çevre Birimleri | K | K | K | 15 slayt. 3D: arka panel (port bilgisi, USB-A/C takma, HDMI ve ses kamera turu, kablo takma etkinliği), dizüstü yan portlar. FOTO-GEREKLİ: DON-201-H03-arka-panel.jpg, DON-201-H03-dizustu-portlar.jpg. |
 | H04 | Güvenli Çalışma | K+U | — | — | |
 | H05 | Anakart | K | — | — | |
 | H06 | İşlemci | K | — | — | |

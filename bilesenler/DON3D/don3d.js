@@ -354,6 +354,7 @@
     if (ops.etiket && !kap.hasAttribute('aria-label')) kap.setAttribute('aria-label', ops.etiket);
     s.yuzey = div('don3d-yuzey', kap);
     s.katman = div('don3d-katman', kap);
+    kap.setAttribute('data-bilincli-kirpma', '');   // 3D görüntü alanı: dışarı taşan etiketler bilerek kırpılır
     s.arayuz = div('don3d-arayuz', kap);
     s.yedekEl = kap.querySelector('[data-yedek]');
 
@@ -532,6 +533,14 @@
     this._kameraUygula();
   };
 
+  /** Yatay dönüş sınırı (sinir.yatay: açılış açısından ± radyan; yalnız önden bakılan modeller için). */
+  SP._thetaKisit = function (th) {
+    var y = this.sinir.yatay;
+    if (y == null || !this._baslangic) return th;
+    var b = this._baslangic.theta;
+    return kisit(th, b - y, b + y);
+  };
+
   /** Her karede çağrılacak fonksiyon ekler (yalnız sahne aktifken). */
   SP.herKare = function (fn) {
     var l = this._kareler;
@@ -666,6 +675,7 @@
       var gizli = _gecici.z > 1 || !et.nesne.visible;
       if (gizli) { et.el.style.opacity = '0'; continue; }
       var x = (_gecici.x * 0.5 + 0.5) * w, y = (-_gecici.y * 0.5 + 0.5) * h;
+      if (x < -20 || x > w + 20 || y < -20 || y > h + 20) { et.el.style.opacity = '0'; et.el.style.transform = 'translate(0,0)'; continue; }
       et.el.style.opacity = '';
       et.el.style.transform = 'translate(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px)';
     }
@@ -740,7 +750,7 @@
         var dx = e.clientX - surukle.x, dy = e.clientY - surukle.y;
         surukle.x = e.clientX; surukle.y = e.clientY;
         if (Math.abs(dx) + Math.abs(dy) > 0) {
-          s.orb.theta -= dx * 0.009;
+          s.orb.theta = s._thetaKisit(s.orb.theta - dx * 0.009);
           s.orb.phi = kisit(s.orb.phi - dy * 0.007, s.sinir.minPolar, s.sinir.maxPolar);
           s._dokun();
         }
@@ -769,8 +779,8 @@
     kap.addEventListener('keydown', function (e) {
       if (e.target !== kap) return;
       var ele = true;
-      if (s.girdiAcik && e.key === 'ArrowLeft') { s.orb.theta += 0.2; s._dokun(); }
-      else if (s.girdiAcik && e.key === 'ArrowRight') { s.orb.theta -= 0.2; s._dokun(); }
+      if (s.girdiAcik && e.key === 'ArrowLeft') { s.orb.theta = s._thetaKisit(s.orb.theta + 0.2); s._dokun(); }
+      else if (s.girdiAcik && e.key === 'ArrowRight') { s.orb.theta = s._thetaKisit(s.orb.theta - 0.2); s._dokun(); }
       else if (s.girdiAcik && e.key === 'ArrowUp') { s.orb.phi = kisit(s.orb.phi - 0.12, s.sinir.minPolar, s.sinir.maxPolar); s._dokun(); }
       else if (s.girdiAcik && e.key === 'ArrowDown') { s.orb.phi = kisit(s.orb.phi + 0.12, s.sinir.minPolar, s.sinir.maxPolar); s._dokun(); }
       else if (s.girdiAcik && (e.key === '+' || e.key === '=')) { s.orb.yakinlik = kisit(s.orb.yakinlik * 0.88, s.sinir.minYakin, s.sinir.maxYakin); s._dokun(); }

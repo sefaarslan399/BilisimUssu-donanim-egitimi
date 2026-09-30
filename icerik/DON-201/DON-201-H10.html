@@ -2437,6 +2437,7 @@ function(t,e){"object"==typeof exports&&"undefined"!=typeof module?e(exports):"f
     if (ops.etiket && !kap.hasAttribute('aria-label')) kap.setAttribute('aria-label', ops.etiket);
     s.yuzey = div('don3d-yuzey', kap);
     s.katman = div('don3d-katman', kap);
+    kap.setAttribute('data-bilincli-kirpma', '');   // 3D görüntü alanı: dışarı taşan etiketler bilerek kırpılır
     s.arayuz = div('don3d-arayuz', kap);
     s.yedekEl = kap.querySelector('[data-yedek]');
 
@@ -2615,6 +2616,14 @@ function(t,e){"object"==typeof exports&&"undefined"!=typeof module?e(exports):"f
     this._kameraUygula();
   };
 
+  /** Yatay dönüş sınırı (sinir.yatay: açılış açısından ± radyan; yalnız önden bakılan modeller için). */
+  SP._thetaKisit = function (th) {
+    var y = this.sinir.yatay;
+    if (y == null || !this._baslangic) return th;
+    var b = this._baslangic.theta;
+    return kisit(th, b - y, b + y);
+  };
+
   /** Her karede çağrılacak fonksiyon ekler (yalnız sahne aktifken). */
   SP.herKare = function (fn) {
     var l = this._kareler;
@@ -2749,6 +2758,7 @@ function(t,e){"object"==typeof exports&&"undefined"!=typeof module?e(exports):"f
       var gizli = _gecici.z > 1 || !et.nesne.visible;
       if (gizli) { et.el.style.opacity = '0'; continue; }
       var x = (_gecici.x * 0.5 + 0.5) * w, y = (-_gecici.y * 0.5 + 0.5) * h;
+      if (x < -20 || x > w + 20 || y < -20 || y > h + 20) { et.el.style.opacity = '0'; et.el.style.transform = 'translate(0,0)'; continue; }
       et.el.style.opacity = '';
       et.el.style.transform = 'translate(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px)';
     }
@@ -2823,7 +2833,7 @@ function(t,e){"object"==typeof exports&&"undefined"!=typeof module?e(exports):"f
         var dx = e.clientX - surukle.x, dy = e.clientY - surukle.y;
         surukle.x = e.clientX; surukle.y = e.clientY;
         if (Math.abs(dx) + Math.abs(dy) > 0) {
-          s.orb.theta -= dx * 0.009;
+          s.orb.theta = s._thetaKisit(s.orb.theta - dx * 0.009);
           s.orb.phi = kisit(s.orb.phi - dy * 0.007, s.sinir.minPolar, s.sinir.maxPolar);
           s._dokun();
         }
@@ -2852,8 +2862,8 @@ function(t,e){"object"==typeof exports&&"undefined"!=typeof module?e(exports):"f
     kap.addEventListener('keydown', function (e) {
       if (e.target !== kap) return;
       var ele = true;
-      if (s.girdiAcik && e.key === 'ArrowLeft') { s.orb.theta += 0.2; s._dokun(); }
-      else if (s.girdiAcik && e.key === 'ArrowRight') { s.orb.theta -= 0.2; s._dokun(); }
+      if (s.girdiAcik && e.key === 'ArrowLeft') { s.orb.theta = s._thetaKisit(s.orb.theta + 0.2); s._dokun(); }
+      else if (s.girdiAcik && e.key === 'ArrowRight') { s.orb.theta = s._thetaKisit(s.orb.theta - 0.2); s._dokun(); }
       else if (s.girdiAcik && e.key === 'ArrowUp') { s.orb.phi = kisit(s.orb.phi - 0.12, s.sinir.minPolar, s.sinir.maxPolar); s._dokun(); }
       else if (s.girdiAcik && e.key === 'ArrowDown') { s.orb.phi = kisit(s.orb.phi + 0.12, s.sinir.minPolar, s.sinir.maxPolar); s._dokun(); }
       else if (s.girdiAcik && (e.key === '+' || e.key === '=')) { s.orb.yakinlik = kisit(s.orb.yakinlik * 0.88, s.sinir.minYakin, s.sinir.maxYakin); s._dokun(); }
@@ -3529,6 +3539,58 @@ function(t,e){"object"==typeof exports&&"undefined"!=typeof module?e(exports):"f
       vida.rotation[eksen] = r0 + yon * tur * Math.PI * 2 * e;
       vida.position[eksen] = p0 + (ops.sok === false ? 1 : -1) * mesafe * e * (ops.isaret || 1);
     } });
+  };
+
+  /* ─── A-FIS: kablo ucunun porta takılması (A-TAK'ın yatay türü) ───
+     Port grubunun ağzı yerel (0,0,0), dışarı yönü yerel +Z'dir; fişin ucu yerel orijin, gövdesi +Z'dedir. */
+  var _q = new THREE.Quaternion(), _qz = new THREE.Quaternion(), _Z = new V3(0, 0, 1);
+  /** Fişi portun önüne yerleştirir: uzaklik (cm, dışarı yönde), yuvarlanma (rad, fişin kendi ekseninde). */
+  D.fisKonumla = function (fis, port, uzaklik, yuvarlanma) {
+    port.updateWorldMatrix(true, false);
+    var q = port.getWorldQuaternion(new THREE.Quaternion());
+    if (yuvarlanma) q.multiply(_qz.setFromAxisAngle(_Z, yuvarlanma));
+    var ebeveyn = fis.parent;
+    ebeveyn.updateWorldMatrix(true, false);
+    var eq = ebeveyn.getWorldQuaternion(_q).invert();
+    fis.quaternion.copy(eq.multiply(q));
+    fis.position.copy(ebeveyn.worldToLocal(D.fisHedef(port, uzaklik)));
+  };
+  /** Portun ağzından dışarı yönde uzaklik kadar ötedeki dünya noktası. */
+  D.fisHedef = function (port, uzaklik) {
+    var q = port.getWorldQuaternion(new THREE.Quaternion());
+    return port.localToWorld(new V3(0, 0, 0)).add(new V3(0, 0, 1).applyQuaternion(q).multiplyScalar(uzaklik));
+  };
+  /**
+   * Fişi porta takmayı dener. ops: { uygun: bool, ters: bool (USB-A ters), cevir: bool (ters ise çevirip tak),
+   *   bas: başlangıç uzaklığı (cm), sure: yaklaşma süresi }. Döner Promise<bool> (takıldı mı).
+   */
+  D.fisTak = function (fis, port, ops) {
+    ops = ops || {};
+    var s = D.sahneBul(fis), ebeveyn = fis.parent;
+    var giris = fis.userData.giris || 1;
+    var yuv = ops.ters ? Math.PI : 0;
+    function nokta(u) { return ebeveyn.worldToLocal(D.fisHedef(port, u)); }
+    D.fisKonumla(fis, port, ops.bas == null ? 4 : ops.bas, yuv);
+    var sure = D.azHareket() ? 0.01 : 1;
+    var z = git(fis, nokta(0.4), (ops.sure || 0.6) * sure);
+    function tak() {
+      return git(fis, nokta(-giris * 0.9), 0.35 * sure, 'easeInCubic').then(function () { D.ses('klik'); return true; });
+    }
+    if (ops.uygun !== false && !ops.ters) return z.then(tak);
+    return z.then(function () { return git(fis, nokta(0.05), 0.18 * sure); })
+      .then(function () { D.ses('hata'); return git(fis, nokta(0.9), 0.3 * sure, 'easeOutCubic'); })
+      .then(function () {
+        if (!(ops.ters && ops.cevir && ops.uygun !== false)) return false;
+        return D.bekle(0.35, s).then(function () {
+          return D.tween({ sahne: s, sure: 0.7 * sure, anahtar: 'cevir', hedef: fis, guncelle: function (e) {
+            D.fisKonumla(fis, port, 0.9, Math.PI * (1 - e));
+          } });
+        }).then(function () { return git(fis, nokta(0.4), 0.25 * sure); }).then(tak);
+      });
+  };
+  /** Fişi porttan çıkarır (dışarı çeker). */
+  D.fisCikar = function (fis, port, uzaklik) {
+    return git(fis, fis.parent.worldToLocal(D.fisHedef(port, uzaklik == null ? 4 : uzaklik)), D.azHareket() ? 0.01 : 0.5);
   };
 
   /* ─── A-TAK: parçanın hizalanıp yuvaya oturması; yanlış yönde girmez; klik ─── */
