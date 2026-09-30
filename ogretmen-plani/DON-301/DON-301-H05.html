@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DON-301 H05 Öğretmen Planı — Anakart</title>
+<style>
+@font-face{font-family:'Carlito';src:local('Carlito'),url('../../assets/font/Carlito-Regular.ttf');font-weight:400;font-style:normal}
+@font-face{font-family:'Carlito';src:local('Carlito Bold'),url('../../assets/font/Carlito-Bold.ttf');font-weight:700;font-style:normal}
+@font-face{font-family:'Carlito';src:local('Carlito Italic'),url('../../assets/font/Carlito-Italic.ttf');font-weight:400;font-style:italic}
+@page{size:A4;margin:14mm 14mm 16mm 16.5mm;
+  @bottom-center{content:'Bilişim Üssü · Etkileşimli Ders Planı · ' counter(page) ' / ' counter(pages);font-family:Carlito,Calibri,sans-serif;font-size:7.5pt;color:#6b7a82}}
+*{box-sizing:border-box}
+html{font-family:Carlito,Calibri,'Segoe UI',Arial,sans-serif;font-size:9.9pt;color:#1a1a1a;line-height:1.38}
+body{margin:0;max-width:180mm}
+@media screen{body{margin:24px auto;padding:0 12px}}
+.bant{display:flex;gap:7pt;margin-bottom:9pt}
+.bant-sol{flex:1;background:linear-gradient(135deg,#075985,#0a6aa3);color:#fff;border-radius:4pt;padding:9pt 14pt 10pt}
+.bant-ust{font-size:7.6pt;font-weight:700;letter-spacing:2.2pt;opacity:.92}
+.bant-baslik{font-size:23pt;font-weight:700;line-height:1.12;margin-top:3pt}
+.bant-baslik.uzun{font-size:18pt}
+.bant-sag{width:128pt;background:#0369a1;color:#fff;border-radius:4pt;display:flex;align-items:center;justify-content:center;font-size:14pt;font-weight:700}
+h2{background:#0369a1;color:#fff;font-size:11pt;font-weight:700;margin:12pt 0 6pt;padding:5pt 10pt;border-radius:4pt;letter-spacing:.2pt;break-after:avoid}
+h3{display:flex;justify-content:space-between;align-items:center;color:#0369a1;font-size:10.6pt;margin:9pt 0 4pt;break-after:avoid}
+h3 .sure{background:#0369a1;color:#fff;font-size:8.6pt;border-radius:9pt;padding:1.5pt 8pt}
+table{width:100%;border-collapse:collapse;margin:0 0 4pt}
+td,th{border:1px solid #b9def1;padding:4pt 7pt;vertical-align:top;text-align:left}
+th{background:#e0f2fe;color:#075985;font-size:9.2pt;font-weight:700}
+tr{break-inside:avoid}
+.genel td:first-child{width:134pt;background:#e0f2fe;color:#075985;font-weight:700}
+.kazanim{width:100%;border-collapse:collapse}
+.kazanim td{border:0;border-bottom:1px solid #eaf6fc;padding:3.5pt 4pt}
+.kazanim td:first-child{width:32pt;color:#0369a1;font-weight:700}
+.isleyis td:first-child{width:35pt;text-align:center;color:#6b7a82;font-weight:700}
+.isleyis td:nth-child(2){width:122pt}
+.adim-ad{font-weight:700}
+.adim-konu{color:#475569}
+.slayt{display:inline-block;margin-top:2pt;font-size:8pt;font-weight:700;color:#0369a1;background:#e0f2fe;border-radius:6pt;padding:0 5pt}
+q{quotes:'“' '”'}
+q::before{content:open-quote}q::after{content:close-quote}
+p{margin:3pt 0 5pt;text-align:justify}
+.kutu{border:1px solid #b9def1;border-left:3pt solid #0369a1;border-radius:3pt;padding:5pt 8pt;margin:5pt 0;background:#f5fbff;break-inside:avoid}
+.kutu b{color:#075985}
+.olcme td:first-child{width:22pt;text-align:center;font-weight:700}
+.olcme td:last-child{width:40pt;text-align:center;color:#0369a1;font-weight:700}
+.soru{font-weight:700}
+.secenek{margin-top:1pt}
+.aciklama{font-style:italic;color:#0369a1;font-size:9.5pt;margin-top:2pt}
+.soru-gorsel{float:right;margin:0 0 2pt 8pt}
+.soru-gorsel svg{height:38pt;width:auto}
+.anahtar{font-weight:700;color:#075985;margin:3pt 0 0}
+.anahtar span{font-weight:400;color:#1a1a1a}
+ol.acik{margin:2pt 0;padding-left:0;list-style:none;counter-reset:a}
+ol.acik li{counter-increment:a;display:flex;gap:10pt;padding:3pt 0}
+ol.acik li::before{content:counter(a) '.';color:#0369a1;font-weight:700;min-width:16pt}
+.etiket{color:#0369a1;font-weight:700;margin:7pt 0 2pt}
+ul.not{margin:2pt 0;padding-left:12pt}
+ul.not li{margin:2pt 0}
+.sure-tablo td:last-child,.sure-tablo th:last-child{width:62pt}
+.imza{display:flex;justify-content:space-around;margin-top:14pt;text-align:center;color:#6b7a82;break-inside:avoid;break-before:avoid;page-break-before:avoid}
+.sure-tablo{break-after:avoid;page-break-after:avoid}
+.sure-tablo tr:last-child{break-after:avoid}
+.uyg{display:grid;grid-template-columns:1fr 1fr;gap:3pt;margin-top:5pt}
+.uyg div{border-radius:3pt;padding:3pt 6pt;font-size:9pt;line-height:1.32}
+.uyg b{display:block;font-size:7.6pt;letter-spacing:.8pt}
+.uyg .goster{background:#eff6ff;border-left:2.5pt solid #3b82f6}.uyg .goster b{color:#1d4ed8}
+.uyg .sor{background:#f5f3ff;border-left:2.5pt solid #8b5cf6}.uyg .sor b{color:#6d28d9}
+.uyg .kontrol{background:#ecfdf5;border-left:2.5pt solid #10b981}.uyg .kontrol b{color:#047857}
+.uyg .sikhata{background:#fff7ed;border-left:2.5pt solid #f97316}.uyg .sikhata b{color:#c2410c}
+.guvenlik{border:1.5pt solid #ef4444;border-radius:4pt;background:#fef2f2;padding:6pt 10pt;margin:6pt 0;break-inside:avoid}
+.guvenlik b{color:#b91c1c;display:block;margin-bottom:2pt}
+.guvenlik ul{margin:2pt 0;padding-left:13pt}
+.imza b{display:block;color:#475569;margin-bottom:10pt}
+</style>
+</head>
+<body>
+<div class="bant"><div class="bant-sol"><div class="bant-ust">ÖĞRETMEN DERS PLANI · DON-301</div><div class="bant-baslik">Anakart</div></div><div class="bant-sag">5. Hafta</div></div>
+<h2>1. GENEL BİLGİLER</h2>
+<table class="genel">
+<tr><td>Dersin Adı</td><td>Bilgisayar Donanımı ve Sistem Kurulumu</td></tr>
+<tr><td>Sınıf / Seviye</td><td>Lise (9. sınıf)</td></tr>
+<tr><td>Ünite / Konu</td><td>Donanım 301 - Bileşenler ve Uyumluluk — Anakart</td></tr>
+<tr><td>Öğrenme Alanı</td><td>Bilgisayar Donanımı</td></tr>
+<tr><td>Süre</td><td>1 ders saati (35 dk)</td></tr>
+<tr><td>Yöntem ve Teknikler</td><td>Anlatım, soru-cevap, tahmin et–izle, ölçekli 2D karşılaştırma (form faktörleri ve kasa uyumu), 3D model inceleme ve kamera turu (soket, yuvalar, güç girişleri, başlıklar), blok şema okuma (çipset ve bant genişliği paylaşımı), kılavuz okuma, 3D parça avı, eşli çalışma</td></tr>
+<tr><td>Araç-Gereç ve Kaynaklar</td><td>Etkileşimli ders (LMS), projeksiyon veya akıllı tahta; mümkünse eski bir ATX ya da mATX anakart ile basılı veya PDF biçiminde bir anakart kılavuzu (yerleşim ve iç bağlantılar sayfaları); gösterim için bir 24-pin ve bir 8-pin EPS kablo ucu</td></tr>
+<tr><td>Kavramlar / Terimler</td><td>Form Faktörleri, CPU Soketi, Çipset, PCIe ve M.2 Yuvaları, 24-pin ATX ve 8-pin EPS, Arka Panel ve Ön Panel Başlıkları</td></tr>
+</table>
+<h2>2. KAZANIMLAR</h2>
+<table class="kazanim">
+<tr><td>K1.</td><td>Anakart form faktörlerini (ATX, mATX, Mini-ITX) ayırt eder.</td></tr>
+<tr><td>K2.</td><td>Soket ile çipset ilişkisini açıklar.</td></tr>
+<tr><td>K3.</td><td>PCIe ve M.2 yuvalarını kılavuzdan okur.</td></tr>
+<tr><td>K4.</td><td>Güç ve ön panel konnektörlerini tanır.</td></tr>
+</table>
+<h2>3. DERS İŞLENİŞİ</h2>
+<h3><span>Giriş — Dikkat Çekme ve Güdüleme</span><span class="sure">5 dk</span></h3>
+<p>Kapaktaki anakartı döndürürken yollarda akan ışıklara dikkat çekin ve sorun: <q>Bu kartın üzerindeki hiçbir yol rastgele çizilmemiş; işlemciden çıkan hatlar nereye gidiyor, çipsetten çıkanlar nereye?</q> Birkaç yanıtı tahtanın köşesine not edin. Kazanımları okuyun ve dersin sonunda bir anakart kılavuzunu açıp istedikleri bilgiyi bulabileceklerini söyleyin. Isınma slaytında (Slayt 3) Ece’nin durumunu okutun, üç seçenek için el kaldırarak oylama yapın ve sonucu yazın; <q>Birinci adımda kartları gerçek boyutlarıyla üst üste koyup bu oylamayı sınayacağız</q> deyin. Terim Kartı’nda (Slayt 4) terimleri sırayla öğrencilere okutun; LGA ile PGA arasındaki farkı ve PCIe hattının ne demek olduğunu ayrıca sorun.</p>
+<h3><span>Gelişme — Kavramların İşlenişi</span><span class="sure">25 dk</span></h3>
+<table class="isleyis"><thead><tr><th>Adım</th><th>Konu</th><th>Öğretmen Notu</th></tr></thead>
+<tr><td>1</td><td><div class="adim-ad">Form Faktörleri</div><div class="adim-konu">Form Faktörleri: ATX, mATX, Mini-ITX</div><span class="slayt">Slayt 5</span></td><td>Slayt açıldığında kartlar önce yan yana gelir, ardından kendiliğinden hizalanır ve Mini-ITX kasa seçilir; bu kısa gösteriyi durdurmadan izletin. Kartlar hizalanırken sorun: <q>Üç kartın ortak köşesi neden hep arka panel tarafı?</q> Açık sarı daireleri gösterip vida deliklerinin ortak kullanıldığını fark ettirin. Sonra mATX ve ATX kasa düğmelerine sırayla basıp yeşil ve kırmızı rozetleri okutun, ısınmadaki oylamaya geri dönün. <q>Biçim standardı yalnız ölçüyü değil, vida ayaklarının ve G/Ç panelinin yerini de sabitler; bu yüzden küçük bir kart büyük bir kasaya oturur ama büyük kart küçük kasaya girmez</q> deyin. Öğrencilere evdeki ya da okuldaki bir kasanın hangi kartları alabileceğini söyletin.</td></tr>
+<tr><td>2</td><td><div class="adim-ad">CPU Soketi</div><div class="adim-konu">İşlemci Soketi</div><span class="slayt">Slayt 6</span></td><td>Soketi aç düğmesiyle kilit kolunu ve yük plakasını açın; sahnede beliren yaylı pimleri gösterip LGA ile PGA farkını tekrar ettirin. Ters dene düğmesine basmadan önce tahmin alın: <q>İşlemciyi yarım tur çevirip bırakırsak ne olur?</q> Titreşen işlemciyi izledikten sonra Doğru tak ve Soketi kapat düğmeleriyle işlemin tamamını gösterin. <q>Soket, hangi işlemci ailesinin takılabileceğini belirler; temas sayısı ve dizilimi farklı olan işlemci fiziksel olarak da oturmaz. İşlemci yuvaya bırakılır, üzerine bastırılmaz; plaka kapanınca koruma kapağı kendiliğinden ayrılır ve saklanır</q> deyin. Öğrencilere işlemciyi takarken hangi iki işarete baktıklarını gösterttirin.</td></tr>
+<tr><td>3</td><td><div class="adim-ad">Çipset</div><div class="adim-konu">Çipset ve Platform</div><span class="slayt">Slayt 7</span></td><td>Önce Hepsi görünümünde mavi ve gri yolları ayırt ettirin; sonra Doğrudan ve Çipset düğmelerine sırayla basın. Paylaşım görünümüne geçmeden sorun: <q>Çipsete bağlı dört aygıt aynı anda çalışırsa tek bağlantı yeter mi?</q> Aygıt düğmelerini birer birer açtırıp çubuğun siyah sınır çizgisini geçtiği anı yakalatın. <q>İşlemci en hızlı yolları kendisi yönetir; çipset diğer aygıtları toplayıp tek bir hat demetiyle işlemciye iletir. Aynı sokete farklı seviyede çipsetler yapıldığından platform, soket ile çipset birlikte düşünülerek seçilir</q> deyin. Öğrencilere M.2_1 ile M.2_2 arasındaki farkı gerekçesiyle söyletin.</td></tr>
+<tr><td>4</td><td><div class="adim-ad">PCIe ve M.2 Yuvaları</div><div class="adim-konu">PCIe ve M.2 Yuvaları</div><span class="slayt">Slayt 8</span></td><td>Kılavuz tablosundaki satırlara sırayla dokunun; kamera her seferinde ilgili yuvaya gider. PCIE_3 satırında durup sorun: <q>Bu yuva ekran kartı yuvasıyla aynı boyda; neden hızı onun dörtte biri kadar?</q> M.2 satırlarında SSD’nin eğik girip bastırıldığı ve vidalandığı bölümü izletin; M.2_2 seçilince kırmızıyla işaretlenen SATA bölgesini gösterin. <q>Hat başına hız her nesilde yaklaşık ikiye katlanır; toplam hız, nesil ile hat sayısının çarpımıyla bulunur. Yuvanın uzunluğu bu hesaba girmez, kılavuzdaki elektriksel değer esas alınır</q> deyin. Tahtada PCIe 4.0 x4 için yaklaşık 8 GB/s hesabını yaptırın. Öğrencilere bir x1 kartın hangi yuvalara takılabileceğini söyletin.</td></tr>
+<tr><td>5</td><td><div class="adim-ad">24-pin ATX ve 8-pin EPS</div><div class="adim-konu">Ana Güç ve İşlemci Güç Girişleri</div><span class="slayt">Slayt 9</span></td><td>Hiçbir kablo takılı değilken Güç ver düğmesine basın, sonra yalnız 24-pin’i takıp yeniden deneyin; sonucu tahmin ettirdikten sonra ekrandaki mesajı okutun. Ters dene düğmesiyle konnektörün girmediğini ve geri çekildiğini izletin; ardından EPS’i takıp VRM üzerinden sokete akan sarı parçacıkları gösterin. <q>Ana kablo kartın geneline enerji dağıtır; işlemcinin yüksek akımı ise ayrı bir kablodan gelir ve soketin çevresindeki güç devresinde düşük gerilime çevrilir. Kilit tırnağı yerine oturmadan kablo bırakılmaz</q> deyin. Elinizde gerçek kablo uçları varsa kilit tırnağını gösterin. Öğrencilere iki konnektörün karttaki yerlerini serigrafi adlarıyla gösterttirin.</td></tr>
+<tr><td>6</td><td><div class="adim-ad">Arka Panel ve Ön Panel Başlıkları</div><div class="adim-konu">Arka Panel ve Ön Panel Başlıkları</div><span class="slayt">Slayt 10</span></td><td>Slayt açılınca kamera arka panele gider; birkaç porta dokunup bilgi kartını okutun. HDMI’ye gelince sorun: <q>Ekran kartı takılı bir sistemde monitörü buraya bağlarsak görüntü gelir mi?</q> Sonra F_PANEL düğmesine basıp pim şemasını büyütün; LED uçlarındaki artı ve eksi işaretlerini, düğme pimlerinde ise yön olmadığını gösterin. USB, F_AUDIO ve CPU_FAN duraklarını sırayla gezin. <q>Kasanın ön yüzündeki her düğme ve giriş karttaki küçük bir pim grubuna bağlanır; eksik pim takma yönünü belirler, kutuplu olan yalnız ışıklardır</q> deyin. Öğrencilere güç LED’i yanmadığında ilk neyi kontrol edeceklerini söyletin.</td></tr>
+</table>
+<div class="kutu"><b>Etkinlikler (Slayt 11–12):</b> Etkinlik 1’de (Slayt 11) öğrenciler sahnenin üstündeki kılavuz satırını okuyup ilgili bağlantıyı 3D kartta bulur; Şema düğmesi kılavuzun yerleşim çizimini açar, iki yanlıştan sonra ipucu çıkar. Eşli çalışmada biri kılavuz satırını yüksek sesle okurken diğeri kartta göstersin, dört satırdan sonra rolleri değiştirsinler. Etkinlik 2’de (Slayt 12) sekmeli örnek kılavuzdan beş görevi yanıtlatın; gerçek bir kılavuz getirdiyseniz aynı soruları o kartın kılavuzunda da aratın ve iki kılavuzdaki farkları tahtada karşılaştırın (yaklaşık 10 dk).</div>
+<h3><span>Değerlendirme ve Kapanış</span><span class="sure">5 dk</span></h3>
+<p>Özet slaytındaki altı kartı farklı öğrencilere birer cümleyle açıklattırın. Bilgi Testi’ni (Slayt 14) bireysel çözdürün; yanlış çıkan sorularda özellikle yuva boyunu hat sayısıyla karıştırma ve EPS kablosunu unutma hatalarını tahtada birlikte düzeltin. Dersi <q>Gelecek hafta kartın beslendiği güç kaynağını ve soğutmayı inceleyeceğiz; bugün gördüğünüz 24-pin ve EPS kablolarının öbür ucuna bakacağız</q> köprüsüyle kapatın.</p>
+<h2>4. ÖLÇME VE DEĞERLENDİRME</h2>
+<table class="olcme"><thead><tr><th>#</th><th>Soru ve Seçenekler</th><th>Cevap</th></tr></thead>
+<tr><td>1</td><td><div class="soru">Soket ile çipsetin ilişkisini en doğru açıklayan ifade hangisidir?</div><div class="secenek">A) Soket takılabilecek işlemci ailesini belirler; çipset o aileyi destekler ve USB, SATA, ek PCIe hatları gibi özellikleri sağlar. B) Çipset işlemcinin oturduğu yuvadır; soket ise yalnızca soğutucuyu tutar. C) Soket aynıysa her çipset her işlemciyle hiçbir güncelleme gerekmeden çalışır. D) RAM ve ana ekran kartı yuvası çipsete bağlıdır; işlemci yalnızca hesap yapar.</div><div class="aciklama">Soket ve çipset birlikte platformu oluşturur. Bellek denetleyicisi ve ana PCIe hatları işlemcidedir; çipset ek bağlantıları tek bir hızlı yolla işlemciye taşır. Uyumu kılavuzdaki destek listesi belirler.</div></td><td>A</td></tr>
+<tr><td>2</td><td><div class="soru-gorsel"><svg viewBox="0 0 360 170" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Kılavuz tablosu: PCIE_1 PCIe 4.0 x16 işlemci; PCIE_2 PCIe 3.0 x1 çipset; PCIE_3 x16 boy, x4 hat, PCIe 3.0, çipset"><rect width="360" height="170" rx="12" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/><rect x="0.0" y="0.0" width="360.0" height="30.0" rx="12" fill="#1e293b"/><rect x="0.0" y="18.0" width="360.0" height="12.0" rx="0" fill="#1e293b"/><text x="14" y="20" font-family="Inter,Arial,sans-serif" font-size="11.5" font-weight="900" fill="#fff" text-anchor="start">1-4  Genişleme yuvaları</text><text x="346" y="20" font-family="Inter,Arial,sans-serif" font-size="10" font-weight="700" fill="#cbd5e1" text-anchor="end">Kılavuz</text><text x="16" y="48" font-family="Inter,Arial,sans-serif" font-size="9.5" font-weight="800" fill="#64748b" text-anchor="start">Yuva</text><text x="110" y="48" font-family="Inter,Arial,sans-serif" font-size="9.5" font-weight="800" fill="#64748b" text-anchor="start">Boy / hat</text><text x="218" y="48" font-family="Inter,Arial,sans-serif" font-size="9.5" font-weight="800" fill="#64748b" text-anchor="start">Nesil</text><text x="284" y="48" font-family="Inter,Arial,sans-serif" font-size="9.5" font-weight="800" fill="#64748b" text-anchor="start">Kaynak</text><rect x="8.0" y="56.0" width="344.0" height="25.0" rx="6" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/><text x="16" y="73" font-family="JetBrains Mono,Consolas,monospace" font-size="11" font-weight="900" fill="#0f172a" text-anchor="start">PCIE_1</text><text x="110" y="73" font-family="JetBrains Mono,Consolas,monospace" font-size="11" font-weight="800" fill="#0f172a" text-anchor="start">x16 / x16</text><text x="218" y="73" font-family="Inter,Arial,sans-serif" font-size="11" font-weight="700" fill="#334155" text-anchor="start">PCIe 4.0</text><text x="284" y="73" font-family="Inter,Arial,sans-serif" font-size="11" font-weight="700" fill="#334155" text-anchor="start">İşlemci</text><rect x="8.0" y="86.0" width="344.0" height="25.0" rx="6" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/><text x="16" y="103" font-family="JetBrains Mono,Consolas,monospace" font-size="11" font-weight="900" fill="#0f172a" text-anchor="start">PCIE_2</text><text x="110" y="103" font-family="JetBrains Mono,Consolas,monospace" font-size="11" font-weight="800" fill="#0f172a" text-anchor="start">x1 / x1</text><text x="218" y="103" font-family="Inter,Arial,sans-serif" font-size="11" font-weight="700" fill="#334155" text-anchor="start">PCIe 3.0</text><text x="284" y="103" font-family="Inter,Arial,sans-serif" font-size="11" font-weight="700" fill="#334155" text-anchor="start">Çipset</text><rect x="8.0" y="116.0" width="344.0" height="25.0" rx="6" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/><text x="16" y="133" font-family="JetBrains Mono,Consolas,monospace" font-size="11" font-weight="900" fill="#0f172a" text-anchor="start">PCIE_3</text><text x="110" y="133" font-family="JetBrains Mono,Consolas,monospace" font-size="11" font-weight="800" fill="#0f172a" text-anchor="start">x16 / x4</text><text x="218" y="133" font-family="Inter,Arial,sans-serif" font-size="11" font-weight="700" fill="#334155" text-anchor="start">PCIe 3.0</text><text x="284" y="133" font-family="Inter,Arial,sans-serif" font-size="11" font-weight="700" fill="#334155" text-anchor="start">Çipset</text><text x="16" y="160" font-family="Inter,Arial,sans-serif" font-size="9.5" font-weight="700" fill="#475569" text-anchor="start">Boy / hat: yuvanın fiziksel boyu / kullandığı elektriksel hat sayısı</text></svg></div><div class="soru">Görseldeki kılavuz tablosuna göre PCIE_3 yuvası için hangisi doğrudur?</div><div class="secenek">A) İşlemciye bağlıdır; ekran kartı için en hızlı yuvadır. B) Uzun olduğu için x1 kartlar bu yuvaya takılamaz. C) Fiziksel olarak x16 boyundadır ama x4 hatla çalışır ve çipsete bağlıdır. D) Yalnızca M.2 SSD takılabilir.</div><div class="aciklama">Yuvanın boyu ile elektriksel hat sayısı farklı olabilir. PCIE_3 x16 boyunda ama x4 çalışır; ekran kartı için işlemciye bağlı PCIE_1 seçilir. Kısa kartlar uzun yuvaya takılabilir.</div></td><td>C</td></tr>
+<tr><td>3</td><td><div class="soru">Ece’nin elinde mATX bir anakart, evde de boş bir ATX kasa var. Ne olur?</div><div class="secenek">A) Takılamaz; kasa ile kart aynı form faktöründe olmak zorundadır. B) Takılabilir; mATX kart, ATX kasadaki vida ayaklarının bir bölümünü kullanır ve arka panel aynı yere gelir. C) Takılabilir ama arka panel portları kasanın ön yüzüne gelir. D) Yalnızca Mini-ITX kasaya takılabilir.</div><div class="aciklama">Küçük form faktörleri büyük kasaların vida deliklerinin bir alt kümesini kullanır; büyük kasa küçük kartı alır, tersi olmaz.</div></td><td>B</td></tr>
+<tr><td>4</td><td><div class="soru">Deniz yeni topladığı bilgisayarı açınca fanlar dönüyor ama işlemci çalışmıyor, ekrana hiçbir şey gelmiyor. Kartın üst kenarındaki CPU_PWR girişi boş. Sorun nedir?</div><div class="secenek">A) 24-pin ATX takılıysa işlemci de beslenir; sorun ekran kartındadır. B) CPU_PWR, ön panel güç düğmesinin bağlandığı başlıktır. C) CPU_PWR girişine SATA güç kablosu takılmalıdır. D) 8-pin EPS kablosu takılmamış; işlemcinin VRM’i +12 V beslemesini alamıyor.</div><div class="aciklama">İşlemci gücü ayrı bir 8-pin EPS (4+4) kablosuyla gelir. 24-pin tek başına yetmez; EPS takılmazsa sistem açılış testini geçemez.</div></td><td>D</td></tr>
+</table>
+<p class="anahtar">Cevap Anahtarı: <span>1-A 2-C 3-B 4-D</span></p>
+<h2>5. AÇIK UÇLU / BİÇİMLENDİRİCİ DEĞERLENDİRME</h2>
+<ol class="acik">
+<li><span>«Form Faktörü ve Kasa Uyumu» kavramını kendi cümlelerinle açıkla ve günlük hayattan bir örnek ver.</span></li>
+<li><span>«Soket ile Çipsetin Birlikte Platformu Oluşturması» kavramını kendi cümlelerinle açıkla ve günlük hayattan bir örnek ver.</span></li>
+<li><span>«Yuva Boyu ile Elektriksel Hat Sayısı Farkı» kavramını kendi cümlelerinle açıkla ve günlük hayattan bir örnek ver.</span></li>
+<li><span>Bu derste kılavuzdan bilgi bulurken en çok hangi adımda zorlandın? Bir arkadaşın yeni bir anakart aldığında ona kılavuzun hangi sayfalarına bakmasını önerirsin?</span></li>
+</ol>
+<h2>6. ÖĞRETMEN NOTLARI VE ÖDEV</h2>
+<div class="etiket">Ödev / Sınıf Dışı Etkinlik:</div><p>Erişebildiğin bir masaüstü bilgisayarın (okul ya da ev) anakart modelini sistem bilgisi ekranından bul. Üreticinin sitesinden kılavuzu indir ve şu bilgileri bir tabloya yaz: form faktörü, soket ve çipset, RAM yuvası sayısı ve iki modül için önerilen yuvalar, PCIe yuvalarının nesil ve hat sayıları, M.2 yuvalarının bağlı olduğu kaynak ve varsa hat paylaşımı notu. Kasayı açma; bilgileri yalnız kılavuzdan ve ekrandan topla.</p>
+<div class="etiket">Öğretmen İçin Notlar:</div><ul class="not">
+<li>Lise düzeyi: terimler İngilizce karşılıklarıyla verilir (Terim Kartı, Slayt 4). Öğrencilerden kılavuzdaki serigrafi adlarını (CPU_PWR, ATX_PWR, PCIE_1, M.2_2, F_PANEL) okunuşlarıyla birlikte kullanmalarını isteyin.</li>
+<li>Güvenlik ve özen: Gerçek anakart gösterecekseniz kartı kenarlarından tutturun, soket pimlerine ve bileşenlere dokundurmayın; mümkünse antistatik bileklik kullanın. Soket koruma kapağı takılı değilse kartı masaya pim yüzü yukarı bakacak ve üstüne bir şey düşmeyecek biçimde koyun.</li>
+<li>Teknik not: Dersteki kılavuz sayfaları marka içermeyen örnek sayfalardır; hat paylaşımı, RAM yuvası önceliği ve F_PANEL pin düzeni gerçek kartlarda üreticiye göre değişir. Öğrencilere her zaman kendi kartının kılavuzuna bakmaları gerektiğini vurgulayın. Çipset bağlantısının hızı platforma göre farklıdır (örnek değer yaklaşık 3,9 GB/s olarak verildi); PCIe hız değerleri tek yön ve yaklaşıktır.</li>
+<li>Sık görülen kavram yanılgıları: <q>Uzun yuva her zaman hızlıdır</q>, <q>Aynı sokete giren her işlemci her anakartta çalışır</q>, <q>24-pin kablo işlemciyi de besler</q>, <q>Ön panel kablolarının hepsinde yön önemlidir</q>, <q>Küçük kart büyük kasaya takılamaz</q>. Bu cümleleri doğru/yanlış sorusu olarak sorup gerekçeyle düzeltin.</li>
+<li>Hareket azaltma ayarı açık cihazlarda kartların hizalanması, kamera geçişleri ve takma animasyonları kısa geçişlerle tamamlanır; 3D sahneler sürükleyerek, ok tuşları ve R (sıfırla) ile de kullanılabilir. 3D açılmayan cihazlarda sahnelerin yerine anakart yerleşim şeması gösterilir; parçaları bu çizim üzerinden anlatabilirsiniz.</li>
+<li>Her adımın sonunda 1-2 öğrenciye kavramı kendi cümleleriyle anlattırarak anlaşıldığını kontrol edin (biçimlendirici değerlendirme).</li>
+</ul>
+<table class="sure-tablo"><thead><tr><th>Aşama</th><th>Süre</th></tr></thead>
+<tr><td>Giriş — Dikkat Çekme ve Güdüleme</td><td>5 dk</td></tr>
+<tr><td>Gelişme — Kavramların İşlenişi ve Etkinlikler</td><td>25 dk</td></tr>
+<tr><td>Değerlendirme ve Kapanış</td><td>5 dk</td></tr>
+<tr><th>Toplam</th><th>35 dk</th></tr>
+</table>
+<div class="imza"><div><b>Ders Öğretmeni</b>Ad Soyad / İmza</div><div><b>Uygundur</b>Okul Müdürü</div></div>
+</body>
+</html>
