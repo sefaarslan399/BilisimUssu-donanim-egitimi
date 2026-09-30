@@ -42,7 +42,7 @@ Durum: `—` başlanmadı · `K` kalibrasyon (onay bekliyor) · `✓` tamam · `
 | H06 | Güç Kaynağı ve Soğutma | K | — | — | |
 | H07 | Ekran Kartı ve Bağlantı Standartları | K | — | — | |
 | H08 | Uyumluluk ve Sistem Toplama | K+U | — | — | |
-| H09 | Montaj 1: Tezgâhta | U | — | — | |
+| H09 | Montaj 1: Tezgâhta | U | K | K | 16 slayt (ek: Hazırlık, Güvenlik ve Roller). 3D provalar: ESD, işlemci (üçgen hizalama), macun + soğutucu, çift kanal RAM, M.2 SSD, kontrol turu; E-MONTAJ simülatörü (8 aşama, hatalı sıra/yuva açıklamalı geri alınır), Kontrolcü Sensin kart etkinliği. FOTO-GEREKLİ: DON-301-H09-1-esd.jpg … -6-kontrol.jpg (6). |
 | H10 | Montaj 2: Kasada ve İlk POST | U | — | — | |
 | H11 | BIOS/UEFI ve Önyükleme | K+U | K | K | 15 slayt, 2D: önyükleme zinciri, POST hata ışıkları (A-BOOT, derse özel), UEFI ana ekranı, önyükleme sırası, XMP/EXPO, Secure Boot/TPM, E-UEFI simülatörü, UEFI keşif kartı. FOTO-GEREKLİ: DON-301-H11-uefi-ana-ekran.jpg, DON-301-H11-uefi-onyukleme.jpg. DOĞRULA: bip kodu ve hata ışığı sırası anlatımı genel (kılavuza yönlendiriliyor); örnek DDR5 değerleri temsilî. |
 | H12 | İşletim Sistemi Kurulumu | U | K | K | 16 slayt (ek: Hazırlık ve Güvenlik), 2D uygulama provaları: önyüklenebilir USB, GPT/MBR, bölümleme, kurulum, Aygıt Yöneticisi, güncellemeler; E-KURULUM simülatörü, kurulum kararları. FOTO-GEREKLİ: DON-301-H12-1-usb.jpg … -6-guncel.jpg (6). DOĞRULA: BIOS-only anakart + GPT genellemesi "çoğu" ile sınırlandı. |

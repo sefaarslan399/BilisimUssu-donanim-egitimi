@@ -1,0 +1,155 @@
+{
+  "format": "U",
+  "altbaslik": "Grup, kasaya girmeden önce anakartı kendi kutusunun üstünde kuruyor: işlemci, soğutucu, iki bellek modülü ve M.2 SSD; her parçada önce 3D provayı izleyip sonra gerçek parçada uyguluyor.",
+  "rozetler": ["Lise 9", "Süre: 1 ders (35 dk)", "Grup: 3 kişi", "Montaj seti + ESD takımı", "Zorluk: Orta"],
+  "senaryo": {
+    "baslik": "TEZGÂHTA ÖN MONTAJ",
+    "metin": "Okulun teknik servisi laboratuvar için yeni bilgisayar parçaları teslim aldı. Servis sorumlusu, kasaya takmadan önce her anakartın tezgâhta hazırlanmasını istiyor: kasanın içinde el hareket alanı dar, soğutucu vidaları ve bellek mandalları açıkta çok daha kolay ve güvenli takılıyor. Servisin tek şartı var: montaj sırası kayda geçecek ve her kart bir kontrolcünün onayından geçecek.",
+    "gorev": "Antistatik önlemi alıp anakartı kutusunun üstünde hazırla; işlemciyi yön işaretine göre tak, macunu uygulayıp soğutucuyu bağla, iki modülü kılavuzdaki yuvalara ve M.2 SSD'yi yuvasına tak; kontrol formunu doldurup kartı H10'daki kasa montajına teslim et."
+  },
+  "ogrenci_ne_yapiyor": "Her yapım adımında önce iki panelli slaytın solundaki 3D provayı izliyor, sonra grubuyla aynı işi gerçek parçada yapıyor: bilekliğini matın topraklama düğmesine bağlıyor, soketin kilit kolunu kaldırıp işlemciyi üçgen işaretine göre bırakıyor, kolu kilitleyip koruma kapağını saklıyor, kapağın ortasına küçük bir damla macun koyup soğutucunun vidalarını dönüşümlü sıkıyor, fan kablosunu CPU_FAN'a takıyor, kılavuzun bellek tablosunu okuyup modülleri A2 ve B2'ye yerleştiriyor, M.2 SSD'yi açıyla sokup vidalıyor. Kontrolcü her adımı onaylıyor, kayıtçı sırayı ve süreyi forma yazıyor. Ardından E-MONTAJ simülatöründe aynı montajı süre ve hata sayısıyla tekrarlıyor, kontrolcü kartlarında hatalı montajları ayıklıyor.",
+  "kunye": {
+    "grup": "3 kişilik gruplar; roller: uygulayan (parçaya dokunan tek kişi), kontrolcü (kılavuzu ve talimatı okur, yönü ve yuvayı doğrular), kayıtçı (montaj sırası, yuvalar ve süre); her parçada rol değişir",
+    "donanim": "Grup başına ATX anakart (kutusu ve kılavuzuyla), uyumlu işlemci, kule tipi soğutucu, termal macun şırıngası, 2 × aynı model DDR4/DDR5 modül, M.2 SSD, küçük yıldız tornavida, antistatik bileklik ve mat, izopropil alkol ve tüy bırakmayan bez. Güç kaynağı ve fiş yok.",
+    "on_kosul": "H02 işlemci ve soket, H03 çift kanal bellek, H04 M.2 ve NVMe, H05 anakart bileşenleri, H06 soğutma ve güç, H08 uyumluluk denetimi; DON-201'den ESD ve parçayı kenarından tutma alışkanlığı",
+    "degerlendirme": "Süreç gözlemi (ESD, işlemci yönü, macun miktarı, yuva seçimi) + montaj kontrol formu ve kartın durumu rubriği + E-MONTAJ raporu (süre ve hata sayısı) + 4 soruluk bilgi testi (bileklik bağlantısı, üçgen hizası, macun miktarı, M.2 sabitleme)"
+  },
+  "kavramlar": [
+    { "baslik": "ESD ve topraklama", "metin": "İnsan vücudu yürürken ya da kıyafet sürtünürken birkaç bin volta kadar yüklenebilir. Hissedilme eşiği yaklaşık 3 kV'tur; oysa entegre devreler bunun çok altındaki boşalmalarla hasar görebilir ve hasar çoğu zaman hemen belli olmaz. Antistatik bileklik, içindeki yaklaşık 1 MΩ'luk dirençle yükü yavaşça topraklama noktasına akıtır; mat da yüzeydeki yükü aynı hatta taşır. Klips bağlanmadıkça bileklik işe yaramaz." },
+    { "baslik": "LGA soket ve sıfır kuvvet", "metin": "LGA düzeninde yaylı ince pimler sokettedir, işlemcinin altında ise düz temas pedleri bulunur. İşlemci kenarlarından tutulup köşe üçgeni soketteki üçgenle aynı köşeye getirilerek düz bırakılır; kenarlardaki hizalama çentikleri soketteki tırnaklara oturur. Baskıyı yük plakası ve kilit kolu verir; işlemciyi parmakla bastırmak ya da ters yönde kolu indirmek pimleri eğer. Pim eğilmesi çoğu zaman anakartın servis gerektirmesi demektir." },
+    { "baslik": "Koruma kapağı", "metin": "Yeni anakartta soketin üstünde plastik bir koruma kapağı bulunur. Birçok sokette kapak, işlemci takılıp yük plakası kapatılırken kendiliğinden yerinden çıkar. Kapak atılmaz: anakart servise gönderilecekse soket kapakla korunarak gönderilir." },
+    { "baslik": "Termal macun", "metin": "İşlemcinin ısı dağıtıcı kapağı ile soğutucu tabanı düz görünse de mikroskobik pürüzler arasında hava kalır ve hava ısıyı çok kötü iletir. Macun bu boşlukları doldurur; kendisi metal kadar iyi iletmediği için ince katman en iyisidir. Ortaya konan pirinç tanesi kadar macun (yaklaşık 4–5 mm) montaj baskısıyla kapağın büyük bölümüne yayılır. Hazır macunlu soğutucularda ek macun sürülmez; eski macun izopropil alkol ve tüy bırakmayan bezle temizlenir." },
+    { "baslik": "Çift kanal ve yuva seçimi", "metin": "Masaüstü işlemcilerin bellek denetleyicisi genellikle iki kanallıdır; dört yuvalı kartlarda her kanala iki yuva düşer (A1–A2, B1–B2). İki modül farklı kanallara takılınca iki kanal aynı anda veri taşır. Günümüz kartlarının çoğunda iki modül için A2 ve B2 önerilir, çünkü kanal hattının sonundaki yuvalar sinyal kalitesi açısından uygundur. Kesin yuvayı her zaman kartın kılavuzu belirler." },
+    { "baslik": "M.2 yuvası", "metin": "M.2 SSD, kenar konnektöründeki anahtar çentiği yuvadaki çıkıntıya denk gelecek biçimde yaklaşık 20–30° açıyla sokulur; bırakılınca kartın ucu yukarı kalkar. Uç, kartın boyuna (2280 için 80 mm) göre yerleştirilmiş vida ayağına bastırılıp küçük vidayla ya da kartta varsa döner mandalla sabitlenir. Birçok kartta M.2 yuvasının üstünde soğutucu plaka bulunur; plaka takılmadan önce altındaki koruyucu film soyulur." }
+  ],
+  "nasil": {
+    "baslik": "Parçalar → yuvalar → kasaya hazır kart",
+    "kartlar": [
+      { "ust": "PARÇA", "baslik": "İşlemci, soğutucu, bellek, SSD", "metin": "Antistatik poşetlerinde, sırası gelince çıkar." },
+      { "ust": "BAĞLANTI", "baslik": "Soket, macun, A2 + B2, M.2_1", "metin": "Yön işareti, doğru miktar, kılavuzdaki yuva." },
+      { "ust": "SONUÇ", "baslik": "Tezgâhta hazır anakart", "metin": "Kontrol formu dolu; H10'da kasaya girer." }
+    ],
+    "metin": "Anakart kutusunun üstünde yatarken tüm yuvalar açıktadır ve kart kasanın metal çerçevesine değmez; bu yüzden işlemci, soğutucu, bellek ve M.2 SSD kasaya girmeden önce takılır. Sıra mantığı basittir: soğutucu işlemcinin kapağına oturduğu için işlemci ve macun ondan önce gelir; soğutucu büyükse bellek yuvalarına ya da M.2 yuvasına erişimi kapatabileceğinden bazı kılavuzlar belleği ve SSD'yi soğutucudan önce takmayı önerir. Tezgâhta hiçbir parça elektriğe bağlanmaz; ilk açılış (POST) H10'da, kart kasaya yerleştirilip güç kablolarıyla bağlandıktan ve öğretmen kontrol ettikten sonra yapılır."
+  },
+  "kontrol_listesi": [
+    "Her grup için setin eksiksiz olduğunu ve parçaların birbiriyle uyumlu olduğunu (soket, bellek nesli, M.2 anahtarı) H08 uyumluluk tablosuyla önceden doğrulayın.",
+    "Antistatik matları masalara serip topraklama hatlarının binanın topraklama noktasına bağlı olduğunu kontrol edin; bileklik kablolarını ve klipslerini deneyin.",
+    "Güç kaynaklarını ve uzatma kablolarını dersten önce dolaba kaldırın; bu derste masalarda priz kullanılmaz.",
+    "Termal macun şırıngalarının kapaklı olduğunu, izopropil alkol ve tüy bırakmayan bezlerin hazır olduğunu kontrol edin.",
+    "Kılavuzlarda bellek yerleşim tablosunun ve M.2 yuva sayfasının yerini sarı notla işaretleyin; kılavuz yoksa sayfaların çıktısını hazırlayın.",
+    "Koruma kapakları ve küçük vidalar için her masaya kapaklı bir parça kutusu koyun.",
+    "Montaj kontrol formunu (parça, yuva, yön işareti, kontrolcü onayı, süre) grup sayısı kadar çoğaltın.",
+    "Etkileşimli dersi akıllı tahtada açın; E-MONTAJ'ı bir kez kendiniz oynayıp raporu görün. Gerçek fotoğraflar eklenmemişse ilk grup montajını belge kamerasıyla yansıtın."
+  ],
+  "malzemeler": [
+    ["ATX anakart (kutusu ve kılavuzuyla)", "1", "Koruma kapağı soketin üstünde"],
+    ["İşlemci", "1", "Antistatik poşetinde, kutusunda"],
+    ["Kule tipi soğutucu + termal macun", "1 takım", "Tabanında koruyucu film olabilir"],
+    ["Bellek modülü", "2", "Aynı model; çift kanal için"],
+    ["M.2 SSD + küçük vida", "1", "Vida anakartın aksesuar poşetinde de olabilir"],
+    ["Antistatik bileklik ve mat", "1 takım", "Mat topraklama hattına bağlı"],
+    ["Küçük yıldız tornavida", "1", "Manyetik uç tercih edilir"],
+    ["İzopropil alkol + tüy bırakmayan bez", "1", "Taşan ya da eski macun için"],
+    ["Parça kutusu, kontrol formu, kalem", "1", "Kapak ve vidalar kutuda"]
+  ],
+  "akis": [
+    { "asama": "Giriş ve hazırlık", "bas": 0, "son": 5, "ogretmen": "Macun tahminini aldır, terim kartından ESD, LGA ve çift kanal satırlarını okut. Hazırlık slaytındaki listeyi kontrolcülere sesli okutup uygulayanlara işaretlet, rolleri dağıt.", "ogrenci": "Tahmin eder, bilekliğini takıp klipsi bağlar, masadaki seti kontrol eder, rolünü alır.", "kontrol": "Her masada klips bağlı mı, prizde hiçbir şey yok mu?", "slayt": "1–5" },
+    { "asama": "ESD ve işlemci", "bas": 5, "son": 11, "ogretmen": "ESD provasını oynat, ardından işlemci provasını ters tutuş karesinde durdur. Gruplarda kol kaldırılırken ve işlemci bırakılırken yanında ol.", "ogrenci": "Kartı kutusuna yatırır, kolu kaldırır, üçgenleri hizalayıp işlemciyi bırakır, kolu kilitler, kapağı kutuya koyar.", "kontrol": "Üçgenler aynı köşede mi; kol kancada mı?", "slayt": "6–7" },
+    { "asama": "Macun ve soğutucu", "bas": 11, "son": 16, "ogretmen": "Provayı oynat, kesit karesinde tahminlere dön. Macun miktarını her masada şırınga ucunda gör, sonra onay ver.", "ogrenci": "Filmi soyar, damla macunu koyar, soğutucuyu düz indirip vidaları dönüşümlü sıkar, fan kablosunu takar.", "kontrol": "Soğutucu sallanmıyor mu; fan kablosu CPU_FAN'da mı?", "slayt": "8" },
+    { "asama": "Bellek ve M.2", "bas": 16, "son": 21, "ogretmen": "Bellek provasında kılavuz tablosu belirince durdur; kontrolcülerin kendi kılavuzlarında aynı satırı bulmasını iste. M.2 provasından sonra vidayı her masada kontrol et.", "ogrenci": "Kılavuzdan yuvaları bulur, modülleri takar, M.2 SSD'yi açıyla sokup vidalar.", "kontrol": "Modüller A2 ve B2'de mi (ya da kılavuzun gösterdiği yuvalarda); M.2 düz mü?", "slayt": "9–10" },
+    { "asama": "Kontrol ve onay", "bas": 21, "son": 24, "ogretmen": "Kontrol turunu oynat; kontrolcülerin formu doldurmasını izle, kartı sen onayla.", "ogrenci": "Kontrolcü maddeleri okur, kayıtçı forma yazar, uygulayan kartın üstünü temizler.", "kontrol": "Form dolu mu; kartta unutulmuş vida var mı?", "slayt": "11" },
+    { "asama": "E-MONTAJ ve kontrolcü kartları", "bas": 24, "son": 31, "ogretmen": "E-MONTAJ'ı tahtada gruplardan birer gönüllüyle oynat; hata uyarılarında sınıfa 'neden?' diye sor. Ardından kontrolcü kartlarını gruplara oylat.", "ogrenci": "Simülatörde montajı süre ve hata sayısıyla yapar; kartlarda onaylama ya da düzeltme kararını gerekçesiyle söyler.", "kontrol": "Rapordaki hata türünü açıklayabiliyor mu?", "slayt": "12–13" },
+    { "asama": "Özet, test ve toplama", "bas": 31, "son": 35, "ogretmen": "Özeti gruplara birer cümleyle anlattır, bilgi testini çözdür. Kartları etiketletip kutularıyla kaldır.", "ogrenci": "Özeti söyler, testi çözer, kartı ve parça kutusunu etiketleyip teslim eder.", "kontrol": "Her kart etiketli ve kutusunda mı?", "slayt": "14–16" }
+  ],
+  "adimlar": [
+    { "baslik": "ESD ve Çalışma Alanı", "goster": "Slayt 6'da provayı oynatın; klips düğmeye ulaşınca durdurup gerçek matın düğmesini gösterin. Sonra bir grubun bilekliğini birlikte bağlayın. \"Klipsi takmadan bileklik takmak neden yetmez?\" diye sorun. Öğrencilere klipsin nereye bağlandığını parmakla gösterttirin.", "sor": "\"Anakartı neden halının ya da sweatshirtin üstüne değil de kutusunun üstüne koyuyoruz?\" (Kumaş ve halı sürtünmeyle yük toplar; karton yalıtkan ve düzdür.)", "kontrol": "Bant deriye değiyor, klips matın düğmesinde; kart kutusunun üstünde; masada güç kaynağı ve priz yok.", "sik_hata": "Bileklik kolun üstüne, kazağın üstünden takılmış → bandın deriye değmesi gerektiğini söyleyip düzelttirin." },
+    { "baslik": "İşlemciyi Tak", "goster": "Provayı oynatın; üçüncü karede, ters tutulan işlemci soketin üstünde sallanırken durdurun ve iki üçgeni gösterin. Sonra gerçek soketin üçgenini ve işlemcinin köşesindeki üçgeni yan yana tutun. \"Bırakmadan önce kontrolcü neyi söylemeli?\" diye sorun. Öğrencilere iki üçgeni aynı köşede gösterttirin.", "sor": "\"İşlemci tam oturmadıysa kolu indirerek yerine oturtabilir miyiz?\" (Hayır; kaldırıp yönünü düzeltmek gerekir, kol pimleri ezer.)", "kontrol": "Üçgenler aynı köşede, işlemci düz; plaka kapalı ve kol kancada; koruma kapağı parça kutusunda.", "sik_hata": "Kol inerken sert direnç hissediliyor → durdurun; işlemci çentiklere oturmamıştır. Kaldırıp düz yeniden bıraktırın, pimleri el feneriyle kontrol edin." },
+    { "baslik": "Macun ve Soğutucu", "goster": "Provayı oynatın; macun damlası belirince durdurup ısınmadaki tahminleri sorun, kesit karesinde yayılmış katmanı gösterin. Gerçekte şırınganın ucunda damlayı gösterip kapağın ortasına koyun. \"Vidalardan birini sonuna kadar sıkarsak ne olur?\" diye sorun. Öğrencilere vida sırasını (1–2–1–2) söyletin.", "sor": "\"Macun ısıyı metal kadar iyi iletmiyorsa neden kullanıyoruz?\" (Metal yüzeyler arasındaki havayı çıkarmak için; hava çok daha kötü iletir.)", "kontrol": "Film soyulmuş, macun kenardan taşmamış, soğutucu elle itilince sallanmıyor, fan kablosu CPU_FAN başlığında.", "sik_hata": "Soğutucu takıldıktan sonra kaldırılıp yeniden konuyor → macun hava kabarcığı alır; sildirip yeni damla koydurun. Koruyucu film unutulmuşsa aynı işlem." },
+    { "baslik": "RAM (Çift Kanal Yuvaları)", "goster": "Provayı oynatın; kılavuz tablosu açılınca durdurun ve kontrolcülere kendi kılavuzlarında aynı tabloyu buldurun. Kanal A ve Kanal B etiketlerini gösterip devam edin. \"İki modülü yan yana taksak sistem kaç GB görür, kaç kanal çalışır?\" diye sorun. Öğrencilere A2 ve B2 yuvalarını kartta gösterttirin.", "sor": "\"Kılavuz farklı bir yuva öneriyorsa hangisine uyarız?\" (Her zaman kartın kendi kılavuzuna.)", "kontrol": "Modüller kılavuzun iki modül satırındaki yuvalarda, dört mandal kapalı, modüller eğik değil.", "sik_hata": "Mandal kapanmıyor → modül çentiği ters ya da bir uç havada; modülü çıkarıp çentiği kontrol ettirin, iki ucundan eşit bastırtın." },
+    { "baslik": "M.2 SSD", "goster": "Provayı oynatın; SSD açıyla girdikten sonra ucunun kalktığı karede durdurun ve bunun normal olduğunu söyleyin. Gerçekte vidanın aksesuar poşetinden çıkarılışını gösterin. \"Vida ayağı yanlış deliğe takılmışsa ne fark edersin?\" diye sorun. Öğrencilere anahtar çentiğini ve yuvadaki çıkıntıyı gösterttirin.", "sor": "\"M.2 yuvası neden kablo istemez?\" (Hem veri hem güç kenar konnektöründen gelir.)", "kontrol": "SSD konnektöre sonuna kadar girmiş, kart düz, vida elle sıkı; M.2 soğutucu plakası varsa filmi soyulup geri takılmış.", "sik_hata": "Vida ayağı kartın boyuna uymayan delikte → 2280 için doğru deliğe taşıttırın; vida zorla sıkılmışsa gevşetip elle sıkı bıraktırın." },
+    { "baslik": "Kontrol Listesi", "goster": "Kontrol turunu oynatın; her durakta gerçek karttaki aynı noktaya kontrolcünün parmağını götürmesini isteyin. \"Kart kasaya girdikten sonra hangi hatayı düzeltmek en zordur?\" diye sorun. Öğrencilere formu sesli okutup imzalatın.", "sor": "\"Kartın üstünde unutulan küçük bir vida, kasaya takılıp güç verildiğinde neye yol açabilir?\" (Kısa devreye; bu yüzden kart üstü boş olmalı.)", "kontrol": "Form dolu ve imzalı; kartın üstünde parça yok; öğretmen onayı verildi; kart kutusunda etiketli.", "sik_hata": "Grup 'bitti' deyip formu atlıyor → formsuz kartı onaylamayın; kayıtçı eksik satırı doldurunca kontrol turunu tekrarlayın." }
+  ],
+  "yapim_tablosu": [
+    ["Antistatik bileklik", "Matın topraklama düğmesi (yoksa kasanın boyasız metali)", "Bant deriye değiyor, klips bağlı", "İlk iş; montaj bitene dek çıkarılmaz"],
+    ["İşlemci", "İşlemci soketi (LGA)", "Köşe üçgeni soketteki üçgenle aynı köşede", "Bastırılmaz; kol kilitlenir, kapak saklanır"],
+    ["Termal macun", "İşlemcinin ısı dağıtıcı kapağı", "Ortada pirinç tanesi kadar", "Hazır macunlu soğutucuda sürülmez"],
+    ["Soğutucu + fan kablosu", "Soket çevresindeki montaj delikleri + CPU_FAN", "Film soyulmuş; fan havayı arka panele iter", "Vidalar dönüşümlü sıkılır"],
+    ["2 × bellek modülü", "Kılavuzdaki yuvalar (çoğunlukla A2 + B2)", "Çentik yuvadaki çıkıntıyla hizalı", "Mandallar kendiliğinden kapanır"],
+    ["M.2 SSD", "Kılavuzdaki M.2 yuvası (çoğunlukla M.2_1)", "Anahtar çentiği çıkıntıya denk", "Açıyla girer, vidayla sabitlenir"]
+  ],
+  "fotolar": [
+    ["DON-301-H09-1-esd.jpg", "1. Mat, kutu ve bağlı bileklik"],
+    ["DON-301-H09-2-islemci.jpg", "2. Üçgenleri hizalı işlemci"],
+    ["DON-301-H09-3-sogutucu.jpg", "3. Kapağın ortasında macun damlası"],
+    ["DON-301-H09-4-ram.jpg", "4. Bellek tablosu ve A2 + B2"],
+    ["DON-301-H09-5-m2.jpg", "5. Açıyla sokulmuş M.2 SSD"],
+    ["DON-301-H09-6-kontrol.jpg", "6. Montajı biten kart ve form"]
+  ],
+  "sokratik": [
+    "Statik boşalmayı hissetmediysen parçanın zarar görmediğinden emin olabilir misin? Neden?",
+    "Soketteki üçgen olmasaydı işlemcinin yönünü başka hangi ipucundan bulabilirdin?",
+    "Macun miktarını iki katına çıkarmak ısı iletimini neden iyileştirmez?",
+    "Vidaları tek tek sonuna kadar sıkmak soğutucu tabanının işlemciye oturmasını nasıl etkiler?",
+    "İki modül yan yana takılınca bilgisayar yine açılıyorsa, bu hatayı nasıl fark ederdin?",
+    "Montajı kasanın içinde değil de tezgâhta yapmanın iki avantajı ve bir dezavantajı nedir?"
+  ],
+  "sik_hatalar": [
+    ["Kilit kolu inmiyor ya da çok sert", "İşlemci ters ya da hizalama çentiklerine oturmamış", "Kolu bırakıp işlemciyi kaldırtın, üçgenleri hizalatıp düz yeniden bıraktırın; pimleri el feneriyle kontrol edin."],
+    ["Soketteki pimlerden biri eğik görünüyor", "Parmakla ya da işlemcinin köşesiyle temas", "Öğrencinin düzeltmeye çalışmasına izin vermeyin; kartı ayırın, öğretmen ya da servis büyüteçle değerlendirsin."],
+    ["Macun soketin kenarına taşmış", "Fazla macun ya da soğutucunun kaydırılması", "Soğutucuyu kaldırtın, alkollü bezle kapağı ve kenarı temizletin, yeni damla koydurun."],
+    ["Soğutucu bir yana eğik", "Vidalardan biri sonuna kadar sıkılmış", "İki vidayı da gevşetip birkaç turda dönüşümlü sıktırın."],
+    ["Bellek mandalı kapanmıyor", "Çentik ters ya da modül bir ucundan havada", "Modülü çıkarttırın, çentiği çıkıntıyla hizalatıp iki ucundan eşit bastırtın."],
+    ["Modüller yan yana (A1–A2) takılmış", "Kılavuz okunmamış", "Kontrolcüye bellek tablosunu okutun, modülleri A2 ve B2'ye taşıttırın."],
+    ["M.2 SSD'nin ucu havada ya da vida bulunamıyor", "Vida takılmamış; vida aksesuar poşetinde", "Vidayı poşetten buldurun, ucu ayağa bastırıp elle sıkı taktırın."]
+  ],
+  "ogrenci_sorun_giderme": [
+    ["Kol inmiyor", "Zorlama; işlemciyi kaldır, üçgenlere bak, düz bırak."],
+    ["Macun taştı", "Alkollü bezle sil, ortaya küçük damla koy."],
+    ["Mandal kapanmıyor", "Çentiğe bak, iki ucundan eşit bastır."],
+    ["M.2 kalkıyor", "Normal; ucu ayağa bastır, vidayı tak."]
+  ],
+  "farklilastirma": {
+    "hizli": "Kılavuzda dört modül ve tek modül satırlarını okuyup nedenini (kanal ve sinyal hattı) arkadaşına anlatma; kartın ikinci M.2 yuvasının işlemciye mi yonga setine mi bağlı olduğunu kılavuzdan bulma; E-MONTAJ'ı hatasız ve iki dakikanın altında bitirme.",
+    "zorlanan": "Önce E-MONTAJ'ı sizinle birlikte adım adım oynatın; gerçek montajda her parçadan önce kontrol formundaki ilgili satırı okutun. İşlemci adımında üçgenleri bir kâğıt şablonla (soket ve işlemci çizimi) önceden eşleştirtin.",
+    "grup": "3 kişilik gruplar: uygulayan parçaya dokunan tek kişidir; kontrolcü kılavuzu okur, üçgeni ve yuvayı doğrulamadan uygulayana 'bırak' demez; kayıtçı sırayı, yuvaları ve süreyi yazar. İşlemci, soğutucu ve bellek–SSD aşamalarında roller döner; herkes en az bir parçayı kendisi takar."
+  },
+  "gozlem": [
+    "Bilekliği takıp klipsi bağlamadan parçaya dokunmuyor.",
+    "İşlemciyi kenarlarından tutuyor, üçgenleri hizalayıp bastırmadan bırakıyor.",
+    "Macunu doğru miktarda koyuyor, soğutucu vidalarını dönüşümlü sıkıyor.",
+    "Bellek yuvalarını kılavuzdan buluyor ve seçimini kanal kavramıyla açıklıyor.",
+    "M.2 SSD'yi açıyla sokup vidayla sabitliyor; kontrol formunu eksiksiz dolduruyor ve rol değişimine uyuyor."
+  ],
+  "rubrik": [
+    ["ESD ve çalışma alanı", "Bileklik takılı değil ya da klips bağlı değil", "Hatırlatmayla bileklik bağlanıyor", "Kendiliğinden bağlıyor, kartı kutusunda tutuyor"],
+    ["İşlemci montajı", "Yönü bulamıyor ya da bastırıyor", "Yardımla doğru yönde takıyor", "Üçgenleri hizalayıp bırakıyor, kolu kilitliyor, kapağı saklıyor"],
+    ["Macun ve soğutucu", "Macun yok ya da taşmış, soğutucu eğik", "Miktar ya da vida sırası eksik", "Doğru miktar, film soyulmuş, vidalar dönüşümlü, fan kablosu doğru başlıkta"],
+    ["Bellek ve M.2", "Kılavuz dışı yuva, SSD vidasız", "Doğru yuva ama gerekçesiz; SSD hatırlatmayla vidalı", "Kılavuza göre A2 + B2, gerekçesiyle; SSD düz ve vidalı"],
+    ["Kontrol ve grup", "Form yok, roller karışık", "Form eksik ya da rol değişmedi", "Form tam ve imzalı, roller dönmüş, E-MONTAJ raporu açıklanıyor"]
+  ],
+  "kapanis": "Toparlama: İki gruba E-MONTAJ raporlarını okutup \"Rapordaki hata gerçek tezgâhta olsaydı kart nasıl etkilenirdi?\" sorusunu yanıtlatın. Isınmadaki macun tahminine dönüp kesit karesini yeniden gösterin. Ödev: Kendi grubunun kartının kılavuzundan bellek yerleşim tablosunu ve M.2 yuvalarının bağlı olduğu yeri (işlemci ya da yonga seti) bir tabloya yazmak; kılavuz yoksa öğretmenin verdiği kılavuz sayfasından aynı tabloyu çıkarmak. Köprü: H10'da bu kartlar kasaya girecek; mesafe vidaları, güç ve ön panel kabloları bağlanacak ve ilk açılış (POST) öğretmen kontrolünde yapılacak. Kartlar grup etiketiyle kutusunda saklanır.",
+  "guvenlik_ek": [
+    "Antistatik bileklik takılmadan ve klipsi topraklama noktasına bağlanmadan hiçbir parça poşetinden çıkarılmaz; bileklik montaj bitene kadar çıkarılmaz.",
+    "Tezgâhta hiçbir parça elektriğe bağlanmaz: güç kaynağı, fiş ve uzatma kablosu masada bulunmaz. İlk açılış H10'da öğretmen kontrolünden sonra yapılır.",
+    "İşlemci soketinin pimlerine ve işlemcinin altındaki temas pedlerine dokunulmaz; parçalar kenarlarından tutulur. Eğik pim fark edilirse öğrenci düzeltmeye çalışmaz, öğretmene bildirir.",
+    "Termal macun cilde ve göze bulaştırılmaz; bulaşırsa bezle silinip el yıkanır. İzopropil alkol yanıcıdır: kapağı kapalı tutulur, ısı kaynağından uzak kullanılır ve sınıf havalandırılır.",
+    "Soğutucu kanatçıklarının kenarları keskin olabilir; soğutucu tabanından ve yan kenarlarından tutulur.",
+    "Küçük vidalar ve koruma kapağı parça kutusunda tutulur; kartın üstünde vida ya da metal parça bırakılmaz."
+  ],
+  "bitirme": {
+    "baslik": "Kasaya hazır kart ve montaj kaydı",
+    "urun": "Kutusunun üstünde işlemcisi, soğutucusu, iki bellek modülü ve M.2 SSD'si takılı, kartın üstünde başka parça olmayan anakart + doldurulmuş ve kontrolcü tarafından imzalanmış montaj kontrol formu (parça, yuva, yön işareti, süre) + E-MONTAJ raporu (süre ve hata sayısı).",
+    "sunum": [
+      "Kontrolcü, formdaki altı satırı tahtada 30 saniyede okur ve bir hatanın nasıl önlendiğini anlatır.",
+      "Uygulayan, kartta üçgen işaretini, A2 ve B2 yuvalarını ve M.2 vidasını parmakla gösterir.",
+      "Kart grup etiketiyle kutusunda H10'daki kasa montajına devredilir."
+    ]
+  },
+  "kaynaklar": [
+    "Kullanılan anakartın kılavuzu — işlemci takma, bellek yerleşim tablosu ve M.2 yuvaları bölümleri",
+    "İşlemci ve soğutucu üreticisinin montaj kılavuzları — macun miktarı ve vida sırası",
+    "ANSI/ESD S20.20 — elektrostatik boşalmaya duyarlı parçalarla çalışma ilkeleri (ESD Association)",
+    "JEDEC bellek modülü standartları — DIMM çentik ve kanal düzeni (jedec.org)",
+    "Okulun bilişim teknolojileri laboratuvarı iş sağlığı ve güvenliği yönergesi"
+  ]
+}
