@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DON-301 H07 Öğretmen Planı — Ekran Kartı ve Bağlantı Standartları</title>
+<style>
+@font-face{font-family:'Carlito';src:local('Carlito'),url('../../assets/font/Carlito-Regular.ttf');font-weight:400;font-style:normal}
+@font-face{font-family:'Carlito';src:local('Carlito Bold'),url('../../assets/font/Carlito-Bold.ttf');font-weight:700;font-style:normal}
+@font-face{font-family:'Carlito';src:local('Carlito Italic'),url('../../assets/font/Carlito-Italic.ttf');font-weight:400;font-style:italic}
+@page{size:A4;margin:14mm 14mm 16mm 16.5mm;
+  @bottom-center{content:'Bilişim Üssü · Etkileşimli Ders Planı · ' counter(page) ' / ' counter(pages);font-family:Carlito,Calibri,sans-serif;font-size:7.5pt;color:#6b7a82}}
+*{box-sizing:border-box}
+html{font-family:Carlito,Calibri,'Segoe UI',Arial,sans-serif;font-size:9.9pt;color:#1a1a1a;line-height:1.38}
+body{margin:0;max-width:180mm}
+@media screen{body{margin:24px auto;padding:0 12px}}
+.bant{display:flex;gap:7pt;margin-bottom:9pt}
+.bant-sol{flex:1;background:linear-gradient(135deg,#075985,#0a6aa3);color:#fff;border-radius:4pt;padding:9pt 14pt 10pt}
+.bant-ust{font-size:7.6pt;font-weight:700;letter-spacing:2.2pt;opacity:.92}
+.bant-baslik{font-size:23pt;font-weight:700;line-height:1.12;margin-top:3pt}
+.bant-baslik.uzun{font-size:18pt}
+.bant-sag{width:128pt;background:#0369a1;color:#fff;border-radius:4pt;display:flex;align-items:center;justify-content:center;font-size:14pt;font-weight:700}
+h2{background:#0369a1;color:#fff;font-size:11pt;font-weight:700;margin:12pt 0 6pt;padding:5pt 10pt;border-radius:4pt;letter-spacing:.2pt;break-after:avoid}
+h3{display:flex;justify-content:space-between;align-items:center;color:#0369a1;font-size:10.6pt;margin:9pt 0 4pt;break-after:avoid}
+h3 .sure{background:#0369a1;color:#fff;font-size:8.6pt;border-radius:9pt;padding:1.5pt 8pt}
+table{width:100%;border-collapse:collapse;margin:0 0 4pt}
+td,th{border:1px solid #b9def1;padding:4pt 7pt;vertical-align:top;text-align:left}
+th{background:#e0f2fe;color:#075985;font-size:9.2pt;font-weight:700}
+tr{break-inside:avoid}
+.genel td:first-child{width:134pt;background:#e0f2fe;color:#075985;font-weight:700}
+.kazanim{width:100%;border-collapse:collapse}
+.kazanim td{border:0;border-bottom:1px solid #eaf6fc;padding:3.5pt 4pt}
+.kazanim td:first-child{width:32pt;color:#0369a1;font-weight:700}
+.isleyis td:first-child{width:35pt;text-align:center;color:#6b7a82;font-weight:700}
+.isleyis td:nth-child(2){width:122pt}
+.adim-ad{font-weight:700}
+.adim-konu{color:#475569}
+.slayt{display:inline-block;margin-top:2pt;font-size:8pt;font-weight:700;color:#0369a1;background:#e0f2fe;border-radius:6pt;padding:0 5pt}
+q{quotes:'“' '”'}
+q::before{content:open-quote}q::after{content:close-quote}
+p{margin:3pt 0 5pt;text-align:justify}
+.kutu{border:1px solid #b9def1;border-left:3pt solid #0369a1;border-radius:3pt;padding:5pt 8pt;margin:5pt 0;background:#f5fbff;break-inside:avoid}
+.kutu b{color:#075985}
+.olcme td:first-child{width:22pt;text-align:center;font-weight:700}
+.olcme td:last-child{width:40pt;text-align:center;color:#0369a1;font-weight:700}
+.soru{font-weight:700}
+.secenek{margin-top:1pt}
+.aciklama{font-style:italic;color:#0369a1;font-size:9.5pt;margin-top:2pt}
+.soru-gorsel{float:right;margin:0 0 2pt 8pt}
+.soru-gorsel svg{height:38pt;width:auto}
+.anahtar{font-weight:700;color:#075985;margin:3pt 0 0}
+.anahtar span{font-weight:400;color:#1a1a1a}
+ol.acik{margin:2pt 0;padding-left:0;list-style:none;counter-reset:a}
+ol.acik li{counter-increment:a;display:flex;gap:10pt;padding:3pt 0}
+ol.acik li::before{content:counter(a) '.';color:#0369a1;font-weight:700;min-width:16pt}
+.etiket{color:#0369a1;font-weight:700;margin:7pt 0 2pt}
+ul.not{margin:2pt 0;padding-left:12pt}
+ul.not li{margin:2pt 0}
+.sure-tablo td:last-child,.sure-tablo th:last-child{width:62pt}
+.imza{display:flex;justify-content:space-around;margin-top:14pt;text-align:center;color:#6b7a82;break-inside:avoid;break-before:avoid;page-break-before:avoid}
+.sure-tablo{break-after:avoid;page-break-after:avoid}
+.sure-tablo tr:last-child{break-after:avoid}
+.uyg{display:grid;grid-template-columns:1fr 1fr;gap:3pt;margin-top:5pt}
+.uyg div{border-radius:3pt;padding:3pt 6pt;font-size:9pt;line-height:1.32}
+.uyg b{display:block;font-size:7.6pt;letter-spacing:.8pt}
+.uyg .goster{background:#eff6ff;border-left:2.5pt solid #3b82f6}.uyg .goster b{color:#1d4ed8}
+.uyg .sor{background:#f5f3ff;border-left:2.5pt solid #8b5cf6}.uyg .sor b{color:#6d28d9}
+.uyg .kontrol{background:#ecfdf5;border-left:2.5pt solid #10b981}.uyg .kontrol b{color:#047857}
+.uyg .sikhata{background:#fff7ed;border-left:2.5pt solid #f97316}.uyg .sikhata b{color:#c2410c}
+.guvenlik{border:1.5pt solid #ef4444;border-radius:4pt;background:#fef2f2;padding:6pt 10pt;margin:6pt 0;break-inside:avoid}
+.guvenlik b{color:#b91c1c;display:block;margin-bottom:2pt}
+.guvenlik ul{margin:2pt 0;padding-left:13pt}
+.imza b{display:block;color:#475569;margin-bottom:10pt}
+</style>
+</head>
+<body>
+<div class="bant"><div class="bant-sol"><div class="bant-ust">ÖĞRETMEN DERS PLANI · DON-301</div><div class="bant-baslik uzun">Ekran Kartı ve Bağlantı Standartları</div></div><div class="bant-sag">7. Hafta</div></div>
+<h2>1. GENEL BİLGİLER</h2>
+<table class="genel">
+<tr><td>Dersin Adı</td><td>Bilgisayar Donanımı ve Sistem Kurulumu</td></tr>
+<tr><td>Sınıf / Seviye</td><td>Lise (9. sınıf)</td></tr>
+<tr><td>Ünite / Konu</td><td>Donanım 301 - Bileşenler ve Uyumluluk — Ekran Kartı ve Bağlantı Standartları</td></tr>
+<tr><td>Öğrenme Alanı</td><td>Bilgisayar Donanımı</td></tr>
+<tr><td>Süre</td><td>1 ders saati (35 dk)</td></tr>
+<tr><td>Yöntem ve Teknikler</td><td>Anlatım, soru-cevap, tahmin et–izle, 2D karşılaştırmalı animasyon (CPU–GPU yarışı, 60/144 Hz ağır çekim), mimari şema okuma, 3D model inceleme (ekran kartının içi, braket ve fişler), hesaplama (bellek ve görüntü bant genişliği), sınıflama etkinliği, senaryo tabanlı problem çözme, eşli çalışma</td></tr>
+<tr><td>Araç-Gereç ve Kaynaklar</td><td>Etkileşimli ders (LMS), projeksiyon veya akıllı tahta; hesap makinesi; mümkünse eski bir ekran kartı, birer HDMI, DisplayPort ve iki ucu USB-C kablo (biri telefon şarj kablosu, biri üzerinde hız ya da watt işareti olan kablo)</td></tr>
+<tr><td>Kavramlar / Terimler</td><td>GPU ve Paralel İşlem, Tümleşik ve Harici, VRAM, HDMI ve DisplayPort, USB Standartları ve USB-C, Çözünürlük ve Yenileme Hızı</td></tr>
+</table>
+<h2>2. KAZANIMLAR</h2>
+<table class="kazanim">
+<tr><td>K1.</td><td>GPU'nun paralel işlem mantığını açıklar.</td></tr>
+<tr><td>K2.</td><td>VRAM'in önemini açıklar.</td></tr>
+<tr><td>K3.</td><td>HDMI ile DisplayPort'u karşılaştırır.</td></tr>
+<tr><td>K4.</td><td>USB-C konnektörü ile USB hız standartlarını ayırt eder.</td></tr>
+</table>
+<h2>3. DERS İŞLENİŞİ</h2>
+<h3><span>Giriş — Dikkat Çekme ve Güdüleme</span><span class="sure">5 dk</span></h3>
+<p>Kapaktaki kartı döndürürken sınıfa sorun: <q>Bu kartın üzerinde bilgisayarın ana işlemcisinden daha fazla transistör olabilir; peki neden ona ayrı bir işlemci gerekiyor?</q> Birkaç yanıtı tahtanın köşesine yazın. Kazanımları okuyup dersin sonunda bir monitör, televizyon ya da dizüstü için doğru port ve kabloyu gerekçesiyle seçebileceklerini belirtin. Isınma slaytında (Slayt 3) Ece’nin durumunu okutun, üç seçenek için el kaldırarak oylama yapın ve sayıları not edin; <q>Bu oylamayı 6. adımda bir hesapla sınayacağız</q> deyin. Terim Kartı’nda (Slayt 4) terimleri sırayla okutun; HDMI ve USB-C’nin neyin kısaltması ya da adı olduğunu, VRAM ile RAM arasındaki farkı ayrıca sorun.</p>
+<h3><span>Gelişme — Kavramların İşlenişi</span><span class="sure">25 dk</span></h3>
+<table class="isleyis"><thead><tr><th>Adım</th><th>Konu</th><th>Öğretmen Notu</th></tr></thead>
+<tr><td>1</td><td><div class="adim-ad">GPU ve Paralel İşlem</div><div class="adim-konu">GPU ve Paralel İşlem</div><span class="slayt">Slayt 5</span></td><td>Başlat’a basmadan önce tahmin aldırın: <q>Soldaki sekiz güçlü çekirdek mi, sağdaki yüzlerce yavaş çekirdek mi resmi önce bitirir?</q> Yarışı izletin; sağ panelin birkaç dalgada bittiğini, solun satır satır ilerlediğini gösterin. Ardından Sıralı iş seçeneğine geçip yeniden başlatın ve sonucun neden tersine döndüğünü sorun. <q>Bir karedeki her noktanın rengi komşusunu beklemeden hesaplanabildiği için grafik işi binlerce parçaya bölünür; ama her basamağın bir önceki sonucu beklediği işlerde bu kalabalık işe yaramaz</q> deyin. Öğrencilere paralel işlemeye uygun iki iş (video dönüştürme, yapay zekâ eğitimi gibi) ve uygun olmayan bir iş örneği söyletin.</td></tr>
+<tr><td>2</td><td><div class="adim-ad">Tümleşik ve Harici</div><div class="adim-konu">Tümleşik ve Harici Grafik</div><span class="slayt">Slayt 6</span></td><td>Slayt açılınca iki yol sırayla öne çıkar; beyaz noktaların hızına dikkat çekip sorun: <q>Hangi tarafta veri daha hızlı akıyor, neden?</q> Tablodaki bellek ve güç satırlarını birlikte okuyun. Sonra Kablo nereye? düğmesine basın ve önce anakart çıkışında sinyal gelmediğini, sonra kartın braketinde görüntünün geldiğini izletin. <q>Montajdan sonra ekran kararıyorsa ilk bakılacak yer, kablonun hangi çıkışa girdiğidir</q> deyin. Öğrencilere ofis bilgisayarı ile oyun bilgisayarı için hangi grafik türünü önerdiklerini gerekçeleriyle söyletin.</td></tr>
+<tr><td>3</td><td><div class="adim-ad">VRAM</div><div class="adim-konu">VRAM ve Bellek Bant Genişliği</div><span class="slayt">Slayt 7</span></td><td>Soğutucuyu ayır düğmesiyle çipi ve çevresindeki sekiz bellek çipini açın; Veri yolu düğmesiyle mavi parçacıkları izletin. Tahtada 8 × 32 = 256 bit ve 256 × 20 ÷ 8 = 640 işlemlerini yaptırın, sonra paylaşılan sistem belleğinin yaklaşık 90 GB/s olduğunu hatırlatıp oranı sorun. Paneldeki doku kalitesini Ultra yapmadan önce sorun: <q>8 GB’lık kartta bu ayar sığar mı, sığmazsa ne olur?</q> Taşma çizgisini gösterin ve 12 GB seçeneğiyle karşılaştırın. <q>Ekran belleği yetmediğinde veri, yolu çok daha dar olan PCIe hattından gelir; kare süreleri düzensizleşir</q> deyin. Öğrencilere bir oyunda VRAM kullanımını en çok düşüren ayarı söyletin.</td></tr>
+<tr><td>4</td><td><div class="adim-ad">HDMI ve DisplayPort</div><div class="adim-konu">HDMI ve DisplayPort</div><span class="slayt">Slayt 8</span></td><td>Önce DisplayPort, sonra HDMI düğmesine basıp fişlerin braketteki çıkışlara girişini izletin; Karşılaştır ile fiş biçimlerini yan yana gösterin. Gerçek kablolarınız varsa DP’nin kilit düğmesini ve HDMI’nin iki eğik köşesini elden ele dolaştırın. Sağdaki tabloyu okutup sorun: <q>İkisi de görüntü ve ses taşıyorsa seçimi ne belirler?</q> <q>Televizyon ve projeksiyon cihazlarında neredeyse her zaman HDMI bulunur; bilgisayar monitörlerinde DisplayPort öne çıkar. Aynı ailede sürüm yükseldikçe taşınabilen veri artar</q> deyin. Öğrencilere HDMI 2.0 ile DP 1.4’ün veri hızlarını karşılaştırtıp hangisinin daha yüksek ayarı taşıdığını söyletin.</td></tr>
+<tr><td>5</td><td><div class="adim-ad">USB Standartları ve USB-C</div><div class="adim-konu">USB Hız Standartları ve USB-C</div><span class="slayt">Slayt 9</span></td><td>USB 2.0 seçiliyken yalnız birkaç pinin renkli olduğunu gösterin; 5 Gbps, 20 Gbps ve DP Alt Mode seçeneklerine sırayla geçip hangi pinlerin eklendiğini sorun. 5 Gbps seçiliyken Fişi çevir düğmesine basın ve hızlı hat çiftlerinin yer değiştirdiğini izletin. Alttaki kopyalama sürelerini okutun. İki kabloyu gösterip sorun: <q>Uçları aynı; hangisiyle harici diskten daha hızlı kopyalarız, nasıl anlarız?</q> <q>USB-C yalnızca fişin biçimini anlatır; hız, görüntü ve watt değeri kablonun, portun ve cihazın desteklediği ortak değerle sınırlıdır</q> deyin. Öğrencilere eski adlarla yeni adları (3.2 Gen 1 = 5 Gbps gibi) eşleştirtin.</td></tr>
+<tr><td>6</td><td><div class="adim-ad">Çözünürlük ve Yenileme Hızı</div><div class="adim-konu">Çözünürlük, Yenileme Hızı ve Bant Hesabı</div><span class="slayt">Slayt 10</span></td><td>Ağır çekimdeki iki topu izletip sorun: <q>Sağdaki top neden daha sık yer değiştiriyor, gerçek hızda bu nasıl hissedilir?</q> Kare sürelerini tahtaya yazın. Hesaplayıcı 2560 × 1440 ve 144 Hz’de açılır; alttaki not ısınmadaki tahmine döner. Oylama sonuçlarını hatırlatın ve kırmızı çizginin HDMI 1.4 çubuğunu aştığını gösterin. Sonra 3840 × 2160 ve 120 Hz seçip hangi bağlantıların yetmediğini sorun. <q>Monitörün yazdığı değere ulaşmak için kablo, port, monitör girişi ve ekran kartının kare üretme gücü birlikte yeterli olmalıdır</q> deyin. Öğrencilere 1920 × 1080, 240 Hz için gereken veri hızını hesap makinesiyle buldurun.</td></tr>
+</table>
+<div class="kutu"><b>Etkinlikler (Slayt 11–12):</b> Etkinlik 1’de (Slayt 11) öğrenciler sekiz senaryo kartını dört bağlantı kutusuna yerleştirir; yanlışta çıkan açıklamayı sesli okutun. Etkinlik 2’de (Slayt 12) her görev için port ve kablo seçip Bağla’ya basarlar; hedefin altında kalan sonuçlarda zincirin en zayıf halkasını bulmaları istenir. Eşli çalışmada biri seçimi yaparken diğeri gereken veri hızını deftere hesaplasın, sonra roller değişsin. Televizyon ve dizüstü görevlerindeki yanlış kablo sonuçlarını tahtada tartışın (yaklaşık 10 dk).</div>
+<h3><span>Değerlendirme ve Kapanış</span><span class="sure">5 dk</span></h3>
+<p>Özet slaytındaki altı kartı farklı öğrencilere birer cümleyle açıklattırın. Bilgi Testi’ni (Slayt 14) bireysel çözdürün; yanlış çıkan sorularda özellikle GPU’nun saat hızının yüksek olduğu yanılgısını ve USB-C fişini hızla karıştırma hatasını birlikte düzeltin. Dersi <q>Gelecek hafta bu parçaların birbiriyle uyumunu denetleyip bir sistem toplayacağız</q> köprüsüyle kapatın.</p>
+<h2>4. ÖLÇME VE DEĞERLENDİRME</h2>
+<table class="olcme"><thead><tr><th>#</th><th>Soru ve Seçenekler</th><th>Cevap</th></tr></thead>
+<tr><td>1</td><td><div class="soru">Bir oyun karesini oluştururken GPU, CPU’dan çok daha hızlıdır. Bunun asıl nedeni nedir?</div><div class="secenek">A) Piksellerin renkleri birbirinden bağımsız hesaplanabilir; GPU binlerce basit çekirdekle aynı komutu çok sayıda piksele aynı anda uygular B) GPU çekirdeklerinin saat hızı CPU çekirdeklerinden birkaç kat yüksektir C) GPU komutları sırayla ama CPU’dan daha az hata ile yürütür D) GPU sistem RAM’ini CPU’dan daha hızlı okur</div><div class="aciklama">GPU’nun saat hızı genellikle CPU’dan düşüktür; üstünlüğü çekirdek sayısındadır. Bağımsız, aynı türden çok sayıda iş (pikseller) paralel yapılır. Her adımın bir öncekini beklediği sıralı işlerde CPU öndedir.</div></td><td>A</td></tr>
+<tr><td>2</td><td><div class="soru-gorsel"><svg viewBox="0 0 240 130" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Kasanın arkası: üstte anakart arka panelinde 1 numaralı HDMI ve 4 numaralı USB-A portu; altta ekran kartı braketinde 2 numaralı HDMI ve 3 numaralı DisplayPort"><rect width="240" height="130" rx="10" fill="#f8fafc"/><rect x="14" y="10" width="212" height="44" rx="6" fill="#e2e8f0" stroke="#94a3b8"/><text x="22" y="22" font-family="Inter,Arial,sans-serif" font-size="8.5" font-weight="800" fill="#475569" text-anchor="start">Anakart arka paneli</text><path d="M40.0 30.0h22.4v4.8l-2.6 2.6h-17.3l-2.6 -2.6z" fill="#1f2937" stroke="#94a3b8" stroke-width="1.4" stroke-linejoin="round"/><rect x="43.5" y="32.2" width="15.4" height="2.1" rx="0.6" fill="#d6a24a"/><rect x="120.0" y="30.0" width="16.8" height="6.4" rx="0.7" fill="#e5e7eb" stroke="#94a3b8" stroke-width="1.3"/><rect x="121.1" y="31.1" width="14.6" height="4.2" fill="#111827"/><rect x="121.5" y="31.4" width="13.7" height="2.1" rx="0.4" fill="#2563eb"/><rect x="14" y="66" width="212" height="44" rx="6" fill="#cbd5e1" stroke="#64748b"/><text x="22" y="78" font-family="Inter,Arial,sans-serif" font-size="8.5" font-weight="800" fill="#334155" text-anchor="start">Ekran kartı braketi</text><path d="M40.0 86.0h22.4v4.8l-2.6 2.6h-17.3l-2.6 -2.6z" fill="#1f2937" stroke="#94a3b8" stroke-width="1.4" stroke-linejoin="round"/><rect x="43.5" y="88.2" width="15.4" height="2.1" rx="0.6" fill="#d6a24a"/><path d="M110.0 86.0h25.6v4.5l-3.2 3.2h-22.4z" fill="#1f2937" stroke="#94a3b8" stroke-width="1.4" stroke-linejoin="round"/><rect x="113.2" y="88.6" width="17.6" height="2.1" rx="0.6" fill="#d6a24a"/><path d="M150.0 86.0h25.6v4.5l-3.2 3.2h-22.4z" fill="#1f2937" stroke="#94a3b8" stroke-width="1.4" stroke-linejoin="round"/><rect x="153.2" y="88.6" width="17.6" height="2.1" rx="0.6" fill="#d6a24a"/><path d="M190.0 86.0h25.6v4.5l-3.2 3.2h-22.4z" fill="#1f2937" stroke="#94a3b8" stroke-width="1.4" stroke-linejoin="round"/><rect x="193.2" y="88.6" width="17.6" height="2.1" rx="0.6" fill="#d6a24a"/><circle cx="62" cy="48" r="7" fill="#4f46e5"/><text x="62" y="51.5" font-family="Inter,Arial,sans-serif" font-size="9" font-weight="900" fill="#fff" text-anchor="middle">1</text><circle cx="62" cy="104" r="7" fill="#4f46e5"/><text x="62" y="107.5" font-family="Inter,Arial,sans-serif" font-size="9" font-weight="900" fill="#fff" text-anchor="middle">2</text><circle cx="123" cy="104" r="7" fill="#4f46e5"/><text x="123" y="107.5" font-family="Inter,Arial,sans-serif" font-size="9" font-weight="900" fill="#fff" text-anchor="middle">3</text><circle cx="128" cy="48" r="7" fill="#4f46e5"/><text x="128" y="51.5" font-family="Inter,Arial,sans-serif" font-size="9" font-weight="900" fill="#fff" text-anchor="middle">4</text><text x="120" y="124" font-family="Inter,Arial,sans-serif" font-size="8" font-weight="800" fill="#475569" text-anchor="middle">Ekran kartı takılı · monitör girişleri: HDMI 2.0, DP 1.4</text></svg></div><div class="soru">Ece’nin bilgisayarında harici ekran kartı takılı. 2560 × 1440, 165 Hz monitöründe HDMI 2.0 ve DisplayPort 1.4 girişleri var. Görseldeki hangi bağlantı 165 Hz’i sağlar?</div><div class="secenek">A) 1 numaralı port (anakart HDMI) ve HDMI kablo B) 2 numaralı port (ekran kartı HDMI) ve monitörün HDMI 2.0 girişi C) 3 numaralı port (ekran kartı DisplayPort) ve monitörün DisplayPort 1.4 girişi D) 4 numaralı port (anakart USB-A) ve USB–HDMI dönüştürücü</div><div class="aciklama">165 Hz için ≈ 15,3 Gbit/s gerekir. HDMI 2.0 ≈ 14,4 Gbit/s taşır (bu çözünürlükte ≈ 144 Hz); DisplayPort 1.4 ise yaklaşık 25,9 Gbit/s taşır. Anakart çıkışları tümleşik grafiğe bağlıdır; harici kart takılıyken kullanılmaz.</div></td><td>C</td></tr>
+<tr><td>3</td><td><div class="soru">Deniz’in ekran kartında 8 GB VRAM var. Oyunda doku kalitesini “Ultra” yapınca oyun yaklaşık 10 GB VRAM istiyor ve görüntü sık sık takılıyor. En doğru açıklama hangisidir?</div><div class="secenek">A) İşlemcinin çekirdek sayısı az olduğu için takılıyor; doku ayarıyla ilgisi yok B) VRAM taştığı için veriler PCIe üzerinden çok daha yavaş sistem RAM’inden getiriliyor; doku kalitesi düşürülmeli C) Monitörün yenileme hızı düşük olduğu için takılıyor D) VRAM dolunca fazla veri otomatik olarak silinir; takılma yalnız internetten kaynaklanır</div><div class="aciklama">VRAM’in bant genişliği yüzlerce GB/s’dir; PCIe x16 (4.0) ise ≈ 32 GB/s. Sığmayan dokular bu yavaş yoldan getirildiği için kareler gecikir. Doku kalitesini düşürmek VRAM kullanımını en çok azaltan ayardır.</div></td><td>B</td></tr>
+<tr><td>4</td><td><div class="soru">Ece, iki ucu da USB-C olan telefon şarj kablosuyla 10 Gbit/s destekli harici SSD’sini bilgisayarın USB-C portuna bağladı. Kopyalama çok yavaş (≈ 40 MB/s). Neden?</div><div class="secenek">A) USB-C konnektörü en çok 480 Mbit/s taşıyabilir B) Fiş ters takılmıştır; USB-C yalnız bir yönde tam hızda çalışır C) USB-C yalnız şarj içindir, veri taşımaz D) Konnektör aynı olsa da bu kablo yalnız USB 2.0 (480 Mbit/s) destekliyor; hız port, kablo ve cihazın ortak en düşük standardıdır</div><div class="aciklama">USB-C bir fiş biçimidir. Birçok şarj kablosunda yalnız USB 2.0 telleri vardır (≈ 40 MB/s gerçek hız). 10 Gbit/s için port, cihaz ve kablonun üçü de bu standardı desteklemelidir. USB-C iki yönde de aynı hızda çalışır.</div></td><td>D</td></tr>
+</table>
+<p class="anahtar">Cevap Anahtarı: <span>1-A 2-C 3-B 4-D</span></p>
+<h2>5. AÇIK UÇLU / BİÇİMLENDİRİCİ DEĞERLENDİRME</h2>
+<ol class="acik">
+<li><span>«CPU ile GPU’nun Çalışma Farkı» kavramını kendi cümlelerinle açıkla ve günlük hayattan bir örnek ver.</span></li>
+<li><span>«VRAM Yetmediğinde Ne Olur?» kavramını kendi cümlelerinle açıkla ve günlük hayattan bir örnek ver.</span></li>
+<li><span>«Aynı Fiş, Farklı Hız: USB-C» kavramını kendi cümlelerinle açıkla ve günlük hayattan bir örnek ver.</span></li>
+<li><span>Bu derste hangi hesap ya da görsel kablo seçme kararını anlamana en çok yardım etti? Hangi kısaltmayı hâlâ karıştırıyorsun ve onu nasıl ayırt etmeyi planlıyorsun?</span></li>
+</ol>
+<h2>6. ÖĞRETMEN NOTLARI VE ÖDEV</h2>
+<div class="etiket">Ödev / Sınıf Dışı Etkinlik:</div><p>Evdeki ya da okuldaki bir monitörün veya televizyonun arkasındaki girişleri fotoğraflamadan incele; her girişin türünü ve varsa üzerinde yazan sürümü not et. Ekranın çözünürlüğünü ve yenileme hızını ayarlardan bul, derste kullandığımız formülle gereken veri hızını hesapla ve hangi kablo sürümünün yeteceğini yaz. Evdeki iki USB-C kablonun ambalajında ya da ucunda hız veya watt işareti olup olmadığını kontrol et.</p>
+<div class="etiket">Öğretmen İçin Notlar:</div><ul class="not">
+<li>Lise düzeyi: terimler İngilizce karşılıklarıyla verilir (Terim Kartı, Slayt 4). Öğrencilerden GPU, VRAM, DP, PD gibi kısaltmaları açılımlarıyla kullanmalarını ve Gbit/s ile GB/s birimlerini karıştırmamalarını isteyin (8 bit = 1 bayt).</li>
+<li>Teknik not: Görüntü için gereken veri hızı derste 8 bit renk ve yaklaşık %5 boşluk süresiyle kabaca hesaplanır; gerçek zamanlama standartları, 10 bit renk ve sıkıştırma (DSC) sonucu değiştirir. Bağlantı hızları kodlama sonrası taşınabilen veri miktarıdır (ör. HDMI 2.0 için 18 Gbit/s hat hızı, yaklaşık 14,4 Gbit/s veri). VRAM kullanımı, çekirdek sayıları ve kopyalama süreleri örnek değerlerdir; gerçek ürünlerde üreticinin verdiği bilgilere bakılır.</li>
+<li>Sık görülen kavram yanılgıları: <q>GPU, CPU’dan her işte hızlıdır</q>, <q>VRAM ne kadar büyükse kart o kadar hızlıdır</q>, <q>HDMI ses taşır, DisplayPort taşımaz</q>, <q>USB-C ise hızlıdır</q>, <q>Pahalı kablo görüntüyü daha keskin yapar</q>, <q>Harici kart varken anakarttaki çıkış da görüntü verir</q>. Bu cümleleri doğru/yanlış sorusu olarak sorup gerekçeyle düzeltin.</li>
+<li>Güvenlik: Gerçek bir ekran kartı gösterecekseniz kartı kenarlarından tutturun, altın temaslara ve açıktaki bileşenlere dokunulmamasını, kartın bilgisayardan yalnız fiş prizden çekiliyken çıkarılmasını vurgulayın. Kablolar zorlanmadan takılır; DisplayPort fişi kilit düğmesine basılmadan çekilmez.</li>
+<li>Hareket azaltma ayarı açık cihazlarda animasyonlar kısa geçişlerle ilerler; yarış ve ağır çekim sonuç durumunu gösterir. 3D sahneler sürükleyerek, ok tuşları ve R (sıfırla) ile de kullanılabilir.</li>
+<li>Her adımın sonunda 1-2 öğrenciye kavramı kendi cümleleriyle anlattırarak anlaşıldığını kontrol edin (biçimlendirici değerlendirme).</li>
+</ul>
+<table class="sure-tablo"><thead><tr><th>Aşama</th><th>Süre</th></tr></thead>
+<tr><td>Giriş — Dikkat Çekme ve Güdüleme</td><td>5 dk</td></tr>
+<tr><td>Gelişme — Kavramların İşlenişi ve Etkinlikler</td><td>25 dk</td></tr>
+<tr><td>Değerlendirme ve Kapanış</td><td>5 dk</td></tr>
+<tr><th>Toplam</th><th>35 dk</th></tr>
+</table>
+<div class="imza"><div><b>Ders Öğretmeni</b>Ad Soyad / İmza</div><div><b>Uygundur</b>Okul Müdürü</div></div>
+</body>
+</html>
