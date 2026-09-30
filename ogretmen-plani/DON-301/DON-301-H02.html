@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DON-301 H02 Öğretmen Planı — İşlemci</title>
+<style>
+@font-face{font-family:'Carlito';src:local('Carlito'),url('../../assets/font/Carlito-Regular.ttf');font-weight:400;font-style:normal}
+@font-face{font-family:'Carlito';src:local('Carlito Bold'),url('../../assets/font/Carlito-Bold.ttf');font-weight:700;font-style:normal}
+@font-face{font-family:'Carlito';src:local('Carlito Italic'),url('../../assets/font/Carlito-Italic.ttf');font-weight:400;font-style:italic}
+@page{size:A4;margin:14mm 14mm 16mm 16.5mm;
+  @bottom-center{content:'Bilişim Üssü · Etkileşimli Ders Planı · ' counter(page) ' / ' counter(pages);font-family:Carlito,Calibri,sans-serif;font-size:7.5pt;color:#6b7a82}}
+*{box-sizing:border-box}
+html{font-family:Carlito,Calibri,'Segoe UI',Arial,sans-serif;font-size:9.9pt;color:#1a1a1a;line-height:1.38}
+body{margin:0;max-width:180mm}
+@media screen{body{margin:24px auto;padding:0 12px}}
+.bant{display:flex;gap:7pt;margin-bottom:9pt}
+.bant-sol{flex:1;background:linear-gradient(135deg,#075985,#0a6aa3);color:#fff;border-radius:4pt;padding:9pt 14pt 10pt}
+.bant-ust{font-size:7.6pt;font-weight:700;letter-spacing:2.2pt;opacity:.92}
+.bant-baslik{font-size:23pt;font-weight:700;line-height:1.12;margin-top:3pt}
+.bant-baslik.uzun{font-size:18pt}
+.bant-sag{width:128pt;background:#0369a1;color:#fff;border-radius:4pt;display:flex;align-items:center;justify-content:center;font-size:14pt;font-weight:700}
+h2{background:#0369a1;color:#fff;font-size:11pt;font-weight:700;margin:12pt 0 6pt;padding:5pt 10pt;border-radius:4pt;letter-spacing:.2pt;break-after:avoid}
+h3{display:flex;justify-content:space-between;align-items:center;color:#0369a1;font-size:10.6pt;margin:9pt 0 4pt;break-after:avoid}
+h3 .sure{background:#0369a1;color:#fff;font-size:8.6pt;border-radius:9pt;padding:1.5pt 8pt}
+table{width:100%;border-collapse:collapse;margin:0 0 4pt}
+td,th{border:1px solid #b9def1;padding:4pt 7pt;vertical-align:top;text-align:left}
+th{background:#e0f2fe;color:#075985;font-size:9.2pt;font-weight:700}
+tr{break-inside:avoid}
+.genel td:first-child{width:134pt;background:#e0f2fe;color:#075985;font-weight:700}
+.kazanim{width:100%;border-collapse:collapse}
+.kazanim td{border:0;border-bottom:1px solid #eaf6fc;padding:3.5pt 4pt}
+.kazanim td:first-child{width:32pt;color:#0369a1;font-weight:700}
+.isleyis td:first-child{width:35pt;text-align:center;color:#6b7a82;font-weight:700}
+.isleyis td:nth-child(2){width:122pt}
+.adim-ad{font-weight:700}
+.adim-konu{color:#475569}
+.slayt{display:inline-block;margin-top:2pt;font-size:8pt;font-weight:700;color:#0369a1;background:#e0f2fe;border-radius:6pt;padding:0 5pt}
+q{quotes:'“' '”'}
+q::before{content:open-quote}q::after{content:close-quote}
+p{margin:3pt 0 5pt;text-align:justify}
+.kutu{border:1px solid #b9def1;border-left:3pt solid #0369a1;border-radius:3pt;padding:5pt 8pt;margin:5pt 0;background:#f5fbff;break-inside:avoid}
+.kutu b{color:#075985}
+.olcme td:first-child{width:22pt;text-align:center;font-weight:700}
+.olcme td:last-child{width:40pt;text-align:center;color:#0369a1;font-weight:700}
+.soru{font-weight:700}
+.secenek{margin-top:1pt}
+.aciklama{font-style:italic;color:#0369a1;font-size:9.5pt;margin-top:2pt}
+.soru-gorsel{float:right;margin:0 0 2pt 8pt}
+.soru-gorsel svg{height:38pt;width:auto}
+.anahtar{font-weight:700;color:#075985;margin:3pt 0 0}
+.anahtar span{font-weight:400;color:#1a1a1a}
+ol.acik{margin:2pt 0;padding-left:0;list-style:none;counter-reset:a}
+ol.acik li{counter-increment:a;display:flex;gap:10pt;padding:3pt 0}
+ol.acik li::before{content:counter(a) '.';color:#0369a1;font-weight:700;min-width:16pt}
+.etiket{color:#0369a1;font-weight:700;margin:7pt 0 2pt}
+ul.not{margin:2pt 0;padding-left:12pt}
+ul.not li{margin:2pt 0}
+.sure-tablo td:last-child,.sure-tablo th:last-child{width:62pt}
+.imza{display:flex;justify-content:space-around;margin-top:14pt;text-align:center;color:#6b7a82;break-inside:avoid;break-before:avoid;page-break-before:avoid}
+.sure-tablo{break-after:avoid;page-break-after:avoid}
+.sure-tablo tr:last-child{break-after:avoid}
+.uyg{display:grid;grid-template-columns:1fr 1fr;gap:3pt;margin-top:5pt}
+.uyg div{border-radius:3pt;padding:3pt 6pt;font-size:9pt;line-height:1.32}
+.uyg b{display:block;font-size:7.6pt;letter-spacing:.8pt}
+.uyg .goster{background:#eff6ff;border-left:2.5pt solid #3b82f6}.uyg .goster b{color:#1d4ed8}
+.uyg .sor{background:#f5f3ff;border-left:2.5pt solid #8b5cf6}.uyg .sor b{color:#6d28d9}
+.uyg .kontrol{background:#ecfdf5;border-left:2.5pt solid #10b981}.uyg .kontrol b{color:#047857}
+.uyg .sikhata{background:#fff7ed;border-left:2.5pt solid #f97316}.uyg .sikhata b{color:#c2410c}
+.guvenlik{border:1.5pt solid #ef4444;border-radius:4pt;background:#fef2f2;padding:6pt 10pt;margin:6pt 0;break-inside:avoid}
+.guvenlik b{color:#b91c1c;display:block;margin-bottom:2pt}
+.guvenlik ul{margin:2pt 0;padding-left:13pt}
+.imza b{display:block;color:#475569;margin-bottom:10pt}
+</style>
+</head>
+<body>
+<div class="bant"><div class="bant-sol"><div class="bant-ust">ÖĞRETMEN DERS PLANI · DON-301</div><div class="bant-baslik">İşlemci</div></div><div class="bant-sag">2. Hafta</div></div>
+<h2>1. GENEL BİLGİLER</h2>
+<table class="genel">
+<tr><td>Dersin Adı</td><td>Bilgisayar Donanımı ve Sistem Kurulumu</td></tr>
+<tr><td>Sınıf / Seviye</td><td>Lise (9. sınıf)</td></tr>
+<tr><td>Ünite / Konu</td><td>Donanım 301 - Mimari — İşlemci</td></tr>
+<tr><td>Öğrenme Alanı</td><td>Bilgisayar Donanımı</td></tr>
+<tr><td>Süre</td><td>1 ders saati (35 dk)</td></tr>
+<tr><td>Yöntem ve Teknikler</td><td>Anlatım, soru-cevap, tahmin et–izle, teknik şema üzerinde modelleme, adım adım simülasyon (getir–çöz–yürüt), 3D model inceleme, karşılaştırmalı yarış animasyonu, senaryo tabanlı karar verme, eşli çalışma</td></tr>
+<tr><td>Araç-Gereç ve Kaynaklar</td><td>Etkileşimli ders (LMS), projeksiyon veya akıllı tahta; öğrenci başına bilgisayar ya da eşli çalışma için bir bilgisayar; mümkünse sınıfta gösterilecek eski bir işlemci (antistatik bileklikle, kenarlarından tutarak)</td></tr>
+<tr><td>Kavramlar / Terimler</td><td>ALU, Kontrol Birimi, Yazmaçlar, Getir–Çöz–Yürüt, Saat Hızı Tek Ölçüt Değil, Çekirdek ve İş Parçacığı, Önbellek (L1/L2/L3), x86-64 ve ARM</td></tr>
+</table>
+<h2>2. KAZANIMLAR</h2>
+<table class="kazanim">
+<tr><td>K1.</td><td>ALU, kontrol birimi ve yazmaçların görevlerini açıklar.</td></tr>
+<tr><td>K2.</td><td>Getir–çöz–yürüt döngüsünü sıralar.</td></tr>
+<tr><td>K3.</td><td>Çekirdek, iş parçacığı ve önbelleğin performansa etkisini açıklar.</td></tr>
+<tr><td>K4.</td><td>x86-64 ile ARM mimarilerini karşılaştırır.</td></tr>
+</table>
+<h2>3. DERS İŞLENİŞİ</h2>
+<h3><span>Giriş — Dikkat Çekme ve Güdüleme</span><span class="sure">5 dk</span></h3>
+<p>Kapakta dönen işlemciyi gösterip sorun: <q>Geçen hafta CPU'yu tek bir kutu olarak çizdik. Bu kutunun içinde sizce hangi parçalar çalışıyor?</q> Gelen cevapları tahtaya not edin. Kazanımları okuyup ders sonunda bir programı yazmaç yazmaç izleyebileceklerini söyleyin. Isınma slaytında (Slayt 3) Deniz'in ikilemini sesli okutun; el kaldırarak üç seçeneği oylatın ve sayıları tahtanın köşesine yazın: <q>Bu oylamayı Adım 3'teki yarışla sınayacağız.</q> Terim Kartı'nda (Slayt 4) her öğrenciye bir kısaltma verin; IPC, SMT ve ISA açılımlarını özellikle sorun.</p>
+<h3><span>Gelişme — Kavramların İşlenişi</span><span class="sure">25 dk</span></h3>
+<table class="isleyis"><thead><tr><th>Adım</th><th>Konu</th><th>Öğretmen Notu</th></tr></thead>
+<tr><td>1</td><td><div class="adim-ad">ALU, Kontrol Birimi, Yazmaçlar</div><div class="adim-konu">ALU, Kontrol Birimi, Yazmaçlar</div><span class="slayt">Slayt 5</span></td><td>Slayt açılınca şema birimleri tek tek vurgular; bu turu sessizce izletin, sonra öğrencileri tahtaya çağırıp birer yazmaca dokundurun. Sorun: <q>Adres yolu hangi yazmaçtan, veri yolu hangi yazmaçtan çıkıyor?</q> <q>Kontrol birimi komutun ne olduğunu anlar ve herkese görev dağıtır; ALU yalnızca hesap yapar; yazmaçlar ise çekirdeğin elinin altındaki en hızlı saklama yerleridir</q> deyin. MAR ve MDR'nin bir öğretim modeli olduğunu, gerçek çekirdeklerde çok daha fazla yazmaç bulunduğunu ekleyin. Öğrencilere PC ile IR arasındaki farkı tek cümleyle söyletin.</td></tr>
+<tr><td>2</td><td><div class="adim-ad">Getir–Çöz–Yürüt</div><div class="adim-konu">Getir–Çöz–Yürüt Döngüsü</div><span class="slayt">Slayt 6</span></td><td>Önce tahmin düğmelerinden birini sınıf oyuyla seçin (0C için 5, 8 ya da 13). Ardından Adım düğmesine siz basın; her basıştan önce <q>Turuncu paket şimdi nereye gidecek?</q> diye sorun. İlk komutun üç GETİR adımında durup PC'nin değerinin tam komut IR'ye alınırken arttığını gösterin. ADD komutunda paket ALU'ya girince <q>ALU'nun iki girişine hangi değerler geliyor?</q> sorusunu sorun. <q>Her komut aynı üç evreden geçer: bellekten al, ne olduğunu anla, gereğini yap; sonra PC'nin gösterdiği yerden yeniden başla</q> deyin. Kalan komutları Oynat ile izletin. Öğrencilere STORE komutunun yürütme evresini yazmaç adlarıyla söyletin.</td></tr>
+<tr><td>3</td><td><div class="adim-ad">Saat Hızı Tek Ölçüt Değil</div><div class="adim-konu">Saat Hızı ve IPC</div><span class="slayt">Slayt 7</span></td><td>Slayt açılınca örnek değerlerle yarış kendiliğinden başlar; B'nin önde bitirdiğini gösterip ısınmadaki oylamaya dönün. Tahtaya 4,2 × 1,5 = 6,3 ve 3,6 × 2,5 = 9,0 hesabını yazın. <q>Saat hızı saniyede kaç kez adım atıldığını, IPC ise her adımda ne kadar iş bittiğini söyler; performansı ikisinin çarpımı belirler</q> deyin. Bir öğrenciye A'nın sürgüleriyle B'yi yakalatmayı deneyin (ör. IPC'yi 2,2'ye çıkarın). Değerlerin örnek olduğunu, IPC'nin programa göre değiştiğini ve gerçek karşılaştırmanın aynı iş yüküyle yapılan testlerle yapıldığını vurgulayın. Öğrencilere A'nın B'ye eşit olması için gereken IPC'yi hesaplattırın (9,0 ÷ 4,2 ≈ 2,1).</td></tr>
+<tr><td>4</td><td><div class="adim-ad">Çekirdek ve İş Parçacığı</div><div class="adim-konu">Çekirdek ve İş Parçacığı</div><span class="slayt">Slayt 8</span></td><td>Slayt açılınca metal kapak kalkar. Önce çipin üstten neden düz göründüğünü sorun; devre yüzünün alt karta baktığını açıklayın. Çekirdekler düğmesine basın; kat planının şematik olduğunu, gerçek yerleşimin işlemciden işlemciye değiştiğini söyleyin. Alt şeritte Tek iş parçacığı ile 4 iş parçacığı arasında geçiş yapıp sorun: <q>Oyununuz yalnızca tek iş parçacığı kullanıyorsa sekiz çekirdek neyi değiştirir?</q> Ardından SMT görünümünde boş kutuların B ile dolduğunu gösterin. <q>Çok çekirdek ancak iş bölünebiliyorsa hız kazandırır; SMT ise aynı çekirdeğin boş kalan anlarını ikinci bir akışa verir, ikinci bir çekirdek yaratmaz</q> deyin. Öğrencilere 6 çekirdek / 12 iş parçacığı ifadesinin ne anlama geldiğini açıklattırın.</td></tr>
+<tr><td>5</td><td><div class="adim-ad">Önbellek (L1/L2/L3)</div><div class="adim-konu">Önbellek: İsabet ve Iska</div><span class="slayt">Slayt 9</span></td><td>Önce üç tahmin seçeneğinden birini sınıfa seçtirin, sonra Yarışı başlat'a basın. Birinci jeton anında dönerken ikincinin L1, L2 ve L3'te çarpı alıp RAM'e kadar gittiğini izletin. Veri dönerken kopyaların önbellek katlarına yazıldığına dikkat çekin; Yeniden iste ile ikinci denemenin 1 ns sürdüğünü gösterin. <q>Önbellek, çekirdeğin az önce kullandığı ve kullanmak üzere olduğu verinin yakın kopyasıdır; ıska pahalıdır, isabet neredeyse bedavadır</q> deyin. İsabet oranı sürgüsünü %95'ten %80'e çekip ortalama sürenin nasıl büyüdüğünü tartıştırın. Öğrencilere zamansal ve uzamsal yerelliğe günlük hayattan birer örnek söyletin.</td></tr>
+<tr><td>6</td><td><div class="adim-ad">x86-64 ve ARM</div><div class="adim-konu">x86-64 ve ARM</div><span class="slayt">Slayt 10</span></td><td>Aynı iş görünümünde Oynat'a basın: sol sütunda tek komutun içeride üç mikro işleme ayrıldığını, sağda aynı üç işin üç ayrı komutla yazıldığını gösterin. Sorun: <q>Hangisi daha hızlı, diyebilir miyiz?</q> Komut sayısının tek başına ölçü olmadığını vurgulayın. Özellikler sekmesinde komut uzunluğu satırında durun: 1–15 bayt ile sabit 4 bayt arasındaki farkın çözme birimine etkisini tartışın. Kullanım sekmesinde uyumluluk kutusunu okutun. <q>İki mimari de bugün güçlü ve verimli işlemciler üretir; asıl pratik fark, programın hangi komut kümesi için derlendiğidir</q> deyin. Öğrencilere evlerindeki cihazları iki mimariye göre sınıflandırttırın.</td></tr>
+</table>
+<div class="kutu"><b>Etkinlikler (Slayt 11–12):</b> Etkinlik 1'de (Slayt 11) öğrenciler eşli çalışır: biri Evre düğmesini kullanır, diğeri her basıştan önce hangi yazmacın değişeceğini söyler; her görevden sonra roller değişir. Tahmin kutusu boşken simülatör çalışmaz; yanlış tahminde çıkan açıklamayı okutup Baştan ile yeniden denetin. Görev 4'te JNZ'nin kaç kez geri atladığını sayma defterine çetele olarak yazdırın (yaklaşık 10 dk). Etkinlik 2'de (Slayt 12) beş senaryoyu sınıfça oylayarak çözün; her senaryoda önce gerekçeyi bir öğrenciye söyletin, sonra seçeneği işaretleyin (yaklaşık 5 dk).</div>
+<h3><span>Değerlendirme ve Kapanış</span><span class="sure">5 dk</span></h3>
+<p>Özet slaytındaki altı kartı sırayla altı öğrenciye kendi cümleleriyle anlattırın. Bilgi Testi'ni (Slayt 14) bireysel çözdürün; ardından en çok yanlış yapılan soruyu tahtada tartışın. Özellikle görselli soruda PC'nin neden bir sonraki adresi gösterdiğini simülatörde bir kez daha gösterin. Dersi <q>Gelecek hafta önbellekten sonraki katmana, RAM'e ve bellek hiyerarşisinin tamamına geçeceğiz</q> köprüsüyle kapatın.</p>
+<h2>4. ÖLÇME VE DEĞERLENDİRME</h2>
+<table class="olcme"><thead><tr><th>#</th><th>Soru ve Seçenekler</th><th>Cevap</th></tr></thead>
+<tr><td>1</td><td><div class="soru">IR’deki komutun işlem kodunu çözüp ALU’ya, yazmaçlara ve belleğe ne yapacaklarını sinyallerle bildiren birim hangisidir?</div><div class="secenek">A) Kontrol birimi B) ALU C) L1 önbellek D) Program sayacı (PC)</div><div class="aciklama">Kontrol birimi komutu çözer ve diğer birimleri yönetir; ALU yalnızca hesaplar, PC ise yalnızca sıradaki komutun adresini tutar.</div></td><td>A</td></tr>
+<tr><td>2</td><td><div class="soru-gorsel"><svg viewBox="0 0 336 96" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bellekte 00 LOAD 0A, 01 ADD 0B, 02 STORE 0C komutları; 01 hücresi yeni getirildi. Yazmaçlar: PC 02, IR ADD 0B. Evre: GETİR bitti."><rect width="336" height="96" rx="10" fill="#f8fafc"/><rect x="4" y="4" width="144" height="88" rx="8" fill="#fffbeb" stroke="#b45309" stroke-width="1.5"/><rect x="10" y="9" width="132" height="21" rx="4" fill="#fff" stroke="#f59e0b" stroke-width="1.2"/><text x="17" y="24" font-family="JetBrains Mono,Consolas,monospace" font-size="11" font-weight="800" fill="#92400e" text-anchor="start">00</text><text x="46" y="24" font-family="JetBrains Mono,Consolas,monospace" font-size="12" font-weight="900" fill="#0f172a" text-anchor="start">LOAD 0A</text><rect x="10" y="37" width="132" height="21" rx="4" fill="#e0e7ff" stroke="#6366f1" stroke-width="2.2"/><text x="17" y="52" font-family="JetBrains Mono,Consolas,monospace" font-size="11" font-weight="800" fill="#92400e" text-anchor="start">01</text><text x="46" y="52" font-family="JetBrains Mono,Consolas,monospace" font-size="12" font-weight="900" fill="#0f172a" text-anchor="start">ADD 0B</text><rect x="10" y="65" width="132" height="21" rx="4" fill="#fff" stroke="#f59e0b" stroke-width="1.2"/><text x="17" y="80" font-family="JetBrains Mono,Consolas,monospace" font-size="11" font-weight="800" fill="#92400e" text-anchor="start">02</text><text x="46" y="80" font-family="JetBrains Mono,Consolas,monospace" font-size="12" font-weight="900" fill="#0f172a" text-anchor="start">STORE 0C</text><path d="M144 47H164" stroke="#6366f1" stroke-width="2.5"/><path d="M164 42l7 5-7 5z" fill="#6366f1"/><rect x="174" y="4" width="158" height="88" rx="8" fill="#f5f3ff" stroke="#6d28d9" stroke-width="1.5"/><rect x="180" y="10" width="62" height="30" rx="7" fill="#fff" stroke="#7dd3fc" stroke-width="1.8"/><text x="188" y="30" font-family="Inter,Arial,sans-serif" font-size="12" font-weight="900" fill="#475569" text-anchor="start">PC</text><text x="234" y="31" font-family="JetBrains Mono,Consolas,monospace" font-size="14" font-weight="900" fill="#b45309" text-anchor="end">02</text><rect x="248" y="10" width="78" height="30" rx="7" fill="#fff" stroke="#7dd3fc" stroke-width="1.8"/><text x="256" y="30" font-family="Inter,Arial,sans-serif" font-size="12" font-weight="900" fill="#475569" text-anchor="start">IR</text><text x="318" y="31" font-family="JetBrains Mono,Consolas,monospace" font-size="14" font-weight="900" fill="#0369a1" text-anchor="end">ADD 0B</text><rect x="180" y="52" width="146" height="30" rx="15" fill="#f59e0b"/><text x="253" y="72" font-family="Inter,Arial,sans-serif" font-size="12" font-weight="900" fill="#1f1300" text-anchor="middle">GETİR evresi bitti</text></svg></div><div class="soru">Görselde 01 adresindeki komut yeni getirildi; IR’de ADD 0B var. PC neden 02 gösteriyor?</div><div class="secenek">A) ADD komutu 02 adresinde durduğu için B) PC, ALU’nun son toplama sonucunu tuttuğu için C) PC getirme sırasında arttı; artık sıradaki komutun adresini gösteriyor D) Komut çözülünce PC’ye işlenenin adresi yazıldığı için</div><div class="aciklama">GETİR evresinde komut IR’ye alınırken PC bir artırılır. Böylece PC her zaman sıradaki komutu gösterir; yalnız atlama komutları onu başka bir adrese götürür.</div></td><td>C</td></tr>
+<tr><td>3</td><td><div class="soru">Deniz’in video dönüştürme programı işi 8 iş parçacığına bölüyor; sık oynadığı eski bir oyun ise çoğunlukla tek iş parçacığıyla çalışıyor. Aynı nesil 4 çekirdekli işlemciden 8 çekirdekliye geçerse ne beklenir?</div><div class="secenek">A) İkisi de yaklaşık iki kat hızlanır B) Video dönüştürme belirgin hızlanır; oyun çekirdek sayısından pek yararlanmaz C) Oyun iki kat hızlanır, video dönüştürme değişmez D) Hiçbiri değişmez; yalnız saat hızı önemlidir</div><div class="aciklama">Ek çekirdekler yalnız işi paralel iş parçacıklarına bölebilen programlara yarar. Tek iş parçacıklı bir işte belirleyici olan çekirdek başına performanstır (IPC × saat hızı).</div></td><td>B</td></tr>
+<tr><td>4</td><td><div class="soru">Ece, masaüstü bilgisayarı için x86-64’e göre derlenmiş bir programı ARM işlemcili bir cihazda açmak istiyor. Ne olur?</div><div class="secenek">A) Aynen çalışır; bütün işlemciler aynı komutları anlar B) ARM daha az enerji harcadığı için program daha hızlı çalışır C) Saat hızları eşitse program doğrudan çalışır D) Komut kümeleri farklı olduğundan doğrudan çalışmaz; ARM için derlenmiş sürüm ya da bir çeviri katmanı gerekir</div><div class="aciklama">Program, işlemcinin komut kümesine (ISA) göre makine koduna çevrilir. x86-64 makine kodunu ARM çekirdeği tanımaz; yeniden derleme ya da çeviri (öykünme) yazılımı gerekir.</div></td><td>D</td></tr>
+</table>
+<p class="anahtar">Cevap Anahtarı: <span>1-A 2-C 3-B 4-D</span></p>
+<h2>5. AÇIK UÇLU / BİÇİMLENDİRİCİ DEĞERLENDİRME</h2>
+<ol class="acik">
+<li><span>«Getir–Çöz–Yürüt Döngüsü» kavramını kendi cümlelerinle açıkla ve günlük hayattan bir örnek ver.</span></li>
+<li><span>«Saat Hızı ve IPC İlişkisi» kavramını kendi cümlelerinle açıkla ve günlük hayattan bir örnek ver.</span></li>
+<li><span>«Önbellek İsabeti ve Iskası» kavramını kendi cümlelerinle açıkla ve günlük hayattan bir örnek ver.</span></li>
+<li><span>Simülatörde hangi görev seni en çok düşündürdü? Hangi yazmacın ne zaman değiştiğini artık tahmin edebiliyor musun? Bir örnekle açıkla.</span></li>
+</ol>
+<h2>6. ÖĞRETMEN NOTLARI VE ÖDEV</h2>
+<div class="etiket">Ödev / Sınıf Dışı Etkinlik:</div><p>Kullandığın bir bilgisayarın ya da telefonun işlemci bilgilerini (çekirdek sayısı, iş parçacığı sayısı, temel ve en yüksek saat hızı, L2/L3 önbellek boyutu, mimari: x86-64 ya da ARM) sistem bilgisi ekranından ya da üreticinin teknik sayfasından bul. Bir tabloya yaz ve bu işlemcinin hangi tür işlerde (tek iş parçacıklı mı, paralel mi) güçlü olacağını iki cümleyle gerekçelendir. Marka adı yerine yalnız teknik değerleri kullan.</p>
+<div class="etiket">Öğretmen İçin Notlar:</div><ul class="not">
+<li>Lise düzeyi: terimler İngilizce karşılıklarıyla verilir (Terim Kartı, Slayt 4). Öğrencilerden PC, IR, MAR, MDR, ACC, IPC ve SMT kısaltmalarını açılımlarıyla kullanmalarını isteyin.</li>
+<li>Model notu: Derste kullanılan tek akümülatörlü işlemci (LOAD, ADD, SUB, STORE, JNZ, HALT) bir öğretim modelidir. Gerçek çekirdekler komutları boru hattında (pipeline) üst üste bindirir, birden çok ALU ile aynı döngüde birden fazla komut bitirebilir; IPC'nin 1'den büyük olabilmesinin nedeni budur. Merak eden öğrencilere boru hattını çamaşır yıkama–kurutma–katlama benzetmesiyle anlatabilirsiniz.</li>
+<li>Sayılar yaklaşık ve örnektir: L1 isabeti yaklaşık 1 ns, RAM'e giden ıska yaklaşık 60–100 ns sürer; SMT kazancı iş yüküne göre değişir ve çoğu zaman yüzde birkaç ile yüzde otuz arasında kalır. Öğrencilere büyüklük sırasının önemli olduğunu, kesin değerlerin işlemci modeline göre değiştiğini söyleyin.</li>
+<li>Sık görülen kavram yanılgıları: <q>GHz yüksekse işlemci her zaman daha hızlıdır</q>, <q>8 çekirdek her programı iki kat hızlandırır</q>, <q>SMT çekirdek sayısını ikiye katlar</q>, <q>ARM işlemciler yalnızca telefon içindir ve zayıftır</q>, <q>PC, çalışmakta olan komutun adresini tutar</q>. Bu cümleleri doğru/yanlış sorusu olarak sorup gerekçeyle düzeltin.</li>
+<li>Dengeli anlatım: x86-64 ile ARM arasında <q>iyi–kötü</q> karşılaştırması yapmayın; marka adı kullanmadan masaüstü/dizüstü işlemcilerinin çoğunun x86-64, telefonların ve bazı dizüstülerin işlemcilerinin ARM olduğunu söyleyin. Enerji verimliliğinin çekirdek tasarımı ve üretim teknolojisine de bağlı olduğunu vurgulayın.</li>
+<li>Gerçek işlemci gösterecekseniz antistatik bileklik takın, işlemciyi kenarlarından tutun; alt yüzdeki pedlere ya da soketteki pinlere dokunmayın. Metal kapağın sökülmesi (delid) işlemciye zarar verebilir; sınıfta yapılmaz, derste 3D modelle gösterilir.</li>
+<li>Hareket azaltma ayarı açık cihazlarda animasyonlar kısa geçişlerle ilerler; getir–çöz–yürüt şeması ve simülatör tamamen düğmelerle adım adım kullanılabilir. 3D sahne sürükleyerek döndürülür; ok tuşları ve R (sıfırla) ile de kullanılabilir.</li>
+<li>Her adımın sonunda 1-2 öğrenciye kavramı kendi cümleleriyle anlattırarak anlaşıldığını kontrol edin (biçimlendirici değerlendirme).</li>
+</ul>
+<table class="sure-tablo"><thead><tr><th>Aşama</th><th>Süre</th></tr></thead>
+<tr><td>Giriş — Dikkat Çekme ve Güdüleme</td><td>5 dk</td></tr>
+<tr><td>Gelişme — Kavramların İşlenişi ve Etkinlikler</td><td>25 dk</td></tr>
+<tr><td>Değerlendirme ve Kapanış</td><td>5 dk</td></tr>
+<tr><th>Toplam</th><th>35 dk</th></tr>
+</table>
+<div class="imza"><div><b>Ders Öğretmeni</b>Ad Soyad / İmza</div><div><b>Uygundur</b>Okul Müdürü</div></div>
+</body>
+</html>

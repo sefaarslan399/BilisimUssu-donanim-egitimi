@@ -35,7 +35,7 @@ Durum: `—` başlanmadı · `K` kalibrasyon (onay bekliyor) · `✓` tamam · `
 | Hafta | Başlık | Tür | HTML | Plan | Not |
 |---|---|---|---|---|---|
 | H01 | Bilgisayar Mimarisine Giriş | K | K | K | Lise kalibrasyonu (Format K). 15 slayt; terim kartı slaytı, 3D yok (müfredatta sahne3d yok): katman diyagramı, Von Neumann şeması, bellek tablosu simülasyonu, yol animasyonu (OKU/YAZ), önek karşılaştırıcı, 931 GiB hesabı, kapasite dönüştürücü, karşılaştırma oyunu. |
-| H02 | İşlemci | K | — | — | |
+| H02 | İşlemci | K | K | K | 15 slayt. 3D: M-CPU kapak kalkar, şematik çip kat planı (çekirdek, L3, bellek denetleyicisi), SMT zaman çizelgesi; 2D: tıklanabilir çekirdek şeması, getir–çöz–yürüt (A-BORU), IPC × GHz yarışı, önbellek isabet/ıska yarışı (A-YARIS), x86-64 ve ARM karşılaştırması; E-ADIM simülatörü (4 görev), Performans Kararları (5 senaryo). FOTO-GEREKLİ: yok. DOĞRULA: SMT kazancı aralığı (planda %birkaç–%30), önbellek gecikmeleri yaklaşık, AArch64 kodlamaları elle hesaplandı. |
 | H03 | Bellek Hiyerarşisi ve RAM | K | K | K | 15 slayt. 3D: DDR4/DDR5 çentik karşılaştırması + yuvaya deneme, DIMM ve SO-DIMM; 2D: hiyerarşi ve insan ölçeği, DRAM tazeleme/uçuculuk, MT/s ve CL, tek/çift kanal. FOTO-GEREKLİ: DON-301-H03-ddr4-ddr5.jpg. DOĞRULA: DDR5 DIMM ve SO-DIMM çentik konumları ikincil kaynaktan (derste mm verilmiyor); M-RAM çentiği 5,1 mm (kaynak 5,575 mm diyor). |
 | H04 | Depolama | K | — | — | |
 | H05 | Anakart | K | — | — | |
