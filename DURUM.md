@@ -38,7 +38,7 @@ Durum: `—` başlanmadı · `K` kalibrasyon (onay bekliyor) · `✓` tamam · `
 | H02 | İşlemci | K | — | — | |
 | H03 | Bellek Hiyerarşisi ve RAM | K | K | K | 15 slayt. 3D: DDR4/DDR5 çentik karşılaştırması + yuvaya deneme, DIMM ve SO-DIMM; 2D: hiyerarşi ve insan ölçeği, DRAM tazeleme/uçuculuk, MT/s ve CL, tek/çift kanal. FOTO-GEREKLİ: DON-301-H03-ddr4-ddr5.jpg. DOĞRULA: DDR5 DIMM ve SO-DIMM çentik konumları ikincil kaynaktan (derste mm verilmiyor); M-RAM çentiği 5,1 mm (kaynak 5,575 mm diyor). |
 | H04 | Depolama | K | — | — | |
-| H05 | Anakart | K | K | K | 15 slayt. 3D: kasa türleri karşılaştırması, anakart yolları (A-AKIS), kamera turu: soket (kol/kapak), RAM yuvaları (mandal), PCIe/M.2 (SSD takma), arka panel; parça avı (E-AV, derse özel); 2D: gerçek anakart dedektifi, çipset şeması (Derinleş). FOTO-GEREKLİ: DON-201-H05-anakart-ust.jpg. DOĞRULA: PCIe/M.2 anahtar konumları yaklaşık; LGA soket genel. |
+| H05 | Anakart | K | — | — | |
 | H06 | Güç Kaynağı ve Soğutma | K | — | — | |
 | H07 | Ekran Kartı ve Bağlantı Standartları | K | — | — | |
 | H08 | Uyumluluk ve Sistem Toplama | K+U | — | — | |
