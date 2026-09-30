@@ -115,7 +115,9 @@ ol.acik li::before{content:counter(a) '.';color:#0369a1;font-weight:700;min-widt
 ul.not{margin:2pt 0;padding-left:12pt}
 ul.not li{margin:2pt 0}
 .sure-tablo td:last-child,.sure-tablo th:last-child{width:62pt}
-.imza{display:flex;justify-content:space-around;margin-top:14pt;text-align:center;color:#6b7a82;break-inside:avoid}
+.imza{display:flex;justify-content:space-around;margin-top:14pt;text-align:center;color:#6b7a82;break-inside:avoid;break-before:avoid;page-break-before:avoid}
+.sure-tablo{break-after:avoid;page-break-after:avoid}
+.sure-tablo tr:last-child{break-after:avoid}
 .uyg{display:grid;grid-template-columns:1fr 1fr;gap:3pt;margin-top:5pt}
 .uyg div{border-radius:3pt;padding:3pt 6pt;font-size:9pt;line-height:1.32}
 .uyg b{display:block;font-size:7.6pt;letter-spacing:.8pt}
@@ -202,7 +204,9 @@ def plan_html(kod, hafta):
                  "<div class=\"adim-konu\">" + e(g["konu"]) + "</div><span class=\"slayt\">Slayt " + str(g["slayt"]) + "</span></td>"
                  "<td>" + konusma(g["not"]) + uyg_kutular(g.get("uygulama")) + "</td></tr>\n")
     s.append("</table>\n")
-    s.append('<div class="kutu"><b>Etkinlikler (Slayt 10–11):</b> ' + konusma(plan["etkinlik"]) + "</div>\n")
+    etk = [i + 1 for i, l in enumerate(les["SLIDE_LABELS"]) if "Etkinlik" in l]
+    etk_metin = ("Slayt " + str(etk[0]) + ("–" + str(etk[-1]) if len(etk) > 1 else "")) if etk else "Slayt 10–11"
+    s.append('<div class="kutu"><b>Etkinlikler (' + etk_metin + '):</b> ' + konusma(plan["etkinlik"]) + "</div>\n")
     s.append('<h3><span>Değerlendirme ve Kapanış</span><span class="sure">' + str(sure["Değerlendirme ve Kapanış"]) + " dk</span></h3>\n")
     s.append("<p>" + konusma(plan["kapanis"]) + "</p>\n")
 

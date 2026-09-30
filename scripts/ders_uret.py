@@ -23,6 +23,7 @@ IKON_ISINMA = '<path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4
 IKON_DERINLES = '<circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/><path d="M11 8v6M8 11h6"/>'
 IKON_OZET = ('<line x1="9" y1="6" x2="20" y2="6"/><line x1="9" y1="12" x2="20" y2="12"/><line x1="9" y1="18" x2="20" y2="18"/>'
              '<polyline points="3 6 4.5 7.5 7 5"/><polyline points="3 12 4.5 13.5 7 11"/><polyline points="3 18 4.5 19.5 7 17"/>')
+IKON_TERIM = '<path d="M4 5h9M8.5 5v2c0 4-2 7-5 8"/><path d="M5 11c2 2 5 3 8 3"/><path d="M13 20l4-9 4 9M14.5 17h5"/>'
 IKON_ETKINLIK = ('<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/>'
                  '<rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M14 17.5h7M17.5 14v7"/>')
 
@@ -147,6 +148,14 @@ def slayt(s, sid, sayilar):
                  '            <div class="u-kontrol"><span>✔</span><span><strong>Kontrol:</strong> ' + s['kontrol'] + '</span></div>\n'
                  '          </div>\n        </div>\n      </div>\n    </div>\n')
         return bas + hdr(s['ikon'], etiket, rozet) + govde + '  </div>\n', etiket
+    if tur == 'terim':
+        # DON-301: EN → TR terim kartı slaytı (her derste zorunlu)
+        kartlar = ''.join('<div class="terim-kart"><div class="terim-en" lang="en">' + x[0] + '</div><div class="terim-tr">' + x[1] +
+                          '</div><div class="terim-ac">' + x[2] + '</div></div>' for x in s['terimler'])
+        etiket = s.get('baslik', 'Terim Kartı')
+        return (bas + hdr(s.get('ikon', IKON_TERIM), etiket, 'Terimler') + '    <div class="slide-body">\n      <div class="layout-full">\n'
+                '        <div class="csub">' + s.get('alt', 'Bu derste geçen İngilizce terimler ve Türkçe karşılıkları:') + '</div>\n'
+                '        <div class="terim-izgara">' + kartlar + '</div>\n      </div>\n    </div>\n  </div>\n', etiket)
     if tur == 'serbest':
         etiket = s['baslik']
         return (bas + hdr(s['ikon'], etiket, s['rozet']) + '    <div class="slide-body">\n' + s['govde'] + '\n    </div>\n  </div>\n',
@@ -185,6 +194,6 @@ def uret(ns):
         kapak = ('<div class="cover-svg kapak-3d">\n            <div class="don3d" id="' + k['3d'] + '" aria-label="' + k['aria'] + '">\n'
                  '              <div data-yedek hidden><!--@dahil:' + k['yedek'] + '--></div>\n            </div>\n          </div>')
     else:
-        kapak = '<div class="cover-svg" id="s1-cover-svg"><!--@dahil:' + k['svg'] + '--></div>'
+        kapak = '<div class="cover-svg kapak-svg" id="s1-cover-svg"><!--@dahil:' + k['svg'] + '--></div>'
     on = 'DERS.hedefSimgeleri(' + js(d.get('hedef_simgeler', [])) + ');\n'
     return lesson, kapak, '\n'.join(html), on

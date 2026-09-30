@@ -34,7 +34,7 @@ Durum: `—` başlanmadı · `K` kalibrasyon (onay bekliyor) · `✓` tamam · `
 
 | Hafta | Başlık | Tür | HTML | Plan | Not |
 |---|---|---|---|---|---|
-| H01 | Bilgisayar Mimarisine Giriş | K | — | — | |
+| H01 | Bilgisayar Mimarisine Giriş | K | K | K | Lise kalibrasyonu (Format K). 15 slayt; terim kartı slaytı, 3D yok (müfredatta sahne3d yok): katman diyagramı, Von Neumann şeması, bellek tablosu simülasyonu, yol animasyonu (OKU/YAZ), önek karşılaştırıcı, 931 GiB hesabı, kapasite dönüştürücü, karşılaştırma oyunu. |
 | H02 | İşlemci | K | — | — | |
 | H03 | Bellek Hiyerarşisi ve RAM | K | — | — | |
 | H04 | Depolama | K | — | — | |

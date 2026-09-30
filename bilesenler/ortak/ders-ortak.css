@@ -273,3 +273,23 @@ body.grade-ortaokul{
 .sahne-mesaj:empty{opacity:0}
 .sahne-mesaj.dogru{background:rgba(4,120,87,0.92)}
 .sahne-mesaj.yanlis{background:rgba(185,28,28,0.92)}
+
+/* Kapak: tam alan SVG (3D'siz dersler) */
+.cover-svg.kapak-svg{position:absolute;inset:0;max-width:none;width:auto;z-index:1}
+.cover-svg.kapak-svg svg{width:100%;height:100%;display:block}
+
+/* ═══ Lise (DON-301): font tavanları ve terim kartı ═══ */
+body.grade-lise{
+  --f-base:  clamp(13px, 0.4vw + 11px, 18px);
+  --f-title: clamp(17px, 0.6vw + 13px, 23px);
+  --f-sh:    clamp(14px, 0.5vw + 12px, 21px);
+  --f-sub:   clamp(12px, 0.35vw + 10px, 17px);
+}
+body.grade-lise .step-title{font-size:clamp(17px, 0.6vw + 13px, 26px)}
+body.grade-lise .step-desc{font-size:clamp(13px, 0.4vw + 11px, 18px)}
+body.grade-lise .code-body{font-size:clamp(12px, 0.3vw + 10px, 16px)}
+.terim-izgara{flex:1;min-height:0;display:grid;grid-template-columns:repeat(auto-fit, minmax(clamp(170px, 18vw, 260px), 1fr));grid-auto-rows:minmax(0, 1fr);gap:var(--gap)}
+.terim-kart{display:flex;flex-direction:column;justify-content:center;gap:3px;min-height:0;overflow:hidden;background:#fff;border:1.5px solid var(--border);border-left:4px solid var(--brand);border-radius:var(--radius);padding:clamp(6px, 0.5vw + 4px, 14px)}
+.terim-en{font-family:var(--mono);font-weight:800;font-size:clamp(15px, 0.6vw + 11px, 24px);color:var(--brand-dk)}
+.terim-tr{font-weight:900;font-size:clamp(14px, 0.5vw + 10px, 21px);color:var(--ink)}
+.terim-ac{font-size:clamp(12px, 0.35vw + 9px, 17px);color:var(--ink2);font-weight:600;line-height:1.35}

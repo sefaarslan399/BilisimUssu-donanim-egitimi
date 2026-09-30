@@ -1,0 +1,34 @@
+{
+  "format": "K",
+  "yontem": "Anlatım, soru-cevap, teknik şema üzerinde modelleme, adım adım simülasyon (bellek tablosu), tahmin et–hesapla, problem çözme, eşli çalışma",
+  "arac": "Etkileşimli ders (LMS), projeksiyon veya akıllı tahta; öğrenci başına hesap makinesi ya da bilgisayar; mümkünse kutusunda kapasitesi yazan bir disk ya da USB bellek",
+  "giris": "Kapak slaytındaki şemayı gösterip sorun: \"Bir bilgisayarı tasarlasaydınız hangi birimler kesinlikle olmalıydı?\" Önerileri tahtaya yazın. Hedefler slaytında kazanımları paylaşın. Isınma slaytında (Slayt 3) üç açıklamayı okutun, sınıfın oylamasını tahtaya yazın ve \"Adım 6'da hesapla kontrol edeceğiz\" deyin. Terim Kartı slaytında (Slayt 4) terimleri hızla okutup İngilizce kısaltmaların açılımını sorun.",
+  "gelisme": [
+    {"konu": "Sistem Katmanları", "slayt": 5,
+     "not": "Slayt açılınca katmanlar sırayla vurgulanır; ardından her katmana bir öğrenciyi dokundurun. Sorun: \"Oyun açtığınızda istek hangi katmanlardan geçerek donanıma ulaşır?\" \"Bilgisayar sistemi donanım, yazılım, veri ve kullanıcının birlikte çalışmasıdır; mimari ise donanım katmanının nasıl düzenlendiğini tanımlar\" deyin. Öğrencilere kullanıcıdan donanıma giden yolu sırayla söyletin."},
+    {"konu": "Von Neumann Modeli", "slayt": 6,
+     "not": "Bloklar sırayla vurgulanırken her birinde durup alttaki kartı okutun. Kontrol birimine dokununca yalnız kontrol yolunun parladığını gösterin. \"Von Neumann modelinde işlemci, bellek ve giriş–çıkış birimleri ortak yollarla bağlıdır; kontrol birimi komutu çözer, ALU hesaplar, yazmaçlar ara sonuçları tutar\" deyin. Öğrencilere PC, IR ve ACC yazmaçlarının görevlerini söyletin."},
+    {"konu": "Depolanmış Program", "slayt": 7,
+     "not": "Önce tahmin ettirin: \"Bu program çalışınca 0E hücresine ne yazılır?\" Sonra Adım düğmesiyle tek tek ilerleyin; her GETİR evresinde komutun, her YÜRÜT evresinde verinin aynı bellekten okunduğunu vurgulayın. \"Depolanmış program ilkesi, komutların da veri gibi bellekte saklanmasıdır; bu sayede bilgisayar yalnız bellekteki içeriği değiştirerek başka bir iş yapabilir\" deyin. Öğrencilere PC'nin her komuttan sonra neden arttığını açıklattırın."},
+    {"konu": "Adres, Veri ve Kontrol Yolları", "slayt": 8,
+     "not": "OKU işlemi kendiliğinden oynar; üç aşamada durup çizgi desenlerini gösterin (kesik: adres, kalın: veri, noktalı: kontrol). Ardından YAZ işlemini oynatıp veri yolundaki yön değişimini sorun: \"Adres yolu neden hep aynı yöne akıyor?\" \"Adres yolu tek yönlüdür, veri yolu iki yönlüdür, kontrol yolu ise okuma–yazma gibi komut sinyallerini taşır\" deyin. Öğrencilere bir yazma işleminin üç aşamasını sırasıyla söyletin."},
+    {"konu": "Ondalık ve İkili Önekler", "slayt": 9,
+     "not": "Önekler sırayla gösterilir; TB/TiB'de durun ve farkın yüzde 10'a çıktığını gösterin. Sorun: \"Önek büyüdükçe fark neden artıyor?\" \"SI önekleri 1000'in, IEC önekleri 1024'ün kuvvetleridir; her basamakta 1,024 çarpanı birikir\" deyin. Tahtada 2¹⁰ = 1024 ve 10³ = 1000 karşılaştırmasını yazın. Öğrencilere 1 MiB'ın kaç bayt olduğunu hesaplattırın."},
+    {"konu": "Kayıp 69 GB", "slayt": 10,
+     "not": "Hesap satırları sırayla açılır; her bölme adımında durup öğrencilere sonucu önceden tahmin ettirin. \"Üretici 10¹² baytı 1 TB diye satar; işletim sistemi aynı baytı 2³⁰'a bölerek gösterir ve buna da GB der; kaybolan bir şey yoktur, yalnızca birim farkı vardır\" deyin. Isınmadaki oylamayı burada karşılaştırın. Öğrencilere 2 TB bir diskin kaç GiB görüneceğini hesaplattırın."}
+  ],
+  "etkinlik": "Etkinlik 1'de öğrenciler dönüştürücüyü kullanarak dört diskin işletim sisteminde kaç GiB görüneceğini bulur ve kutuya yazar; yanlış cevapta çıkan ipucunu okutun. Eşli çalışmada biri hesap makinesiyle, diğeri dönüştürücüyle çözüp sonuçları karşılaştırabilir. Etkinlik 2'de altı turluk karşılaştırma oyununu sınıfça oynayın; her turda önce el kaldırarak oylama yapın, sonra cevabı seçtirin (yaklaşık 8 dk).",
+  "kapanis": "Özet slaytındaki altı kartı birer öğrenciye anlattırın. Bilgi Testi'ni (Slayt 14) bireysel çözdürün, ardından yanlış çıkan soruları tartışın; özellikle 1 GiB'ın bayt karşılığında tahtada 2³⁰ hesabını birlikte yapın. Dersi \"Bir sonraki hafta işlemcinin içine gireceğiz: getir–çöz–yürüt döngüsünü bugün gördünüz\" köprüsüyle kapatın.",
+  "acik_uclu": ["Von Neumann Modeli", "Adres, Veri ve Kontrol Yolu", "Ondalık ve İkili Önek"],
+  "oz_degerlendirme": "Bu derste en çok hangi adım ilgini çekti, nerede zorlandın? Nedenini açıkla.",
+  "odev": "Evdeki üç depolama aygıtının (telefon, bilgisayar diski, USB bellek, hafıza kartı) kutu ya da etiket kapasitesini bul. Her biri için işletim sisteminde görünecek yaklaşık kapasiteyi GiB olarak hesapla ve hesabını adım adım yaz.",
+  "notlar": [
+    "Lise düzeyi: terimler İngilizce karşılıklarıyla verilir (Terim Kartı, Slayt 4). Öğrencilerin kısaltmaları (CPU, ALU, I/O) açılımlarıyla birlikte kullanmasını isteyin.",
+    "Tarihsel not: Von Neumann modeli 1945 tarihli bir rapora dayanır; komut ve veri için ayrı bellek kullanan Harvard mimarisi, merak eden öğrencilere karşılaştırma olarak anlatılabilir.",
+    "Birim kullanımı: SI önekleri (kB, MB, GB) 1000'in, IEC önekleri (KiB, MiB, GiB) 1024'ün kuvvetleridir. Bazı işletim sistemleri ikili değeri \"GB\" etiketiyle gösterir; derste bu karışıklığın nedeni olarak vurgulayın.",
+    "Sık görülen kavram yanılgıları: \"Program diskte çalışır\", \"Veri yolu tek yönlüdür\", \"Diskin bir kısmı fabrikadan eksik gelir\". Bu cümleleri doğru/yanlış sorusu olarak sorup düzeltin.",
+    "Hareket azaltma ayarı açık cihazlarda animasyonlar kısa geçişlerle ilerler; tüm şemalar düğmelerle adım adım da izlenebilir.",
+    "Her adımın sonunda 1-2 öğrenciye kavramı kendi cümleleriyle anlattırarak anlaşıldığını kontrol edin (biçimlendirici değerlendirme)."
+  ],
+  "sureler": [["Giriş — Dikkat Çekme ve Güdüleme", 5], ["Gelişme — Kavramların İşlenişi ve Etkinlikler", 25], ["Değerlendirme ve Kapanış", 5]]
+}
