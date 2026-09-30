@@ -46,11 +46,15 @@ def lesson_oku(klasor):
         ns = {}
         exec(compile(oku(os.path.join(klasor, "ders.py")), "ders.py", "exec"), ns)
         js = dahil_et(ders_uret.uret(ns)[0], klasor)
+        uc = bool(ns.get("MODELLER"))
     else:
         js = dahil_et(oku(os.path.join(klasor, "lesson.js")), klasor)
+        uc = bool(json.loads(oku(os.path.join(klasor, "ders.json"))).get("modeller"))
     kod = js + "\nprocess.stdout.write(JSON.stringify({LESSON: LESSON, SLIDE_LABELS: SLIDE_LABELS}));"
     r = subprocess.run(["node", "-e", kod], capture_output=True, text=True, check=True)
-    return json.loads(r.stdout)
+    sonuc = json.loads(r.stdout)
+    sonuc["uc_boyut"] = uc
+    return sonuc
 
 
 def soru_parcala(q):
@@ -392,7 +396,7 @@ def plan_u_html(kod, hafta, ders, h, unite, plan, les, muf):
     s.append("<tr><td>Kazanımlar</td><td><ul>" + "".join("<li>K" + str(i + 1) + ". " + e(x) + "</li>" for i, x in enumerate(h["kazanimlar"])) + "</ul></td></tr>\n")
     s.append("<tr><td>Ön koşul</td><td>" + e(k["on_kosul"]) + "</td></tr>\n")
     s.append("<tr><td>Değerlendirme</td><td>" + e(k["degerlendirme"]) + "</td></tr>\n")
-    s.append("<tr><td>Öğrenci dersi</td><td>" + str(len(etiketler)) + " slayt (LMS v9.3) · " + str(len(quiz)) + " soruluk bilgi testi + 1 Derinleş bonus sorusu</td></tr>\n</table></section>\n")
+    s.append("<tr><td>Öğrenci dersi</td><td>" + str(len(etiketler)) + " slayt (LMS v9.3) · " + str(len(quiz)) + " soruluk bilgi testi" + (" + 1 Derinleş bonus sorusu" if len(les["LESSON"]["quiz"]) > len(quiz) else "") + "</td></tr>\n</table></section>\n")
 
     # 2. Kavramsal arka plan
     s.append(kart_ac("2. Öğretmen İçin Kavramsal Arka Plan", "ampul"))
@@ -446,7 +450,7 @@ def plan_u_html(kod, hafta, ders, h, unite, plan, les, muf):
     if len(plan["adimlar"]) != len(h["adimlar"]):
         raise SystemExit("HATA: plan.json adimlar sayısı JSON adımlarıyla eşleşmiyor")
     s.append(kart_ac("5. Adım Adım Yönlendirme (Öğretmen Scripti)", "goz"))
-    s.append("<p>Her yapım adımında: önce 3D provayı oynat, sonra gerçek parçada göster; hangi soruyu soracağın, neyi kontrol edeceğin ve sık hatada nasıl müdahale edeceğin.</p>\n")
+    s.append("<p>Her yapım adımında: önce " + ("3D provayı" if les.get("uc_boyut") else "slayttaki provayı") + " oynat, sonra gerçekte göster; hangi soruyu soracağın, neyi kontrol edeceğin ve sık hatada nasıl müdahale edeceğin.</p>\n")
     for i, a in enumerate(plan["adimlar"]):
         s.append('<div class="adim"><div class="adim-bas"><span>' + str(i + 1) + "</span>" + e(h["adimlar"][i]) + "</div><table>")
         for et, cls, alan in [("GÖSTER", "goster", "goster"), ("SOR", "sor", "sor"), ("✔ KONTROL", "kontrol", "kontrol"), ("⚠ SIK HATA", "hata", "sik_hata")]:
@@ -497,7 +501,7 @@ def plan_u_html(kod, hafta, ders, h, unite, plan, les, muf):
     for i, q in enumerate(quiz):
         metin, _ = soru_parcala(q["q"])
         s.append("<tr><td>" + str(i + 1) + "</td><td>" + e(metin) + "</td><td>" + LETTERS[q["correct"]] + ") " + e(q["opts"][q["correct"]]) + "</td><td>" + e(q["fb"]) + "</td></tr>\n")
-    s.append("</table>\n<p><b>Cevap anahtarı:</b> " + " ".join(str(i + 1) + "-" + LETTERS[q["correct"]] for i, q in enumerate(quiz)) + ". Derinleş bonus sorusu puanı düşürmez.</p></section>\n")
+    s.append("</table>\n<p><b>Cevap anahtarı:</b> " + " ".join(str(i + 1) + "-" + LETTERS[q["correct"]] for i, q in enumerate(quiz)) + (". Derinleş bonus sorusu puanı düşürmez." if len(les["LESSON"]["quiz"]) > len(quiz) else ".") + "</p></section>\n")
 
     # 11. Kapanış
     s.append(kart_ac("11. Kapanış ve Genişletme", "ok"))

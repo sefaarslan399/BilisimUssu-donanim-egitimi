@@ -1,0 +1,153 @@
+{
+  "format": "U",
+  "altbaslik": "Grubun, H10'da topladığı bilgisayara kendi hazırladığı USB bellekten temiz bir işletim sistemi kuruyor; disk kararını gerekçelendirip eksik sürücüleri tamamlıyor.",
+  "rozetler": ["Lise 9", "Süre: 1 ders (35 dk)", "Grup: 3 kişi", "Kurulum bilgisayarı + 8 GB USB", "Zorluk: Orta–İleri"],
+  "senaryo": {
+    "baslik": "LABORATUVAR YENİLENİYOR",
+    "metin": "Okulun bilişim laboratuvarındaki bilgisayarlar yeni döneme hazırlanıyor. Montaj haftalarında toplanan sistemlerin disklerinde ya hiçbir şey yok ya da eski bir sistemden kalan bölümler duruyor. Teknik servis, her gruptan bir makineyi kullanıma hazır teslim etmesini istiyor: güncel, sürücüleri eksiksiz ve kayıt formu doldurulmuş.",
+    "gorev": "Önyüklenebilir USB'yi hazırla, UEFI moduna uygun bölüm stilini seç, doğru diske kurulumu yap, Aygıt Yöneticisi'nde uyarı kalmayana kadar sürücüleri kur ve makineyi kayıt formuyla teslim et."
+  },
+  "ogrenci_ne_yapiyor": "Önce iki panelli slaytlarda her adımın simülasyonunu izliyor, sonra grubuyla gerçek makinede aynı işi yapıyor: okulun boş USB belleğine ISO kalıbını yazıyor, UEFI ayarından önyükleme modunu okuyup GPT kararını deftere gerekçesiyle yazıyor, kurulum ekranında disk listesini sesli okuyarak yalnız kurulum diskinin eski bölümlerini siliyor, kopyalama sürerken E-KURULUM simülatöründe riskli adımları deniyor, ilk açılışta yerel hesabı açıyor, Aygıt Yöneticisi'nde sarı ünlemli aygıtlara sürücü kuruyor ve güncellemeleri tamamlıyor.",
+  "kunye": {
+    "grup": "3 kişilik gruplar; roller: uygulayan (klavye ve fare), kontrolcü (talimatı okur, riskli adımda durdurur), kayıtçı (kayıt formunu doldurur)",
+    "donanim": "Grup başına kurulum bilgisayarı (H10'da toplanan sistem) · okulun boş USB belleği (8 GB+) · ağ kablosu · öğretmenin hazırladığı ISO kalıbı ve sürücü klasörü",
+    "on_kosul": "H01 birim hesabı (GB–GiB), H04 depolama, H10 montaj ve ilk POST, H11 UEFI ve önyükleme sırası",
+    "degerlendirme": "Süreç gözlemi (özellikle riskli adımlar) + kayıt formu ve çalışan sistem rubriği + 4 soruluk bilgi testi (USB hazırlama, MBR sınırı, UEFI–GPT kararı, eksik sürücü)"
+  },
+  "kavramlar": [
+    { "baslik": "Önyüklenebilir USB", "metin": "ISO kalıbı USB'ye dosya olarak sürüklenirse bellek açılışta başlatılamaz. Hazırlama aracı belleği yeniden bölümler, biçimlendirir ve UEFI'nin aradığı önyükleme dosyalarını (EFI klasörü) yerleştirir. Bu yüzden bellekteki eski içerik tamamen silinir. Araçta bölüm şeması hedef bilgisayara göre seçilir: UEFI için GPT." },
+    { "baslik": "MBR", "metin": "Diskin ilk 512 baytlık sektöründe tutulan eski bölüm tablosudur. Sektör adresleri 32 bittir; 512 baytlık sektörlerle en çok 2³² × 512 B = 2 TiB (≈ 2,2 TB) adreslenir. En fazla 4 birincil bölüm tutar (genişletilmiş bölümle mantıksal bölüm eklenebilir). Eski BIOS (Legacy/CSM) önyüklemesiyle kullanılır." },
+    { "baslik": "GPT", "metin": "UEFI standardının parçasıdır. 64 bitlik adreslerle pratikte sınırsız kapasite sunar, varsayılan olarak 128 bölüm girişi vardır. Başlığın ve bölüm tablosunun yedeği diskin sonunda durur, CRC32 ile bozulma fark edilir. Eski araçlar diski boş sanmasın diye diskin başında koruyucu bir MBR bulunur." },
+    { "baslik": "EFI sistem bölümü", "metin": "UEFI modunda açılan sistemlerde önyükleyici dosyaları FAT32 ile biçimlendirilmiş küçük bir bölümde durur (sisteme göre yaklaşık 100 MB–1 GB). Kurulum ayrılmamış alana yapıldığında bu bölümü kurulum kendisi oluşturur; öğrencinin elle açması gerekmez." },
+    { "baslik": "Bölümleme ve biçimlendirme", "metin": "Bölümleme diskteki alanın sınırlarını çizer; biçimlendirme bir bölüme dosya sistemi (FAT32, NTFS, ext4 gibi) yazar. İkisi de o alandaki eski verinin erişilemez hâle gelmesine yol açar ve sınıf ortamında geri getirilemez kabul edilir." },
+    { "baslik": "Sürücü ve Aygıt Yöneticisi", "metin": "Kurulum ortamı yalnız genel sürücüler içerir. Tanınmayan aygıtlar Aygıt Yöneticisi'nde “Diğer aygıtlar” altında sarı ünlemle, genel sürücüyle çalışan ekran kartı “Temel Görüntü Bağdaştırıcısı” adıyla görünür. İlk kurulacak olan ağ sürücüsüdür; ağ gelince kalan sürücülerin çoğu güncellemeyle iner." }
+  ],
+  "nasil": {
+    "baslik": "USB → disk → çalışan sistem",
+    "kartlar": [
+      { "ust": "PARÇA", "baslik": "Önyüklenebilir USB", "metin": "UEFI modunda başlatılan kurulum ortamı." },
+      { "ust": "BAĞLANTI", "baslik": "GPT disk + EFI bölümü", "metin": "Ayrılmamış alana kurulum; önyükleyici EFI bölümüne yazılır." },
+      { "ust": "SONUÇ", "baslik": "Diskten açılan sistem", "metin": "Sürücüleri tam, güncel, kayda geçmiş makine." }
+    ],
+    "metin": "Bilgisayar açılışta önyükleme menüsünden “UEFI:” ile başlayan USB satırıyla başlatılınca kurulum ortamı UEFI modunda çalışır. Bu modda kurulum, seçilen ayrılmamış alanı GPT olarak düzenler, EFI sistem bölümünü ve sistem bölümünü açar, dosyaları kopyalar ve önyükleyiciyi UEFI'nin önyükleme listesine ekler. İlk yeniden başlatmada USB çıkarılır; sistem artık diskteki EFI bölümünden açılır. Eksik sürücüler tamamlanıp güncellemeler bitince makine teslime hazırdır. Eski mod (CSM/Legacy) satırı seçilirse kurulum diski MBR ile hazırlamaya yönelir ve Secure Boot kullanılamaz."
+  },
+  "kontrol_listesi": [
+    "Kurulum yapılacak makinelerde korunması gereken dosya olmadığını doğrulayın; varsa ders öncesi harici diske ya da okul sunucusuna yedekleyin.",
+    "Makinelerde yalnız kurulum diski bağlı kalsın; ikinci diskleri ders öncesi sökün ya da veri kablosunu çıkarın.",
+    "Grup başına okulun boş, etiketli bir USB belleğini (8 GB+) hazırlayın; öğrencilerin kişisel belleği kullanılmaz. Yazma yavaş kalırsa diye önceden hazırlanmış iki yedek USB bulundurun.",
+    "ISO kalıbını yalnız resmî kaynaktan indirip her masaya (ağ klasörü ya da ayrı bir bellek) koyun; lisans anahtarı gerekiyorsa sizde kalsın. Okul lisansı yoksa müfredat notu gereği kurulum Ubuntu ile yapılır.",
+    "Anakart ağ, ses ve ekran sürücülerini üretici sitesinden indirip USB'lerde “Suruculer” klasörüne koyun.",
+    "Her makinede UEFI modunun açık, CSM'nin kapalı olduğunu ve önyükleme menüsü tuşunu (F8/F11/F12/Esc) not edin.",
+    "Kayıt formunu (bilgisayar adı, disk, bölüm stili, kurulan sürücüler, süre) grup sayısı kadar çoğaltın.",
+    "Etkileşimli dersi akıllı tahtada açın; gerçek fotoğraflar eklenmemişse kurulum ekranlarını kendi makinenizde gösterin. Kurulum ders sonuna yetişmezse göstermek için önceden kurulmuş bir öğretmen makinesi hazır olsun."
+  ],
+  "malzemeler": [
+    ["Kurulum bilgisayarı", "1", "H10'da toplanan sistem; tek disk bağlı"],
+    ["Boş USB bellek (8 GB+)", "1", "Okulun, etiketli; içeriği silinecek"],
+    ["ISO kalıbı + hazırlama aracı", "1 takım", "Öğretmen verir; resmî kaynaktan"],
+    ["Sürücü klasörü", "1", "Ağ, ses, ekran; USB'de"],
+    ["Ağ kablosu", "1", "Güncellemeler için"],
+    ["Kayıt formu ve kalem", "1", "Kayıtçı doldurur"]
+  ],
+  "akis": [
+    { "asama": "Giriş ve güvenlik", "bas": 0, "son": 4, "ogretmen": "4 TB disk tahminini aldır, terim kartından MBR/GPT/sürücü satırlarını okut. Hazırlık slaytındaki veri kaybı uyarısını sesli okutup rolleri dağıt.", "ogrenci": "Tahmin eder, rollerini alır, masadaki malzemeyi kontrol eder.", "kontrol": "Her grup riskli adım kuralını tekrar edebiliyor mu?", "slayt": "1–5" },
+    { "asama": "USB hazırla", "bas": 4, "son": 9, "ogretmen": "USB provasını oynat; uyarı penceresinde durdur. Grupların yazmayı başlatmasını izle, yavaş kalan gruba yedek USB ver.", "ogrenci": "Aracı açar, ISO ve USB'yi seçer, GPT/UEFI ayarlar, uyarıyı okuyup yazmayı başlatır.", "kontrol": "Doğru USB seçildi mi; şema GPT mi?", "slayt": "6" },
+    { "asama": "Disk kararı", "bas": 9, "son": 14, "ogretmen": "USB yazılırken karşılaştırmayı oynat, tahminlere dön. Gruplara UEFI modunu ve disk bölüm stilini okut; bölümleme provasını izlet.", "ogrenci": "UEFI modunu ve diski not eder, GPT kararını gerekçesiyle yazar.", "kontrol": "Defterde “UEFI → GPT” gerekçesi var mı?", "slayt": "7–8" },
+    { "asama": "Kurulumu başlat", "bas": 14, "son": 19, "ogretmen": "Kurulum provasını oynat. Her masada disk ekranında dur; silme onayını kontrolcü okuyunca sen ver.", "ogrenci": "USB'den UEFI modunda açar, dil ve klavyeyi seçer, eski bölümleri siler, kopyalamayı başlatır.", "kontrol": "Yalnız kurulum diski temizlendi mi; kopyalama başladı mı?", "slayt": "9" },
+    { "asama": "Kopyalama sürerken simülatör", "bas": 19, "son": 26, "ogretmen": "E-KURULUM'u tahtada gruplardan birer gönüllüyle oynat; ARŞİV penceresinde sınıfa sor. Ardından karar kartlarını gruplara oylat. Makinelere göz kulak ol.", "ogrenci": "Simülatörde riskli adımları dener, karar kartlarında gerekçe söyler; makinesi yeniden başlarken USB'yi çıkarır.", "kontrol": "Riskli adım sayacı kaç; USB yeniden başlatmada çıkarıldı mı?", "slayt": "12–13" },
+    { "asama": "Hesap, sürücü, güncelleme", "bas": 26, "son": 31, "ogretmen": "Sürücü ve güncelleme provalarını oynat. Kurulumu bitmeyen gruplara öğretmen makinesinde Aygıt Yöneticisi'ni göster.", "ogrenci": "Yerel hesabı açar, sarı ünlemli aygıtlara sürücü kurar, güncellemeyi başlatır, kayıt formunu doldurur.", "kontrol": "Aygıt Yöneticisi'nde ünlem kaldı mı; form dolu mu?", "slayt": "10–11" },
+    { "asama": "Özet ve test", "bas": 31, "son": 35, "ogretmen": "Özet kartlarını gruplara birer cümleyle anlattır, bilgi testini çözdür, bitmeyen işleri H13 başına not et.", "ogrenci": "Özeti söyler, testi çözer, makineyi teslim durumuna getirir.", "kontrol": "Test sonrası MBR sınırını açıklayabiliyor mu?", "slayt": "14–16" }
+  ],
+  "adimlar": [
+    { "baslik": "Önyüklenebilir USB", "goster": "Slayt 6'da provayı oynatın; dördüncü karede, silme uyarısı açıkken durdurun. Sonra gerçek hazırlama aracını tahtada açıp aynı dört alanı birlikte doldurun. \"Bu pencerede Tamam'a basmadan önce kontrolcü neyi okumalı?\" diye sorun. Öğrencilere uyarı cümlesini sesli söyletin.", "sor": "\"ISO dosyasını belleğe sürükleyip bıraksak açılışta neden görünmez?\" (Önyükleme dosyaları ve bölüm yapısı oluşmaz.)", "kontrol": "Araçta doğru boyuttaki USB seçili, şema GPT, hedef UEFI; yazma bitti ve bellekte kurulum klasörleri görünüyor.", "sik_hata": "Aygıt listesinde harici disk ya da başka bellek seçilmiş → boyutu okut; yanlışsa aracı kapatıp yeniden başlat." },
+    { "baslik": "GPT ve MBR", "goster": "Karşılaştırmayı 4 TB seçiliyken oynatın; ikinci karede kırmızı 2 TiB çizgisi belirince durdurun ve ısınmadaki tahminlere dönün. Ardından 1 TB düğmesine basıp farkın kaybolduğunu gösterin. Öğrencilere 2³² × 512 hesabını tahtada yaptırıp sonucu söyletin.", "sor": "\"1 TB diskte iki tablo da tüm alanı kullanıyorsa, yeni makinede yine neden GPT seçiyoruz?\" (UEFI önyüklemesi, yedek tablo, bölüm sayısı.)", "kontrol": "Her grup UEFI modunu gerçek makinede okudu ve “UEFI → GPT” kararını gerekçesiyle deftere yazdı.", "sik_hata": "GPT ile FAT32/NTFS karıştırılıyor → bölüm stili ile dosya sistemini iki ayrı satırda yazdırın." },
+    { "baslik": "Bölümleme ve biçimlendirme", "goster": "Provayı oynatın; ilk karede Disk 1'in “dokunma” işaretini, ikinci karede silme penceresini gösterip durdurun. Son iki karede bölümlemenin alanı, biçimlendirmenin dosya sistemini değiştirdiğini ayırın. Öğrencilere iki kavramı kendi örnekleriyle söyletin.", "sor": "\"Kurulum ekranında iki disk görürsek hangisinin kurulum diski olduğunu neyle kanıtlarız?\" (Boyut, ad, bölüm içeriği.)", "kontrol": "Gerçek kurulum ekranında yalnız kurulum diski ayrılmamış alana dönüştü; silme onayı öğretmen gözetiminde verildi.", "sik_hata": "Öğrenci sırayla her bölümü silmeye başlıyor → durdurun, kontrolcüye disk numarasını ve boyutunu sesli okutun." },
+    { "baslik": "Kurulum", "goster": "Provayı oynatın; önyükleme menüsünde seçim “UEFI: USB” satırına geçerken durdurup “eski mod” satırının farkını sorun. Kopyalama karesinde bilgisayarın kapatılmayacağını vurgulayın. Öğrencilere kendi makinelerinin önyükleme menüsü tuşunu gösterttirin.", "sor": "\"USB'yi ilk yeniden başlatmada çıkarmazsak ne olur?\" (Kurulum ortamı yeniden açılır.)", "kontrol": "Makine UEFI modunda USB'den açıldı, klavye Türkçe Q, kopyalama başladı; yeniden başlatmada USB çıkarıldı.", "sik_hata": "Menüde yalnız eski mod USB satırı var → UEFI ayarında CSM açık kalmış; H11'deki ayara döndürün." },
+    { "baslik": "Sürücüler ve Aygıt Yöneticisi", "goster": "Provayı oynatın; sağ tık menüsü açılınca durdurup sarı ünlemin anlamını sorun. Ağ aygıtı yer değiştirince devam edin, son karede “Temel Görüntü Bağdaştırıcısı”nın neden eksik sayıldığını açıklayın. Öğrencilere kendi makinelerindeki ünlemli aygıtları gösterttirin.", "sor": "\"Ağ sürücüsünü neden hep ilk kuruyoruz?\" (Diğer sürücüler güncellemeyle internetten iner.)", "kontrol": "Aygıt Yöneticisi'nde ünlemli aygıt yok; ağ bağlantısı çalışıyor; ekran çözünürlüğü önerilen değerde.", "sik_hata": "Sürücü için rastgele bir siteden dosya indiriliyor → yalnız öğretmenin USB'deki klasörünü ya da üretici sitesini kullandırın." },
+    { "baslik": "Güncellemeler ve ilk ayarlar", "goster": "Provayı oynatın; güncelleme çubukları dolarken sistemin neden yeniden başlatma istediğini sorun, sonra ilk ayarlar listesini tek tek işaretleyin. Kayıt formunu tahtada örnekleyin. Öğrencilere formdaki her satırın neden gerektiğini söyletin.", "sor": "\"Bir teknisyen bu makineyi altı ay sonra açınca kayıt formundan neyi öğrenmek ister?\"", "kontrol": "Güncellemeler bitti ve sistem güncel görünüyor; bilgisayar adı masa etiketiyle aynı; form eksiksiz.", "sik_hata": "Öğrenci kişisel e-posta hesabıyla oturum açmaya çalışıyor → yerel hesap ve sınıf parolasına yönlendirin." }
+  ],
+  "yapim_tablosu": [
+    ["USB bellek", "Hazırlama aracı · aygıt listesi", "Boyut doğru; şema GPT, hedef UEFI", "İçerik silinir; okulun belleği"],
+    ["Önyükleme", "Önyükleme menüsü (F8/F11/F12/Esc)", "Satır “UEFI:” ile başlıyor", "Eski mod satırı seçilmez"],
+    ["Kurulum diski", "Kurulum ekranı · disk listesi", "Boyut ve ad sesli okundu", "Yalnız bu diskin bölümleri silinir"],
+    ["Bölüm stili", "Ayrılmamış alan → kurulum", "GPT; EFI + sistem bölümü oluştu", "Kurtarma bölümü de eklenebilir"],
+    ["Sürücüler", "Aygıt Yöneticisi", "Sarı ünlem kalmadı", "Önce ağ sürücüsü"],
+    ["Teslim", "Kayıt formu", "Ad, disk, stil, sürücü, süre yazılı", "Parola forma yazılmaz"]
+  ],
+  "fotolar": [
+    ["DON-301-H12-1-usb.jpg", "1. Hazırlama aracında USB, ISO ve GPT"],
+    ["DON-301-H12-2-gpt.jpg", "2. Disk özelliklerinde bölüm stili"],
+    ["DON-301-H12-3-bolum.jpg", "3. Kurulum ekranında disk listesi"],
+    ["DON-301-H12-4-kurulum.jpg", "4. Kopyalama ilerleme ekranı"],
+    ["DON-301-H12-5-aygit.jpg", "5. Sarı ünlemli aygıt"],
+    ["DON-301-H12-6-guncel.jpg", "6. Güncel sistem ekranı"]
+  ],
+  "sokratik": [
+    "Bir USB belleğin önyüklenebilir olduğunu, içine bakmadan nasıl anlarsın?",
+    "Bölüm tablosu kitabın içindekiler sayfasına benziyorsa, yedeği olmayan bir içindekiler sayfası bozulunca ne olur?",
+    "Silme penceresindeki tek bir cümle hangi bilgiyi içerirse yanlış disk seçimi önlenir?",
+    "Kurulum ortamı neden her aygıtın sürücüsünü içinde taşımıyor?",
+    "Sarı ünlem donanımın bozuk olduğunu mu gösterir? Nasıl ayırt edersin?",
+    "Teslim ettiğin makinenin kayıt formu olmasaydı bir sonraki teknisyen nerede zaman kaybederdi?"
+  ],
+  "sik_hatalar": [
+    ["USB önyükleme menüsünde görünmüyor", "Bellek kopyalama ile hazırlanmış ya da yazma yarıda kalmış", "Aracı yeniden çalıştırın; yavaşsa yedek USB'yi verin."],
+    ["Menüde yalnız eski mod USB satırı var", "UEFI ayarında CSM açık", "H11'deki gibi CSM'yi kapatıp UEFI modunu seçtirin."],
+    ["“Bu diske kurulum yapılamaz” uyarısı", "Disk MBR ve kurulum UEFI modunda (ya da tersi)", "Bölümleri sildirip ayrılmamış alana kurdurun; kurulum diski GPT olarak düzenler."],
+    ["Yanlış disk seçildi", "Disk listesi okunmadan ilerlenmiş", "Durdurun; silme onayı verilmediyse geri döndürün. Veri diskleri ders öncesi söküldüğü için sınıfta veri kaybı olmaz."],
+    ["Kurulum baştan başladı", "Yeniden başlatmada USB takılı kaldı", "USB'yi çıkarttırıp makineyi yeniden başlatın ya da menüden diski seçtirin."],
+    ["Klavyede ğ, ş, ı yanlış yazıyor", "Klavye düzeni ABD ya da F seçilmiş", "Ayarlardan “Türkçe Q” düzenini ekletip varsayılan yaptırın."],
+    ["İnternet yok", "Ağ sürücüsü eksik ya da kablo takılı değil", "Kabloyu kontrol ettirin; sürücüyü USB'deki klasörden kurdurun."]
+  ],
+  "ogrenci_sorun_giderme": [
+    ["USB açılışta yok", "Menü tuşunu yeniden dene; “UEFI:” satırını ara."],
+    ["Disk listesi kafa karıştırıyor", "Boyuta bak, kontrolcü sesli okusun, öğretmeni çağır."],
+    ["Kurulum yeniden başladı", "USB'yi çıkar, bilgisayarı yeniden başlat."],
+    ["Sarı ünlemli aygıt var", "Önce ağ sürücüsünü USB'deki klasörden kur."]
+  ],
+  "farklilastirma": {
+    "hizli": "Aynı makinede kurulumdan sonra disk yönetim aracında GPT bölümlerini inceleyip EFI bölümünün boyutunu ve dosya sistemini kayıt formuna ekleme; E-KURULUM'u riskli adım hatası sıfır olacak şekilde yeniden oynama; ekran kartı için üretici sürücüsünün sürüm numarasını bulma.",
+    "zorlanan": "Önce E-KURULUM'u tahtada sizinle birlikte adım adım oynatın; gerçek makinede her riskli adımdan önce kontrol listesini (disk adı, boyut, onay) kâğıtta işaretletin. Kurulum ekranında yalnız bir disk görünecek şekilde makineyi hazırlayın.",
+    "grup": "3 kişilik gruplar: uygulayan klavye ve fareyi kullanır; kontrolcü talimatı okur ve Sil/Biçimlendir/Disk seçimi ekranlarında “dur” der; kayıtçı süreleri, disk ve sürücü bilgisini forma yazar. USB hazırlama, kurulum ve sürücü aşamalarında roller döner; herkes en az bir kez uygulayan olur."
+  },
+  "gozlem": [
+    "USB'yi boyutundan tanıyor, uyarı penceresini okumadan onay vermiyor.",
+    "UEFI modunu okuyup bölüm stili kararını gerekçesiyle açıklıyor.",
+    "Riskli ekranlarda duruyor; disk adını ve boyutunu sesli okuyup öğretmen onayı bekliyor.",
+    "Aygıt Yöneticisi'nde eksik sürücüyü bulup doğru kaynaktan kuruyor.",
+    "Kayıt formunu eksiksiz dolduruyor ve rol değişimine uyuyor."
+  ],
+  "rubrik": [
+    ["USB hazırlama", "Yardımla bile önyüklenebilir USB oluşmuyor", "Yardımla hazırlıyor; ayarları gerekçesiz seçiyor", "Doğru USB, GPT/UEFI ayarı; uyarıyı okuyarak bağımsız hazırlıyor"],
+    ["Bölüm stili kararı", "GPT–MBR farkını söyleyemiyor", "GPT seçiyor ama gerekçesi eksik", "UEFI modu ve 2 TiB sınırıyla gerekçelendiriyor"],
+    ["Riskli adımlar", "Disk listesini okumadan siliyor", "Hatırlatmayla durup okuyor", "Kendiliğinden durup disk adı ve boyutunu doğruluyor"],
+    ["Sürücüler", "Ünlemli aygıtları bulamıyor", "Bir kısmını kuruyor", "Önce ağ, sonra diğerleri; ünlem kalmıyor"],
+    ["Teslim ve grup", "Form boş, roller yok", "Form eksik ya da roller karışık", "Makine güncel, form tam, roller dönmüş"]
+  ],
+  "kapanis": "Toparlama: İki gruba kayıt formlarını okutup \"Hangi adımda durduk ve neden?\" sorusunu yanıtlatın. Isınmadaki 4 TB tahminine dönüp sınıfça 2 TiB hesabını tekrarlayın. Ödev: Evdeki ya da okuldaki bir bilgisayarda disk yönetim aracını açıp diskin bölüm stilini ve bölümlerini bir tabloya yazmak; bilgisayar yoksa verilen ekran görüntüsünden aynı tabloyu çıkarmak. Köprü: H13'te bu makinelerde sorun giderme ve bakım yapacak, verileri yedeklemenin yollarını karşılaştıracaksınız; kurulumu bitmeyen makineler H13'ün ilk beş dakikasında tamamlanır.",
+  "guvenlik_ek": [
+    "Veri kaybı: bölüm silme ve biçimlendirme geri alınamaz. Kurulumdan önce makinede korunacak dosya olmadığı doğrulanır; varsa harici diske ya da okul sunucusuna yedeklenir.",
+    "Kurulum makinelerinde yalnız kurulum diski bağlı kalır; arşiv ve veri diskleri ders öncesi sökülür ya da veri kablosu çıkarılır.",
+    "USB hazırlama belleğin tüm içeriğini siler: öğrencinin kişisel belleği kullanılmaz, okulun boş ve etiketli bellekleri dağıtılır.",
+    "Riskli adım kuralı: Sil, Biçimlendir ve disk seçimi ekranlarında uygulayan durur, kontrolcü disk adını ve boyutunu sesli okur, onayı öğretmen verir.",
+    "Kopyalama sürerken bilgisayar kapatılmaz ve USB çekilmez; güç kabloları yürüme yolundan uzak, sabit prizlere bağlıdır.",
+    "Kasa kapalı kalır; elektrik bağlantılarını öğretmen yapar.",
+    "Yalnız resmî kaynaktan alınmış kalıp ve sürücüler kullanılır; rastgele sitelerden dosya indirilmez.",
+    "Öğrenciler kişisel e-posta ya da hesap bilgisi girmez; yerel hesap ve sınıf parolası kullanılır, parolalar forma yazılmaz."
+  ],
+  "bitirme": {
+    "baslik": "Çalışan sistem ve belgeleme",
+    "urun": "Diskten UEFI modunda açılan, GPT diskli, Aygıt Yöneticisi'nde uyarısı olmayan, güncellemeleri tamamlanmış ve adı masa etiketiyle aynı bilgisayar + doldurulmuş kayıt formu (bilgisayar adı, disk ve boyutu, bölüm stili, kurulan sürücüler, kurulum süresi).",
+    "sunum": [
+      "Kayıtçı, formu tahtada 30 saniyede okur; kontrolcü riskli adımda nerede durduklarını anlatır.",
+      "Uygulayan, Aygıt Yöneticisi'ni açıp uyarısız listeyi ve disk yönetim aracında GPT bölümlerini gösterir.",
+      "Makine, H13'teki bakım ve sorun giderme çalışmasına bu kayıtla devredilir."
+    ]
+  },
+  "kaynaklar": [
+    "UEFI Forum — UEFI Specification, bölüm 5: GUID Partition Table (GPT) Disk Layout (uefi.org)",
+    "Kullanılan anakartın kılavuzu — önyükleme menüsü tuşu, CSM ve önyükleme modu ayarları",
+    "Kurulan işletim sisteminin resmî kurulum belgeleri — UEFI/GPT kurulumu ve sürücü yükleme",
+    "Okulun bilişim teknolojileri laboratuvarı kullanım ve veri güvenliği yönergesi"
+  ]
+}
