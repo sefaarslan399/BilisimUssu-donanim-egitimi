@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DON-301 H04 Öğretmen Planı — Depolama</title>
+<style>
+@font-face{font-family:'Carlito';src:local('Carlito'),url('../../assets/font/Carlito-Regular.ttf');font-weight:400;font-style:normal}
+@font-face{font-family:'Carlito';src:local('Carlito Bold'),url('../../assets/font/Carlito-Bold.ttf');font-weight:700;font-style:normal}
+@font-face{font-family:'Carlito';src:local('Carlito Italic'),url('../../assets/font/Carlito-Italic.ttf');font-weight:400;font-style:italic}
+@page{size:A4;margin:14mm 14mm 16mm 16.5mm;
+  @bottom-center{content:'Bilişim Üssü · Etkileşimli Ders Planı · ' counter(page) ' / ' counter(pages);font-family:Carlito,Calibri,sans-serif;font-size:7.5pt;color:#6b7a82}}
+*{box-sizing:border-box}
+html{font-family:Carlito,Calibri,'Segoe UI',Arial,sans-serif;font-size:9.9pt;color:#1a1a1a;line-height:1.38}
+body{margin:0;max-width:180mm}
+@media screen{body{margin:24px auto;padding:0 12px}}
+.bant{display:flex;gap:7pt;margin-bottom:9pt}
+.bant-sol{flex:1;background:linear-gradient(135deg,#075985,#0a6aa3);color:#fff;border-radius:4pt;padding:9pt 14pt 10pt}
+.bant-ust{font-size:7.6pt;font-weight:700;letter-spacing:2.2pt;opacity:.92}
+.bant-baslik{font-size:23pt;font-weight:700;line-height:1.12;margin-top:3pt}
+.bant-baslik.uzun{font-size:18pt}
+.bant-sag{width:128pt;background:#0369a1;color:#fff;border-radius:4pt;display:flex;align-items:center;justify-content:center;font-size:14pt;font-weight:700}
+h2{background:#0369a1;color:#fff;font-size:11pt;font-weight:700;margin:12pt 0 6pt;padding:5pt 10pt;border-radius:4pt;letter-spacing:.2pt;break-after:avoid}
+h3{display:flex;justify-content:space-between;align-items:center;color:#0369a1;font-size:10.6pt;margin:9pt 0 4pt;break-after:avoid}
+h3 .sure{background:#0369a1;color:#fff;font-size:8.6pt;border-radius:9pt;padding:1.5pt 8pt}
+table{width:100%;border-collapse:collapse;margin:0 0 4pt}
+td,th{border:1px solid #b9def1;padding:4pt 7pt;vertical-align:top;text-align:left}
+th{background:#e0f2fe;color:#075985;font-size:9.2pt;font-weight:700}
+tr{break-inside:avoid}
+.genel td:first-child{width:134pt;background:#e0f2fe;color:#075985;font-weight:700}
+.kazanim{width:100%;border-collapse:collapse}
+.kazanim td{border:0;border-bottom:1px solid #eaf6fc;padding:3.5pt 4pt}
+.kazanim td:first-child{width:32pt;color:#0369a1;font-weight:700}
+.isleyis td:first-child{width:35pt;text-align:center;color:#6b7a82;font-weight:700}
+.isleyis td:nth-child(2){width:122pt}
+.adim-ad{font-weight:700}
+.adim-konu{color:#475569}
+.slayt{display:inline-block;margin-top:2pt;font-size:8pt;font-weight:700;color:#0369a1;background:#e0f2fe;border-radius:6pt;padding:0 5pt}
+q{quotes:'“' '”'}
+q::before{content:open-quote}q::after{content:close-quote}
+p{margin:3pt 0 5pt;text-align:justify}
+.kutu{border:1px solid #b9def1;border-left:3pt solid #0369a1;border-radius:3pt;padding:5pt 8pt;margin:5pt 0;background:#f5fbff;break-inside:avoid}
+.kutu b{color:#075985}
+.olcme td:first-child{width:22pt;text-align:center;font-weight:700}
+.olcme td:last-child{width:40pt;text-align:center;color:#0369a1;font-weight:700}
+.soru{font-weight:700}
+.secenek{margin-top:1pt}
+.aciklama{font-style:italic;color:#0369a1;font-size:9.5pt;margin-top:2pt}
+.soru-gorsel{float:right;margin:0 0 2pt 8pt}
+.soru-gorsel svg{height:38pt;width:auto}
+.anahtar{font-weight:700;color:#075985;margin:3pt 0 0}
+.anahtar span{font-weight:400;color:#1a1a1a}
+ol.acik{margin:2pt 0;padding-left:0;list-style:none;counter-reset:a}
+ol.acik li{counter-increment:a;display:flex;gap:10pt;padding:3pt 0}
+ol.acik li::before{content:counter(a) '.';color:#0369a1;font-weight:700;min-width:16pt}
+.etiket{color:#0369a1;font-weight:700;margin:7pt 0 2pt}
+ul.not{margin:2pt 0;padding-left:12pt}
+ul.not li{margin:2pt 0}
+.sure-tablo td:last-child,.sure-tablo th:last-child{width:62pt}
+.imza{display:flex;justify-content:space-around;margin-top:14pt;text-align:center;color:#6b7a82;break-inside:avoid;break-before:avoid;page-break-before:avoid}
+.sure-tablo{break-after:avoid;page-break-after:avoid}
+.sure-tablo tr:last-child{break-after:avoid}
+.uyg{display:grid;grid-template-columns:1fr 1fr;gap:3pt;margin-top:5pt}
+.uyg div{border-radius:3pt;padding:3pt 6pt;font-size:9pt;line-height:1.32}
+.uyg b{display:block;font-size:7.6pt;letter-spacing:.8pt}
+.uyg .goster{background:#eff6ff;border-left:2.5pt solid #3b82f6}.uyg .goster b{color:#1d4ed8}
+.uyg .sor{background:#f5f3ff;border-left:2.5pt solid #8b5cf6}.uyg .sor b{color:#6d28d9}
+.uyg .kontrol{background:#ecfdf5;border-left:2.5pt solid #10b981}.uyg .kontrol b{color:#047857}
+.uyg .sikhata{background:#fff7ed;border-left:2.5pt solid #f97316}.uyg .sikhata b{color:#c2410c}
+.guvenlik{border:1.5pt solid #ef4444;border-radius:4pt;background:#fef2f2;padding:6pt 10pt;margin:6pt 0;break-inside:avoid}
+.guvenlik b{color:#b91c1c;display:block;margin-bottom:2pt}
+.guvenlik ul{margin:2pt 0;padding-left:13pt}
+.imza b{display:block;color:#475569;margin-bottom:10pt}
+</style>
+</head>
+<body>
+<div class="bant"><div class="bant-sol"><div class="bant-ust">ÖĞRETMEN DERS PLANI · DON-301</div><div class="bant-baslik">Depolama</div></div><div class="bant-sag">4. Hafta</div></div>
+<h2>1. GENEL BİLGİLER</h2>
+<table class="genel">
+<tr><td>Dersin Adı</td><td>Bilgisayar Donanımı ve Sistem Kurulumu</td></tr>
+<tr><td>Sınıf / Seviye</td><td>Lise (9. sınıf)</td></tr>
+<tr><td>Ünite / Konu</td><td>Donanım 301 - Mimari — Depolama</td></tr>
+<tr><td>Öğrenme Alanı</td><td>Bilgisayar Donanımı</td></tr>
+<tr><td>Süre</td><td>1 ders saati (35 dk)</td></tr>
+<tr><td>Yöntem ve Teknikler</td><td>Anlatım, soru-cevap, tahmin et–izle, 3D model inceleme ve karşılaştırma, etkileşimli simülasyon (NAND blokları, arayüz hatları, sıralı–rastgele okuma), hesaplama (dönüş gecikmesi, TBW ömrü), veri okuma ve yorumlama, senaryo tabanlı uyum denetimi, eşli çalışma</td></tr>
+<tr><td>Araç-Gereç ve Kaynaklar</td><td>Etkileşimli ders (LMS), projeksiyon veya akıllı tahta; mümkünse sökülmüş (kullanım dışı) bir 3,5 inç HDD, bir 2,5 inç SATA SSD ile M anahtarlı ve B+M anahtarlı birer M.2 SSD; antistatik bileklik; öğrenci başına hesap makinesi ya da bilgisayar</td></tr>
+<tr><td>Kavramlar / Terimler</td><td>HDD: Plaka ve Kafa, SSD ve NAND Flash, SATA ve NVMe, 2.5", 3.5", M.2, Sıralı ve Rastgele Okuma, Dayanıklılık ve Yedekleme</td></tr>
+</table>
+<h2>2. KAZANIMLAR</h2>
+<table class="kazanim">
+<tr><td>K1.</td><td>HDD ile SSD'nin çalışma ilkesini karşılaştırır.</td></tr>
+<tr><td>K2.</td><td>SATA ile NVMe (PCIe) arayüzlerini ayırt eder.</td></tr>
+<tr><td>K3.</td><td>M.2 yuvasında SATA ve NVMe uyumunu denetler.</td></tr>
+<tr><td>K4.</td><td>TBW, SMART ve 3-2-1 yedekleme kuralını açıklar.</td></tr>
+</table>
+<h2>3. DERS İŞLENİŞİ</h2>
+<h3><span>Giriş — Dikkat Çekme ve Güdüleme</span><span class="sure">5 dk</span></h3>
+<p>Kapaktaki sahnede dönen plakayı ve yanındaki kartları gösterip sınıfa sorun: <q>Bu dört parçanın hepsi veri saklıyor; sizce hangisi en hızlı, hangisi en uzun ömürlü, neden?</q> Gelen yanıtları tahtanın bir köşesine yazın. Kazanımları okuyup dersin sonunda bir diskin test raporunu yorumlayıp bir kartın yuvaya uyup uymadığına karar verebileceklerini söyleyin. Isınma slaytında (Slayt 3) Deniz'in durumunu sesli okutun, el kaldırarak oylama yapın, sonucu tahtaya not edin ve <q>Adım 4'te çentiklere bakacak, Etkinlik 2'de bu kartı gerçekten yuvaya takacağız</q> deyin. Terim Kartı'nda (Slayt 4) her öğrenciye bir terimi açılımıyla okutun; arama süresi, NVMe ve TBW'yi özellikle işaretleyin.</p>
+<h3><span>Gelişme — Kavramların İşlenişi</span><span class="sure">25 dk</span></h3>
+<table class="isleyis"><thead><tr><th>Adım</th><th>Konu</th><th>Öğretmen Notu</th></tr></thead>
+<tr><td>1</td><td><div class="adim-ad">HDD: Plaka ve Kafa</div><div class="adim-konu">HDD: Plaka, İz, Sektör ve Erişim Süresi</div><span class="slayt">Slayt 5</span></td><td>Önce sorun: <q>Plaka dakikada 7200 tur atıyorsa tek tur kaç milisaniye sürer?</q> Tahtada 60 000 ÷ 7200 işlemini birlikte yapın. Ardından Sektör oku düğmesine basın; kol hedef ize giderken mor şeridin, kafa sektörü beklerken turuncu şeridin dolduğunu gösterin. İki-üç okuma yaptırıp her seferinde bekleme süresinin neden değiştiğini tartışın. 5400 düğmesine geçip aynı hesabı öğrencilere yaptırın. <q>Mekanik bir diskte her okuma iki beklemeden oluşur: kolun doğru halkaya gitmesi ve verinin dönerek kafaya gelmesi</q> deyin. Öğrencilere ortalama dönüş gecikmesinin neden tam tur değil yarım tur olduğunu açıklattırın.</td></tr>
+<tr><td>2</td><td><div class="adim-ad">SSD ve NAND Flash</div><div class="adim-konu">SSD, NAND Flaş, Sayfa–Blok ve TRIM</div><span class="slayt">Slayt 6</span></td><td>TRIM kapalıyken dört adımı sırayla oynatın. İkinci adımda turuncu kesikli çerçeveyi gösterip sorun: <q>Dosyayı sildik, SSD neden hâlâ dolu sanıyor?</q> Çöp toplama adımında kopyalanan üç sayfayı işaret edin. Sonra TRIM'i açıp aynı adımları tekrarlayın ve iki sayacı tahtaya yazın. <q>Flaş bellek yazılmış bir hücreyi tek başına silemez; silme işi büyük gruplar hâlinde yapılır. İşletim sistemi silinen yerleri bildirirse denetleyici gereksiz taşıma yapmaz</q> deyin. Öğrencilere bir SSD'de dosya silindiğinde denetleyicinin ne bildiğini ve ne bilmediğini söyletin.</td></tr>
+<tr><td>3</td><td><div class="adim-ad">SATA ve NVMe</div><div class="adim-konu">SATA III ve NVMe (PCIe) Arayüzleri</div><span class="slayt">Slayt 7</span></td><td>Slayt açıldığında tek hatlı SATA görünümü gelir, birkaç saniye sonra PCIe 4.0 x4 görünümüne geçer; akış hızının arttığını izletin. Sonra M.2 SATA düğmesine basıp sorun: <q>Kart M.2 biçiminde, peki hız neden değişmedi?</q> Tablodaki çubukları karşılaştırtın. <q>Konnektörün şekli değil, üzerinden geçen protokol ve hat sayısı hızı belirler. SATA'da tek sıra, NVMe'de çok sayıda paralel sıra vardır</q> deyin. Hat başına değerin dört ile çarpımını tahtada gösterin. Öğrencilere PCIe 3.0 x4 ile 4.0 x4 arasındaki farkı sayıyla söyletin.</td></tr>
+<tr><td>4</td><td><div class="adim-ad">2.5", 3.5", M.2</div><div class="adim-konu">Biçimler: 3,5 inç, 2,5 inç, M.2 ve Çentikler</div><span class="slayt">Slayt 8</span></td><td>Modelleri döndürüp üç biçimin boyutlarını karşılaştırtın; SATA kablosu gerekenleri ve kablosuz takılanı sordurun. Çentikler düğmesine basın, yakın planda iki kartın kenarını gösterin ve sorun: <q>Birinde tek, diğerinde iki boşluk var; bu kartlar aynı yuvaya girer mi?</q> Isınma oylamasını hatırlatıp sonucu tartışın. M.2 boyları düğmesiyle cetveldeki 42, 60 ve 80 mm işaretlerini gösterin. <q>Kartın adındaki ilk iki rakam genişliği, sonrakiler uzunluğu verir. Kenardaki boşluklar yanlış yuvaya girişi engelleyen fiziksel bir kilittir</q> deyin. Elinizde gerçek kartlar varsa yan yana tutup gösterin. Öğrencilere iki anahtar türünü ve hangi yuvalara girdiklerini gösterttirin.</td></tr>
+<tr><td>5</td><td><div class="adim-ad">Sıralı ve Rastgele Okuma</div><div class="adim-konu">Sıralı ve Rastgele Okuma, IOPS</div><span class="slayt">Slayt 9</span></td><td>Önce sorun: <q>Büyük bir film dosyasını kopyalamak mı, bin küçük dosyayı açmak mı diski daha çok zorlar?</q> Sıralı kipte Oynat'a basın; HDD kafasının yerinde kaldığını, blokların art arda altından geçtiğini gösterin. Ardından Rastgele kipini oynatın ve kolun her blok için yer değiştirip beklediğini izletin. Alttaki logaritmik çubuklarda farkın büyüklüğünü okutun. <q>Mekanik diskte küçük ve dağınık isteklerin her biri ayrı bir yolculuktur; flaş bellekte ise yolculuk yoktur, yalnız kısa bir erişim vardır</q> deyin. Öğrencilere işletim sistemi açılışının hangi okuma türüne daha çok benzediğini gerekçesiyle söyletin.</td></tr>
+<tr><td>6</td><td><div class="adim-ad">Dayanıklılık ve Yedekleme</div><div class="adim-konu">Dayanıklılık: TBW, SMART ve 3-2-1 Yedekleme</div><span class="slayt">Slayt 10</span></td><td>TBW görünümünde 50 GB'tan 300 GB'a geçip çubuğun garanti çizgisine yaklaşmasını izletin; hesabı tahtada birlikte yapın. SMART görünümünde iki raporu karşılaştırıp sorun: <q>Hangi satırlar sizi bu diske yedek almaya yöneltir?</q> 3-2-1 görünümünde önce SSD arızası, sonra su baskını senaryosunu oynatın. <q>Aşınma ve arıza kaçınılmazdır; sağlık raporu uyarabilir ama her zaman önceden haber vermez. Veriyi korumanın tek güvencesi farklı yerlerde duran kopyalardır</q> deyin. Öğrencilere kendi dosyaları için üç kopyanın nerede duracağını söyletin.</td></tr>
+</table>
+<div class="kutu"><b>Etkinlikler (Slayt 11–12):</b> Etkinlik 1'de (Slayt 11) öğrenciler üç diskin hız testi tablosunu ve sağlık raporlarını yedi görevde yorumlar: HDD'yi bulma, arayüz tavanını tanıma, yuvanın PCIe neslini çıkarma, açılış için doğru diski seçme, kapasiteyi TB–GiB olarak okuma, SMART ve TBW satırlarına göre karar verme. Eşli çalışmada biri tablodaki ilgili satırı parmakla gösterip gerekçeyi söylesin, diğeri seçimi yapsın; görevlerde rol değiştirsinler. Etkinlik 2'de (Slayt 12) beş M.2 kart–yuva eşleşmesini sınıfça oynayın: her görevde öğrenciler önce kartı döndürüp çentikleri sayar, 30 saniye gerekçeli tartışır, sonra seçer; doğru cevapta kartın yuvaya girip girmediğini ve sistemin ne gördüğünü birlikte izleyin (yaklaşık 9 dk).</div>
+<h3><span>Değerlendirme ve Kapanış</span><span class="sure">5 dk</span></h3>
+<p>Özet slaytındaki altı kartı farklı öğrencilere birer cümleyle açıklattırın. Bilgi Testi'ni (Slayt 14) bireysel çözdürün; yanlış çıkan sorularda özellikle dönüş gecikmesi hesabını ve iki çentikli kartın uyumunu birlikte tartışın. Dersi <q>Gelecek hafta bütün bu parçaların takıldığı anakartı inceleyeceğiz: M.2 yuvalarının ve SATA girişlerinin nerede durduğunu, hangi hatları paylaştığını göreceğiz</q> köprüsüyle kapatın.</p>
+<h2>4. ÖLÇME VE DEĞERLENDİRME</h2>
+<table class="olcme"><thead><tr><th>#</th><th>Soru ve Seçenekler</th><th>Cevap</th></tr></thead>
+<tr><td>1</td><td><div class="soru">7200 dev/dk dönen bir HDD’de ortalama dönüş gecikmesi yaklaşık kaç milisaniyedir?</div><div class="secenek">A) ≈ 4,2 ms B) ≈ 8,3 ms C) ≈ 7,2 ms D) ≈ 120 ms</div><div class="aciklama">Bir tur = 60 000 ms ÷ 7200 ≈ 8,33 ms. Sektör ortalama yarım tur sonra kafanın altına gelir: ≈ 4,17 ms.</div></td><td>A</td></tr>
+<tr><td>2</td><td><div class="soru-gorsel"><svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Üstten bir M.2 SSD’nin kenar konnektörü; altın temaslarda iki çentik var"><rect width="200" height="120" rx="10" fill="#f8fafc"/><g><rect x="26.0" y="12.0" width="250.0" height="84.0" rx="3.1" fill="#1b1d22"/><rect x="26.0" y="15.8" width="9.2" height="76.4" fill="#e3b04f"/><rect x="26.0" y="19.3" width="9.2" height="0.6" fill="#1b1d22" opacity=".55"/><rect x="26.0" y="22.8" width="9.2" height="0.6" fill="#1b1d22" opacity=".55"/><rect x="26.0" y="26.2" width="9.2" height="0.6" fill="#1b1d22" opacity=".55"/><rect x="26.0" y="29.7" width="9.2" height="0.6" fill="#1b1d22" opacity=".55"/><rect x="26.0" y="33.2" width="9.2" height="0.6" fill="#1b1d22" opacity=".55"/><rect x="26.0" y="36.6" width="9.2" height="0.6" fill="#1b1d22" opacity=".55"/><rect x="26.0" y="40.1" width="9.2" height="0.6" fill="#1b1d22" opacity=".55"/><rect x="26.0" y="43.6" width="9.2" height="0.6" fill="#1b1d22" opacity=".55"/><rect x="26.0" y="47.1" width="9.2" height="0.6" fill="#1b1d22" opacity=".55"/><rect x="26.0" y="50.5" width="9.2" height="0.6" fill="#1b1d22" opacity=".55"/><rect x="26.0" y="54.0" width="9.2" height="0.6" fill="#1b1d22" opacity=".55"/><rect x="26.0" y="57.5" width="9.2" height="0.6" fill="#1b1d22" opacity=".55"/><rect x="26.0" y="60.9" width="9.2" height="0.6" fill="#1b1d22" opacity=".55"/><rect x="26.0" y="64.4" width="9.2" height="0.6" fill="#1b1d22" opacity=".55"/><rect x="26.0" y="67.9" width="9.2" height="0.6" fill="#1b1d22" opacity=".55"/><rect x="26.0" y="71.4" width="9.2" height="0.6" fill="#1b1d22" opacity=".55"/><rect x="26.0" y="74.8" width="9.2" height="0.6" fill="#1b1d22" opacity=".55"/><rect x="26.0" y="78.3" width="9.2" height="0.6" fill="#1b1d22" opacity=".55"/><rect x="26.0" y="81.8" width="9.2" height="0.6" fill="#1b1d22" opacity=".55"/><rect x="26.0" y="85.2" width="9.2" height="0.6" fill="#1b1d22" opacity=".55"/><rect x="26.0" y="88.7" width="9.2" height="0.6" fill="#1b1d22" opacity=".55"/><rect x="25.0" y="28.2" width="15.5" height="5.7" rx="2.3" fill="#f8fafc"/><rect x="25.0" y="76.3" width="15.5" height="5.7" rx="2.3" fill="#f8fafc"/><rect x="56.0" y="32.2" width="43.7" height="43.7" rx="1.5" fill="#2b2f36"/><rect x="101.0" y="34.7" width="30.2" height="38.6" rx="1.2" fill="#23262c"/><rect x="138.5" y="28.8" width="58.8" height="50.4" rx="1.5" fill="#101114"/><rect x="191.0" y="28.8" width="58.8" height="50.4" rx="1.5" fill="#101114"/><circle cx="276.0" cy="54.0" r="6.7" fill="#f8fafc" stroke="#e3b04f" stroke-width="3.1"/></g><path d="M14 31.1h-7M14 79.2h-7" stroke="#dc2626" stroke-width="2.2"/><text x="100" y="112" font-family="Inter,Arial,sans-serif" font-size="8.5" font-weight="800" fill="#475569" text-anchor="middle">Kenar konnektörü (üstten görünüş)</text></svg></div><div class="soru">Görseldeki M.2 SSD’nin kenar konnektörü için hangisi doğrudur?</div><div class="secenek">A) Tek çentikli M anahtarıdır; kesinlikle NVMe’dir B) Yalnız B anahtarıdır; M yuvasına girmez C) B+M anahtarlıdır; M yuvasına girer ama yuva SATA desteklemiyorsa tanınmaz D) İki çentik, kartın PCIe x8 kullandığını gösterir</div><div class="aciklama">İki çentik B+M anahtarı demektir; bu kartlar çoğunlukla M.2 SATA’dır. M yuvasına fiziksel olarak girer, ama yuva yalnız PCIe (NVMe) destekliyorsa disk görünmez.</div></td><td>C</td></tr>
+<tr><td>3</td><td><div class="soru">SATA III ile PCIe 4.0 x4 NVMe arasındaki farkı en doğru anlatan hangisidir?</div><div class="secenek">A) NVMe daha kalın kablo kullandığı için hızlıdır B) SATA III ≈ 600 MB/s ile sınırlıdır; PCIe 4.0 x4 teorik olarak ≈ 7,9 GB/s taşır ve NVMe çok sayıda komut kuyruğu kullanır C) İkisinin hızı aynıdır; fark yalnız kartın boyundadır D) SATA daha yeni bir standart olduğu için daha hızlıdır</div><div class="aciklama">SATA III: 6 Gb/s hat, kodlama payıyla ≈ 600 MB/s tavan, AHCI’de tek kuyruk. NVMe: PCIe 4.0’da hat başına ≈ 2 GB/s, dört hatta ≈ 7,9 GB/s; on binlerce kuyruk.</div></td><td>B</td></tr>
+<tr><td>4</td><td><div class="soru">Ece’nin SSD’sinin SMART raporunda “Kullanılan ömür: %96” yazıyor ve yeniden atanan blok sayısı her gün artıyor. Tüm fotoğrafları bu diskte. Ece ne yapmalı?</div><div class="secenek">A) Diski biçimlendirip kullanmaya devam etmeli B) TRIM’i kapatarak diski korumalı C) Birleştirme (defrag) çalıştırmalı D) Hemen 3-2-1 kuralına göre yedek alıp diski değiştirmeyi planlamalı</div><div class="aciklama">Rapor diskin dayanım sınırına yaklaştığını gösteriyor. Önce veriler güvenceye alınır (3 kopya, 2 ortam, 1 başka yerde), sonra disk değiştirilir. Defrag SSD’yi yalnız gereksiz yere yazar.</div></td><td>D</td></tr>
+</table>
+<p class="anahtar">Cevap Anahtarı: <span>1-A 2-C 3-B 4-D</span></p>
+<h2>5. AÇIK UÇLU / BİÇİMLENDİRİCİ DEĞERLENDİRME</h2>
+<ol class="acik">
+<li><span>«HDD ile SSD'nin Çalışma İlkesi» kavramını kendi cümlelerinle açıkla ve günlük hayattan bir örnek ver.</span></li>
+<li><span>«SATA ile NVMe Farkı» kavramını kendi cümlelerinle açıkla ve günlük hayattan bir örnek ver.</span></li>
+<li><span>«3-2-1 Yedekleme Kuralı» kavramını kendi cümlelerinle açıkla ve günlük hayattan bir örnek ver.</span></li>
+<li><span>Bu derste en çok hangi adım ilgini çekti, hangisinde zorlandın? Zorlandığın konuyu bir arkadaşına nasıl anlatırdın?</span></li>
+</ol>
+<h2>6. ÖĞRETMEN NOTLARI VE ÖDEV</h2>
+<div class="etiket">Ödev / Sınıf Dışı Etkinlik:</div><p>Erişebildiğin bir bilgisayarda depolama birimlerini incele (Görev Yöneticisi &gt; Performans &gt; Disk ya da Disk Yönetimi). Her disk için türünü (HDD / SSD), arayüzünü (SATA / NVMe) ve işletim sisteminin gösterdiği kapasiteyi yaz; kutu ya da etiket kapasitesiyle farkını hesapla. Kendi önemli dosyaların için 3-2-1 kuralına uyan bir yedekleme planı hazırla: üç kopyanın nerede duracağını ve ne sıklıkla güncelleneceğini belirt.</p>
+<div class="etiket">Öğretmen İçin Notlar:</div><ul class="not">
+<li>Lise düzeyi: terimler İngilizce karşılıklarıyla verilir (Terim Kartı, Slayt 4). Öğrencilerden SATA, NVMe, PCIe, TBW, SMART gibi kısaltmaları açılımlarıyla birlikte kullanmalarını isteyin.</li>
+<li>Derste verilen hız ve süre değerleri yaklaşık ya da teoriktir; sürücü modeline, doluluğa ve test ayarına göre değişir. Amaç büyüklük sırasını ve arayüz tavanlarını kavratmaktır. Sayfa, blok ve kanal sayıları simülasyonda gözle izlenebilsin diye küçültülmüştür.</li>
+<li>Teknik not: SATA III 6 Gb/s hat hızında 8b/10b, PCIe 3.0 ve 4.0 ise 128b/130b kodlama kullanır; bu yüzden teorik veri tavanları yaklaşık 600 MB/s, hat başına 0,98 GB/s ve 1,97 GB/s olur. B+M anahtarlı kartlar çoğunlukla SATA'dır ama PCIe x2 çalışan örnekler de vardır; kesin bilgi kartın veri sayfasından ve anakart kılavuzundan okunur. Bazı anakartlarda bir M.2 yuvası kullanılınca belirli SATA girişleri devre dışı kalır; bu ayrıntı anakart haftasında kılavuz okuma ile birlikte ele alınabilir.</li>
+<li>Sık görülen kavram yanılgıları: <q>M.2 olan her SSD NVMe'dir</q>, <q>Kart yuvaya oturduysa mutlaka çalışır</q>, <q>SSD'yi birleştirmek (defrag) hızlandırır</q>, <q>SMART temizse disk bozulmaz</q>, <q>Kullanılan ömür yüzdesi diskin doluluğudur</q>, <q>Aynı diskte ikinci bir kopya yedektir</q>. Bu cümleleri doğru/yanlış sorusu olarak sorup gerekçeyle düzeltin.</li>
+<li>Gerçek parça gösterecekseniz yalnız kullanım dışı bir HDD'nin kapağını açın ve öğrencilere çalışan bir diskin asla açılmayacağını söyleyin. Kartları antistatik bileklikle, kenarlarından tutarak gösterin; altın temaslara dokundurmayın.</li>
+<li>Hareket azaltma ayarı açık cihazlarda animasyonlar kısa geçişlerle ilerler; 3D sahneler sürükleyerek döndürülebilir, ok tuşları ve R (sıfırla) ile de kullanılabilir.</li>
+<li>Her adımın sonunda 1-2 öğrenciye kavramı kendi cümleleriyle anlattırarak anlaşıldığını kontrol edin (biçimlendirici değerlendirme).</li>
+</ul>
+<table class="sure-tablo"><thead><tr><th>Aşama</th><th>Süre</th></tr></thead>
+<tr><td>Giriş — Dikkat Çekme ve Güdüleme</td><td>5 dk</td></tr>
+<tr><td>Gelişme — Kavramların İşlenişi ve Etkinlikler</td><td>25 dk</td></tr>
+<tr><td>Değerlendirme ve Kapanış</td><td>5 dk</td></tr>
+<tr><th>Toplam</th><th>35 dk</th></tr>
+</table>
+<div class="imza"><div><b>Ders Öğretmeni</b>Ad Soyad / İmza</div><div><b>Uygundur</b>Okul Müdürü</div></div>
+</body>
+</html>
