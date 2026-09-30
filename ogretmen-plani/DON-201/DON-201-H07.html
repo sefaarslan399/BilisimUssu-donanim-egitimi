@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DON-201 H07 Öğretmen Planı — RAM</title>
+<style>
+@font-face{font-family:'Carlito';src:local('Carlito'),url('../../assets/font/Carlito-Regular.ttf');font-weight:400;font-style:normal}
+@font-face{font-family:'Carlito';src:local('Carlito Bold'),url('../../assets/font/Carlito-Bold.ttf');font-weight:700;font-style:normal}
+@font-face{font-family:'Carlito';src:local('Carlito Italic'),url('../../assets/font/Carlito-Italic.ttf');font-weight:400;font-style:italic}
+@page{size:A4;margin:14mm 14mm 16mm 16.5mm;
+  @bottom-center{content:'Bilişim Üssü · Etkileşimli Ders Planı · ' counter(page) ' / ' counter(pages);font-family:Carlito,Calibri,sans-serif;font-size:7.5pt;color:#6b7a82}}
+*{box-sizing:border-box}
+html{font-family:Carlito,Calibri,'Segoe UI',Arial,sans-serif;font-size:9.9pt;color:#1a1a1a;line-height:1.38}
+body{margin:0;max-width:180mm}
+@media screen{body{margin:24px auto;padding:0 12px}}
+.bant{display:flex;gap:7pt;margin-bottom:9pt}
+.bant-sol{flex:1;background:linear-gradient(135deg,#075985,#0a6aa3);color:#fff;border-radius:4pt;padding:9pt 14pt 10pt}
+.bant-ust{font-size:7.6pt;font-weight:700;letter-spacing:2.2pt;opacity:.92}
+.bant-baslik{font-size:23pt;font-weight:700;line-height:1.12;margin-top:3pt}
+.bant-baslik.uzun{font-size:18pt}
+.bant-sag{width:128pt;background:#0369a1;color:#fff;border-radius:4pt;display:flex;align-items:center;justify-content:center;font-size:14pt;font-weight:700}
+h2{background:#0369a1;color:#fff;font-size:11pt;font-weight:700;margin:12pt 0 6pt;padding:5pt 10pt;border-radius:4pt;letter-spacing:.2pt;break-after:avoid}
+h3{display:flex;justify-content:space-between;align-items:center;color:#0369a1;font-size:10.6pt;margin:9pt 0 4pt;break-after:avoid}
+h3 .sure{background:#0369a1;color:#fff;font-size:8.6pt;border-radius:9pt;padding:1.5pt 8pt}
+table{width:100%;border-collapse:collapse;margin:0 0 4pt}
+td,th{border:1px solid #b9def1;padding:4pt 7pt;vertical-align:top;text-align:left}
+th{background:#e0f2fe;color:#075985;font-size:9.2pt;font-weight:700}
+tr{break-inside:avoid}
+.genel td:first-child{width:134pt;background:#e0f2fe;color:#075985;font-weight:700}
+.kazanim{width:100%;border-collapse:collapse}
+.kazanim td{border:0;border-bottom:1px solid #eaf6fc;padding:3.5pt 4pt}
+.kazanim td:first-child{width:32pt;color:#0369a1;font-weight:700}
+.isleyis td:first-child{width:35pt;text-align:center;color:#6b7a82;font-weight:700}
+.isleyis td:nth-child(2){width:122pt}
+.adim-ad{font-weight:700}
+.adim-konu{color:#475569}
+.slayt{display:inline-block;margin-top:2pt;font-size:8pt;font-weight:700;color:#0369a1;background:#e0f2fe;border-radius:6pt;padding:0 5pt}
+q{quotes:'“' '”'}
+q::before{content:open-quote}q::after{content:close-quote}
+p{margin:3pt 0 5pt;text-align:justify}
+.kutu{border:1px solid #b9def1;border-left:3pt solid #0369a1;border-radius:3pt;padding:5pt 8pt;margin:5pt 0;background:#f5fbff;break-inside:avoid}
+.kutu b{color:#075985}
+.olcme td:first-child{width:22pt;text-align:center;font-weight:700}
+.olcme td:last-child{width:40pt;text-align:center;color:#0369a1;font-weight:700}
+.soru{font-weight:700}
+.secenek{margin-top:1pt}
+.aciklama{font-style:italic;color:#0369a1;font-size:9.5pt;margin-top:2pt}
+.soru-gorsel{float:right;margin:0 0 2pt 8pt}
+.soru-gorsel svg{height:38pt;width:auto}
+.anahtar{font-weight:700;color:#075985;margin:3pt 0 0}
+.anahtar span{font-weight:400;color:#1a1a1a}
+ol.acik{margin:2pt 0;padding-left:0;list-style:none;counter-reset:a}
+ol.acik li{counter-increment:a;display:flex;gap:10pt;padding:3pt 0}
+ol.acik li::before{content:counter(a) '.';color:#0369a1;font-weight:700;min-width:16pt}
+.etiket{color:#0369a1;font-weight:700;margin:7pt 0 2pt}
+ul.not{margin:2pt 0;padding-left:12pt}
+ul.not li{margin:2pt 0}
+.sure-tablo td:last-child,.sure-tablo th:last-child{width:62pt}
+.imza{display:flex;justify-content:space-around;margin-top:14pt;text-align:center;color:#6b7a82;break-inside:avoid;break-before:avoid;page-break-before:avoid}
+.sure-tablo{break-after:avoid;page-break-after:avoid}
+.sure-tablo tr:last-child{break-after:avoid}
+.uyg{display:grid;grid-template-columns:1fr 1fr;gap:3pt;margin-top:5pt}
+.uyg div{border-radius:3pt;padding:3pt 6pt;font-size:9pt;line-height:1.32}
+.uyg b{display:block;font-size:7.6pt;letter-spacing:.8pt}
+.uyg .goster{background:#eff6ff;border-left:2.5pt solid #3b82f6}.uyg .goster b{color:#1d4ed8}
+.uyg .sor{background:#f5f3ff;border-left:2.5pt solid #8b5cf6}.uyg .sor b{color:#6d28d9}
+.uyg .kontrol{background:#ecfdf5;border-left:2.5pt solid #10b981}.uyg .kontrol b{color:#047857}
+.uyg .sikhata{background:#fff7ed;border-left:2.5pt solid #f97316}.uyg .sikhata b{color:#c2410c}
+.guvenlik{border:1.5pt solid #ef4444;border-radius:4pt;background:#fef2f2;padding:6pt 10pt;margin:6pt 0;break-inside:avoid}
+.guvenlik b{color:#b91c1c;display:block;margin-bottom:2pt}
+.guvenlik ul{margin:2pt 0;padding-left:13pt}
+.imza b{display:block;color:#475569;margin-bottom:10pt}
+</style>
+</head>
+<body>
+<div class="bant"><div class="bant-sol"><div class="bant-ust">ÖĞRETMEN DERS PLANI · DON-201</div><div class="bant-baslik">RAM</div></div><div class="bant-sag">7. Hafta</div></div>
+<h2>1. GENEL BİLGİLER</h2>
+<table class="genel">
+<tr><td>Dersin Adı</td><td>Bilişim Teknolojileri ve Yazılım</td></tr>
+<tr><td>Sınıf / Seviye</td><td>Ortaokul (5–8. sınıf)</td></tr>
+<tr><td>Ünite / Konu</td><td>Donanım 201 - Kasanın İçinde — RAM</td></tr>
+<tr><td>Öğrenme Alanı</td><td>Bilgisayar Donanımı</td></tr>
+<tr><td>Süre</td><td>1 ders saati (35 dk)</td></tr>
+<tr><td>Yöntem ve Teknikler</td><td>Anlatım, gösteri, soru-cevap, 3D model inceleme, benzetme (çalışma masası–dolap), tahmin et–izle, sürgüyle deney, sınıflandırma etkinliği</td></tr>
+<tr><td>Araç-Gereç ve Kaynaklar</td><td>Etkileşimli ders (LMS), projeksiyon veya akıllı tahta; mümkünse sökülmüş bir masaüstü RAM modülü (elden ele dolaştırmak için), bir masa ve birkaç kâğıt dosya (canlandırma için)</td></tr>
+<tr><td>Kavramlar / Terimler</td><td>Bellek Nedir?, Çalışma Masası, Geçici Bellek: Kaydetmeyi Unutma, Kapasite (GB), RAM Yetmezse, RAM Modülünü Tanı</td></tr>
+</table>
+<h2>2. KAZANIMLAR</h2>
+<table class="kazanim">
+<tr><td>K1.</td><td>RAM'in görevini 'çalışma masası' benzetmesiyle açıklar.</td></tr>
+<tr><td>K2.</td><td>RAM'in geçici bellek olduğunu ve elektrik kesilince silindiğini açıklar.</td></tr>
+<tr><td>K3.</td><td>RAM kapasitesinin performansa etkisini örnekler.</td></tr>
+<tr><td>K4.</td><td>RAM modülünü çentiğinden tanır.</td></tr>
+</table>
+<h2>3. DERS İŞLENİŞİ</h2>
+<h3><span>Giriş — Dikkat Çekme ve Güdüleme</span><span class="sure">5 dk</span></h3>
+<p>Kapakta dönen modülü gösterip sorun: <q>Bilgisayar açık uygulamaları nerede bekletiyor olabilir?</q> İki üç yanıtı tahtaya not edin. Hedefler slaytındaki dört kazanımı kısaca okuyun. Isınma slaytında (Slayt 3) sınıftan kaydedilmemiş bir çalışmanın elektrik kesintisinde ne olacağını tahmin etmesini isteyin; el kaldırarak her seçeneği sayın: <q>Bu tahmini Adım 3’te elektriği kestiğimizde sınayacağız.</q></p>
+<h3><span>Gelişme — Kavramların İşlenişi</span><span class="sure">25 dk</span></h3>
+<table class="isleyis"><thead><tr><th>Adım</th><th>Konu</th><th>Öğretmen Notu</th></tr></thead>
+<tr><td>1</td><td><div class="adim-ad">Bellek Nedir?</div><div class="adim-konu">Bellek Nedir?</div><span class="slayt">Slayt 4</span></td><td>Slayt açılınca Oyun kendiliğinden yüklenir: renkli paket soldaki depolamadan RAM’e taşınır, sonra RAM ile işlemci arasında hızla gidip gelir. Paketler hareket ederken sorun: <q>İşlemci bilgiyi neden depolamadan değil de RAM’den alıyor?</q> Ardından Müzik ve Ödev düğmelerine bir öğrenciye bastırın. <q>Bellek, bilgisayarın hatırlama yeridir; RAM ise o an kullanılan bilgiyi işlemcinin hemen yanında hazır tutar</q> deyin. Terim kutusundaki İngilizce açılımı birlikte okuyun. Öğrencilere RAM’in hangi iki parça arasında durduğunu söyletin.</td></tr>
+<tr><td>2</td><td><div class="adim-ad">Çalışma Masası</div><div class="adim-konu">Çalışma Masası Benzetmesi</div><span class="slayt">Slayt 5</span></td><td>Sahnede önce Ödev kartı çekmeceden çıkıp masaya iner; bekleyin. Sonra Tarayıcı, Oyun ve Müzik düğmelerini sırayla gönüllülere bastırın; her seferinde çekmece açılır ve kart sümendeki boş yere konar. <q>Dolap bütün dosyalarımızı saklar; üzerinde çalıştıklarımızı ise masaya alırız. Bilgisayarda masa RAM’dir, dolap depolamadır</q> deyin. Sümendeki kesikli çerçeveleri gösterip masanın sınırlı yeri olduğunu vurgulayın. Öğrencilere kendi çalışma masalarından bir örnekle benzetmeyi anlattırın.</td></tr>
+<tr><td>3</td><td><div class="adim-ad">Geçici Bellek: Kaydetmeyi Unutma</div><div class="adim-konu">Geçici Bellek ve Kaydetmek</div><span class="slayt">Slayt 6</span></td><td>Önce hiçbir şey kaydetmeden Elektriği kes düğmesine basın: sahne kararır, masadaki kartlar solup kaybolur, ışık gelince çekmece açılır ve orada ödev yoktur. Ekranda sınıfın ısınmadaki tahmini hatırlatılır; birlikte değerlendirin. Baştan’a basıp bu kez önce Ödevi kaydet düğmesine, ardından yeniden kesintiye basın; kaydedilen kopya çekmecede görünür. <q>Kaydetmek, dosyayı masadan alıp dolaba koymak gibidir; RAM elektrikle yaşar, elektrik gidince boşalır</q> deyin. Otomatik kayıt yapan programlar olsa da onlara güvenmemek gerektiğini ekleyin. Öğrencilere sık kaydetmenin neden önemli olduğunu kendi cümleleriyle söyletin.</td></tr>
+<tr><td>4</td><td><div class="adim-ad">Kapasite (GB)</div><div class="adim-konu">Kapasite ve GB</div><span class="slayt">Slayt 7</span></td><td>Slayt açılınca Oyun kendiliğinden eklenir ve 8 GB’a sığmayan kısım kırmızı şeritte titrer. Sürgüyü önce 4 GB’a çekin, sonra 16 GB’a getirin; ızgaradaki satırların açılıp kapandığını izletin. Sorun: <q>Aynı uygulamalar 16 GB’ta neden rahat sığdı?</q> <q>Kapasite masanın büyüklüğüdür; GB arttıkça masaya aynı anda daha çok dosya konur</q> deyin. Geçen haftalardaki birim bilgisini hatırlatıp bir kare yarım gigabayttır diye açıklayın. Öğrencilere 8 GB’ta hangi uygulamayı kapatırlarsa her şeyin sığacağını buldurun.</td></tr>
+<tr><td>5</td><td><div class="adim-ad">RAM Yetmezse</div><div class="adim-konu">RAM Yetmediğinde Yavaşlama</div><span class="slayt">Slayt 8</span></td><td>Yarış kendiliğinden oynar: üstteki küçük masada kartlar dolaba geri gidip gelir, alttaki büyük masada gerek kalmaz. Kartlar hareket ederken sorun: <q>Hangi masada kırmızı çubuk uzuyor, neden?</q> Bittiğinde iki süreyi karşılaştırın ve Oynat ile bir kez daha izletin. <q>Yer kalmayınca bilgisayar eski dosyayı depolamaya gönderir, gerekince geri çağırır; bu trafik beklemeye yol açar</q> deyin. Öğrencilere evde yavaşlayan bir bilgisayarda ilk ne deneyebileceklerini söyletin.</td></tr>
+<tr><td>6</td><td><div class="adim-ad">RAM Modülünü Tanı</div><div class="adim-konu">RAM Modülünü Tanıma</div><span class="slayt">Slayt 9</span></td><td>Modül önce döner; birkaç saniye sonra kamera çentiğe yaklaşır ve halka ile işaretlenir, ardından altın temaslar parlar. Bu sırada gerçek bir modülü sınıfta dolaştırın. Ters düğmesine basın: modül çıkıntıya takılır, sallanır ve uyarı çıkar. Sonra Tak düğmesiyle doğru yönü gösterin. <q>Çentik tam ortada değildir; bu yüzden modül yuvaya yalnız tek yönde girer. DDR5 modüllerinde bu boşluğun yeri farklıdır</q> deyin. Temaslara parmakla dokunulmayacağını 4. haftadaki kuralla ilişkilendirin. Öğrencilere çentiğin yerini gerçek modül üzerinde gösterttirin.</td></tr>
+</table>
+<div class="kutu"><b>Etkinlikler (Slayt 10–11):</b> Etkinlik 1’de (Slayt 10) gruplar sırayla tahtaya gelir: sürgüden bir kapasite seçip deneyi başlatır, sonucu tablodan okur. Her denemeden önce sınıfa kaç kez dolaba gidileceğini tahmin ettirin; 4 GB’ta sayaç on ikiye çıkar, 8 GB’ta azalır, 16 GB’ta sıfır kalır. Üç kapasite de denenince tabloyu birlikte yorumlayın. Etkinlik 2’de (Slayt 11) sekiz kart Kaybolur ve Kalır kutularına ayrılır; kopyalanan yazı ve hesap makinesi sonucunda durup tartışın. Hepsi yerleşince Elektriği kes düğmesiyle sonucu izletin (yaklaşık 9 dk).</div>
+<h3><span>Değerlendirme ve Kapanış</span><span class="sure">5 dk</span></h3>
+<p>Özet slaytındaki altı kartı öğrencilere tek cümleyle yeniden anlattırın. Bilgi Testi’ni (Slayt 14) birlikte çözün; yanlış yanıtlanan soruda ilgili adıma dönüp animasyonu tekrar oynatın. Beşinci soru Derinleş bonusudur ve puanı etkilemez. Dersi <q>Bugün bilgisayarını kapatmadan önce ne yapacaksın?</q> sorusuyla bitirin.</p>
+<h2>4. ÖLÇME VE DEĞERLENDİRME</h2>
+<table class="olcme"><thead><tr><th>#</th><th>Soru ve Seçenekler</th><th>Cevap</th></tr></thead>
+<tr><td>1</td><td><div class="soru">Bilgisayarda RAM’in görevi nedir?</div><div class="secenek">A) Çalışan programları ve açık dosyaları geçici olarak tutmak B) Dosyaları kalıcı olarak saklamak C) Görüntüyü ekrana göndermek D) Parçalara elektrik dağıtmak</div><div class="aciklama">RAM bilgisayarın çalışma masasıdır: o an açık olan işleri tutar. Kalıcı saklama depolamanın işidir.</div></td><td>A</td></tr>
+<tr><td>2</td><td><div class="soru-gorsel"><svg viewBox="0 0 200 110" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bir RAM modülü; ok alt kenardaki temasların arasındaki boşluğu gösteriyor"><rect width="200" height="110" rx="10" fill="#eef7fe"/><g transform="translate(20 22) scale(1.33)"><path d="M1 0H119Q120 0 120 1V14A2.5 2.5 0 0 0 120 19V31L119 32H66.3V27.6A1.7 1.7 0 0 0 62.9 27.6V32H1L0 31V19A2.5 2.5 0 0 0 0 14V1Q0 0 1 0Z" fill="#1f5a3a" stroke="#123826" stroke-width=".6"/><rect x="7.0" y="5" width="11" height="14" rx="1" fill="#17181c"/><rect x="8.5" y="6.5" width="8" height="1.2" fill="#2d3038"/><rect x="20.5" y="5" width="11" height="14" rx="1" fill="#17181c"/><rect x="22.0" y="6.5" width="8" height="1.2" fill="#2d3038"/><rect x="34.0" y="5" width="11" height="14" rx="1" fill="#17181c"/><rect x="35.5" y="6.5" width="8" height="1.2" fill="#2d3038"/><rect x="47.5" y="5" width="11" height="14" rx="1" fill="#17181c"/><rect x="49.0" y="6.5" width="8" height="1.2" fill="#2d3038"/><rect x="61.0" y="5" width="11" height="14" rx="1" fill="#17181c"/><rect x="62.5" y="6.5" width="8" height="1.2" fill="#2d3038"/><rect x="74.5" y="5" width="11" height="14" rx="1" fill="#17181c"/><rect x="76.0" y="6.5" width="8" height="1.2" fill="#2d3038"/><rect x="88.0" y="5" width="11" height="14" rx="1" fill="#17181c"/><rect x="89.5" y="6.5" width="8" height="1.2" fill="#2d3038"/><rect x="101.5" y="5" width="11" height="14" rx="1" fill="#17181c"/><rect x="103.0" y="6.5" width="8" height="1.2" fill="#2d3038"/><defs><pattern id="qc-tm" width="2" height="6" patternUnits="userSpaceOnUse"><rect width="2" height="6" fill="#e3b04f"/><rect x="1.4" width=".6" height="6" fill="#a87a28"/></pattern></defs><rect x="2.5" y="26" width="59.6" height="6" fill="url(#qc-tm)"/><rect x="67.1" y="26" width="50.4" height="6" fill="url(#qc-tm)"/></g><path d="M106 100V76" stroke="#dc2626" stroke-width="3" stroke-linecap="round"/><path d="M99 82l7-8 7 8" fill="none" stroke="#dc2626" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="soru">Görselde okla gösterilen boşluğun adı nedir?</div><div class="secenek">A) Soğutucu B) Etiket C) Çentik D) Bellek çipi</div><div class="aciklama">Altın temasların arasındaki boşluk çentiktir. Ortada değil, biraz yandadır; RAM yuvaya tek yönde girer.</div></td><td>C</td></tr>
+<tr><td>3</td><td><div class="soru">Ece ödevini yazarken elektrik kesildi. Dosyayı hiç kaydetmemişti. Bilgisayar açılınca ne görür?</div><div class="secenek">A) Ödevi olduğu gibi durur B) Kaydetmediği yazılar kaybolmuştur C) Ödev RAM’de saklanmıştır D) Ödev kendiliğinden diske geçmiştir</div><div class="aciklama">Kaydedilmemiş yazılar RAM’deydi; elektrik gidince silindi. Bazı programlar otomatik kaydeder ama buna güvenme, sık sık kaydet.</div></td><td>B</td></tr>
+<tr><td>4</td><td><div class="soru">Deniz’in bilgisayarında 4 GB RAM var. Oyun, tarayıcı ve müzik birlikte açıkken bilgisayar çok yavaşlıyor. Hangisi en çok işe yarar?</div><div class="secenek">A) Monitörü değiştirmek B) Daha büyük bir disk takmak C) Klavyeyi temizlemek D) Bazı programları kapatmak ya da RAM’i artırmak</div><div class="aciklama">Masa küçük olduğu için dosyalar dolaba gidip geliyor. Programları azaltmak ya da RAM kapasitesini artırmak bu beklemeyi azaltır.</div></td><td>D</td></tr>
+</table>
+<p class="anahtar">Cevap Anahtarı: <span>1-A 2-C 3-B 4-D</span></p>
+<h2>5. AÇIK UÇLU / BİÇİMLENDİRİCİ DEĞERLENDİRME</h2>
+<ol class="acik">
+<li><span>«Çalışma Masası Benzetmesi» kavramını kendi cümlelerinle açıkla ve günlük hayattan bir örnek ver.</span></li>
+<li><span>«Geçici Bellek ve Kaydetmek» kavramını kendi cümlelerinle açıkla ve günlük hayattan bir örnek ver.</span></li>
+<li><span>«RAM Kapasitesi ve Hız» kavramını kendi cümlelerinle açıkla ve günlük hayattan bir örnek ver.</span></li>
+<li><span>Masa–dolap benzetmesini bir arkadaşına anlatabilir misin? En çok hangi bölümde zorlandın, neden?</span></li>
+</ol>
+<h2>6. ÖĞRETMEN NOTLARI VE ÖDEV</h2>
+<div class="etiket">Ödev / Sınıf Dışı Etkinlik:</div><p>Evdeki ya da okuldaki bir bilgisayarda (bir yetişkinle birlikte) RAM miktarını öğren: Ayarlar’daki sistem bilgisinde yazar. Bir uygulama açıkken ve kapalıyken bellek kullanımına bakıp iki sayıyı not et. Bulduklarını bir sonraki derse getir.</p>
+<div class="etiket">Öğretmen İçin Notlar:</div><ul class="not">
+<li>Derinleş (Slayt 12) isteğe bağlıdır; hızlı bitiren ya da 13–15 yaş grubundaki öğrenciler için uygundur. Görev Yöneticisi benzetiminde uygulamalar açıldıkça grafik yükselir, sınır aşılınca kırmızıya döner. Gerçek bilgisayarda kısayolu yalnız öğretmen gözetiminde denetin; hiçbir sistem işlemi sonlandırılmamalıdır. Atlanırsa akış bozulmaz; bonus soru puanı düşürmez.</li>
+<li>Yaş bandı uyarlaması: 10–12 yaşta sınıftaki bir masada kâğıt dosyalarla canlandırma yapın; masaya dört dosya sığsın, fazlası için bir öğrenci dolaba gidip gelsin. 13–15 yaşta kapasite ile hız ilişkisini sayılarla tartışın ve tabloyu defterlerine grafik olarak çizdirin.</li>
+<li>Sık görülen kavram yanılgıları: <q>RAM ile depolama aynı şeydir</q>, <q>Bilgisayar kapanırken her şeyi kendiliğinden kaydeder</q>, <q>Diski büyütmek bilgisayarı hızlandırır</q>, <q>RAM büyüdükçe bilgisayar sınırsız hızlanır</q>. Her birini doğru/yanlış sorusu olarak sorup gerekçesini aldırın.</li>
+<li>Teknik not: Derste GB, 2. haftadaki gibi yaklaşık bir milyar bayt olarak verilir. Benzetmedeki <q>dolaba gidip gelme</q>, işletim sisteminin RAM dolduğunda veriyi diske yazıp geri okumasını sadeleştirir; ayrıntısına girilmez. Uygulamaların GB değerleri yuvarlanmış örneklerdir.</li>
+<li>Güvenlik ve 10. haftaya köprü: Gerçek modül dolaştırılırken kısa kenarlarından tutulur, altın temaslara dokunulmaz. Çentik bilgisi 10. haftadaki sök–tak atölyesinde yeniden kullanılacaktır.</li>
+<li>3D sahneler zayıf bilgisayarlarda kaliteyi kendiliğinden düşürür; WebGL açılmazsa yerine çizim görünür. Hareket azaltma tercihi açık cihazlarda geçişler kısa sürer ve kartlar hemen yerine konur.</li>
+<li>Biçimlendirici değerlendirme: Her adımın sonunda bir öğrenciye masa–dolap benzetmesinden bir cümle kurdurun; Etkinlik 1 tablosunu ve Etkinlik 2’deki hatalı denemeleri gözlemleyerek anlamayı yoklayın.</li>
+</ul>
+<table class="sure-tablo"><thead><tr><th>Aşama</th><th>Süre</th></tr></thead>
+<tr><td>Giriş — Dikkat Çekme ve Güdüleme</td><td>5 dk</td></tr>
+<tr><td>Gelişme — Kavramların İşlenişi ve Etkinlikler</td><td>25 dk</td></tr>
+<tr><td>Değerlendirme ve Kapanış</td><td>5 dk</td></tr>
+<tr><th>Toplam</th><th>35 dk</th></tr>
+</table>
+<div class="imza"><div><b>Ders Öğretmeni</b>Ad Soyad / İmza</div><div><b>Uygundur</b>Okul Müdürü</div></div>
+</body>
+</html>
