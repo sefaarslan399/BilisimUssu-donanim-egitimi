@@ -1,0 +1,56 @@
+/* DON-201 H09 — Güç Kaynağı, Ekran Kartı ve Soğutma · derse özel stil (ortak stil derlemede önce eklenir) */
+
+/* Ortak 2D sahne parçaları */
+.tm-sahne,.by-sahne{flex:1;min-height:0;display:flex;align-items:center;justify-content:center}
+.tm-sahne svg,.by-sahne svg{width:100%;height:100%;max-height:100%}
+.tm-alt{flex-shrink:0;display:flex;flex-direction:column;gap:6px}
+.panel-sonuc.iyi{color:#047857}
+.panel-sonuc.kotu{color:#b91c1c}
+.tm-alt .panel-sonuc{font-size:clamp(13px, 0.35vw + 10px, 18px);line-height:1.3;min-height:2.6em}
+.h9-oynat{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:4px 16px;border-radius:999px;border:none;background:var(--brand);color:#fff;
+  font-family:var(--font);font-weight:800;font-size:clamp(13px, 0.3vw + 11px, 17px);cursor:pointer;flex-shrink:0}
+.h9-oynat svg{width:16px;height:16px}
+
+/* Adım 2: kova benzetmesi kartı (3D sahne üstünde) */
+.kova{position:absolute;right:10px;top:54px;z-index:5;width:clamp(170px, 34%, 290px);display:flex;flex-direction:column;gap:4px;
+  background:#fff;border-radius:14px;padding:6px 10px 8px;box-shadow:0 8px 22px rgba(15,23,42,0.2);border:1.5px solid #fecaca}
+.kova[hidden]{display:none}
+.kova-bas{display:flex;align-items:center;justify-content:space-between;gap:6px;font-size:clamp(12px, 0.3vw + 10px, 16px);color:#991b1b}
+.kova-kapat{width:32px;height:32px;border-radius:50%;border:1px solid var(--border);background:#fff;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0}
+.kova-cizim svg{width:100%;height:auto;display:block;border-radius:8px}
+.kova p{margin:0;font-size:clamp(11px, 0.25vw + 9px, 14px);font-weight:700;line-height:1.35;color:var(--ink2)}
+
+/* Adım 5: termometre (kasa içi) */
+.termo{position:absolute;left:10px;bottom:58px;z-index:4;display:flex;align-items:flex-end;gap:8px;pointer-events:none;
+  background:rgba(255,255,255,0.94);border-radius:14px;padding:8px 12px 8px 10px;box-shadow:0 4px 14px rgba(15,23,42,0.14)}
+.termo-cubuk{position:relative;width:20px;height:clamp(60px, 10vh + 8px, 120px)}
+.termo-tup{position:absolute;left:4px;top:0;bottom:14px;width:12px;border:2px solid #94a3b8;border-bottom:none;border-radius:7px 7px 0 0;background:#fff;overflow:hidden}
+.termo-dolgu{position:absolute;left:0;right:0;bottom:0;height:10%;background:#3b82f6;transition:height .3s linear, background .3s}
+.termo-ampul{position:absolute;left:0;bottom:0;width:20px;height:20px;border-radius:50%;border:2px solid #94a3b8;background:#3b82f6;box-sizing:border-box}
+.termo-yazi{display:flex;flex-direction:column;line-height:1.1}
+.termo-bas{font-size:clamp(10px, 0.2vw + 9px, 13px);font-weight:800;color:var(--muted)}
+.termo-deger{font-size:clamp(15px, 0.5vw + 12px, 24px);font-weight:900;color:var(--ink)}
+.termo-durum{font-size:clamp(11px, 0.25vw + 9px, 14px);font-weight:900;text-transform:uppercase;letter-spacing:.03em;color:#1d4ed8}
+.termo[data-durum="sicak"] .termo-durum{color:#b45309}
+.termo[data-durum="cok"] .termo-durum{color:#b91c1c}
+.termo[data-durum="cok"]{box-shadow:0 0 0 3px rgba(239,68,68,0.45), 0 4px 14px rgba(15,23,42,0.14)}
+
+/* Etkinlik 1: sanal montaj — parça düğmeleri ve tıklanabilir numaralar */
+.mt-tepsi{display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:6px}
+.mt-sec{display:flex;align-items:center;gap:8px;min-height:44px;padding:4px 10px;border-radius:12px;border:1.5px solid var(--border);background:#fff;cursor:pointer;
+  font-family:var(--font);font-weight:800;font-size:clamp(12px, 0.3vw + 10px, 16px);color:var(--ink2);text-align:left;line-height:1.2}
+.mt-sec[aria-pressed="true"]{border-color:var(--brand);background:var(--brand-lt);color:var(--brand-dk)}
+.mt-sec:disabled{cursor:default}
+.mt-isaret{width:18px;height:18px;flex-shrink:0;border-radius:50%;border:2px solid #94a3b8;background:#fff;display:inline-flex;align-items:center;justify-content:center}
+.mt-sec.tamam{border-color:var(--ok);background:var(--ok-bg);color:#065f46}
+.mt-sec.tamam .mt-isaret{border-color:var(--ok);background:var(--ok)}
+.mt-sec.tamam .mt-isaret::after{content:'✓';color:#fff;font-size:12px;font-weight:900;line-height:1}
+.don3d-etiket.mt-no{pointer-events:auto;cursor:pointer}
+.don3d-etiket.mt-no .don3d-etiket-metin{transform:translate(-50%, -50%);min-width:2em;text-align:center}
+
+/* 3D sahne alt düğmeleri: dar alanda metin kırılmasın, gerekirse satır kaysın */
+.don3d-arayuz-alt-orta{width:max-content;max-width:calc(100% - 16px);flex-wrap:wrap;justify-content:center}
+.don3d-arayuz-alt-orta .don3d-dugme span{white-space:nowrap}
+.don3d-dugme[hidden]{display:none}
+
+@media (prefers-reduced-motion: reduce){ .termo-dolgu{transition:none} }
