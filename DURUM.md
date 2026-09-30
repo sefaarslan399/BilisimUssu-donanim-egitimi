@@ -9,7 +9,7 @@ Durum: `—` başlanmadı · `K` kalibrasyon (onay bekliyor) · `✓` tamam · `
 | Motor çekirdeği (renderer, sahne yaşam döngüsü, yedek görsel) | K | Tek renderer, slayt yaşam döngüsü, otomatik kalite, `data-yedek`, hareket azaltma, HTML etiket, klavye. H01 ile birlikte onay bekliyor. |
 | Etkileşimler (E-DONDUR, E-BILGI, E-TAK) | K | Yazıldı: E-DONDUR, E-BILGI, E-SINIFLA, E-TAK, E-SAYAC (ampullerle bit/sayı/harf), E-TAHMIN (tahmin et–izle). |
 | Animasyon kalıpları | K | Yazıldı: A-VURGU, A-KATMAN, A-AKIS, A-DONUS, A-TAK (tak/çıkar, vida, kaydır, hiza), A-SAYAC (bit göstergesi), A-DOLUM (bellek dolumu), A-OLCEK (bin kat ölçek), A-FIS (kablo ucunu porta takma), A-KAMERA-TUR, A-DALGA (2D), A-UYARI. E-DOGRU-YANLIS eklendi. |
-| Model kütüphanesi | K | Yazıldı: M-MASAUSTU, M-MASAUSTU-ACIK, M-MONITOR, M-KLAVYE, M-FARE, M-RAM, M-RAM-YUVASI, M-AMPUL-SIRASI, M-ARKA-PANEL, M-KABLO-UCLARI, M-DIZUSTU, M-PSU, M-ANTISTATIK-BILEKLIK, M-PIL, M-CRT, M-GUC-FISI, M-CPU, M-FAN (tozlu API), M-SOGUTUCU, M-RAM-DDR5, M-SODIMM, M-HDD-ACIK, M-HDD, M-SSD (sataKonnektor), M-M2 (M / B+M), M-USB-BELLEK (usb/sd/microsd), M-MASA-DOLAP. |
+| Model kütüphanesi | K | Yazıldı: M-MASAUSTU, M-MASAUSTU-ACIK, M-MONITOR, M-KLAVYE, M-FARE, M-RAM, M-RAM-YUVASI, M-AMPUL-SIRASI, M-ARKA-PANEL, M-KABLO-UCLARI, M-DIZUSTU, M-PSU, M-ANTISTATIK-BILEKLIK, M-PIL, M-CRT, M-GUC-FISI, M-CPU, M-FAN (tozlu API), M-SOGUTUCU, M-RAM-DDR5, M-SODIMM, M-HDD-ACIK, M-HDD, M-SSD (sataKonnektor), M-M2 (M / B+M), M-USB-BELLEK (usb/sd/microsd), M-MASA-DOLAP, M-DIZUSTU-PATLAT, M-TELEFON-KATMAN. |
 
 ## DON-201 – Bilgisayar Donanımı
 
@@ -26,7 +26,7 @@ Durum: `—` başlanmadı · `K` kalibrasyon (onay bekliyor) · `✓` tamam · `
 | H09 | Güç Kaynağı, Ekran Kartı ve Soğutma | K | — | — | |
 | H10 | Atölye 1: Kasayı Açma ve RAM Sök–Tak | U | ✓ | ✓ | Format U kalibrasyonu onaylandı. 15 slayt, 883 KB. FOTO-GEREKLİ: DON-201-H10-1-guvenlik.jpg, -2-yan-kapak.jpg, -3-parcalar.jpg, -4-ram-cikar.jpg, -5-ram-tak.jpg, -6-belgele.jpg (assets/foto/). DOĞRULA: DDR4 çentiğinin milimetrik konumu modelde yaklaşık (derste ölçü verilmedi). |
 | H11 | Atölye 2: Disk Sök–Tak, Toplama ve İlk Açılış | U | — | — | |
-| H12 | Taşınabilir Cihazlar, Piller ve E-Atık | K | — | — | |
+| H12 | Taşınabilir Cihazlar, Piller ve E-Atık | K | K | K | 15 slayt. 3D: dizüstü patlatma + masaüstü karşılıkları, telefon katmanları + tek çip, pil ısınma/şişme (A-UYARI), katman bulma; 2D: lityum pil iyon akışı (şema, pil açılmaz), çöp/toplama yolu, veri silme adımları, e-atık ayırma (E-SINIFLA), pil sağlığı (Derinleş). FOTO-GEREKLİ: DON-201-H12-dizustu-ic.jpg. DOĞRULA: telefonda belleğin çipe istiflenmesi "çoğu zaman"; çip bölgeleri temsilî. |
 | H13 | Basit Sorun Giderme ve Bakım | K+U | — | — | |
 | H14 | Proje: Bilgisayar Kimlik Kartı | U | K | K | 15 slayt. Uygulama provaları: sistem bilgisi ekranları (2D), tablo, port sayma (3D arka panel), uygunluk yorumu, kart hazırlama (3D kasa, A-VURGU), sunum; E-KIMLIK-KARTI (canlı kart + etiketli mini model + PNG indirme), uygunluk kararı, yükseltme önerisi (Derinleş). FOTO-GEREKLİ: DON-201-H14-1…6 (6). DOĞRULA: Türkçe Windows satır adları sadeleştirildi; uygunluk eşikleri basitleştirilmiş. |
 

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DON-201 H12 Öğretmen Planı — Taşınabilir Cihazlar, Piller ve E-Atık</title>
+<style>
+@font-face{font-family:'Carlito';src:local('Carlito'),url('../../assets/font/Carlito-Regular.ttf');font-weight:400;font-style:normal}
+@font-face{font-family:'Carlito';src:local('Carlito Bold'),url('../../assets/font/Carlito-Bold.ttf');font-weight:700;font-style:normal}
+@font-face{font-family:'Carlito';src:local('Carlito Italic'),url('../../assets/font/Carlito-Italic.ttf');font-weight:400;font-style:italic}
+@page{size:A4;margin:14mm 14mm 16mm 16.5mm;
+  @bottom-center{content:'Bilişim Üssü · Etkileşimli Ders Planı · ' counter(page) ' / ' counter(pages);font-family:Carlito,Calibri,sans-serif;font-size:7.5pt;color:#6b7a82}}
+*{box-sizing:border-box}
+html{font-family:Carlito,Calibri,'Segoe UI',Arial,sans-serif;font-size:9.9pt;color:#1a1a1a;line-height:1.38}
+body{margin:0;max-width:180mm}
+@media screen{body{margin:24px auto;padding:0 12px}}
+.bant{display:flex;gap:7pt;margin-bottom:9pt}
+.bant-sol{flex:1;background:linear-gradient(135deg,#075985,#0a6aa3);color:#fff;border-radius:4pt;padding:9pt 14pt 10pt}
+.bant-ust{font-size:7.6pt;font-weight:700;letter-spacing:2.2pt;opacity:.92}
+.bant-baslik{font-size:23pt;font-weight:700;line-height:1.12;margin-top:3pt}
+.bant-baslik.uzun{font-size:18pt}
+.bant-sag{width:128pt;background:#0369a1;color:#fff;border-radius:4pt;display:flex;align-items:center;justify-content:center;font-size:14pt;font-weight:700}
+h2{background:#0369a1;color:#fff;font-size:11pt;font-weight:700;margin:12pt 0 6pt;padding:5pt 10pt;border-radius:4pt;letter-spacing:.2pt;break-after:avoid}
+h3{display:flex;justify-content:space-between;align-items:center;color:#0369a1;font-size:10.6pt;margin:9pt 0 4pt;break-after:avoid}
+h3 .sure{background:#0369a1;color:#fff;font-size:8.6pt;border-radius:9pt;padding:1.5pt 8pt}
+table{width:100%;border-collapse:collapse;margin:0 0 4pt}
+td,th{border:1px solid #b9def1;padding:4pt 7pt;vertical-align:top;text-align:left}
+th{background:#e0f2fe;color:#075985;font-size:9.2pt;font-weight:700}
+tr{break-inside:avoid}
+.genel td:first-child{width:134pt;background:#e0f2fe;color:#075985;font-weight:700}
+.kazanim{width:100%;border-collapse:collapse}
+.kazanim td{border:0;border-bottom:1px solid #eaf6fc;padding:3.5pt 4pt}
+.kazanim td:first-child{width:32pt;color:#0369a1;font-weight:700}
+.isleyis td:first-child{width:35pt;text-align:center;color:#6b7a82;font-weight:700}
+.isleyis td:nth-child(2){width:122pt}
+.adim-ad{font-weight:700}
+.adim-konu{color:#475569}
+.slayt{display:inline-block;margin-top:2pt;font-size:8pt;font-weight:700;color:#0369a1;background:#e0f2fe;border-radius:6pt;padding:0 5pt}
+q{quotes:'“' '”'}
+q::before{content:open-quote}q::after{content:close-quote}
+p{margin:3pt 0 5pt;text-align:justify}
+.kutu{border:1px solid #b9def1;border-left:3pt solid #0369a1;border-radius:3pt;padding:5pt 8pt;margin:5pt 0;background:#f5fbff;break-inside:avoid}
+.kutu b{color:#075985}
+.olcme td:first-child{width:22pt;text-align:center;font-weight:700}
+.olcme td:last-child{width:40pt;text-align:center;color:#0369a1;font-weight:700}
+.soru{font-weight:700}
+.secenek{margin-top:1pt}
+.aciklama{font-style:italic;color:#0369a1;font-size:9.5pt;margin-top:2pt}
+.soru-gorsel{float:right;margin:0 0 2pt 8pt}
+.soru-gorsel svg{height:38pt;width:auto}
+.anahtar{font-weight:700;color:#075985;margin:3pt 0 0}
+.anahtar span{font-weight:400;color:#1a1a1a}
+ol.acik{margin:2pt 0;padding-left:0;list-style:none;counter-reset:a}
+ol.acik li{counter-increment:a;display:flex;gap:10pt;padding:3pt 0}
+ol.acik li::before{content:counter(a) '.';color:#0369a1;font-weight:700;min-width:16pt}
+.etiket{color:#0369a1;font-weight:700;margin:7pt 0 2pt}
+ul.not{margin:2pt 0;padding-left:12pt}
+ul.not li{margin:2pt 0}
+.sure-tablo td:last-child,.sure-tablo th:last-child{width:62pt}
+.imza{display:flex;justify-content:space-around;margin-top:14pt;text-align:center;color:#6b7a82;break-inside:avoid;break-before:avoid;page-break-before:avoid}
+.sure-tablo{break-after:avoid;page-break-after:avoid}
+.sure-tablo tr:last-child{break-after:avoid}
+.uyg{display:grid;grid-template-columns:1fr 1fr;gap:3pt;margin-top:5pt}
+.uyg div{border-radius:3pt;padding:3pt 6pt;font-size:9pt;line-height:1.32}
+.uyg b{display:block;font-size:7.6pt;letter-spacing:.8pt}
+.uyg .goster{background:#eff6ff;border-left:2.5pt solid #3b82f6}.uyg .goster b{color:#1d4ed8}
+.uyg .sor{background:#f5f3ff;border-left:2.5pt solid #8b5cf6}.uyg .sor b{color:#6d28d9}
+.uyg .kontrol{background:#ecfdf5;border-left:2.5pt solid #10b981}.uyg .kontrol b{color:#047857}
+.uyg .sikhata{background:#fff7ed;border-left:2.5pt solid #f97316}.uyg .sikhata b{color:#c2410c}
+.guvenlik{border:1.5pt solid #ef4444;border-radius:4pt;background:#fef2f2;padding:6pt 10pt;margin:6pt 0;break-inside:avoid}
+.guvenlik b{color:#b91c1c;display:block;margin-bottom:2pt}
+.guvenlik ul{margin:2pt 0;padding-left:13pt}
+.imza b{display:block;color:#475569;margin-bottom:10pt}
+</style>
+</head>
+<body>
+<div class="bant"><div class="bant-sol"><div class="bant-ust">ÖĞRETMEN DERS PLANI · DON-201</div><div class="bant-baslik uzun">Taşınabilir Cihazlar, Piller ve E-Atık</div></div><div class="bant-sag">12. Hafta</div></div>
+<h2>1. GENEL BİLGİLER</h2>
+<table class="genel">
+<tr><td>Dersin Adı</td><td>Bilişim Teknolojileri ve Yazılım</td></tr>
+<tr><td>Sınıf / Seviye</td><td>Ortaokul (5–8. sınıf)</td></tr>
+<tr><td>Ünite / Konu</td><td>Donanım 201 - Bakım ve Sorumluluk — Taşınabilir Cihazlar, Piller ve E-Atık</td></tr>
+<tr><td>Öğrenme Alanı</td><td>Bilgisayar Donanımı</td></tr>
+<tr><td>Süre</td><td>1 ders saati (35 dk)</td></tr>
+<tr><td>Yöntem ve Teknikler</td><td>Anlatım, gösteri, soru-cevap, 3D model inceleme, patlatma animasyonuyla modelleme, tahmin et–izle, sınıflandırma oyunu</td></tr>
+<tr><td>Araç-Gereç ve Kaynaklar</td><td>Etkileşimli ders (LMS), projeksiyon veya akıllı tahta; mümkünse kapalı hâlde bir dizüstü, kutusundan çıkmamış bir kalem pil ve okulun pil toplama kutusunun fotoğrafı (gerçek telefon ya da pil sökülmez)</td></tr>
+<tr><td>Kavramlar / Terimler</td><td>Dizüstünün İçi, Tek Çipte Birçok Parça, Lityum Pil, Pil Güvenliği, E-Atık ve Geri Dönüşüm, Elden Çıkarmadan Önce</td></tr>
+</table>
+<h2>2. KAZANIMLAR</h2>
+<table class="kazanim">
+<tr><td>K1.</td><td>Dizüstü, tablet ve telefondaki temel parçaları masaüstü parçalarıyla eşleştirir.</td></tr>
+<tr><td>K2.</td><td>Pil güvenliği kurallarını sıralar.</td></tr>
+<tr><td>K3.</td><td>E-atığın doğru yollarla atılmasının önemini açıklar.</td></tr>
+<tr><td>K4.</td><td>Cihazı elden çıkarmadan önce veri silme gerekliliğini açıklar.</td></tr>
+</table>
+<h2>3. DERS İŞLENİŞİ</h2>
+<h3><span>Giriş — Dikkat Çekme ve Güdüleme</span><span class="sure">5 dk</span></h3>
+<p>Kapak slaytında dönen modelleri gösterip sorun: <q>Masaüstü kasa bu kadar büyükken dizüstü ve telefon nasıl bu kadar ince olabiliyor?</q> İki üç cevabı dinleyin. Hedefler slaytında dört kazanımı birlikte okuyun. Isınma slaytında (Slayt 3) seçenekleri okutun, el kaldırmayla tahminleri sayıp tahtaya yazın: <q>Birazdan bir dizüstünün içine bakıp hangi tahminin tuttuğunu göreceğiz.</q></p>
+<h3><span>Gelişme — Kavramların İşlenişi</span><span class="sure">25 dk</span></h3>
+<table class="isleyis"><thead><tr><th>Adım</th><th>Konu</th><th>Öğretmen Notu</th></tr></thead>
+<tr><td>1</td><td><div class="adim-ad">Dizüstünün İçi</div><div class="adim-konu">Dizüstü parçaları ve masaüstü karşılıkları</div><span class="slayt">Slayt 4</span></td><td>Slayt açılınca model bir süre kapalı bekler; bu arada sorun: <q>Sizce bu kapağın altında neler saklanıyor?</q> Ardından kapak kendiliğinden kalkar, parçalar ayrışır ve sağdaki kartlara çizgiler uzanır. Çizgiler bitince her kartı sırayla bir öğrenciye dokundurun ve üstteki açıklamayı okutun. <q>Dizüstüde ayrı bir ekran kartı ya da büyük soğutucu için yer yok; bu yüzden her parça inceltilip yan yana dizilmiş</q> deyin. Isınmadaki tahminleri burada kontrol edin. Sol üstteki gerçek fotoğrafla modeli karşılaştırın. Öğrencilere SO-DIMM ile masaüstü RAM arasındaki farkı söyletin.</td></tr>
+<tr><td>2</td><td><div class="adim-ad">Tek Çipte Birçok Parça</div><div class="adim-konu">Telefon katmanları ve yonga üstünde sistem</div><span class="slayt">Slayt 5</span></td><td>Animasyon telefonu önce katmanlarına ayırır, etiketler belirir; sonra kamera anakarttaki çipe iner ve üstteki bellek yana kalkar. Kamera inmeden önce durdurup sorun: <q>İşlemci, grafik ve RAM için telefonda ayrı kartlar var mıdır?</q> Çip açılınca renkli bölgeleri gösterin. <q>Telefonda yer çok dar olduğu için işlemci ile grafik aynı yongaya konur, belleği de hemen üstüne yerleştiririz; buna yonga üstünde sistem denir</q> deyin. Katmanlar düğmesiyle geri dönüp çipi yeniden açtırın. Öğrencilere çipin içindeki üç birimi göstererek söyletin.</td></tr>
+<tr><td>3</td><td><div class="adim-ad">Lityum Pil</div><div class="adim-konu">Lityum iyon pilde iyon hareketi</div><span class="slayt">Slayt 6</span></td><td>Animasyonu başlatmadan önce üstteki tahmin düğmelerinden sınıfça birini seçtirin: <q>Şarj sırasında iyonlar eksi uca mı, artı uca mı gidiyor?</q> Seçimle birlikte şarj animasyonu oynar ve yüzde göstergesi dolar. Ardından Kullan düğmesine bastırın; iyonlar geri döner, telefon ekranı çalışırken yüzde düşer. <q>Pil, iyonları iki taraf arasında yer değiştirerek enerjiyi saklar ve telefon çalışırken bu enerjiyi geri verir</q> deyin. Çizimin bir şema olduğunu, gerçek pilin asla açılmadığını hatırlatın. Öğrencilere şarj ve kullanım sırasında iyonların yönünü parmaklarıyla gösterttirin.</td></tr>
+<tr><td>4</td><td><div class="adim-ad">Pil Güvenliği</div><div class="adim-konu">Isı, şişme ve pil kuralları</div><span class="slayt">Slayt 7</span></td><td>Isıt düğmesine basmadan önce sorun: <q>Pil çok ısınırsa ne olabilir?</q> Sonra düğmeye basın: termometre yükselir, pil kızarır, şişer ve titreyip uyarı kartı açılır. <q>Şişkin bir pil içinde gaz birikmiş demektir; bastırmak, delmek ya da şarja takmak yangına yol açabilir, bu yüzden dokunmadan hemen bir büyüğümüze haber veririz</q> deyin. Serin tut düğmesiyle başa alıp soldaki dört kuralı sırayla sesli okutun. Öğrencilere dört pil kuralını sırasıyla ezbere söyletin.</td></tr>
+<tr><td>5</td><td><div class="adim-ad">E-Atık ve Geri Dönüşüm</div><div class="adim-konu">E-atığın iki farklı yolculuğu</div><span class="slayt">Slayt 8</span></td><td>Önce çöp senaryosu kendiliğinden oynar; telefon ev çöpüne düşer, çöp alanında damlalar toprağa iner. Durdurup sorun: <q>Bu telefonun içindeki altın ve bakır nereye gitti?</q> Sonra Toplama noktasına düğmesine bastırın; tesis metalleri tek tek ayırır. <q>Eski bir cihaz çöpe atıldığında hem doğa kirlenir hem de yeniden kullanılabilecek metaller kaybolur</q> deyin. Okuldaki ya da mahalledeki e-atık ve pil toplama noktalarını birlikte hatırlayın. Öğrencilere iki senaryo arasındaki farkı iki cümleyle anlattırın.</td></tr>
+<tr><td>6</td><td><div class="adim-ad">Elden Çıkarmadan Önce</div><div class="adim-konu">Veriyi silmek: yedek, hesaplar, sıfırlama</div><span class="slayt">Slayt 9</span></td><td>Telefon ekranındaki fotoğraf, mesaj ve hesapları gösterip sorun: <q>Bu telefonu böyle hediye edersek yeni sahibi neleri görebilir?</q> Sonra üç düğmeye sırayla bastırın: yedek çubuğu dolar, hesaplar tek tek kapanır, sıfırlama sonunda karşılama ekranı açılır. Sıranın neden önemli olduğunu vurgulayın: <q>Önce kopyayı almazsak sıfırlama anılarımızı da götürür; hesaplardan çıkmazsak cihaz bizim adımıza açık kalabilir</q> deyin. Bu adımların bir yetişkinle yapılacağını ekleyin. Öğrencilere üç adımı doğru sırayla söyletin.</td></tr>
+</table>
+<div class="kutu"><b>Etkinlikler (Slayt 10–11):</b> Etkinlik 1'de (Slayt 10) gönüllü öğrenciler akıllı tahtada ayrışmış telefonu döndürür ve listedeki yedi katmanı bulup dokunur; bulunan katman yeşil etiketle işaretlenir. Birleştir düğmesiyle katmanları kapatıp açtırarak parçaların gerçekte ne kadar sıkışık durduğunu gösterin; gerçek telefonun sökülmediğini yeniden hatırlatın. Etkinlik 2'de (Slayt 11) sekiz kart dört kutuya ayrılır; bozuk telefon ile düğme pilde durup <q>Neden bu kutu?</q> diye sorun. Yanlış yerleştirmede çıkan açıklamayı sınıfa okutun (toplam yaklaşık 8 dk).</div>
+<h3><span>Değerlendirme ve Kapanış</span><span class="sure">5 dk</span></h3>
+<p>Özet slaytındaki altı kartı sırayla birer öğrenciye kendi sözleriyle anlattırın. Bilgi Testi'ni (Slayt 14) sınıfça çözün; yanlış çıkan soruda ilgili adım slaytına dönüp animasyonu bir kez daha izletin. Son soru Derinleş bonusudur, puanı düşürmez. Dersi şu soruyla kapatın: <q>Evdeki kullanılmayan bir cihaz için bu akşam ilk ne yapacaksın?</q></p>
+<h2>4. ÖLÇME VE DEĞERLENDİRME</h2>
+<table class="olcme"><thead><tr><th>#</th><th>Soru ve Seçenekler</th><th>Cevap</th></tr></thead>
+<tr><td>1</td><td><div class="soru">Dizüstüdeki kısa SO-DIMM modülü, masaüstünde hangi parçanın karşılığıdır?</div><div class="secenek">A) RAM B) Güç kaynağı C) Ekran kartı D) Kasa fanı</div><div class="aciklama">SO-DIMM, dizüstüye göre kısaltılmış bir RAM modülüdür. İşi masaüstü RAM ile aynıdır.</div></td><td>A</td></tr>
+<tr><td>2</td><td><div class="soru-gorsel"><svg viewBox="0 0 200 110" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Yandan görünen telefon: içindeki pil şişmiş, ekranı yukarı itmiş"><rect width="200" height="110" rx="10" fill="#f1f5f9"/><rect x="20" y="78" width="160" height="12" rx="3" fill="#cbd5e1"/><path d="M36 76 H164 Q170 76 170 70 V64 H30 V70 Q30 76 36 76 Z" fill="#34405a"/><path d="M30 64 Q100 30 170 64 Z" fill="#9aa7b8" stroke="#ef4444" stroke-width="2"/><path d="M30 64 Q100 24 170 58" stroke="#0d0f13" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M60 50 l-3 -6 M100 40 l0 -7 M140 46 l3 -6" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/><g transform="translate(178 24) scale(0.9)"><path d="M0 -14 L15 12 H-15 Z" fill="#fbbf24" stroke="#b45309" stroke-width="2" stroke-linejoin="round"/><rect x="-1.8" y="-6" width="3.6" height="10" rx="1.5" fill="#1f2937"/><circle cx="0" cy="7.5" r="2" fill="#1f2937"/></g></svg></div><div class="soru">Görseldeki telefonun ekranı içeriden itilmiş. Ne yapmalısın?</div><div class="secenek">A) Ekrana bastırıp düzeltirim B) Şarja takıp kullanmaya devam ederim C) Dokunmam; güvendiğim bir yetişkine söylerim D) Telefonu açıp pili çıkarırım</div><div class="aciklama">Pil şişmiş olabilir. Şişmiş pile dokunulmaz, bastırılmaz; telefon sökülmez. Bir yetişkine haber verilir.</div></td><td>C</td></tr>
+<tr><td>3</td><td><div class="soru">Ece’nin eski telefonu tamamen bozuldu. Telefonu nereye bırakmalı?</div><div class="secenek">A) Evdeki çöp kutusuna B) Elektronik atık toplama noktasına C) Kâğıt geri dönüşüm kutusuna D) Parktaki çöp kutusuna</div><div class="aciklama">Bozuk telefon e-atıktır. Toplama noktasında değerli metaller geri kazanılır, zararlı maddeler doğaya karışmaz.</div></td><td>B</td></tr>
+<tr><td>4</td><td><div class="soru">Deniz eski tabletini kuzenine verecek. Önce ne yapmalı?</div><div class="secenek">A) Fotoğrafları çöp kutusu klasörüne taşımalı B) Ekran kilidini kaldırıp hemen vermeli C) Tableti kapatıp açmalı; veriler kendiliğinden silinir D) Yedek alıp hesaplardan çıkmalı ve fabrika ayarlarına sıfırlamalı</div><div class="aciklama">Silinen dosyalar ve açık hesaplar cihazda kalabilir. Önce yedek alınır, hesaplardan çıkılır, sonra cihaz sıfırlanır.</div></td><td>D</td></tr>
+</table>
+<p class="anahtar">Cevap Anahtarı: <span>1-A 2-C 3-B 4-D</span></p>
+<h2>5. AÇIK UÇLU / BİÇİMLENDİRİCİ DEĞERLENDİRME</h2>
+<ol class="acik">
+<li><span>«Yonga üstünde sistem» kavramını kendi cümlelerinle açıkla ve günlük hayattan bir örnek ver.</span></li>
+<li><span>«Şişmiş pil» kavramını kendi cümlelerinle açıkla ve günlük hayattan bir örnek ver.</span></li>
+<li><span>«E-atık» kavramını kendi cümlelerinle açıkla ve günlük hayattan bir örnek ver.</span></li>
+<li><span>Bu derste en çok hangi bölüm ilgini çekti, hangisinde zorlandın? Nedenini açıkla.</span></li>
+</ol>
+<h2>6. ÖĞRETMEN NOTLARI VE ÖDEV</h2>
+<div class="etiket">Ödev / Sınıf Dışı Etkinlik:</div><p>Evde kullanılmayan elektronik cihazları ve biten pilleri bir yetişkinle birlikte say (sökmeden, dokunmadan listele). Her birinin yanına hangi kutuya gitmesi gerektiğini yaz. Mahallendeki ya da okulundaki en yakın pil ve e-atık toplama noktasını öğrenip bir sonraki derse getir.</p>
+<div class="kutu"><b>Güvenlik:</b> Telefon ve pil sökülmez; yalnızca görsel incelenir.</div>
+<div class="etiket">Öğretmen İçin Notlar:</div><ul class="not">
+<li>Derinleş (Slayt 12) isteğe bağlıdır: süre kalırsa ya da hızlı bitiren öğrenciler için kullanın. Öğrenciler dört alışkanlık için seçim yapar, pil sağlığı ve cihaz ömrü ölçüleri buna göre değişir; ölçüler temsilidir, gerçek bir ölçüm değildir. Atlasanız da akış bozulmaz; Bilgi Testi'ndeki bonus soru puanı düşürmez.</li>
+<li>Güvenlik: Derste hiçbir telefon, tablet ya da pil sökülmez; inceleme yalnız modelde ve görselde yapılır. Sınıfa şişmiş ya da hasarlı pil getirilmez. Öğrenci evde şişmiş bir pil ya da kabarmış bir cihaz görürse dokunmaz, şarja takmaz ve hemen güvendiği bir yetişkine söyler.</li>
+<li>Yaş bandı uyarlaması: 10–12 yaş grubunda kapalı bir dizüstünü masaya koyup yalnız dış yüzündeki havalandırma deliklerini ve etiketini gösterin, parçaları modelde bulun. 13–15 yaş grubunda SO-DIMM ile lehimli RAM arasındaki yükseltme farkını ve bir telefonun neden sonradan RAM eklenemediğini tartıştırın.</li>
+<li>Sık görülen kavram yanılgıları: <q>Telefonda işlemci yoktur</q>, <q>Pil boşalınca içindeki elektrik biter, iyonlar kaybolur</q>, <q>Dosyaları çöp kutusuna atmak onları kalıcı olarak siler</q>, <q>Küçük piller sıradan çöpe atılabilir</q>. Bu cümleleri doğru/yanlış sorusu olarak sorup düzeltin.</li>
+<li>Teknik not: Telefonlarda işlemci, grafik ve diğer birimler tek bir yongada bulunur (yonga üstünde sistem); RAM çoğu modelde bu yonganın üstüne istiflenir ya da hemen yanına lehimlenir. Birçok ince dizüstüde de işlemci anakarta lehimlidir. Lityum iyon pilde şarj sırasında iyonlar artı uçtan eksi uca, kullanım sırasında eksi uçtan artı uca taşınır.</li>
+<li>3D sahneler yavaş bilgisayarda kaliteyi kendiliğinden düşürür; WebGL açılmazsa yerine çizim görünür. Hareket azaltma ayarı açık cihazlarda animasyonlar kısa geçişlerle ilerler; bu durumda düğmelere tek tek basarak adımları anlatın.</li>
+<li>Her adımın sonunda 1-2 öğrenciye <q>Bunu bir arkadaşına nasıl anlatırsın?</q> diye sorup cevaplarını dinleyerek anlaşılıp anlaşılmadığını kontrol edin (biçimlendirici değerlendirme).</li>
+</ul>
+<table class="sure-tablo"><thead><tr><th>Aşama</th><th>Süre</th></tr></thead>
+<tr><td>Giriş — Dikkat Çekme ve Güdüleme</td><td>5 dk</td></tr>
+<tr><td>Gelişme — Kavramların İşlenişi ve Etkinlikler</td><td>25 dk</td></tr>
+<tr><td>Değerlendirme ve Kapanış</td><td>5 dk</td></tr>
+<tr><th>Toplam</th><th>35 dk</th></tr>
+</table>
+<div class="imza"><div><b>Ders Öğretmeni</b>Ad Soyad / İmza</div><div><b>Uygundur</b>Okul Müdürü</div></div>
+</body>
+</html>
