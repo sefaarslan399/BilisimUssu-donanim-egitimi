@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DON-301 H08 Öğretmen Planı — Uyumluluk ve Sistem Toplama</title>
+<style>
+@font-face{font-family:'Carlito';src:local('Carlito'),url('../../assets/font/Carlito-Regular.ttf');font-weight:400;font-style:normal}
+@font-face{font-family:'Carlito';src:local('Carlito Bold'),url('../../assets/font/Carlito-Bold.ttf');font-weight:700;font-style:normal}
+@font-face{font-family:'Carlito';src:local('Carlito Italic'),url('../../assets/font/Carlito-Italic.ttf');font-weight:400;font-style:italic}
+@page{size:A4;margin:14mm 14mm 16mm 16.5mm;
+  @bottom-center{content:'Bilişim Üssü · Etkileşimli Ders Planı · ' counter(page) ' / ' counter(pages);font-family:Carlito,Calibri,sans-serif;font-size:7.5pt;color:#6b7a82}}
+*{box-sizing:border-box}
+html{font-family:Carlito,Calibri,'Segoe UI',Arial,sans-serif;font-size:9.9pt;color:#1a1a1a;line-height:1.38}
+body{margin:0;max-width:180mm}
+@media screen{body{margin:24px auto;padding:0 12px}}
+.bant{display:flex;gap:7pt;margin-bottom:9pt}
+.bant-sol{flex:1;background:linear-gradient(135deg,#075985,#0a6aa3);color:#fff;border-radius:4pt;padding:9pt 14pt 10pt}
+.bant-ust{font-size:7.6pt;font-weight:700;letter-spacing:2.2pt;opacity:.92}
+.bant-baslik{font-size:23pt;font-weight:700;line-height:1.12;margin-top:3pt}
+.bant-baslik.uzun{font-size:18pt}
+.bant-sag{width:128pt;background:#0369a1;color:#fff;border-radius:4pt;display:flex;align-items:center;justify-content:center;font-size:14pt;font-weight:700}
+h2{background:#0369a1;color:#fff;font-size:11pt;font-weight:700;margin:12pt 0 6pt;padding:5pt 10pt;border-radius:4pt;letter-spacing:.2pt;break-after:avoid}
+h3{display:flex;justify-content:space-between;align-items:center;color:#0369a1;font-size:10.6pt;margin:9pt 0 4pt;break-after:avoid}
+h3 .sure{background:#0369a1;color:#fff;font-size:8.6pt;border-radius:9pt;padding:1.5pt 8pt}
+table{width:100%;border-collapse:collapse;margin:0 0 4pt}
+td,th{border:1px solid #b9def1;padding:4pt 7pt;vertical-align:top;text-align:left}
+th{background:#e0f2fe;color:#075985;font-size:9.2pt;font-weight:700}
+tr{break-inside:avoid}
+.genel td:first-child{width:134pt;background:#e0f2fe;color:#075985;font-weight:700}
+.kazanim{width:100%;border-collapse:collapse}
+.kazanim td{border:0;border-bottom:1px solid #eaf6fc;padding:3.5pt 4pt}
+.kazanim td:first-child{width:32pt;color:#0369a1;font-weight:700}
+.isleyis td:first-child{width:35pt;text-align:center;color:#6b7a82;font-weight:700}
+.isleyis td:nth-child(2){width:122pt}
+.adim-ad{font-weight:700}
+.adim-konu{color:#475569}
+.slayt{display:inline-block;margin-top:2pt;font-size:8pt;font-weight:700;color:#0369a1;background:#e0f2fe;border-radius:6pt;padding:0 5pt}
+q{quotes:'“' '”'}
+q::before{content:open-quote}q::after{content:close-quote}
+p{margin:3pt 0 5pt;text-align:justify}
+.kutu{border:1px solid #b9def1;border-left:3pt solid #0369a1;border-radius:3pt;padding:5pt 8pt;margin:5pt 0;background:#f5fbff;break-inside:avoid}
+.kutu b{color:#075985}
+.olcme td:first-child{width:22pt;text-align:center;font-weight:700}
+.olcme td:last-child{width:40pt;text-align:center;color:#0369a1;font-weight:700}
+.soru{font-weight:700}
+.secenek{margin-top:1pt}
+.aciklama{font-style:italic;color:#0369a1;font-size:9.5pt;margin-top:2pt}
+.soru-gorsel{float:right;margin:0 0 2pt 8pt}
+.soru-gorsel svg{height:38pt;width:auto}
+.anahtar{font-weight:700;color:#075985;margin:3pt 0 0}
+.anahtar span{font-weight:400;color:#1a1a1a}
+ol.acik{margin:2pt 0;padding-left:0;list-style:none;counter-reset:a}
+ol.acik li{counter-increment:a;display:flex;gap:10pt;padding:3pt 0}
+ol.acik li::before{content:counter(a) '.';color:#0369a1;font-weight:700;min-width:16pt}
+.etiket{color:#0369a1;font-weight:700;margin:7pt 0 2pt}
+ul.not{margin:2pt 0;padding-left:12pt}
+ul.not li{margin:2pt 0}
+.sure-tablo td:last-child,.sure-tablo th:last-child{width:62pt}
+.imza{display:flex;justify-content:space-around;margin-top:14pt;text-align:center;color:#6b7a82;break-inside:avoid;break-before:avoid;page-break-before:avoid}
+.sure-tablo{break-after:avoid;page-break-after:avoid}
+.sure-tablo tr:last-child{break-after:avoid}
+.uyg{display:grid;grid-template-columns:1fr 1fr;gap:3pt;margin-top:5pt}
+.uyg div{border-radius:3pt;padding:3pt 6pt;font-size:9pt;line-height:1.32}
+.uyg b{display:block;font-size:7.6pt;letter-spacing:.8pt}
+.uyg .goster{background:#eff6ff;border-left:2.5pt solid #3b82f6}.uyg .goster b{color:#1d4ed8}
+.uyg .sor{background:#f5f3ff;border-left:2.5pt solid #8b5cf6}.uyg .sor b{color:#6d28d9}
+.uyg .kontrol{background:#ecfdf5;border-left:2.5pt solid #10b981}.uyg .kontrol b{color:#047857}
+.uyg .sikhata{background:#fff7ed;border-left:2.5pt solid #f97316}.uyg .sikhata b{color:#c2410c}
+.guvenlik{border:1.5pt solid #ef4444;border-radius:4pt;background:#fef2f2;padding:6pt 10pt;margin:6pt 0;break-inside:avoid}
+.guvenlik b{color:#b91c1c;display:block;margin-bottom:2pt}
+.guvenlik ul{margin:2pt 0;padding-left:13pt}
+.imza b{display:block;color:#475569;margin-bottom:10pt}
+</style>
+</head>
+<body>
+<div class="bant"><div class="bant-sol"><div class="bant-ust">ÖĞRETMEN DERS PLANI (KAVRAM + UYGULAMA) · DON-301</div><div class="bant-baslik">Uyumluluk ve Sistem Toplama</div></div><div class="bant-sag">8. Hafta</div></div>
+<h2>1. GENEL BİLGİLER</h2>
+<table class="genel">
+<tr><td>Dersin Adı</td><td>Bilgisayar Donanımı ve Sistem Kurulumu</td></tr>
+<tr><td>Sınıf / Seviye</td><td>Lise (9. sınıf)</td></tr>
+<tr><td>Ünite / Konu</td><td>Donanım 301 - Bileşenler ve Uyumluluk — Uyumluluk ve Sistem Toplama</td></tr>
+<tr><td>Öğrenme Alanı</td><td>Bilgisayar Donanımı</td></tr>
+<tr><td>Süre</td><td>1 ders saati (35 dk)</td></tr>
+<tr><td>Yöntem ve Teknikler</td><td>Anlatım, gösteri, soru-cevap, tahmin et–izle (soket ve güç animasyonları), gerçek parçalar üzerinde etiket okuma ve ölçme, simülatörde kural tabanlı denetim (E-UYUMLULUK), ihtiyaç profiline göre parça listesi hazırlama, ikili çalışma</td></tr>
+<tr><td>Araç-Gereç ve Kaynaklar</td><td>Etkileşimli ders (LMS), projeksiyon veya akıllı tahta; grup başına bir montaj seti (eski parçalar olabilir: anakart, işlemci, bellek modülleri, güç kaynağı, bir ekran kartı ya da kutusu); şerit metre ya da cetvel; parçaların ve kasanın teknik özellik sayfaları (basılı ya da PDF); ESD bilekliği ve antistatik mat; fiyat araştırması için öğretmenin seçtiği iki güncel satış ya da karşılaştırma kaynağı</td></tr>
+<tr><td>Kavramlar / Terimler</td><td>İhtiyaç Profili, Soket–Çipset, RAM Nesli, Boyut Uyumu, Güç ve Konnektör Yeterliliği, Darboğaz ve Bütçe</td></tr>
+</table>
+<h2>2. KAZANIMLAR</h2>
+<table class="kazanim">
+<tr><td>K1.</td><td>İhtiyaç profiline göre sistem önerir.</td></tr>
+<tr><td>K2.</td><td>Soket, çipset ve RAM uyumunu denetler.</td></tr>
+<tr><td>K3.</td><td>Kasa, soğutucu ve ekran kartı boyut uyumunu denetler.</td></tr>
+<tr><td>K4.</td><td>Bütçe içinde darboğazsız bir parça listesi hazırlar.</td></tr>
+</table>
+<div class="guvenlik"><b>GÜVENLİK (uygulama öncesi okunur)</b><ul><li>Parçalar yalnız fişi çekili sistemlerden ya da kutularından alınır; incelemeden önce ESD bilekliği takılır ve antistatik mat kullanılır.</li><li>İşlemci kenarlarından tutulur; soket pinlerine ve işlemcinin temas yüzeyine dokunulmaz, soket koruma kapağı yerinde bırakılır.</li><li>Bellek modülleri ve ekran kartı kenarlarından tutulur; altın temaslara dokunulmaz, yuvaya takma denemesi bu derste yapılmaz.</li><li>Güç kaynağı yalnız dışından incelenir; kapağı ve vidaları açılmaz, fişe takılmaz.</li><li>Şerit metre kullanılırken kart ve anakart üzerindeki bileşenlere sürtülmez; keskin kasa kenarlarına dikkat edilir.</li><li>Fiyat araştırmasında yalnız öğretmenin gösterdiği kaynaklar kullanılır; kişisel bilgi girilmez, hesap açılmaz ve satın alma yapılmaz.</li></ul></div>
+<h2>3. DERS İŞLENİŞİ</h2>
+<h3><span>Giriş — Dikkat Çekme ve Güdüleme</span><span class="sure">5 dk</span></h3>
+<p>Kapaktaki panoyu gösterip sorun: <q>Bir bilgisayarın parçalarını internetten tek tek seçseydiniz, sipariş vermeden önce neyi kontrol ederdiniz?</q> Gelen cevapları tahtada iki sütuna ayırın: güç ya da hızla ilgili olanlar ve birbirine uymakla ilgili olanlar. Hedefler slaytındaki dört maddeyi okutun. Isınma slaytında (Slayt 3) sınıfı üç seçenek arasında oylatın, oyları not edin: <q>Bu oylamayı ikinci adımdaki soket denemesinde sınayacağız.</q> Terim Kartı slaytında (Slayt 4) TDP, PSU ve darboğaz terimlerini üç öğrenciye kendi örnekleriyle söyletin; <q>Güç kaynağının watt değeri harcanan güç mü, sunabileceği en yüksek güç mü?</q> sorusunu açık bırakın.</p>
+<h3><span>Gelişme — Kavramların İşlenişi</span><span class="sure">25 dk</span></h3>
+<table class="isleyis"><thead><tr><th>Adım</th><th>Konu</th><th>Öğretmen Notu</th></tr></thead>
+<tr><td>1</td><td><div class="adim-ad">İhtiyaç Profili</div><div class="adim-konu">Kullanım Senaryosu ve Bütçe Önceliği</div><span class="slayt">Slayt 5</span></td><td>Slayt açılınca profiller sırayla değişir; oyun profilinde durdurup çubukları gösterin ve sorun: <q>Aynı bütçeyle tasarımcıya ve oyuncuya aynı kutuyu önerirsek kim mutsuz olur?</q> <q>Parça seçimi kullanıcıyla konuşarak başlar: hangi programlar açılacak, en az ne gerekiyor, ne kadar harcanabilir; bu üç cevap bütçenin nereye gideceğini belirler</q> deyin. Puanın para değil, yalnız oran göstermek için kullanıldığını vurgulayın. Öğrencilere yazılım geliştirme profilinde neden çekirdek ve belleğin öne çıktığını gerekçesiyle söyletin.</td></tr>
+<tr><td>2</td><td><div class="adim-ad">Soket–Çipset</div><div class="adim-konu">Soket Eşleşmesi ve Çipset Desteği</div><span class="slayt">Slayt 6</span></td><td>Otomatik denemede Soket B işlemcinin Soket A yuvasının üstünde asılı kaldığı anda durdurun ve ısınmadaki oylamaya dönün. Ardından 2. nesil işlemciyi 1. nesil çipsetli karta götürüp sarı ışığı gösterin: <q>Burada işlemci yuvaya fiziksel olarak oturuyor ama anakartın yazılımı onu henüz tanımıyor; üretici destek listesine ve gereken UEFI sürümüne bakmadan sipariş vermeyiz</q> deyin. Öğrencilere yeşil, sarı ve kırmızı sonucun her birini birer örnekle söyletin.<div class="uyg"><div class="goster"><b>GÖSTER</b>Önce animasyonu oynatın; sonra montaj setindeki anakartın soket çevresine basılmış soket adını ve işlemcinin üzerindeki model yazısını gösterin, iki bilgiyi kılavuzdaki desteklenen işlemci tablosunda eşleştirin.</div><div class="sor"><b>SOR</b><q>Aynı soket adını taşıyan iki anakarttan biri işlemciyi tanıyor, diğeri tanımıyorsa aradaki fark nerede olabilir?</q></div><div class="kontrol"><b>✔ KONTROL</b>Her grup kendi setindeki soket adını ve çipset adını deftere yazdı; işlemcinin destek listesinde hangi UEFI sürümüyle yer aldığını buldu.</div><div class="sikhata"><b>⚠ SIK HATA</b>Yalnız fiziksel oturmaya bakıp çipset ve firmware desteğini atlamak; işlemcinin kapağını ya da soket pinlerini parmakla yoklamak.</div></div></td></tr>
+<tr><td>3</td><td><div class="adim-ad">RAM Nesli</div><div class="adim-konu">Bellek Nesli, Yuva Sayısı ve Kanal</div><span class="slayt">Slayt 7</span></td><td>Modülün yuvaya inmediği durumda animasyonu durdurup iki kesik çizginin neden hizalanmadığını sorun. <q>Aynı boydaki iki modülü ayıran şey küçük bir çentik ve farklı çalışma gerilimidir; çentik, yanlış nesli takmayı fiziksel olarak engeller</q> deyin. ITX kart ile dört modüllük kiti seçip taşan modülleri gösterin; tek modül örneğinde sarı ışığın nedenini tahtada <q>iki şerit yol, tek şerit yol</q> benzetmesiyle açıklayın. Öğrencilere iki modülün hangi yuvalara takılacağını kılavuza bakarak gösterttirin.<div class="uyg"><div class="goster"><b>GÖSTER</b>Önce animasyonu oynatın; ardından setteki bellek modülünü kenarlarından tutarak çentiğini anakarttaki yuvanın çıkıntısıyla yan yana getirin, takmadan hizayı sınıfa gösterin; kılavuzdaki önerilen yuva şemasını açın.</div><div class="sor"><b>SOR</b><q>Etiketinde DDR yazısı silinmiş bir modülün neslini hangi fiziksel ipucundan anlarız?</q></div><div class="kontrol"><b>✔ KONTROL</b>Gruplar modül etiketindeki nesil, kapasite ve hız bilgisini okudu; iki modül için doğru yuva çiftini kılavuzdan gösterdi.</div><div class="sikhata"><b>⚠ SIK HATA</b>Modülü çentiği hizalamadan bastırmak; iki modülü yan yana (aynı kanala) takmak; altın temaslara dokunmak.</div></div></td></tr>
+<tr><td>4</td><td><div class="adim-ad">Boyut Uyumu</div><div class="adim-konu">Kasa İçinde Yer: Kart, Anakart ve Soğutucu</div><span class="slayt">Slayt 8</span></td><td>Otomatik oynatmada mATX kasaya ATX kart ve uzun ekran kartı konduğu anı durdurun; kırmızı bölgeleri gösterip sorun: <q>Kasanın kutusunda hangi üç sayıyı arardınız?</q> <q>Kasa üreticisi desteklenen anakart standartlarını, en uzun ekran kartını ve en yüksek işlemci soğutucusunu milimetre olarak verir; bu sayılar parçaların ölçüleriyle yan yana konur</q> deyin. Ön fan ve disk kafesinin kart boyunu kısalttığını ekleyin. Öğrencilere 155 mm soğutucunun neden 150 mm sınırlı kasada sorun olduğunu söyletin.<div class="uyg"><div class="goster"><b>GÖSTER</b>Önce animasyonu oynatın; sonra setteki ekran kartını (ya da kutusunu) şerit metreyle uçtan uca ölçün, kasanın içinde arka panelden ön fana kadar olan boşluğu ölçüp iki değeri tahtaya yazın.</div><div class="sor"><b>SOR</b><q>Üretici en çok 330 mm diyor, biz 318 mm ölçtük; kart 305 mm ise hangi değere güvenmeliyiz ve neden?</q></div><div class="kontrol"><b>✔ KONTROL</b>Her grup kart uzunluğunu ve kasa boşluğunu milimetre olarak ölçüp aradaki payı hesapladı; soğutucu yüksekliğini teknik sayfadan buldu.</div><div class="sikhata"><b>⚠ SIK HATA</b>Kartı yalnız devre kartından ölçüp soğutucu kapağını ya da güç kablosunun çıkıntısını unutmak; santimetre ile milimetreyi karıştırmak.</div></div></td></tr>
+<tr><td>5</td><td><div class="adim-ad">Güç ve Konnektör Yeterliliği</div><div class="adim-konu">Güç Bütçesi, Pay ve PCIe Kabloları</div><span class="slayt">Slayt 9</span></td><td>Slaytta önce tahmin satırını kullanın; sınıfın çoğu <q>yetmez</q> derse iyi bir fırsattır. Cevaptan sonra hesap satırını birlikte okuyun ve 408 × 1,3 işlemini tahtada yapın. <q>Güç kaynağının etiketindeki değer harcanan değil, sağlayabileceği en yüksek güçtür; hesapladığımız tüketimin üstüne yaklaşık üçte bir pay koyarız ve ekran kartının istediği kablo sayısını ayrıca sayarız</q> deyin. Ardından 105 W işlemciye geçip sarı ışığı gösterin. Öğrencilere 450 W seçildiğinde neden iki kırmızı çıktığını söyletin.<div class="uyg"><div class="goster"><b>GÖSTER</b>Önce animasyonu oynatın; ardından fişi çekili güç kaynağının yan etiketini gösterip toplam gücü ve +12 V hattının akımını okuyun; kablo demetinde 8 pinli PCIe ve 8 pinli işlemci (EPS) uçlarını yan yana tutarak farklarını gösterin. Güç kaynağının kapağı açılmaz.</div><div class="sor"><b>SOR</b><q>PCIe ve EPS uçları ikisi de 8 pinliyse birbirinin yerine takılabilir mi? Neden takılmamalı?</q></div><div class="kontrol"><b>✔ KONTROL</b>Gruplar etiketten toplam gücü okudu, kendi setleri için tüketim ve gereken güç hesabını deftere yazdı, PCIe kablo sayısını saydı.</div><div class="sikhata"><b>⚠ SIK HATA</b>Etiket değerini tüketim sanmak; EPS ile PCIe kablosunu karıştırmak; eksik kabloyu dönüştürücüyle çoğaltmaya kalkmak; güç kaynağının vidalarını sökmek.</div></div></td></tr>
+<tr><td>6</td><td><div class="adim-ad">Darboğaz ve Bütçe</div><div class="adim-konu">Dengeli Dağılım ve Darboğaz</div><span class="slayt">Slayt 10</span></td><td>Üç liste sırayla oynar; B listesinde durup sorun: <q>Bu sistemde en çok puan nereye gitti, oyuncu en çok neyi hisseder?</q> Boru çizimini gösterip <q>Suyun ne kadar aktığını en geniş boru değil en dar boru belirler; oyunda o dar boru çoğu zaman ekran kartıdır, derlemede ise çekirdek ve bellek</q> deyin. C listesinde bütçenin yetmesine rağmen ihtiyaç satırının neden kırmızı olduğunu açıklatın. Öğrencilere A listesinin neden dengeli sayıldığını iki gerekçeyle söyletin.</td></tr>
+</table>
+<div class="kutu"><b>Etkinlikler (Slayt 11–12):</b> Etkinlik 1’de öğrenciler ikişerli gruplar hâlinde Deniz’in hatalı oyun listesini düzeltir; biri seçimleri yapar, diğeri gerekçe kutusunu yüksek sesle okur, her görevden sonra roller değişir. Bir grubu akıllı tahtada dokunmatikle çalıştırın ve güç kaynağını en sona bırakmanın nedenini sordurun. Etkinlik 2’de gruplar birer profil seçer (sınıfta dört profil de dağıtılır) ve dört ölçütü yeşile getirir. Liste hazır olunca parçaları deftere geçirip öğretmenin gösterdiği iki kaynaktan güncel fiyatları arar ve yanına yazar; puan ile gerçek fiyat sıralamasının nerede ayrıştığını not eder (yaklaşık 12 dk).</div>
+<h3><span>Değerlendirme ve Kapanış</span><span class="sure">5 dk</span></h3>
+<p>Özet slaytında her kartı bir gruba birer cümleyle anlattırın; iki grup parça listesini ve bulduğu fiyat farkını 30 saniyede sunsun. Bilgi Testi’ni (Slayt 14) bireysel çözdürün; yanlış çıkan soruda ilgili adım slaytına dönüp seçicilerle aynı durumu kurun. Dersi şu köprüyle kapatın: <q>Bugün kâğıt üzerinde uyumlu bir sistem kurduk; gelecek hafta bu parçaları tezgâhta gerçekten birleştireceğiz, ölçtüğümüz milimetreler orada işe yarayacak.</q></p>
+<h2>4. ÖLÇME VE DEĞERLENDİRME</h2>
+<table class="olcme"><thead><tr><th>#</th><th>Soru ve Seçenekler</th><th>Cevap</th></tr></thead>
+<tr><td>1</td><td><div class="soru">“Soket A · ATX · DDR5” anakart için hangi işlemci–bellek ikilisi uyumludur?</div><div class="secenek">A) Soket A işlemci + DDR5 bellek B) Soket B işlemci + DDR5 bellek C) Soket A işlemci + DDR4 bellek D) Soket B işlemci + DDR4 bellek</div><div class="aciklama">İşlemcinin soketi anakartınkiyle aynı olmalı; bellek de anakart yuvalarının nesliyle (DDR5) eşleşmeli. DDR4 modül DDR5 yuvasına girmez.</div></td><td>A</td></tr>
+<tr><td>2</td><td><div class="soru-gorsel"><svg viewBox="0 0 240 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Kasa yan kesiti: ekran kartı için en çok 280 milimetre yer var; takılmak istenen kart 305 milimetre ve ön fanlara 25 milimetre taşıyor"><rect width="240" height="120" rx="10" fill="#f8fafc"/><rect x="14" y="14" width="212" height="92" rx="6" fill="#fff" stroke="#334155" stroke-width="2"/><rect x="198" y="18" width="24" height="84" rx="3" fill="#e2e8f0"/><text x="210" y="64" font-family="Inter,Arial,sans-serif" font-size="8" font-weight="800" fill="#475569" text-anchor="middle">fan</text><path d="M20 44 H198" stroke="#0ea5e9" stroke-width="1.5" stroke-dasharray="4 3"/><text x="109" y="38" font-family="Inter,Arial,sans-serif" font-size="9" font-weight="800" fill="#0369a1" text-anchor="middle">en çok 280 mm</text><rect x="20" y="56" width="203" height="20" rx="3" fill="#475569" opacity=".92"/><rect x="198" y="56" width="25" height="20" fill="#ef4444" opacity=".85"/><text x="108" y="70" font-family="Inter,Arial,sans-serif" font-size="9" font-weight="800" fill="#fff" text-anchor="middle">ekran kartı · 305 mm</text><text x="210" y="92" font-family="Inter,Arial,sans-serif" font-size="9" font-weight="800" fill="#b91c1c" text-anchor="middle">+25 mm</text></svg></div><div class="soru">Görseldeki kasaya bu ekran kartı takılabilir mi?</div><div class="secenek">A) Evet, uzunluk yalnız hava akışını etkiler B) Evet, kasa ATX ise her kart sığar C) Hayır, kart kasanın izin verdiği uzunluktan 25 mm uzun D) Hayır, ekran kartları yalnız ITX kasaya takılır</div><div class="aciklama">Kasanın teknik özelliğindeki en büyük ekran kartı uzunluğu (280 mm) kartın boyuyla (305 mm) karşılaştırılır; kart ön fanlara çarpar.</div></td><td>C</td></tr>
+<tr><td>3</td><td><div class="soru">Ece’nin sisteminde işlemci 105 W, ekran kartı 285 W, diğer parçalar yaklaşık 60 W. %30 pay bırakmak isteyen Ece en az hangi güç kaynağını seçmeli?</div><div class="secenek">A) 450 W B) 650 W C) 550 W D) 1200 W</div><div class="aciklama">105 + 285 + 60 = 450 W; 450 × 1,3 = 585 W. 585 W’tan büyük en küçük seçenek 650 W’tır; 1200 W gereksiz yere bütçe harcar.</div></td><td>B</td></tr>
+<tr><td>4</td><td><div class="soru">Deniz oyun bilgisayarında bütçenin çoğunu 12 çekirdekli işlemciye verdi, giriş seviyesi ekran kartı seçti. Oyunlarda kare hızı düşük. En doğru öneri hangisidir?</div><div class="secenek">A) Belleği 64 GB’a çıkarmalı B) Daha güçlü güç kaynağı almalı C) Depolamayı HDD’den SSD’ye geçirmeli D) Darboğaz ekran kartında; bütçeyi işlemciden ekran kartına kaydırmalı</div><div class="aciklama">Oyunda kareleri çoğunlukla ekran kartı üretir. Zayıf kart tüm sistemi yavaşlatır (darboğaz); bütçe dengelenmelidir.</div></td><td>D</td></tr>
+</table>
+<p class="anahtar">Cevap Anahtarı: <span>1-A 2-C 3-B 4-D</span></p>
+<h2>5. AÇIK UÇLU / BİÇİMLENDİRİCİ DEĞERLENDİRME</h2>
+<ol class="acik">
+<li><span>«Soket ve Çipset Uyumu» kavramını kendi cümlelerinle açıkla ve günlük hayattan bir örnek ver.</span></li>
+<li><span>«Güç Payı» kavramını kendi cümlelerinle açıkla ve günlük hayattan bir örnek ver.</span></li>
+<li><span>«Darboğaz» kavramını kendi cümlelerinle açıkla ve günlük hayattan bir örnek ver.</span></li>
+<li><span>Parça seçerken en çok hangi kuralı gözden kaçırmaya yatkınsın? Bunu önlemek için kendine hangi kontrol adımını koyarsın?</span></li>
+</ol>
+<h2>6. ÖĞRETMEN NOTLARI VE ÖDEV</h2>
+<div class="etiket">Ödev / Sınıf Dışı Etkinlik:</div><p>Evdeki, okuldaki ya da bir yakınının bilgisayarının işlemci, anakart, bellek ve güç kaynağı bilgilerini (sistem bilgisi aracı ya da etiketlerden) bul. Bu dört parça için soket, bellek nesli ve güç payını hesaplayan kısa bir uyumluluk tablosu hazırla; bir parçayı yükseltmek istesen hangisini seçeceğini gerekçesiyle yaz.</p>
+<div class="etiket">Öğretmen İçin Notlar:</div><ul class="not">
+<li>Lise düzeyi: terimler İngilizce karşılıklarıyla verilir (Terim Kartı, Slayt 4). Öğrencilerden TDP, PSU, PCIe ve form faktörü gibi kısaltmaları kullanırken Türkçe karşılığını da söylemelerini isteyin.</li>
+<li>Öğretmen notu (müfredat): fiyatlar derste güncel kaynaklardan alınır, derse sabit fiyat yazılmaz. Simülatördeki puan yalnız oranları karşılaştırmak içindir; öğrenciler gerçek fiyatı Etkinlik 2’den sonra deftere yazar. Fiyatların değişkenliğini ve iki kaynağı karşılaştırmanın nedenini tartışın.</li>
+<li>Uygulama bölümlerinde (Adım 2–5) önce animasyonu, sonra gerçek parçayı kullanın. Bu hafta parçalar takılmaz; yalnız etiket okunur, hiza gösterilir ve ölçüm yapılır. Takma işlemi H09’da tezgâhta yapılır.</li>
+<li>Teknik not: simülatör bilerek sadeleştirilmiştir. Güç hesabında işlemci için TDP kullanılır; güncel işlemcilerin kısa süreli tüketimi TDP’nin üstüne çıkabilir, %30 pay bunu da karşılamak içindir. Gerçek dünyada ayrıca ITX kasaların küçük (SFX) güç kaynağı gerektirebildiği, bazı anakartlarda M.2 yuvası kullanılınca SATA portlarının kapandığı ve radyatörlü sıvı soğutucularda kasanın radyatör yerinin denetlendiği belirtilebilir. Bellek çentik çizimi şematiktir; gerçekte iki neslin çentik farkı birkaç milimetredir.</li>
+<li>Sık görülen kavram yanılgıları: “Güç kaynağının watt değeri ne kadar büyükse sistem o kadar çok elektrik harcar”, “Aynı sokete takılan her işlemci çalışır”, “Daha çok bellek modülü her zaman daha hızlıdır”, “En pahalı parça en iyi sistemi yapar”. Bu cümleleri doğru/yanlış sorusu olarak sorup gerekçeyle düzeltin.</li>
+<li>Hareket azaltma ayarı açık cihazlarda otomatik oynatma kapanır; tüm durumlar seçici düğmelerle tek tek kurulabilir. Simülatördeki açılır listeler klavyeyle (Tab, ok tuşları) de kullanılır; her ışığın rengine simge ve kısa metin eşlik eder.</li>
+<li>Her adımın sonunda 1–2 öğrenciye bir ışığın gerekçesini kendi cümleleriyle anlattırarak anlaşıldığını kontrol edin (biçimlendirici değerlendirme). Etkinlik 1’de görev listesindeki ilerleme de sınıfın genel durumunu gösterir.</li>
+</ul>
+<table class="sure-tablo"><thead><tr><th>Aşama</th><th>Süre</th></tr></thead>
+<tr><td>Giriş — Dikkat Çekme ve Güdüleme</td><td>5 dk</td></tr>
+<tr><td>Gelişme — Kavramların İşlenişi ve Etkinlikler</td><td>25 dk</td></tr>
+<tr><td>Değerlendirme ve Kapanış</td><td>5 dk</td></tr>
+<tr><th>Toplam</th><th>35 dk</th></tr>
+</table>
+<div class="imza"><div><b>Ders Öğretmeni</b>Ad Soyad / İmza</div><div><b>Uygundur</b>Okul Müdürü</div></div>
+</body>
+</html>

@@ -1,0 +1,420 @@
+{
+  "format": "U",
+  "altbaslik": "Gruplar iki farklı kullanıcı için bütçeli bir sistem öneriyor, E-UYUMLULUK ile tablolarını doğruluyor, H09–H12 montaj ve kurulum kanıtlarını rapora bağlıyor ve önerisini jüri önünde savunuyor.",
+  "rozetler": [
+    "Lise 9",
+    "Süre: 1 ders (35 dk)",
+    "Grup: 4 kişi",
+    "Proje dosyası + montaj kanıtları",
+    "Zorluk: İleri (proje)"
+  ],
+  "senaryo": {
+    "baslik": "OKULUN BİLGİSAYAR ALIM KOMİSYONU",
+    "metin": "Okul yönetimi gelecek yıl iki birim için bilgisayar alacak: biri idari ofis ya da kütüphane, diğeri tasarım, oyun geliştirme ya da yazılım kulübü. Komisyon, öğrencilerden teknik gerekçeli öneriler istiyor ve kararını bir jüri sunumunda verecek. Jüri yalnız kanıtlanan iddiaları dikkate alıyor: her seçim ölçüyle, her montaj adımı fotoğrafla, her kurulum ekran görüntüsüyle gösterilmeli.",
+    "gorev": "İki farklı kullanım profili için bütçeyi aşmayan, uyumluluk denetiminden geçmiş birer sistem öner; güç hesabını ve montaj sırasını içeren raporu H09–H12 kanıtlarıyla tamamla ve önerini 5 dakikalık jüri sunumunda savun."
+  },
+  "ogrenci_ne_yapiyor": "Önce proje kartında teslimleri ve değerlendirme ölçütlerini okuyup rolleri paylaşıyor. İki panelli adım slaytlarında her aşamanın provasını izledikten sonra kendi proje dosyası üzerinde aynı işi yapıyor: iki kullanıcı için görüşme formu dolduruyor, E-UYUMLULUK panelinde parçaları seçip kırmızı ışıkları gideriyor ve otomatik oluşan rapor kartındaki gerekçeleri, güç hesabını, montaj sırasını kendi cümleleriyle dosyasına aktarıyor. Önceki haftaların montaj fotoğraflarını ve UEFI, Aygıt Yöneticisi ekran görüntülerini numaralandırıp rapora bağlıyor; jüri provasında savunma cümlelerini deniyor ve jüri turunda önerisini sunuyor.",
+  "kunye": {
+    "grup": "4 kişilik gruplar; roller: proje yöneticisi (süre ve teslim), teknik sorumlu (parça seçimi ve uyumluluk), belgeleyici (kanıt ve rapor), sunucu (jüri sunumu); her grup üyesi sunumda en az bir bölümü anlatır",
+    "donanim": "Grup başına bir bilgisayar ya da tablet (LMS) · H09–H12’de toplanıp kurulan sistem ve o haftaların fotoğraf/ekran görüntüsü klasörü · basılı ya da dijital rapor şablonu · gerekirse ESD bilekliği ve tornavida (yalnız eksik kanıt çekimi için)",
+    "on_kosul": "H05–H07 bileşen haftaları, H08 Uyumluluk ve Sistem Toplama (E-UYUMLULUK), H09–H10 montaj, H11 UEFI, H12 işletim sistemi kurulumu, H13 sorun giderme",
+    "degerlendirme": "Süreç gözlemi + ürün rubriği (proje dosyası ve jüri sunumu) + 4 soruluk bilgi testi (gerekçe yazımı, uyumluluk tablosu yorumu, kanıt niteliği, jüri savunması)"
+  },
+  "kavramlar": [
+    {
+      "baslik": "İhtiyaç analizi",
+      "metin": "Öneri bir ürün listesinden değil, kullanıcının işinden başlar. Görüşmede iş türü, kullanım süresi, özel istekler ve bütçe alınır; bunlardan sayısal en az gereksinimler (çekirdek sayısı, bellek GB, depolama türü ve kapasitesi, ekran kartı seviyesi) çıkarılır. İki farklı profil, aynı bütçenin farklı dağılacağını gösterir."
+    },
+    {
+      "baslik": "Uyumluluk kuralları",
+      "metin": "E-UYUMLULUK on bir kuralı denetler: soket ve çipset (gerekirse UEFI güncellemesi), bellek nesli, modül/yuva sayısı, form faktörü, M.2/SATA yuvaları, ekran kartı uzunluğu, güç kaynağı payı, PCIe ek güç kablosu, soğutucu kapasitesi ve soket bağlantısı, soğutucu yüksekliği, görüntü çıkışı. Kırmızı kural sistemi kurulamaz kılar; sarı kural çalışır ama risk taşır ve raporda gerekçelendirilir."
+    },
+    {
+      "baslik": "Güç bütçesi",
+      "metin": "Tahmini tüketim işlemci TDP’si, ekran kartı gücü ve diğer bileşenlerin (anakart ve fanlar yaklaşık 40 W, modül başına 5 W, sürücü başına 8 W) toplamıdır. Kısa süreli sıçramalar ve yaşlanma için yaklaşık %30 pay eklenir. Simülatördeki değerler öğretim amaçlı yaklaşık değerlerdir; gerçek projede üreticilerin teknik sayfaları kullanılır."
+    },
+    {
+      "baslik": "Kanıt ve montaj günlüğü",
+      "metin": "Kanıt, iddiayı dışarıdan birinin doğrulayabileceği belgedir: grubun etiketi ve tarih-saati görünen montaj fotoğrafı, UEFI’de tanınan bellek ve disk ekranı, uyarısız Aygıt Yöneticisi görüntüsü. Montaj günlüğü her kanıtı adım, zaman, yapan kişi ve sonuçla eşleştirir; rapordaki iddialar kanıt numarasıyla gösterilir."
+    },
+    {
+      "baslik": "Teknik rapor",
+      "metin": "Rapor; ihtiyaç analizi, parça listesi ve gerekçeler, uyumluluk tablosu ve güç hesabı, montaj sırası, numaralı kanıtlar, sonuç ve kontrol listesinden oluşur. E-UYUMLULUK’un ürettiği rapor kartı bir iskelet sunar; öğrenciler gerekçeleri ve sarı satırların açıklamasını kendi cümleleriyle yazar."
+    },
+    {
+      "baslik": "Puan ve gerçek fiyat",
+      "metin": "Derste bütçe göreli “puan” birimiyle yönetilir; puan para değildir ve ürün fiyatı gibi sunulmaz. Komisyona gidecek gerçek bir öneride fiyatlar teslim tarihinde en az iki güncel kaynaktan araştırılıp ayrı bir ekte verilir."
+    }
+  ],
+  "nasil": {
+    "baslik": "İhtiyaç → denetim → kanıtlı rapor",
+    "kartlar": [
+      {
+        "ust": "PARÇA",
+        "baslik": "İhtiyaç profili ve parça listesi",
+        "metin": "İki kullanıcı; sayısal gereksinim ve bütçeye göre seçilmiş parçalar."
+      },
+      {
+        "ust": "BAĞLANTI",
+        "baslik": "Uyumluluk tablosu ve güç hesabı",
+        "metin": "Her kural yeşil ya da gerekçeli sarı; tüketim × 1,3 ≤ güç kaynağı."
+      },
+      {
+        "ust": "SONUÇ",
+        "baslik": "Kanıtlı rapor ve savunma",
+        "metin": "Numaralı kanıtlarla desteklenen rapor; jüriye sayıyla verilen cevaplar."
+      }
+    ],
+    "metin": "Grup önce iki kullanıcının işini gereksinim sayılarına çevirir. E-UYUMLULUK panelinde parçaları seçerken her değişiklikte on bir kural ve profil ölçütleri (ihtiyaç, denge, bütçe) yeniden hesaplanır; kırmızı kalmadığında, ihtiyaç karşılandığında ve bütçe aşılmadığında rapor kartı kendiliğinden açılır. Kart parça listesini, gerekçe taslaklarını, uyumluluk satırlarını, güç hesabını, seçime uyarlanmış montaj sırasını ve kontrol listesini verir. Öğrenciler bu iskeleti kendi sistemlerinin H09–H12 kanıtlarıyla eşleştirir; jüri sorularını da aynı tablo ve kanıt numaralarıyla cevaplar."
+  },
+  "kontrol_listesi": [
+    "H09–H12’de çekilen fotoğrafları ve ekran görüntülerini grup klasörlerinde toplayın; eksik kanıtı olan grupları ders öncesi belirleyin.",
+    "Rapor şablonunu (bölüm başlıkları ve kanıt numarası sütunu) basılı ya da dijital olarak hazırlayın.",
+    "İki profil çiftini gruplara önceden dağıtın ya da seçtirin (ofis/okul + oyun, tasarım + yazılım geliştirme vb.); aynı sınıfta dört profilin de kullanılmasını sağlayın.",
+    "Jüri masasını kurun: öğretmen + iki gönüllü (başka sınıftan öğretmen ya da öğrenci). Jüriye rubriğin bir kopyasını verin.",
+    "Sunum için 5 dakikalık süre tutucu ve sıra listesi hazırlayın; grup sayısı fazlaysa jüri turunun ikinci bölümünü ayrı bir oturuma planlayın.",
+    "Eksik kanıt çekimi gerekecekse montaj setlerini fişi çekili, ESD ekipmanıyla hazır tutun; sistemlere güç verme yalnız sizin onayınızla olur.",
+    "Etkileşimli dersi akıllı tahtada açın; gerçek fotoğraflar eklenmemişse örnek rapor sayfalarını kendi projenizden gösterin."
+  ],
+  "malzemeler": [
+    [
+      "Bilgisayar ya da tablet (LMS)",
+      "1",
+      "E-UYUMLULUK ve rapor kartı için"
+    ],
+    [
+      "Montaj ve kurulum kanıt klasörü",
+      "1",
+      "H09–H12 fotoğrafları ve ekran görüntüleri"
+    ],
+    [
+      "Rapor şablonu",
+      "1",
+      "Bölüm başlıkları ve kanıt numarası sütunu"
+    ],
+    [
+      "İhtiyaç görüşme formu",
+      "2",
+      "Her profil için bir tane"
+    ],
+    [
+      "Rubrik kopyası",
+      "1",
+      "Grup öz değerlendirmesi için"
+    ],
+    [
+      "ESD bilekliği ve tornavida",
+      "1 takım",
+      "Yalnız eksik kanıt çekimi gerekirse"
+    ]
+  ],
+  "akis": [
+    {
+      "asama": "Giriş ve proje kartı",
+      "bas": 0,
+      "son": 4,
+      "ogretmen": "Isınmada oylama yaptır; terim kartından BOM, uyumluluk tablosu ve kanıt satırlarını okut. Proje kartında teslimleri ve jüri ölçütlerini göster, rolleri dağıt.",
+      "ogrenci": "Tahmin eder, rolünü alır, teslim listesini kontrol eder.",
+      "kontrol": "Her grubun iki profili ve rol dağılımı belli mi?",
+      "slayt": "1–5"
+    },
+    {
+      "asama": "İhtiyaç analizi",
+      "bas": 4,
+      "son": 8,
+      "ogretmen": "Görüşme provasını oynat, son karede ısınma tahminine dön. Gruplardan iki formu sayısal gereksinimlerle doldurmalarını iste.",
+      "ogrenci": "İki kullanıcı için iş, süre, istek ve bütçeyi yazar; gereksinimleri sayıya çevirir.",
+      "kontrol": "Formlarda “hızlı olsun” yerine sayı var mı?",
+      "slayt": "6"
+    },
+    {
+      "asama": "Liste ve uyumluluk",
+      "bas": 8,
+      "son": 15,
+      "ogretmen": "Liste ve tablo provalarını oynat. E-UYUMLULUK’ta birinci profili tahtada bir grupla kur; kırmızı ışıkta durup gerekçeyi okut. Gruplar iki profil için rapor kartını oluştursun.",
+      "ogrenci": "Parçaları seçer, kırmızıları giderir, iki rapor kartını açar ve gerekçeleri dosyasına aktarır.",
+      "kontrol": "İlerleme çubuğu 2/2 mi; sarı satırların gerekçesi yazıldı mı?",
+      "slayt": "7–8, 12"
+    },
+    {
+      "asama": "Kanıtları bağla",
+      "bas": 15,
+      "son": 19,
+      "ogretmen": "Kanıt klasörü provasını oynat. Grupların fotoğraflarını adım sırasına dizmesini, eksik kanıtı listeleyip gerekirse gözetimli çekimi planlamasını izle.",
+      "ogrenci": "Kanıtları numaralandırır, montaj günlüğünü tamamlar, eksikleri not eder.",
+      "kontrol": "Her montaj adımının tarihli en az bir kanıtı var mı?",
+      "slayt": "9"
+    },
+    {
+      "asama": "Raporu tamamla",
+      "bas": 19,
+      "son": 24,
+      "ogretmen": "Rapor iskeleti provasını oynat; “iddia → kanıt” örneğinde durdur. Kontrol listesini gruplara işaretlet.",
+      "ogrenci": "Bölümleri sıralar, iddialara kanıt numarası yazar, kontrol listesini doldurur.",
+      "kontrol": "Rapordaki her iddianın yanında kanıt numarası var mı?",
+      "slayt": "10"
+    },
+    {
+      "asama": "Jüri provası ve jüri turu",
+      "bas": 24,
+      "son": 31,
+      "ogretmen": "Sunum provasını oynat, jüri sorularını gruplara çözdür. Ardından hazır olan gruplarla jüri turunu başlat; süreyi tut, rubriği işaretle.",
+      "ogrenci": "Jüri sorularında en güçlü savunmayı bulur; sırası gelince 5 dakikalık sunumu yapar, soruları kanıtla cevaplar.",
+      "kontrol": "Cevaplarda sayı, kural ve kanıt numarası geçiyor mu?",
+      "slayt": "11, 13"
+    },
+    {
+      "asama": "Özet ve test",
+      "bas": 31,
+      "son": 35,
+      "ogretmen": "Özet kartlarını gruplara anlattır, bilgi testini çözdür; sunamayan grupların jüri saatini duyur.",
+      "ogrenci": "Özeti söyler, testi çözer, eksik teslimlerini not eder.",
+      "kontrol": "Test sonrası sarı satırın raporda nasıl ele alınacağını söyleyebiliyor mu?",
+      "slayt": "14–16"
+    }
+  ],
+  "adimlar": [
+    {
+      "baslik": "İhtiyaç Analizi",
+      "goster": "Slayt 6’da provayı oynatın; beşinci karede gereksinim etiketleri belirince durdurun ve “Sessiz çalışsın” isteğinin hangi parçanın seçimini etkileyeceğini sorun. Son karede ikinci profil sütunu açılınca ısınmadaki oylamaya dönün. Ardından bir grubun formunu tahtaya yansıtıp belirsiz ifadeleri birlikte sayıya çevirin. Öğrencilere kendi iki profillerinin en belirgin farkını söyletin.",
+      "sor": "\"Kullanıcı “hızlı bir bilgisayar” istiyorsa bunu hangi soruyla ölçülebilir bir gereksinime dönüştürürsünüz?\"",
+      "kontrol": "Her grubun iki formu dolu; çekirdek, bellek, depolama ve ekran kartı gereksinimleri sayıyla, bütçe puanla yazılı.",
+      "sik_hata": "İki profilin aynı ya da birbirine çok yakın seçilmesi → farklı öncelikli bir profil çifti (ör. ofis + oyun) önerin; gereksinim yerine marka ya da model adı yazılması → iş türünden yola çıkmalarını isteyin."
+    },
+    {
+      "baslik": "Parça Listesi",
+      "goster": "Provayı oynatın; ilk karede bellek ve depolamanın neden önce seçildiğini sorun, son karede kalan puanın nasıl kullanılabileceğini tartışın. Gerekçe satırındaki cümle yapısını tahtaya örnek olarak yazın: “teknik değer + profilin istediği + sonuç”. Öğrencilere kendi listelerinden bir parçanın gerekçesini bu kalıpla söyletin.",
+      "sor": "\"Bütçeniz 40 puan aşıyorsa hangi parçadan kısarsınız ve bu karar hangi gereksinimi riske atar?\"",
+      "kontrol": "Listede her kategori için teknik değer, puan ve gerekçe var; toplam puan profil bütçesini aşmıyor.",
+      "sik_hata": "Gerekçe olarak “en iyisi”, “yeni çıktı” gibi ölçülemeyen ifadeler → sayı ve profil gereksinimi istetin; puanın gerçek fiyat sanılması → puanın yalnız oran olduğunu hatırlatın."
+    },
+    {
+      "baslik": "Uyumluluk Tablosu",
+      "goster": "Provayı oynatın; dördüncü karede form faktörü satırı kırmızı yanınca durdurun, “Bu tabloyla rapor teslim edilir mi?” diye sorun. Beşinci karede kasa değişince satırın yeşile döndüğünü, altıncı karede güç kutusunu gösterin. Sonra Etkinlik 1’de bir grubun panelinde sarı bir satıra dokunup gerekçesini sesli okutun. Öğrencilere kırmızı ile sarı satırın rapordaki farkını söyletin.",
+      "sor": "\"Soket satırı sarıysa (UEFI güncellemesi) rapora ne yazılmalı ve montajdan önce ne yapılmalı?\"",
+      "kontrol": "Her grubun iki rapor kartı açıldı; tablolarında kırmızı satır yok, sarı satırların açıklaması ve güç hesabı yazılı.",
+      "sik_hata": "Rapor kartını olduğu gibi kopyalayıp gerekçeyi kendi cümleleriyle yazmamak → kontrol listesindeki “sarı satır gerekçesi” maddesini işaretletmeden ilerletmeyin; güç payını ters hesaplamak (güç kaynağı ÷ 1,3) → tahtada doğru yönü gösterin."
+    },
+    {
+      "baslik": "Montaj ve Kurulum Kanıtları",
+      "goster": "Provayı oynatın; son karede montaj günlüğü satırı belirince durdurup satırdaki dört bilgiyi (adım, saat, kişi, sonuç) işaret ettirin. Ardından bir grubun gerçek fotoğrafını açıp grup etiketinin ve tarih-saatin görünüp görünmediğini birlikte denetleyin. Öğrencilere kendi klasörlerindeki en zayıf kanıtı ve nasıl güçlendireceklerini söyletin.",
+      "sor": "\"Bir fotoğrafın sizin montajınıza ait olduğunu jüri neye bakarak anlar?\"",
+      "kontrol": "Kanıtlar adım sırasına dizildi ve numaralandı; UEFI (bellek ve disk) ve Aygıt Yöneticisi ekran görüntüleri klasörde.",
+      "sik_hata": "Eksik adımın başka gruptan ya da internetten görselle kapatılması → kanıtın geçerli olmadığını açıklayın, gözetimli yeni çekim planlayın; kanıt için sisteme izinsiz güç verilmesi → durdurun, güvenlik kuralını hatırlatın."
+    },
+    {
+      "baslik": "Rapor",
+      "goster": "Provayı oynatın; son karede “iddia → kanıt” kutusu açılınca durdurun ve her örnekte kanıtın iddiayı gerçekten doğrulayıp doğrulamadığını sorun. Ardından rapor kartındaki montaj sırası özetinin gruplara göre nasıl değiştiğini (M.2 ya da SATA, ekran kartı var ya da yok) iki grubun kartını karşılaştırarak gösterin. Öğrencilere raporlarından bir iddiayı ve kanıt numarasını okutun.",
+      "sor": "\"Raporunuzda kanıtı olmayan bir cümle bulursanız ne yaparsınız: siler misiniz, kanıt mı eklersiniz?\"",
+      "kontrol": "Rapor yedi bölümü ve ek kontrol listesini içeriyor; iddialarla kanıt numaraları eşleşiyor, ölçü birimleri (W, mm, GB, TB) doğru.",
+      "sik_hata": "Bölüm sırasının karışması ya da güç hesabının yalnız sonuç olarak yazılması → hesabın adımlarını istetin; birimlerin karıştırılması (GB/GiB, cm/mm) → H01 birim notunu hatırlatın."
+    },
+    {
+      "baslik": "Sunum",
+      "goster": "Provayı oynatın; dördüncü karede jüri soruları belirince durdurun ve her soru için grubun hangi kanıta başvuracağını sorun. Etkinlik 2’de ilk soruda bilerek zayıf bir cevabı seçip geri bildirimi sınıfa okutun. Jüri turunda süreyi görünür tutun. Öğrencilere en güçlü savunmanın üç parçasını söyletin.",
+      "sor": "\"Jüri bilmediğiniz bir şey sorarsa en dürüst ve en güçlü cevap nasıl kurulur?\"",
+      "kontrol": "Sunum 5 dakikayı aşmadı; her grup üyesi bir bölüm anlattı; soruların en az ikisi kanıt numarasıyla cevaplandı.",
+      "sik_hata": "Slaytı okumak ya da tüm süreyi parça listesine harcamak → süre dağılımını hatırlatın; soruya savunmacı ya da belirsiz cevap vermek → “sayı + kural + kanıt” kalıbına yönlendirin."
+    }
+  ],
+  "yapim_tablosu": [
+    [
+      "İşlemci",
+      "Soket (Soket A/B) · köşe işareti",
+      "Köşe üçgeni soketteki işaretle hizalı; kol kapalı",
+      "Kanıt 2 fotoğrafı; sarı soket satırında UEFI sürümü not edilir"
+    ],
+    [
+      "Bellek",
+      "Önerilen yuvalar (kılavuz)",
+      "Çentik yuvadaki çıkıntıyla hizalı; mandallar kapalı",
+      "Çift kanal için doğru yuva çifti; UEFI ekranında toplam GB"
+    ],
+    [
+      "M.2 SSD",
+      "M.2 yuvası · vida",
+      "Eğik takılıp vidayla sabitlenmiş",
+      "UEFI’de disk görünüyor (Kanıt 5)"
+    ],
+    [
+      "Ekran kartı",
+      "Üst PCIe x16 · 8 pinli PCIe kablo",
+      "Yuva mandalı kapalı; kablo sayısı karttaki girişlerle aynı",
+      "Kart–ön fan payı fotoğrafta ölçülü"
+    ],
+    [
+      "Güç kaynağı",
+      "24-pin anakart · 8-pin EPS · PCIe",
+      "EPS ile PCIe uçları karıştırılmamış",
+      "Kapak açılmaz; güç hesabı raporda"
+    ],
+    [
+      "Kurulum",
+      "UEFI ana ekranı · Aygıt Yöneticisi",
+      "Bellek ve disk tanınıyor; sarı ünlem yok",
+      "Ekran görüntüleri Kanıt 5–6"
+    ]
+  ],
+  "fotolar": [
+    [
+      "DON-301-H14-1-ihtiyac.jpg",
+      "1. İki ihtiyaç görüşme formu"
+    ],
+    [
+      "DON-301-H14-2-liste.jpg",
+      "2. Gerekçeli parça listesi"
+    ],
+    [
+      "DON-301-H14-3-tablo.jpg",
+      "3. Uyumluluk tablosu"
+    ],
+    [
+      "DON-301-H14-4-kanit.jpg",
+      "4. Etiketli ve tarihli montaj fotoğrafı"
+    ],
+    [
+      "DON-301-H14-5-rapor.jpg",
+      "5. Rapor kapağı ve içindekiler"
+    ],
+    [
+      "DON-301-H14-6-sunum.jpg",
+      "6. Jüri sunumu"
+    ]
+  ],
+  "sokratik": [
+    "Aynı bütçeyi iki kullanıcıya farklı dağıttığınızda hangisi daha çok ödün vermiş olur? Bunu nasıl ölçersiniz?",
+    "Uyumluluk tablosunda hiç sarı satır olmaması her zaman en iyi öneri anlamına gelir mi?",
+    "Güç payını %30 yerine %10 bıraksaydınız jüri hangi riski sorardı?",
+    "Fotoğraf ile ekran görüntüsü aynı iddiayı kanıtlamak için birbirinin yerine geçebilir mi?",
+    "Raporunuzu hiç görmemiş bir teknisyen yalnız bu belgeyle aynı sistemi toplayabilir mi? Eksik olan ne olurdu?",
+    "Jürinin sorusuna “bilmiyorum” demek ne zaman güçlü bir cevaptır?"
+  ],
+  "sik_hatalar": [
+    [
+      "Rapor kartı açılmıyor",
+      "Bir kategori seçilmemiş, kırmızı kural var, ihtiyaç ya da bütçe karşılanmıyor",
+      "Profil satırlarına (ihtiyaç, bütçe) ve boş seçimlere baktırın; gerekçe kutusunu okutun."
+    ],
+    [
+      "İki rapor aynı profilde",
+      "Profil değiştirilmeden ikinci liste kurulmuş",
+      "Profil seçicisinden farklı bir profil seçtirin; ilerleme ancak farklı profilde artar."
+    ],
+    [
+      "Gerekçeler kart metninin kopyası",
+      "Öğrenci iskeleti kendi cümlesine çevirmemiş",
+      "Her gerekçeye kullanıcının işinden bir örnek eklemesini isteyin."
+    ],
+    [
+      "Kanıt eksik ya da tarihsiz",
+      "H09–H12’de fotoğraf çekilmemiş ya da dosya adları karışmış",
+      "Gözetimli yeni çekim planlayın; dosyaları adım numarasıyla yeniden adlandırtın."
+    ],
+    [
+      "Güç hesabı hatalı",
+      "Pay ters uygulanmış ya da ekran kartı unutulmuş",
+      "Tüketimi bileşen bileşen topla, sonra × 1,3 adımını tahtada yaptırın."
+    ],
+    [
+      "Sunum süreyi aşıyor",
+      "Parça listesi tek tek okunuyor",
+      "Listeyi tek slayta indirip yalnız üç kritik seçimi anlattırın."
+    ]
+  ],
+  "ogrenci_sorun_giderme": [
+    [
+      "Rapor kartı açılmadı",
+      "Profil satırlarındaki kırmızıya dokun, gerekçeyi oku, o parçayı değiştir."
+    ],
+    [
+      "Bütçe aşıldı",
+      "Profilin önceliği düşük parçasından başlayarak bir alt seçeneğe geç."
+    ],
+    [
+      "Kopyalama çalışmadı",
+      "Rapor kartındaki metni seçip kopyala ya da dosyana elle aktar."
+    ],
+    [
+      "Bir montaj adımının kanıtı yok",
+      "Öğretmene bildir; gözetimli, fişi çekili sistemde yeni fotoğraf çek."
+    ]
+  ],
+  "farklilastirma": {
+    "hizli": "Üçüncü bir profil için rapor kartı oluşturup üç sistemi tek tabloda karşılaştırma; sarı satırı bilerek bırakan bir “ekonomik seçenek” ile tamamen yeşil bir “güvenli seçenek” hazırlayıp jüriye ikisini birlikte sunma; teslim tarihindeki güncel fiyatları iki kaynaktan araştırıp ayrı bir ekte verme.",
+    "zorlanan": "Profil çiftini sizin vermeniz (ofis/okul + oyun); E-UYUMLULUK’ta önce H08’deki düzeltme etkinliğini hatırlatıp birinci profili sizinle birlikte kurma; rapor için yalnız dört bölümden (parça listesi, uyumluluk, güç, kanıt) oluşan kısa şablon kullanma; jüri provasında yalnız üç soruya odaklanma.",
+    "grup": "Proje yöneticisi süreyi ve teslim listesini izler; teknik sorumlu E-UYUMLULUK’u kullanır ve gerekçeleri yazar; belgeleyici kanıtları numaralandırıp raporu birleştirir; sunucu jüri sunumunu hazırlar. Rapor kartı açıldıktan sonra teknik sorumlu ile belgeleyici yer değiştirir; sunumda her üye bir bölümü anlatır."
+  },
+  "gozlem": [
+    "Gereksinimleri kullanıcının işinden sayıya çeviriyor, iki profil arasındaki önceliği açıklıyor.",
+    "Kırmızı ışıkta gerekçeyi okuyup doğru parçayı değiştiriyor; sarı satırı raporda açıklıyor.",
+    "Güç hesabını adım adım yapıyor ve pay oranını yorumluyor.",
+    "Kanıtları adım sırasına diziyor; her iddiaya kanıt numarası bağlıyor.",
+    "Jüri sorusuna sayı, kural ve kanıtla cevap veriyor; rolünü üstleniyor ve rol değişimine uyuyor."
+  ],
+  "rubrik": [
+    [
+      "İhtiyaç analizi",
+      "Tek profil ya da gereksinimler sözel ve belirsiz",
+      "İki profil var; gereksinimlerin bir kısmı sayısal",
+      "İki farklı profil; tüm gereksinimler sayısal ve bütçe puanla yazılı"
+    ],
+    [
+      "Parça listesi ve gerekçe",
+      "Liste eksik; gerekçe yok ya da “en iyisi” düzeyinde",
+      "Liste tam; gerekçelerin bir kısmı teknik değere dayanıyor",
+      "Liste tam; her gerekçe teknik değer + profil gereksinimi içeriyor, bütçe aşılmıyor"
+    ],
+    [
+      "Uyumluluk tablosu",
+      "Kırmızı satır kalmış ya da kurallar eksik",
+      "Kırmızı yok; sarı satırlar açıklanmamış",
+      "Tüm kurallar var; kırmızı yok, sarılar gerekçeli, tablo simge + renkle okunuyor"
+    ],
+    [
+      "Güç hesabı",
+      "Hesap yok ya da yalnız sonuç yazılmış",
+      "Toplam doğru; pay ya da konnektör denetimi eksik",
+      "Bileşen toplamı, × 1,3 payı ve PCIe konnektör sayısı doğru ve açık"
+    ],
+    [
+      "Montaj ve kurulum kanıtları",
+      "Kanıt yok ya da başkasına ait görsel",
+      "Kanıtlar var; bazı adımlar ya da tarih-saat eksik",
+      "Her adımın tarihli, etiketli kanıtı var; UEFI ve Aygıt Yöneticisi görüntüleri eklenmiş"
+    ],
+    [
+      "Rapor düzeni",
+      "Bölümler eksik, birimler karışık",
+      "Bölümler tam; iddia–kanıt eşleşmesi kısmi",
+      "Bölümler sıralı; her iddia kanıt numarasıyla bağlı, birimler doğru"
+    ],
+    [
+      "Jüri sunumu ve savunma",
+      "Süre aşıldı; sorular cevapsız",
+      "Süreye uyuldu; cevaplar genel",
+      "5 dakika içinde; her üye konuştu, cevaplar sayı + kural + kanıt içeriyor"
+    ]
+  ],
+  "kapanis": "Toparlama: Jüri turunda sunan iki grubun en güçlü cevabını sınıfla paylaşın ve “Bu cevabı güçlü yapan neydi?” diye sorun. Isınmadaki oylamaya dönüp iki profilin bütçe dağılımını karşılaştırın. Ödev: Proje dosyasını rubriğe göre öz değerlendirmeyle tamamlamak; eksik kanıtları öğretmen gözetiminde çekip rapora eklemek; isteğe bağlı olarak teslim tarihindeki güncel fiyatları iki kaynaktan araştırıp ayrı ekte vermek. Köprü: Sunamayan gruplar jüri oturumunda sunum yapacak; dönem sonunda en iyi raporlar okul komisyonuna örnek olarak iletilecek.",
+  "guvenlik_ek": [
+    "Bu ders belge ve sunum dersidir; sistemlere güç verilmez. Eksik kanıt çekimi gerekiyorsa sistem kapalı, fişi çekili ve ESD bilekliği takılıyken yapılır.",
+    "Açık kasada güç kaynağının kapağı açılmaz, ekran kartı ve soğutucu kanatlarına dokunulmaz; parçalar kenarlarından tutulur.",
+    "UEFI ya da işletim sistemi ekran görüntüsü için sistemi açmak gerekiyorsa bunu öğretmen yapar; ayarlar değiştirilmez.",
+    "Kanıt fotoğraflarında öğrenci yüzü, kişisel bilgi, parola ya da okul ağına ait bilgi görünmez; dosyalar yalnız okulun paylaşım alanında tutulur.",
+    "Fiyat araştırması yapılacaksa yalnız öğretmenin gösterdiği kaynaklar kullanılır; hesap açılmaz, kişisel bilgi girilmez, satın alma yapılmaz."
+  ],
+  "bitirme": {
+    "baslik": "Çalışan sistem ve belgeleme",
+    "urun": "Proje dosyası: iki ihtiyaç formu, iki gerekçeli parça listesi, kırmızısız uyumluluk tabloları ve güç hesapları, seçime uygun montaj sırası, numaralı ve tarihli montaj/kurulum kanıtları (UEFI ve Aygıt Yöneticisi ekranları dahil), sonuç bölümü ve işaretlenmiş kontrol listesi + 5 dakikalık jüri sunumu.",
+    "sunum": [
+      "Sunucu 1 dakikada iki kullanıcıyı ve gereksinimlerini tanıtır; teknik sorumlu önerilen sistemleri ve bütçe dağılımını gösterir.",
+      "Teknik sorumlu uyumluluk tablosunu ve güç hesabını açar; sarı satırların gerekçesini söyler.",
+      "Belgeleyici iki kanıtı (montaj fotoğrafı ve UEFI ekranı) gösterip rapordaki iddialarla eşleştirir; proje yöneticisi özet ve soru-cevabı yönetir."
+    ]
+  },
+  "kaynaklar": [
+    "Bileşen, kasa ve güç kaynağı üreticilerinin teknik özellik sayfaları ve kılavuzları — soket, bellek desteği, boyut ve güç değerleri",
+    "DON-301 H08 (E-UYUMLULUK) ve H09–H12 montaj ve kurulum dersleri — grup kanıt klasörleri",
+    "Okulun bilişim teknolojileri laboratuvarı kullanım ve veri güvenliği yönergesi"
+  ]
+}
